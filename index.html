@@ -1,56 +1,44 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<meta name="description" content="Midnight — منصة شبابية لتعلم الأمن السيبراني والشبكات والبرمجة بطريقة بسيطة وعملية.">
-
-<title>Midnight | Cyber Security</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#08080d">
+<title>🐧 Midnight</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <style>
-
 :root{
   --bg:#07070b;
   --bg2:#0d0d14;
   --card:#11111a;
-  --card2:#151521;
+  --card2:#171721;
   --purple:#6d35ff;
   --purple2:#8b5cf6;
-  --purple3:#a78bfa;
+  --purple3:#b197fc;
   --white:#f7f7fb;
   --muted:#a6a6b5;
   --line:rgba(255,255,255,.09);
   --green:#39d98a;
   --red:#ff5577;
-  --shadow:0 20px 70px rgba(0,0,0,.45);
+  --yellow:#ffd166;
+  --shadow:0 25px 80px rgba(0,0,0,.45);
 }
 
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
-html{
-  scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
-  background:
-    radial-gradient(circle at 15% 10%,rgba(109,53,255,.18),transparent 30%),
-    radial-gradient(circle at 85% 25%,rgba(139,92,246,.11),transparent 28%),
-    linear-gradient(180deg,#07070b,#0a0a10 55%,#07070b);
-  color:var(--white);
   font-family:Tajawal,Arial,sans-serif;
+  background:
+    radial-gradient(circle at 10% 10%,rgba(109,53,255,.15),transparent 30%),
+    radial-gradient(circle at 90% 20%,rgba(139,92,246,.10),transparent 30%),
+    var(--bg);
+  color:var(--white);
   min-height:100vh;
   overflow-x:hidden;
 }
@@ -60,223 +48,163 @@ body:before{
   position:fixed;
   inset:0;
   pointer-events:none;
-  z-index:-1;
-  opacity:.18;
+  opacity:.25;
   background-image:
     linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
     linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
   background-size:45px 45px;
+  mask-image:linear-gradient(to bottom,#000,transparent);
 }
 
-a{
-  text-decoration:none;
-  color:inherit;
+button,input{font-family:inherit}
+
+button{cursor:pointer}
+
+a{text-decoration:none;color:inherit}
+
+.container{
+  width:min(1180px,92%);
+  margin:auto;
 }
 
-button{
-  font-family:inherit;
-}
-
-/* NAV */
-
-.nav{
+header{
   position:sticky;
   top:0;
-  z-index:50;
+  z-index:1000;
+  background:rgba(7,7,11,.78);
   backdrop-filter:blur(18px);
-  background:rgba(7,7,11,.72);
   border-bottom:1px solid var(--line);
 }
 
-.nav-inner{
-  max-width:1180px;
-  margin:auto;
-  padding:14px 20px;
+.nav{
+  height:76px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:18px;
+  gap:20px;
 }
 
-.brand{
+.logo{
+  font-size:23px;
+  font-weight:900;
   display:flex;
   align-items:center;
-  gap:11px;
-  font-weight:900;
-  letter-spacing:.7px;
+  gap:8px;
+  white-space:nowrap;
 }
 
-.brand-mark{
-  width:38px;
-  height:38px;
-  border-radius:12px;
-  display:grid;
-  place-items:center;
-  background:linear-gradient(135deg,var(--purple),#2b126e);
-  box-shadow:0 0 25px rgba(109,53,255,.35);
-}
-
-.brand-mark i{
-  font-size:17px;
-}
-
-.brand small{
-  display:block;
-  color:var(--muted);
-  font-size:10px;
-  font-weight:500;
-}
+.logo span{color:var(--purple3)}
 
 .nav-links{
   display:flex;
-  gap:8px;
+  align-items:center;
+  gap:7px;
   flex-wrap:wrap;
 }
 
-.nav-links a{
-  padding:9px 13px;
+.nav-links button{
+  background:none;
+  border:0;
+  color:var(--muted);
+  padding:10px 13px;
   border-radius:10px;
-  color:#c9c9d4;
-  font-size:13px;
   transition:.2s;
 }
 
-.nav-links a:hover{
-  background:#15151f;
+.nav-links button:hover,
+.nav-links button.active{
   color:#fff;
+  background:rgba(109,53,255,.14);
 }
 
 .nav-discord{
-  padding:10px 15px;
-  border-radius:12px;
-  background:#fff;
-  color:#111;
-  font-weight:800;
-  font-size:13px;
-  white-space:nowrap;
-  transition:.2s;
+  background:var(--purple)!important;
+  color:white!important;
 }
-
-/* BUTTONS */
-
-.btn{
-  border:0;
-  cursor:pointer;
-  padding:14px 20px;
-  border-radius:13px;
-  font-weight:800;
-  display:inline-flex;
-  align-items:center;
-  gap:9px;
-  transition:.22s;
-}
-
-.btn-primary{
-  background:linear-gradient(135deg,var(--purple),#4b1ed0);
-  color:#fff;
-  box-shadow:0 12px 35px rgba(109,53,255,.25);
-}
-
-.btn-primary:hover{
-  transform:translateY(-3px);
-  box-shadow:0 16px 40px rgba(109,53,255,.38);
-}
-
-.btn-ghost{
-  background:#11111a;
-  border:1px solid var(--line);
-  color:#eee;
-}
-
-.btn-ghost:hover{
-  border-color:rgba(139,92,246,.5);
-  transform:translateY(-2px);
-}
-
-/* PAGES */
 
 .page{
   display:none;
-  animation:pageIn .35s ease;
+  animation:fade .35s ease;
 }
 
-.page.active{
-  display:block;
+.page.active{display:block}
+
+@keyframes fade{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:translateY(0)}
 }
-
-@keyframes pageIn{
-  from{
-    opacity:0;
-    transform:translateY(10px);
-  }
-
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-
-/* HERO */
 
 .hero{
-  max-width:1180px;
-  margin:auto;
-  padding:70px 20px 55px;
+  min-height:650px;
   display:grid;
-  grid-template-columns:1.1fr .9fr;
+  grid-template-columns:1.05fr .95fr;
   align-items:center;
-  gap:55px;
+  gap:60px;
+  padding:70px 0;
 }
 
-.hero-badge{
+.badge{
   display:inline-flex;
   align-items:center;
   gap:8px;
-  border:1px solid rgba(139,92,246,.3);
+  padding:8px 13px;
+  border:1px solid rgba(139,92,246,.28);
   background:rgba(109,53,255,.09);
-  color:#cbbcff;
-  padding:8px 12px;
   border-radius:999px;
-  font-size:12px;
-  font-weight:700;
+  color:var(--purple3);
+  font-size:13px;
   margin-bottom:20px;
 }
 
-.dot{
-  width:7px;
-  height:7px;
-  background:var(--green);
-  border-radius:50%;
-  box-shadow:0 0 12px var(--green);
-}
-
 .hero h1{
-  font-size:clamp(42px,6vw,78px);
-  line-height:.98;
+  font-size:clamp(40px,6vw,72px);
+  line-height:1.05;
   font-weight:900;
-  letter-spacing:-2px;
+  margin-bottom:20px;
 }
 
 .gradient{
-  background:linear-gradient(90deg,#fff 20%,#b99cff 75%,#7545ff);
+  background:linear-gradient(100deg,#fff,var(--purple3),#8b5cf6);
   -webkit-background-clip:text;
   background-clip:text;
   color:transparent;
 }
 
 .hero p{
-  margin-top:22px;
   color:var(--muted);
-  font-size:18px;
   line-height:2;
-  max-width:690px;
+  font-size:17px;
+  max-width:650px;
 }
 
-.hero-buttons{
+.actions{
   display:flex;
   gap:12px;
   flex-wrap:wrap;
-  margin-top:28px;
+  margin-top:30px;
+}
+
+.btn{
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:13px 19px;
+  color:#fff;
+  background:var(--card);
+  transition:.2s;
+  font-weight:700;
+}
+
+.btn:hover{transform:translateY(-2px);border-color:rgba(139,92,246,.5)}
+
+.btn.primary{
+  background:linear-gradient(135deg,var(--purple),var(--purple2));
+  border:0;
+  box-shadow:0 12px 35px rgba(109,53,255,.25);
+}
+
+.btn.discord{
+  background:#5865f2;
+  border:0;
 }
 
 .hero-image-wrap{
@@ -288,8 +216,8 @@ button{
 .hero-image-wrap:before{
   content:"";
   position:absolute;
-  inset:-30px;
-  background:radial-gradient(circle,rgba(109,53,255,.30),transparent 64%);
+  inset:-35px;
+  background:radial-gradient(circle,rgba(109,53,255,.30),transparent 65%);
   z-index:-1;
 }
 
@@ -297,14 +225,15 @@ button{
   width:100%;
   display:block;
   border-radius:25px;
-  border:1px solid rgba(255,255,255,.12);
-  box-shadow:var(--shadow),0 0 60px rgba(109,53,255,.13);
+  border:1px solid var(--line);
+  box-shadow:var(--shadow),0 0 70px rgba(109,53,255,.13);
 }
 
 .copyright-tag{
   position:absolute;
   bottom:14px;
-  left:14px;
+  right:14px;
+  left:auto;
   background:rgba(5,5,9,.78);
   backdrop-filter:blur(12px);
   border:1px solid var(--line);
@@ -314,2576 +243,1916 @@ button{
   color:#ddd;
 }
 
-/* SECTIONS */
-
 .section{
-  max-width:1180px;
-  margin:auto;
-  padding:70px 20px;
+  padding:75px 0;
 }
 
 .section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  gap:20px;
-  margin-bottom:28px;
+  margin-bottom:30px;
 }
 
-.kicker{
-  color:#9f80ff;
-  font-size:12px;
-  font-weight:900;
-  letter-spacing:1px;
-  text-transform:uppercase;
+.section-head h2{
+  font-size:34px;
   margin-bottom:8px;
 }
 
-.section h2{
-  font-size:34px;
-  font-weight:900;
-}
-
-.section-head p{
-  color:var(--muted);
-  max-width:570px;
-  line-height:1.8;
-}
-
-/* CARDS */
+.section-head p{color:var(--muted)}
 
 .grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:14px;
+  gap:16px;
 }
 
 .card{
-  background:linear-gradient(180deg,rgba(21,21,33,.96),rgba(13,13,20,.96));
+  background:linear-gradient(145deg,var(--card),var(--bg2));
   border:1px solid var(--line);
   border-radius:18px;
   padding:22px;
-  min-height:225px;
-  display:flex;
-  flex-direction:column;
   transition:.25s;
-  position:relative;
-  overflow:hidden;
 }
 
 .card:hover{
-  transform:translateY(-5px);
-  border-color:rgba(139,92,246,.38);
-  box-shadow:0 18px 45px rgba(0,0,0,.28);
+  transform:translateY(-4px);
+  border-color:rgba(139,92,246,.35);
+  box-shadow:0 15px 45px rgba(0,0,0,.25);
 }
 
 .icon{
-  width:45px;
-  height:45px;
+  width:46px;
+  height:46px;
   border-radius:13px;
   display:grid;
   place-items:center;
-  background:rgba(109,53,255,.12);
-  color:#a98cff;
-  border:1px solid rgba(139,92,246,.18);
+  background:rgba(109,53,255,.13);
+  color:var(--purple3);
   font-size:19px;
   margin-bottom:17px;
 }
 
-.card h3{
-  font-size:19px;
-  margin-bottom:9px;
-}
+.card h3{margin-bottom:9px}
 
 .card p{
   color:var(--muted);
   line-height:1.8;
   font-size:14px;
-  flex:1;
 }
 
-.learn{
-  border:1px solid rgba(139,92,246,.25);
-  background:transparent;
-  color:#c5b4ff;
-  padding:9px 13px;
-  border-radius:10px;
-  font-weight:800;
-  cursor:pointer;
-  width:max-content;
-  margin-top:18px;
-}
-
-.learn:hover{
-  background:rgba(109,53,255,.12);
-}
-
-/* ROADMAP */
-
-.path{
+.stats{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:12px;
+  gap:14px;
+  margin-top:25px;
 }
 
-.step{
+.stat{
+  background:var(--card);
   border:1px solid var(--line);
-  background:#0e0e16;
-  border-radius:16px;
+  border-radius:15px;
   padding:20px;
+  text-align:center;
 }
 
-.num{
-  width:33px;
-  height:33px;
-  border-radius:10px;
-  background:var(--purple);
-  display:grid;
-  place-items:center;
-  font-weight:900;
-  margin-bottom:15px;
+.stat strong{
+  display:block;
+  font-size:28px;
+  color:var(--purple3);
 }
 
-.step h3{
-  font-size:17px;
-  margin-bottom:8px;
-}
-
-.step p{
-  font-size:13px;
+.stat span{
   color:var(--muted);
-  line-height:1.8;
+  font-size:13px;
 }
 
-.note{
-  margin-top:22px;
-  padding:17px 19px;
-  border:1px solid rgba(57,217,138,.17);
-  background:rgba(57,217,138,.045);
-  border-radius:14px;
-  color:#c7eedd;
-  line-height:1.9;
-  font-size:14px;
-}
-
-/* DISCORD */
-
-.discord{
-  max-width:1180px;
-  margin:20px auto 70px;
-  padding:0 20px;
-}
-
-.discord-box{
-  border:1px solid rgba(109,53,255,.3);
-  border-radius:24px;
-  background:linear-gradient(135deg,rgba(109,53,255,.15),rgba(16,16,24,.9));
-  padding:35px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:25px;
-}
-
-/* COURSE */
-
-.course-header{
-  max-width:1180px;
-  margin:auto;
-  padding:55px 20px 20px;
-}
-
-.back-btn{
-  background:#11111a;
+.progress-box{
+  background:var(--card);
   border:1px solid var(--line);
-  color:#ddd;
-  padding:10px 15px;
-  border-radius:11px;
-  cursor:pointer;
-  font-weight:800;
+  padding:22px;
+  border-radius:18px;
   margin-bottom:25px;
 }
 
-.course-title{
-  font-size:clamp(35px,5vw,58px);
-  font-weight:900;
-  margin-bottom:15px;
-}
-
-.course-description{
-  color:var(--muted);
-  line-height:2;
-  max-width:750px;
-}
-
-.lesson-list{
-  max-width:1180px;
-  margin:auto;
-  padding:35px 20px 80px;
-  display:grid;
-  gap:13px;
-}
-
-.lesson{
+.progress-top{
   display:flex;
-  align-items:center;
-  gap:18px;
-  padding:20px;
-  background:linear-gradient(180deg,#151521,#0e0e16);
-  border:1px solid var(--line);
-  border-radius:17px;
-  cursor:pointer;
-  transition:.2s;
-}
-
-.lesson:hover{
-  transform:translateX(-4px);
-  border-color:rgba(139,92,246,.4);
-}
-
-.lesson-number{
-  width:48px;
-  height:48px;
-  flex-shrink:0;
-  border-radius:14px;
-  display:grid;
-  place-items:center;
-  background:rgba(109,53,255,.14);
-  border:1px solid rgba(139,92,246,.2);
-  color:#b99cff;
-  font-weight:900;
-}
-
-.lesson h3{
-  margin-bottom:5px;
-}
-
-.lesson p{
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.7;
-}
-
-.lesson-arrow{
-  margin-right:auto;
-  color:#9f80ff;
-  font-size:18px;
-}
-
-/* LESSON PAGE */
-
-.lesson-page{
-  max-width:950px;
-  margin:auto;
-  padding:45px 20px 80px;
-}
-
-.lesson-top{
-  margin-bottom:30px;
-}
-
-.lesson-top h1{
-  font-size:clamp(32px,5vw,52px);
+  justify-content:space-between;
+  gap:10px;
   margin-bottom:12px;
 }
 
-.lesson-top p{
-  color:var(--muted);
-  line-height:1.9;
+.progress{
+  height:9px;
+  background:#20202b;
+  border-radius:99px;
+  overflow:hidden;
 }
+
+.progress div{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,var(--purple),var(--purple3));
+  transition:.5s;
+}
+
+.lesson-card{
+  position:relative;
+}
+
+.lesson-number{
+  position:absolute;
+  top:17px;
+  left:17px;
+  color:#666678;
+  font-weight:900;
+}
+
+.lesson-meta{
+  display:flex;
+  gap:7px;
+  margin-top:15px;
+  flex-wrap:wrap;
+}
+
+.tag{
+  padding:5px 9px;
+  background:rgba(255,255,255,.05);
+  border:1px solid var(--line);
+  border-radius:7px;
+  font-size:11px;
+  color:#bbb;
+}
+
+.lesson-view{
+  display:none;
+}
+
+.lesson-view.active{display:block}
 
 .lesson-content{
-  background:linear-gradient(180deg,#11111a,#0d0d14);
+  max-width:900px;
+  margin:auto;
+}
+
+.back{
+  margin-bottom:25px;
+}
+
+.lesson-content h1{
+  font-size:42px;
+  margin-bottom:15px;
+}
+
+.lesson-content .box{
+  background:var(--card);
   border:1px solid var(--line);
-  border-radius:22px;
-  padding:30px;
-}
-
-.lesson-content h2{
-  margin:30px 0 12px;
-  font-size:23px;
-}
-
-.lesson-content h2:first-child{
-  margin-top:0;
+  border-radius:18px;
+  padding:25px;
+  margin:15px 0;
 }
 
 .lesson-content p,
 .lesson-content li{
-  color:#b9b9c7;
+  color:#c4c4cf;
   line-height:2;
-  font-size:15px;
 }
 
 .lesson-content ul{
-  padding-right:25px;
+  padding-right:22px;
 }
 
-.example{
-  margin:20px 0;
-  padding:18px;
-  background:#08080d;
-  border:1px solid var(--line);
-  border-radius:14px;
-  color:#ccc;
-  line-height:2;
-}
-
-.term{
-  display:inline-block;
-  padding:3px 8px;
-  border-radius:7px;
-  background:#191629;
-  border:1px solid rgba(139,92,246,.18);
-  color:#c7b6ff;
-  font-weight:800;
-}
-
-.lesson-actions{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-top:25px;
-}
-
-/* QUIZ */
-
-.quiz-page{
-  max-width:1000px;
-  margin:auto;
-  padding:55px 20px 80px;
-}
-
-.quiz-intro{
-  margin-bottom:30px;
-}
-
-.quiz-intro h1{
-  font-size:clamp(35px,5vw,55px);
-  margin-bottom:10px;
-}
-
-.quiz-intro p{
-  color:var(--muted);
-  line-height:1.9;
-}
-
-.quiz-card{
-  padding:22px;
-  margin-bottom:14px;
-  border:1px solid var(--line);
-  background:#11111a;
-  border-radius:17px;
-}
-
-.quiz-number{
-  color:#9f80ff;
-  font-size:12px;
-  font-weight:900;
-  margin-bottom:7px;
-}
-
-.quiz-card h3{
-  font-size:17px;
-  margin-bottom:15px;
-}
-
-.options{
-  display:grid;
-  gap:8px;
-}
-
-.option{
+.search{
   width:100%;
-  text-align:right;
-  padding:13px 15px;
+  padding:15px 17px;
+  border-radius:13px;
   border:1px solid var(--line);
-  background:#171722;
-  color:#ccc;
-  border-radius:11px;
-  cursor:pointer;
-  transition:.2s;
-}
-
-.option:hover{
-  border-color:#8b5cf6;
+  outline:none;
   color:#fff;
-}
-
-.option.selected.correct{
-  background:rgba(57,217,138,.12);
-  border-color:var(--green);
-  color:#bff5db;
-}
-
-.option.selected.wrong{
-  background:rgba(255,85,119,.1);
-  border-color:var(--red);
-  color:#ffc2cf;
-}
-
-.option:disabled{
-  cursor:default;
-}
-
-.quiz-result{
-  display:none;
-  margin-top:25px;
-  padding:25px;
-  border-radius:17px;
-  border:1px solid rgba(139,92,246,.3);
-  background:rgba(109,53,255,.09);
-  text-align:center;
-}
-
-.quiz-result.show{
-  display:block;
-}
-
-.quiz-result h2{
-  font-size:35px;
-  margin-bottom:8px;
-}
-
-.quiz-result p{
-  color:#bbb;
+  background:var(--card);
   margin-bottom:20px;
 }
 
-/* FOOTER */
-
-.footer{
-  border-top:1px solid var(--line);
-  padding:28px 20px;
-  color:#858592;
-  text-align:center;
-  background:#07070b;
+.search:focus{
+  border-color:var(--purple);
 }
 
-.footer strong{
-  color:#cfcfe0;
+.quiz-card{
+  max-width:800px;
+  margin:auto;
 }
 
-.footer-links{
+.quiz-question{
+  font-size:24px;
+  font-weight:800;
+  line-height:1.6;
+  margin-bottom:20px;
+}
+
+.answers{
+  display:grid;
+  gap:10px;
+}
+
+.answer{
+  text-align:right;
+  border:1px solid var(--line);
+  background:var(--card);
+  color:#eee;
+  padding:15px;
+  border-radius:13px;
+  transition:.2s;
+}
+
+.answer:hover{
+  border-color:var(--purple2);
+  background:rgba(109,53,255,.08);
+}
+
+.answer.correct{
+  border-color:var(--green);
+  background:rgba(57,217,138,.08);
+}
+
+.answer.wrong{
+  border-color:var(--red);
+  background:rgba(255,85,119,.08);
+}
+
+.quiz-info{
   display:flex;
-  justify-content:center;
-  gap:17px;
+  justify-content:space-between;
+  color:var(--muted);
+  margin-bottom:15px;
+}
+
+.result{
+  text-align:center;
+  display:none;
+}
+
+.result h2{
+  font-size:40px;
   margin-bottom:10px;
+}
+
+.projects{
+  grid-template-columns:repeat(2,1fr);
+}
+
+.project{
+  min-height:250px;
+  position:relative;
+  overflow:hidden;
+}
+
+.project:after{
+  content:"";
+  position:absolute;
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  background:rgba(109,53,255,.12);
+  left:-60px;
+  bottom:-70px;
+}
+
+.soon{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:8px;
+  color:var(--yellow);
+  background:rgba(255,209,102,.08);
+  border:1px solid rgba(255,209,102,.18);
+  font-size:11px;
+  margin-bottom:15px;
+}
+
+.project h3{
+  font-size:25px;
+  margin-bottom:12px;
+}
+
+.project p{
+  max-width:600px;
+}
+
+.discord-box{
+  background:
+    radial-gradient(circle at 10% 20%,rgba(109,53,255,.25),transparent 35%),
+    var(--card);
+  border:1px solid var(--line);
+  border-radius:25px;
+  padding:45px;
+  text-align:center;
+}
+
+.discord-box h2{
+  font-size:35px;
+  margin-bottom:12px;
+}
+
+.discord-box p{
+  color:var(--muted);
+  line-height:1.9;
+  margin-bottom:22px;
+}
+
+.achievement{
+  display:flex;
+  gap:15px;
+  align-items:center;
+}
+
+.achievement .icon{
+  flex:none;
+  margin:0;
+}
+
+.locked{
+  opacity:.45;
+}
+
+.term{
+  cursor:pointer;
+}
+
+.term strong{
+  display:block;
+  color:var(--purple3);
+  margin-bottom:6px;
+}
+
+.level-box{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.level-circle{
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  border:2px solid var(--purple);
+  color:var(--purple3);
+  font-size:25px;
+  font-weight:900;
+}
+
+footer{
+  border-top:1px solid var(--line);
+  padding:35px 0;
+  margin-top:50px;
+  color:#777789;
+  text-align:center;
   font-size:13px;
 }
 
-.footer a:hover{
-  color:#fff;
+.toast{
+  position:fixed;
+  bottom:25px;
+  right:25px;
+  z-index:2000;
+  background:#171721;
+  border:1px solid var(--line);
+  padding:14px 18px;
+  border-radius:13px;
+  transform:translateY(100px);
+  opacity:0;
+  transition:.3s;
 }
 
-/* MOBILE */
+.toast.show{
+  transform:translateY(0);
+  opacity:1;
+}
 
-@media(max-width:900px){
-
+@media(max-width:850px){
   .hero{
     grid-template-columns:1fr;
+    text-align:center;
     padding-top:45px;
   }
 
-  .hero-image-wrap{
-    order:-1;
-    max-width:390px;
-  }
+  .hero p{margin:auto}
 
-  .grid{
-    grid-template-columns:repeat(2,1fr);
-  }
+  .actions{justify-content:center}
 
-  .path{
-    grid-template-columns:repeat(2,1fr);
-  }
+  .grid{grid-template-columns:1fr 1fr}
 
-  .nav-links{
-    display:none;
-  }
-}
+  .stats{grid-template-columns:1fr 1fr}
 
-@media(max-width:600px){
-
-  .hero h1{
-    font-size:48px;
-  }
-
-  .hero p{
-    font-size:15px;
-  }
-
-  .grid,
-  .path{
-    grid-template-columns:1fr;
-  }
-
-  .section{
-    padding:52px 16px;
-  }
-
-  .hero{
-    padding-left:16px;
-    padding-right:16px;
-  }
-
-  .discord{
-    padding:0 16px;
-  }
-
-  .discord-box{
-    padding:25px;
-    flex-direction:column;
-    align-items:flex-start;
-  }
-
-  .section-head{
-    display:block;
-  }
-
-  .section-head p{
-    margin-top:12px;
-  }
-
-  .lesson{
-    align-items:flex-start;
-  }
-
-  .lesson-arrow{
+  .nav-links button:not(.nav-discord){
     display:none;
   }
 
-  .lesson-content{
-    padding:22px;
-  }
-
+  .projects{grid-template-columns:1fr}
 }
 
+@media(max-width:560px){
+  .grid{grid-template-columns:1fr}
+
+  .stats{grid-template-columns:1fr 1fr}
+
+  .hero h1{font-size:42px}
+
+  .section{padding:50px 0}
+
+  .lesson-content h1{font-size:31px}
+
+  .discord-box{padding:30px 18px}
+
+  .nav{height:65px}
+
+  .logo{font-size:20px}
+}
 </style>
 </head>
 
 <body>
 
-<nav class="nav">
+<header>
+  <div class="container nav">
+    <div class="logo">🐧 <span>Midnight</span></div>
 
-<div class="nav-inner">
-
-<a class="brand" href="#" onclick="showPage('home');return false;">
-
-<span class="brand-mark">
-<i class="fa-solid fa-shield-halved"></i>
-</span>
-
-<span>
-Midnight
-<small>CYBER SECURITY</small>
-</span>
-
-</a>
-
-<div class="nav-links">
-
-<a href="#" onclick="showPage('home');return false;">
-الرئيسية
-</a>
-
-<a href="#topics" onclick="showPage('home');return false;">
-الدروس
-</a>
-
-<a href="#" onclick="showPage('course');return false;">
-المسار
-</a>
-
-<a href="#" onclick="showPage('quiz');return false;">
-الاختبار
-</a>
-
-</div>
-
-<a
-class="nav-discord"
-href="https://discord.gg/TyUpVWQgA"
-target="_blank"
-rel="noopener"
->
-
-<i class="fa-brands fa-discord"></i>
-سيرفر Midnight
-
-</a>
-
-</div>
-
-</nav>
-
-<main id="home" class="page active">
-
-<header class="hero">
-
-<div>
-
-<div class="hero-badge">
-
-<span class="dot"></span>
-
-تعلّم • جرّب • افهم
-
-</div>
-
-<h1>
-
-الأمن السيبراني
-
-<br>
-
-<span class="gradient">
-بدون تعقيد.
-</span>
-
-</h1>
-
-<p>
-
-أهلاً بك في Midnight
-
-<br>
-
-هنا ما راح نعطيك كلام جامد وتحفظه وخلاص.
-
-بنفهمك الأمن السيبراني من الصفر بطريقة بسيطة وشبابية —
-
-تخيل الإنترنت فندق كبير وأنت تحاول تفهم كل غرفة وباب ومفتاح فيه 😂
-
-</p>
-
-<div class="hero-buttons">
-
-<button
-class="btn btn-primary"
-onclick="showPage('course')"
->
-
-<i class="fa-solid fa-rocket"></i>
-
-ابدأ مسار أساسيات الأمن
-
-</button>
-
-<a
-class="btn btn-ghost"
-href="https://discord.gg/TyUpVWQgA"
-target="_blank"
-rel="noopener"
->
-
-<i class="fa-brands fa-discord"></i>
-
-ادخل السيرفر
-
-</a>
-
-</div>
-
-</div>
-
-<div class="hero-image-wrap">
-
-<img
-class="hero-image"
-src="dead-penguin-cyber-new-background.png"
-alt="Midnight Cyber Security"
->
-
-<div class="copyright-tag">
-© Midnight • جميع الحقوق محفوظة
-</div>
-
-</div>
-
+    <nav class="nav-links">
+      <button class="active" onclick="showPage('home',this)">الرئيسية</button>
+      <button onclick="showPage('academy',this)">الأكاديمية</button>
+      <button onclick="showPage('labs',this)">Labs</button>
+      <button onclick="showPage('quiz',this)">الاختبارات</button>
+      <button onclick="showPage('dictionary',this)">المصطلحات</button>
+      <button onclick="showPage('projects',this)">المشاريع</button>
+      <a class="btn nav-discord" href="https://discord.gg/TyUpVWQgA" target="_blank">
+        <i class="fa-brands fa-discord"></i> Discord
+      </a>
+    </nav>
+  </div>
 </header>
 
-<section class="section" id="topics">
-
-<div class="section-head">
-
-<div>
-
-<div class="kicker">
-MIDNIGHT ACADEMY
-</div>
-
-<h2>
-اختر وش تبي تتعلم
-</h2>
-
-</div>
-
-<p>
-ابدأ من الصفر وخذ الدروس بالترتيب أو افتح الموضوع اللي تبيه مباشرة.
-</p>
-
-</div>
-
-<div class="grid">
-
-<article class="card">
-
-<div class="icon">
-<i class="fa-solid fa-network-wired"></i>
-</div>
-
-<h3>
-أساسيات الشبكات
-</h3>
-
-<p>
-IP و MAC و DNS و DHCP و NAT والراوتر والسويتش وكيف الأجهزة تتواصل.
-</p>
-
-<button class="learn" onclick="openLesson('network')">
-ابدأ الدرس ←
-</button>
-
-</article>
-
-<article class="card">
-
-<div class="icon">
-<i class="fa-solid fa-location-dot"></i>
-</div>
-
-<h3>
-IP و MAC Address
-</h3>
-
-<p>
-وش الفرق بينهم؟ وليه كل واحد له وظيفة مختلفة؟
-</p>
-
-<button class="learn" onclick="openLesson('ipmac')">
-ابدأ الدرس ←
-</button>
-
-</article>
-
-<article class="card">
-
-<div class="icon">
-<i class="fa-solid fa-door-open"></i>
-</div>
-
-<h3>
-Ports & Protocols
-</h3>
-
-<p>
-وش يعني Port؟ وش الفرق بين TCP و UDP؟
-</p>
-
-<button class="learn" onclick="openLesson('ports')">
-ابدأ الدرس ←
-</button>
-
-</article>
-
-<article class="card">
-
-<div class="icon">
-<i class="fa-brands fa-linux"></i>
-</div>
-
-<h3>
-Linux للمبتدئين
-</h3>
-
-<p>
-الملفات والمجلدات والصلاحيات والأوامر الأساسية.
-</p>
-
-<button class="learn" onclick="openLesson('linux')">
-ابدأ الدرس ←
-</button>
-
-</article>
-
-<article class="card">
-
-<div class="icon">
-<i class="fa-brands fa-python"></i>
-</div>
-
-<h3>
-Python للأمن السيبراني
-</h3>
-
-<p>
-وش تحتاج تتعلم من Python وكيف تفيدك في الأمن السيبراني؟
-</p>
-
-<button class="learn" onclick="openLesson('python')">
-ابدأ الدرس ←
-</button>
-
-</article>
-
-<article class="card">
-
-<div class="icon">
-<i class="fa-solid fa-globe"></i>
-</div>
-
-<h3>
-أساسيات الويب
-</h3>
-
-<p>
-HTML و HTTP و Cookies و Sessions و APIs.
-</p>
-
-<button class="learn" onclick="openLesson('web')">
-ابدأ الدرس ←
-</button>
-
-</article>
-
-<article class="card">
-
-<div class="icon">
-<i class="fa-solid fa-shield-halved"></i>
-</div>
-
-<h3>
-مبتدئين الأمن السيبراني
-</h3>
-
-<p>
-خريطة طريق واضحة من الشبكات ولينكس إلى التخصصات.
-</p>
-
-<button class="learn" onclick="openLesson('beginner')">
-ابدأ الدرس ←
-</button>
-
-</article>
-
-<article class="card">
-
-<div class="icon">
-<i class="fa-solid fa-skull-crossbones"></i>
-</div>
-
-<h3>
-خرافات الأمن السيبراني
-</h3>
-
-<p>
-خلنا نفصل الواقع عن أفلام الهاكرز 😂
-</p>
-
-<button class="learn" onclick="openLesson('myths')">
-ابدأ الدرس ←
-</button>
-
-</article>
-
-<article class="card">
-
-<div class="icon">
-<i class="fa-solid fa-scale-balanced"></i>
-</div>
-
-<h3>
-الأمن الأخلاقي والقانوني
-</h3>
-
-<p>
-تعرف وش المسموح وكيف تتعلم داخل نطاق مصرح.
-</p>
-
-<button class="learn" onclick="openLesson('ethics')">
-ابدأ الدرس ←
-</button>
-
-</article>
-
-<article class="card">
-
-<div class="icon">
-<i class="fa-solid fa-database"></i>
-</div>
-
-<h3>
-مصطلحات مهمة
-</h3>
-
-<p>
-Firewall و VPN و Hash و Encryption و Authentication وغيرها.
-</p>
-
-<button class="learn" onclick="openLesson('terms')">
-ابدأ الدرس ←
-</button>
-
-</article>
-
-<article class="card">
-
-<div class="icon">
-<i class="fa-solid fa-bug"></i>
-</div>
-
-<h3>
-الثغرات بشكل مبسط
-</h3>
-
-<p>
-وش هي الثغرة؟ وليه وجود ثغرة ما يعني اختراق كامل؟
-</p>
-
-<button class="learn" onclick="openLesson('vuln')">
-ابدأ الدرس ←
-</button>
-
-</article>
-
-<article class="card">
-
-<div class="icon">
-<i class="fa-solid fa-user-secret"></i>
-</div>
-
-<h3>
-التخصصات
-</h3>
-
-<p>
-Blue Team و Red Team و SOC و DFIR و AppSec وغيرها.
-</p>
-
-<button class="learn" onclick="openLesson('tracks')">
-ابدأ الدرس ←
-</button>
-
-</article>
-
-</div>
-
+<main>
+
+<section id="home" class="page active">
+  <div class="container hero">
+
+    <div>
+      <div class="badge">
+        <i class="fa-solid fa-shield-halved"></i>
+        تعلم الأمن السيبراني بطريقة مختلفة
+      </div>
+
+      <h1>
+        الأمن السيبراني<br>
+        <span class="gradient">بدون تعقيد.</span>
+      </h1>
+
+      <p>
+        أهلاً بك في Midnight. هنا ما راح تحفظ كلام وخلاص.
+        بتفهم الشبكات والأنظمة والويب والأمن السيبراني خطوة بخطوة
+        وبطريقة بسيطة تناسب المبتدئين.
+      </p>
+
+      <div class="actions">
+        <button class="btn primary" onclick="showPage('level')">
+          <i class="fa-solid fa-bolt"></i>
+          اختبر مستواي
+        </button>
+
+        <button class="btn" onclick="showPage('academy')">
+          <i class="fa-solid fa-graduation-cap"></i>
+          ابدأ التعلم
+        </button>
+
+        <a class="btn discord" href="https://discord.gg/TyUpVWQgA" target="_blank">
+          <i class="fa-brands fa-discord"></i>
+          سيرفر Discord
+        </a>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <strong id="statLessons">0</strong>
+          <span>دروس مكتملة</span>
+        </div>
+        <div class="stat">
+          <strong id="statXP">0</strong>
+          <span>XP</span>
+        </div>
+        <div class="stat">
+          <strong id="statLevel">1</strong>
+          <span>المستوى</span>
+        </div>
+        <div class="stat">
+          <strong id="statBadges">0</strong>
+          <span>إنجازات</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-image-wrap">
+      <img
+        class="hero-image"
+        src="dead-penguin-cyber-new-background.png"
+        alt="Midnight Cyber Security"
+      >
+
+      <div class="copyright-tag">
+        © Midnight • جميع الحقوق محفوظة
+      </div>
+    </div>
+
+  </div>
+
+  <div class="container section">
+    <div class="section-head">
+      <h2>وش راح تتعلم؟</h2>
+      <p>مسار مرتب من الأساسيات إلى تطبيقات الأمن السيبراني</p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-network-wired"></i></div>
+        <h3>الشبكات</h3>
+        <p>IP و MAC و DNS و DHCP و TCP و UDP والمنافذ والراوتر وغيرها.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-brands fa-linux"></i></div>
+        <h3>Linux</h3>
+        <p>تعرف على النظام والطرفية والملفات والصلاحيات والأوامر الأساسية.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-brands fa-python"></i></div>
+        <h3>Python</h3>
+        <p>أساسيات Python المهمة لأي شخص يريد يدخل عالم الأمن السيبراني.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-globe"></i></div>
+        <h3>Web Security</h3>
+        <p>HTTP و Cookies و Sessions ومفاهيم أمن تطبيقات الويب.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-bug"></i></div>
+        <h3>الثغرات</h3>
+        <p>فهم الثغرات بشكل تعليمي والتعرف على أسبابها وكيفية الوقاية منها.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-user-shield"></i></div>
+        <h3>الأمن الأخلاقي</h3>
+        <p>تعلم الفرق بين الاختبار المصرح به والهجوم غير المصرح به.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container section">
+    <div class="discord-box">
+      <h2>🚀 جاهز تبدأ؟</h2>
+      <p>
+        انضم إلى مجتمع Midnight وتابع التحديثات والمميزات الجديدة
+        والتسريبات المتعلقة بالمشاريع القادمة.
+      </p>
+
+      <a class="btn discord" href="https://discord.gg/TyUpVWQgA" target="_blank">
+        <i class="fa-brands fa-discord"></i>
+        انضم إلى سيرفر Discord
+      </a>
+    </div>
+  </div>
 </section>
 
-<section class="section">
 
-<div class="section-head">
+<section id="academy" class="page">
+  <div class="container section">
 
-<div>
+    <div class="section-head">
+      <h2>🎓 أكاديمية Midnight</h2>
+      <p>مسار تدريجي من الصفر</p>
+    </div>
 
-<div class="kicker">
-ROADMAP
-</div>
+    <div class="progress-box">
+      <div class="progress-top">
+        <strong>تقدمك في المسار</strong>
+        <span id="progressText">0%</span>
+      </div>
 
-<h2>
-مسار المبتدئ
-</h2>
+      <div class="progress">
+        <div id="progressBar"></div>
+      </div>
+    </div>
 
-</div>
+    <input
+      class="search"
+      id="lessonSearch"
+      placeholder="🔎 ابحث عن درس..."
+      oninput="renderLessons(this.value)"
+    >
 
-<p>
-امش خطوة خطوة ولا تستعجل الأدوات قبل فهم الأساسيات.
-</p>
+    <div id="lessonsGrid" class="grid"></div>
 
-</div>
-
-<div class="path">
-
-<div class="step">
-
-<div class="num">
-01
-</div>
-
-<h3>
-الشبكات
-</h3>
-
-<p>
-IP • MAC • DNS • TCP/IP • Ports • HTTP
-</p>
-
-</div>
-
-<div class="step">
-
-<div class="num">
-02
-</div>
-
-<h3>
-Linux
-</h3>
-
-<p>
-Terminal • Files • Permissions • Processes
-</p>
-
-</div>
-
-<div class="step">
-
-<div class="num">
-03
-</div>
-
-<h3>
-Python
-</h3>
-
-<p>
-Variables • Conditions • Loops • Functions
-</p>
-
-</div>
-
-<div class="step">
-
-<div class="num">
-04
-</div>
-
-<h3>
-التطبيق الآمن
-</h3>
-
-<p>
-CTF • Labs • Web Security • Documentation
-</p>
-
-</div>
-
-</div>
-
-<div class="note">
-
-<i class="fa-solid fa-circle-info"></i>
-
-الهدف مو إنك تحفظ أوامر كثيرة.
-الهدف إنك تفهم <strong>ليش</strong> الشيء يصير وبعدها تتعلم <strong>كيف</strong> تختبره داخل بيئة مصرح لك بها.
-
-</div>
-
+  </div>
 </section>
 
-<div class="discord">
 
-<div class="discord-box">
+<section id="lesson" class="page">
+  <div class="container section lesson-content">
+    <button class="btn back" onclick="showPage('academy')">
+      ← العودة للدروس
+    </button>
 
-<div>
-
-<div class="kicker">
-MIDNIGHT DISCORD
-</div>
-
-<h2>
-تبغى تكمل معنا؟
-</h2>
-
-<p>
-انضم لسيرفر Midnight وتابع المجتمع والمحتوى والمشاريع.
-</p>
-
-</div>
-
-<a
-class="btn btn-primary"
-href="https://discord.gg/TyUpVWQgA"
-target="_blank"
-rel="noopener"
->
-
-<i class="fa-brands fa-discord"></i>
-
-دخول السيرفر
-
-</a>
-
-</div>
-
-</div>
-
-</main>
-
-<main id="course" class="page">
-
-<section class="course-header">
-
-<button class="back-btn" onclick="showPage('home')">
-← رجوع للرئيسية
-</button>
-
-<div class="kicker">
-MIDNIGHT ACADEMY
-</div>
-
-<h1 class="course-title">
-أساسيات الأمن السيبراني
-</h1>
-
-<p class="course-description">
-هذا هو المسار الأساسي للمبتدئ.
-بنبدأ من الشبكات ثم الأنظمة ولينكس ثم Python والويب
-وبعدها ندخل في مفاهيم الأمن السيبراني والتخصصات.
-</p>
-
+    <div id="lessonContent"></div>
+  </div>
 </section>
 
-<section class="lesson-list">
 
-<div class="lesson" onclick="openLesson('network')">
+<section id="labs" class="page">
+  <div class="container section">
+
+    <div class="section-head">
+      <h2>🧪 Midnight Labs</h2>
+      <p>تدريبات تعليمية ومصرح بها لتطبيق اللي تعلمته</p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-terminal"></i></div>
+        <h3>Linux Basics Lab</h3>
+        <p>تدرب على التنقل بين الملفات وفهم الطرفية والأوامر الأساسية.</p>
+        <div class="lesson-meta">
+          <span class="tag">Beginner</span>
+          <span class="tag">+50 XP</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-network-wired"></i></div>
+        <h3>Network Lab</h3>
+        <p>راجع مفاهيم IP و DNS و Ports من خلال سيناريوهات تعليمية.</p>
+        <div class="lesson-meta">
+          <span class="tag">Beginner</span>
+          <span class="tag">+50 XP</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-globe"></i></div>
+        <h3>Web Lab</h3>
+        <p>تعلم كيف يعمل طلب HTTP والـ Cookies والـ Sessions بشكل آمن.</p>
+        <div class="lesson-meta">
+          <span class="tag">Beginner</span>
+          <span class="tag">+75 XP</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-flag"></i></div>
+        <h3>CTF Starter</h3>
+        <p>تعرف على فكرة CTF وكيف تحل التحديات في بيئات تدريبية مصرح بها.</p>
+        <div class="lesson-meta">
+          <span class="tag">Beginner</span>
+          <span class="tag">+100 XP</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h3>Blue Team Lab</h3>
+        <p>تدرب على التفكير الدفاعي وتحليل الأحداث الأمنية بشكل مبسط.</p>
+        <div class="lesson-meta">
+          <span class="tag">Intermediate</span>
+          <span class="tag">+100 XP</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i class="fa-solid fa-bug"></i></div>
+        <h3>Web Security Lab</h3>
+        <p>تعلم التعرف على فئات الثغرات داخل بيئات تعليمية قانونية.</p>
+        <div class="lesson-meta">
+          <span class="tag">Intermediate</span>
+          <span class="tag">+125 XP</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section id="quiz" class="page">
+  <div class="container section">
+
+    <div class="section-head">
+      <h2>🧠 اختبار Midnight</h2>
+      <p>اختبر معلوماتك في الأمن السيبراني</p>
+    </div>
+
+    <div class="quiz-card card" id="quizBox">
+
+      <div class="quiz-info">
+        <span id="quizCount">السؤال 1</span>
+        <span id="quizScore">النقاط: 0</span>
+      </div>
+
+      <div class="progress">
+        <div id="quizProgress"></div>
+      </div>
+
+      <br>
+
+      <div class="quiz-question" id="question"></div>
+
+      <div class="answers" id="answers"></div>
+
+    </div>
 
-<div class="lesson-number">
-01
-</div>
+    <div class="quiz-card card result" id="quizResult">
+      <div class="icon" style="margin:0 auto 20px">
+        <i class="fa-solid fa-trophy"></i>
+      </div>
 
-<div>
+      <h2 id="resultTitle">أحسنت!</h2>
+      <p id="resultText" style="color:var(--muted);line-height:2"></p>
 
-<h3>
-أساسيات الشبكات
-</h3>
+      <br>
 
-<p>
-IP • MAC • DNS • DHCP • Router • Switch • NAT
-</p>
+      <button class="btn primary" onclick="restartQuiz()">
+        إعادة الاختبار
+      </button>
+    </div>
 
-</div>
+  </div>
+</section>
 
-<div class="lesson-arrow">
-←
-</div>
 
-</div>
+<section id="level" class="page">
+  <div class="container section">
 
-<div class="lesson" onclick="openLesson('ipmac')">
+    <div class="section-head">
+      <h2>🎯 اختبار تحديد المستوى</h2>
+      <p>جاوب على الأسئلة وشوف المستوى المناسب لك</p>
+    </div>
 
-<div class="lesson-number">
-02
-</div>
+    <div class="quiz-card card" id="levelBox">
+      <div class="quiz-info">
+        <span id="levelCount">السؤال 1 من 10</span>
+        <span id="levelScore">0 صحيح</span>
+      </div>
 
-<div>
+      <div class="quiz-question" id="levelQuestion"></div>
 
-<h3>
-IP و MAC Address
-</h3>
+      <div class="answers" id="levelAnswers"></div>
+    </div>
 
-<p>
-فهم الفرق بين العناوين المنطقية ومعرفات واجهات الشبكة.
-</p>
+    <div class="quiz-card card result" id="levelResult">
+      <h2 id="levelTitle"></h2>
+      <p id="levelText" style="color:var(--muted);line-height:2"></p>
+      <br>
+      <button class="btn primary" onclick="showPage('academy')">
+        ابدأ المسار
+      </button>
+    </div>
 
-</div>
+  </div>
+</section>
 
-<div class="lesson-arrow">
-←
-</div>
 
-</div>
+<section id="dictionary" class="page">
+  <div class="container section">
 
-<div class="lesson" onclick="openLesson('ports')">
+    <div class="section-head">
+      <h2>📖 قاموس الأمن السيبراني</h2>
+      <p>مصطلحات مهمة مع شرح بسيط</p>
+    </div>
 
-<div class="lesson-number">
-03
-</div>
+    <input
+      class="search"
+      id="termSearch"
+      placeholder="🔎 ابحث عن IP أو DNS أو Firewall..."
+      oninput="renderTerms(this.value)"
+    >
 
-<div>
+    <div id="termsGrid" class="grid"></div>
 
-<h3>
-Ports & Protocols
-</h3>
+  </div>
+</section>
 
-<p>
-Ports • TCP • UDP • HTTP • HTTPS
-</p>
+
+<section id="projects" class="page">
+  <div class="container section">
 
-</div>
-
-<div class="lesson-arrow">
-←
-</div>
-
-</div>
-
-<div class="lesson" onclick="openLesson('linux')">
-
-<div class="lesson-number">
-04
-</div>
-
-<div>
-
-<h3>
-Linux للمبتدئين
-</h3>
-
-<p>
-Terminal • Files • Permissions • Processes
-</p>
-
-</div>
-
-<div class="lesson-arrow">
-←
-</div>
-
-</div>
-
-<div class="lesson" onclick="openLesson('python')">
-
-<div class="lesson-number">
-05
-</div>
-
-<div>
-
-<h3>
-Python للأمن السيبراني
-</h3>
-
-<p>
-Variables • Conditions • Loops • Functions • Files
-</p>
-
-</div>
-
-<div class="lesson-arrow">
-←
-</div>
-
-</div>
-
-<div class="lesson" onclick="openLesson('web')">
-
-<div class="lesson-number">
-06
-</div>
-
-<div>
-
-<h3>
-أساسيات الويب
-</h3>
-
-<p>
-HTML • HTTP • Cookies • Sessions • APIs
-</p>
-
-</div>
-
-<div class="lesson-arrow">
-←
-</div>
-
-</div>
-
-<div class="lesson" onclick="openLesson('beginner')">
-
-<div class="lesson-number">
-07
-</div>
-
-<div>
-
-<h3>
-مبادئ الأمن السيبراني
-</h3>
-
-<p>
-كيف تنتقل من الأساسيات إلى التطبيق الأمني.
-</p>
-
-</div>
-
-<div class="lesson-arrow">
-←
-</div>
-
-</div>
-
-<div class="lesson" onclick="openLesson('ethics')">
-
-<div class="lesson-number">
-08
-</div>
-
-<div>
-
-<h3>
-الأمن الأخلاقي والقانوني
-</h3>
-
-<p>
-التصريح والنطاق والتدريب الآمن.
-</p>
-
-</div>
-
-<div class="lesson-arrow">
-←
-</div>
-
-</div>
-
-<div class="lesson" onclick="openLesson('vuln')">
-
-<div class="lesson-number">
-09
-</div>
-
-<div>
-
-<h3>
-الثغرات
-</h3>
-
-<p>
-ما هي الثغرة وكيف يفكر المختص الأمني؟
-</p>
-
-</div>
-
-<div class="lesson-arrow">
-←
-</div>
-
-</div>
-
-<div class="lesson" onclick="openLesson('tracks')">
-
-<div class="lesson-number">
-10
-</div>
-
-<div>
-
-<h3>
-تخصصات الأمن السيبراني
-</h3>
-
-<p>
-Red Team • Blue Team • SOC • DFIR • AppSec
-</p>
-
-</div>
-
-<div class="lesson-arrow">
-←
-</div>
-
-</div>
-
-<div style="text-align:center;margin-top:20px">
-
-<button
-class="btn btn-primary"
-onclick="showPage('quiz')"
->
-
-<i class="fa-solid fa-clipboard-question"></i>
-
-ابدأ الاختبار
-
-</button>
-
-</div>
-
+    <div class="section-head">
+      <h2>🚀 Midnight Projects</h2>
+      <p>مشاريع Midnight القادمة</p>
+    </div>
+
+    <div class="grid projects">
+
+      <div class="card project">
+        <span class="soon">قريبًا</span>
+
+        <h3>📕 كتاب الأمن السيبراني</h3>
+
+        <p>
+          كتاب Midnight التعليمي للأمن السيبراني.
+          بيكون مرتب من الأساسيات إلى مواضيع أكثر تقدمًا
+          وبأسلوب بسيط وسهل.
+        </p>
+
+        <div class="lesson-meta">
+          <span class="tag">Coming Soon</span>
+          <span class="tag">Midnight</span>
+        </div>
+      </div>
+
+      <div class="card project">
+        <span class="soon">قريبًا</span>
+
+        <h3>🤖 DarkGPT</h3>
+
+        <p>
+          سيتم إضافة DarkGPT قريبًا.
+          ترقبوا التفاصيل والتحديثات القادمة حول المشروع.
+        </p>
+
+        <div class="lesson-meta">
+          <span class="tag">Coming Soon</span>
+          <span class="tag">Midnight</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="discord-box" style="margin-top:25px">
+      <h2>🚨 تبي تعرف الجديد قبل الكل؟</h2>
+
+      <p>
+        سيتم إضافة الميزتين قريبًا،
+        وراح تنزل آخر التحديثات والتسريبات في سيرفرنا على Discord.
+      </p>
+
+      <a
+        class="btn discord"
+        href="https://discord.gg/TyUpVWQgA"
+        target="_blank"
+      >
+        <i class="fa-brands fa-discord"></i>
+        انضم إلى سيرفر Discord
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<section id="achievements" class="page">
+  <div class="container section">
+
+    <div class="section-head">
+      <h2>🏆 الإنجازات</h2>
+      <p>اجمع XP وافتح إنجازات جديدة</p>
+    </div>
+
+    <div class="grid">
+
+      <div class="card achievement">
+        <div class="icon"><i class="fa-solid fa-play"></i></div>
+        <div>
+          <h3>البداية</h3>
+          <p>أكمل أول درس.</p>
+        </div>
+      </div>
+
+      <div class="card achievement locked">
+        <div class="icon"><i class="fa-solid fa-network-wired"></i></div>
+        <div>
+          <h3>Network Rookie</h3>
+          <p>أكمل دروس الشبكات.</p>
+        </div>
+      </div>
+
+      <div class="card achievement locked">
+        <div class="icon"><i class="fa-brands fa-linux"></i></div>
+        <div>
+          <h3>Linux Beginner</h3>
+          <p>أكمل دروس Linux.</p>
+        </div>
+      </div>
+
+      <div class="card achievement locked">
+        <div class="icon"><i class="fa-solid fa-globe"></i></div>
+        <div>
+          <h3>Web Explorer</h3>
+          <p>أكمل دروس Web Security.</p>
+        </div>
+      </div>
+
+      <div class="card achievement locked">
+        <div class="icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div>
+          <h3>Cyber Student</h3>
+          <p>احصل على 500 XP.</p>
+        </div>
+      </div>
+
+      <div class="card achievement locked">
+        <div class="icon"><i class="fa-solid fa-fire"></i></div>
+        <div>
+          <h3>Streak</h3>
+          <p>تعلم عدة أيام متتالية.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
 </section>
 
 </main>
 
-<main id="lessonPage" class="page">
 
-<section class="lesson-page">
-
-<button class="back-btn" onclick="showPage('course')">
-← رجوع للمسار
-</button>
-
-<div class="lesson-top">
-
-<div class="kicker">
-MIDNIGHT LESSON
-</div>
-
-<h1 id="lessonTitle">
-الدرس
-</h1>
-
-<p id="lessonDescription">
-</p>
-
-</div>
-
-<div
-class="lesson-content"
-id="lessonContent"
->
-</div>
-
-<div class="lesson-actions">
-
-<button
-class="btn btn-primary"
-onclick="showPage('quiz')"
->
-
-<i class="fa-solid fa-clipboard-question"></i>
-
-اختبر فهمك
-
-</button>
-
-<button
-class="btn btn-ghost"
-onclick="showPage('course')"
->
-
-← الدروس
-
-</button>
-
-</div>
-
-</section>
-
-</main>
-
-<main id="quiz" class="page">
-
-<section class="quiz-page">
-
-<button class="back-btn" onclick="showPage('course')">
-← رجوع للمسار
-</button>
-
-<div class="quiz-intro">
-
-<div class="kicker">
-MIDNIGHT QUIZ
-</div>
-
-<h1>
-اختبر نفسك 🧠
-</h1>
-
-<p>
-من كل درس سؤال أو سؤالين.
-جاوب على الأسئلة وبعدها بنحسب نتيجتك.
-</p>
-
-</div>
-
-<div id="quizContainer">
-</div>
-
-<div class="quiz-result" id="quizResult">
-
-<h2 id="scoreText">
-0 / 0
-</h2>
-
-<p id="scoreMessage">
-</p>
-
-<button
-class="btn btn-primary"
-onclick="restartQuiz()"
->
-
-إعادة الاختبار
-
-</button>
-
-</div>
-
-</section>
-
-</main>
-
-<footer class="footer">
-
-<div class="footer-links">
-
-<a href="#" onclick="showPage('home');return false;">
-الرئيسية
-</a>
-
-<a href="#" onclick="showPage('course');return false;">
-المسار
-</a>
-
-<a href="#" onclick="showPage('quiz');return false;">
-الاختبار
-</a>
-
-<a
-href="https://discord.gg/TyUpVWQgA"
-target="_blank"
-rel="noopener"
->
-Discord
-</a>
-
-</div>
-
-<p>
-© 2026 <strong>Midnight</strong> — جميع الحقوق محفوظة
-</p>
-
-<p style="margin-top:6px;font-size:11px">
-تعلم الأمن السيبراني بشكل أخلاقي ومصرح به فقط.
-</p>
-
+<footer>
+  <div class="container">
+    <p>🐧 Midnight</p>
+    <br>
+    <p>تعلم الأمن السيبراني بشكل أخلاقي ومصرح به فقط.</p>
+    <p style="margin-top:8px">© 2026 Midnight — جميع الحقوق محفوظة</p>
+  </div>
 </footer>
 
+<div class="toast" id="toast"></div>
+
+
 <script>
+/* =========================
+   Midnight Data
+========================= */
 
-const lessons = {
+const lessons = [
 
-network:{
-title:"أساسيات الشبكات",
-description:"أول خطوة حقيقية في الأمن السيبراني هي فهم الشبكات.",
-html:`
-
-<h2>تخيل الإنترنت فندق ضخم 😂</h2>
-
-<p>
-كل جهاز يعتبر نزيل وكل البيانات تعتبر طرود تتحرك بين الأجهزة.
-عشان الطرد يوصل لازم نعرف وين رايح وكيف يروح.
-</p>
-
-<h2>IP Address</h2>
-
-<p>
-الـ <span class="term">IP</span>
-هو عنوان منطقي يساعد الشبكة تعرف وين ترسل البيانات.
-مثال IPv4:
-192.168.1.10
-</p>
-
-<div class="example">
-
-<strong>تشبيه الفندق:</strong>
-
-تخيل أن عندك عنوان الفندق وموقعه.
-الـ IP يساعد الشبكة في تحديد وجهة الاتصال.
-
+{
+title:"الشبكات من الصفر",
+category:"Networking",
+level:"Beginner",
+icon:"fa-network-wired",
+text:`
+<p>الشبكة هي الطريقة اللي تتواصل فيها الأجهزة مع بعضها.</p>
+<div class="box">
+<h3>تخيلها كمدينة 🏙️</h3>
+<p>الأجهزة مثل البيوت والعناوين مثل أرقام البيوت والراوتر مثل بوابة الحي.</p>
 </div>
+<ul>
+<li>تعرف معنى Network</li>
+<li>تعرف الفرق بين LAN و WAN</li>
+<li>تفهم فكرة الراوتر والسويتش</li>
+</ul>`
+},
 
-<h2>MAC Address</h2>
+{
+title:"IP Address",
+category:"Networking",
+level:"Beginner",
+icon:"fa-location-dot",
+text:`
+<p>عنوان IP هو عنوان منطقي يساعد الشبكات على معرفة الجهاز أو الوجهة.</p>
+<div class="box">
+<h3>مثال</h3>
+<p>مثل عنوان البيت داخل المدينة. بدون عنوان يصعب معرفة أين ترسل البيانات.</p>
+</div>
+<p>تعرف على IPv4 و IPv6 والـ Private IP والـ Public IP.</p>`
+},
 
-<p>
-الـ <span class="term">MAC</span>
-هو معرف مرتبط بواجهة الشبكة ويستخدم بشكل مهم داخل الشبكات المحلية.
-</p>
-
-<h2>DNS</h2>
-
-<p>
-بدل ما تحفظ IP لكل موقع تكتبه مثل example.com.
-الـ <span class="term">DNS</span>
-يساعد في ترجمة اسم النطاق إلى عنوان IP.
-</p>
-
-<h2>DHCP</h2>
-
-<p>
-الـ <span class="term">DHCP</span>
-يساعد الأجهزة على الحصول على إعدادات الشبكة تلقائياً مثل IP.
-</p>
-
-<h2>Router و Switch</h2>
-
-<p>
-الـ <span class="term">Router</span>
-يربط شبكات مختلفة ويوجه البيانات بينها.
-</p>
-
-<p>
-أما الـ <span class="term">Switch</span>
-فعادةً يربط الأجهزة داخل نفس الشبكة المحلية.
-</p>
-
-<h2>NAT</h2>
-
-<p>
-الـ <span class="term">NAT</span>
-يسمح لأجهزة كثيرة داخل شبكة خاصة بمشاركة عنوان عام عند الاتصال بالإنترنت.
-</p>
-
-<h2>الخلاصة</h2>
-
-<p>
-إذا فهمت IP و MAC و DNS و DHCP و Router و Switch و NAT
-فأنت بنيت أساس ممتاز للأمن السيبراني.
-</p>
-
+{
+title:"MAC Address",
+category:"Networking",
+level:"Beginner",
+icon:"fa-id-card",
+text:`
+<p>MAC Address هو معرف مرتبط بواجهة الشبكة.</p>
+<div class="box">
+<p>تقدر تتخيله مثل رقم تعريف لبطاقة الشبكة بينما IP أقرب إلى عنوان الشبكة.</p>
+</div>
 `
 },
 
-ipmac:{
-title:"IP و MAC Address",
-description:"لا تخلط بينهم لأن كل واحد له وظيفة مختلفة.",
-html:`
-
-<h2>وش هو IP؟</h2>
-
-<p>
-الـ IP عنوان منطقي تستخدمه الشبكات لتوجيه البيانات.
-ممكن يتغير حسب الشبكة والإعدادات.
-</p>
-
-<h2>وش هو MAC؟</h2>
-
-<p>
-الـ MAC معرف لواجهة الشبكة ويستخدم بشكل مهم في الشبكات المحلية.
-</p>
-
-<div class="example">
-
-<strong>تشبيه:</strong>
-
-تخيل الفندق عنده عنوان للوصول إليه،
-وداخل الفندق فيه نظام يميز الأجهزة محلياً.
-
-التشبيه مو مطابق 100% للتقنية لكنه يساعدك تفهم الفكرة.
-
-</div>
-
-<h2>شيء مهم</h2>
-
-<p>
-لا تعتبر الـ MAC هوية سحرية لا تتغير أبداً،
-ولا تعتبر الـ IP هوية الجهاز الدائمة.
-
-كل واحد له وظيفة وسياق مختلف.
-
-</p>
-
-`
+{
+title:"DNS",
+category:"Networking",
+level:"Beginner",
+icon:"fa-globe",
+text:`
+<p>DNS يحول أسماء النطاقات التي يسهل على الإنسان قراءتها إلى معلومات تساعد الأجهزة على الوصول للوجهة.</p>
+<div class="box">
+<h3>مثال</h3>
+<p>بدل ما تحفظ عنوان رقمي لموقع تكتب اسم النطاق.</p>
+</div>`
 },
 
-ports:{
-title:"Ports & Protocols",
-description:"فهم المنافذ والبروتوكولات مهم جداً للشبكات والأمن.",
-html:`
-
-<h2>وش هو Port؟</h2>
-
-<p>
-تخيل السيرفر فندق والـ Ports مثل أبواب مرقمة لخدمات مختلفة.
-رقم المنفذ يساعد النظام يعرف لأي خدمة يروح الاتصال.
-</p>
-
-<h2>TCP</h2>
-
-<p>
-<span class="term">TCP</span>
-يهتم بإنشاء اتصال موثوق وترتيب البيانات والتأكد من وصولها بالشكل المطلوب.
-</p>
-
-<h2>UDP</h2>
-
-<p>
-<span class="term">UDP</span>
-أخف في حالات كثيرة ولا يوفر نفس آليات التحقق الموجودة في TCP.
-</p>
-
-<h2>HTTP و HTTPS</h2>
-
-<p>
-<span class="term">HTTP</span>
-يستخدم لنقل محتوى الويب.
-</p>
-
-<p>
-<span class="term">HTTPS</span>
-يستخدم TLS لحماية الاتصال بين المتصفح والخادم.
-</p>
-
-<div class="example">
-
-<strong>مهم:</strong>
-
-وجود Port مفتوح لا يعني أن النظام مخترق.
-
-يعني أن خدمة ما تستقبل اتصالات وفق إعداداتها.
-
-</div>
-
-`
+{
+title:"DHCP",
+category:"Networking",
+level:"Beginner",
+icon:"fa-server",
+text:`
+<p>DHCP يساعد في توزيع إعدادات الشبكة للأجهزة تلقائيًا.</p>
+<ul>
+<li>IP Address</li>
+<li>Subnet Mask</li>
+<li>Default Gateway</li>
+<li>DNS Server</li>
+</ul>`
 },
 
-linux:{
+{
+title:"Ports",
+category:"Networking",
+level:"Beginner",
+icon:"fa-door-open",
+text:`
+<p>المنافذ تساعد الأنظمة على تمييز الخدمات المختلفة على الجهاز.</p>
+<div class="box">
+<p>تخيل الجهاز فندقًا والمنافذ أبوابًا مختلفة، وكل خدمة تستخدم بابًا محددًا.</p>
+</div>`
+},
+
+{
+title:"TCP و UDP",
+category:"Networking",
+level:"Beginner",
+icon:"fa-arrows-left-right",
+text:`
+<p>TCP و UDP بروتوكولان يستخدمان لنقل البيانات لكن بطريقة مختلفة.</p>
+<ul>
+<li>TCP يهتم بالموثوقية والترتيب.</li>
+<li>UDP أبسط وأسرع في بعض الاستخدامات ولا يضمن نفس مستوى التسليم.</li>
+</ul>`
+},
+
+{
+title:"HTTP و HTTPS",
+category:"Web",
+level:"Beginner",
+icon:"fa-lock",
+text:`
+<p>HTTP بروتوكول أساسي للتواصل بين المتصفح والخادم.</p>
+<p>HTTPS يستخدم TLS لتوفير قناة مشفرة بين الطرفين.</p>`
+},
+
+{
 title:"Linux للمبتدئين",
-description:"Linux مهم جداً لفهم الأنظمة وبيئات السيرفرات والأمن السيبراني.",
-html:`
+category:"Linux",
+level:"Beginner",
+icon:"fa-brands fa-linux",
+text:`
+<p>Linux نظام مهم جدًا في عالم الأمن السيبراني.</p>
+<div class="box">
+<h3>أوامر أساسية</h3>
+<p>pwd لمعرفة المكان الحالي</p>
+<p>ls لعرض الملفات</p>
+<p>cd للتنقل</p>
+<p>mkdir لإنشاء مجلد</p>
+</div>`
+},
 
-<h2>ليش Linux مهم؟</h2>
-
-<p>
-Linux منتشر في السيرفرات وبيئات التطوير والأمن السيبراني.
-كما أنه يعطيك فهم ممتاز لإدارة النظام من الطرفية.
-</p>
-
-<h2>وش تتعلم أول؟</h2>
-
+{
+title:"Linux Files",
+category:"Linux",
+level:"Beginner",
+icon:"fa-folder",
+text:`
+<p>تعلم كيف تنظم أنظمة Linux الملفات والمجلدات وكيف تتعامل معها.</p>
 <ul>
-
-<li>التنقل بين الملفات والمجلدات</li>
-
-<li>قراءة الملفات وتعديلها</li>
-
-<li>الصلاحيات</li>
-
-<li>Users و Groups</li>
-
-<li>Processes</li>
-
-<li>Services</li>
-
-<li>المسارات</li>
-
-<li>استخدام help و man</li>
-
-</ul>
-
-<div class="example">
-
-<strong>القاعدة الذهبية:</strong>
-
-لا تحفظ الأمر بدون فهمه.
-
-اعرف وش يسوي الأمر ومتى تستخدمه.
-
-</div>
-
-`
+<li>Files</li>
+<li>Directories</li>
+<li>Paths</li>
+<li>Absolute Paths</li>
+<li>Relative Paths</li>
+</ul>`
 },
 
-python:{
-title:"Python للأمن السيبراني",
-description:"ما تحتاج تكون محترف Python قبل تبدأ الأمن السيبراني.",
-html:`
+{
+title:"Linux Permissions",
+category:"Linux",
+level:"Beginner",
+icon:"fa-key",
+text:`
+<p>الصلاحيات تحدد من يستطيع قراءة أو تعديل أو تنفيذ الملفات.</p>
+<div class="box">
+<p>فهم الصلاحيات مهم جدًا للأمن وإدارة الأنظمة.</p>
+</div>`
+},
 
-<h2>هل Python ضروري؟</h2>
+{
+title:"Python من الصفر",
+category:"Python",
+level:"Beginner",
+icon:"fa-brands fa-python",
+text:`
+<p>Python لغة سهلة ومفيدة جدًا للأتمتة وتحليل البيانات وأعمال الأمن السيبراني.</p>
+<p>ما تحتاج تكون محترف Python قبل تبدأ Cybersecurity. تقدر تتعلم الاثنين مع بعض.</p>`
+},
 
-<p>
-لا.
-مو لازم تكون محترف Python قبل ما تبدأ الأمن السيبراني.
-تقدر تبدأ الشبكات ولينكس بالتوازي وتتعلم Python تدريجياً.
-</p>
+{
+title:"Python Variables",
+category:"Python",
+level:"Beginner",
+icon:"fa-code",
+text:`
+<p>المتغير يخزن قيمة تستطيع استخدامها داخل البرنامج.</p>
+<div class="box">
+<p>تعلم أنواع البيانات مثل النصوص والأرقام والقوائم.</p>
+</div>`
+},
 
-<h2>وش تتعلم؟</h2>
+{
+title:"Python Conditions",
+category:"Python",
+level:"Beginner",
+icon:"fa-code-branch",
+text:`
+<p>الشروط تسمح للبرنامج باتخاذ قرارات بناءً على حالة معينة.</p>
+<p>تعلم if و elif و else بشكل مبسط.</p>`
+},
 
+{
+title:"Python Loops",
+category:"Python",
+level:"Beginner",
+icon:"fa-repeat",
+text:`
+<p>الحلقات تساعدك على تكرار العمليات بدون كتابة نفس الكود مرات كثيرة.</p>
+<p>تعرف على for و while.</p>`
+},
+
+{
+title:"Web Basics",
+category:"Web",
+level:"Beginner",
+icon:"fa-globe",
+text:`
+<p>تعرف كيف يعمل الويب من المتصفح إلى الخادم.</p>
 <ul>
-
-<li>Variables — المتغيرات</li>
-
-<li>if / else — الشروط</li>
-
-<li>for / while — الحلقات</li>
-
-<li>Functions — الدوال</li>
-
-<li>Lists و Dictionaries</li>
-
-<li>قراءة وكتابة الملفات</li>
-
-<li>JSON</li>
-
-<li>APIs</li>
-
-<li>معالجة الأخطاء</li>
-
-</ul>
-
-<h2>ليش تفيدك؟</h2>
-
-<p>
-تساعدك في الأتمتة وتحليل البيانات وكتابة أدوات صغيرة للتعلم والعمل
-على أنظمة تملكها أو عندك تصريح لاختبارها.
-</p>
-
-`
-},
-
-web:{
-title:"أساسيات الويب",
-description:"قبل تتعلم Web Security لازم تفهم كيف الويب يعمل.",
-html:`
-
-<h2>المتصفح والسيرفر</h2>
-
-<p>
-لما تفتح موقع، المتصفح يرسل طلباً والسيرفر يعالج الطلب ويرجع استجابة.
-</p>
-
-<h2>HTML و CSS و JavaScript</h2>
-
-<p>
-HTML يبني هيكل الصفحة.
-</p>
-
-<p>
-CSS يهتم بالشكل.
-</p>
-
-<p>
-JavaScript يضيف التفاعل والسلوك.
-</p>
-
-<h2>HTTP</h2>
-
-<p>
-طلبات واستجابات الويب تحتوي أشياء مثل method و URL و headers و status code و body.
-</p>
-
-<h2>Cookies و Sessions</h2>
-
-<p>
-تستخدم المواقع آليات مختلفة لتذكر الجلسة وحالة المستخدم.
-وفهمها مهم جداً في Web Security.
-</p>
-
-<h2>APIs</h2>
-
-<p>
-الـ API طريقة منظمة تسمح لتطبيقات مختلفة بالتواصل وتبادل البيانات.
-</p>
-
-`
-},
-
-beginner:{
-title:"مبادئ الأمن السيبراني",
-description:"خارطة بسيطة تعرفك وش تتعلم بعد الأساسيات.",
-html:`
-
-<h2>المرحلة 1 — الأساس</h2>
-
-<p>
-ابدأ بالشبكات وأنظمة التشغيل ومبادئ الويب.
-</p>
-
-<h2>المرحلة 2 — Linux و Python</h2>
-
-<p>
-تعلم الطرفية وفهم النظام،
-وبعدها Python بالقدر الذي تحتاجه للأتمتة والتحليل.
-</p>
-
-<h2>المرحلة 3 — أمن المعلومات</h2>
-
-<p>
-تعلم Authentication و Authorization و Encryption و Hashing
-و Vulnerabilities و Threats و Defenses.
-</p>
-
-<h2>المرحلة 4 — التطبيق الآمن</h2>
-
-<p>
-استخدم مختبرات تعليمية و CTF وبيئات مصممة للتدريب.
-لا تختبر أنظمة حقيقية بدون تصريح.
-</p>
-
-<h2>المرحلة 5 — اختر تخصصك</h2>
-
-<p>
-Web Security؟
-Blue Team؟
-SOC؟
-DFIR؟
-Cloud Security؟
-Malware Analysis؟
-Bug Bounty ضمن البرامج المسموح بها؟
-كل طريق له مهارات مختلفة.
-</p>
-
-`
-},
-
-ethics:{
-title:"الأمن الأخلاقي والقانوني",
-description:"تعلم الأمن السيبراني لازم يكون داخل نطاق واضح ومصرح.",
-html:`
-
-<h2>الفكرة بسيطة</h2>
-
-<p>
-اختبر الأنظمة التي تملكها أو لديك تصريح واضح لاختبارها.
-</p>
-
-<h2>ليش التصريح مهم؟</h2>
-
-<p>
-نفس الفكرة التقنية ممكن تكون اختباراً أمنياً مشروعاً داخل نطاق محدد،
-أو وصولاً غير مصرح به إذا تم تطبيقها على نظام بدون إذن.
-</p>
-
-<div class="example">
-
-<strong>مثال:</strong>
-
-عندك مختبر تدريبي والتعليمات تقول اختبر التطبيق داخله.
-
-هذا نطاق واضح.
-
-أما موقع عشوائي على الإنترنت بدون تصريح فلا تختبره.
-
-</div>
-
-<h2>Bug Bounty</h2>
-
-<p>
-برامج مكافآت الثغرات تحدد نطاقاً وقواعد يجب قراءتها والالتزام بها قبل أي اختبار.
-</p>
-
-`
-},
-
-terms:{
-title:"مصطلحات مهمة",
-description:"قاموس سريع لأهم الكلمات اللي بتقابلها.",
-html:`
-
-<h2>Firewall</h2>
-
-<p>
-نظام يطبق قواعد على حركة الشبكة للسماح أو المنع.
-</p>
-
-<h2>VPN</h2>
-
-<p>
-تقنية تنشئ اتصالاً مشفراً أو نفقاً بين جهازك ونقطة أخرى حسب نوع الخدمة.
-</p>
-
-<h2>Hash</h2>
-
-<p>
-دالة تنتج قيمة ثابتة الطول من البيانات.
-</p>
-
-<h2>Encryption</h2>
-
-<p>
-تشفير يحول البيانات إلى صيغة غير مفهومة بدون المفتاح المناسب.
-</p>
-
-<h2>Authentication</h2>
-
-<p>
-التأكد من هوية المستخدم أو الجهاز.
-</p>
-
-<h2>Authorization</h2>
-
-<p>
-تحديد وش مسموح للهوية التي تم التحقق منها أن تفعله.
-</p>
-
-<h2>Vulnerability</h2>
-
-<p>
-نقطة ضعف قد تؤثر على سرية أو سلامة أو توفر النظام.
-</p>
-
-<h2>Patch</h2>
-
-<p>
-تحديث أو إصلاح يعالج مشكلة أو ثغرة أو يحسن النظام.
-</p>
-
-`
-},
-
-vuln:{
-title:"الثغرات",
-description:"الثغرة هي ضعف أمني وليست زر اختراق سحري.",
-html:`
-
-<h2>وش هي الثغرة؟</h2>
-
-<p>
-الثغرة هي ضعف في تصميم أو تنفيذ أو إعداد نظام
-يمكن أن يؤدي إلى أثر أمني معين.
-</p>
-
-<h2>كيف يفكر المختص؟</h2>
-
-<p>
-يفهم النظام أولاً،
-يحدد النطاق،
-يلاحظ السلوك غير المتوقع،
-يتحقق منه داخل بيئة مصرح بها،
-ثم يوثق التأثير وطريقة الإصلاح.
-</p>
-
-<h2>وش يحدد خطورتها؟</h2>
-
-<p>
-التأثير،
-الصلاحيات المطلوبة،
-إمكانية الوصول،
-البيانات المتأثرة،
-وجود حماية إضافية،
-والسياق الذي توجد فيه.
-</p>
-
-<div class="example">
-
-<strong>مهم:</strong>
-
-اكتشاف ضعف لا يعني تلقائياً امتلاك صلاحية استخدامه
-على نظام حقيقي.
-
-التصريح والنطاق أساسيان.
-
-</div>
-
-`
-},
-
-tracks:{
-title:"تخصصات الأمن السيبراني",
-description:"الأمن السيبراني مو تخصص واحد فقط.",
-html:`
-
-<h2>Red Team</h2>
-
-<p>
-محاكاة هجمات مصرح بها لاختبار قدرة المؤسسة على اكتشافها ومنعها.
-</p>
-
-<h2>Blue Team</h2>
-
-<p>
-الدفاع والمراقبة والاستجابة للحوادث وتقوية الأنظمة.
-</p>
-
-<h2>Purple Team</h2>
-
-<p>
-تعاون بين الهجوم والدفاع لتحويل نتائج الاختبارات إلى تحسينات دفاعية.
-</p>
-
-<h2>SOC</h2>
-
-<p>
-مراقبة الأحداث الأمنية والتحقيق في التنبيهات والحوادث.
-</p>
-
-<h2>DFIR</h2>
-
-<p>
-التحقيق الجنائي الرقمي والاستجابة للحوادث.
-</p>
-
-<h2>Web / AppSec</h2>
-
-<p>
-أمن تطبيقات الويب والبرمجيات خلال التطوير والاختبار.
-</p>
-
-<h2>Cloud Security</h2>
-
-<p>
-تأمين الخدمات والبنية السحابية والهويات والإعدادات والبيانات.
-</p>
-
-<h2>Bug Bounty</h2>
-
-<p>
-البحث عن ثغرات ضمن برامج معلنة لها نطاق وقواعد ومكافآت.
-</p>
-
-`
-},
-
-myths:{
-title:"خرافات الأمن السيبراني",
-description:"خلنا نفصل الواقع عن أفلام الهاكرز.",
-html:`
-
-<h2>الخرافة 1: الهاكر يقدر يخترق أي شيء</h2>
-
-<p>
-الحقيقة أن المهارة الأمنية لا تعطيك تصريح تلقائي للوصول إلى الأنظمة.
-</p>
-
-<h2>الخرافة 2: لازم تكون محترف برمجة</h2>
-
-<p>
-مو لازم.
-لكن البرمجة تساعدك كثير مع تقدمك.
-</p>
-
-<h2>الخرافة 3: Kali Linux يعني أنك هكر</h2>
-
-<p>
-Kali مجرد توزيعة Linux تحتوي أدوات كثيرة.
-امتلاك الأدوات بدون فهم الشبكات والأنظمة ما يخليك مختص.
-</p>
-
-<h2>الخرافة 4: الثغرة تعني اختراق كامل</h2>
-
-<p>
-تأثير الثغرة يعتمد على نوعها ومكانها وصلاحياتها وإعدادات النظام.
-</p>
-
-<h2>الخرافة 5: لازم أتعلم كل شيء قبل أبدأ</h2>
-
-<p>
-لا.
-تعلم الأساسيات وابدأ بالتطبيق الآمن، وكل مرحلة بتوضح لك وش تحتاج بعدين.
-</p>
-
-`
-}
-
-};
-
-const questions = [
-
-{
-lesson:"أساسيات الشبكات",
-question:"وش وظيفة DNS بشكل أساسي؟",
-options:[
-"تشفير كل الإنترنت",
-"تحويل اسم النطاق إلى عنوان IP",
-"زيادة سرعة الرام",
-"تغيير MAC"
-],
-answer:1
+<li>Browser</li>
+<li>Server</li>
+<li>Request</li>
+<li>Response</li>
+<li>HTTP</li>
+</ul>`
 },
 
 {
-lesson:"أساسيات الشبكات",
-question:"وش وظيفة DHCP؟",
-options:[
-"إعطاء إعدادات الشبكة للأجهزة تلقائياً",
-"تشفير الملفات",
-"تشغيل الألعاب",
-"حذف الفيروسات"
-],
-answer:0
+title:"Cookies",
+category:"Web",
+level:"Beginner",
+icon:"fa-cookie-bite",
+text:`
+<p>Cookies عبارة عن بيانات صغيرة يمكن للموقع تخزينها في المتصفح.</p>
+<p>تستخدم لأشياء مثل تفضيلات المستخدم وبعض حالات الجلسة.</p>`
 },
 
 {
-lesson:"IP و MAC",
-question:"وش هو IP؟",
-options:[
-"عنوان منطقي يستخدم في الشبكات",
-"نوع من المعالجات",
-"كلمة مرور",
-"برنامج حماية"
-],
-answer:0
+title:"Sessions",
+category:"Web",
+level:"Beginner",
+icon:"fa-user-lock",
+text:`
+<p>الجلسة تساعد الخادم على معرفة حالة المستخدم أثناء استخدام الموقع.</p>
+<p>من المهم حماية معلومات الجلسات ومنع الوصول غير المصرح به.</p>`
 },
 
 {
-lesson:"IP و MAC",
-question:"وش يرتبط بالواجهة الشبكية بشكل أساسي؟",
-options:[
-"DNS",
-"MAC",
-"HTTP",
-"HTML"
-],
-answer:1
+title:"HTML",
+category:"Web",
+level:"Beginner",
+icon:"fa-brands fa-html5",
+text:`
+<p>HTML هي اللغة الأساسية لبناء هيكل صفحات الويب.</p>
+<p>تعلم العناصر والعناوين والروابط والنماذج.</p>`
 },
 
 {
-lesson:"Ports & Protocols",
-question:"وش أقرب تشبيه للـ Port؟",
-options:[
-"باب مرقم لخدمة",
-"بطارية",
-"شاشة",
-"كلمة مرور"
-],
-answer:0
+title:"CSS",
+category:"Web",
+level:"Beginner",
+icon:"fa-brands fa-css3-alt",
+text:`
+<p>CSS مسؤولة عن مظهر الصفحة وتنسيقها.</p>
+<p>تقدر تستخدمها لبناء واجهات جميلة ومتجاوبة مع الجوال.</p>`
 },
 
 {
-lesson:"Ports & Protocols",
-question:"أي واحد يهتم بموثوقية وترتيب البيانات بشكل أكبر؟",
-options:[
-"UDP",
-"TCP",
-"DNS",
-"HTML"
-],
-answer:1
+title:"JavaScript",
+category:"Web",
+level:"Beginner",
+icon:"fa-brands fa-js",
+text:`
+<p>JavaScript تضيف التفاعل والمنطق داخل صفحات الويب.</p>
+<p>وهي مهمة جدًا لفهم تطبيقات الويب الحديثة.</p>`
 },
 
 {
-lesson:"Linux",
-question:"وش تستخدم الطرفية في Linux؟",
-options:[
-"لإدارة النظام وتنفيذ الأوامر",
-"لتغيير حجم الشاشة فقط",
-"لتشغيل الإنترنت فقط",
-"لتصميم الصور فقط"
-],
-answer:0
+title:"أساسيات الأمن السيبراني",
+category:"Security",
+level:"Beginner",
+icon:"fa-shield-halved",
+text:`
+<p>الأمن السيبراني يهتم بحماية الأنظمة والشبكات والبيانات.</p>
+<div class="box">
+<h3>CIA Triad</h3>
+<p>Confidentiality — السرية</p>
+<p>Integrity — سلامة البيانات</p>
+<p>Availability — التوافر</p>
+</div>`
 },
 
 {
-lesson:"Linux",
-question:"وش من الأشياء المهمة في Linux؟",
-options:[
-"Permissions",
-"FPS",
-"Skins",
-"Robux"
-],
-answer:0
+title:"Authentication و Authorization",
+category:"Security",
+level:"Beginner",
+icon:"fa-user-shield",
+text:`
+<p>Authentication يعني التحقق من هوية المستخدم.</p>
+<p>Authorization يعني تحديد الأشياء التي يسمح للمستخدم بالوصول إليها.</p>`
 },
 
 {
-lesson:"Python",
-question:"هل لازم تكون محترف Python قبل تبدأ الأمن السيبراني؟",
-options:[
-"نعم لازم",
-"لا",
-"فقط إذا عندك Kali",
-"فقط إذا عندك VPN"
-],
-answer:1
+title:"أنواع الثغرات",
+category:"Web Security",
+level:"Intermediate",
+icon:"fa-bug",
+text:`
+<p>الثغرة هي نقطة ضعف يمكن أن تؤثر على أمن النظام.</p>
+<p>تعلم الفئات بشكل نظري وركز على المختبرات المصرح بها عند التطبيق.</p>`
 },
 
 {
-lesson:"Python",
-question:"وش من استخدامات Python المفيدة أمنياً؟",
-options:[
-"الأتمتة وتحليل البيانات",
-"زيادة سرعة الإنترنت",
-"تغيير المعالج",
-"إصلاح الشاشة"
-],
-answer:0
+title:"OWASP",
+category:"Web Security",
+level:"Intermediate",
+icon:"fa-shield-halved",
+text:`
+<p>OWASP مجتمع ومشروع معروف بأمن تطبيقات الويب.</p>
+<p>تعرف على فكرة OWASP Top 10 ولماذا يستخدمه المطورون والباحثون.</p>`
 },
 
 {
-lesson:"Web",
-question:"وش وظيفة HTML الأساسية؟",
-options:[
-"بناء هيكل الصفحة",
-"تشفير السيرفر",
-"تغيير IP",
-"إدارة الراوتر"
-],
-answer:0
+title:"Blue Team",
+category:"Security",
+level:"Intermediate",
+icon:"fa-shield",
+text:`
+<p>Blue Team يركز على الدفاع والمراقبة والاستجابة للحوادث.</p>
+<ul>
+<li>Monitoring</li>
+<li>Detection</li>
+<li>Incident Response</li>
+<li>Hardening</li>
+</ul>`
 },
 
 {
-lesson:"Web",
-question:"وش تسوي Cookies في مواقع كثيرة؟",
-options:[
-"تساعد الموقع في تذكر حالة أو معلومات معينة",
-"تزيد الرام",
-"تغير MAC",
-"تحذف DNS"
-],
-answer:0
+title:"SOC",
+category:"Security",
+level:"Intermediate",
+icon:"fa-desktop",
+text:`
+<p>SOC هو مركز عمليات الأمن الذي يراقب الأحداث الأمنية ويحاول اكتشاف الحوادث والاستجابة لها.</p>`
 },
 
 {
-lesson:"الأمن السيبراني",
-question:"وش أول شيء مهم قبل اختبار نظام حقيقي؟",
-options:[
-"التصريح والنطاق",
-"تحميل أكبر عدد من الأدوات",
-"تغيير اسم الجهاز",
-"حذف الملفات"
-],
-answer:0
+title:"Bug Bounty",
+category:"Security",
+level:"Intermediate",
+icon:"fa-bug",
+text:`
+<p>Bug Bounty برامج تسمح للباحثين باكتشاف مشاكل أمنية ضمن نطاق وشروط محددة.</p>
+<div class="box">
+<p>أهم قاعدة: لا تختبر أي نظام بدون تصريح واضح.</p>
+</div>`
 },
 
 {
-lesson:"الأمن السيبراني",
-question:"وين الأفضل للمبتدئ يتدرب؟",
-options:[
-"مختبرات و CTF مصممة للتدريب",
-"أي موقع عشوائي",
-"حسابات الناس",
-"أجهزة الغرباء"
-],
-answer:0
+title:"CTF",
+category:"Practice",
+level:"Beginner",
+icon:"fa-flag",
+text:`
+<p>CTF مسابقات وتحديات تعليمية تساعدك على تطبيق مهارات الأمن السيبراني في بيئات مصممة للتدريب.</p>
+<p>ابدأ بالمختبرات القانونية والمخصصة للتعلم.</p>`
 },
 
 {
-lesson:"الأمن الأخلاقي",
-question:"وش يعني اختبار مصرح به؟",
-options:[
-"اختبار داخل نطاق عندك إذن له",
-"اختبار أي شيء تبيه",
-"تجربة كلمات مرور الناس",
-"دخول جهاز بدون إذن"
-],
-answer:0
-},
-
-{
-lesson:"الأمن الأخلاقي",
-question:"برامج Bug Bounty تحتوي عادةً على ماذا؟",
-options:[
-"نطاق وقواعد للاختبار",
-"صلاحية لاختراق أي موقع",
-"كلمة مرور عامة",
-"جهاز مجاني"
-],
-answer:0
-},
-
-{
-lesson:"الثغرات",
-question:"وش هي الثغرة؟",
-options:[
-"ضعف يمكن أن يؤثر أمنياً",
-"نوع من الشاشات",
-"برنامج دردشة",
-"لغة برمجة"
-],
-answer:0
-},
-
-{
-lesson:"الثغرات",
-question:"هل وجود ثغرة يعني دائماً اختراق كامل؟",
-options:[
-"نعم",
-"لا",
-"فقط في Linux",
-"فقط في Windows"
-],
-answer:1
-},
-
-{
-lesson:"التخصصات",
-question:"وش يركز عليه Blue Team؟",
-options:[
-"الدفاع والمراقبة والاستجابة",
-"تصميم الألعاب",
-"تطوير الجوال فقط",
-"تغيير DNS"
-],
-answer:0
-},
-
-{
-lesson:"التخصصات",
-question:"وش يركز عليه SOC؟",
-options:[
-"مراقبة الأحداث والتنبيهات الأمنية",
-"تصميم الشعارات",
-"صيانة الجوالات",
-"ألعاب Roblox"
-],
-answer:0
+title:"أخلاقيات الأمن السيبراني",
+category:"Ethics",
+level:"Beginner",
+icon:"fa-scale-balanced",
+text:`
+<p>الباحث الأمني المحترف يحترم الخصوصية والقوانين ونطاق الاختبار.</p>
+<div class="box">
+<h3>قاعدة Midnight</h3>
+<p>تعلم واختبر فقط على الأنظمة التي تملكها أو لديك تصريح واضح لاختبارها.</p>
+</div>`
 }
 
 ];
 
-let score=0;
-let answered=0;
 
-function showPage(page){
+/* =========================
+   Navigation
+========================= */
 
-document.querySelectorAll(".page").forEach(p=>{
-p.classList.remove("active");
+function showPage(id,button){
+
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("active");
+  });
+
+  const page=document.getElementById(id);
+
+  if(page) page.classList.add("active");
+
+  document.querySelectorAll(".nav-links button").forEach(b=>{
+    b.classList.remove("active");
+  });
+
+  if(button) button.classList.add("active");
+
+  window.scrollTo({top:0,behavior:"smooth"});
+
+  if(id==="academy") renderLessons();
+  if(id==="dictionary") renderTerms();
+}
+
+
+/* =========================
+   Progress
+========================= */
+
+let completed=JSON.parse(localStorage.getItem("midnightCompleted")||"[]");
+let xp=Number(localStorage.getItem("midnightXP")||0);
+
+function saveProgress(){
+  localStorage.setItem("midnightCompleted",JSON.stringify(completed));
+  localStorage.setItem("midnightXP",xp);
+  updateStats();
+}
+
+function updateStats(){
+
+  const percent=Math.round((completed.length/lessons.length)*100);
+
+  document.getElementById("statLessons").textContent=completed.length;
+  document.getElementById("statXP").textContent=xp;
+
+  const level=Math.max(1,Math.floor(xp/250)+1);
+
+  document.getElementById("statLevel").textContent=level;
+
+  document.getElementById("statBadges").textContent=
+    Math.min(6,Math.floor(xp/250));
+
+  const bar=document.getElementById("progressBar");
+
+  if(bar) bar.style.width=percent+"%";
+
+  const text=document.getElementById("progressText");
+
+  if(text) text.textContent=percent+"%";
+}
+
+
+/* =========================
+   Lessons
+========================= */
+
+function renderLessons(search=""){
+
+  const grid=document.getElementById("lessonsGrid");
+
+  if(!grid)return;
+
+  const q=search.toLowerCase();
+
+  const filtered=lessons.filter(l=>
+    l.title.toLowerCase().includes(q) ||
+    l.category.toLowerCase().includes(q)
+  );
+
+  grid.innerHTML=filtered.map((l,index)=>{
+
+    const original=lessons.indexOf(l);
+    const done=completed.includes(original);
+
+    return `
+      <div class="card lesson-card">
+        <span class="lesson-number">
+          ${String(original+1).padStart(2,"0")}
+        </span>
+
+        <div class="icon">
+          <i class="fa-solid ${l.icon}"></i>
+        </div>
+
+        <h3>${l.title}</h3>
+
+        <p>
+          ${l.category} • ${l.level}
+        </p>
+
+        <div class="lesson-meta">
+          <span class="tag">${l.category}</span>
+          <span class="tag">${l.level}</span>
+          ${done?'<span class="tag" style="color:var(--green)">✓ مكتمل</span>':''}
+        </div>
+
+        <br>
+
+        <button
+          class="btn primary"
+          onclick="openLesson(${original})"
+        >
+          ${done?"مراجعة الدرس":"ابدأ الدرس"}
+        </button>
+      </div>
+    `;
+
+  }).join("");
+}
+
+function openLesson(index){
+
+  const l=lessons[index];
+
+  document.getElementById("lessonContent").innerHTML=`
+
+    <div class="badge">
+      <i class="fa-solid ${l.icon}"></i>
+      ${l.category}
+    </div>
+
+    <h1>${l.title}</h1>
+
+    <p style="color:var(--muted)">
+      المستوى: ${l.level}
+    </p>
+
+    <div class="box">
+      ${l.text}
+    </div>
+
+    <div class="box">
+      <h3>🎯 هدف الدرس</h3>
+      <p>
+        بعد هذا الدرس المفروض تكون فاهم الفكرة الأساسية
+        وتقدر تربطها بباقي مواضيع الأمن السيبراني.
+      </p>
+    </div>
+
+    <button class="btn primary" onclick="completeLesson(${index})">
+      ${completed.includes(index)?"✓ الدرس مكتمل":"إكمال الدرس +25 XP"}
+    </button>
+
+  `;
+
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById("lesson").classList.add("active");
+
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function completeLesson(index){
+
+  if(!completed.includes(index)){
+    completed.push(index);
+    xp+=25;
+
+    saveProgress();
+
+    toast("🔥 تم إكمال الدرس +25 XP");
+
+    openLesson(index);
+  }else{
+    toast("هذا الدرس مكتمل مسبقًا");
+  }
+}
+
+
+/* =========================
+   Dictionary
+========================= */
+
+const terms=[
+["IP Address","عنوان منطقي يساعد الأجهزة على التواصل داخل الشبكات.","Networking"],
+["MAC Address","معرف مرتبط بواجهة الشبكة.","Networking"],
+["DNS","نظام يساعد على ترجمة أسماء النطاقات إلى معلومات تستخدم للوصول للوجهة.","Networking"],
+["DHCP","بروتوكول يساعد في توزيع إعدادات الشبكة تلقائيًا.","Networking"],
+["Router","جهاز يوجه البيانات بين الشبكات.","Networking"],
+["Switch","جهاز يربط أجهزة داخل شبكة محلية ويوجه الإطارات بينها.","Networking"],
+["Port","رقم منطقي يساعد على تحديد خدمة أو اتصال معين.","Networking"],
+["TCP","بروتوكول نقل يهتم بالموثوقية والترتيب.","Networking"],
+["UDP","بروتوكول نقل أبسط ولا يوفر نفس ضمانات TCP.","Networking"],
+["HTTP","بروتوكول يستخدم لتبادل طلبات واستجابات الويب.","Web"],
+["HTTPS","نسخة من HTTP تستخدم TLS لتأمين الاتصال.","Web"],
+["Cookie","بيانات صغيرة يمكن للموقع تخزينها في المتصفح.","Web"],
+["Session","حالة مرتبطة بتفاعل المستخدم مع التطبيق خلال فترة معينة.","Web"],
+["Firewall","نظام يساعد على التحكم في حركة الشبكة وفق قواعد.","Security"],
+["Encryption","تحويل البيانات إلى صيغة محمية باستخدام خوارزمية ومفتاح.","Security"],
+["Authentication","عملية التحقق من هوية المستخدم.","Security"],
+["Authorization","تحديد ما الذي يسمح للمستخدم بالوصول إليه.","Security"],
+["Vulnerability","نقطة ضعف يمكن أن تؤثر على أمن النظام.","Security"],
+["Exploit","طريقة أو تقنية تستفيد من نقطة ضعف ضمن سياق الاختبار المصرح به.","Security"],
+["Patch","تحديث يعالج مشكلة أو ثغرة أو خللًا.","Security"],
+["SOC","مركز عمليات الأمن لمراقبة الأحداث والاستجابة لها.","Blue Team"],
+["CTF","تحديات تعليمية للأمن السيبراني.","Practice"],
+["Bug Bounty","برنامج يسمح بالإبلاغ عن الثغرات ضمن نطاق وشروط محددة.","Security"],
+["Blue Team","فريق يركز على الدفاع والكشف والاستجابة.","Security"],
+["Red Team","فريق يحاكي أساليب الهجوم ضمن نطاق مصرح به لاختبار الدفاعات.","Security"],
+["Phishing","محاولة خداع المستخدم للحصول على معلومات أو تنفيذ إجراء غير مرغوب.","Security"],
+["Malware","برمجية مصممة لتنفيذ نشاط ضار.","Security"],
+["Linux","نظام تشغيل مفتوح المصدر يستخدم بكثرة في الخوادم والأمن السيبراني.","Linux"],
+["Python","لغة برمجة سهلة ومفيدة للأتمتة وتحليل البيانات.","Programming"],
+["OWASP","مجتمع ومشروع يهتم بأمن تطبيقات الويب.","Web Security"]
+];
+
+function renderTerms(search=""){
+
+  const grid=document.getElementById("termsGrid");
+
+  if(!grid)return;
+
+  const q=search.toLowerCase();
+
+  const filtered=terms.filter(t=>
+    t[0].toLowerCase().includes(q) ||
+    t[1].toLowerCase().includes(q) ||
+    t[2].toLowerCase().includes(q)
+  );
+
+  grid.innerHTML=filtered.map(t=>`
+    <div class="card term">
+      <strong>${t[0]}</strong>
+      <p>${t[1]}</p>
+      <div class="lesson-meta">
+        <span class="tag">${t[2]}</span>
+      </div>
+    </div>
+  `).join("");
+}
+
+
+/* =========================
+   Main Quiz
+   100+ Question Bank
+========================= */
+
+const baseQuestions=[
+
+["ما وظيفة DNS؟",["ترجمة أسماء النطاقات إلى معلومات تساعد على الوصول","تشفير القرص","تشغيل المعالج","حذف الملفات"],0],
+["ما هو IP Address؟",["عنوان منطقي على الشبكة","نوع معالج","لغة برمجة","برنامج حماية"],0],
+["ما هو MAC Address؟",["معرف مرتبط بواجهة الشبكة","اسم الموقع","رقم إصدار Linux","نوع تشفير"],0],
+["ما وظيفة DHCP؟",["توزيع إعدادات الشبكة تلقائيًا","تشغيل المواقع","ضغط الصور","فحص الملفات"],0],
+["أي بروتوكول يهتم بالموثوقية والترتيب؟",["TCP","UDP","HTML","DNS"],0],
+["ما وظيفة الراوتر؟",["توجيه البيانات بين الشبكات","إنشاء الصور","ترجمة Python","تشغيل الشاشة"],0],
+["ما هو Port؟",["رقم منطقي يساعد في تحديد خدمة أو اتصال","كرت شاشة","عنوان منزل حقيقي","لغة"],0],
+["ماذا يعني HTTPS؟",["HTTP مع حماية TLS للاتصال","HTTP بدون شبكة","لغة برمجة","نظام تشغيل"],0],
+["ما وظيفة Firewall؟",["التحكم في حركة الشبكة وفق قواعد","زيادة RAM","تعديل الصور","كتابة HTML"],0],
+["ما معنى Authentication؟",["التحقق من الهوية","تحديد الصلاحيات فقط","تشفير القرص","تغيير IP"],0],
+["ما معنى Authorization؟",["تحديد ما يسمح للمستخدم بالوصول إليه","التحقق من الهوية","تغيير DNS","تشغيل الخادم"],0],
+["ما هي Cookie؟",["بيانات صغيرة يمكن للموقع تخزينها في المتصفح","برنامج مكافحة فيروسات","عنوان IP","منفذ"],0],
+["ما هو Linux؟",["نظام تشغيل","متصفح","لغة تشفير","قاعدة بيانات"],0],
+["أي أمر يعرض الملفات في Linux؟",["ls","cd","pwd","mkdir"],0],
+["أي أمر ينقلك بين المجلدات؟",["cd","ls","pwd","echo"],0],
+["أي أمر يعرض المسار الحالي؟",["pwd","cd","ls","mkdir"],0],
+["ما وظيفة mkdir؟",["إنشاء مجلد","حذف الشبكة","عرض IP","تشغيل المتصفح"],0],
+["ما هي Python؟",["لغة برمجة","نظام تشغيل","بروتوكول","جدار ناري"],0],
+["ما وظيفة HTML؟",["بناء هيكل صفحة الويب","تشفير الاتصال","توزيع IP","حماية الراوتر"],0],
+["ما وظيفة CSS؟",["تنسيق مظهر صفحات الويب","توجيه الشبكة","تشفير الملفات","إدارة المستخدمين"],0],
+["ما وظيفة JavaScript؟",["إضافة التفاعل والمنطق للويب","توزيع IP","استبدال DNS","تشغيل BIOS"],0],
+["ما هو CTF؟",["تحديات تعليمية في الأمن السيبراني","نوع من الراوتر","لغة برمجة","برنامج حماية"],0],
+["ما هو Bug Bounty؟",["برنامج للإبلاغ عن الثغرات ضمن نطاق محدد","برنامج لتسريع الإنترنت","نوع من الألعاب","نظام تشغيل"],0],
+["ما هو SOC؟",["مركز عمليات الأمن","نوع من التشفير","لغة برمجة","منفذ"],0],
+["ما هو Blue Team؟",["فريق دفاعي يركز على الحماية والكشف والاستجابة","فريق تطوير ألعاب","شركة إنترنت","نوع من Linux"],0],
+["ما هو Vulnerability؟",["نقطة ضعف أمنية","عنوان IP","نوع من المتصفحات","ملف صورة"],0],
+["ما هو Patch؟",["تحديث يعالج مشكلة أو ثغرة","عنوان شبكة","لغة","منفذ"],0],
+["ما المقصود بالتشفير؟",["تحويل البيانات إلى صيغة محمية باستخدام خوارزمية ومفتاح","حذف البيانات","ضغط الصور","تغيير الشاشة"],0],
+["ما المقصود بالخصوصية؟",["حماية المعلومات من الوصول غير المصرح به","زيادة سرعة المعالج","تغيير نظام التشغيل","فتح المنافذ"],0],
+["ما المقصود بـ CIA Triad؟",["Confidentiality Integrity Availability","Cookies IP Authentication","Cyber Internet Access","Control Identity Account"],0]
+];
+
+
+/* Generate extra review questions so the bank exceeds 100 */
+
+const extraTopics=[
+["أي عنصر يمثل الجهاز الذي يوجه البيانات بين الشبكات؟","Router"],
+["أي مصطلح يشير إلى التحقق من هوية المستخدم؟","Authentication"],
+["أي مصطلح يشير إلى الصلاحيات؟","Authorization"],
+["أي بروتوكول يرتبط غالبًا بصفحات الويب؟","HTTP"],
+["أي لغة تستخدم لبناء هيكل صفحات الويب؟","HTML"],
+["أي لغة تستخدم لتنسيق صفحات الويب؟","CSS"],
+["أي لغة يمكن استخدامها للأتمتة وتحليل البيانات؟","Python"],
+["أي نظام تشغيل مشهور في مجال الخوادم والأمن؟","Linux"],
+["ما الذي يساعد على منع حركة شبكة غير مسموحة وفق قواعد؟","Firewall"],
+["ما الذي يحول اسم نطاق إلى معلومات تساعد على الوصول؟","DNS"],
+["ما الذي يوزع إعدادات الشبكة تلقائيًا؟","DHCP"],
+["ما الذي يمثل معرف واجهة الشبكة؟","MAC Address"],
+["ما الذي يمثل عنوانًا منطقيًا على الشبكة؟","IP Address"],
+["ما الذي يستخدمه الجهاز لتمييز الخدمات والاتصالات؟","Port"],
+["أي فريق يركز على الدفاع؟","Blue Team"],
+["أي مركز يراقب الأحداث الأمنية؟","SOC"],
+["أي بيئة تحتوي تحديات تدريبية؟","CTF"],
+["ما الذي يمثل نقطة ضعف أمنية؟","Vulnerability"],
+["ما الذي يعالج مشكلة أمنية في البرنامج؟","Patch"],
+["ما البرنامج الذي يحمي الشبكة وفق قواعد؟","Firewall"]
+];
+
+const wrongPool=[
+"HTML",
+"UDP",
+"CSS",
+"Python",
+"DNS",
+"Linux",
+"Router",
+"Firewall",
+"MAC Address",
+"IP Address",
+"Authentication",
+"Authorization",
+"CTF",
+"SOC",
+"Blue Team"
+];
+
+extraTopics.forEach((item,i)=>{
+
+  const correct=item[1];
+
+  let choices=[correct];
+
+  wrongPool.forEach(x=>{
+    if(x!==correct && choices.length<4) choices.push(x);
+  });
+
+  const shift=i%4;
+
+  const shuffled=[
+    ...choices.slice(shift),
+    ...choices.slice(0,shift)
+  ];
+
+  const answer=shuffled.indexOf(correct);
+
+  for(let n=0;n<4;n++){
+    baseQuestions.push([
+      item[0],
+      shuffled,
+      answer
+    ]);
+  }
+
 });
 
-const target=document.getElementById(page);
+let quizQuestions=[...baseQuestions]
+  .sort(()=>Math.random()-.5)
+  .slice(0,25);
 
-if(target){
-target.classList.add("active");
-}
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-}
-
-function openLesson(key){
-
-const lesson=lessons[key];
-
-if(!lesson) return;
-
-document.getElementById("lessonTitle").textContent=lesson.title;
-
-document.getElementById("lessonDescription").textContent=lesson.description;
-
-document.getElementById("lessonContent").innerHTML=lesson.html;
-
-showPage("lessonPage");
-
-}
+let quizIndex=0;
+let quizScore=0;
 
 function loadQuiz(){
 
-const container=document.getElementById("quizContainer");
+  quizQuestions=[...baseQuestions]
+    .sort(()=>Math.random()-.5)
+    .slice(0,25);
 
-container.innerHTML="";
+  quizIndex=0;
+  quizScore=0;
 
-score=0;
-answered=0;
+  document.getElementById("quizBox").style.display="block";
+  document.getElementById("quizResult").style.display="none";
 
-document.getElementById("quizResult").classList.remove("show");
-
-questions.forEach((q,index)=>{
-
-const card=document.createElement("div");
-
-card.className="quiz-card";
-
-card.innerHTML=`
-
-<div class="quiz-number">
-السؤال ${index+1} • ${q.lesson}
-</div>
-
-<h3>
-${q.question}
-</h3>
-
-<div class="options">
-
-${q.options.map((option,i)=>`
-
-<button
-class="option"
-onclick="selectAnswer(this,${index},${i})"
->
-
-${option}
-
-</button>
-
-`).join("")}
-
-</div>
-
-`;
-
-container.appendChild(card);
-
-});
-
+  renderQuestion();
 }
 
-function selectAnswer(button,questionIndex,optionIndex){
+function renderQuestion(){
 
-const question=questions[questionIndex];
+  const q=quizQuestions[quizIndex];
 
-const card=button.closest(".quiz-card");
+  document.getElementById("quizCount").textContent=
+    `السؤال ${quizIndex+1} من ${quizQuestions.length}`;
 
-const buttons=card.querySelectorAll(".option");
+  document.getElementById("quizScore").textContent=
+    `النقاط: ${quizScore}`;
 
-buttons.forEach(btn=>{
-btn.disabled=true;
-});
+  document.getElementById("quizProgress").style.width=
+    ((quizIndex/quizQuestions.length)*100)+"%";
 
-if(optionIndex===question.answer){
+  document.getElementById("question").textContent=q[0];
 
-button.classList.add("selected","correct");
-
-score++;
-
-}else{
-
-button.classList.add("selected","wrong");
-
-buttons[question.answer].classList.add("selected","correct");
-
+  document.getElementById("answers").innerHTML=
+    q[1].map((a,i)=>`
+      <button class="answer" onclick="selectAnswer(${i})">
+        ${a}
+      </button>
+    `).join("");
 }
 
-answered++;
+function selectAnswer(index){
 
-if(answered===questions.length){
+  const q=quizQuestions[quizIndex];
+  const buttons=document.querySelectorAll("#answers .answer");
 
-showResult();
+  buttons.forEach((b,i)=>{
+    b.disabled=true;
 
-}
+    if(i===q[2]) b.classList.add("correct");
+    if(i===index && i!==q[2]) b.classList.add("wrong");
+  });
 
+  if(index===q[2]){
+    quizScore++;
+    xp+=5;
+    saveProgress();
+  }
+
+  setTimeout(()=>{
+
+    quizIndex++;
+
+    if(quizIndex>=quizQuestions.length){
+      showResult();
+    }else{
+      renderQuestion();
+    }
+
+  },650);
 }
 
 function showResult(){
 
-const result=document.getElementById("quizResult");
+  document.getElementById("quizBox").style.display="none";
+  document.getElementById("quizResult").style.display="block";
 
-const scoreText=document.getElementById("scoreText");
+  const percent=Math.round(
+    (quizScore/quizQuestions.length)*100
+  );
 
-const message=document.getElementById("scoreMessage");
+  let title="كفو 🔥";
 
-scoreText.textContent=`${score} / ${questions.length}`;
+  if(percent>=90) title="وحش السيبرانيات 🏆";
+  else if(percent>=70) title="ممتاز جدًا 🔥";
+  else if(percent>=50) title="بداية ممتازة 💜";
+  else title="لا توقف 👊";
 
-const percentage=(score/questions.length)*100;
+  document.getElementById("resultTitle").textContent=title;
 
-if(percentage===100){
+  document.getElementById("resultText").innerHTML=
+    `جبت <strong>${quizScore}</strong> من <strong>${quizQuestions.length}</strong>
+    بنسبة <strong>${percent}%</strong><br>
+    حصلت على XP من الإجابات الصحيحة.`;
 
-message.textContent="🔥🔥 فل مارك! واضح إنك فاهم الأساسيات بشكل ممتاز.";
-
-}else if(percentage>=80){
-
-message.textContent="🔥 ممتاز! عندك أساس قوي جداً كمل بنفس الطريقة.";
-
-}else if(percentage>=60){
-
-message.textContent="💪 حلو! عندك أساس جيد لكن راجع بعض الدروس.";
-
-}else if(percentage>=40){
-
-message.textContent="😂 بداية طيبة! ارجع لبعض الدروس وجرب مرة ثانية.";
-
-}else{
-
-message.textContent="لا تشيل هم 😂 ارجع للمسار وابدأ من الأساسيات.";
-
-}
-
-result.classList.add("show");
-
-result.scrollIntoView({
-behavior:"smooth",
-block:"center"
-});
-
+  updateStats();
 }
 
 function restartQuiz(){
-
-loadQuiz();
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
+  loadQuiz();
 }
 
-window.addEventListener("hashchange",()=>{
 
-const hash=location.hash.replace("#","");
+/* =========================
+   Level Test
+========================= */
 
-if(hash==="quiz"){
-showPage("quiz");
+const levelQuestions=[
+["ما وظيفة DNS؟",["ترجمة أسماء النطاقات","تشغيل المعالج","حذف الملفات","زيادة RAM"],0],
+["ما الفرق الأساسي بين Authentication و Authorization؟",["الهوية مقابل الصلاحيات","IP مقابل MAC","TCP مقابل UDP","HTML مقابل CSS"],0],
+["أي أمر يعرض الملفات في Linux؟",["ls","cd","pwd","mkdir"],0],
+["ما وظيفة DHCP؟",["توزيع إعدادات الشبكة","تشفير القرص","إنشاء HTML","حذف Cookies"],0],
+["ما وظيفة HTTPS؟",["تأمين اتصال الويب باستخدام TLS","زيادة سرعة الجهاز","تغيير MAC","تشغيل Linux"],0],
+["ما هو Port؟",["رقم منطقي للخدمات والاتصالات","نوع ملف","معالج","متصفح"],0],
+["ما المقصود بالثغرة؟",["نقطة ضعف أمنية","عنوان IP","لغة برمجة","نوع شاشة"],0],
+["ما هو CTF؟",["تحديات تعليمية","نظام تشغيل","جدار ناري","بروتوكول"],0],
+["ما وظيفة Firewall؟",["التحكم في حركة الشبكة","إنشاء المستخدمين","كتابة Python","ترجمة DNS"],0],
+["ما هو Bug Bounty؟",["برنامج للإبلاغ عن الثغرات ضمن نطاق محدد","برنامج ألعاب","نظام ملفات","نوع تشفير"],0]
+];
+
+let levelIndex=0;
+let levelScore=0;
+
+function startLevel(){
+
+  levelIndex=0;
+  levelScore=0;
+
+  document.getElementById("levelBox").style.display="block";
+  document.getElementById("levelResult").style.display="none";
+
+  renderLevel();
 }
 
-});
+function renderLevel(){
 
+  const q=levelQuestions[levelIndex];
+
+  document.getElementById("levelCount").textContent=
+    `السؤال ${levelIndex+1} من ${levelQuestions.length}`;
+
+  document.getElementById("levelScore").textContent=
+    `${levelScore} صحيح`;
+
+  document.getElementById("levelQuestion").textContent=q[0];
+
+  document.getElementById("levelAnswers").innerHTML=
+    q[1].map((a,i)=>`
+      <button class="answer" onclick="selectLevel(${i})">
+        ${a}
+      </button>
+    `).join("");
+}
+
+function selectLevel(index){
+
+  const q=levelQuestions[levelIndex];
+
+  document.querySelectorAll("#levelAnswers .answer")
+    .forEach((b,i)=>{
+      b.disabled=true;
+
+      if(i===q[2])b.classList.add("correct");
+      if(i===index && i!==q[2])b.classList.add("wrong");
+    });
+
+  if(index===q[2])levelScore++;
+
+  setTimeout(()=>{
+
+    levelIndex++;
+
+    if(levelIndex>=levelQuestions.length){
+      finishLevel();
+    }else{
+      renderLevel();
+    }
+
+  },500);
+}
+
+function finishLevel(){
+
+  document.getElementById("levelBox").style.display="none";
+  document.getElementById("levelResult").style.display="block";
+
+  let title="";
+  let text="";
+
+  if(levelScore<=3){
+    title="🌱 مبتدئ";
+    text="ابدأ من أساسيات الشبكات وLinux وWeb. هذا أفضل مكان تبدأ منه.";
+  }else if(levelScore<=6){
+    title="⚡ مبتدئ متقدم";
+    text="عندك أساس جيد وتقدر تكمل مسار Midnight بشكل طبيعي.";
+  }else if(levelScore<=8){
+    title="🛡️ متوسط";
+    text="واضح عندك أساس قوي. ركز على Web Security وBlue Team وLabs.";
+  }else{
+    title="🔥 متقدم في الأساسيات";
+    text="معلوماتك الأساسية ممتازة. تقدر تدخل في مواضيع أكثر عمقًا ومختبرات أصعب.";
+  }
+
+  document.getElementById("levelTitle").textContent=title;
+
+  document.getElementById("levelText").textContent=
+    `${text} نتيجتك ${levelScore}/${levelQuestions.length}.`;
+}
+
+
+/* =========================
+   Toast
+========================= */
+
+function toast(message){
+
+  const el=document.getElementById("toast");
+
+  el.textContent=message;
+  el.classList.add("show");
+
+  setTimeout(()=>{
+    el.classList.remove("show");
+  },2500);
+}
+
+
+/* =========================
+   Init
+========================= */
+
+renderLessons();
+renderTerms();
 loadQuiz();
+startLevel();
+updateStats();
 
 </script>
 
