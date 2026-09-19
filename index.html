@@ -1,99 +1,1549 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Midnight | منصة الأمن السيبراني والبرمجة</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --bg-color: #0b0f19;
-            --card-bg: #131b2e;
-            --accent-color: #6366f1;
-            --accent-glow: rgba(99, 102, 241, 0.4);
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --border-color: rgba(255, 255, 255, 0.08);
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Tajawal', sans-serif; scroll-behavior: smooth; }
-        body { background-color: var(--bg-color); color: var(--text-primary); min-height: 100vh; display: flex; flex-direction: column; }
-        header { padding: 3rem 1rem; text-align: center; background: linear-gradient(to bottom, rgba(19, 27, 46, 0.8), transparent); border-bottom: 1px solid var(--border-color); }
-        .logo-container { width: 140px; height: 140px; margin: 0 auto 1.5rem; border-radius: 50%; padding: 4px; background: linear-gradient(135deg, var(--accent-color), #a855f7); box-shadow: 0 0 30px var(--accent-glow); }
-        .logo-container img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; background-color: #1a2238; }
-        h1 { font-size: 2.6rem; font-weight: 900; margin-bottom: 0.5rem; background: linear-gradient(135deg, #f8fafc, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        p.subtitle { color: var(--text-secondary); font-size: 1.15rem; max-width: 700px; margin: 0 auto; line-height: 1.6; }
-        .container { max-width: 1000px; width: 100%; margin: 2rem auto; padding: 0 1rem; flex: 1; display: flex; flex-direction: column; gap: 2rem; }
-        .card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 18px; padding: 2.2rem; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
-        .card:hover { border-color: var(--accent-color); box-shadow: 0 10px 30px -10px var(--accent-glow); }
-        .card-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.8rem; }
-        .card-header i { font-size: 2.2rem; color: var(--accent-color); }
-        .card-header h3 { font-size: 1.5rem; font-weight: 700; color: #f8fafc; }
-        .card p { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.9; margin-bottom: 1rem; text-align: right; }
-        .highlight-box { background: rgba(99, 102, 241, 0.08); border-right: 4px solid var(--accent-color); padding: 1rem; border-radius: 8px; margin: 1rem 0; color: #e2e8f0; font-size: 1rem; line-height: 1.8; }
-        footer { text-align: center; padding: 2.5rem; color: var(--text-secondary); font-size: 0.95rem; border-top: 1px solid var(--border-color); background-color: rgba(11, 15, 25, 0.5); }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="Midnight — منصة شبابية لتعلم الأمن السيبراني والشبكات والبرمجة بطريقة بسيطة وعملية.">
+
+<title>Midnight | Cyber Security</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+:root{
+  --bg:#07070b;
+  --bg2:#0d0d14;
+  --card:#11111a;
+  --card2:#151521;
+  --purple:#6d35ff;
+  --purple2:#8b5cf6;
+  --purple3:#a78bfa;
+  --white:#f7f7fb;
+  --muted:#a6a6b5;
+  --line:rgba(255,255,255,.09);
+  --green:#39d98a;
+  --red:#ff5577;
+  --shadow:0 20px 70px rgba(0,0,0,.45);
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:
+    radial-gradient(circle at 15% 10%,rgba(109,53,255,.18),transparent 30%),
+    radial-gradient(circle at 85% 25%,rgba(139,92,246,.11),transparent 28%),
+    linear-gradient(180deg,#07070b,#0a0a10 55%,#07070b);
+  color:var(--white);
+  font-family:Tajawal,Arial,sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  opacity:.18;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:45px 45px;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+button{
+  font-family:inherit;
+}
+
+/* NAVBAR */
+
+.nav{
+  position:sticky;
+  top:0;
+  z-index:50;
+  backdrop-filter:blur(18px);
+  background:rgba(7,7,11,.72);
+  border-bottom:1px solid var(--line);
+}
+
+.nav-inner{
+  max-width:1180px;
+  margin:auto;
+  padding:14px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  font-weight:900;
+  letter-spacing:.7px;
+}
+
+.brand-mark{
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,var(--purple),#2b126e);
+  box-shadow:0 0 25px rgba(109,53,255,.35);
+}
+
+.brand-mark i{
+  font-size:17px;
+}
+
+.brand small{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  font-weight:500;
+}
+
+.nav-links{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.nav-links a{
+  padding:9px 13px;
+  border-radius:10px;
+  color:#c9c9d4;
+  font-size:13px;
+  transition:.2s;
+}
+
+.nav-links a:hover{
+  background:#15151f;
+  color:#fff;
+}
+
+.nav-discord{
+  padding:10px 15px;
+  border-radius:12px;
+  background:#fff;
+  color:#111;
+  font-weight:800;
+  font-size:13px;
+  white-space:nowrap;
+  transition:.2s;
+}
+
+.nav-discord:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 30px rgba(255,255,255,.12);
+}
+
+/* HERO */
+
+.hero{
+  max-width:1180px;
+  margin:0 auto;
+  padding:70px 20px 55px;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  align-items:center;
+  gap:55px;
+}
+
+.hero-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  border:1px solid rgba(139,92,246,.3);
+  background:rgba(109,53,255,.09);
+  color:#cbbcff;
+  padding:8px 12px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:700;
+  margin-bottom:20px;
+}
+
+.dot{
+  width:7px;
+  height:7px;
+  background:var(--green);
+  border-radius:50%;
+  box-shadow:0 0 12px var(--green);
+}
+
+.hero h1{
+  font-size:clamp(42px,6vw,78px);
+  line-height:.98;
+  font-weight:900;
+  letter-spacing:-2px;
+}
+
+.gradient{
+  background:linear-gradient(90deg,#fff 20%,#b99cff 75%,#7545ff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.hero p{
+  margin-top:22px;
+  color:var(--muted);
+  font-size:18px;
+  line-height:2;
+  max-width:690px;
+}
+
+.hero-buttons{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:28px;
+}
+
+.btn{
+  border:0;
+  cursor:pointer;
+  padding:14px 20px;
+  border-radius:13px;
+  font-weight:800;
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  transition:.22s;
+}
+
+.btn-primary{
+  background:linear-gradient(135deg,var(--purple),#4b1ed0);
+  color:#fff;
+  box-shadow:0 12px 35px rgba(109,53,255,.25);
+}
+
+.btn-primary:hover{
+  transform:translateY(-3px);
+  box-shadow:0 16px 40px rgba(109,53,255,.38);
+}
+
+.btn-ghost{
+  background:#11111a;
+  border:1px solid var(--line);
+  color:#eee;
+}
+
+.btn-ghost:hover{
+  border-color:rgba(139,92,246,.5);
+  transform:translateY(-2px);
+}
+
+.hero-image-wrap{
+  position:relative;
+  max-width:490px;
+  margin:auto;
+}
+
+.hero-image-wrap:before{
+  content:"";
+  position:absolute;
+  inset:-30px;
+  background:radial-gradient(circle,rgba(109,53,255,.30),transparent 64%);
+  z-index:-1;
+}
+
+.hero-image{
+  width:100%;
+  display:block;
+  border-radius:25px;
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:var(--shadow),0 0 60px rgba(109,53,255,.13);
+}
+
+.copyright-tag{
+  position:absolute;
+  bottom:14px;
+  left:14px;
+  background:rgba(5,5,9,.78);
+  backdrop-filter:blur(12px);
+  border:1px solid var(--line);
+  border-radius:11px;
+  padding:9px 12px;
+  font-size:11px;
+  color:#ddd;
+}
+
+/* SECTIONS */
+
+.section{
+  max-width:1180px;
+  margin:0 auto;
+  padding:70px 20px;
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:20px;
+  margin-bottom:28px;
+}
+
+.kicker{
+  color:#9f80ff;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+
+.section h2{
+  font-size:34px;
+  font-weight:900;
+}
+
+.section-head p{
+  color:var(--muted);
+  max-width:570px;
+  line-height:1.8;
+}
+
+/* CARDS */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+.card{
+  background:linear-gradient(180deg,rgba(21,21,33,.96),rgba(13,13,20,.96));
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:22px;
+  min-height:210px;
+  display:flex;
+  flex-direction:column;
+  transition:.25s;
+  position:relative;
+  overflow:hidden;
+}
+
+.card:after{
+  content:"";
+  position:absolute;
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  background:rgba(109,53,255,.11);
+  filter:blur(35px);
+  left:-45px;
+  top:-45px;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  border-color:rgba(139,92,246,.38);
+  box-shadow:0 18px 45px rgba(0,0,0,.28);
+}
+
+.icon{
+  width:45px;
+  height:45px;
+  border-radius:13px;
+  display:grid;
+  place-items:center;
+  background:rgba(109,53,255,.12);
+  color:#a98cff;
+  border:1px solid rgba(139,92,246,.18);
+  font-size:19px;
+  margin-bottom:17px;
+  z-index:1;
+}
+
+.card h3{
+  font-size:19px;
+  margin-bottom:9px;
+  z-index:1;
+}
+
+.card p{
+  color:var(--muted);
+  line-height:1.8;
+  font-size:14px;
+  z-index:1;
+  flex:1;
+}
+
+.card button{
+  margin-top:18px;
+  width:max-content;
+  z-index:1;
+}
+
+.learn{
+  border:1px solid rgba(139,92,246,.25);
+  background:transparent;
+  color:#c5b4ff;
+  padding:9px 13px;
+  border-radius:10px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.learn:hover{
+  background:rgba(109,53,255,.12);
+}
+
+/* ROADMAP */
+
+.path{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.step{
+  border:1px solid var(--line);
+  background:#0e0e16;
+  border-radius:16px;
+  padding:20px;
+  position:relative;
+}
+
+.num{
+  width:33px;
+  height:33px;
+  border-radius:10px;
+  background:var(--purple);
+  display:grid;
+  place-items:center;
+  font-weight:900;
+  margin-bottom:15px;
+}
+
+.step h3{
+  font-size:17px;
+  margin-bottom:8px;
+}
+
+.step p{
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.8;
+}
+
+.note{
+  margin-top:22px;
+  padding:17px 19px;
+  border:1px solid rgba(57,217,138,.17);
+  background:rgba(57,217,138,.045);
+  border-radius:14px;
+  color:#c7eedd;
+  line-height:1.9;
+  font-size:14px;
+}
+
+.note i{
+  margin-left:7px;
+  color:var(--green);
+}
+
+/* DISCORD */
+
+.discord{
+  max-width:1180px;
+  margin:20px auto 70px;
+  padding:0 20px;
+}
+
+.discord-box{
+  border:1px solid rgba(109,53,255,.3);
+  border-radius:24px;
+  background:linear-gradient(135deg,rgba(109,53,255,.15),rgba(16,16,24,.9));
+  padding:35px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:25px;
+}
+
+.discord-box h2{
+  font-size:30px;
+  margin-bottom:8px;
+}
+
+.discord-box p{
+  color:var(--muted);
+  line-height:1.8;
+}
+
+/* FOOTER */
+
+.footer{
+  border-top:1px solid var(--line);
+  padding:28px 20px;
+  color:#858592;
+  text-align:center;
+  background:#07070b;
+}
+
+.footer strong{
+  color:#cfcfe0;
+}
+
+.footer .footer-links{
+  display:flex;
+  justify-content:center;
+  gap:17px;
+  margin-bottom:10px;
+  font-size:13px;
+}
+
+.footer a:hover{
+  color:#fff;
+}
+
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  background:rgba(0,0,0,.78);
+  backdrop-filter:blur(8px);
+}
+
+.modal.open{
+  display:flex;
+}
+
+.modal-box{
+  width:min(900px,100%);
+  max-height:88vh;
+  overflow:auto;
+  background:#0d0d15;
+  border:1px solid rgba(139,92,246,.3);
+  border-radius:22px;
+  box-shadow:0 30px 100px rgba(0,0,0,.65);
+}
+
+.modal-top{
+  position:sticky;
+  top:0;
+  background:rgba(13,13,21,.94);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+  padding:17px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  z-index:2;
+}
+
+.modal-top h2{
+  font-size:21px;
+}
+
+.close{
+  width:38px;
+  height:38px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#15151f;
+  color:#fff;
+  cursor:pointer;
+  font-size:18px;
+}
+
+.modal-content{
+  padding:25px;
+}
+
+.modal-content h3{
+  font-size:18px;
+  margin:23px 0 10px;
+  color:#ddd;
+}
+
+.modal-content h3:first-child{
+  margin-top:0;
+}
+
+.modal-content p,
+.modal-content li{
+  color:#b5b5c4;
+  line-height:2;
+  font-size:14px;
+}
+
+.modal-content ul{
+  padding-right:20px;
+}
+
+.term{
+  display:inline-block;
+  padding:3px 8px;
+  border-radius:7px;
+  background:#191629;
+  border:1px solid rgba(139,92,246,.18);
+  color:#c7b6ff;
+  font-weight:800;
+}
+
+.example{
+  margin:13px 0;
+  padding:16px;
+  border-radius:13px;
+  background:#08080d;
+  border:1px solid var(--line);
+  color:#c9c9d5;
+  line-height:1.9;
+}
+
+.example strong{
+  color:#fff;
+}
+
+/* QUIZ */
+
+.quiz{
+  display:grid;
+  gap:12px;
+}
+
+.quiz-q{
+  padding:17px;
+  border:1px solid var(--line);
+  border-radius:13px;
+  background:#101019;
+}
+
+.quiz-q p{
+  color:#fff !important;
+  font-weight:800;
+  margin-bottom:11px;
+}
+
+.quiz-q button{
+  margin:4px 4px 0 0;
+  padding:9px 12px;
+  border-radius:9px;
+  border:1px solid var(--line);
+  background:#171722;
+  color:#ccc;
+  cursor:pointer;
+}
+
+.quiz-q button:hover{
+  border-color:#8b5cf6;
+  color:#fff;
+}
+
+.result{
+  margin-top:14px;
+  padding:13px;
+  border-radius:10px;
+  background:rgba(109,53,255,.1);
+  color:#ddd;
+  display:none;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+  .hero{
+    grid-template-columns:1fr;
+    padding-top:45px;
+  }
+
+  .hero-image-wrap{
+    order:-1;
+    max-width:390px;
+  }
+
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .path{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .nav-links{
+    display:none;
+  }
+}
+
+@media(max-width:600px){
+
+  .hero h1{
+    font-size:48px;
+  }
+
+  .hero p{
+    font-size:15px;
+  }
+
+  .grid,
+  .path{
+    grid-template-columns:1fr;
+  }
+
+  .section{
+    padding:52px 16px;
+  }
+
+  .hero{
+    padding-left:16px;
+    padding-right:16px;
+  }
+
+  .discord{
+    padding:0 16px;
+  }
+
+  .discord-box{
+    padding:25px;
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .discord-box h2{
+    font-size:25px;
+  }
+}
+</style>
 </head>
+
 <body>
 
-    <header>
-        <div class="logo-container">
-            <img src="dead-penguin-cyber-new-background.png" alt="Midnight Logo">
-        </div>
-        <h1>Midnight</h1>
-        <p class="subtitle">منصتك اللي تفهمك صح.. بدون تعقيد، وبأسلوب يفهمه راسك مباشرة في عالم التقنية والسيبراني!</p>
-    </header>
+<!-- NAVBAR -->
 
-    <div class="container">
+<nav class="nav">
+  <div class="nav-inner">
 
-        <!-- القسم الأول: قصة الشبكات -->
-        <div class="card">
-            <div class="card-header">
-                <i class="fa-solid fa-network-wired"></i>
-                <h3>سولفة الشبكات: وش سالفة الـ IP والـ MAC؟</h3>
-            </div>
-            <p>عشان تفهم كيف الأجهزة تكلم بعضها بالإنترنت، تخيل معي هذي القصة البسيطة:</p>
-            <p>أنت طلبت أغراض من متجر إلكتروني، وموظف التوصيل يبي يوصل الطلب لبيتك بدون ما يضيع. هنا يجي دور <strong>عنوان الـ IP</strong>؛ هذا هو عنوان بيتك والشارع والمدينة اللي يخلي الموظف يعرف يوصل لحد بابك عبر الإنترنت الواسع.</p>
-            <div class="highlight-box">
-                طيب، افرض الموظف وصل عند العمارة وصار قدام الشقق الكثيرة، كيف يعرف شقتك أنت بالتحديد وما يغلط؟ هنا يجي دور <strong>عنوان الـ MAC</strong>! هذا رقم هاردوير ثابت ومحفور بجهازك ولا يتغير أبداً، يحدد هويتك بدقة متناهية داخل شبكتك المحلية.
-            </div>
-            <p>باختصار: الـ IP يوديك للمكان عالمياً، والـ MAC يتاكد من جهازك الشخصي محلياً!</p>
-        </div>
+    <a class="brand" href="#">
+      <span class="brand-mark">
+        <i class="fa-solid fa-shield-halved"></i>
+      </span>
 
-        <!-- القسم الثاني: خرافات الأمن السيبراني -->
-        <div class="card">
-            <div class="card-header">
-                <i class="fa-solid fa-skull-crossbones"></i>
-                <h3>خرافات في عالم الأمن السيبراني (لا تصدقها!)</h3>
-            </div>
-            <p>الناس متخيلة إن عالم الختراق والسيبراني عبارة عن أفلام هوليوود، وخلنا نوضح الحقيقة:</p>
-            <p><strong>الخرافة الأولى: "أول ما صرت أمني، أقدر أخترق أي حساب أو شركة أبيها!"</strong><br>
-            الواقع مو كذا أبداً يا صاحبي. الشركات الكبرى تصرف ملايين على الحماية، والاختراق ما يصير بزر واحد، لازم تكتشف "ثغرة برمجية" أو غلطة قاتلة في النظام، والموضوع يتطلب وقت وصبر مو شغلة سهلة.</p>
-            
-            <div class="highlight-box">
-                <strong>الخرافة الثانية: "الهاكرز قاعدين يكتبون أكواد خضراء بسرعة جنونية على شاشة سوداء!"<br></strong>
-                الحقيقة أن الشغل الحقيقي عبارة عن قراءة مستندات، تحليل أنظمة بهدوء، تجربة أخطاء، ومئات الساعات من البحث والتركيز، مو مجرد طقطقة عشوائية على الكيبورد!
-            </div>
-        </div>
+      <span>
+        Midnight
+        <small>CYBER SECURITY</small>
+      </span>
+    </a>
 
-        <!-- القسم الثالث: مسار المبتدئين -->
-        <div class="card">
-            <div class="card-header">
-                <i class="fa-solid fa-compass"></i>
-                <h3>مسار المبتدئين الصح (ابدأ من هنا)</h3>
-            </div>
-            <p>إذا تبي تدخل المجال وتصير محترف صح، لا تتخبط يمين ويسار، امش على هذا الترتيب:</p>
-            <p>1. <strong>افهم أساسيات الشبكات:</strong> اعرف وش هو الراوتر، كيف تنتقل البيانات، ومعاني البورتات والبروتوكولات.<br>
-            2. <strong>تعلم نظام لينكس (Linux):</strong> افتح الشاشة السوداء وتدرب على الأوامر، لأن كل شغل المطورين والسيبرانيين هناك.<br>
-            3. <strong>تعلم لغة بايثون (Python):</strong> لغة سهلة وخفيفة وتعتبر صديقك المقرب لأتمتة المهام وبناء الأدوات.<br>
-            4. <strong>التطبيق العملي:</strong> ادخل منصات التدريب الآمنة وطبق بنفسك.</p>
-        </div>
+    <div class="nav-links">
+      <a href="#topics">المواضيع</a>
+      <a href="#path">المسار</a>
+      <a href="#quiz">اختبر نفسك</a>
+    </div>
+
+    <a
+      class="nav-discord"
+      href="https://discord.gg/TyUpVWQgA"
+      target="_blank"
+      rel="noopener"
+    >
+      <i class="fa-brands fa-discord"></i>
+      سيرفر Midnight
+    </a>
+
+  </div>
+</nav>
+
+
+<!-- HERO -->
+
+<header class="hero">
+
+  <div>
+
+    <div class="hero-badge">
+      <span class="dot"></span>
+      تعلّم • جرّب • افهم
+    </div>
+
+    <h1>
+      الأمن السيبراني
+      <br>
+      <span class="gradient">بدون تعقيد.</span>
+    </h1>
+
+    <p>
+      أهلاً بك في Midnight
+      <br>
+      هنا ما راح نعطيك كلام جامد وتحفظه وخلاص.
+      بنفهمك الأمن السيبراني من الصفر بطريقة بسيطة وشبابية —
+      تخيل الإنترنت فندق كبير وأنت تحاول تفهم كل غرفة وباب ومفتاح فيه 😂
+    </p>
+
+    <div class="hero-buttons">
+
+      <a class="btn btn-primary" href="#topics">
+        <i class="fa-solid fa-rocket"></i>
+        ابدأ من الصفر
+      </a>
+
+      <a
+        class="btn btn-ghost"
+        href="https://discord.gg/TyUpVWQgA"
+        target="_blank"
+        rel="noopener"
+      >
+        <i class="fa-brands fa-discord"></i>
+        ادخل السيرفر
+      </a>
 
     </div>
 
-    <footer>
-        <p>&copy; 2026 Midnight. جميع الحقوق محفوظة.</p>
-    </footer>
+  </div>
 
-</body>
-</html>
+
+  <div class="hero-image-wrap">
+
+    <img
+      class="hero-image"
+      src="dead-penguin-cyber-new-background.jpeg"
+      alt="Midnight Cyber Security"
+    >
+
+    <div class="copyright-tag">
+      © Midnight • جميع الحقوق محفوظة
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- TOPICS -->
+
+<section class="section" id="topics">
+
+  <div class="section-head">
+
+    <div>
+      <div class="kicker">MIDNIGHT ACADEMY</div>
+      <h2>اختر وش تبي تتعلم</h2>
+    </div>
+
+    <p>
+      كل موضوع له زر خاص فيه.
+      افتح اللي تبيه وخذ الشرح من الأساسيات إلى الصورة الكبيرة.
+    </p>
+
+  </div>
+
+
+  <div class="grid">
+
+
+    <article class="card">
+
+      <div class="icon">
+        <i class="fa-solid fa-network-wired"></i>
+      </div>
+
+      <h3>أساسيات الشبكات</h3>
+
+      <p>
+        IP و MAC و DNS و DHCP و NAT والراوتر والسويتش
+        والبروتوكولات وكيف الأجهزة تتواصل.
+      </p>
+
+      <button class="learn" onclick="openModal('network')">
+        افتح الدرس ←
+      </button>
+
+    </article>
+
+
+    <article class="card">
+
+      <div class="icon">
+        <i class="fa-solid fa-location-dot"></i>
+      </div>
+
+      <h3>IP و MAC Address</h3>
+
+      <p>
+        وش الفرق بينهم؟
+        وليه الـ IP ممكن يتغير بينما MAC مرتبط بواجهة الشبكة؟
+      </p>
+
+      <button class="learn" onclick="openModal('ipmac')">
+        افهمها بسهولة ←
+      </button>
+
+    </article>
+
+
+    <article class="card">
+
+      <div class="icon">
+        <i class="fa-solid fa-door-open"></i>
+      </div>
+
+      <h3>Ports & Protocols</h3>
+
+      <p>
+        وش يعني Port؟
+        وش يسوي TCP و UDP؟
+        وليه المنافذ مثل أبواب الفندق؟
+      </p>
+
+      <button class="learn" onclick="openModal('ports')">
+        افتح الدرس ←
+      </button>
+
+    </article>
+
+
+    <article class="card">
+
+      <div class="icon">
+        <i class="fa-brands fa-linux"></i>
+      </div>
+
+      <h3>Linux للمبتدئين</h3>
+
+      <p>
+        فهم الملفات والمجلدات والصلاحيات والأوامر الأساسية
+        بدون ما نحولها لحصة مملة.
+      </p>
+
+      <button class="learn" onclick="openModal('linux')">
+        ابدأ لينكس ←
+      </button>
+
+    </article>
+
+
+    <article class="card">
+
+      <div class="icon">
+        <i class="fa-brands fa-python"></i>
+      </div>
+
+      <h3>Python للأمن السيبراني</h3>
+
+      <p>
+        وش تحتاج تتعلم من بايثون؟
+        المتغيرات والشروط والحلقات والدوال والملفات وكيف تفيدك.
+      </p>
+
+      <button class="learn" onclick="openModal('python')">
+        افتح بايثون ←
+      </button>
+
+    </article>
+
+
+    <article class="card">
+
+      <div class="icon">
+        <i class="fa-solid fa-globe"></i>
+      </div>
+
+      <h3>أساسيات الويب</h3>
+
+      <p>
+        HTML و HTTP و Cookies و Sessions و APIs
+        وكيف المتصفح والسيرفر يتفاهمون.
+      </p>
+
+      <button class="learn" onclick="openModal('web')">
+        افهم الويب ←
+      </button>
+
+    </article>
+
+
+    <article class="card">
+
+      <div class="icon">
+        <i class="fa-solid fa-shield-halved"></i>
+      </div>
+
+      <h3>مبتدئين الأمن السيبراني</h3>
+
+      <p>
+        خريطة طريق واضحة:
+        من الشبكات ولينكس إلى البرمجة والمختبرات الآمنة والتخصصات.
+      </p>
+
+      <button class="learn" onclick="openModal('beginner')">
+        ابدأ المسار ←
+      </button>
+
+    </article>
+
+
+    <article class="card">
+
+      <div class="icon">
+        <i class="fa-solid fa-skull-crossbones"></i>
+      </div>
+
+      <h3>خرافات الأمن السيبراني</h3>
+
+      <p>
+        لا، كونك مختص أمن سيبراني ما يعني أنك تقدر تخترق أي شيء تبيه 😂
+        خلنا نفصل الواقع عن الأفلام.
+      </p>
+
+      <button class="learn" onclick="openModal('myths')">
+        اكشف الخرافات ←
+      </button>
+
+    </article>
+
+
+    <article class="card">
+
+      <div class="icon">
+        <i class="fa-solid fa-scale-balanced"></i>
+      </div>
+
+      <h3>الأمن الأخلاقي والقانوني</h3>
+
+      <p>
+        تعلم الفرق بين التدريب المصرح به والوصول غير المصرح به،
+        وكيف تتعلم بأمان.
+      </p>
+
+      <button class="learn" onclick="openModal('ethics')">
+        وش المسموح؟ ←
+      </button>
+
+    </article>
+
+
+    <article class="card">
+
+      <div class="icon">
+        <i class="fa-solid fa-database"></i>
+      </div>
+
+      <h3>مصطلحات مهمة</h3>
+
+      <p>
+        Firewall و VPN و Hash و Encryption و Vulnerability
+        و Authentication وغيرها بشكل سريع.
+      </p>
+
+      <button class="learn" onclick="openModal('terms')">
+        قاموس Midnight ←
+      </button>
+
+    </article>
+
+
+    <article class="card">
+
+      <div class="icon">
+        <i class="fa-solid fa-bug"></i>
+      </div>
+
+      <h3>الثغرات بشكل مبسط</h3>
+
+      <p>
+        وش هي الثغرة؟
+        وليه وجود ثغرة لا يعني تلقائياً أنك تقدر تدخل للنظام؟
+      </p>
+
+      <button class="learn" onclick="openModal('vuln')">
+        افهم الفكرة ←
+      </button>
+
+    </article>
+
+
+    <article class="card">
+
+      <div class="icon">
+        <i class="fa-solid fa-user-secret"></i>
+      </div>
+
+      <h3>التخصصات</h3>
+
+      <p>
+        Blue Team و Red Team و SOC و DFIR و AppSec
+        و Bug Bounty وغيرها — وش يناسبك؟
+      </p>
+
+      <button class="learn" onclick="openModal('tracks')">
+        شوف التخصصات ←
+      </button>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- ROADMAP -->
+
+<section class="section" id="path">
+
+  <div class="section-head">
+
+    <div>
+      <div class="kicker">ROADMAP</div>
+      <h2>مسار المبتدئ في Midnight</h2>
+    </div>
+
+    <p>
+      لا تحاول تتعلم كل شيء في يوم واحد.
+      امش خطوة خطوة وابنِ أساس قوي.
+    </p>
+
+  </div>
+
+
+  <div class="path">
+
+    <div class="step">
+      <div class="num">01</div>
+      <h3>الشبكات</h3>
+      <p>
+        IP • MAC • DNS • TCP/IP • Ports • HTTP
+      </p>
+    </div>
+
+    <div class="step">
+      <div class="num">02</div>
+      <h3>Linux</h3>
+      <p>
+        Terminal • Files • Permissions • Processes
+      </p>
+    </div>
+
+    <div class="step">
+      <div class="num">03</div>
+      <h3>Python</h3>
+      <p>
+        Variables • Conditions • Loops • Functions • Files
+      </p>
+    </div>
+
+    <div class="step">
+      <div class="num">04</div>
+      <h3>التطبيق الآمن</h3>
+      <p>
+        CTF • Labs • Web Security • قراءة التوثيق
+      </p>
+    </div>
+
+  </div>
+
+
+  <div class="note">
+
+    <i class="fa-solid fa-circle-info"></i>
+
+    الهدف مو إنك تحفظ أوامر كثيرة.
+    الهدف إنك تفهم <strong>ليش</strong> الشيء يصير
+    وبعدها تتعلم <strong>كيف</strong> تختبره داخل بيئة مصرح لك بها.
+
+  </div>
+
+</section>
+
+
+<!-- QUIZ -->
+
+<section class="section" id="quiz">
+
+  <div class="section-head">
+
+    <div>
+      <div class="kicker">QUICK QUIZ</div>
+      <h2>اختبر نفسك 😂</h2>
+    </div>
+
+    <p>
+      ثلاثة أسئلة سريعة بعد ما أخذت الجولة.
+    </p>
+
+  </div>
+
+
+  <div class="quiz">
+
+
+    <div class="quiz-q">
+
+      <p>
+        1) وش أقرب تشبيه للـ IP في مثال الفندق؟
+      </p>
+
+      <button onclick="answer(this,false)">
+        رقم الغرفة داخل الفندق
+      </button>
+
+      <button onclick="answer(this,true)">
+        عنوان الفندق للوصول إليه
+      </button>
+
+      <button onclick="answer(this,false)">
+        اسم النزيل
+      </button>
+
+    </div>
+
+
+    <div class="quiz-q">
+
+      <p>
+        2) هل مختص الأمن السيبراني يقدر يخترق أي نظام لمجرد أنه مختص؟
+      </p>
+
+      <button onclick="answer(this,true)">
+        لا، لازم يكون عنده تصريح ويفهم نطاق الاختبار
+      </button>
+
+      <button onclick="answer(this,false)">
+        إيه دائماً
+      </button>
+
+      <button onclick="answer(this,false)">
+        فقط إذا استخدم Linux
+      </button>
+
+    </div>
+
+
+    <div class="quiz-q">
+
+      <p>
+        3) وش فائدة Python للمختص الأمني؟
+      </p>
+
+      <button onclick="answer(this,false)">
+        تخليه هاكر بضغطة زر
+      </button>
+
+      <button onclick="answer(this,true)">
+        تساعده في الأتمتة وتحليل البيانات وبناء أدوات تعليمية
+      </button>
+
+      <button onclick="answer(this,false)">
+        تستبدل الشبكات ولينكس بالكامل
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- DISCORD -->
+
+<div class="discord">
+
+  <div class="discord-box">
+
+    <div>
+
+      <div class="kicker">
+        MIDNIGHT DISCORD
+      </div>
+
+      <h2>
+        تبغى تكمل معنا؟
+      </h2>
+
+      <p>
+        انضم لسيرفر Midnight وتابع المجتمع والمحتوى والمشاريع
+        والنقاشات المتعلقة بالتقنية والأمن السيبراني.
+      </p>
+
+    </div>
+
+
+    <a
+      class="btn btn-primary"
+      href="https://discord.gg/TyUpVWQgA"
+      target="_blank"
+      rel="noopener"
+    >
+
+      <i class="fa-brands fa-discord"></i>
+
+      دخول السيرفر
+
+    </a>
+
+  </div>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+  <div class="footer-links">
+
+    <a href="#topics">
+      الدروس
+    </a>
+
+    <a href="#path">
+      المسار
+    </a>
+
+    <a href="#quiz">
+      الاختبار
+    </a>
+
+    <a
+      href="https://discord.gg/TyUpVWQgA"
+      target="_blank"
+      rel="noopener"
+    >
+      Discord
+    </a>
+
+  </div>
+
+  <p>
+    © 2026 <strong>Midnight</strong> — جميع الحقوق محفوظة
+  </p>
+
+  <p style="margin-top:6px;font-size:11px">
+    تعلم الأمن السيبراني بشكل أخلاقي ومصرح به فقط.
+  </p>
+
+</footer>
+
+
+<!-- MODAL -->
+
+<div
+  class="modal"
+  id="modal"
+  onclick="outsideClose(event)"
+>
+
+  <div class="modal-box">
+
+    <div class="modal-top">
+
+      <h2 id="modalTitle">
+        Midnight
+      </h2>
+
+      <button
+        class="close"
+        onclick="closeModal()"
+        aria-label="إغلاق"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div
+      class="modal-content"
+      id="modalContent"
+    ></div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+const lessons = {
+
+network:{
+title:"أساسيات الشبكات — من الصفر",
+
+html:`
+
+<h3>طيب تخيل إن الإنترنت فندق ضخم 😂</h3>
+
+<p>
+كل جهاز يعتبر نزيل، والبيانات تعتبر طرود تتحرك بين الغرف.
+عشان الطرد يوصل لازم نعرف وين رايح وكيف يروح.
+</p>
+
+<h3>IP Address</h3>
+
+<p>
+الـ <span class="term">IP</span>
+هو عنوان منطقي يساعد الشبكة تعرف وين ترسل البيانات.
+فيه IPv4 مثل 192.168.1.10 وفيه IPv6 بصيغة مختلفة وأطول.
+</p>
+
+<div class="example">
+<strong>مثال الفندق:</strong>
+اسم المدينة + عنوان الفندق + رقم المبنى =
+فكرة قريبة من تحديد مكان الجهاز على الشبكة.
+</div>
+
+<h3>MAC Address</h3>
+
+<p>
+الـ <span class="term">MAC</span>
+هو معرف مرتبط بواجهة الشبكة.
+تخيله كهوية لبطاقة الشبكة داخل الشبكة المحلية.
+مو نفس وظيفة الـ IP، ولا هو "عنوان البيت" على الإنترنت.
+</p>
+
+<h3>DNS</h3>
+
+<p>
+بدل ما تحفظ رقم IP لكل موقع، تكتب اسم مثل example.com.
+الـ <span class="term">DNS</span>
+يساعد في ترجمة اسم النطاق إلى عنوان IP مناسب.
+</p>
+
+<h3>DHCP</h3>
+
+<p>
+<span class="term">DHCP</span>
+مثل موظف الاستقبال في الفندق:
+يساعد الأجهزة على الحصول على إعدادات الشبكة مثل IP تلقائياً.
+</p>
+
+<h3>Router و Switch</h3>
+
+<p>
+<span class="term">Router</span>
+يربط شبكات مختلفة ويوجه حركة البيانات بينها.
+أما <span class="term">Switch</span>
+فعادةً يربط أجهزة داخل نفس الشبكة المحلية.
+</p>
+
+<h3>NAT</h3>
+
+<p>
+<span class="term">NAT</span>
+يسمح لعدة أجهزة داخل شبكة خاصة بمشاركة عنوان عام عند الاتصال بالإنترنت،
+مع ترجمة العناوين أثناء مرور الاتصال.
+</p>
+
+<h3>الخلاصة</h3>
+
+<p>
+إذا فهمت IP وMAC وDNS وDHCP وRouter وSwitch وNAT
+فأنت بنيت قاعدة ممتازة قبل الدخول في مواضيع الأمن السيبراني.
+</p>
+
+`
+},
+
+
+ipmac:{
+title:"IP vs MAC — لا تخلط بينهم",
+
+html:`
+
+<h3>الـ IP</h3>
+
+<p>
+عنوان منطقي تستخدمه الشبكات لتوجيه البيانات.
+ممكن يتغير حسب الشبكة والإعدادات.
+</p>
+
+<h3>الـ MAC</h3>
+
+<p>
+معرف لواجهة الشبكة على مستوى طبقة ربط البيانات.
+يستخدم بشكل مهم داخل الشبكات المحلية.
+</p>
+
+<div class="example">
+<strong>تشبيه:</strong>
+الفندق نفسه له عنوان للوصول إليه،
+وداخل الفندق عندك نظام يميز الأجهزة أو الغرف محلياً.
+التشبيه مو مطابق 100% للتقنية لكنه يساعدك تفهم الفكرة.
+</div>
+
+<h3>شيء مهم</h3>
+
+<p>
+لا تعتبر الـ MAC "هوية سرية لا تتغير أبداً"
+ولا تعتبر الـ IP "هوية الجهاز الدائمة".
+كل واحد له وظيفة وسياق مختلف.
+</p>
+
+`
+},
+
+
+ports:{
+title:"Ports & Protocols — أبواب الفندق",
+
+html:`
+
+<h3>وش هو الـ Port؟</h3>
+
+<p>
+تخيل السيرفر فندق،
+والـ Ports مثل أبواب مرقمة لخدمات مختلفة.
+رقم المنفذ يساعد النظام يعرف لأي خدمة يروح الاتصال.
+</p>
+
+<h3>TCP</h3>
+
+<p>
+<span class="term">TCP</span>
+يهتم بإنشاء اتصال موثوق وترتيب البيانات والتأكد من وصولها بالشكل المطلوب.
+</p>
+
+<h3>UDP</h3>
+
+<p>
+<span class="term">UDP</span>
+أخف وأسرع في حالات كثيرة لأنه لا يوفر نفس مستوى التحقق الموجود في TCP.
+يستخدم في سيناريوهات تحتاج سرعة أو لا تحتاج اتصالاً موثوقاً بنفس الطريقة.
+</p>
+
+<h3>HTTP و HTTPS</h3>
+
+<p>
+<span class="term">HTTP</span>
+بروتوكول لنقل محتوى الويب.
+<span class="term">HTTPS</span>
+يستخدم تشفير TLS لحماية الاتصال بين المتصفح والخادم.
+</p>
+
+<div class="example">
+<strong>فكرة مهمة:</strong>
+وجود Port مفتوح لا يعني أن النظام مخترق.
+يعني فقط أن خدمة ما تستقبل اتصالات وفق إعداداتها.
+</div>
