@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,11 +11,13 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <style>
+
 :root{
   --bg:#07070b;
   --bg2:#0d0d14;
@@ -74,7 +77,7 @@ button{
   font-family:inherit;
 }
 
-/* NAVBAR */
+/* NAV */
 
 .nav{
   position:sticky;
@@ -154,16 +157,70 @@ button{
   transition:.2s;
 }
 
-.nav-discord:hover{
+/* BUTTONS */
+
+.btn{
+  border:0;
+  cursor:pointer;
+  padding:14px 20px;
+  border-radius:13px;
+  font-weight:800;
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  transition:.22s;
+}
+
+.btn-primary{
+  background:linear-gradient(135deg,var(--purple),#4b1ed0);
+  color:#fff;
+  box-shadow:0 12px 35px rgba(109,53,255,.25);
+}
+
+.btn-primary:hover{
+  transform:translateY(-3px);
+  box-shadow:0 16px 40px rgba(109,53,255,.38);
+}
+
+.btn-ghost{
+  background:#11111a;
+  border:1px solid var(--line);
+  color:#eee;
+}
+
+.btn-ghost:hover{
+  border-color:rgba(139,92,246,.5);
   transform:translateY(-2px);
-  box-shadow:0 10px 30px rgba(255,255,255,.12);
+}
+
+/* PAGES */
+
+.page{
+  display:none;
+  animation:pageIn .35s ease;
+}
+
+.page.active{
+  display:block;
+}
+
+@keyframes pageIn{
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
 /* HERO */
 
 .hero{
   max-width:1180px;
-  margin:0 auto;
+  margin:auto;
   padding:70px 20px 55px;
   display:grid;
   grid-template-columns:1.1fr .9fr;
@@ -222,40 +279,6 @@ button{
   margin-top:28px;
 }
 
-.btn{
-  border:0;
-  cursor:pointer;
-  padding:14px 20px;
-  border-radius:13px;
-  font-weight:800;
-  display:inline-flex;
-  align-items:center;
-  gap:9px;
-  transition:.22s;
-}
-
-.btn-primary{
-  background:linear-gradient(135deg,var(--purple),#4b1ed0);
-  color:#fff;
-  box-shadow:0 12px 35px rgba(109,53,255,.25);
-}
-
-.btn-primary:hover{
-  transform:translateY(-3px);
-  box-shadow:0 16px 40px rgba(109,53,255,.38);
-}
-
-.btn-ghost{
-  background:#11111a;
-  border:1px solid var(--line);
-  color:#eee;
-}
-
-.btn-ghost:hover{
-  border-color:rgba(139,92,246,.5);
-  transform:translateY(-2px);
-}
-
 .hero-image-wrap{
   position:relative;
   max-width:490px;
@@ -295,7 +318,7 @@ button{
 
 .section{
   max-width:1180px;
-  margin:0 auto;
+  margin:auto;
   padding:70px 20px;
 }
 
@@ -340,24 +363,12 @@ button{
   border:1px solid var(--line);
   border-radius:18px;
   padding:22px;
-  min-height:210px;
+  min-height:225px;
   display:flex;
   flex-direction:column;
   transition:.25s;
   position:relative;
   overflow:hidden;
-}
-
-.card:after{
-  content:"";
-  position:absolute;
-  width:120px;
-  height:120px;
-  border-radius:50%;
-  background:rgba(109,53,255,.11);
-  filter:blur(35px);
-  left:-45px;
-  top:-45px;
 }
 
 .card:hover{
@@ -377,27 +388,18 @@ button{
   border:1px solid rgba(139,92,246,.18);
   font-size:19px;
   margin-bottom:17px;
-  z-index:1;
 }
 
 .card h3{
   font-size:19px;
   margin-bottom:9px;
-  z-index:1;
 }
 
 .card p{
   color:var(--muted);
   line-height:1.8;
   font-size:14px;
-  z-index:1;
   flex:1;
-}
-
-.card button{
-  margin-top:18px;
-  width:max-content;
-  z-index:1;
 }
 
 .learn{
@@ -408,6 +410,8 @@ button{
   border-radius:10px;
   font-weight:800;
   cursor:pointer;
+  width:max-content;
+  margin-top:18px;
 }
 
 .learn:hover{
@@ -427,7 +431,6 @@ button{
   background:#0e0e16;
   border-radius:16px;
   padding:20px;
-  position:relative;
 }
 
 .num{
@@ -463,11 +466,6 @@ button{
   font-size:14px;
 }
 
-.note i{
-  margin-left:7px;
-  color:var(--green);
-}
-
 /* DISCORD */
 
 .discord{
@@ -487,14 +485,269 @@ button{
   gap:25px;
 }
 
-.discord-box h2{
-  font-size:30px;
+/* COURSE */
+
+.course-header{
+  max-width:1180px;
+  margin:auto;
+  padding:55px 20px 20px;
+}
+
+.back-btn{
+  background:#11111a;
+  border:1px solid var(--line);
+  color:#ddd;
+  padding:10px 15px;
+  border-radius:11px;
+  cursor:pointer;
+  font-weight:800;
+  margin-bottom:25px;
+}
+
+.course-title{
+  font-size:clamp(35px,5vw,58px);
+  font-weight:900;
+  margin-bottom:15px;
+}
+
+.course-description{
+  color:var(--muted);
+  line-height:2;
+  max-width:750px;
+}
+
+.lesson-list{
+  max-width:1180px;
+  margin:auto;
+  padding:35px 20px 80px;
+  display:grid;
+  gap:13px;
+}
+
+.lesson{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding:20px;
+  background:linear-gradient(180deg,#151521,#0e0e16);
+  border:1px solid var(--line);
+  border-radius:17px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.lesson:hover{
+  transform:translateX(-4px);
+  border-color:rgba(139,92,246,.4);
+}
+
+.lesson-number{
+  width:48px;
+  height:48px;
+  flex-shrink:0;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:rgba(109,53,255,.14);
+  border:1px solid rgba(139,92,246,.2);
+  color:#b99cff;
+  font-weight:900;
+}
+
+.lesson h3{
+  margin-bottom:5px;
+}
+
+.lesson p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.7;
+}
+
+.lesson-arrow{
+  margin-right:auto;
+  color:#9f80ff;
+  font-size:18px;
+}
+
+/* LESSON PAGE */
+
+.lesson-page{
+  max-width:950px;
+  margin:auto;
+  padding:45px 20px 80px;
+}
+
+.lesson-top{
+  margin-bottom:30px;
+}
+
+.lesson-top h1{
+  font-size:clamp(32px,5vw,52px);
+  margin-bottom:12px;
+}
+
+.lesson-top p{
+  color:var(--muted);
+  line-height:1.9;
+}
+
+.lesson-content{
+  background:linear-gradient(180deg,#11111a,#0d0d14);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:30px;
+}
+
+.lesson-content h2{
+  margin:30px 0 12px;
+  font-size:23px;
+}
+
+.lesson-content h2:first-child{
+  margin-top:0;
+}
+
+.lesson-content p,
+.lesson-content li{
+  color:#b9b9c7;
+  line-height:2;
+  font-size:15px;
+}
+
+.lesson-content ul{
+  padding-right:25px;
+}
+
+.example{
+  margin:20px 0;
+  padding:18px;
+  background:#08080d;
+  border:1px solid var(--line);
+  border-radius:14px;
+  color:#ccc;
+  line-height:2;
+}
+
+.term{
+  display:inline-block;
+  padding:3px 8px;
+  border-radius:7px;
+  background:#191629;
+  border:1px solid rgba(139,92,246,.18);
+  color:#c7b6ff;
+  font-weight:800;
+}
+
+.lesson-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:25px;
+}
+
+/* QUIZ */
+
+.quiz-page{
+  max-width:1000px;
+  margin:auto;
+  padding:55px 20px 80px;
+}
+
+.quiz-intro{
+  margin-bottom:30px;
+}
+
+.quiz-intro h1{
+  font-size:clamp(35px,5vw,55px);
+  margin-bottom:10px;
+}
+
+.quiz-intro p{
+  color:var(--muted);
+  line-height:1.9;
+}
+
+.quiz-card{
+  padding:22px;
+  margin-bottom:14px;
+  border:1px solid var(--line);
+  background:#11111a;
+  border-radius:17px;
+}
+
+.quiz-number{
+  color:#9f80ff;
+  font-size:12px;
+  font-weight:900;
+  margin-bottom:7px;
+}
+
+.quiz-card h3{
+  font-size:17px;
+  margin-bottom:15px;
+}
+
+.options{
+  display:grid;
+  gap:8px;
+}
+
+.option{
+  width:100%;
+  text-align:right;
+  padding:13px 15px;
+  border:1px solid var(--line);
+  background:#171722;
+  color:#ccc;
+  border-radius:11px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.option:hover{
+  border-color:#8b5cf6;
+  color:#fff;
+}
+
+.option.selected.correct{
+  background:rgba(57,217,138,.12);
+  border-color:var(--green);
+  color:#bff5db;
+}
+
+.option.selected.wrong{
+  background:rgba(255,85,119,.1);
+  border-color:var(--red);
+  color:#ffc2cf;
+}
+
+.option:disabled{
+  cursor:default;
+}
+
+.quiz-result{
+  display:none;
+  margin-top:25px;
+  padding:25px;
+  border-radius:17px;
+  border:1px solid rgba(139,92,246,.3);
+  background:rgba(109,53,255,.09);
+  text-align:center;
+}
+
+.quiz-result.show{
+  display:block;
+}
+
+.quiz-result h2{
+  font-size:35px;
   margin-bottom:8px;
 }
 
-.discord-box p{
-  color:var(--muted);
-  line-height:1.8;
+.quiz-result p{
+  color:#bbb;
+  margin-bottom:20px;
 }
 
 /* FOOTER */
@@ -511,7 +764,7 @@ button{
   color:#cfcfe0;
 }
 
-.footer .footer-links{
+.footer-links{
   display:flex;
   justify-content:center;
   gap:17px;
@@ -521,156 +774,6 @@ button{
 
 .footer a:hover{
   color:#fff;
-}
-
-/* MODAL */
-
-.modal{
-  position:fixed;
-  inset:0;
-  z-index:100;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:18px;
-  background:rgba(0,0,0,.78);
-  backdrop-filter:blur(8px);
-}
-
-.modal.open{
-  display:flex;
-}
-
-.modal-box{
-  width:min(900px,100%);
-  max-height:88vh;
-  overflow:auto;
-  background:#0d0d15;
-  border:1px solid rgba(139,92,246,.3);
-  border-radius:22px;
-  box-shadow:0 30px 100px rgba(0,0,0,.65);
-}
-
-.modal-top{
-  position:sticky;
-  top:0;
-  background:rgba(13,13,21,.94);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--line);
-  padding:17px 20px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
-  z-index:2;
-}
-
-.modal-top h2{
-  font-size:21px;
-}
-
-.close{
-  width:38px;
-  height:38px;
-  border:1px solid var(--line);
-  border-radius:10px;
-  background:#15151f;
-  color:#fff;
-  cursor:pointer;
-  font-size:18px;
-}
-
-.modal-content{
-  padding:25px;
-}
-
-.modal-content h3{
-  font-size:18px;
-  margin:23px 0 10px;
-  color:#ddd;
-}
-
-.modal-content h3:first-child{
-  margin-top:0;
-}
-
-.modal-content p,
-.modal-content li{
-  color:#b5b5c4;
-  line-height:2;
-  font-size:14px;
-}
-
-.modal-content ul{
-  padding-right:20px;
-}
-
-.term{
-  display:inline-block;
-  padding:3px 8px;
-  border-radius:7px;
-  background:#191629;
-  border:1px solid rgba(139,92,246,.18);
-  color:#c7b6ff;
-  font-weight:800;
-}
-
-.example{
-  margin:13px 0;
-  padding:16px;
-  border-radius:13px;
-  background:#08080d;
-  border:1px solid var(--line);
-  color:#c9c9d5;
-  line-height:1.9;
-}
-
-.example strong{
-  color:#fff;
-}
-
-/* QUIZ */
-
-.quiz{
-  display:grid;
-  gap:12px;
-}
-
-.quiz-q{
-  padding:17px;
-  border:1px solid var(--line);
-  border-radius:13px;
-  background:#101019;
-}
-
-.quiz-q p{
-  color:#fff !important;
-  font-weight:800;
-  margin-bottom:11px;
-}
-
-.quiz-q button{
-  margin:4px 4px 0 0;
-  padding:9px 12px;
-  border-radius:9px;
-  border:1px solid var(--line);
-  background:#171722;
-  color:#ccc;
-  cursor:pointer;
-}
-
-.quiz-q button:hover{
-  border-color:#8b5cf6;
-  color:#fff;
-}
-
-.result{
-  margin-top:14px;
-  padding:13px;
-  border-radius:10px;
-  background:rgba(109,53,255,.1);
-  color:#ddd;
-  display:none;
 }
 
 /* MOBILE */
@@ -734,816 +837,2055 @@ button{
     align-items:flex-start;
   }
 
-  .discord-box h2{
-    font-size:25px;
+  .section-head{
+    display:block;
   }
+
+  .section-head p{
+    margin-top:12px;
+  }
+
+  .lesson{
+    align-items:flex-start;
+  }
+
+  .lesson-arrow{
+    display:none;
+  }
+
+  .lesson-content{
+    padding:22px;
+  }
+
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-
 <nav class="nav">
-  <div class="nav-inner">
 
-    <a class="brand" href="#">
-      <span class="brand-mark">
-        <i class="fa-solid fa-shield-halved"></i>
-      </span>
+<div class="nav-inner">
 
-      <span>
-        Midnight
-        <small>CYBER SECURITY</small>
-      </span>
-    </a>
+<a class="brand" href="#" onclick="showPage('home');return false;">
 
-    <div class="nav-links">
-      <a href="#topics">المواضيع</a>
-      <a href="#path">المسار</a>
-      <a href="#quiz">اختبر نفسك</a>
-    </div>
+<span class="brand-mark">
+<i class="fa-solid fa-shield-halved"></i>
+</span>
 
-    <a
-      class="nav-discord"
-      href="https://discord.gg/TyUpVWQgA"
-      target="_blank"
-      rel="noopener"
-    >
-      <i class="fa-brands fa-discord"></i>
-      سيرفر Midnight
-    </a>
+<span>
+Midnight
+<small>CYBER SECURITY</small>
+</span>
 
-  </div>
+</a>
+
+<div class="nav-links">
+
+<a href="#" onclick="showPage('home');return false;">
+الرئيسية
+</a>
+
+<a href="#topics" onclick="showPage('home');return false;">
+الدروس
+</a>
+
+<a href="#" onclick="showPage('course');return false;">
+المسار
+</a>
+
+<a href="#" onclick="showPage('quiz');return false;">
+الاختبار
+</a>
+
+</div>
+
+<a
+class="nav-discord"
+href="https://discord.gg/TyUpVWQgA"
+target="_blank"
+rel="noopener"
+>
+
+<i class="fa-brands fa-discord"></i>
+سيرفر Midnight
+
+</a>
+
+</div>
+
 </nav>
 
-
-<!-- HERO -->
+<main id="home" class="page active">
 
 <header class="hero">
 
-  <div>
+<div>
 
-    <div class="hero-badge">
-      <span class="dot"></span>
-      تعلّم • جرّب • افهم
-    </div>
+<div class="hero-badge">
 
-    <h1>
-      الأمن السيبراني
-      <br>
-      <span class="gradient">بدون تعقيد.</span>
-    </h1>
+<span class="dot"></span>
 
-    <p>
-      أهلاً بك في Midnight
-      <br>
-      هنا ما راح نعطيك كلام جامد وتحفظه وخلاص.
-      بنفهمك الأمن السيبراني من الصفر بطريقة بسيطة وشبابية —
-      تخيل الإنترنت فندق كبير وأنت تحاول تفهم كل غرفة وباب ومفتاح فيه 😂
-    </p>
+تعلّم • جرّب • افهم
 
-    <div class="hero-buttons">
+</div>
 
-      <a class="btn btn-primary" href="#topics">
-        <i class="fa-solid fa-rocket"></i>
-        ابدأ من الصفر
-      </a>
+<h1>
 
-      <a
-        class="btn btn-ghost"
-        href="https://discord.gg/TyUpVWQgA"
-        target="_blank"
-        rel="noopener"
-      >
-        <i class="fa-brands fa-discord"></i>
-        ادخل السيرفر
-      </a>
+الأمن السيبراني
 
-    </div>
+<br>
 
-  </div>
+<span class="gradient">
+بدون تعقيد.
+</span>
 
+</h1>
 
-  <div class="hero-image-wrap">
+<p>
 
-    <img
-      class="hero-image"
-      src="dead-penguin-cyber-new-background.jpeg"
-      alt="Midnight Cyber Security"
-    >
+أهلاً بك في Midnight
 
-    <div class="copyright-tag">
-      © Midnight • جميع الحقوق محفوظة
-    </div>
+<br>
 
-  </div>
+هنا ما راح نعطيك كلام جامد وتحفظه وخلاص.
+
+بنفهمك الأمن السيبراني من الصفر بطريقة بسيطة وشبابية —
+
+تخيل الإنترنت فندق كبير وأنت تحاول تفهم كل غرفة وباب ومفتاح فيه 😂
+
+</p>
+
+<div class="hero-buttons">
+
+<button
+class="btn btn-primary"
+onclick="showPage('course')"
+>
+
+<i class="fa-solid fa-rocket"></i>
+
+ابدأ مسار أساسيات الأمن
+
+</button>
+
+<a
+class="btn btn-ghost"
+href="https://discord.gg/TyUpVWQgA"
+target="_blank"
+rel="noopener"
+>
+
+<i class="fa-brands fa-discord"></i>
+
+ادخل السيرفر
+
+</a>
+
+</div>
+
+</div>
+
+<div class="hero-image-wrap">
+
+<img
+class="hero-image"
+src="dead-penguin-cyber-new-background.png"
+alt="Midnight Cyber Security"
+>
+
+<div class="copyright-tag">
+© Midnight • جميع الحقوق محفوظة
+</div>
+
+</div>
 
 </header>
 
-
-<!-- TOPICS -->
-
 <section class="section" id="topics">
 
-  <div class="section-head">
+<div class="section-head">
 
-    <div>
-      <div class="kicker">MIDNIGHT ACADEMY</div>
-      <h2>اختر وش تبي تتعلم</h2>
-    </div>
+<div>
 
-    <p>
-      كل موضوع له زر خاص فيه.
-      افتح اللي تبيه وخذ الشرح من الأساسيات إلى الصورة الكبيرة.
-    </p>
+<div class="kicker">
+MIDNIGHT ACADEMY
+</div>
 
-  </div>
+<h2>
+اختر وش تبي تتعلم
+</h2>
 
+</div>
 
-  <div class="grid">
+<p>
+ابدأ من الصفر وخذ الدروس بالترتيب أو افتح الموضوع اللي تبيه مباشرة.
+</p>
 
+</div>
 
-    <article class="card">
+<div class="grid">
 
-      <div class="icon">
-        <i class="fa-solid fa-network-wired"></i>
-      </div>
+<article class="card">
 
-      <h3>أساسيات الشبكات</h3>
+<div class="icon">
+<i class="fa-solid fa-network-wired"></i>
+</div>
 
-      <p>
-        IP و MAC و DNS و DHCP و NAT والراوتر والسويتش
-        والبروتوكولات وكيف الأجهزة تتواصل.
-      </p>
+<h3>
+أساسيات الشبكات
+</h3>
 
-      <button class="learn" onclick="openModal('network')">
-        افتح الدرس ←
-      </button>
+<p>
+IP و MAC و DNS و DHCP و NAT والراوتر والسويتش وكيف الأجهزة تتواصل.
+</p>
 
-    </article>
+<button class="learn" onclick="openLesson('network')">
+ابدأ الدرس ←
+</button>
 
+</article>
 
-    <article class="card">
+<article class="card">
 
-      <div class="icon">
-        <i class="fa-solid fa-location-dot"></i>
-      </div>
+<div class="icon">
+<i class="fa-solid fa-location-dot"></i>
+</div>
 
-      <h3>IP و MAC Address</h3>
+<h3>
+IP و MAC Address
+</h3>
 
-      <p>
-        وش الفرق بينهم؟
-        وليه الـ IP ممكن يتغير بينما MAC مرتبط بواجهة الشبكة؟
-      </p>
+<p>
+وش الفرق بينهم؟ وليه كل واحد له وظيفة مختلفة؟
+</p>
 
-      <button class="learn" onclick="openModal('ipmac')">
-        افهمها بسهولة ←
-      </button>
+<button class="learn" onclick="openLesson('ipmac')">
+ابدأ الدرس ←
+</button>
 
-    </article>
+</article>
 
+<article class="card">
 
-    <article class="card">
+<div class="icon">
+<i class="fa-solid fa-door-open"></i>
+</div>
 
-      <div class="icon">
-        <i class="fa-solid fa-door-open"></i>
-      </div>
+<h3>
+Ports & Protocols
+</h3>
 
-      <h3>Ports & Protocols</h3>
+<p>
+وش يعني Port؟ وش الفرق بين TCP و UDP؟
+</p>
 
-      <p>
-        وش يعني Port؟
-        وش يسوي TCP و UDP؟
-        وليه المنافذ مثل أبواب الفندق؟
-      </p>
+<button class="learn" onclick="openLesson('ports')">
+ابدأ الدرس ←
+</button>
 
-      <button class="learn" onclick="openModal('ports')">
-        افتح الدرس ←
-      </button>
+</article>
 
-    </article>
+<article class="card">
 
+<div class="icon">
+<i class="fa-brands fa-linux"></i>
+</div>
 
-    <article class="card">
+<h3>
+Linux للمبتدئين
+</h3>
 
-      <div class="icon">
-        <i class="fa-brands fa-linux"></i>
-      </div>
+<p>
+الملفات والمجلدات والصلاحيات والأوامر الأساسية.
+</p>
 
-      <h3>Linux للمبتدئين</h3>
+<button class="learn" onclick="openLesson('linux')">
+ابدأ الدرس ←
+</button>
 
-      <p>
-        فهم الملفات والمجلدات والصلاحيات والأوامر الأساسية
-        بدون ما نحولها لحصة مملة.
-      </p>
+</article>
 
-      <button class="learn" onclick="openModal('linux')">
-        ابدأ لينكس ←
-      </button>
+<article class="card">
 
-    </article>
+<div class="icon">
+<i class="fa-brands fa-python"></i>
+</div>
 
+<h3>
+Python للأمن السيبراني
+</h3>
 
-    <article class="card">
+<p>
+وش تحتاج تتعلم من Python وكيف تفيدك في الأمن السيبراني؟
+</p>
 
-      <div class="icon">
-        <i class="fa-brands fa-python"></i>
-      </div>
+<button class="learn" onclick="openLesson('python')">
+ابدأ الدرس ←
+</button>
 
-      <h3>Python للأمن السيبراني</h3>
+</article>
 
-      <p>
-        وش تحتاج تتعلم من بايثون؟
-        المتغيرات والشروط والحلقات والدوال والملفات وكيف تفيدك.
-      </p>
+<article class="card">
 
-      <button class="learn" onclick="openModal('python')">
-        افتح بايثون ←
-      </button>
+<div class="icon">
+<i class="fa-solid fa-globe"></i>
+</div>
 
-    </article>
+<h3>
+أساسيات الويب
+</h3>
 
+<p>
+HTML و HTTP و Cookies و Sessions و APIs.
+</p>
 
-    <article class="card">
+<button class="learn" onclick="openLesson('web')">
+ابدأ الدرس ←
+</button>
 
-      <div class="icon">
-        <i class="fa-solid fa-globe"></i>
-      </div>
+</article>
 
-      <h3>أساسيات الويب</h3>
+<article class="card">
 
-      <p>
-        HTML و HTTP و Cookies و Sessions و APIs
-        وكيف المتصفح والسيرفر يتفاهمون.
-      </p>
+<div class="icon">
+<i class="fa-solid fa-shield-halved"></i>
+</div>
 
-      <button class="learn" onclick="openModal('web')">
-        افهم الويب ←
-      </button>
+<h3>
+مبتدئين الأمن السيبراني
+</h3>
 
-    </article>
+<p>
+خريطة طريق واضحة من الشبكات ولينكس إلى التخصصات.
+</p>
 
+<button class="learn" onclick="openLesson('beginner')">
+ابدأ الدرس ←
+</button>
 
-    <article class="card">
+</article>
 
-      <div class="icon">
-        <i class="fa-solid fa-shield-halved"></i>
-      </div>
+<article class="card">
 
-      <h3>مبتدئين الأمن السيبراني</h3>
+<div class="icon">
+<i class="fa-solid fa-skull-crossbones"></i>
+</div>
 
-      <p>
-        خريطة طريق واضحة:
-        من الشبكات ولينكس إلى البرمجة والمختبرات الآمنة والتخصصات.
-      </p>
+<h3>
+خرافات الأمن السيبراني
+</h3>
 
-      <button class="learn" onclick="openModal('beginner')">
-        ابدأ المسار ←
-      </button>
+<p>
+خلنا نفصل الواقع عن أفلام الهاكرز 😂
+</p>
 
-    </article>
+<button class="learn" onclick="openLesson('myths')">
+ابدأ الدرس ←
+</button>
 
+</article>
 
-    <article class="card">
+<article class="card">
 
-      <div class="icon">
-        <i class="fa-solid fa-skull-crossbones"></i>
-      </div>
+<div class="icon">
+<i class="fa-solid fa-scale-balanced"></i>
+</div>
 
-      <h3>خرافات الأمن السيبراني</h3>
+<h3>
+الأمن الأخلاقي والقانوني
+</h3>
 
-      <p>
-        لا، كونك مختص أمن سيبراني ما يعني أنك تقدر تخترق أي شيء تبيه 😂
-        خلنا نفصل الواقع عن الأفلام.
-      </p>
+<p>
+تعرف وش المسموح وكيف تتعلم داخل نطاق مصرح.
+</p>
 
-      <button class="learn" onclick="openModal('myths')">
-        اكشف الخرافات ←
-      </button>
+<button class="learn" onclick="openLesson('ethics')">
+ابدأ الدرس ←
+</button>
 
-    </article>
+</article>
 
+<article class="card">
 
-    <article class="card">
+<div class="icon">
+<i class="fa-solid fa-database"></i>
+</div>
 
-      <div class="icon">
-        <i class="fa-solid fa-scale-balanced"></i>
-      </div>
+<h3>
+مصطلحات مهمة
+</h3>
 
-      <h3>الأمن الأخلاقي والقانوني</h3>
+<p>
+Firewall و VPN و Hash و Encryption و Authentication وغيرها.
+</p>
 
-      <p>
-        تعلم الفرق بين التدريب المصرح به والوصول غير المصرح به،
-        وكيف تتعلم بأمان.
-      </p>
+<button class="learn" onclick="openLesson('terms')">
+ابدأ الدرس ←
+</button>
 
-      <button class="learn" onclick="openModal('ethics')">
-        وش المسموح؟ ←
-      </button>
+</article>
 
-    </article>
+<article class="card">
 
+<div class="icon">
+<i class="fa-solid fa-bug"></i>
+</div>
 
-    <article class="card">
+<h3>
+الثغرات بشكل مبسط
+</h3>
 
-      <div class="icon">
-        <i class="fa-solid fa-database"></i>
-      </div>
+<p>
+وش هي الثغرة؟ وليه وجود ثغرة ما يعني اختراق كامل؟
+</p>
 
-      <h3>مصطلحات مهمة</h3>
+<button class="learn" onclick="openLesson('vuln')">
+ابدأ الدرس ←
+</button>
 
-      <p>
-        Firewall و VPN و Hash و Encryption و Vulnerability
-        و Authentication وغيرها بشكل سريع.
-      </p>
+</article>
 
-      <button class="learn" onclick="openModal('terms')">
-        قاموس Midnight ←
-      </button>
+<article class="card">
 
-    </article>
+<div class="icon">
+<i class="fa-solid fa-user-secret"></i>
+</div>
 
+<h3>
+التخصصات
+</h3>
 
-    <article class="card">
+<p>
+Blue Team و Red Team و SOC و DFIR و AppSec وغيرها.
+</p>
 
-      <div class="icon">
-        <i class="fa-solid fa-bug"></i>
-      </div>
+<button class="learn" onclick="openLesson('tracks')">
+ابدأ الدرس ←
+</button>
 
-      <h3>الثغرات بشكل مبسط</h3>
+</article>
 
-      <p>
-        وش هي الثغرة؟
-        وليه وجود ثغرة لا يعني تلقائياً أنك تقدر تدخل للنظام؟
-      </p>
-
-      <button class="learn" onclick="openModal('vuln')">
-        افهم الفكرة ←
-      </button>
-
-    </article>
-
-
-    <article class="card">
-
-      <div class="icon">
-        <i class="fa-solid fa-user-secret"></i>
-      </div>
-
-      <h3>التخصصات</h3>
-
-      <p>
-        Blue Team و Red Team و SOC و DFIR و AppSec
-        و Bug Bounty وغيرها — وش يناسبك؟
-      </p>
-
-      <button class="learn" onclick="openModal('tracks')">
-        شوف التخصصات ←
-      </button>
-
-    </article>
-
-  </div>
+</div>
 
 </section>
 
+<section class="section">
 
-<!-- ROADMAP -->
+<div class="section-head">
 
-<section class="section" id="path">
+<div>
 
-  <div class="section-head">
+<div class="kicker">
+ROADMAP
+</div>
 
-    <div>
-      <div class="kicker">ROADMAP</div>
-      <h2>مسار المبتدئ في Midnight</h2>
-    </div>
+<h2>
+مسار المبتدئ
+</h2>
 
-    <p>
-      لا تحاول تتعلم كل شيء في يوم واحد.
-      امش خطوة خطوة وابنِ أساس قوي.
-    </p>
+</div>
 
-  </div>
+<p>
+امش خطوة خطوة ولا تستعجل الأدوات قبل فهم الأساسيات.
+</p>
 
+</div>
 
-  <div class="path">
+<div class="path">
 
-    <div class="step">
-      <div class="num">01</div>
-      <h3>الشبكات</h3>
-      <p>
-        IP • MAC • DNS • TCP/IP • Ports • HTTP
-      </p>
-    </div>
+<div class="step">
 
-    <div class="step">
-      <div class="num">02</div>
-      <h3>Linux</h3>
-      <p>
-        Terminal • Files • Permissions • Processes
-      </p>
-    </div>
+<div class="num">
+01
+</div>
 
-    <div class="step">
-      <div class="num">03</div>
-      <h3>Python</h3>
-      <p>
-        Variables • Conditions • Loops • Functions • Files
-      </p>
-    </div>
+<h3>
+الشبكات
+</h3>
 
-    <div class="step">
-      <div class="num">04</div>
-      <h3>التطبيق الآمن</h3>
-      <p>
-        CTF • Labs • Web Security • قراءة التوثيق
-      </p>
-    </div>
+<p>
+IP • MAC • DNS • TCP/IP • Ports • HTTP
+</p>
 
-  </div>
+</div>
 
+<div class="step">
 
-  <div class="note">
+<div class="num">
+02
+</div>
 
-    <i class="fa-solid fa-circle-info"></i>
+<h3>
+Linux
+</h3>
 
-    الهدف مو إنك تحفظ أوامر كثيرة.
-    الهدف إنك تفهم <strong>ليش</strong> الشيء يصير
-    وبعدها تتعلم <strong>كيف</strong> تختبره داخل بيئة مصرح لك بها.
+<p>
+Terminal • Files • Permissions • Processes
+</p>
 
-  </div>
+</div>
 
-</section>
+<div class="step">
 
+<div class="num">
+03
+</div>
 
-<!-- QUIZ -->
+<h3>
+Python
+</h3>
 
-<section class="section" id="quiz">
+<p>
+Variables • Conditions • Loops • Functions
+</p>
 
-  <div class="section-head">
+</div>
 
-    <div>
-      <div class="kicker">QUICK QUIZ</div>
-      <h2>اختبر نفسك 😂</h2>
-    </div>
+<div class="step">
 
-    <p>
-      ثلاثة أسئلة سريعة بعد ما أخذت الجولة.
-    </p>
+<div class="num">
+04
+</div>
 
-  </div>
+<h3>
+التطبيق الآمن
+</h3>
 
+<p>
+CTF • Labs • Web Security • Documentation
+</p>
 
-  <div class="quiz">
+</div>
 
+</div>
 
-    <div class="quiz-q">
+<div class="note">
 
-      <p>
-        1) وش أقرب تشبيه للـ IP في مثال الفندق؟
-      </p>
+<i class="fa-solid fa-circle-info"></i>
 
-      <button onclick="answer(this,false)">
-        رقم الغرفة داخل الفندق
-      </button>
+الهدف مو إنك تحفظ أوامر كثيرة.
+الهدف إنك تفهم <strong>ليش</strong> الشيء يصير وبعدها تتعلم <strong>كيف</strong> تختبره داخل بيئة مصرح لك بها.
 
-      <button onclick="answer(this,true)">
-        عنوان الفندق للوصول إليه
-      </button>
-
-      <button onclick="answer(this,false)">
-        اسم النزيل
-      </button>
-
-    </div>
-
-
-    <div class="quiz-q">
-
-      <p>
-        2) هل مختص الأمن السيبراني يقدر يخترق أي نظام لمجرد أنه مختص؟
-      </p>
-
-      <button onclick="answer(this,true)">
-        لا، لازم يكون عنده تصريح ويفهم نطاق الاختبار
-      </button>
-
-      <button onclick="answer(this,false)">
-        إيه دائماً
-      </button>
-
-      <button onclick="answer(this,false)">
-        فقط إذا استخدم Linux
-      </button>
-
-    </div>
-
-
-    <div class="quiz-q">
-
-      <p>
-        3) وش فائدة Python للمختص الأمني؟
-      </p>
-
-      <button onclick="answer(this,false)">
-        تخليه هاكر بضغطة زر
-      </button>
-
-      <button onclick="answer(this,true)">
-        تساعده في الأتمتة وتحليل البيانات وبناء أدوات تعليمية
-      </button>
-
-      <button onclick="answer(this,false)">
-        تستبدل الشبكات ولينكس بالكامل
-      </button>
-
-    </div>
-
-  </div>
+</div>
 
 </section>
-
-
-<!-- DISCORD -->
 
 <div class="discord">
 
-  <div class="discord-box">
+<div class="discord-box">
 
-    <div>
+<div>
 
-      <div class="kicker">
-        MIDNIGHT DISCORD
-      </div>
+<div class="kicker">
+MIDNIGHT DISCORD
+</div>
 
-      <h2>
-        تبغى تكمل معنا؟
-      </h2>
+<h2>
+تبغى تكمل معنا؟
+</h2>
 
-      <p>
-        انضم لسيرفر Midnight وتابع المجتمع والمحتوى والمشاريع
-        والنقاشات المتعلقة بالتقنية والأمن السيبراني.
-      </p>
-
-    </div>
-
-
-    <a
-      class="btn btn-primary"
-      href="https://discord.gg/TyUpVWQgA"
-      target="_blank"
-      rel="noopener"
-    >
-
-      <i class="fa-brands fa-discord"></i>
-
-      دخول السيرفر
-
-    </a>
-
-  </div>
+<p>
+انضم لسيرفر Midnight وتابع المجتمع والمحتوى والمشاريع.
+</p>
 
 </div>
 
+<a
+class="btn btn-primary"
+href="https://discord.gg/TyUpVWQgA"
+target="_blank"
+rel="noopener"
+>
 
-<!-- FOOTER -->
+<i class="fa-brands fa-discord"></i>
+
+دخول السيرفر
+
+</a>
+
+</div>
+
+</div>
+
+</main>
+
+<main id="course" class="page">
+
+<section class="course-header">
+
+<button class="back-btn" onclick="showPage('home')">
+← رجوع للرئيسية
+</button>
+
+<div class="kicker">
+MIDNIGHT ACADEMY
+</div>
+
+<h1 class="course-title">
+أساسيات الأمن السيبراني
+</h1>
+
+<p class="course-description">
+هذا هو المسار الأساسي للمبتدئ.
+بنبدأ من الشبكات ثم الأنظمة ولينكس ثم Python والويب
+وبعدها ندخل في مفاهيم الأمن السيبراني والتخصصات.
+</p>
+
+</section>
+
+<section class="lesson-list">
+
+<div class="lesson" onclick="openLesson('network')">
+
+<div class="lesson-number">
+01
+</div>
+
+<div>
+
+<h3>
+أساسيات الشبكات
+</h3>
+
+<p>
+IP • MAC • DNS • DHCP • Router • Switch • NAT
+</p>
+
+</div>
+
+<div class="lesson-arrow">
+←
+</div>
+
+</div>
+
+<div class="lesson" onclick="openLesson('ipmac')">
+
+<div class="lesson-number">
+02
+</div>
+
+<div>
+
+<h3>
+IP و MAC Address
+</h3>
+
+<p>
+فهم الفرق بين العناوين المنطقية ومعرفات واجهات الشبكة.
+</p>
+
+</div>
+
+<div class="lesson-arrow">
+←
+</div>
+
+</div>
+
+<div class="lesson" onclick="openLesson('ports')">
+
+<div class="lesson-number">
+03
+</div>
+
+<div>
+
+<h3>
+Ports & Protocols
+</h3>
+
+<p>
+Ports • TCP • UDP • HTTP • HTTPS
+</p>
+
+</div>
+
+<div class="lesson-arrow">
+←
+</div>
+
+</div>
+
+<div class="lesson" onclick="openLesson('linux')">
+
+<div class="lesson-number">
+04
+</div>
+
+<div>
+
+<h3>
+Linux للمبتدئين
+</h3>
+
+<p>
+Terminal • Files • Permissions • Processes
+</p>
+
+</div>
+
+<div class="lesson-arrow">
+←
+</div>
+
+</div>
+
+<div class="lesson" onclick="openLesson('python')">
+
+<div class="lesson-number">
+05
+</div>
+
+<div>
+
+<h3>
+Python للأمن السيبراني
+</h3>
+
+<p>
+Variables • Conditions • Loops • Functions • Files
+</p>
+
+</div>
+
+<div class="lesson-arrow">
+←
+</div>
+
+</div>
+
+<div class="lesson" onclick="openLesson('web')">
+
+<div class="lesson-number">
+06
+</div>
+
+<div>
+
+<h3>
+أساسيات الويب
+</h3>
+
+<p>
+HTML • HTTP • Cookies • Sessions • APIs
+</p>
+
+</div>
+
+<div class="lesson-arrow">
+←
+</div>
+
+</div>
+
+<div class="lesson" onclick="openLesson('beginner')">
+
+<div class="lesson-number">
+07
+</div>
+
+<div>
+
+<h3>
+مبادئ الأمن السيبراني
+</h3>
+
+<p>
+كيف تنتقل من الأساسيات إلى التطبيق الأمني.
+</p>
+
+</div>
+
+<div class="lesson-arrow">
+←
+</div>
+
+</div>
+
+<div class="lesson" onclick="openLesson('ethics')">
+
+<div class="lesson-number">
+08
+</div>
+
+<div>
+
+<h3>
+الأمن الأخلاقي والقانوني
+</h3>
+
+<p>
+التصريح والنطاق والتدريب الآمن.
+</p>
+
+</div>
+
+<div class="lesson-arrow">
+←
+</div>
+
+</div>
+
+<div class="lesson" onclick="openLesson('vuln')">
+
+<div class="lesson-number">
+09
+</div>
+
+<div>
+
+<h3>
+الثغرات
+</h3>
+
+<p>
+ما هي الثغرة وكيف يفكر المختص الأمني؟
+</p>
+
+</div>
+
+<div class="lesson-arrow">
+←
+</div>
+
+</div>
+
+<div class="lesson" onclick="openLesson('tracks')">
+
+<div class="lesson-number">
+10
+</div>
+
+<div>
+
+<h3>
+تخصصات الأمن السيبراني
+</h3>
+
+<p>
+Red Team • Blue Team • SOC • DFIR • AppSec
+</p>
+
+</div>
+
+<div class="lesson-arrow">
+←
+</div>
+
+</div>
+
+<div style="text-align:center;margin-top:20px">
+
+<button
+class="btn btn-primary"
+onclick="showPage('quiz')"
+>
+
+<i class="fa-solid fa-clipboard-question"></i>
+
+ابدأ الاختبار
+
+</button>
+
+</div>
+
+</section>
+
+</main>
+
+<main id="lessonPage" class="page">
+
+<section class="lesson-page">
+
+<button class="back-btn" onclick="showPage('course')">
+← رجوع للمسار
+</button>
+
+<div class="lesson-top">
+
+<div class="kicker">
+MIDNIGHT LESSON
+</div>
+
+<h1 id="lessonTitle">
+الدرس
+</h1>
+
+<p id="lessonDescription">
+</p>
+
+</div>
+
+<div
+class="lesson-content"
+id="lessonContent"
+>
+</div>
+
+<div class="lesson-actions">
+
+<button
+class="btn btn-primary"
+onclick="showPage('quiz')"
+>
+
+<i class="fa-solid fa-clipboard-question"></i>
+
+اختبر فهمك
+
+</button>
+
+<button
+class="btn btn-ghost"
+onclick="showPage('course')"
+>
+
+← الدروس
+
+</button>
+
+</div>
+
+</section>
+
+</main>
+
+<main id="quiz" class="page">
+
+<section class="quiz-page">
+
+<button class="back-btn" onclick="showPage('course')">
+← رجوع للمسار
+</button>
+
+<div class="quiz-intro">
+
+<div class="kicker">
+MIDNIGHT QUIZ
+</div>
+
+<h1>
+اختبر نفسك 🧠
+</h1>
+
+<p>
+من كل درس سؤال أو سؤالين.
+جاوب على الأسئلة وبعدها بنحسب نتيجتك.
+</p>
+
+</div>
+
+<div id="quizContainer">
+</div>
+
+<div class="quiz-result" id="quizResult">
+
+<h2 id="scoreText">
+0 / 0
+</h2>
+
+<p id="scoreMessage">
+</p>
+
+<button
+class="btn btn-primary"
+onclick="restartQuiz()"
+>
+
+إعادة الاختبار
+
+</button>
+
+</div>
+
+</section>
+
+</main>
 
 <footer class="footer">
 
-  <div class="footer-links">
+<div class="footer-links">
 
-    <a href="#topics">
-      الدروس
-    </a>
+<a href="#" onclick="showPage('home');return false;">
+الرئيسية
+</a>
 
-    <a href="#path">
-      المسار
-    </a>
+<a href="#" onclick="showPage('course');return false;">
+المسار
+</a>
 
-    <a href="#quiz">
-      الاختبار
-    </a>
+<a href="#" onclick="showPage('quiz');return false;">
+الاختبار
+</a>
 
-    <a
-      href="https://discord.gg/TyUpVWQgA"
-      target="_blank"
-      rel="noopener"
-    >
-      Discord
-    </a>
-
-  </div>
-
-  <p>
-    © 2026 <strong>Midnight</strong> — جميع الحقوق محفوظة
-  </p>
-
-  <p style="margin-top:6px;font-size:11px">
-    تعلم الأمن السيبراني بشكل أخلاقي ومصرح به فقط.
-  </p>
-
-</footer>
-
-
-<!-- MODAL -->
-
-<div
-  class="modal"
-  id="modal"
-  onclick="outsideClose(event)"
+<a
+href="https://discord.gg/TyUpVWQgA"
+target="_blank"
+rel="noopener"
 >
-
-  <div class="modal-box">
-
-    <div class="modal-top">
-
-      <h2 id="modalTitle">
-        Midnight
-      </h2>
-
-      <button
-        class="close"
-        onclick="closeModal()"
-        aria-label="إغلاق"
-      >
-        ×
-      </button>
-
-    </div>
-
-    <div
-      class="modal-content"
-      id="modalContent"
-    ></div>
-
-  </div>
+Discord
+</a>
 
 </div>
 
+<p>
+© 2026 <strong>Midnight</strong> — جميع الحقوق محفوظة
+</p>
+
+<p style="margin-top:6px;font-size:11px">
+تعلم الأمن السيبراني بشكل أخلاقي ومصرح به فقط.
+</p>
+
+</footer>
 
 <script>
 
 const lessons = {
 
 network:{
-title:"أساسيات الشبكات — من الصفر",
-
+title:"أساسيات الشبكات",
+description:"أول خطوة حقيقية في الأمن السيبراني هي فهم الشبكات.",
 html:`
 
-<h3>طيب تخيل إن الإنترنت فندق ضخم 😂</h3>
+<h2>تخيل الإنترنت فندق ضخم 😂</h2>
 
 <p>
-كل جهاز يعتبر نزيل، والبيانات تعتبر طرود تتحرك بين الغرف.
+كل جهاز يعتبر نزيل وكل البيانات تعتبر طرود تتحرك بين الأجهزة.
 عشان الطرد يوصل لازم نعرف وين رايح وكيف يروح.
 </p>
 
-<h3>IP Address</h3>
+<h2>IP Address</h2>
 
 <p>
 الـ <span class="term">IP</span>
 هو عنوان منطقي يساعد الشبكة تعرف وين ترسل البيانات.
-فيه IPv4 مثل 192.168.1.10 وفيه IPv6 بصيغة مختلفة وأطول.
+مثال IPv4:
+192.168.1.10
 </p>
 
 <div class="example">
-<strong>مثال الفندق:</strong>
-اسم المدينة + عنوان الفندق + رقم المبنى =
-فكرة قريبة من تحديد مكان الجهاز على الشبكة.
+
+<strong>تشبيه الفندق:</strong>
+
+تخيل أن عندك عنوان الفندق وموقعه.
+الـ IP يساعد الشبكة في تحديد وجهة الاتصال.
+
 </div>
 
-<h3>MAC Address</h3>
+<h2>MAC Address</h2>
 
 <p>
 الـ <span class="term">MAC</span>
-هو معرف مرتبط بواجهة الشبكة.
-تخيله كهوية لبطاقة الشبكة داخل الشبكة المحلية.
-مو نفس وظيفة الـ IP، ولا هو "عنوان البيت" على الإنترنت.
+هو معرف مرتبط بواجهة الشبكة ويستخدم بشكل مهم داخل الشبكات المحلية.
 </p>
 
-<h3>DNS</h3>
+<h2>DNS</h2>
 
 <p>
-بدل ما تحفظ رقم IP لكل موقع، تكتب اسم مثل example.com.
+بدل ما تحفظ IP لكل موقع تكتبه مثل example.com.
 الـ <span class="term">DNS</span>
-يساعد في ترجمة اسم النطاق إلى عنوان IP مناسب.
+يساعد في ترجمة اسم النطاق إلى عنوان IP.
 </p>
 
-<h3>DHCP</h3>
+<h2>DHCP</h2>
 
 <p>
-<span class="term">DHCP</span>
-مثل موظف الاستقبال في الفندق:
-يساعد الأجهزة على الحصول على إعدادات الشبكة مثل IP تلقائياً.
+الـ <span class="term">DHCP</span>
+يساعد الأجهزة على الحصول على إعدادات الشبكة تلقائياً مثل IP.
 </p>
 
-<h3>Router و Switch</h3>
+<h2>Router و Switch</h2>
 
 <p>
-<span class="term">Router</span>
-يربط شبكات مختلفة ويوجه حركة البيانات بينها.
-أما <span class="term">Switch</span>
-فعادةً يربط أجهزة داخل نفس الشبكة المحلية.
+الـ <span class="term">Router</span>
+يربط شبكات مختلفة ويوجه البيانات بينها.
 </p>
 
-<h3>NAT</h3>
-
 <p>
-<span class="term">NAT</span>
-يسمح لعدة أجهزة داخل شبكة خاصة بمشاركة عنوان عام عند الاتصال بالإنترنت،
-مع ترجمة العناوين أثناء مرور الاتصال.
+أما الـ <span class="term">Switch</span>
+فعادةً يربط الأجهزة داخل نفس الشبكة المحلية.
 </p>
 
-<h3>الخلاصة</h3>
+<h2>NAT</h2>
 
 <p>
-إذا فهمت IP وMAC وDNS وDHCP وRouter وSwitch وNAT
-فأنت بنيت قاعدة ممتازة قبل الدخول في مواضيع الأمن السيبراني.
+الـ <span class="term">NAT</span>
+يسمح لأجهزة كثيرة داخل شبكة خاصة بمشاركة عنوان عام عند الاتصال بالإنترنت.
+</p>
+
+<h2>الخلاصة</h2>
+
+<p>
+إذا فهمت IP و MAC و DNS و DHCP و Router و Switch و NAT
+فأنت بنيت أساس ممتاز للأمن السيبراني.
 </p>
 
 `
 },
 
-
 ipmac:{
-title:"IP vs MAC — لا تخلط بينهم",
-
+title:"IP و MAC Address",
+description:"لا تخلط بينهم لأن كل واحد له وظيفة مختلفة.",
 html:`
 
-<h3>الـ IP</h3>
+<h2>وش هو IP؟</h2>
 
 <p>
-عنوان منطقي تستخدمه الشبكات لتوجيه البيانات.
+الـ IP عنوان منطقي تستخدمه الشبكات لتوجيه البيانات.
 ممكن يتغير حسب الشبكة والإعدادات.
 </p>
 
-<h3>الـ MAC</h3>
+<h2>وش هو MAC؟</h2>
 
 <p>
-معرف لواجهة الشبكة على مستوى طبقة ربط البيانات.
-يستخدم بشكل مهم داخل الشبكات المحلية.
+الـ MAC معرف لواجهة الشبكة ويستخدم بشكل مهم في الشبكات المحلية.
 </p>
 
 <div class="example">
+
 <strong>تشبيه:</strong>
-الفندق نفسه له عنوان للوصول إليه،
-وداخل الفندق عندك نظام يميز الأجهزة أو الغرف محلياً.
+
+تخيل الفندق عنده عنوان للوصول إليه،
+وداخل الفندق فيه نظام يميز الأجهزة محلياً.
+
 التشبيه مو مطابق 100% للتقنية لكنه يساعدك تفهم الفكرة.
+
 </div>
 
-<h3>شيء مهم</h3>
+<h2>شيء مهم</h2>
 
 <p>
-لا تعتبر الـ MAC "هوية سرية لا تتغير أبداً"
-ولا تعتبر الـ IP "هوية الجهاز الدائمة".
+لا تعتبر الـ MAC هوية سحرية لا تتغير أبداً،
+ولا تعتبر الـ IP هوية الجهاز الدائمة.
+
 كل واحد له وظيفة وسياق مختلف.
+
 </p>
 
 `
 },
 
-
 ports:{
-title:"Ports & Protocols — أبواب الفندق",
-
+title:"Ports & Protocols",
+description:"فهم المنافذ والبروتوكولات مهم جداً للشبكات والأمن.",
 html:`
 
-<h3>وش هو الـ Port؟</h3>
+<h2>وش هو Port؟</h2>
 
 <p>
-تخيل السيرفر فندق،
-والـ Ports مثل أبواب مرقمة لخدمات مختلفة.
+تخيل السيرفر فندق والـ Ports مثل أبواب مرقمة لخدمات مختلفة.
 رقم المنفذ يساعد النظام يعرف لأي خدمة يروح الاتصال.
 </p>
 
-<h3>TCP</h3>
+<h2>TCP</h2>
 
 <p>
 <span class="term">TCP</span>
 يهتم بإنشاء اتصال موثوق وترتيب البيانات والتأكد من وصولها بالشكل المطلوب.
 </p>
 
-<h3>UDP</h3>
+<h2>UDP</h2>
 
 <p>
 <span class="term">UDP</span>
-أخف وأسرع في حالات كثيرة لأنه لا يوفر نفس مستوى التحقق الموجود في TCP.
-يستخدم في سيناريوهات تحتاج سرعة أو لا تحتاج اتصالاً موثوقاً بنفس الطريقة.
+أخف في حالات كثيرة ولا يوفر نفس آليات التحقق الموجودة في TCP.
 </p>
 
-<h3>HTTP و HTTPS</h3>
+<h2>HTTP و HTTPS</h2>
 
 <p>
 <span class="term">HTTP</span>
-بروتوكول لنقل محتوى الويب.
+يستخدم لنقل محتوى الويب.
+</p>
+
+<p>
 <span class="term">HTTPS</span>
-يستخدم تشفير TLS لحماية الاتصال بين المتصفح والخادم.
+يستخدم TLS لحماية الاتصال بين المتصفح والخادم.
 </p>
 
 <div class="example">
-<strong>فكرة مهمة:</strong>
+
+<strong>مهم:</strong>
+
 وجود Port مفتوح لا يعني أن النظام مخترق.
-يعني فقط أن خدمة ما تستقبل اتصالات وفق إعداداتها.
+
+يعني أن خدمة ما تستقبل اتصالات وفق إعداداتها.
+
 </div>
+
+`
+},
+
+linux:{
+title:"Linux للمبتدئين",
+description:"Linux مهم جداً لفهم الأنظمة وبيئات السيرفرات والأمن السيبراني.",
+html:`
+
+<h2>ليش Linux مهم؟</h2>
+
+<p>
+Linux منتشر في السيرفرات وبيئات التطوير والأمن السيبراني.
+كما أنه يعطيك فهم ممتاز لإدارة النظام من الطرفية.
+</p>
+
+<h2>وش تتعلم أول؟</h2>
+
+<ul>
+
+<li>التنقل بين الملفات والمجلدات</li>
+
+<li>قراءة الملفات وتعديلها</li>
+
+<li>الصلاحيات</li>
+
+<li>Users و Groups</li>
+
+<li>Processes</li>
+
+<li>Services</li>
+
+<li>المسارات</li>
+
+<li>استخدام help و man</li>
+
+</ul>
+
+<div class="example">
+
+<strong>القاعدة الذهبية:</strong>
+
+لا تحفظ الأمر بدون فهمه.
+
+اعرف وش يسوي الأمر ومتى تستخدمه.
+
+</div>
+
+`
+},
+
+python:{
+title:"Python للأمن السيبراني",
+description:"ما تحتاج تكون محترف Python قبل تبدأ الأمن السيبراني.",
+html:`
+
+<h2>هل Python ضروري؟</h2>
+
+<p>
+لا.
+مو لازم تكون محترف Python قبل ما تبدأ الأمن السيبراني.
+تقدر تبدأ الشبكات ولينكس بالتوازي وتتعلم Python تدريجياً.
+</p>
+
+<h2>وش تتعلم؟</h2>
+
+<ul>
+
+<li>Variables — المتغيرات</li>
+
+<li>if / else — الشروط</li>
+
+<li>for / while — الحلقات</li>
+
+<li>Functions — الدوال</li>
+
+<li>Lists و Dictionaries</li>
+
+<li>قراءة وكتابة الملفات</li>
+
+<li>JSON</li>
+
+<li>APIs</li>
+
+<li>معالجة الأخطاء</li>
+
+</ul>
+
+<h2>ليش تفيدك؟</h2>
+
+<p>
+تساعدك في الأتمتة وتحليل البيانات وكتابة أدوات صغيرة للتعلم والعمل
+على أنظمة تملكها أو عندك تصريح لاختبارها.
+</p>
+
+`
+},
+
+web:{
+title:"أساسيات الويب",
+description:"قبل تتعلم Web Security لازم تفهم كيف الويب يعمل.",
+html:`
+
+<h2>المتصفح والسيرفر</h2>
+
+<p>
+لما تفتح موقع، المتصفح يرسل طلباً والسيرفر يعالج الطلب ويرجع استجابة.
+</p>
+
+<h2>HTML و CSS و JavaScript</h2>
+
+<p>
+HTML يبني هيكل الصفحة.
+</p>
+
+<p>
+CSS يهتم بالشكل.
+</p>
+
+<p>
+JavaScript يضيف التفاعل والسلوك.
+</p>
+
+<h2>HTTP</h2>
+
+<p>
+طلبات واستجابات الويب تحتوي أشياء مثل method و URL و headers و status code و body.
+</p>
+
+<h2>Cookies و Sessions</h2>
+
+<p>
+تستخدم المواقع آليات مختلفة لتذكر الجلسة وحالة المستخدم.
+وفهمها مهم جداً في Web Security.
+</p>
+
+<h2>APIs</h2>
+
+<p>
+الـ API طريقة منظمة تسمح لتطبيقات مختلفة بالتواصل وتبادل البيانات.
+</p>
+
+`
+},
+
+beginner:{
+title:"مبادئ الأمن السيبراني",
+description:"خارطة بسيطة تعرفك وش تتعلم بعد الأساسيات.",
+html:`
+
+<h2>المرحلة 1 — الأساس</h2>
+
+<p>
+ابدأ بالشبكات وأنظمة التشغيل ومبادئ الويب.
+</p>
+
+<h2>المرحلة 2 — Linux و Python</h2>
+
+<p>
+تعلم الطرفية وفهم النظام،
+وبعدها Python بالقدر الذي تحتاجه للأتمتة والتحليل.
+</p>
+
+<h2>المرحلة 3 — أمن المعلومات</h2>
+
+<p>
+تعلم Authentication و Authorization و Encryption و Hashing
+و Vulnerabilities و Threats و Defenses.
+</p>
+
+<h2>المرحلة 4 — التطبيق الآمن</h2>
+
+<p>
+استخدم مختبرات تعليمية و CTF وبيئات مصممة للتدريب.
+لا تختبر أنظمة حقيقية بدون تصريح.
+</p>
+
+<h2>المرحلة 5 — اختر تخصصك</h2>
+
+<p>
+Web Security؟
+Blue Team؟
+SOC؟
+DFIR؟
+Cloud Security؟
+Malware Analysis؟
+Bug Bounty ضمن البرامج المسموح بها؟
+كل طريق له مهارات مختلفة.
+</p>
+
+`
+},
+
+ethics:{
+title:"الأمن الأخلاقي والقانوني",
+description:"تعلم الأمن السيبراني لازم يكون داخل نطاق واضح ومصرح.",
+html:`
+
+<h2>الفكرة بسيطة</h2>
+
+<p>
+اختبر الأنظمة التي تملكها أو لديك تصريح واضح لاختبارها.
+</p>
+
+<h2>ليش التصريح مهم؟</h2>
+
+<p>
+نفس الفكرة التقنية ممكن تكون اختباراً أمنياً مشروعاً داخل نطاق محدد،
+أو وصولاً غير مصرح به إذا تم تطبيقها على نظام بدون إذن.
+</p>
+
+<div class="example">
+
+<strong>مثال:</strong>
+
+عندك مختبر تدريبي والتعليمات تقول اختبر التطبيق داخله.
+
+هذا نطاق واضح.
+
+أما موقع عشوائي على الإنترنت بدون تصريح فلا تختبره.
+
+</div>
+
+<h2>Bug Bounty</h2>
+
+<p>
+برامج مكافآت الثغرات تحدد نطاقاً وقواعد يجب قراءتها والالتزام بها قبل أي اختبار.
+</p>
+
+`
+},
+
+terms:{
+title:"مصطلحات مهمة",
+description:"قاموس سريع لأهم الكلمات اللي بتقابلها.",
+html:`
+
+<h2>Firewall</h2>
+
+<p>
+نظام يطبق قواعد على حركة الشبكة للسماح أو المنع.
+</p>
+
+<h2>VPN</h2>
+
+<p>
+تقنية تنشئ اتصالاً مشفراً أو نفقاً بين جهازك ونقطة أخرى حسب نوع الخدمة.
+</p>
+
+<h2>Hash</h2>
+
+<p>
+دالة تنتج قيمة ثابتة الطول من البيانات.
+</p>
+
+<h2>Encryption</h2>
+
+<p>
+تشفير يحول البيانات إلى صيغة غير مفهومة بدون المفتاح المناسب.
+</p>
+
+<h2>Authentication</h2>
+
+<p>
+التأكد من هوية المستخدم أو الجهاز.
+</p>
+
+<h2>Authorization</h2>
+
+<p>
+تحديد وش مسموح للهوية التي تم التحقق منها أن تفعله.
+</p>
+
+<h2>Vulnerability</h2>
+
+<p>
+نقطة ضعف قد تؤثر على سرية أو سلامة أو توفر النظام.
+</p>
+
+<h2>Patch</h2>
+
+<p>
+تحديث أو إصلاح يعالج مشكلة أو ثغرة أو يحسن النظام.
+</p>
+
+`
+},
+
+vuln:{
+title:"الثغرات",
+description:"الثغرة هي ضعف أمني وليست زر اختراق سحري.",
+html:`
+
+<h2>وش هي الثغرة؟</h2>
+
+<p>
+الثغرة هي ضعف في تصميم أو تنفيذ أو إعداد نظام
+يمكن أن يؤدي إلى أثر أمني معين.
+</p>
+
+<h2>كيف يفكر المختص؟</h2>
+
+<p>
+يفهم النظام أولاً،
+يحدد النطاق،
+يلاحظ السلوك غير المتوقع،
+يتحقق منه داخل بيئة مصرح بها،
+ثم يوثق التأثير وطريقة الإصلاح.
+</p>
+
+<h2>وش يحدد خطورتها؟</h2>
+
+<p>
+التأثير،
+الصلاحيات المطلوبة،
+إمكانية الوصول،
+البيانات المتأثرة،
+وجود حماية إضافية،
+والسياق الذي توجد فيه.
+</p>
+
+<div class="example">
+
+<strong>مهم:</strong>
+
+اكتشاف ضعف لا يعني تلقائياً امتلاك صلاحية استخدامه
+على نظام حقيقي.
+
+التصريح والنطاق أساسيان.
+
+</div>
+
+`
+},
+
+tracks:{
+title:"تخصصات الأمن السيبراني",
+description:"الأمن السيبراني مو تخصص واحد فقط.",
+html:`
+
+<h2>Red Team</h2>
+
+<p>
+محاكاة هجمات مصرح بها لاختبار قدرة المؤسسة على اكتشافها ومنعها.
+</p>
+
+<h2>Blue Team</h2>
+
+<p>
+الدفاع والمراقبة والاستجابة للحوادث وتقوية الأنظمة.
+</p>
+
+<h2>Purple Team</h2>
+
+<p>
+تعاون بين الهجوم والدفاع لتحويل نتائج الاختبارات إلى تحسينات دفاعية.
+</p>
+
+<h2>SOC</h2>
+
+<p>
+مراقبة الأحداث الأمنية والتحقيق في التنبيهات والحوادث.
+</p>
+
+<h2>DFIR</h2>
+
+<p>
+التحقيق الجنائي الرقمي والاستجابة للحوادث.
+</p>
+
+<h2>Web / AppSec</h2>
+
+<p>
+أمن تطبيقات الويب والبرمجيات خلال التطوير والاختبار.
+</p>
+
+<h2>Cloud Security</h2>
+
+<p>
+تأمين الخدمات والبنية السحابية والهويات والإعدادات والبيانات.
+</p>
+
+<h2>Bug Bounty</h2>
+
+<p>
+البحث عن ثغرات ضمن برامج معلنة لها نطاق وقواعد ومكافآت.
+</p>
+
+`
+},
+
+myths:{
+title:"خرافات الأمن السيبراني",
+description:"خلنا نفصل الواقع عن أفلام الهاكرز.",
+html:`
+
+<h2>الخرافة 1: الهاكر يقدر يخترق أي شيء</h2>
+
+<p>
+الحقيقة أن المهارة الأمنية لا تعطيك تصريح تلقائي للوصول إلى الأنظمة.
+</p>
+
+<h2>الخرافة 2: لازم تكون محترف برمجة</h2>
+
+<p>
+مو لازم.
+لكن البرمجة تساعدك كثير مع تقدمك.
+</p>
+
+<h2>الخرافة 3: Kali Linux يعني أنك هكر</h2>
+
+<p>
+Kali مجرد توزيعة Linux تحتوي أدوات كثيرة.
+امتلاك الأدوات بدون فهم الشبكات والأنظمة ما يخليك مختص.
+</p>
+
+<h2>الخرافة 4: الثغرة تعني اختراق كامل</h2>
+
+<p>
+تأثير الثغرة يعتمد على نوعها ومكانها وصلاحياتها وإعدادات النظام.
+</p>
+
+<h2>الخرافة 5: لازم أتعلم كل شيء قبل أبدأ</h2>
+
+<p>
+لا.
+تعلم الأساسيات وابدأ بالتطبيق الآمن، وكل مرحلة بتوضح لك وش تحتاج بعدين.
+</p>
+
+`
+}
+
+};
+
+const questions = [
+
+{
+lesson:"أساسيات الشبكات",
+question:"وش وظيفة DNS بشكل أساسي؟",
+options:[
+"تشفير كل الإنترنت",
+"تحويل اسم النطاق إلى عنوان IP",
+"زيادة سرعة الرام",
+"تغيير MAC"
+],
+answer:1
+},
+
+{
+lesson:"أساسيات الشبكات",
+question:"وش وظيفة DHCP؟",
+options:[
+"إعطاء إعدادات الشبكة للأجهزة تلقائياً",
+"تشفير الملفات",
+"تشغيل الألعاب",
+"حذف الفيروسات"
+],
+answer:0
+},
+
+{
+lesson:"IP و MAC",
+question:"وش هو IP؟",
+options:[
+"عنوان منطقي يستخدم في الشبكات",
+"نوع من المعالجات",
+"كلمة مرور",
+"برنامج حماية"
+],
+answer:0
+},
+
+{
+lesson:"IP و MAC",
+question:"وش يرتبط بالواجهة الشبكية بشكل أساسي؟",
+options:[
+"DNS",
+"MAC",
+"HTTP",
+"HTML"
+],
+answer:1
+},
+
+{
+lesson:"Ports & Protocols",
+question:"وش أقرب تشبيه للـ Port؟",
+options:[
+"باب مرقم لخدمة",
+"بطارية",
+"شاشة",
+"كلمة مرور"
+],
+answer:0
+},
+
+{
+lesson:"Ports & Protocols",
+question:"أي واحد يهتم بموثوقية وترتيب البيانات بشكل أكبر؟",
+options:[
+"UDP",
+"TCP",
+"DNS",
+"HTML"
+],
+answer:1
+},
+
+{
+lesson:"Linux",
+question:"وش تستخدم الطرفية في Linux؟",
+options:[
+"لإدارة النظام وتنفيذ الأوامر",
+"لتغيير حجم الشاشة فقط",
+"لتشغيل الإنترنت فقط",
+"لتصميم الصور فقط"
+],
+answer:0
+},
+
+{
+lesson:"Linux",
+question:"وش من الأشياء المهمة في Linux؟",
+options:[
+"Permissions",
+"FPS",
+"Skins",
+"Robux"
+],
+answer:0
+},
+
+{
+lesson:"Python",
+question:"هل لازم تكون محترف Python قبل تبدأ الأمن السيبراني؟",
+options:[
+"نعم لازم",
+"لا",
+"فقط إذا عندك Kali",
+"فقط إذا عندك VPN"
+],
+answer:1
+},
+
+{
+lesson:"Python",
+question:"وش من استخدامات Python المفيدة أمنياً؟",
+options:[
+"الأتمتة وتحليل البيانات",
+"زيادة سرعة الإنترنت",
+"تغيير المعالج",
+"إصلاح الشاشة"
+],
+answer:0
+},
+
+{
+lesson:"Web",
+question:"وش وظيفة HTML الأساسية؟",
+options:[
+"بناء هيكل الصفحة",
+"تشفير السيرفر",
+"تغيير IP",
+"إدارة الراوتر"
+],
+answer:0
+},
+
+{
+lesson:"Web",
+question:"وش تسوي Cookies في مواقع كثيرة؟",
+options:[
+"تساعد الموقع في تذكر حالة أو معلومات معينة",
+"تزيد الرام",
+"تغير MAC",
+"تحذف DNS"
+],
+answer:0
+},
+
+{
+lesson:"الأمن السيبراني",
+question:"وش أول شيء مهم قبل اختبار نظام حقيقي؟",
+options:[
+"التصريح والنطاق",
+"تحميل أكبر عدد من الأدوات",
+"تغيير اسم الجهاز",
+"حذف الملفات"
+],
+answer:0
+},
+
+{
+lesson:"الأمن السيبراني",
+question:"وين الأفضل للمبتدئ يتدرب؟",
+options:[
+"مختبرات و CTF مصممة للتدريب",
+"أي موقع عشوائي",
+"حسابات الناس",
+"أجهزة الغرباء"
+],
+answer:0
+},
+
+{
+lesson:"الأمن الأخلاقي",
+question:"وش يعني اختبار مصرح به؟",
+options:[
+"اختبار داخل نطاق عندك إذن له",
+"اختبار أي شيء تبيه",
+"تجربة كلمات مرور الناس",
+"دخول جهاز بدون إذن"
+],
+answer:0
+},
+
+{
+lesson:"الأمن الأخلاقي",
+question:"برامج Bug Bounty تحتوي عادةً على ماذا؟",
+options:[
+"نطاق وقواعد للاختبار",
+"صلاحية لاختراق أي موقع",
+"كلمة مرور عامة",
+"جهاز مجاني"
+],
+answer:0
+},
+
+{
+lesson:"الثغرات",
+question:"وش هي الثغرة؟",
+options:[
+"ضعف يمكن أن يؤثر أمنياً",
+"نوع من الشاشات",
+"برنامج دردشة",
+"لغة برمجة"
+],
+answer:0
+},
+
+{
+lesson:"الثغرات",
+question:"هل وجود ثغرة يعني دائماً اختراق كامل؟",
+options:[
+"نعم",
+"لا",
+"فقط في Linux",
+"فقط في Windows"
+],
+answer:1
+},
+
+{
+lesson:"التخصصات",
+question:"وش يركز عليه Blue Team؟",
+options:[
+"الدفاع والمراقبة والاستجابة",
+"تصميم الألعاب",
+"تطوير الجوال فقط",
+"تغيير DNS"
+],
+answer:0
+},
+
+{
+lesson:"التخصصات",
+question:"وش يركز عليه SOC؟",
+options:[
+"مراقبة الأحداث والتنبيهات الأمنية",
+"تصميم الشعارات",
+"صيانة الجوالات",
+"ألعاب Roblox"
+],
+answer:0
+}
+
+];
+
+let score=0;
+let answered=0;
+
+function showPage(page){
+
+document.querySelectorAll(".page").forEach(p=>{
+p.classList.remove("active");
+});
+
+const target=document.getElementById(page);
+
+if(target){
+target.classList.add("active");
+}
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+function openLesson(key){
+
+const lesson=lessons[key];
+
+if(!lesson) return;
+
+document.getElementById("lessonTitle").textContent=lesson.title;
+
+document.getElementById("lessonDescription").textContent=lesson.description;
+
+document.getElementById("lessonContent").innerHTML=lesson.html;
+
+showPage("lessonPage");
+
+}
+
+function loadQuiz(){
+
+const container=document.getElementById("quizContainer");
+
+container.innerHTML="";
+
+score=0;
+answered=0;
+
+document.getElementById("quizResult").classList.remove("show");
+
+questions.forEach((q,index)=>{
+
+const card=document.createElement("div");
+
+card.className="quiz-card";
+
+card.innerHTML=`
+
+<div class="quiz-number">
+السؤال ${index+1} • ${q.lesson}
+</div>
+
+<h3>
+${q.question}
+</h3>
+
+<div class="options">
+
+${q.options.map((option,i)=>`
+
+<button
+class="option"
+onclick="selectAnswer(this,${index},${i})"
+>
+
+${option}
+
+</button>
+
+`).join("")}
+
+</div>
+
+`;
+
+container.appendChild(card);
+
+});
+
+}
+
+function selectAnswer(button,questionIndex,optionIndex){
+
+const question=questions[questionIndex];
+
+const card=button.closest(".quiz-card");
+
+const buttons=card.querySelectorAll(".option");
+
+buttons.forEach(btn=>{
+btn.disabled=true;
+});
+
+if(optionIndex===question.answer){
+
+button.classList.add("selected","correct");
+
+score++;
+
+}else{
+
+button.classList.add("selected","wrong");
+
+buttons[question.answer].classList.add("selected","correct");
+
+}
+
+answered++;
+
+if(answered===questions.length){
+
+showResult();
+
+}
+
+}
+
+function showResult(){
+
+const result=document.getElementById("quizResult");
+
+const scoreText=document.getElementById("scoreText");
+
+const message=document.getElementById("scoreMessage");
+
+scoreText.textContent=`${score} / ${questions.length}`;
+
+const percentage=(score/questions.length)*100;
+
+if(percentage===100){
+
+message.textContent="🔥🔥 فل مارك! واضح إنك فاهم الأساسيات بشكل ممتاز.";
+
+}else if(percentage>=80){
+
+message.textContent="🔥 ممتاز! عندك أساس قوي جداً كمل بنفس الطريقة.";
+
+}else if(percentage>=60){
+
+message.textContent="💪 حلو! عندك أساس جيد لكن راجع بعض الدروس.";
+
+}else if(percentage>=40){
+
+message.textContent="😂 بداية طيبة! ارجع لبعض الدروس وجرب مرة ثانية.";
+
+}else{
+
+message.textContent="لا تشيل هم 😂 ارجع للمسار وابدأ من الأساسيات.";
+
+}
+
+result.classList.add("show");
+
+result.scrollIntoView({
+behavior:"smooth",
+block:"center"
+});
+
+}
+
+function restartQuiz(){
+
+loadQuiz();
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+window.addEventListener("hashchange",()=>{
+
+const hash=location.hash.replace("#","");
+
+if(hash==="quiz"){
+showPage("quiz");
+}
+
+});
+
+loadQuiz();
+
+</script>
+
+</body>
+</html>
