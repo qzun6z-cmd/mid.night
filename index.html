@@ -205,12 +205,49 @@ header{
   max-width:650px;
 }
 
-.actions{
+/* HERO BUTTONS */
+
+.hero-actions{
   display:flex;
-  gap:12px;
-  flex-wrap:wrap;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:11px;
   margin-top:30px;
-  align-items:stretch;
+}
+
+.main-learning-btn{
+  font-size:19px;
+  font-weight:900;
+  padding:16px 27px;
+  min-width:210px;
+  box-shadow:0 15px 40px rgba(109,53,255,.28);
+}
+
+.main-learning-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 18px 48px rgba(109,53,255,.38);
+}
+
+.secondary-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.secondary-actions .btn{
+  min-width:145px;
+}
+
+.secondary-actions .discord-icon{
+  min-width:52px;
+  width:52px;
+  height:52px;
+  padding:0;
+  display:grid;
+  place-items:center;
+  background:#5865f2;
+  border:0;
+  font-size:20px;
 }
 
 .btn{
@@ -242,45 +279,56 @@ header{
 /* COMING SOON */
 
 .coming-soon-mini{
+  width:310px;
+  background:linear-gradient(145deg,var(--card),var(--bg2));
+  border:1px solid var(--line);
+  border-radius:17px;
+  padding:15px;
+  box-shadow:0 15px 40px rgba(0,0,0,.22);
+}
+
+.coming-soon-title{
+  color:var(--purple3);
+  font-weight:900;
+  font-size:14px;
+  margin-bottom:12px;
+}
+
+.coming-item{
   display:flex;
   align-items:center;
   gap:10px;
-  min-height:48px;
-  padding:8px 12px;
-  border-radius:13px;
-  background:var(--card);
-  border:1px solid var(--line);
+  padding:9px;
+  border-radius:11px;
+  background:rgba(255,255,255,.035);
+  border:1px solid rgba(255,255,255,.05);
 }
 
-.coming-soon-mini-title{
-  color:var(--yellow);
-  font-size:11px;
-  font-weight:900;
-  white-space:nowrap;
+.coming-item + .coming-item{
+  margin-top:7px;
 }
 
-.coming-soon-mini-items{
-  display:flex;
-  align-items:center;
-  gap:7px;
-  flex-wrap:wrap;
-}
-
-.mini-project{
-  display:inline-flex;
-  align-items:center;
-  gap:5px;
-  padding:7px 9px;
+.coming-icon{
+  width:34px;
+  height:34px;
+  display:grid;
+  place-items:center;
+  background:rgba(109,53,255,.12);
   border-radius:9px;
-  background:rgba(255,255,255,.04);
-  border:1px solid var(--line);
-  color:#d8d8e2;
-  font-size:11px;
-  white-space:nowrap;
+  font-size:17px;
+  flex-shrink:0;
 }
 
-.mini-project i{
-  color:var(--purple3);
+.coming-item strong{
+  display:block;
+  font-size:13px;
+  margin-bottom:2px;
+}
+
+.coming-item span{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
 }
 
 /* IMAGE */
@@ -306,8 +354,6 @@ header{
   border:1px solid var(--line);
   box-shadow:var(--shadow),0 0 70px rgba(109,53,255,.13);
 }
-
-/* الحقوق تحت الصورة وليس فوقها */
 
 .copyright-tag{
   position:static;
@@ -704,13 +750,18 @@ footer{
     margin:auto;
   }
 
-  .actions{
+  .hero-actions{
+    align-items:center;
+    width:100%;
+  }
+
+  .secondary-actions{
     justify-content:center;
   }
 
   .coming-soon-mini{
-    justify-content:center;
-    flex-wrap:wrap;
+    width:100%;
+    max-width:310px;
   }
 
   .grid{
@@ -760,22 +811,18 @@ footer{
     font-size:20px;
   }
 
-  .actions{
-    flex-direction:column;
+  .secondary-actions{
+    width:100%;
+    justify-content:center;
   }
 
-  .actions .btn{
-    width:100%;
+  .secondary-actions .btn{
+    min-width:0;
   }
 
   .coming-soon-mini{
     width:100%;
   }
-
-  .coming-soon-mini-items{
-    justify-content:center;
-  }
-
 }
 </style>
 </head>
@@ -820,15 +867,14 @@ class="btn nav-discord"
 href="https://discord.gg/TyUpVWQgA"
 target="_blank"
 rel="noopener noreferrer"
+aria-label="سيرفر Discord"
 >
 <i class="fa-brands fa-discord"></i>
-Discord
 </a>
 
 </nav>
 </div>
 </header>
-
 
 <main>
 
@@ -857,48 +903,58 @@ Discord
 وبطريقة بسيطة تناسب المبتدئين.
 </p>
 
-<div class="actions">
+<div class="hero-actions">
 
-<button class="btn primary" onclick="showPage('level')">
-<i class="fa-solid fa-bolt"></i>
-اختبر مستواي
-</button>
-
-<button class="btn" onclick="showPage('academy')">
+<button
+class="btn primary main-learning-btn"
+onclick="showPage('academy')"
+>
 <i class="fa-solid fa-graduation-cap"></i>
 ابدأ التعلم
 </button>
 
+<div class="secondary-actions">
+
+<button
+class="btn"
+onclick="showPage('level')"
+>
+<i class="fa-solid fa-bolt"></i>
+اختبر مستواي
+</button>
+
 <a
-class="btn discord"
+class="btn discord-icon"
 href="https://discord.gg/TyUpVWQgA"
 target="_blank"
 rel="noopener noreferrer"
+aria-label="سيرفر Discord"
 >
 <i class="fa-brands fa-discord"></i>
-سيرفر Discord
 </a>
 
-<!-- الأشياء القادمة -->
+</div>
 
 <div class="coming-soon-mini">
 
-<div class="coming-soon-mini-title">
-قريبًا
+<div class="coming-soon-title">
+🚀 أشياء راح تنضاف قريبًا
 </div>
 
-<div class="coming-soon-mini-items">
-
-<div class="mini-project">
-<i class="fa-solid fa-book"></i>
-كتاب الأمن السيبراني
+<div class="coming-item">
+<div class="coming-icon">🤖</div>
+<div>
+<strong>DarkGPT</strong>
+<span>سيتم إضافته قريبًا</span>
+</div>
 </div>
 
-<div class="mini-project">
-<i class="fa-solid fa-robot"></i>
-DarkGPT
+<div class="coming-item">
+<div class="coming-icon">📕</div>
+<div>
+<strong>كتاب الأمن السيبراني</strong>
+<span>سيتم إضافته قريبًا</span>
 </div>
-
 </div>
 
 </div>
@@ -931,7 +987,6 @@ DarkGPT
 
 </div>
 
-
 <div class="hero-image-wrap">
 
 <img
@@ -947,7 +1002,6 @@ alt="Midnight Cyber Security"
 </div>
 
 </div>
-
 
 <div class="container section">
 
@@ -1021,7 +1075,6 @@ HTTP و Cookies و Sessions ومفاهيم أمن تطبيقات الويب.
 </div>
 </div>
 
-
 <div class="container section">
 
 <div class="discord-box">
@@ -1048,7 +1101,6 @@ rel="noopener noreferrer"
 </div>
 
 </section>
-
 
 <!-- ACADEMY -->
 
@@ -1091,7 +1143,6 @@ oninput="renderLessons(this.value)"
 
 </section>
 
-
 <!-- LESSON -->
 
 <section id="lesson" class="page">
@@ -1107,7 +1158,6 @@ oninput="renderLessons(this.value)"
 </div>
 
 </section>
-
 
 <!-- LABS -->
 
@@ -1215,7 +1265,6 @@ oninput="renderLessons(this.value)"
 
 </section>
 
-
 <!-- QUIZ -->
 
 <section id="quiz" class="page">
@@ -1250,7 +1299,6 @@ oninput="renderLessons(this.value)"
 
 </div>
 
-
 <div class="quiz-card card result" id="quizResult">
 
 <div class="icon" style="margin:0 auto 20px">
@@ -1275,7 +1323,6 @@ style="color:var(--muted);line-height:2"
 </div>
 
 </section>
-
 
 <!-- LEVEL -->
 
@@ -1305,7 +1352,6 @@ style="color:var(--muted);line-height:2"
 
 </div>
 
-
 <div class="quiz-card card result" id="levelResult">
 
 <h2 id="levelTitle"></h2>
@@ -1326,7 +1372,6 @@ style="color:var(--muted);line-height:2"
 </div>
 
 </section>
-
 
 <!-- DICTIONARY -->
 
@@ -1355,7 +1400,6 @@ oninput="renderTerms(this.value)"
 </div>
 
 </section>
-
 
 <!-- PROJECTS -->
 
@@ -1397,7 +1441,6 @@ oninput="renderTerms(this.value)"
 
 </div>
 
-
 <div class="card project">
 
 <span class="soon">
@@ -1421,7 +1464,6 @@ oninput="renderTerms(this.value)"
 </div>
 
 </div>
-
 
 <div class="discord-box" style="margin-top:25px">
 
@@ -1452,7 +1494,6 @@ rel="noopener noreferrer"
 
 </main>
 
-
 <footer>
 
 <div class="container">
@@ -1473,11 +1514,13 @@ rel="noopener noreferrer"
 
 </footer>
 
-
 <div class="toast" id="toast"></div>
 
-
 <script>
+
+/* =========================
+   LESSONS
+========================= */
 
 const lessons=[
 
@@ -1819,372 +1862,501 @@ text:`
 <p>تعلم واختبر فقط على الأنظمة التي تملكها أو لديك تصريح واضح لاختبارها.</p>
 </div>`
 }
-
 ];
 
 
-let completed=JSON.parse(
-localStorage.getItem("midnightCompleted")||"[]"
-);
+/* =========================
+   SAVED PROGRESS
+========================= */
+
+let completed=[];
+
+try{
+  completed=JSON.parse(
+    localStorage.getItem("midnightCompleted") || "[]"
+  );
+
+  if(!Array.isArray(completed)){
+    completed=[];
+  }
+}catch{
+  completed=[];
+}
 
 let xp=Number(
-localStorage.getItem("midnightXP")||0
+  localStorage.getItem("midnightXP") || 0
 );
 
+if(!Number.isFinite(xp)){
+  xp=0;
+}
 
-/* PAGE HISTORY */
+/* آخر صفحة */
+let savedPage=
+localStorage.getItem("midnightLastPage") || "home";
+
+/* آخر درس */
+let lastLesson=
+Number(localStorage.getItem("midnightLastLesson") || -1);
+
+if(!Number.isInteger(lastLesson)){
+  lastLesson=-1;
+}
+
+
+/* =========================
+   PAGE HISTORY
+========================= */
 
 let pageHistory=["home"];
 let currentPage="home";
 
 
+/* =========================
+   SAVE EVERYTHING
+========================= */
+
 function saveProgress(){
 
-localStorage.setItem(
-"midnightCompleted",
-JSON.stringify(completed)
-);
+  localStorage.setItem(
+    "midnightCompleted",
+    JSON.stringify(completed)
+  );
 
-localStorage.setItem(
-"midnightXP",
-xp
-);
+  localStorage.setItem(
+    "midnightXP",
+    String(xp)
+  );
 
-updateStats();
+  localStorage.setItem(
+    "midnightLastPage",
+    currentPage
+  );
 
+  if(lastLesson>=0){
+    localStorage.setItem(
+      "midnightLastLesson",
+      String(lastLesson)
+    );
+  }
+
+  updateStats();
 }
 
+
+/* =========================
+   STATS
+========================= */
 
 function updateStats(){
 
-const percent=Math.round(
-(completed.length/lessons.length)*100
-);
+  const percent=Math.round(
+    (completed.length/lessons.length)*100
+  );
 
-document.getElementById("statLessons").textContent=
-completed.length;
+  const statLessons=
+    document.getElementById("statLessons");
 
-document.getElementById("statXP").textContent=
-xp;
+  const statXP=
+    document.getElementById("statXP");
 
-const level=Math.max(
-1,
-Math.floor(xp/250)+1
-);
+  const statLevel=
+    document.getElementById("statLevel");
 
-document.getElementById("statLevel").textContent=
-level;
+  const statBadges=
+    document.getElementById("statBadges");
 
-document.getElementById("statBadges").textContent=
-Math.min(6,Math.floor(xp/250));
+  if(statLessons)
+    statLessons.textContent=completed.length;
 
-const bar=document.getElementById("progressBar");
+  if(statXP)
+    statXP.textContent=xp;
 
-if(bar)
-bar.style.width=percent+"%";
+  const level=Math.max(
+    1,
+    Math.floor(xp/250)+1
+  );
 
-const text=document.getElementById("progressText");
+  if(statLevel)
+    statLevel.textContent=level;
 
-if(text)
-text.textContent=percent+"%";
+  if(statBadges)
+    statBadges.textContent=
+      Math.min(6,Math.floor(xp/250));
 
+  const bar=
+    document.getElementById("progressBar");
+
+  if(bar)
+    bar.style.width=percent+"%";
+
+  const text=
+    document.getElementById("progressText");
+
+  if(text)
+    text.textContent=percent+"%";
 }
 
+
+/* =========================
+   PAGE SYSTEM
+========================= */
 
 function showPage(id,button,addHistory=true){
 
-if(id===currentPage)
-return;
+  const target=document.getElementById(id);
 
-if(addHistory){
+  if(!target)
+    return;
 
-pageHistory.push(id);
+  if(id===currentPage && addHistory)
+    return;
 
+  if(addHistory){
+
+    pageHistory.push(id);
+
+  }
+
+  currentPage=id;
+
+  localStorage.setItem(
+    "midnightLastPage",
+    id
+  );
+
+  document.querySelectorAll(".page")
+  .forEach(p=>{
+    p.classList.remove("active");
+  });
+
+  target.classList.add("active");
+
+  document.querySelectorAll(".nav-links button")
+  .forEach(b=>{
+    b.classList.remove("active");
+  });
+
+  if(button){
+
+    button.classList.add("active");
+
+  }else{
+
+    const matching=
+      document.querySelector(
+        `.nav-links button[onclick*="'${id}'"]`
+      );
+
+    if(matching)
+      matching.classList.add("active");
+
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+  if(id==="academy")
+    renderLessons();
+
+  if(id==="dictionary")
+    renderTerms();
+
+  if(id==="quiz")
+    loadQuiz();
+
+  if(id==="level")
+    startLevel();
+
+  updateStats();
 }
 
-currentPage=id;
 
-document.querySelectorAll(".page")
-.forEach(p=>p.classList.remove("active"));
-
-const page=document.getElementById(id);
-
-if(page)
-page.classList.add("active");
-
-document.querySelectorAll(".nav-links button")
-.forEach(b=>b.classList.remove("active"));
-
-if(button)
-button.classList.add("active");
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-if(id==="academy")
-renderLessons();
-
-if(id==="dictionary")
-renderTerms();
-
-if(id==="quiz")
-loadQuiz();
-
-if(id==="level")
-startLevel();
-
-}
-
-
-/* BACK */
+/* =========================
+   BACK
+========================= */
 
 function goBack(){
 
-if(pageHistory.length>1){
+  if(pageHistory.length>1){
 
-pageHistory.pop();
+    pageHistory.pop();
 
-const previous=
-pageHistory[pageHistory.length-1];
+    const previous=
+      pageHistory[pageHistory.length-1];
 
-showPage(previous,null,false);
+    showPage(
+      previous,
+      null,
+      false
+    );
 
-}else{
+  }else{
 
-showPage("home",null,false);
+    showPage(
+      "home",
+      null,
+      false
+    );
+
+  }
 
 }
 
-}
 
-
-/* LESSONS */
+/* =========================
+   LESSONS
+========================= */
 
 function renderLessons(search=""){
 
-const grid=document.getElementById("lessonsGrid");
+  const grid=
+    document.getElementById("lessonsGrid");
 
-if(!grid)return;
+  if(!grid)
+    return;
 
-const q=search.toLowerCase();
+  const q=
+    String(search).toLowerCase();
 
-const filtered=lessons.filter(l=>
-l.title.toLowerCase().includes(q)||
-l.category.toLowerCase().includes(q)
-);
+  const filtered=
+    lessons.filter(l=>
+      l.title.toLowerCase().includes(q) ||
+      l.category.toLowerCase().includes(q)
+    );
 
-grid.innerHTML=filtered.map(l=>{
+  grid.innerHTML=
+    filtered.map(l=>{
 
-const original=lessons.indexOf(l);
+      const original=
+        lessons.indexOf(l);
 
-const done=completed.includes(original);
+      const done=
+        completed.includes(original);
 
-return `
+      return `
 
-<div class="card lesson-card">
+      <div class="card lesson-card">
 
-<span class="lesson-number">
-${String(original+1).padStart(2,"0")}
-</span>
+        <span class="lesson-number">
+          ${String(original+1).padStart(2,"0")}
+        </span>
 
-<div class="icon">
-<i class="fa-solid ${l.icon}"></i>
-</div>
+        <div class="icon">
+          <i class="fa-solid ${l.icon}"></i>
+        </div>
 
-<h3>${l.title}</h3>
+        <h3>${l.title}</h3>
 
-<p>
-${l.category} • ${l.level}
-</p>
+        <p>
+          ${l.category} • ${l.level}
+        </p>
 
-<div class="lesson-meta">
+        <div class="lesson-meta">
 
-<span class="tag">
-${l.category}
-</span>
+          <span class="tag">
+            ${l.category}
+          </span>
 
-<span class="tag">
-${l.level}
-</span>
+          <span class="tag">
+            ${l.level}
+          </span>
 
-${done?
-'<span class="tag" style="color:var(--green)">✓ مكتمل</span>'
-:""}
+          ${
+            done
+            ?
+            '<span class="tag" style="color:var(--green)">✓ مكتمل</span>'
+            :
+            ""
+          }
 
-</div>
+        </div>
 
-<br>
+        <br>
 
-<button
-class="btn primary"
-onclick="openLesson(${original})"
->
-${done?"مراجعة الدرس":"ابدأ الدرس"}
-</button>
+        <button
+          class="btn primary"
+          onclick="openLesson(${original})"
+        >
+          ${done?"مراجعة الدرس":"ابدأ الدرس"}
+        </button>
 
-</div>
+      </div>
 
-`;
+      `;
 
-}).join("");
+    }).join("");
 
 }
 
+
+/* =========================
+   OPEN LESSON
+========================= */
 
 function openLesson(index){
 
-const l=lessons[index];
+  const l=
+    lessons[index];
 
-if(currentPage!=="lesson"){
+  if(!l)
+    return;
 
-pageHistory.push("lesson");
-currentPage="lesson";
+  lastLesson=index;
+
+  localStorage.setItem(
+    "midnightLastLesson",
+    String(index)
+  );
+
+  if(currentPage!=="lesson"){
+
+    pageHistory.push("lesson");
+
+    currentPage="lesson";
+
+  }
+
+  localStorage.setItem(
+    "midnightLastPage",
+    "lesson"
+  );
+
+  document.getElementById(
+    "lessonContent"
+  ).innerHTML=`
+
+  <div class="badge">
+
+    <i class="fa-solid ${l.icon}"></i>
+
+    ${l.category}
+
+  </div>
+
+  <h1>
+    ${l.title}
+  </h1>
+
+  <p style="color:var(--muted)">
+    المستوى: ${l.level}
+  </p>
+
+  <div class="box">
+    ${l.text}
+  </div>
+
+  <div class="box">
+
+    <h3>🎯 هدف الدرس</h3>
+
+    <p>
+      بعد هذا الدرس المفروض تكون فاهم الفكرة الأساسية
+      وتقدر تربطها بباقي مواضيع الأمن السيبراني.
+    </p>
+
+  </div>
+
+  <button
+    class="btn primary"
+    onclick="completeLesson(${index})"
+  >
+    ${
+      completed.includes(index)
+      ?
+      "✓ الدرس مكتمل"
+      :
+      "إكمال الدرس +25 XP"
+    }
+  </button>
+
+  `;
+
+  document.querySelectorAll(".page")
+  .forEach(p=>{
+    p.classList.remove("active");
+  });
+
+  document.getElementById("lesson")
+    .classList.add("active");
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 
 }
 
-document.getElementById("lessonContent").innerHTML=`
 
-<div class="badge">
-
-<i class="fa-solid ${l.icon}"></i>
-
-${l.category}
-
-</div>
-
-<h1>
-${l.title}
-</h1>
-
-<p style="color:var(--muted)">
-المستوى: ${l.level}
-</p>
-
-<div class="box">
-${l.text}
-</div>
-
-<div class="box">
-
-<h3>🎯 هدف الدرس</h3>
-
-<p>
-بعد هذا الدرس المفروض تكون فاهم الفكرة الأساسية
-وتقدر تربطها بباقي مواضيع الأمن السيبراني.
-</p>
-
-</div>
-
-<button
-class="btn primary"
-onclick="completeLesson(${index})"
->
-${completed.includes(index)
-?"✓ الدرس مكتمل"
-:"إكمال الدرس +25 XP"}
-</button>
-
-`;
-
-document.querySelectorAll(".page")
-.forEach(p=>p.classList.remove("active"));
-
-document.getElementById("lesson")
-.classList.add("active");
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-}
-
+/* =========================
+   COMPLETE LESSON
+========================= */
 
 function completeLesson(index){
 
-if(!completed.includes(index)){
+  if(!completed.includes(index)){
 
-completed.push(index);
+    completed.push(index);
 
-xp+=25;
+    xp+=25;
 
-saveProgress();
+    lastLesson=index;
 
-toast("🔥 تم إكمال الدرس +25 XP");
+    saveProgress();
 
-openLesson(index);
+    toast(
+      "🔥 تم إكمال الدرس +25 XP"
+    );
 
-}else{
+    openLesson(index);
 
-toast("هذا الدرس مكتمل مسبقًا");
+  }else{
+
+    toast(
+      "هذا الدرس مكتمل مسبقًا"
+    );
+
+  }
 
 }
 
-}
 
-
-/* DICTIONARY */
+/* =========================
+   DICTIONARY
+========================= */
 
 const terms=[
 
 ["IP Address","عنوان منطقي يساعد الأجهزة على التواصل داخل الشبكات.","Networking"],
-
 ["MAC Address","معرف مرتبط بواجهة الشبكة.","Networking"],
-
 ["DNS","نظام يساعد على ترجمة أسماء النطاقات.","Networking"],
-
 ["DHCP","بروتوكول يساعد في توزيع إعدادات الشبكة تلقائيًا.","Networking"],
-
 ["Router","جهاز يوجه البيانات بين الشبكات.","Networking"],
-
 ["Switch","جهاز يربط أجهزة داخل شبكة محلية.","Networking"],
-
 ["Port","رقم منطقي يساعد على تحديد خدمة أو اتصال معين.","Networking"],
-
 ["TCP","بروتوكول نقل يهتم بالموثوقية والترتيب.","Networking"],
-
 ["UDP","بروتوكول نقل أبسط ولا يوفر نفس ضمانات TCP.","Networking"],
-
 ["HTTP","بروتوكول يستخدم لتبادل طلبات واستجابات الويب.","Web"],
-
 ["HTTPS","نسخة من HTTP تستخدم TLS لتأمين الاتصال.","Web"],
-
 ["Cookie","بيانات صغيرة يمكن للموقع تخزينها في المتصفح.","Web"],
-
 ["Session","حالة مرتبطة بتفاعل المستخدم مع التطبيق.","Web"],
-
 ["Firewall","نظام يساعد على التحكم في حركة الشبكة وفق قواعد.","Security"],
-
 ["Encryption","تحويل البيانات إلى صيغة محمية.","Security"],
-
 ["Authentication","عملية التحقق من هوية المستخدم.","Security"],
-
 ["Authorization","تحديد ما يسمح للمستخدم بالوصول إليه.","Security"],
-
 ["Vulnerability","نقطة ضعف يمكن أن تؤثر على أمن النظام.","Security"],
-
 ["Patch","تحديث يعالج مشكلة أو ثغرة.","Security"],
-
 ["SOC","مركز عمليات الأمن لمراقبة الأحداث والاستجابة.","Blue Team"],
-
 ["CTF","تحديات تعليمية للأمن السيبراني.","Practice"],
-
 ["Bug Bounty","برنامج للإبلاغ عن الثغرات ضمن نطاق محدد.","Security"],
-
 ["Blue Team","فريق يركز على الدفاع والكشف والاستجابة.","Security"],
-
 ["Red Team","فريق يحاكي أساليب الهجوم ضمن نطاق مصرح به.","Security"],
-
 ["Phishing","محاولة خداع المستخدم للحصول على معلومات.","Security"],
-
 ["Malware","برمجية مصممة لتنفيذ نشاط ضار.","Security"],
-
 ["Linux","نظام تشغيل يستخدم بكثرة في الخوادم والأمن السيبراني.","Linux"],
-
 ["Python","لغة برمجة مفيدة للأتمتة وتحليل البيانات.","Programming"],
-
 ["OWASP","مشروع يهتم بأمن تطبيقات الويب.","Web Security"]
 
 ];
@@ -2192,46 +2364,59 @@ const terms=[
 
 function renderTerms(search=""){
 
-const grid=document.getElementById("termsGrid");
+  const grid=
+    document.getElementById("termsGrid");
 
-if(!grid)return;
+  if(!grid)
+    return;
 
-const q=search.toLowerCase();
+  const q=
+    String(search).toLowerCase();
 
-const filtered=terms.filter(t=>
-t[0].toLowerCase().includes(q)||
-t[1].toLowerCase().includes(q)||
-t[2].toLowerCase().includes(q)
-);
+  const filtered=
+    terms.filter(t=>
+      t[0].toLowerCase().includes(q) ||
+      t[1].toLowerCase().includes(q) ||
+      t[2].toLowerCase().includes(q)
+    );
 
-grid.innerHTML=filtered.map(t=>`
+  grid.innerHTML=
+    filtered.map(t=>`
 
-<div class="card">
+    <div class="card">
 
-<strong style="display:block;color:var(--purple3);margin-bottom:8px">
-${t[0]}
-</strong>
+      <strong
+        style="
+        display:block;
+        color:var(--purple3);
+        margin-bottom:8px
+        "
+      >
+        ${t[0]}
+      </strong>
 
-<p>
-${t[1]}
-</p>
+      <p>
+        ${t[1]}
+      </p>
 
-<div class="lesson-meta">
+      <div class="lesson-meta">
 
-<span class="tag">
-${t[2]}
-</span>
+        <span class="tag">
+          ${t[2]}
+        </span>
 
-</div>
+      </div>
 
-</div>
+    </div>
 
-`).join("");
+    `).join("");
 
 }
 
 
-/* QUIZ */
+/* =========================
+   QUIZ
+========================= */
 
 const questions=[
 
@@ -2332,137 +2517,170 @@ let quizScore=0;
 
 function loadQuiz(){
 
-quizQuestions=[...questions]
-.sort(()=>Math.random()-.5);
+  quizQuestions=
+    [...questions]
+    .sort(()=>Math.random()-.5);
 
-quizIndex=0;
-quizScore=0;
+  quizIndex=0;
+  quizScore=0;
 
-document.getElementById("quizBox").style.display="block";
-document.getElementById("quizResult").style.display="none";
+  const box=
+    document.getElementById("quizBox");
 
-renderQuestion();
+  const result=
+    document.getElementById("quizResult");
 
+  if(box)
+    box.style.display="block";
+
+  if(result)
+    result.style.display="none";
+
+  renderQuestion();
 }
 
 
 function renderQuestion(){
 
-const q=quizQuestions[quizIndex];
+  const q=
+    quizQuestions[quizIndex];
 
-document.getElementById("quizCount").textContent=
-`السؤال ${quizIndex+1} من ${quizQuestions.length}`;
+  if(!q)
+    return;
 
-document.getElementById("quizScore").textContent=
-`النقاط: ${quizScore}`;
+  document.getElementById("quizCount")
+    .textContent=
+    `السؤال ${quizIndex+1} من ${quizQuestions.length}`;
 
-document.getElementById("quizProgress").style.width=
-((quizIndex/quizQuestions.length)*100)+"%";
+  document.getElementById("quizScore")
+    .textContent=
+    `النقاط: ${quizScore}`;
 
-document.getElementById("question").textContent=q[0];
+  document.getElementById("quizProgress")
+    .style.width=
+    ((quizIndex/quizQuestions.length)*100)+"%";
 
-document.getElementById("answers").innerHTML=
-q[1].map((a,i)=>`
+  document.getElementById("question")
+    .textContent=q[0];
 
-<button
-class="answer"
-onclick="selectAnswer(${i})"
->
-${a}
-</button>
+  document.getElementById("answers")
+    .innerHTML=
+    q[1].map((a,i)=>`
 
-`).join("");
+    <button
+      class="answer"
+      onclick="selectAnswer(${i})"
+    >
+      ${a}
+    </button>
+
+    `).join("");
 
 }
 
 
 function selectAnswer(index){
 
-const q=quizQuestions[quizIndex];
+  const q=
+    quizQuestions[quizIndex];
 
-const buttons=
-document.querySelectorAll("#answers .answer");
+  const buttons=
+    document.querySelectorAll(
+      "#answers .answer"
+    );
 
-buttons.forEach((b,i)=>{
+  buttons.forEach((b,i)=>{
 
-b.disabled=true;
+    b.disabled=true;
 
-if(i===q[2])
-b.classList.add("correct");
+    if(i===q[2])
+      b.classList.add("correct");
 
-if(i===index && i!==q[2])
-b.classList.add("wrong");
+    if(i===index && i!==q[2])
+      b.classList.add("wrong");
 
-});
+  });
 
-if(index===q[2]){
+  if(index===q[2]){
 
-quizScore++;
+    quizScore++;
 
-xp+=5;
+    xp+=5;
 
-saveProgress();
+    saveProgress();
 
-}
+  }
 
-setTimeout(()=>{
+  setTimeout(()=>{
 
-quizIndex++;
+    quizIndex++;
 
-if(quizIndex>=quizQuestions.length){
+    if(
+      quizIndex>=
+      quizQuestions.length
+    ){
 
-showResult();
+      showResult();
 
-}else{
+    }else{
 
-renderQuestion();
+      renderQuestion();
 
-}
+    }
 
-},650);
+  },650);
 
 }
 
 
 function showResult(){
 
-document.getElementById("quizBox").style.display="none";
+  document.getElementById("quizBox")
+    .style.display="none";
 
-document.getElementById("quizResult").style.display="block";
+  document.getElementById("quizResult")
+    .style.display="block";
 
-const percent=Math.round(
-(quizScore/quizQuestions.length)*100
-);
+  const percent=
+    Math.round(
+      (quizScore/
+      quizQuestions.length)*100
+    );
 
-let title="كفو 🔥";
+  let title="كفو 🔥";
 
-if(percent>=90)
-title="وحش السيبرانيات 🏆";
-else if(percent>=70)
-title="ممتاز جدًا 🔥";
-else if(percent>=50)
-title="بداية ممتازة 💜";
-else
-title="لا توقف 👊";
+  if(percent>=90)
+    title="وحش السيبرانيات 🏆";
+  else if(percent>=70)
+    title="ممتاز جدًا 🔥";
+  else if(percent>=50)
+    title="بداية ممتازة 💜";
+  else
+    title="لا توقف 👊";
 
-document.getElementById("resultTitle").textContent=title;
+  document.getElementById(
+    "resultTitle"
+  ).textContent=title;
 
-document.getElementById("resultText").innerHTML=
-`جبت <strong>${quizScore}</strong> من
-<strong>${quizQuestions.length}</strong>
-بنسبة <strong>${percent}%</strong>`;
+  document.getElementById(
+    "resultText"
+  ).innerHTML=
+    `جبت <strong>${quizScore}</strong> من
+    <strong>${quizQuestions.length}</strong>
+    بنسبة <strong>${percent}%</strong>`;
 
-updateStats();
-
+  updateStats();
 }
 
 
 function restartQuiz(){
-loadQuiz();
+  loadQuiz();
 }
 
 
-/* LEVEL TEST */
+/* =========================
+   LEVEL TEST
+========================= */
 
 const levelQuestions=[
 
@@ -2505,155 +2723,204 @@ let levelScore=0;
 
 function startLevel(){
 
-levelIndex=0;
-levelScore=0;
+  levelIndex=0;
+  levelScore=0;
 
-document.getElementById("levelBox").style.display="block";
-document.getElementById("levelResult").style.display="none";
+  document.getElementById("levelBox")
+    .style.display="block";
 
-renderLevel();
+  document.getElementById("levelResult")
+    .style.display="none";
 
+  renderLevel();
 }
 
 
 function renderLevel(){
 
-const q=levelQuestions[levelIndex];
+  const q=
+    levelQuestions[levelIndex];
 
-document.getElementById("levelCount").textContent=
-`السؤال ${levelIndex+1} من ${levelQuestions.length}`;
+  document.getElementById("levelCount")
+    .textContent=
+    `السؤال ${levelIndex+1} من ${levelQuestions.length}`;
 
-document.getElementById("levelScore").textContent=
-`${levelScore} صحيح`;
+  document.getElementById("levelScore")
+    .textContent=
+    `${levelScore} صحيح`;
 
-document.getElementById("levelQuestion").textContent=
-q[0];
+  document.getElementById("levelQuestion")
+    .textContent=q[0];
 
-document.getElementById("levelAnswers").innerHTML=
-q[1].map((a,i)=>`
+  document.getElementById("levelAnswers")
+    .innerHTML=
+    q[1].map((a,i)=>`
 
-<button
-class="answer"
-onclick="selectLevel(${i})"
->
-${a}
-</button>
+    <button
+      class="answer"
+      onclick="selectLevel(${i})"
+    >
+      ${a}
+    </button>
 
-`).join("");
+    `).join("");
 
 }
 
 
 function selectLevel(index){
 
-const q=levelQuestions[levelIndex];
+  const q=
+    levelQuestions[levelIndex];
 
-document.querySelectorAll("#levelAnswers .answer")
-.forEach((b,i)=>{
+  document.querySelectorAll(
+    "#levelAnswers .answer"
+  ).forEach((b,i)=>{
 
-b.disabled=true;
+    b.disabled=true;
 
-if(i===q[2])
-b.classList.add("correct");
+    if(i===q[2])
+      b.classList.add("correct");
 
-if(i===index && i!==q[2])
-b.classList.add("wrong");
+    if(i===index && i!==q[2])
+      b.classList.add("wrong");
 
-});
+  });
 
-if(index===q[2])
-levelScore++;
+  if(index===q[2])
+    levelScore++;
 
-setTimeout(()=>{
+  setTimeout(()=>{
 
-levelIndex++;
+    levelIndex++;
 
-if(levelIndex>=levelQuestions.length){
+    if(
+      levelIndex>=
+      levelQuestions.length
+    ){
 
-finishLevel();
+      finishLevel();
 
-}else{
+    }else{
 
-renderLevel();
+      renderLevel();
 
-}
+    }
 
-},500);
+  },500);
 
 }
 
 
 function finishLevel(){
 
-document.getElementById("levelBox").style.display="none";
+  document.getElementById("levelBox")
+    .style.display="none";
 
-document.getElementById("levelResult").style.display="block";
+  document.getElementById("levelResult")
+    .style.display="block";
 
-let title="";
-let text="";
+  let title="";
+  let text="";
 
-if(levelScore<=3){
+  if(levelScore<=3){
 
-title="🌱 مبتدئ";
+    title="🌱 مبتدئ";
 
-text=
-"ابدأ من أساسيات الشبكات وLinux وWeb. هذا أفضل مكان تبدأ منه.";
+    text=
+      "ابدأ من أساسيات الشبكات وLinux وWeb. هذا أفضل مكان تبدأ منه.";
 
-}else if(levelScore<=6){
+  }else if(levelScore<=6){
 
-title="⚡ مبتدئ متقدم";
+    title="⚡ مبتدئ متقدم";
 
-text=
-"عندك أساس جيد وتقدر تكمل مسار Midnight بشكل طبيعي.";
+    text=
+      "عندك أساس جيد وتقدر تكمل مسار Midnight بشكل طبيعي.";
 
-}else if(levelScore<=8){
+  }else if(levelScore<=8){
 
-title="🛡️ متوسط";
+    title="🛡️ متوسط";
 
-text=
-"واضح عندك أساس قوي. ركز على Web Security وBlue Team وLabs.";
+    text=
+      "واضح عندك أساس قوي. ركز على Web Security وBlue Team وLabs.";
 
-}else{
+  }else{
 
-title="🔥 متقدم في الأساسيات";
+    title="🔥 متقدم في الأساسيات";
 
-text=
-"معلوماتك الأساسية ممتازة. تقدر تدخل في مواضيع أكثر عمقًا ومختبرات أصعب.";
+    text=
+      "معلوماتك الأساسية ممتازة. تقدر تدخل في مواضيع أكثر عمقًا ومختبرات أصعب.";
+
+  }
+
+  document.getElementById(
+    "levelTitle"
+  ).textContent=title;
+
+  document.getElementById(
+    "levelText"
+  ).textContent=
+    `${text} نتيجتك ${levelScore}/${levelQuestions.length}.`;
 
 }
 
-document.getElementById("levelTitle").textContent=title;
 
-document.getElementById("levelText").textContent=
-`${text} نتيجتك ${levelScore}/${levelQuestions.length}.`;
-
-}
-
-
-/* TOAST */
+/* =========================
+   TOAST
+========================= */
 
 function toast(message){
 
-const el=document.getElementById("toast");
+  const el=
+    document.getElementById("toast");
 
-el.textContent=message;
+  el.textContent=message;
 
-el.classList.add("show");
+  el.classList.add("show");
 
-setTimeout(()=>{
-el.classList.remove("show");
-},2500);
+  setTimeout(()=>{
+    el.classList.remove("show");
+  },2500);
 
 }
 
 
-/* START */
+/* =========================
+   RESTORE LAST PROGRESS
+========================= */
 
-renderLessons();
-renderTerms();
-loadQuiz();
-startLevel();
-updateStats();
+function restoreProgress(){
+
+  updateStats();
+
+  renderLessons();
+  renderTerms();
+
+  /*
+    إذا كان المستخدم خرج من الموقع
+    وهو داخل درس معين، نخليه يعرف
+    آخر درس وصل له.
+  */
+
+  if(
+    lastLesson>=0 &&
+    lastLesson<lessons.length
+  ){
+
+    /* ما نفتح الدرس تلقائيًا
+       عشان الصفحة الرئيسية تبقى البداية
+       لكن التقدم محفوظ بالكامل */
+
+  }
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+restoreProgress();
 
 </script>
 
