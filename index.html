@@ -1,2038 +1,3565 @@
-/* =========================================================
-   🐧 Midnight — Practical Cyber Labs
-   File: midnight-labs.js
-   Training / Simulation Only
-   ========================================================= */
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#07070b">
+<meta name="description" content="Midnight — منصة تعليم الأمن السيبراني">
+<title>🐧 Midnight</title>
 
-(() => {
-  "use strict";
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-  const LAB_XP = {
-    bank: 150,
-    phishing: 100,
-    soc: 100,
-    endpoint: 100,
-    web: 100
-  };
+<style>
+:root{
+  --bg:#07070b;
+  --bg2:#0d0d14;
+  --card:#11111a;
+  --card2:#171721;
+  --purple:#6d35ff;
+  --purple2:#8b5cf6;
+  --purple3:#b197fc;
+  --white:#f7f7fb;
+  --muted:#a6a6b5;
+  --line:rgba(255,255,255,.09);
+  --green:#39d98a;
+  --red:#ff5577;
+  --yellow:#ffd166;
+  --blue:#55a8ff;
+  --shadow:0 25px 80px rgba(0,0,0,.45);
+}
 
-  const BANK = {
-    id: "bank",
-    title: "Nexora Capital Bank",
-    subtitle: "Incident Response Investigation",
-    difficulty: "Advanced",
-    xp: 150,
-    caseId: "NCB-IR-2026-0919",
-    severity: "HIGH",
-    network: "10.44.18.0/24",
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-    hosts: [
-      ["auth-gw-01", "10.44.18.10", "443/tcp", "https"],
-      ["portal-02", "10.44.18.20", "443/tcp", "https"],
-      ["ledger-api-01", "10.44.18.30", "443/tcp", "https"],
-      ["soc-jump-01", "10.44.18.40", "22/tcp", "ssh"]
-    ],
+html{
+  scroll-behavior:smooth;
+}
 
-    logs: {
-      auth: `
-[2026-09-19 08:41:02] AUTH SUCCESS user=finance.ops src=10.44.18.34 device=WS-17
-[2026-09-19 08:44:18] AUTH FAILED user=finance.ops src=203.0.113.77 device=unknown
-[2026-09-19 08:44:22] AUTH SUCCESS user=finance.ops src=203.0.113.77 device=unknown mfa=approved
-`,
+body{
+  font-family:"Tajawal",sans-serif;
+  background:
+    radial-gradient(circle at 15% 10%,rgba(109,53,255,.12),transparent 28%),
+    radial-gradient(circle at 85% 20%,rgba(139,92,246,.08),transparent 25%),
+    var(--bg);
+  color:var(--white);
+  min-height:100vh;
+}
 
-      web: `
-[2026-09-19 08:45:07] WEB LOGIN user=finance.ops src=203.0.113.77 app=portal-02
-[2026-09-19 08:47:13] API ACCESS user=finance.ops src=203.0.113.77 endpoint=/internal/ledger
-`,
+button,input,select{
+  font-family:inherit;
+}
 
-      alerts: `
-[2026-09-19 08:49:55] ALERT rule=impossible-travel severity=high
+button{
+  cursor:pointer;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.container{
+  width:min(1180px,92%);
+  margin:auto;
+}
+
+.page{
+  display:none;
+  min-height:calc(100vh - 80px);
+}
+
+.page.active{
+  display:block;
+}
+
+.section{
+  padding:55px 0;
+}
+
+.navbar{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(7,7,11,.86);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+}
+
+.nav-inner{
+  min-height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.logo{
+  font-size:22px;
+  font-weight:900;
+  white-space:nowrap;
+}
+
+.nav-links{
+  display:flex;
+  gap:5px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+.nav-btn{
+  border:0;
+  background:transparent;
+  color:var(--muted);
+  padding:11px 13px;
+  border-radius:10px;
+  font-size:14px;
+  transition:.2s;
+}
+
+.nav-btn:hover,
+.nav-btn.active{
+  color:white;
+  background:rgba(109,53,255,.13);
+}
+
+.discord-nav{
+  background:#5865f2;
+  color:white;
+}
+
+.hero{
+  padding:75px 0 35px;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:45px;
+  align-items:center;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:rgba(109,53,255,.13);
+  border:1px solid rgba(139,92,246,.28);
+  color:var(--purple3);
+  padding:8px 13px;
+  border-radius:999px;
+  font-size:13px;
+  margin-bottom:20px;
+}
+
+.hero h1{
+  font-size:clamp(40px,6vw,72px);
+  line-height:1.05;
+  font-weight:900;
+  letter-spacing:-2px;
+  margin-bottom:20px;
+}
+
+.gradient{
+  background:linear-gradient(90deg,#fff,#b197fc,#8b5cf6);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.hero p{
+  color:var(--muted);
+  line-height:2;
+  font-size:17px;
+  max-width:650px;
+}
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:27px;
+}
+
+.btn{
+  border:1px solid var(--line);
+  color:white;
+  background:var(--card);
+  padding:13px 19px;
+  border-radius:12px;
+  font-weight:800;
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  border-color:rgba(139,92,246,.5);
+}
+
+.btn-primary{
+  background:linear-gradient(135deg,var(--purple),var(--purple2));
+  border:0;
+}
+
+.btn-discord{
+  background:#5865f2;
+  border:0;
+}
+
+.btn-danger{
+  background:rgba(255,85,119,.12);
+  border-color:rgba(255,85,119,.3);
+}
+
+.hero-image{
+  position:relative;
+}
+
+.hero-image img{
+  width:100%;
+  max-height:530px;
+  object-fit:contain;
+  border-radius:25px;
+  display:block;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-top:35px;
+}
+
+.stat{
+  background:rgba(17,17,26,.8);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:18px;
+  text-align:center;
+}
+
+.stat strong{
+  display:block;
+  font-size:25px;
+}
+
+.stat span{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.section-title{
+  margin-bottom:30px;
+}
+
+.section-title h2{
+  font-size:32px;
+  margin-bottom:8px;
+}
+
+.section-title p{
+  color:var(--muted);
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.card{
+  background:linear-gradient(145deg,var(--card),var(--bg2));
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:22px;
+  transition:.2s;
+}
+
+.card:hover{
+  transform:translateY(-3px);
+  border-color:rgba(139,92,246,.3);
+}
+
+.card-icon{
+  width:46px;
+  height:46px;
+  display:grid;
+  place-items:center;
+  background:rgba(109,53,255,.12);
+  color:var(--purple3);
+  border-radius:13px;
+  margin-bottom:15px;
+  font-size:19px;
+}
+
+.card h3{
+  margin-bottom:9px;
+}
+
+.card p{
+  color:var(--muted);
+  line-height:1.8;
+  font-size:14px;
+}
+
+.soon{
+  margin-top:35px;
+  border:1px solid rgba(139,92,246,.25);
+  background:linear-gradient(135deg,rgba(109,53,255,.11),rgba(17,17,26,.9));
+  border-radius:20px;
+  padding:25px;
+}
+
+.soon-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+  margin-top:18px;
+}
+
+.soon-item{
+  border:1px solid var(--line);
+  background:rgba(0,0,0,.2);
+  border-radius:15px;
+  padding:17px;
+}
+
+.soon-item strong{
+  display:block;
+  margin-bottom:5px;
+}
+
+.soon-item span{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.discord-box{
+  margin-top:30px;
+  padding:28px;
+  border-radius:20px;
+  border:1px solid rgba(88,101,242,.3);
+  background:linear-gradient(135deg,rgba(88,101,242,.12),rgba(17,17,26,.8));
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+}
+
+.discord-box p{
+  color:var(--muted);
+  margin-top:6px;
+}
+
+.page-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:25px;
+}
+
+.page-head h1{
+  font-size:35px;
+}
+
+.back-btn{
+  margin-bottom:20px;
+}
+
+.progress-wrap{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:17px;
+  padding:18px;
+  margin-bottom:20px;
+}
+
+.progress-top{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:10px;
+}
+
+.progress-bar{
+  height:9px;
+  background:#20202b;
+  border-radius:999px;
+  overflow:hidden;
+}
+
+.progress-fill{
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg,var(--purple),var(--purple3));
+  border-radius:inherit;
+  transition:.3s;
+}
+
+.search{
+  width:100%;
+  background:var(--card);
+  color:white;
+  border:1px solid var(--line);
+  outline:none;
+  padding:15px;
+  border-radius:13px;
+  margin-bottom:20px;
+}
+
+.lesson-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+.lesson-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:18px;
+  position:relative;
+}
+
+.lesson-card.completed{
+  border-color:rgba(57,217,138,.28);
+}
+
+.lesson-number{
+  color:var(--purple3);
+  font-size:12px;
+  margin-bottom:9px;
+}
+
+.lesson-card h3{
+  font-size:17px;
+  margin-bottom:8px;
+}
+
+.lesson-card p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.7;
+  margin-bottom:14px;
+}
+
+.lesson-status{
+  color:var(--green);
+  font-size:12px;
+  margin-bottom:10px;
+}
+
+.lesson-page{
+  max-width:900px;
+  margin:auto;
+}
+
+.lesson-content{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:28px;
+  line-height:2;
+}
+
+.lesson-content h2{
+  margin:20px 0 10px;
+  color:var(--purple3);
+}
+
+.lesson-content p{
+  color:#d1d1da;
+  margin-bottom:13px;
+}
+
+.lesson-content ul{
+  padding-right:22px;
+  color:#d1d1da;
+}
+
+.lesson-content li{
+  margin-bottom:8px;
+}
+
+.lesson-example{
+  background:#090910;
+  border:1px solid var(--line);
+  padding:17px;
+  border-radius:13px;
+  direction:ltr;
+  text-align:left;
+  font-family:monospace;
+  color:#d5c9ff;
+  overflow:auto;
+  margin:15px 0;
+}
+
+.lesson-actions{
+  display:flex;
+  gap:10px;
+  margin-top:20px;
+  flex-wrap:wrap;
+}
+
+.quiz-box{
+  max-width:800px;
+  margin:auto;
+}
+
+.quiz-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:28px;
+}
+
+.quiz-meta{
+  color:var(--muted);
+  margin-bottom:14px;
+  font-size:13px;
+}
+
+.question{
+  font-size:23px;
+  font-weight:800;
+  line-height:1.6;
+  margin-bottom:20px;
+}
+
+.options{
+  display:grid;
+  gap:10px;
+}
+
+.option{
+  width:100%;
+  text-align:right;
+  background:var(--card2);
+  color:white;
+  border:1px solid var(--line);
+  padding:15px;
+  border-radius:12px;
+}
+
+.option:hover{
+  border-color:var(--purple2);
+}
+
+.option.selected{
+  background:rgba(109,53,255,.18);
+  border-color:var(--purple2);
+}
+
+.option.correct{
+  border-color:var(--green);
+  background:rgba(57,217,138,.1);
+}
+
+.option.wrong{
+  border-color:var(--red);
+  background:rgba(255,85,119,.1);
+}
+
+.quiz-result{
+  margin-top:18px;
+  padding:16px;
+  border-radius:13px;
+  background:rgba(57,217,138,.08);
+  border:1px solid rgba(57,217,138,.2);
+  display:none;
+}
+
+.level-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.level-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:25px;
+}
+
+.level-card h3{
+  margin-bottom:8px;
+}
+
+.level-card p{
+  color:var(--muted);
+  line-height:1.8;
+}
+
+.dictionary-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:13px;
+}
+
+.term{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:18px;
+}
+
+.term strong{
+  color:var(--purple3);
+  display:block;
+  margin-bottom:7px;
+}
+
+.term span{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.7;
+}
+
+.project-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+
+.project{
+  padding:28px;
+  background:linear-gradient(145deg,var(--card),#0b0b11);
+  border:1px solid var(--line);
+  border-radius:20px;
+}
+
+.project h3{
+  margin-bottom:9px;
+}
+
+.project p{
+  color:var(--muted);
+  line-height:1.8;
+  margin-bottom:18px;
+}
+
+.footer{
+  border-top:1px solid var(--line);
+  padding:28px 0;
+  color:var(--muted);
+  text-align:center;
+  font-size:13px;
+}
+
+/* LABS */
+
+.midnight-lab-section{
+  padding-top:10px;
+}
+
+.midnight-lab-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+
+.midnight-lab-card{
+  background:linear-gradient(145deg,#11111a,#0b0b11);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:23px;
+  position:relative;
+}
+
+.midnight-lab-card.featured{
+  grid-column:1/-1;
+  border-color:rgba(109,53,255,.4);
+  background:
+    radial-gradient(circle at 90% 0%,rgba(109,53,255,.16),transparent 35%),
+    linear-gradient(145deg,#11111a,#0b0b11);
+}
+
+.midnight-lab-icon{
+  width:52px;
+  height:52px;
+  border-radius:15px;
+  display:grid;
+  place-items:center;
+  background:rgba(109,53,255,.13);
+  color:var(--purple3);
+  font-size:21px;
+  margin-bottom:15px;
+}
+
+.midnight-lab-card h2,
+.midnight-lab-card h3{
+  margin-bottom:7px;
+}
+
+.midnight-lab-subtitle{
+  color:var(--purple3);
+  font-size:13px;
+  margin-bottom:12px;
+}
+
+.midnight-lab-desc{
+  color:var(--muted);
+  line-height:1.8;
+  font-size:14px;
+}
+
+.midnight-lab-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin:16px 0;
+}
+
+.midnight-lab-tag,
+.midnight-lab-xp{
+  display:inline-flex;
+  padding:7px 10px;
+  border-radius:999px;
+  font-size:12px;
+  border:1px solid var(--line);
+}
+
+.midnight-lab-xp{
+  color:var(--green);
+  border-color:rgba(57,217,138,.2);
+}
+
+.midnight-lab-high{
+  color:var(--red);
+  border-color:rgba(255,85,119,.25);
+}
+
+.midnight-lab-card.completed{
+  border-color:rgba(57,217,138,.3);
+}
+
+.midnight-lab-warning{
+  background:rgba(255,209,102,.07);
+  border:1px solid rgba(255,209,102,.25);
+  padding:22px;
+  border-radius:18px;
+  margin-bottom:22px;
+}
+
+.midnight-lab-warning strong{
+  color:var(--yellow);
+  display:block;
+  margin-bottom:7px;
+}
+
+.midnight-lab-warning p{
+  color:var(--muted);
+  line-height:1.8;
+}
+
+.lab-header{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  align-items:flex-start;
+  margin-bottom:18px;
+}
+
+.lab-header p{
+  color:var(--muted);
+  margin-top:6px;
+}
+
+.lab-layout{
+  display:grid;
+  grid-template-columns:1.25fr .75fr;
+  gap:16px;
+}
+
+.lab-panel{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:18px;
+  overflow:hidden;
+}
+
+.panel-head{
+  padding:15px 17px;
+  border-bottom:1px solid var(--line);
+  font-weight:800;
+}
+
+.panel-body{
+  padding:17px;
+}
+
+.case-box{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:9px;
+  margin-bottom:15px;
+}
+
+.case-row{
+  background:#0b0b11;
+  border:1px solid var(--line);
+  padding:12px;
+  border-radius:11px;
+}
+
+.case-row small{
+  color:var(--muted);
+  display:block;
+  margin-bottom:4px;
+}
+
+.case-row strong{
+  font-size:13px;
+}
+
+.terminal{
+  background:#050508;
+  border:1px solid #20202a;
+  border-radius:13px;
+  padding:15px;
+  min-height:300px;
+  max-height:460px;
+  overflow:auto;
+  direction:ltr;
+  text-align:left;
+  font-family:monospace;
+  font-size:13px;
+}
+
+.terminal-line{
+  margin-bottom:7px;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+.terminal-line.command{
+  color:#c7b8ff;
+}
+
+.terminal-line.success{
+  color:var(--green);
+}
+
+.terminal-line.error{
+  color:var(--red);
+}
+
+.terminal-line.muted{
+  color:#858593;
+}
+
+.terminal-input{
+  display:flex;
+  gap:8px;
+  margin-top:10px;
+}
+
+.terminal-input input{
+  min-width:0;
+  flex:1;
+  direction:ltr;
+  text-align:left;
+  background:#08080d;
+  border:1px solid var(--line);
+  color:white;
+  padding:13px;
+  border-radius:10px;
+  outline:none;
+  font-family:monospace;
+}
+
+.logs{
+  background:#08080d;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:13px;
+  direction:ltr;
+  text-align:left;
+  font-family:monospace;
+  font-size:12px;
+  line-height:1.8;
+  max-height:310px;
+  overflow:auto;
+  margin-top:12px;
+}
+
+.hosts{
+  display:grid;
+  gap:8px;
+}
+
+.host{
+  padding:12px;
+  border-radius:10px;
+  background:#0b0b11;
+  border:1px solid var(--line);
+}
+
+.host strong{
+  display:block;
+  color:var(--purple3);
+}
+
+.host span{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.lab-question{
+  margin-top:18px;
+}
+
+.lab-question h4{
+  margin-bottom:10px;
+  line-height:1.7;
+}
+
+.lab-option{
+  width:100%;
+  text-align:right;
+  background:#0d0d14;
+  border:1px solid var(--line);
+  color:white;
+  padding:12px;
+  border-radius:10px;
+  margin-bottom:7px;
+}
+
+.lab-option.selected{
+  border-color:var(--purple2);
+  background:rgba(109,53,255,.13);
+}
+
+.lab-result{
+  display:none;
+  padding:16px;
+  margin-top:15px;
+  border-radius:12px;
+}
+
+.lab-result.success{
+  display:block;
+  background:rgba(57,217,138,.08);
+  border:1px solid rgba(57,217,138,.25);
+}
+
+.lab-result.fail{
+  display:block;
+  background:rgba(255,85,119,.08);
+  border:1px solid rgba(255,85,119,.25);
+}
+
+.lab-progress{
+  height:7px;
+  background:#20202a;
+  border-radius:999px;
+  overflow:hidden;
+  margin:10px 0 18px;
+}
+
+.lab-progress div{
+  height:100%;
+  background:linear-gradient(90deg,var(--purple),var(--purple3));
+  width:0;
+}
+
+.toast{
+  position:fixed;
+  bottom:22px;
+  left:50%;
+  transform:translateX(-50%) translateY(20px);
+  background:#171721;
+  border:1px solid var(--line);
+  padding:13px 18px;
+  border-radius:12px;
+  box-shadow:var(--shadow);
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+  z-index:3000;
+  max-width:90%;
+  text-align:center;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+.empty{
+  text-align:center;
+  color:var(--muted);
+  padding:30px;
+  border:1px dashed var(--line);
+  border-radius:15px;
+}
+
+.hidden{
+  display:none!important;
+}
+
+@media(max-width:900px){
+  .hero-grid,
+  .lab-layout{
+    grid-template-columns:1fr;
+  }
+
+  .cards,
+  .lesson-grid,
+  .dictionary-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .nav-inner{
+    align-items:flex-start;
+    flex-direction:column;
+    padding:13px 0;
+  }
+
+  .nav-links{
+    width:100%;
+    overflow-x:auto;
+    flex-wrap:nowrap;
+    padding-bottom:3px;
+  }
+}
+
+@media(max-width:600px){
+  .section{
+    padding:38px 0;
+  }
+
+  .hero{
+    padding-top:45px;
+  }
+
+  .hero h1{
+    font-size:43px;
+  }
+
+  .hero p{
+    font-size:15px;
+  }
+
+  .cards,
+  .lesson-grid,
+  .dictionary-grid,
+  .project-grid,
+  .midnight-lab-grid{
+    grid-template-columns:1fr;
+  }
+
+  .midnight-lab-card.featured{
+    grid-column:auto;
+  }
+
+  .soon-grid{
+    grid-template-columns:1fr;
+  }
+
+  .discord-box,
+  .page-head,
+  .lab-header{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .case-box{
+    grid-template-columns:1fr;
+  }
+
+  .nav-btn{
+    white-space:nowrap;
+  }
+
+  .lesson-content,
+  .quiz-card{
+    padding:20px;
+  }
+
+  .question{
+    font-size:19px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="container nav-inner">
+
+    <button class="logo nav-btn" onclick="showPage('home',this)">
+      🐧 Midnight
+    </button>
+
+    <div class="nav-links">
+      <button class="nav-btn active" onclick="showPage('home',this)">الرئيسية</button>
+      <button class="nav-btn" onclick="showPage('academy',this)">الأكاديمية</button>
+      <button class="nav-btn" onclick="openLabs()">Labs</button>
+      <button class="nav-btn" onclick="showPage('quiz',this)">الاختبارات</button>
+      <button class="nav-btn" onclick="showPage('dictionary',this)">المصطلحات</button>
+      <a class="nav-btn discord-nav" href="https://discord.gg/TyUpVWQgA" target="_blank">
+        Discord
+      </a>
+    </div>
+
+  </div>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="page active">
+  <div class="container hero">
+
+    <div class="hero-grid">
+
+      <div>
+        <div class="badge">
+          <i class="fa-solid fa-shield-halved"></i>
+          Cybersecurity Academy
+        </div>
+
+        <h1>
+          الأمن السيبراني<br>
+          <span class="gradient">بدون تعقيد.</span>
+        </h1>
+
+        <p>
+          تعلم Networking وLinux وPython وWeb Security وBlue Team
+          وSOC وBug Bounty وCTF بطريقة مرتبة وعملية.
+        </p>
+
+        <div class="actions">
+          <button class="btn btn-primary" onclick="showPage('academy')">
+            ابدأ التعلم 🎓
+          </button>
+
+          <button class="btn" onclick="showPage('levelTest')">
+            اختبر مستواي ⚡
+          </button>
+
+          <a class="btn btn-discord" href="https://discord.gg/TyUpVWQgA" target="_blank">
+            <i class="fa-brands fa-discord"></i>
+            Discord
+          </a>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <strong id="statLessons">0</strong>
+            <span>درس</span>
+          </div>
+          <div class="stat">
+            <strong id="statCompleted">0</strong>
+            <span>دروس مكتملة</span>
+          </div>
+          <div class="stat">
+            <strong id="statXP">0</strong>
+            <span>XP</span>
+          </div>
+          <div class="stat">
+            <strong id="statLabs">0</strong>
+            <span>Labs مكتملة</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <img src="dead-penguin-cyber-new-background.png" alt="Midnight Cybersecurity">
+      </div>
+
+    </div>
+
+    <div class="section">
+      <div class="section-title">
+        <h2>وش راح تتعلم؟</h2>
+        <p>مسار مرتب من الأساسيات إلى التدريب العملي</p>
+      </div>
+
+      <div class="cards">
+
+        <div class="card">
+          <div class="card-icon"><i class="fa-solid fa-network-wired"></i></div>
+          <h3>Networking</h3>
+          <p>IP Address وMAC Address وDNS وDHCP وPort وTCP وUDP وHTTP وHTTPS.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon"><i class="fa-brands fa-linux"></i></div>
+          <h3>Linux</h3>
+          <p>أساسيات Linux والأوامر والملفات والصلاحيات وطريقة التعامل مع النظام.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon"><i class="fa-brands fa-python"></i></div>
+          <h3>Python</h3>
+          <p>Variables وConditions وLoops وأساسيات البرمجة التي تحتاجها في الأمن السيبراني.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon"><i class="fa-solid fa-globe"></i></div>
+          <h3>Web Security</h3>
+          <p>Cookies وSessions وAuthentication وAuthorization وOWASP وأساسيات Web Security.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon"><i class="fa-solid fa-tower-broadcast"></i></div>
+          <h3>Blue Team & SOC</h3>
+          <p>تحليل Logs وAlerts وفهم دور SOC وSIEM والاستجابة للحوادث.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon"><i class="fa-solid fa-flag"></i></div>
+          <h3>CTF & Bug Bounty</h3>
+          <p>تدريب قانوني وآمن على التفكير الأمني واكتشاف الثغرات داخل بيئات تدريبية.</p>
+        </div>
+
+      </div>
+
+      <div class="soon">
+        <h2>🚀 أشياء راح تنضاف قريبًا</h2>
+
+        <div class="soon-grid">
+          <div class="soon-item">
+            <strong>🤖 DarkGPT</strong>
+            <span>سيتم إضافة الميزة قريبًا</span>
+          </div>
+
+          <div class="soon-item">
+            <strong>📕 كتاب الأمن السيبراني</strong>
+            <span>سيتم إضافة الميزة قريبًا</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="discord-box">
+        <div>
+          <h2>تابع التحديثات في Discord</h2>
+          <p>التحديثات والتسريبات والتجارب الجديدة تنزل هناك.</p>
+        </div>
+
+        <a class="btn btn-discord" href="https://discord.gg/TyUpVWQgA" target="_blank">
+          <i class="fa-brands fa-discord"></i>
+          دخول Discord
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ACADEMY -->
+<section id="academy" class="page">
+  <div class="container section">
+
+    <button class="btn back-btn" onclick="goBack()">← رجوع</button>
+
+    <div class="page-head">
+      <div>
+        <h1>الأكاديمية 🎓</h1>
+        <p style="color:var(--muted);margin-top:7px">
+          تعلم خطوة بخطوة واحصل على XP
+        </p>
+      </div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-top">
+        <span>تقدمك</span>
+        <strong id="academyProgressText">0%</strong>
+      </div>
+      <div class="progress-bar">
+        <div id="academyProgress" class="progress-fill"></div>
+      </div>
+    </div>
+
+    <input
+      id="lessonSearch"
+      class="search"
+      placeholder="ابحث عن درس..."
+      oninput="renderLessons(this.value)"
+    >
+
+    <div id="lessonGrid" class="lesson-grid"></div>
+
+  </div>
+</section>
+
+
+<!-- LESSON -->
+<section id="lesson" class="page">
+  <div class="container section lesson-page">
+
+    <button class="btn back-btn" onclick="showPage('academy')">← الأكاديمية</button>
+
+    <div id="lessonContent" class="lesson-content"></div>
+
+  </div>
+</section>
+
+
+<!-- LABS -->
+<section id="labs" class="page">
+  <div class="container section">
+
+    <button class="btn back-btn" onclick="goBack()">← رجوع</button>
+
+    <div id="labsHub"></div>
+    <div id="labWorkspace"></div>
+
+  </div>
+</section>
+
+
+<!-- QUIZ -->
+<section id="quiz" class="page">
+  <div class="container section quiz-box">
+
+    <button class="btn back-btn" onclick="goBack()">← رجوع</button>
+
+    <div class="section-title">
+      <h2>اختبار الأمن السيبراني 🧠</h2>
+      <p>أسئلة عشوائية لقياس معلوماتك</p>
+    </div>
+
+    <div id="quizArea"></div>
+
+  </div>
+</section>
+
+
+<!-- LEVEL TEST -->
+<section id="levelTest" class="page">
+  <div class="container section quiz-box">
+
+    <button class="btn back-btn" onclick="goBack()">← رجوع</button>
+
+    <div class="section-title">
+      <h2>اختبر مستواي ⚡</h2>
+      <p>اختبار قصير يحدد المستوى التقريبي لك</p>
+    </div>
+
+    <div id="levelArea"></div>
+
+  </div>
+</section>
+
+
+<!-- DICTIONARY -->
+<section id="dictionary" class="page">
+  <div class="container section">
+
+    <button class="btn back-btn" onclick="goBack()">← رجوع</button>
+
+    <div class="section-title">
+      <h2>المصطلحات 📚</h2>
+      <p>قاموس سريع لأهم المصطلحات</p>
+    </div>
+
+    <input
+      class="search"
+      id="dictionarySearch"
+      placeholder="ابحث عن مصطلح..."
+      oninput="renderDictionary(this.value)"
+    >
+
+    <div id="dictionaryGrid" class="dictionary-grid"></div>
+
+  </div>
+</section>
+
+
+<!-- PROJECTS -->
+<section id="projects" class="page">
+  <div class="container section">
+
+    <button class="btn back-btn" onclick="goBack()">← رجوع</button>
+
+    <div class="section-title">
+      <h2>المشاريع 🚀</h2>
+      <p>أشياء قادمة داخل Midnight</p>
+    </div>
+
+    <div class="project-grid">
+
+      <div class="project">
+        <h3>📕 كتاب الأمن السيبراني</h3>
+        <p>سيتم إضافة الميزة قريبًا</p>
+        <button class="btn" onclick="toast('الميزة راح تنضاف قريبًا 🔥')">
+          قريبًا
+        </button>
+      </div>
+
+      <div class="project">
+        <h3>🤖 DarkGPT</h3>
+        <p>سيتم إضافة الميزة قريبًا</p>
+        <button class="btn" onclick="toast('DarkGPT راح ينضاف قريبًا 🔥')">
+          قريبًا
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    🐧 Midnight — Cybersecurity Academy
+  </div>
+</footer>
+
+<div id="toast" class="toast"></div>
+
+
+<script>
+"use strict";
+
+/* =========================
+   STORAGE
+========================= */
+
+const STORAGE = {
+  completed:"midnightCompleted",
+  xp:"midnightXP",
+  labs:"midnightLabsCompleted",
+  lastPage:"midnightLastPage",
+  lastLesson:"midnightLastLesson",
+  labWarning:"midnightLabWarningAccepted"
+};
+
+function getCompleted(){
+  try{
+    return JSON.parse(localStorage.getItem(STORAGE.completed) || "[]");
+  }catch{
+    return [];
+  }
+}
+
+function getLabsCompleted(){
+  try{
+    return JSON.parse(localStorage.getItem(STORAGE.labs) || "[]");
+  }catch{
+    return [];
+  }
+}
+
+let xp = Number(localStorage.getItem(STORAGE.xp) || 0);
+let historyPage = "home";
+
+function saveProgress(){
+  localStorage.setItem(STORAGE.completed,JSON.stringify(getCompleted()));
+  localStorage.setItem(STORAGE.xp,String(xp));
+  updateStats();
+}
+
+function addXP(amount){
+  amount = Number(amount) || 0;
+  xp += amount;
+  localStorage.setItem(STORAGE.xp,String(xp));
+  updateStats();
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+let toastTimer;
+
+function toast(message){
+  const el=document.getElementById("toast");
+  if(!el)return;
+
+  el.textContent=message;
+  el.classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer=setTimeout(()=>{
+    el.classList.remove("show");
+  },2500);
+}
+
+
+/* =========================
+   PAGE SYSTEM
+========================= */
+
+function showPage(id,button=null){
+  const target=document.getElementById(id);
+
+  if(!target)return;
+
+  const current=document.querySelector(".page.active");
+
+  if(current && current.id!==id){
+    historyPage=current.id;
+  }
+
+  document.querySelectorAll(".page").forEach(page=>{
+    page.classList.remove("active");
+  });
+
+  target.classList.add("active");
+
+  document.querySelectorAll(".nav-btn").forEach(btn=>{
+    btn.classList.remove("active");
+  });
+
+  if(button){
+    button.classList.add("active");
+  }else{
+    document.querySelectorAll(".nav-btn").forEach(btn=>{
+      const text=btn.textContent.trim();
+
+      if(
+        (id==="home" && text.includes("الرئيسية")) ||
+        (id==="academy" && text.includes("الأكاديمية")) ||
+        (id==="quiz" && text.includes("الاختبارات")) ||
+        (id==="dictionary" && text.includes("المصطلحات"))
+      ){
+        btn.classList.add("active");
+      }
+    });
+  }
+
+  localStorage.setItem(STORAGE.lastPage,id);
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+  if(id==="academy") renderLessons();
+  if(id==="dictionary") renderDictionary();
+  if(id==="quiz") startQuiz();
+  if(id==="levelTest") startLevelTest();
+  if(id==="labs") renderLabsHub();
+}
+
+function goBack(){
+  if(historyPage && document.getElementById(historyPage)){
+    const old=historyPage;
+    historyPage="home";
+    showPage(old);
+  }else{
+    showPage("home");
+  }
+}
+
+
+/* =========================
+   LESSONS
+========================= */
+
+const lessons=[
+{
+id:1,
+title:"الشبكات من الصفر",
+desc:"افهم كيف تتواصل الأجهزة مع بعض.",
+content:`
+<h2>وش هي Network؟</h2>
+<p>Network هي مجموعة أجهزة تتواصل مع بعضها لتبادل البيانات.</p>
+<p>تخيلها مثل حي فيه بيوت. كل جهاز له عنوان يساعد البيانات تعرف وين تروح.</p>
+<h2>أهم الأشياء</h2>
+<ul>
+<li>IP Address — عنوان منطقي للجهاز</li>
+<li>MAC Address — عنوان بطاقة الشبكة</li>
+<li>Router — يربط الشبكات</li>
+<li>Port — بوابة لخدمة معينة</li>
+</ul>
+<div class="lesson-example">Your Device → Router → Internet</div>
 `
-    },
-
-    nmap: `
-Nmap 7.95 (SIMULATION)
-Target: ncb.local
-Host discovery: 4 hosts
-
-auth-gw-01     10.44.18.10     443/tcp open https
-portal-02      10.44.18.20     443/tcp open https
-ledger-api-01  10.44.18.30     443/tcp open https
-soc-jump-01    10.44.18.40     22/tcp  open ssh
-`,
-
-    questions: [
-      {
-        q: "ما هو عنوان الـIP الأكثر إثارة للشك؟",
-        options: [
-          "10.44.18.34",
-          "203.0.113.77",
-          "10.44.18.40",
-          "10.44.18.10"
-        ],
-        answer: 1
-      },
-      {
-        q: "أي حساب يجب التركيز عليه في التحقيق؟",
-        options: [
-          "soc.admin",
-          "guest",
-          "finance.ops",
-          "support.user"
-        ],
-        answer: 2
-      },
-      {
-        q: "أي جهاز يجب إعطاؤه أولوية للتحقيق؟",
-        options: [
-          "soc-jump-01",
-          "auth-gw-01",
-          "portal-02",
-          "ledger-api-01"
-        ],
-        answer: 2
-      },
-      {
-        q: "ما التصنيف الأقرب للحادثة؟",
-        options: [
-          "Account compromise / unauthorized access",
-          "Hardware failure",
-          "DNS outage",
-          "Normal maintenance"
-        ],
-        answer: 0
-      },
-      {
-        q: "ما الإجراء الفوري الأنسب؟",
-        options: [
-          "حذف جميع السجلات",
-          "تعطيل/عزل الحساب أو الجلسة المتأثرة وحفظ الأدلة",
-          "إعادة تشغيل جميع الخوادم",
-          "تجاهل التنبيه"
-        ],
-        answer: 1
-      },
-      {
-        q: "ما الأدلة التي تدعم الاستنتاج؟",
-        options: [
-          "Auth + Web + Alert logs",
-          "صورة سطح المكتب فقط",
-          "ملف CSS",
-          "لا توجد أدلة"
-        ],
-        answer: 0
-      }
-    ]
-  };
-
-  const OTHER_LABS = [
-    {
-      id: "phishing",
-      icon: "fa-envelope-open-text",
-      title: "Phishing Investigation",
-      subtitle: "تحليل رسالة تصيد تدريبية",
-      difficulty: "Intermediate",
-      xp: 100,
-      description:
-        "حلل رسالة بريد إلكتروني وهمية وحدد المؤشرات المشبوهة ثم اختر الإجراء الآمن."
-    },
-    {
-      id: "soc",
-      icon: "fa-shield-halved",
-      title: "SOC Alert Triage",
-      subtitle: "فرز تنبيهات مركز العمليات",
-      difficulty: "Intermediate",
-      xp: 100,
-      description:
-        "تصرف كمحلل SOC وقم بتصنيف التنبيهات التدريبية وتحديد الأولويات."
-    },
-    {
-      id: "endpoint",
-      icon: "fa-computer",
-      title: "Endpoint Investigation",
-      subtitle: "تحقيق في جهاز تدريبي",
-      difficulty: "Intermediate",
-      xp: 100,
-      description:
-        "افحص سجلات جهاز تدريبي وحدد النشاط غير المعتاد."
-    },
-    {
-      id: "web",
-      icon: "fa-globe",
-      title: "Web Incident",
-      subtitle: "تحليل سجلات Web",
-      difficulty: "Intermediate",
-      xp: 100,
-      description:
-        "حلل HTTP logs تدريبية واكتشف السلوك غير الطبيعي."
-    }
-  ];
-
-  /* =========================================================
-     CSS
-     ========================================================= */
-
-  const style = document.createElement("style");
-
-  style.textContent = `
-    .midnight-lab-section{
-      display:none;
-    }
-
-    .midnight-lab-section.active{
-      display:block;
-    }
-
-    .midnight-lab-grid{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:18px;
-      margin-top:25px;
-    }
-
-    .midnight-lab-card{
-      position:relative;
-      overflow:hidden;
-      padding:24px;
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:22px;
-      background:
-        linear-gradient(145deg,rgba(109,53,255,.10),rgba(17,17,26,.96));
-      box-shadow:0 20px 60px rgba(0,0,0,.28);
-      transition:.25s ease;
-    }
-
-    .midnight-lab-card:hover{
-      transform:translateY(-4px);
-      border-color:rgba(139,92,246,.38);
-      box-shadow:0 25px 70px rgba(0,0,0,.4);
-    }
-
-    .midnight-lab-card.featured{
-      border-color:rgba(139,92,246,.5);
-      background:
-        radial-gradient(circle at top right,rgba(139,92,246,.22),transparent 35%),
-        linear-gradient(145deg,#171327,#101017);
-    }
-
-    .midnight-lab-icon{
-      width:54px;
-      height:54px;
-      border-radius:16px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:21px;
-      color:#fff;
-      background:linear-gradient(135deg,#6d35ff,#8b5cf6);
-      box-shadow:0 12px 35px rgba(109,53,255,.25);
-      margin-bottom:18px;
-    }
-
-    .midnight-lab-title{
-      font-size:20px;
-      font-weight:900;
-      margin-bottom:7px;
-    }
-
-    .midnight-lab-subtitle{
-      color:#a6a6b5;
-      font-size:14px;
-      margin-bottom:15px;
-    }
-
-    .midnight-lab-desc{
-      color:#c7c7d2;
-      line-height:1.8;
-      font-size:14px;
-      margin-bottom:18px;
-    }
-
-    .midnight-lab-meta{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-bottom:18px;
-    }
-
-    .midnight-lab-tag{
-      padding:7px 11px;
-      border-radius:999px;
-      background:rgba(255,255,255,.06);
-      color:#dddde8;
-      border:1px solid rgba(255,255,255,.07);
-      font-size:12px;
-    }
-
-    .midnight-lab-tag.xp{
-      color:#39d98a;
-    }
-
-    .midnight-lab-tag.high{
-      color:#ff5577;
-    }
-
-    .midnight-lab-btn{
-      width:100%;
-      border:0;
-      border-radius:14px;
-      padding:13px 16px;
-      color:#fff;
-      background:linear-gradient(135deg,#6d35ff,#8b5cf6);
-      font-weight:900;
-      cursor:pointer;
-      transition:.2s;
-    }
-
-    .midnight-lab-btn:hover{
-      filter:brightness(1.12);
-      transform:translateY(-1px);
-    }
-
-    .midnight-lab-back{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      border:1px solid rgba(255,255,255,.09);
-      background:#11111a;
-      color:#ddd;
-      padding:10px 14px;
-      border-radius:12px;
-      cursor:pointer;
-      margin-bottom:18px;
-    }
-
-    .midnight-lab-header{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-start;
-      gap:20px;
-      margin-bottom:22px;
-    }
-
-    .midnight-lab-header h2{
-      margin:0 0 8px;
-      font-size:28px;
-    }
-
-    .midnight-lab-header p{
-      margin:0;
-      color:#a6a6b5;
-    }
-
-    .midnight-case-box{
-      border:1px solid rgba(255,255,255,.08);
-      background:#0e0e16;
-      border-radius:18px;
-      padding:18px;
-      min-width:190px;
-    }
-
-    .midnight-case-row{
-      display:flex;
-      justify-content:space-between;
-      gap:15px;
-      padding:7px 0;
-      color:#aaaabb;
-      font-size:13px;
-    }
-
-    .midnight-case-row strong{
-      color:#fff;
-    }
-
-    .midnight-case-row .danger{
-      color:#ff5577;
-    }
-
-    .midnight-lab-layout{
-      display:grid;
-      grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);
-      gap:18px;
-    }
-
-    .midnight-panel{
-      border:1px solid rgba(255,255,255,.08);
-      background:#101018;
-      border-radius:20px;
-      overflow:hidden;
-      margin-bottom:18px;
-    }
-
-    .midnight-panel-head{
-      padding:15px 18px;
-      border-bottom:1px solid rgba(255,255,255,.07);
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:10px;
-    }
-
-    .midnight-panel-head h3{
-      margin:0;
-      font-size:16px;
-    }
-
-    .midnight-panel-body{
-      padding:18px;
-    }
-
-    .midnight-terminal{
-      background:#050507;
-      min-height:360px;
-      max-height:460px;
-      overflow:auto;
-      padding:18px;
-      font-family:monospace;
-      direction:ltr;
-      text-align:left;
-      color:#d7d7df;
-      font-size:13px;
-      line-height:1.65;
-      white-space:pre-wrap;
-    }
-
-    .midnight-terminal-line{
-      color:#bdbdcc;
-      margin-bottom:3px;
-    }
-
-    .midnight-terminal-line.command{
-      color:#b197fc;
-    }
-
-    .midnight-terminal-line.success{
-      color:#39d98a;
-    }
-
-    .midnight-terminal-line.error{
-      color:#ff5577;
-    }
-
-    .midnight-terminal-input{
-      display:flex;
-      background:#08080c;
-      border-top:1px solid rgba(255,255,255,.07);
-      direction:ltr;
-    }
-
-    .midnight-terminal-input span{
-      padding:14px 0 14px 15px;
-      color:#8b5cf6;
-      font-family:monospace;
-    }
-
-    .midnight-terminal-input input{
-      flex:1;
-      min-width:0;
-      border:0;
-      outline:0;
-      background:transparent;
-      color:#fff;
-      padding:14px;
-      font-family:monospace;
-    }
-
-    .midnight-log{
-      background:#08080c;
-      border-radius:13px;
-      padding:14px;
-      overflow:auto;
-      direction:ltr;
-      text-align:left;
-      white-space:pre-wrap;
-      color:#cfcfd9;
-      font:12px/1.7 monospace;
-    }
-
-    .midnight-hosts{
-      display:grid;
-      gap:8px;
-    }
-
-    .midnight-host{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:8px;
-      padding:12px;
-      border-radius:12px;
-      background:rgba(255,255,255,.035);
-      border:1px solid rgba(255,255,255,.06);
-      font-size:12px;
-    }
-
-    .midnight-host strong{
-      color:#fff;
-    }
-
-    .midnight-host span{
-      color:#9999aa;
-    }
-
-    .midnight-question{
-      padding:18px;
-      border-radius:17px;
-      background:#101018;
-      border:1px solid rgba(255,255,255,.08);
-      margin-bottom:14px;
-    }
-
-    .midnight-question h4{
-      margin:0 0 15px;
-      font-size:15px;
-      line-height:1.7;
-    }
-
-    .midnight-options{
-      display:grid;
-      gap:9px;
-    }
-
-    .midnight-option{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      width:100%;
-      text-align:right;
-      color:#d9d9e3;
-      background:#15151f;
-      border:1px solid rgba(255,255,255,.07);
-      border-radius:12px;
-      padding:12px 14px;
-      cursor:pointer;
-      transition:.2s;
-    }
-
-    .midnight-option:hover{
-      border-color:rgba(139,92,246,.45);
-      background:#191923;
-    }
-
-    .midnight-option input{
-      accent-color:#8b5cf6;
-    }
-
-    .midnight-submit{
-      width:100%;
-      border:0;
-      border-radius:15px;
-      padding:14px;
-      background:linear-gradient(135deg,#6d35ff,#8b5cf6);
-      color:#fff;
-      font-weight:900;
-      cursor:pointer;
-      margin-top:5px;
-    }
-
-    .midnight-result{
-      display:none;
-      margin-top:18px;
-      border-radius:18px;
-      padding:18px;
-      border:1px solid rgba(57,217,138,.2);
-      background:rgba(57,217,138,.07);
-    }
-
-    .midnight-result.show{
-      display:block;
-    }
-
-    .midnight-result h3{
-      margin:0 0 8px;
-      color:#39d98a;
-    }
-
-    .midnight-result p{
-      margin:0;
-      color:#d1d1dc;
-      line-height:1.8;
-    }
-
-    .midnight-warning{
-      position:fixed;
-      inset:0;
-      z-index:99999;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:20px;
-      background:rgba(0,0,0,.78);
-      backdrop-filter:blur(12px);
-    }
-
-    .midnight-warning-box{
-      width:min(620px,100%);
-      border:1px solid rgba(139,92,246,.3);
-      background:#101018;
-      border-radius:24px;
-      padding:25px;
-      box-shadow:0 30px 100px rgba(0,0,0,.65);
-    }
-
-    .midnight-warning-icon{
-      width:52px;
-      height:52px;
-      border-radius:15px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:rgba(255,209,102,.1);
-      color:#ffd166;
-      font-size:21px;
-      margin-bottom:15px;
-    }
-
-    .midnight-warning-box h2{
-      margin:0 0 12px;
-    }
-
-    .midnight-warning-box p{
-      color:#bdbdcc;
-      line-height:1.9;
-      margin:0 0 20px;
-      font-size:14px;
-    }
-
-    .midnight-warning-actions{
-      display:flex;
-      gap:10px;
-    }
-
-    .midnight-warning-actions button{
-      flex:1;
-      border:0;
-      padding:13px;
-      border-radius:13px;
-      cursor:pointer;
-      font-weight:900;
-    }
-
-    .midnight-warning-actions .continue{
-      background:linear-gradient(135deg,#6d35ff,#8b5cf6);
-      color:#fff;
-    }
-
-    .midnight-warning-actions .cancel{
-      background:#191922;
-      color:#ddd;
-      border:1px solid rgba(255,255,255,.08);
-    }
-
-    .midnight-progress{
-      height:7px;
-      border-radius:99px;
-      background:#1c1c27;
-      overflow:hidden;
-      margin-top:10px;
-    }
-
-    .midnight-progress div{
-      height:100%;
-      background:linear-gradient(90deg,#6d35ff,#b197fc);
-      width:0%;
-      transition:.4s;
-    }
-
-    @media(max-width:850px){
-      .midnight-lab-grid{
-        grid-template-columns:1fr;
+},
+{
+id:2,
+title:"IP Address",
+desc:"افهم عنوان الجهاز داخل الشبكة.",
+content:`
+<h2>IP Address</h2>
+<p>هو عنوان منطقي يستخدم لتحديد الجهاز داخل Network.</p>
+<p>مثال IPv4:</p>
+<div class="lesson-example">192.168.1.20</div>
+<p>العنوان يتكون من أربعة أجزاء في IPv4 وكل جزء يسمى Octet.</p>
+`
+},
+{
+id:3,
+title:"MAC Address",
+desc:"تعرف على عنوان كرت الشبكة.",
+content:`
+<h2>MAC Address</h2>
+<p>هو عنوان مرتبط بواجهة الشبكة ويستخدم داخل الشبكات المحلية.</p>
+<div class="lesson-example">00:1A:2B:3C:4D:5E</div>
+<p>الفرق المهم: IP يستخدم للتوجيه المنطقي بينما MAC يستخدم على مستوى الشبكة المحلية.</p>
+`
+},
+{
+id:4,
+title:"DNS",
+desc:"كيف يتحول اسم الموقع إلى IP Address.",
+content:`
+<h2>DNS</h2>
+<p>DNS يترجم أسماء النطاقات إلى عناوين IP.</p>
+<div class="lesson-example">example.com → 93.184.216.34</div>
+<p>بدونه سيكون من الصعب على الناس تذكر عناوين IP للمواقع.</p>
+`
+},
+{
+id:5,
+title:"DHCP",
+desc:"كيف يحصل الجهاز على إعدادات Network.",
+content:`
+<h2>DHCP</h2>
+<p>DHCP يساعد الأجهزة في الحصول على إعدادات Network تلقائيًا مثل IP Address.</p>
+<p>بدل ما تكتب الإعدادات يدويًا لكل جهاز يقوم DHCP بتوزيعها.</p>
+`
+},
+{
+id:6,
+title:"Ports",
+desc:"افهم Port وكيف ترتبط بالخدمات.",
+content:`
+<h2>Port</h2>
+<p>Port مثل باب منطقي لخدمة معينة.</p>
+<ul>
+<li>80 → HTTP</li>
+<li>443 → HTTPS</li>
+<li>22 → SSH</li>
+</ul>
+<p>وجود Port مفتوح لا يعني تلقائيًا وجود ثغرة.</p>
+`
+},
+{
+id:7,
+title:"TCP و UDP",
+desc:"الفرق بين بروتوكولين مهمين.",
+content:`
+<h2>TCP</h2>
+<p>يهتم بإنشاء اتصال موثوق وترتيب البيانات.</p>
+<h2>UDP</h2>
+<p>أخف وأسرع في حالات كثيرة لكنه لا يوفر نفس ضمانات TCP.</p>
+`
+},
+{
+id:8,
+title:"HTTP و HTTPS",
+desc:"كيف يعمل Web.",
+content:`
+<h2>HTTP</h2>
+<p>بروتوكول يستخدم لنقل بيانات Web.</p>
+<h2>HTTPS</h2>
+<p>هو HTTP مع حماية تشفيرية عبر TLS.</p>
+<div class="lesson-example">Browser → HTTPS → Web Server</div>
+`
+},
+{
+id:9,
+title:"Linux للمبتدئين",
+desc:"ابدأ التعامل مع Linux.",
+content:`
+<h2>Linux</h2>
+<p>Linux نظام مهم جدًا في Cybersecurity.</p>
+<p>تعلم فيه الملفات والمجلدات والأوامر الأساسية.</p>
+<div class="lesson-example">pwd
+ls
+cd
+mkdir
+cat</div>
+`
+},
+{
+id:10,
+title:"Linux Permissions",
+desc:"افهم صلاحيات الملفات.",
+content:`
+<h2>Permissions</h2>
+<p>Linux يستخدم صلاحيات لتحديد من يستطيع قراءة أو تعديل أو تشغيل ملف.</p>
+<div class="lesson-example">r = read
+w = write
+x = execute</div>
+`
+},
+{
+id:11,
+title:"Python من الصفر",
+desc:"ابدأ Python بطريقة بسيطة.",
+content:`
+<h2>Python</h2>
+<p>Python لغة برمجة مفيدة للأتمتة وتحليل البيانات وأدوات Cybersecurity.</p>
+<div class="lesson-example">print("Hello Midnight")</div>
+`
+},
+{
+id:12,
+title:"Python Variables",
+desc:"تعلم Variables.",
+content:`
+<h2>Variables</h2>
+<p>Variable يخزن قيمة تستطيع استخدامها لاحقًا.</p>
+<div class="lesson-example">name = "Midnight"
+xp = 100</div>
+`
+},
+{
+id:13,
+title:"Python Conditions",
+desc:"اتخاذ القرارات في Python.",
+content:`
+<h2>Conditions</h2>
+<p>if وelse تسمح للبرنامج باتخاذ قرار بناءً على شرط.</p>
+<div class="lesson-example">if xp >= 100:
+    print("Level Up")</div>
+`
+},
+{
+id:14,
+title:"Python Loops",
+desc:"كرر العمليات بشكل منظم.",
+content:`
+<h2>Loops</h2>
+<p>Loops تسمح بتكرار عملية عدة مرات.</p>
+<div class="lesson-example">for i in range(5):
+    print(i)</div>
+`
+},
+{
+id:15,
+title:"Web Basics",
+desc:"أساسيات Web.",
+content:`
+<h2>Web</h2>
+<p>المتصفح يتواصل مع Web Server ويطلب الموارد التي يحتاجها.</p>
+<div class="lesson-example">Browser → Request → Server
+Browser ← Response ← Server</div>
+`
+},
+{
+id:16,
+title:"Cookies",
+desc:"وش هي Cookies؟",
+content:`
+<h2>Cookie</h2>
+<p>Cookie عبارة عن بيانات صغيرة يخزنها المتصفح ويرسلها للموقع وفق قواعد معينة.</p>
+<p>تستخدم لأشياء مثل التفضيلات والجلسات.</p>
+`
+},
+{
+id:17,
+title:"Sessions",
+desc:"افهم Session.",
+content:`
+<h2>Session</h2>
+<p>Session تساعد الموقع في معرفة أن الطلبات المختلفة مرتبطة بنفس جلسة المستخدم.</p>
+<p>غالبًا ترتبط بآلية Authentication.</p>
+`
+},
+{
+id:18,
+title:"HTML",
+desc:"الهيكل الأساسي لصفحات Web.",
+content:`
+<h2>HTML</h2>
+<p>HTML تحدد هيكل الصفحة والعناصر الموجودة فيها.</p>
+<div class="lesson-example">&lt;h1&gt;Midnight&lt;/h1&gt;</div>
+`
+},
+{
+id:19,
+title:"CSS",
+desc:"تنسيق صفحات Web.",
+content:`
+<h2>CSS</h2>
+<p>CSS تتحكم في الشكل والألوان والمسافات والتخطيط.</p>
+`
+},
+{
+id:20,
+title:"JavaScript",
+desc:"أضف التفاعل للصفحة.",
+content:`
+<h2>JavaScript</h2>
+<p>JavaScript تضيف سلوكًا وتفاعلًا للصفحات.</p>
+`
+},
+{
+id:21,
+title:"أساسيات الأمن السيبراني",
+desc:"المفاهيم الأساسية للحماية.",
+content:`
+<h2>Cybersecurity</h2>
+<p>الهدف الأساسي هو حماية الأنظمة والبيانات من الوصول أو التغيير أو التعطيل غير المصرح به.</p>
+<h2>الثلاثية الأساسية</h2>
+<ul>
+<li>Confidentiality</li>
+<li>Integrity</li>
+<li>Availability</li>
+</ul>
+`
+},
+{
+id:22,
+title:"Authentication و Authorization",
+desc:"فرق مهم جدًا.",
+content:`
+<h2>Authentication</h2>
+<p>من أنت؟</p>
+<h2>Authorization</h2>
+<p>وش مسموح لك تسوي؟</p>
+<p>مثال: تسجيل الدخول Authentication بينما السماح لك بفتح لوحة الإدارة Authorization.</p>
+`
+},
+{
+id:23,
+title:"أنواع الثغرات",
+desc:"تعرف على أشهر أنواع Vulnerabilities.",
+content:`
+<h2>Vulnerabilities</h2>
+<p>الثغرة هي ضعف يمكن أن يؤثر على أمان النظام.</p>
+<p>من الأمثلة التعليمية: Injection وBroken Access Control وXSS وغيرها.</p>
+`
+},
+{
+id:24,
+title:"OWASP",
+desc:"تعرف على OWASP.",
+content:`
+<h2>OWASP</h2>
+<p>منظمة معروفة بمجال Web Security وتوفر مشاريع وموارد تعليمية.</p>
+<p>من أشهر مواردها OWASP Top 10.</p>
+`
+},
+{
+id:25,
+title:"Blue Team",
+desc:"الدفاع عن الأنظمة.",
+content:`
+<h2>Blue Team</h2>
+<p>Blue Team يركز على الدفاع والمراقبة والكشف والاستجابة.</p>
+<p>يعمل مع Logs وAlerts وأدوات المراقبة.</p>
+`
+},
+{
+id:26,
+title:"SOC",
+desc:"كيف يعمل Security Operations Center.",
+content:`
+<h2>SOC</h2>
+<p>SOC هو فريق أو مركز لمراقبة الأحداث الأمنية وتحليلها والاستجابة لها.</p>
+<h2>SIEM</h2>
+<p>SIEM يجمع ويحلل Logs من مصادر مختلفة للمساعدة في اكتشاف الأحداث.</p>
+`
+},
+{
+id:27,
+title:"Bug Bounty",
+desc:"مقدمة عن Bug Bounty.",
+content:`
+<h2>Bug Bounty</h2>
+<p>برامج تسمح للباحثين باختبار أهداف محددة ضمن نطاق وقواعد واضحة.</p>
+<p>أهم قاعدة: لا تختبر أي نظام بدون تصريح.</p>
+`
+},
+{
+id:28,
+title:"CTF",
+desc:"تدريب عملي داخل بيئات مصممة للتعلم.",
+content:`
+<h2>CTF</h2>
+<p>Capture The Flag هو نوع من التحديات الأمنية التعليمية.</p>
+<p>تتعلم فيه التحليل وحل المشكلات داخل بيئة مخصصة للتدريب.</p>
+`
+},
+{
+id:29,
+title:"أخلاقيات الأمن السيبراني",
+desc:"القواعد التي لازم يمشي عليها الباحث.",
+content:`
+<h2>الأخلاقيات</h2>
+<p>المهارة بدون أخلاق ممكن تسبب ضرر.</p>
+<ul>
+<li>اختبر فقط الأنظمة المصرح بها.</li>
+<li>لا تسرق بيانات.</li>
+<li>لا تعطل خدمات.</li>
+<li>احترم خصوصية المستخدمين.</li>
+<li>التزم بنطاق البرنامج.</li>
+</ul>
+`
+}
+];
+
+function renderLessons(search=""){
+  const grid=document.getElementById("lessonGrid");
+  if(!grid)return;
+
+  const completed=getCompleted();
+  const query=String(search).toLowerCase().trim();
+
+  const filtered=lessons.filter(l=>
+    l.title.toLowerCase().includes(query) ||
+    l.desc.toLowerCase().includes(query)
+  );
+
+  if(!filtered.length){
+    grid.innerHTML=`<div class="empty">ما لقيت درس بهذا الاسم.</div>`;
+    return;
+  }
+
+  grid.innerHTML=filtered.map(l=>{
+    const done=completed.includes(l.id);
+
+    return `
+      <article class="lesson-card ${done?"completed":""}">
+        <div class="lesson-number">LESSON ${l.id}</div>
+        <h3>${escapeHTML(l.title)}</h3>
+        <p>${escapeHTML(l.desc)}</p>
+        ${done?`<div class="lesson-status">✓ مكتمل</div>`:""}
+        <button class="btn ${done?"":"btn-primary"}" onclick="openLesson(${l.id})">
+          ${done?"مراجعة الدرس":"ابدأ الدرس"}
+        </button>
+      </article>
+    `;
+  }).join("");
+
+  updateStats();
+}
+
+function openLesson(id){
+  const lesson=lessons.find(l=>l.id===Number(id));
+  if(!lesson)return;
+
+  localStorage.setItem(STORAGE.lastLesson,String(id));
+
+  const done=getCompleted().includes(lesson.id);
+
+  document.getElementById("lessonContent").innerHTML=`
+    <div class="lesson-number">LESSON ${lesson.id} / ${lessons.length}</div>
+
+    <h1>${escapeHTML(lesson.title)}</h1>
+
+    <p style="color:var(--muted);margin:8px 0 20px">
+      ${escapeHTML(lesson.desc)}
+    </p>
+
+    ${lesson.content}
+
+    <div class="lesson-actions">
+      ${
+        done
+        ? `<button class="btn" disabled>✓ الدرس مكتمل</button>`
+        : `<button class="btn btn-primary" onclick="completeLesson(${lesson.id})">
+             إنهاء الدرس +10 XP
+           </button>`
       }
 
-      .midnight-lab-layout{
-        grid-template-columns:1fr;
+      ${
+        lesson.id<lessons.length
+        ? `<button class="btn" onclick="openLesson(${lesson.id+1})">
+             الدرس التالي →
+           </button>`
+        : ""
       }
-
-      .midnight-lab-header{
-        flex-direction:column;
-      }
-
-      .midnight-case-box{
-        width:100%;
-        box-sizing:border-box;
-      }
-    }
-
-    @media(max-width:600px){
-      .midnight-lab-card{
-        padding:19px;
-      }
-
-      .midnight-lab-header h2{
-        font-size:23px;
-      }
-
-      .midnight-terminal{
-        min-height:300px;
-        font-size:12px;
-      }
-
-      .midnight-warning-box{
-        padding:20px;
-      }
-
-      .midnight-warning-actions{
-        flex-direction:column;
-      }
-    }
+    </div>
   `;
 
-  document.head.appendChild(style);
+  showPage("lesson");
+}
 
-  /* =========================================================
-     Helpers
-     ========================================================= */
+function completeLesson(id){
+  const lesson=lessons.find(l=>l.id===Number(id));
+  if(!lesson)return;
 
-  function safeToast(message) {
-    if (typeof window.toast === "function") {
-      window.toast(message);
-      return;
-    }
+  const completed=getCompleted();
 
-    const old = document.querySelector(".midnight-fallback-toast");
-
-    if (old) old.remove();
-
-    const el = document.createElement("div");
-
-    el.className = "midnight-fallback-toast";
-
-    Object.assign(el.style, {
-      position: "fixed",
-      bottom: "25px",
-      left: "50%",
-      transform: "translateX(-50%)",
-      zIndex: "100000",
-      background: "#181821",
-      color: "#fff",
-      padding: "12px 18px",
-      borderRadius: "12px",
-      border: "1px solid rgba(255,255,255,.1)",
-      boxShadow: "0 20px 50px rgba(0,0,0,.4)",
-      fontWeight: "800"
-    });
-
-    el.textContent = message;
-
-    document.body.appendChild(el);
-
-    setTimeout(() => el.remove(), 2600);
+  if(completed.includes(lesson.id)){
+    toast("الدرس مكتمل مسبقًا");
+    return;
   }
 
-  function getCompletedLabs() {
-    try {
-      return JSON.parse(
-        localStorage.getItem("midnightLabsCompleted") || "[]"
-      );
-    } catch {
-      return [];
-    }
+  completed.push(lesson.id);
+  localStorage.setItem(STORAGE.completed,JSON.stringify(completed));
+
+  addXP(10);
+
+  toast("تم إنهاء الدرس +10 XP 🔥");
+
+  openLesson(lesson.id);
+  updateStats();
+}
+
+
+/* =========================
+   DICTIONARY
+========================= */
+
+const dictionary=[
+["IP Address","عنوان منطقي يحدد الجهاز داخل Network."],
+["MAC Address","عنوان واجهة الشبكة المستخدم محليًا."],
+["DNS","يحوّل أسماء النطاقات إلى IP Address."],
+["DHCP","يوزع إعدادات Network تلقائيًا."],
+["Port","بوابة منطقية مرتبطة بخدمة."],
+["TCP","بروتوكول اتصال موثوق ومنظم."],
+["UDP","بروتوكول أخف لا يوفر نفس ضمانات TCP."],
+["HTTP","بروتوكول يستخدم لنقل بيانات Web."],
+["HTTPS","HTTP مع حماية TLS."],
+["SSH","بروتوكول للوصول الإداري الآمن عن بعد."],
+["API","واجهة تسمح للبرامج بالتواصل."],
+["Cookie","بيانات صغيرة يتعامل معها المتصفح والموقع."],
+["Session","طريقة للحفاظ على حالة جلسة المستخدم."],
+["Authentication","التحقق من هوية المستخدم."],
+["Authorization","تحديد ما يسمح للمستخدم بفعله."],
+["OWASP","منظمة ومجتمع معروفان بموارد Web Security."],
+["SOC","مركز أو فريق عمليات الأمن."],
+["SIEM","منصة لجمع وتحليل Logs والأحداث."],
+["CTF","تحديات أمنية تعليمية."],
+["Bug Bounty","برنامج للبحث عن الثغرات ضمن نطاق مصرح."],
+["Firewall","نظام يتحكم في حركة Network."],
+["VPN","اتصال ينشئ قناة محمية بين نقاط محددة."],
+["Phishing","محاولة خداع المستخدم للحصول على معلومات أو تنفيذ فعل."],
+["Malware","برمجية خبيثة مصممة لإحداث ضرر أو تنفيذ نشاط غير مرغوب."],
+["Log","سجل للأحداث والأنشطة."],
+["Alert","تنبيه عن حدث قد يحتاج للتحليل."],
+["Vulnerability","ضعف أمني يمكن استغلاله أو إساءة استخدامه."],
+["Exploit","طريقة أو كود يستغل ضعفًا معينًا."],
+["Blue Team","فريق يركز على الدفاع والكشف والاستجابة."]
+];
+
+function renderDictionary(search=""){
+  const grid=document.getElementById("dictionaryGrid");
+  if(!grid)return;
+
+  const q=String(search).toLowerCase().trim();
+
+  const data=dictionary.filter(([term,desc])=>
+    term.toLowerCase().includes(q) ||
+    desc.toLowerCase().includes(q)
+  );
+
+  grid.innerHTML=data.length
+    ? data.map(([term,desc])=>`
+      <div class="term">
+        <strong>${escapeHTML(term)}</strong>
+        <span>${escapeHTML(desc)}</span>
+      </div>
+    `).join("")
+    : `<div class="empty">ما لقيت المصطلح.</div>`;
+}
+
+
+/* =========================
+   QUIZ
+========================= */
+
+const quizQuestions=[
+{
+q:"وش وظيفة DNS؟",
+o:["تشفير الملفات","تحويل Domain إلى IP Address","تشغيل Firewall","تغيير MAC Address"],
+a:1
+},
+{
+q:"أي Port يرتبط عادةً بـ HTTPS؟",
+o:["22","25","80","443"],
+a:3
+},
+{
+q:"وش الفرق الأساسي بين Authentication و Authorization؟",
+o:["ما فيه فرق","الأول هوية والثاني صلاحيات","الأول Network والثاني DNS","الأول Port والثاني IP"],
+a:1
+},
+{
+q:"وش وظيفة DHCP؟",
+o:["توزيع إعدادات Network","تشفير HTTPS","تحليل Malware","إنشاء HTML"],
+a:0
+},
+{
+q:"وش معنى SOC؟",
+o:["Secure Online Code","Security Operations Center","System Open Control","Server Operations Command"],
+a:1
+},
+{
+q:"أي واحد يستخدم عادةً للدخول الإداري الآمن عن بعد؟",
+o:["SSH","HTML","CSS","DNS"],
+a:0
+},
+{
+q:"وش هو Port؟",
+o:["نوع من IP","بوابة منطقية لخدمة","ملف Linux","لغة برمجة"],
+a:1
+},
+{
+q:"وش الهدف من Blue Team؟",
+o:["الدفاع والمراقبة والاستجابة","تصميم المواقع","تطوير الألعاب","إدارة قواعد البيانات فقط"],
+a:0
+},
+{
+q:"وش معنى CTF؟",
+o:["Capture The Flag","Cyber Transfer File","Control The Firewall","Code Testing Framework"],
+a:0
+},
+{
+q:"وش القاعدة الأهم في Bug Bounty؟",
+o:["اختبار أي موقع","اختبار الأهداف المصرح بها فقط","تسريب البيانات","تعطيل الخدمة"],
+a:1
+},
+{
+q:"أي واحد يمثل IPv4؟",
+o:["AA:BB:CC:DD","192.168.1.10","https://site","MIDNIGHT"],
+a:1
+},
+{
+q:"وش وظيفة Firewall؟",
+o:["التحكم بحركة Network","إنشاء Password","تشغيل Python","تحويل Domain"],
+a:0
+}
+];
+
+let quizState={
+questions:[],
+index:0,
+score:0,
+selected:null,
+answered:false
+};
+
+function shuffle(arr){
+  const copy=[...arr];
+
+  for(let i=copy.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [copy[i],copy[j]]=[copy[j],copy[i]];
   }
 
-  function saveCompletedLab(id) {
-    const completed = getCompletedLabs();
+  return copy;
+}
 
-    if (!completed.includes(id)) {
-      completed.push(id);
-      localStorage.setItem(
-        "midnightLabsCompleted",
-        JSON.stringify(completed)
-      );
-      return true;
+function startQuiz(){
+  quizState={
+    questions:shuffle(quizQuestions),
+    index:0,
+    score:0,
+    selected:null,
+    answered:false
+  };
+
+  renderQuizQuestion();
+}
+
+function renderQuizQuestion(){
+  const area=document.getElementById("quizArea");
+  if(!area)return;
+
+  if(quizState.index>=quizState.questions.length){
+    const total=quizState.questions.length;
+    const percent=Math.round((quizState.score/total)*100);
+
+    area.innerHTML=`
+      <div class="quiz-card">
+        <div class="question">خلص الاختبار 🎉</div>
+        <p style="color:var(--muted);line-height:1.8">
+          نتيجتك: <strong style="color:white">${quizState.score}/${total}</strong>
+          — ${percent}%
+        </p>
+
+        <div class="actions">
+          <button class="btn btn-primary" onclick="startQuiz()">
+            إعادة الاختبار
+          </button>
+          <button class="btn" onclick="showPage('academy')">
+            الأكاديمية
+          </button>
+        </div>
+      </div>
+    `;
+
+    return;
+  }
+
+  const item=quizState.questions[quizState.index];
+
+  area.innerHTML=`
+    <div class="quiz-card">
+
+      <div class="quiz-meta">
+        السؤال ${quizState.index+1} من ${quizState.questions.length}
+      </div>
+
+      <div class="question">
+        ${escapeHTML(item.q)}
+      </div>
+
+      <div class="options">
+        ${item.o.map((option,i)=>`
+          <button
+            class="option"
+            onclick="selectQuizOption(${i})"
+            ${quizState.answered?"disabled":""}
+          >
+            ${escapeHTML(option)}
+          </button>
+        `).join("")}
+      </div>
+
+      <div id="quizResult" class="quiz-result"></div>
+
+      <div class="actions">
+        ${
+          quizState.answered
+          ? `<button class="btn btn-primary" onclick="nextQuizQuestion()">
+               ${quizState.index===quizState.questions.length-1?"النتيجة":"السؤال التالي →"}
+             </button>`
+          : ""
+        }
+      </div>
+
+    </div>
+  `;
+}
+
+function selectQuizOption(index){
+  if(quizState.answered)return;
+
+  quizState.selected=index;
+  quizState.answered=true;
+
+  const item=quizState.questions[quizState.index];
+  const buttons=document.querySelectorAll("#quizArea .option");
+
+  buttons.forEach((btn,i)=>{
+    if(i===item.a)btn.classList.add("correct");
+    if(i===index && i!==item.a)btn.classList.add("wrong");
+  });
+
+  const result=document.getElementById("quizResult");
+  result.style.display="block";
+
+  if(index===item.a){
+    quizState.score++;
+    addXP(5);
+
+    result.textContent="إجابة صحيحة +5 XP 🔥";
+    result.style.color="var(--green)";
+  }else{
+    result.textContent="الإجابة غير صحيحة — راجع المعلومة";
+    result.style.color="var(--red)";
+  }
+}
+
+function nextQuizQuestion(){
+  quizState.index++;
+  quizState.selected=null;
+  quizState.answered=false;
+  renderQuizQuestion();
+}
+
+
+/* =========================
+   LEVEL TEST
+========================= */
+
+const levelQuestions=[
+{
+q:"وش وظيفة DNS؟",
+o:["تحويل Domain إلى IP","تشغيل الألعاب","تغيير MAC","تشفير القرص"],
+a:0
+},
+{
+q:"أي واحد يعتبر Port شائع لـ HTTPS؟",
+o:["21","22","80","443"],
+a:3
+},
+{
+q:"Authentication يعني:",
+o:["تحديد الصلاحيات","التحقق من الهوية","فحص Network","تشفير الملفات"],
+a:1
+},
+{
+q:"وش هو SIEM؟",
+o:["منصة لجمع وتحليل الأحداث والLogs","لغة برمجة","نوع من Malware","Port"],
+a:0
+},
+{
+q:"وش يسوي Blue Team؟",
+o:["الدفاع والكشف والاستجابة","تصميم الصور","تطوير التطبيقات فقط","كتابة HTML"],
+a:0
+},
+{
+q:"متى يكون اختبار نظام قانونيًا؟",
+o:["أي وقت","إذا كان عندك تصريح ونطاق واضح","إذا كنت تستخدم VPN","إذا ما اكتشفوك"],
+a:1
+},
+{
+q:"وش وظيفة DHCP؟",
+o:["توزيع إعدادات Network","إنشاء Website","تحليل Python","تشفير DNS"],
+a:0
+},
+{
+q:"وش معنى CTF؟",
+o:["Capture The Flag","Cyber Traffic File","Control The Firewall","Cloud Transfer Format"],
+a:0
+},
+{
+q:"وش الفرق بين IP وMAC؟",
+o:["ما فيه فرق","كلاهما Password","IP منطقي وMAC عنوان واجهة الشبكة","MAC يستخدم للمواقع فقط"],
+a:2
+},
+{
+q:"وش أهم قاعدة في الأمن السيبراني الأخلاقي؟",
+o:["اختبر أي شيء","اختبر فقط ما لديك تصريح لاختباره","خذ البيانات","عطل الخدمة"],
+a:1
+}
+];
+
+let levelState={
+index:0,
+score:0
+};
+
+function startLevelTest(){
+  levelState={
+    index:0,
+    score:0
+  };
+
+  renderLevelQuestion();
+}
+
+function renderLevelQuestion(){
+  const area=document.getElementById("levelArea");
+  if(!area)return;
+
+  if(levelState.index>=levelQuestions.length){
+    let level="مبتدئ";
+
+    if(levelState.score>=8)level="متقدم";
+    else if(levelState.score>=5)level="متوسط";
+
+    area.innerHTML=`
+      <div class="quiz-card">
+        <div class="question">خلص اختبار المستوى ⚡</div>
+
+        <p style="color:var(--muted);line-height:1.9">
+          نتيجتك:
+          <strong style="color:white">
+            ${levelState.score}/${levelQuestions.length}
+          </strong>
+        </p>
+
+        <div class="level-card" style="margin-top:18px">
+          <h3>مستواك التقريبي: ${level}</h3>
+          <p>
+            المستوى يعتمد على إجابات هذا الاختبار فقط.
+            تقدر تبدأ من الأكاديمية وتعيد الاختبار لاحقًا.
+          </p>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-primary" onclick="startLevelTest()">
+            إعادة الاختبار
+          </button>
+          <button class="btn" onclick="showPage('academy')">
+            ابدأ التعلم
+          </button>
+        </div>
+      </div>
+    `;
+
+    return;
+  }
+
+  const item=levelQuestions[levelState.index];
+
+  area.innerHTML=`
+    <div class="quiz-card">
+
+      <div class="quiz-meta">
+        السؤال ${levelState.index+1} من ${levelQuestions.length}
+      </div>
+
+      <div class="question">${escapeHTML(item.q)}</div>
+
+      <div class="options">
+        ${item.o.map((option,i)=>`
+          <button class="option" onclick="answerLevel(${i})">
+            ${escapeHTML(option)}
+          </button>
+        `).join("")}
+      </div>
+
+    </div>
+  `;
+}
+
+function answerLevel(index){
+  const item=levelQuestions[levelState.index];
+
+  if(index===item.a){
+    levelState.score++;
+  }
+
+  levelState.index++;
+  renderLevelQuestion();
+}
+
+
+/* =========================
+   LABS
+========================= */
+
+const LAB_XP={
+  bank:150,
+  phishing:100,
+  soc:100,
+  endpoint:100,
+  web:100
+};
+
+const BANK={
+  id:"bank",
+  title:"Nexora Capital Bank",
+  subtitle:"Incident Response Investigation",
+  difficulty:"Advanced",
+  xp:150,
+  caseId:"NCB-IR-2026-0919",
+  severity:"HIGH",
+  network:"10.44.18.0/24",
+
+  hosts:[
+    ["auth-gw-01","10.44.18.10","443/tcp","https"],
+    ["portal-02","10.44.18.20","443/tcp","https"],
+    ["ledger-api-01","10.44.18.30","443/tcp","https"],
+    ["soc-jump-01","10.44.18.40","22/tcp","ssh"]
+  ],
+
+  auth:[
+    "[2026-09-19 08:41:02] AUTH SUCCESS user=finance.ops src=10.44.18.34 device=WS-17",
+    "[2026-09-19 08:44:18] AUTH FAILED user=finance.ops src=203.0.113.77 device=unknown",
+    "[2026-09-19 08:44:22] AUTH SUCCESS user=finance.ops src=203.0.113.77 device=unknown mfa=approved"
+  ],
+
+  web:[
+    "[2026-09-19 08:45:07] WEB LOGIN user=finance.ops src=203.0.113.77 app=portal-02",
+    "[2026-09-19 08:47:13] API ACCESS user=finance.ops src=203.0.113.77 endpoint=/internal/ledger"
+  ],
+
+  alerts:[
+    "[2026-09-19 08:49:55] ALERT rule=impossible-travel severity=high"
+  ],
+
+  nmap:[
+    "Nmap 7.95 (SIMULATION)",
+    "Target: ncb.local",
+    "Host discovery: 4 hosts",
+    "auth-gw-01     10.44.18.10    443/tcp   https",
+    "portal-02      10.44.18.20    443/tcp   https",
+    "ledger-api-01  10.44.18.30    443/tcp   https",
+    "soc-jump-01    10.44.18.40    22/tcp    ssh"
+  ],
+
+  questions:[
+    {
+      q:"ما هو الـ suspicious IP الظاهر في التحقيق؟",
+      o:["10.44.18.34","203.0.113.77","10.44.18.10","10.44.18.40"],
+      a:1
+    },
+    {
+      q:"ما هو الحساب المتأثر؟",
+      o:["admin","finance.ops","soc.admin","guest"],
+      a:1
+    },
+    {
+      q:"ما هو الـ priority host بناءً على Web logs؟",
+      o:["auth-gw-01","soc-jump-01","portal-02","ledger-api-01"],
+      a:2
+    },
+    {
+      q:"ما هو التصنيف الأقرب للحادثة؟",
+      o:["Account compromise / unauthorized access","DNS failure","Hardware failure","Normal login"],
+      a:0
+    },
+    {
+      q:"ما هو الإجراء الفوري المناسب؟",
+      o:[
+        "حذف جميع Logs",
+        "تعطيل/عزل الحساب أو الجلسة المتأثرة وحفظ الأدلة",
+        "إيقاف كل الإنترنت",
+        "تجاهل Alert"
+      ],
+      a:1
+    },
+    {
+      q:"ما مجموعة الأدلة الأساسية؟",
+      o:[
+        "Auth + Web + Alert logs",
+        "صور سطح المكتب فقط",
+        "DNS فقط",
+        "لا توجد أدلة"
+      ],
+      a:0
     }
+  ]
+};
 
+const SIMPLE_LAB_DATA={
+
+phishing:{
+  id:"phishing",
+  title:"Phishing Investigation",
+  icon:"📧",
+  desc:"حلل رسالة تدريبية وحدد المؤشرات المشبوهة.",
+  evidence:[
+    "From: finance-team@nexora-capital.example",
+    "To: analyst@ncb.local",
+    "Subject: Urgent account verification",
+    "Training URL: https://training.nexora.example/verify"
+  ],
+  questions:[
+    {
+      q:"وش أهم مؤشر يحتاج التحقيق؟",
+      o:["العنوان المستلم","Urgent account verification + رابط التحقق","وجود Subject","اسم الموظف"],
+      a:1
+    },
+    {
+      q:"وش التصرف الصحيح؟",
+      o:["فتح الرابط","إعادة إرسال الرسالة","الإبلاغ والتحقق من المصدر عبر قناة موثوقة","إدخال Password"],
+      a:2
+    }
+  ]
+},
+
+soc:{
+  id:"soc",
+  title:"SOC Alert Triage",
+  icon:"🛡️",
+  desc:"حلل Alerts ورتب أولويات التحقيق.",
+  evidence:[
+    "[001] Multiple failed logins | severity=medium",
+    "[002] Impossible travel | severity=high",
+    "[003] Successful login | severity=low"
+  ],
+  questions:[
+    {
+      q:"أي Alert يحتاج أولوية أعلى حسب البيانات؟",
+      o:["001","002","003","كلها نفس الشيء"],
+      a:1
+    },
+    {
+      q:"وش الخطوة المناسبة بعد استقبال Alert؟",
+      o:["تجاهله","تحليل الأدلة والسياق","حذف الـLogs","إيقاف النظام كاملًا"],
+      a:1
+    }
+  ]
+},
+
+endpoint:{
+  id:"endpoint",
+  title:"Endpoint Investigation",
+  icon:"💻",
+  desc:"حلل Process Tree داخل جهاز تدريبي.",
+  evidence:[
+    "explorer.exe",
+    "└── browser.exe",
+    "    └── updater.exe",
+    "Path: C:\\Training\\Temp\\updater.exe",
+    "system.exe",
+    "└── security-agent.exe"
+  ],
+  questions:[
+    {
+      q:"أي Process يحتاج تحقيق إضافي؟",
+      o:["explorer.exe","browser.exe","updater.exe داخل Training Temp","security-agent.exe"],
+      a:2
+    },
+    {
+      q:"وش الخطوة الصحيحة؟",
+      o:["تشغيله على جهاز حقيقي","جمع الأدلة والتحقق من المصدر والتوقيع","حذفه مباشرة","إرسال الملف لأشخاص عشوائيين"],
+      a:1
+    }
+  ]
+},
+
+web:{
+  id:"web",
+  title:"Web Incident",
+  icon:"🌐",
+  desc:"حلل Web logs وحدد النشاط الذي يحتاج تحقيق.",
+  evidence:[
+    "[08:40] GET /home src=10.20.5.14 status=200",
+    "[08:42] GET /profile src=10.20.5.14 status=200",
+    "[08:45] GET /internal/ledger src=203.0.113.77 status=200",
+    "[08:46] GET /admin src=203.0.113.77 status=403"
+  ],
+  questions:[
+    {
+      q:"أي IP يحتاج تحقيق إضافي؟",
+      o:["10.20.5.14","203.0.113.77","كلاهما بنفس الأولوية","لا يوجد"],
+      a:1
+    },
+    {
+      q:"ليش /internal/ledger مهم للتحقيق؟",
+      o:["لأنه صفحة عامة دائمًا","لأنه Endpoint داخلي يحتاج سياق وصلاحية","لأنه CSS","لأنه DNS"],
+      a:1
+    }
+  ]
+}
+
+};
+
+let currentLab=null;
+let bankAnswers={};
+
+function getCompletedLabs(){
+  return getLabsCompleted();
+}
+
+function saveCompletedLab(id){
+  const completed=getCompletedLabs();
+
+  if(!completed.includes(id)){
+    completed.push(id);
+    localStorage.setItem(STORAGE.labs,JSON.stringify(completed));
+  }
+}
+
+function rewardLab(id,amount){
+  const key="midnightRewardedLab_"+id;
+
+  if(localStorage.getItem(key)==="1"){
     return false;
   }
 
-  function addXP(amount) {
-    const current = Number(
-      localStorage.getItem("midnightXP") || "0"
-    );
+  localStorage.setItem(key,"1");
+  addXP(amount);
 
-    localStorage.setItem(
-      "midnightXP",
-      String(current + amount)
-    );
+  return true;
+}
 
-    if (typeof window.updateStats === "function") {
-      window.updateStats();
-    }
+function openLabs(){
+  const accepted=localStorage.getItem(STORAGE.labWarning)==="1";
 
-    if (typeof window.saveProgress === "function") {
-      window.saveProgress();
-    }
+  if(!accepted){
+    renderLabWarning();
+    showPage("labs");
+    return;
   }
 
-  function rewardLab(id, xp) {
-    const isNew = saveCompletedLab(id);
+  showPage("labs");
+  renderLabsHub();
+}
 
-    if (!isNew) {
-      safeToast("هذا اللاب مكتمل من قبل — ما راح يتكرر الـXP");
-      return false;
-    }
+function renderLabWarning(){
+  const hub=document.getElementById("labsHub");
+  const workspace=document.getElementById("labWorkspace");
 
-    addXP(xp);
+  workspace.innerHTML="";
 
-    safeToast(`🔥 ممتاز! حصلت على +${xp} XP`);
+  hub.innerHTML=`
+    <div class="midnight-lab-warning">
 
-    return true;
-  }
+      <strong>⚠️ قبل دخول Labs</strong>
 
-  /* =========================================================
-     Warning
-     ========================================================= */
+      <p>
+        جميع Labs داخل Midnight عبارة عن بيئات تدريب ومحاكاة فقط.
+        لا تستخدم المعلومات أو الأوامر الموجودة هنا ضد أنظمة حقيقية
+        أو أهداف بدون تصريح.
+      </p>
 
-  function showLabWarning(callback) {
-    if (
-      localStorage.getItem("midnightLabWarningAccepted") === "1"
-    ) {
-      callback();
-      return;
-    }
-
-    const old = document.querySelector(".midnight-warning");
-
-    if (old) old.remove();
-
-    const overlay = document.createElement("div");
-
-    overlay.className = "midnight-warning";
-
-    overlay.innerHTML = `
-      <div class="midnight-warning-box">
-        <div class="midnight-warning-icon">
-          <i class="fa-solid fa-triangle-exclamation"></i>
-        </div>
-
-        <h2>قبل ما تبدأ الاختبارات العملية</h2>
-
-        <p>
-          جميع الاختبارات العملية في Midnight عبارة عن محاكاة تدريبية
-          داخل الموقع فقط. الأنظمة والأسماء والسجلات والنتائج مصممة
-          للتعلم وليست أنظمة حقيقية. لا تستخدم أي أوامر أو معلومات
-          خارج بيئات تملكها أو لديك تصريح واضح لاختبارها.
-        </p>
-
-        <div class="midnight-warning-actions">
-          <button class="continue">كمل</button>
-          <button class="cancel">رجوع</button>
-        </div>
-      </div>
-    `;
-
-    document.body.appendChild(overlay);
-
-    overlay.querySelector(".continue").onclick = () => {
-      localStorage.setItem(
-        "midnightLabWarningAccepted",
-        "1"
-      );
-
-      overlay.remove();
-
-      callback();
-    };
-
-    overlay.querySelector(".cancel").onclick = () => {
-      overlay.remove();
-    };
-  }
-
-  /* =========================================================
-     Labs Hub
-     ========================================================= */
-
-  function renderLabsHub() {
-    const hub = document.getElementById("labsHub");
-    const workspace = document.getElementById("labWorkspace");
-
-    if (!hub || !workspace) return;
-
-    workspace.innerHTML = "";
-
-    const completed = getCompletedLabs();
-
-    const allLabs = [
-      BANK,
-      ...OTHER_LABS
-    ];
-
-    hub.innerHTML = `
-      <div class="midnight-lab-section active">
-        <div style="margin-bottom:8px;color:#8b5cf6;font-weight:900;">
-          PRACTICAL TRAINING
-        </div>
-
-        <h2 style="margin:0 0 8px;">
-          مختبرات Midnight
-        </h2>
-
-        <p style="color:#a6a6b5;margin:0;">
-          اختبارات عملية ومحاكاة آمنة لتطبيق اللي تعلمته.
-        </p>
-
-        <div class="midnight-lab-grid">
-          ${allLabs.map(lab => {
-            const done = completed.includes(lab.id);
-
-            const icon =
-              lab.icon ||
-              "fa-building-columns";
-
-            const featured =
-              lab.id === "bank"
-                ? "featured"
-                : "";
-
-            const high =
-              lab.difficulty === "Advanced"
-                ? "high"
-                : "";
-
-            return `
-              <div class="midnight-lab-card ${featured}">
-                <div class="midnight-lab-icon">
-                  <i class="fa-solid ${icon}"></i>
-                </div>
-
-                <div class="midnight-lab-title">
-                  ${lab.title}
-                </div>
-
-                <div class="midnight-lab-subtitle">
-                  ${lab.subtitle || ""}
-                </div>
-
-                <div class="midnight-lab-desc">
-                  ${
-                    lab.description ||
-                    "تحقيق تدريبي واقعي المظهر داخل بيئة محاكاة."
-                  }
-                </div>
-
-                <div class="midnight-lab-meta">
-                  <span class="midnight-lab-tag ${high}">
-                    ${lab.difficulty}
-                  </span>
-
-                  <span class="midnight-lab-tag xp">
-                    +${lab.xp} XP
-                  </span>
-
-                  ${
-                    done
-                      ? `
-                        <span class="midnight-lab-tag">
-                          ✓ مكتمل
-                        </span>
-                      `
-                      : ""
-                  }
-                </div>
-
-                <button
-                  class="midnight-lab-btn"
-                  onclick="openLab('${lab.id}')"
-                >
-                  ${
-                    done
-                      ? "إعادة فتح اللاب"
-                      : "ابدأ التحقيق"
-                  }
-                </button>
-              </div>
-            `;
-          }).join("")}
-        </div>
-      </div>
-    `;
-
-    hub.style.display = "block";
-    workspace.style.display = "none";
-  }
-
-  /* =========================================================
-     Bank Lab
-     ========================================================= */
-
-  function openBankLab() {
-    const hub = document.getElementById("labsHub");
-    const workspace = document.getElementById("labWorkspace");
-
-    if (!hub || !workspace) return;
-
-    hub.style.display = "none";
-    workspace.style.display = "block";
-
-    let terminalHistory = [
-      {
-        text:
-          "Midnight Training Console v1.0\nType 'help' to see available commands.",
-        type: ""
-      }
-    ];
-
-    workspace.innerHTML = `
-      <div class="midnight-lab-section active">
-
-        <button
-          class="midnight-lab-back"
-          onclick="closeLab()"
-        >
-          <i class="fa-solid fa-arrow-right"></i>
-          رجوع إلى المختبرات
+      <div class="actions">
+        <button class="btn btn-primary" onclick="acceptLabWarning()">
+          فهمت — دخول Labs
         </button>
 
-        <div class="midnight-lab-header">
-          <div>
-            <div style="
-              color:#8b5cf6;
-              font-size:12px;
-              font-weight:900;
-              margin-bottom:8px;
-            ">
-              INCIDENT RESPONSE / SIMULATION
-            </div>
-
-            <h2>
-              ${BANK.title}
-            </h2>
-
-            <p>
-              ${BANK.subtitle}
-            </p>
-          </div>
-
-          <div class="midnight-case-box">
-            <div class="midnight-case-row">
-              <span>Case ID</span>
-              <strong>${BANK.caseId}</strong>
-            </div>
-
-            <div class="midnight-case-row">
-              <span>Severity</span>
-              <strong class="danger">${BANK.severity}</strong>
-            </div>
-
-            <div class="midnight-case-row">
-              <span>Network</span>
-              <strong>${BANK.network}</strong>
-            </div>
-          </div>
-        </div>
-
-        <div class="midnight-lab-layout">
-
-          <div>
-
-            <div class="midnight-panel">
-              <div class="midnight-panel-head">
-                <h3>
-                  <i class="fa-solid fa-terminal"></i>
-                  Training Terminal
-                </h3>
-
-                <span class="midnight-lab-tag">
-                  SIMULATION
-                </span>
-              </div>
-
-              <div
-                id="midnightTerminal"
-                class="midnight-terminal"
-              ></div>
-
-              <div class="midnight-terminal-input">
-                <span>student@ncb:~$</span>
-
-                <input
-                  id="midnightTerminalInput"
-                  autocomplete="off"
-                  spellcheck="false"
-                  placeholder="اكتب help"
-                />
-              </div>
-            </div>
-
-            <div class="midnight-panel">
-              <div class="midnight-panel-head">
-                <h3>
-                  <i class="fa-solid fa-file-shield"></i>
-                  Authentication Logs
-                </h3>
-              </div>
-
-              <div class="midnight-panel-body">
-                <div class="midnight-log">
-                  ${escapeHTML(BANK.logs.auth)}
-                </div>
-              </div>
-            </div>
-
-            <div class="midnight-panel">
-              <div class="midnight-panel-head">
-                <h3>
-                  <i class="fa-solid fa-globe"></i>
-                  Web Logs
-                </h3>
-              </div>
-
-              <div class="midnight-panel-body">
-                <div class="midnight-log">
-                  ${escapeHTML(BANK.logs.web)}
-                </div>
-              </div>
-            </div>
-
-            <div class="midnight-panel">
-              <div class="midnight-panel-head">
-                <h3>
-                  <i class="fa-solid fa-bell"></i>
-                  Alert Logs
-                </h3>
-              </div>
-
-              <div class="midnight-panel-body">
-                <div class="midnight-log">
-                  ${escapeHTML(BANK.logs.alerts)}
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <div>
-
-            <div class="midnight-panel">
-              <div class="midnight-panel-head">
-                <h3>
-                  <i class="fa-solid fa-network-wired"></i>
-                  Network Hosts
-                </h3>
-              </div>
-
-              <div class="midnight-panel-body">
-                <div class="midnight-hosts">
-                  ${BANK.hosts.map(host => `
-                    <div class="midnight-host">
-                      <strong>${host[0]}</strong>
-                      <span>${host[1]}</span>
-                      <span>${host[2]}</span>
-                      <span>${host[3]}</span>
-                    </div>
-                  `).join("")}
-                </div>
-              </div>
-            </div>
-
-            <div class="midnight-panel">
-              <div class="midnight-panel-head">
-                <h3>
-                  <i class="fa-solid fa-circle-info"></i>
-                  معلومات التحقيق
-                </h3>
-              </div>
-
-              <div class="midnight-panel-body">
-                <p style="
-                  color:#bdbdcc;
-                  line-height:1.8;
-                  margin:0;
-                ">
-                  لديك حساب تدريبي مشبوه وسجلات متعددة.
-                  استخدم الـTerminal لفحص البيئة ثم انتقل
-                  إلى أسئلة التحقيق.
-                </p>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="midnight-panel">
-          <div class="midnight-panel-head">
-            <h3>
-              <i class="fa-solid fa-magnifying-glass-chart"></i>
-              أسئلة التحقيق
-            </h3>
-
-            <span id="bankQuestionProgress"
-              class="midnight-lab-tag">
-              0 / ${BANK.questions.length}
-            </span>
-          </div>
-
-          <div class="midnight-panel-body">
-
-            <form id="bankQuiz">
-              ${BANK.questions.map((question, index) => `
-                <div class="midnight-question">
-                  <h4>
-                    ${index + 1}. ${question.q}
-                  </h4>
-
-                  <div class="midnight-options">
-                    ${question.options.map((option, optionIndex) => `
-                      <label class="midnight-option">
-                        <input
-                          type="radio"
-                          name="bank-q-${index}"
-                          value="${optionIndex}"
-                        >
-                        <span>${option}</span>
-                      </label>
-                    `).join("")}
-                  </div>
-                </div>
-              `).join("")}
-
-              <button
-                type="submit"
-                class="midnight-submit"
-              >
-                <i class="fa-solid fa-check"></i>
-                تسليم التحقيق
-              </button>
-            </form>
-
-            <div
-              id="bankResult"
-              class="midnight-result"
-            ></div>
-
-          </div>
-        </div>
-
+        <button class="btn" onclick="showPage('home')">
+          رجوع
+        </button>
       </div>
-    `;
 
-    const terminal = document.getElementById(
-      "midnightTerminal"
-    );
+    </div>
+  `;
+}
 
-    const input = document.getElementById(
-      "midnightTerminalInput"
-    );
+function acceptLabWarning(){
+  localStorage.setItem(STORAGE.labWarning,"1");
+  renderLabsHub();
+}
 
-    function printTerminal(text, type = "") {
-      const line = document.createElement("div");
+function renderLabsHub(){
 
-      line.className =
-        "midnight-terminal-line " + type;
+  const hub=document.getElementById("labsHub");
+  const workspace=document.getElementById("labWorkspace");
 
-      line.textContent = text;
+  workspace.innerHTML="";
 
-      terminal.appendChild(line);
+  const completed=getCompletedLabs();
 
-      terminal.scrollTop =
-        terminal.scrollHeight;
+  const cards=[
+
+    {
+      id:"bank",
+      title:"Nexora Capital Bank",
+      subtitle:"Incident Response Investigation",
+      desc:"تحقيق كامل في حادثة تدريبية: Auth logs وWeb logs وAlerts وNetwork evidence وأسئلة تحقيق.",
+      icon:"🏦",
+      difficulty:"Advanced",
+      xp:150,
+      featured:true
+    },
+
+    {
+      id:"phishing",
+      title:"Phishing Investigation",
+      subtitle:"Email Analysis",
+      desc:"حلل رسالة تدريبية واكتشف المؤشرات المشبوهة.",
+      icon:"📧",
+      difficulty:"Beginner",
+      xp:100
+    },
+
+    {
+      id:"soc",
+      title:"SOC Alert Triage",
+      subtitle:"Alert Analysis",
+      desc:"حلل Alerts وحدد الأولوية والإجراء المناسب.",
+      icon:"🛡️",
+      difficulty:"Intermediate",
+      xp:100
+    },
+
+    {
+      id:"endpoint",
+      title:"Endpoint Investigation",
+      subtitle:"Process Analysis",
+      desc:"حلل Process Tree وحدد النشاط الذي يحتاج تحقيق.",
+      icon:"💻",
+      difficulty:"Intermediate",
+      xp:100
+    },
+
+    {
+      id:"web",
+      title:"Web Incident",
+      subtitle:"Web Log Analysis",
+      desc:"حلل Web logs وحدد النشاط غير المعتاد.",
+      icon:"🌐",
+      difficulty:"Intermediate",
+      xp:100
     }
 
-    function executeCommand(command) {
-      const raw = command.trim();
+  ];
 
-      if (!raw) return;
+  hub.innerHTML=`
+    <div class="section-title">
+      <h1>Labs 🧪</h1>
+      <p>
+        تدريب عملي داخل بيئات محاكاة آمنة.
+        <strong>${completed.length}/${cards.length}</strong> مكتملة
+      </p>
+    </div>
 
-      printTerminal(
-        "student@ncb:~$ " + raw,
-        "command"
-      );
+    <div class="midnight-lab-grid">
 
-      const lower = raw.toLowerCase();
+      ${cards.map(lab=>`
+        <article class="midnight-lab-card ${lab.featured?"featured":""} ${completed.includes(lab.id)?"completed":""}">
 
-      if (lower === "help") {
-        printTerminal(`
-Available training commands:
+          <div class="midnight-lab-icon">${lab.icon}</div>
 
-help
-status
-nmap
-ping auth-gw-01
-ipconfig
-netstat
-nslookup portal-02
-ls
-cat /logs/auth.log
-cat /logs/web.log
-cat /logs/alerts.log
-grep "FAILED" /logs/auth.log
-grep "203.0.113.77" /logs/auth.log
-timeline
-evidence
-report
-curl https://ncb.local/portal
-clear
-`);
-        return;
-      }
+          <h2>${escapeHTML(lab.title)}</h2>
 
-      if (lower === "status") {
-        printTerminal(
-          "CASE STATUS: ACTIVE\nSeverity: HIGH\nEnvironment: TRAINING SIMULATION",
-          "success"
-        );
-        return;
-      }
+          <div class="midnight-lab-subtitle">
+            ${escapeHTML(lab.subtitle)}
+          </div>
 
-      if (lower === "nmap") {
-        printTerminal(
-          BANK.nmap,
-          "success"
-        );
-        return;
-      }
-
-      if (lower === "ping auth-gw-01") {
-        printTerminal(
-          "PING auth-gw-01 (10.44.18.10)\n64 bytes: time=2ms\n64 bytes: time=2ms\nHost is reachable.",
-          "success"
-        );
-        return;
-      }
-
-      if (lower === "ipconfig") {
-        printTerminal(`
-Training Interface:
-
-IPv4 Address : 10.44.18.40
-Subnet Mask  : 255.255.255.0
-Gateway      : 10.44.18.1
-DNS          : 10.44.18.10
-`);
-        return;
-      }
-
-      if (lower === "netstat") {
-        printTerminal(`
-Proto  Local Address       Remote Address       State
-TCP    10.44.18.40:22      10.44.18.10:*        LISTEN
-TCP    10.44.18.40:443     10.44.18.20:*        ESTABLISHED
-`);
-        return;
-      }
-
-      if (lower === "nslookup portal-02") {
-        printTerminal(
-          "Name: portal-02\nAddress: 10.44.18.20",
-          "success"
-        );
-        return;
-      }
-
-      if (lower === "ls") {
-        printTerminal(
-          "logs  evidence  case-notes.txt  hosts.txt",
-          "success"
-        );
-        return;
-      }
-
-      if (lower === "cat /logs/auth.log") {
-        printTerminal(
-          BANK.logs.auth,
-          "success"
-        );
-        return;
-      }
-
-      if (lower === "cat /logs/web.log") {
-        printTerminal(
-          BANK.logs.web,
-          "success"
-        );
-        return;
-      }
-
-      if (lower === "cat /logs/alerts.log") {
-        printTerminal(
-          BANK.logs.alerts,
-          "success"
-        );
-        return;
-      }
-
-      if (lower === 'grep "failed" /logs/auth.log') {
-        printTerminal(
-          "[2026-09-19 08:44:18] AUTH FAILED user=finance.ops src=203.0.113.77 device=unknown",
-          "success"
-        );
-        return;
-      }
-
-      if (
-        lower ===
-        'grep "203.0.113.77" /logs/auth.log'
-      ) {
-        printTerminal(`
-[2026-09-19 08:44:18] AUTH FAILED user=finance.ops src=203.0.113.77 device=unknown
-[2026-09-19 08:44:22] AUTH SUCCESS user=finance.ops src=203.0.113.77 device=unknown mfa=approved
-`, "success");
-        return;
-      }
-
-      if (lower === "timeline") {
-        printTerminal(`
-08:41:02  Normal authentication
-08:44:18  Failed login from 203.0.113.77
-08:44:22  Successful login from same IP
-08:45:07  Web login to portal-02
-08:47:13  API access to /internal/ledger
-08:49:55  Impossible-travel alert
-`, "success");
-        return;
-      }
-
-      if (lower === "evidence") {
-        printTerminal(`
-Evidence set:
-
-[1] Authentication logs
-[2] Web logs
-[3] Alert logs
-[4] Timeline correlation
-
-Primary indicator:
-203.0.113.77
-`, "success");
-        return;
-      }
-
-      if (lower === "report") {
-        printTerminal(`
-INCIDENT REPORT — TRAINING
-
-Case: ${BANK.caseId}
-Category: Account compromise / unauthorized access
-Account: finance.ops
-Suspicious IP: 203.0.113.77
-Priority Host: portal-02
-
-Recommended response:
-Disable/isolate the affected account or session
-and preserve relevant logs for investigation.
-`, "success");
-        return;
-      }
-
-      if (
-        lower ===
-        "curl https://ncb.local/portal"
-      ) {
-        printTerminal(
-          "[SIMULATION] 200 OK — portal-02 — training environment",
-          "success"
-        );
-        return;
-      }
-
-      if (lower === "clear") {
-        terminal.innerHTML = "";
-        return;
-      }
-
-      printTerminal(
-        "command not available in training console",
-        "error"
-      );
-    }
-
-    input.addEventListener("keydown", event => {
-      if (event.key !== "Enter") return;
-
-      const command = input.value;
-
-      input.value = "";
-
-      executeCommand(command);
-    });
-
-    const quiz = document.getElementById(
-      "bankQuiz"
-    );
-
-    const progress = document.getElementById(
-      "bankQuestionProgress"
-    );
-
-    quiz.addEventListener("change", () => {
-      let answered = 0;
-
-      BANK.questions.forEach((_, index) => {
-        if (
-          quiz.querySelector(
-            `input[name="bank-q-${index}"]:checked`
-          )
-        ) {
-          answered++;
-        }
-      });
-
-      progress.textContent =
-        `${answered} / ${BANK.questions.length}`;
-    });
-
-    quiz.addEventListener("submit", event => {
-      event.preventDefault();
-
-      let score = 0;
-
-      BANK.questions.forEach(
-        (question, index) => {
-          const selected =
-            quiz.querySelector(
-              `input[name="bank-q-${index}"]:checked`
-            );
-
-          if (
-            selected &&
-            Number(selected.value) ===
-              question.answer
-          ) {
-            score++;
-          }
-        }
-      );
-
-      const result =
-        document.getElementById("bankResult");
-
-      const percentage = Math.round(
-        (score / BANK.questions.length) * 100
-      );
-
-      if (score === BANK.questions.length) {
-        const rewarded = rewardLab(
-          BANK.id,
-          BANK.xp
-        );
-
-        result.className =
-          "midnight-result show";
-
-        result.innerHTML = `
-          <h3>
-            <i class="fa-solid fa-circle-check"></i>
-            تم حل التحقيق بنجاح
-          </h3>
-
-          <p>
-            نتيجتك ${score}/${BANK.questions.length}
-            (${percentage}%).
-            ${
-              rewarded
-                ? `تمت إضافة +${BANK.xp} XP إلى حسابك.`
-                : "هذا اللاب مكتمل سابقًا."
-            }
+          <p class="midnight-lab-desc">
+            ${escapeHTML(lab.desc)}
           </p>
-        `;
 
-        window.scrollTo({
-          top: result.offsetTop - 100,
-          behavior: "smooth"
-        });
+          <div class="midnight-lab-meta">
+            <span class="midnight-lab-tag">
+              ${escapeHTML(lab.difficulty)}
+            </span>
 
-        return;
-      }
+            <span class="midnight-lab-xp">
+              +${lab.xp} XP
+            </span>
 
-      result.className =
-        "midnight-result show";
+            ${
+              completed.includes(lab.id)
+              ? `<span class="midnight-lab-tag" style="color:var(--green)">
+                   ✓ مكتملة
+                 </span>`
+              : ""
+            }
+          </div>
 
-      result.style.borderColor =
-        "rgba(255,209,102,.2)";
+          <button class="btn ${completed.includes(lab.id)?"":"btn-primary"}" onclick="openLab('${lab.id}')">
+            ${completed.includes(lab.id)?"إعادة التدريب":"ابدأ Lab"}
+          </button>
 
-      result.style.background =
-        "rgba(255,209,102,.06)";
+        </article>
+      `).join("")}
 
-      result.innerHTML = `
-        <h3 style="color:#ffd166;">
-          <i class="fa-solid fa-rotate"></i>
-          باقي شوي!
-        </h3>
+    </div>
+  `;
+}
 
-        <p>
-          نتيجتك ${score}/${BANK.questions.length}
-          (${percentage}%).
-          راجع السجلات والـtimeline وحاول مرة ثانية.
-        </p>
-      `;
+function openLab(id){
 
-      window.scrollTo({
-        top: result.offsetTop - 100,
-        behavior: "smooth"
-      });
-    });
-
-    setTimeout(() => {
-      input.focus();
-    }, 150);
+  if(id==="bank"){
+    openBankLab();
+    return;
   }
 
-  /* =========================================================
-     Other Labs
-     ========================================================= */
+  if(SIMPLE_LAB_DATA[id]){
+    openSimpleLab(id);
+    return;
+  }
 
-  const SIMPLE_LAB_DATA = {
-    phishing: {
-      icon: "fa-envelope-open-text",
-      title: "Phishing Investigation",
-      description:
-        "لديك بريد تدريبي مشبوه. حلل المؤشرات واختر التصرف الصحيح.",
-      evidence: `
-FROM: finance-team@nexora-capital.example
-TO: analyst@ncb.local
-SUBJECT: Urgent account verification
+  toast("Lab غير موجود");
+}
 
-LINK:
-https://portal-verification.training.example/login
+function closeLab(){
+  currentLab=null;
+  bankAnswers={};
 
-NOTE:
-The message claims the user's account will be disabled
-if verification is not completed.
-`,
-      questions: [
-        {
-          q: "ما المؤشر الأكثر إثارة للشك؟",
-          options: [
-            "وجود عنوان البريد",
-            "رابط إلى نطاق تدريبي غير متوقع",
-            "وجود Subject",
-            "وجود سطر فارغ"
-          ],
-          answer: 1
-        },
-        {
-          q: "ما الإجراء الآمن؟",
-          options: [
-            "فتح الرابط وإدخال البيانات",
-            "إعادة إرسال الرسالة للجميع",
-            "الإبلاغ عنها والتحقق من المصدر عبر قناة موثوقة",
-            "تحميل أي ملف مرفق"
-          ],
-          answer: 2
-        }
-      ]
-    },
+  document.getElementById("labWorkspace").innerHTML="";
+  renderLabsHub();
+}
 
-    soc: {
-      icon: "fa-shield-halved",
-      title: "SOC Alert Triage",
-      description:
-        "فرز مجموعة تنبيهات تدريبية وتحديد التصنيف المناسب لكل حالة.",
-      evidence: `
-ALERT-001
-rule=multiple_failed_logins
-user=finance.ops
-severity=medium
 
-ALERT-002
-rule=impossible-travel
-user=finance.ops
-severity=high
+/* =========================
+   BANK LAB
+========================= */
 
-ALERT-003
-rule=successful_login
-user=training.user
-severity=low
-`,
-      questions: [
-        {
-          q: "أي تنبيه يحتاج أولوية أعلى؟",
-          options: [
-            "ALERT-003",
-            "ALERT-001",
-            "ALERT-002",
-            "لا يوجد"
-          ],
-          answer: 2
-        },
-        {
-          q: "ما التصرف الأولي المناسب؟",
-          options: [
-            "حذف التنبيه",
-            "التحقق من الأدلة والسياق وربط الأحداث",
-            "إيقاف كل الشبكة",
-            "تجاهل التنبيه"
-          ],
-          answer: 1
-        }
-      ]
-    },
+function openBankLab(){
 
-    endpoint: {
-      icon: "fa-computer",
-      title: "Endpoint Investigation",
-      description:
-        "افحص Process Tree تدريبية وحدد العملية غير المعتادة.",
-      evidence: `
-PROCESS TREE — TRAINING ENDPOINT
+  currentLab="bank";
+  bankAnswers={};
 
-explorer.exe
- └── browser.exe
-      └── updater.exe
+  const hub=document.getElementById("labsHub");
+  const workspace=document.getElementById("labWorkspace");
 
-system.exe
- └── security-agent.exe
+  hub.innerHTML="";
 
-NOTE:
-updater.exe was launched from a temporary training directory.
-`,
-      questions: [
-        {
-          q: "أي عملية تستحق التحقيق أولًا؟",
-          options: [
-            "explorer.exe",
-            "security-agent.exe",
-            "updater.exe",
-            "system.exe"
-          ],
-          answer: 2
-        },
-        {
-          q: "لماذا؟",
-          options: [
-            "لأنها عملية نظام",
-            "لأنها ظهرت في مسار مؤقت وغير معتاد",
-            "لأنها جزء من المتصفح",
-            "لأنها لا تعمل"
-          ],
-          answer: 1
-        }
-      ]
-    },
+  workspace.innerHTML=`
 
-    web: {
-      icon: "fa-globe",
-      title: "Web Incident",
-      description:
-        "حلل HTTP logs تدريبية وابحث عن الطلب غير المعتاد.",
-      evidence: `
-10.20.5.14 - GET /index.html 200
-10.20.5.14 - GET /login 200
-10.20.5.14 - POST /login 302
-10.20.5.14 - GET /dashboard 200
-203.0.113.77 - GET /internal/ledger 403
-203.0.113.77 - GET /admin 403
-`,
-      questions: [
-        {
-          q: "أي مصدر يحتاج تحقيقًا؟",
-          options: [
-            "10.20.5.14",
-            "203.0.113.77",
-            "localhost",
-            "لا يوجد"
-          ],
-          answer: 1
-        },
-        {
-          q: "ما المؤشر؟",
-          options: [
-            "طلب صفحة عامة",
-            "محاولة الوصول إلى مسارات داخلية وإدارية",
-            "تحميل index.html",
-            "نجاح تسجيل الدخول"
-          ],
-          answer: 1
-        }
-      ]
-    }
-  };
+    <div class="lab-header">
 
-  function openSimpleLab(id) {
-    const data = SIMPLE_LAB_DATA[id];
-
-    if (!data) return;
-
-    const hub = document.getElementById("labsHub");
-    const workspace = document.getElementById("labWorkspace");
-
-    if (!hub || !workspace) return;
-
-    hub.style.display = "none";
-    workspace.style.display = "block";
-
-    workspace.innerHTML = `
-      <div class="midnight-lab-section active">
-
-        <button
-          class="midnight-lab-back"
-          onclick="closeLab()"
-        >
-          <i class="fa-solid fa-arrow-right"></i>
-          رجوع إلى المختبرات
+      <div>
+        <button class="btn back-btn" onclick="closeLab()">
+          ← كل Labs
         </button>
 
-        <div class="midnight-lab-header">
-          <div>
-            <div style="
-              color:#8b5cf6;
-              font-size:12px;
-              font-weight:900;
-              margin-bottom:8px;
-            ">
-              PRACTICAL TRAINING / SIMULATION
-            </div>
+        <h1>🏦 ${BANK.title}</h1>
 
-            <h2>${data.title}</h2>
+        <p>${BANK.subtitle}</p>
+      </div>
 
-            <p>${data.description}</p>
+      <div class="midnight-lab-meta">
+        <span class="midnight-lab-high midnight-lab-tag">
+          ${BANK.severity}
+        </span>
+        <span class="midnight-lab-xp">
+          +${BANK.xp} XP
+        </span>
+      </div>
+
+    </div>
+
+    <div class="lab-progress">
+      <div id="bankProgress"></div>
+    </div>
+
+    <div class="lab-layout">
+
+      <div>
+
+        <div class="lab-panel">
+
+          <div class="panel-head">
+            Mission
           </div>
 
-          <div class="midnight-case-box">
-            <div class="midnight-case-row">
-              <span>Environment</span>
-              <strong>Training</strong>
+          <div class="panel-body">
+
+            <div class="case-box">
+
+              <div class="case-row">
+                <small>Case ID</small>
+                <strong>${BANK.caseId}</strong>
+              </div>
+
+              <div class="case-row">
+                <small>Severity</small>
+                <strong>${BANK.severity}</strong>
+              </div>
+
+              <div class="case-row">
+                <small>Network</small>
+                <strong>${BANK.network}</strong>
+              </div>
+
+              <div class="case-row">
+                <small>Environment</small>
+                <strong>Training Simulation</strong>
+              </div>
+
             </div>
 
-            <div class="midnight-case-row">
-              <span>Reward</span>
-              <strong style="color:#39d98a;">
-                +${LAB_XP[id]} XP
-              </strong>
-            </div>
+            <p style="color:var(--muted);line-height:1.9">
+              حصلت Nexora Capital Bank على Alert عالي الخطورة.
+              مهمتك كمحلل Incident Response هي تحليل الأدلة
+              وتحديد الحساب المتأثر والـIP المشبوه والـhost ذي الأولوية
+              ثم إرسال نتيجة التحقيق.
+            </p>
+
           </div>
+
         </div>
 
-        <div class="midnight-panel">
-          <div class="midnight-panel-head">
-            <h3>
-              <i class="fa-solid ${data.icon}"></i>
-              Evidence
-            </h3>
+        <div class="lab-panel" style="margin-top:16px">
 
-            <span class="midnight-lab-tag">
-              SYNTHETIC DATA
-            </span>
+          <div class="panel-head">
+            Terminal — Simulation
           </div>
 
-          <div class="midnight-panel-body">
-            <div class="midnight-log">
-              ${escapeHTML(data.evidence)}
+          <div class="panel-body">
+
+            <div id="bankTerminal" class="terminal">
+              <div class="terminal-line success">
+                Midnight Training Terminal
+              </div>
+
+              <div class="terminal-line muted">
+                هذه Terminal محاكاة. اكتب help لعرض الأوامر.
+              </div>
+
+              <div class="terminal-line muted">
+                Target: ncb.local — fictional training environment
+              </div>
             </div>
-          </div>
-        </div>
 
-        <div class="midnight-panel">
-          <div class="midnight-panel-head">
-            <h3>
-              <i class="fa-solid fa-list-check"></i>
-              أسئلة التحقيق
-            </h3>
-          </div>
+            <div class="terminal-input">
 
-          <div class="midnight-panel-body">
-
-            <form id="simpleLabQuiz">
-
-              ${data.questions.map((question,index) => `
-                <div class="midnight-question">
-
-                  <h4>
-                    ${index + 1}.
-                    ${question.q}
-                  </h4>
-
-                  <div class="midnight-options">
-                    ${question.options.map((option,oi) => `
-                      <label class="midnight-option">
-                        <input
-                          type="radio"
-                          name="simple-${index}"
-                          value="${oi}"
-                        >
-                        <span>${option}</span>
-                      </label>
-                    `).join("")}
-                  </div>
-
-                </div>
-              `).join("")}
-
-              <button
-                class="midnight-submit"
-                type="submit"
+              <input
+                id="bankCommand"
+                autocomplete="off"
+                placeholder="اكتب command..."
+                onkeydown="if(event.key==='Enter')runBankCommand()"
               >
-                <i class="fa-solid fa-check"></i>
-                تسليم الإجابات
+
+              <button class="btn btn-primary" onclick="runBankCommand()">
+                Run
               </button>
 
-            </form>
-
-            <div
-              id="simpleResult"
-              class="midnight-result"
-            ></div>
+            </div>
 
           </div>
+
         </div>
 
       </div>
+
+
+      <div>
+
+        <div class="lab-panel">
+
+          <div class="panel-head">
+            Network Hosts
+          </div>
+
+          <div class="panel-body">
+
+            <div class="hosts">
+
+              ${BANK.hosts.map(h=>`
+                <div class="host">
+                  <strong>${h[0]}</strong>
+                  <span>${h[1]} — ${h[2]} — ${h[3]}</span>
+                </div>
+              `).join("")}
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="lab-panel" style="margin-top:16px">
+
+          <div class="panel-head">
+            Investigation Questions
+          </div>
+
+          <div class="panel-body">
+
+            <div id="bankQuestions"></div>
+
+            <button class="btn btn-primary" style="width:100%;margin-top:12px"
+              onclick="submitBankInvestigation()">
+              Submit Investigation
+            </button>
+
+            <div id="bankResult"></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  `;
+
+  renderBankQuestions();
+  updateBankProgress();
+
+  setTimeout(()=>{
+    const input=document.getElementById("bankCommand");
+    if(input)input.focus();
+  },100);
+}
+
+function renderBankQuestions(){
+
+  const box=document.getElementById("bankQuestions");
+  if(!box)return;
+
+  box.innerHTML=BANK.questions.map((item,index)=>`
+
+    <div class="lab-question">
+
+      <h4>${index+1}. ${escapeHTML(item.q)}</h4>
+
+      ${item.o.map((option,i)=>`
+        <button
+          class="lab-option ${bankAnswers[index]===i?"selected":""}"
+          onclick="selectBankAnswer(${index},${i})"
+        >
+          ${escapeHTML(option)}
+        </button>
+      `).join("")}
+
+    </div>
+
+  `).join("");
+}
+
+function selectBankAnswer(questionIndex,answerIndex){
+
+  bankAnswers[questionIndex]=answerIndex;
+
+  renderBankQuestions();
+  updateBankProgress();
+}
+
+function updateBankProgress(){
+
+  const total=BANK.questions.length;
+  const answered=Object.keys(bankAnswers).length;
+  const percent=Math.round((answered/total)*100);
+
+  const bar=document.getElementById("bankProgress");
+
+  if(bar){
+    bar.style.width=percent+"%";
+  }
+}
+
+function submitBankInvestigation(){
+
+  const total=BANK.questions.length;
+  const answered=Object.keys(bankAnswers).length;
+
+  if(answered<total){
+    toast(`جاوب كل الأسئلة أولًا (${answered}/${total})`);
+    return;
+  }
+
+  let score=0;
+
+  BANK.questions.forEach((q,index)=>{
+    if(bankAnswers[index]===q.a){
+      score++;
+    }
+  });
+
+  const result=document.getElementById("bankResult");
+
+  if(score===total){
+
+    const rewarded=rewardLab("bank",BANK.xp);
+    saveCompletedLab("bank");
+
+    result.className="lab-result success";
+
+    result.innerHTML=`
+      <strong>✓ Investigation Passed</strong>
+      <p style="margin-top:7px;color:var(--muted)">
+        النتيجة ${score}/${total}
+      </p>
+      <p style="margin-top:7px;color:var(--muted)">
+        ${rewarded?`+${BANK.xp} XP تمت إضافتها 🔥`:"تم احتساب الـLab مسبقًا"}
+      </p>
     `;
 
-    document
-      .getElementById("simpleLabQuiz")
-      .addEventListener("submit", event => {
+    toast(rewarded?`Lab مكتمل +${BANK.xp} XP 🔥`:"Lab مكتمل مسبقًا");
 
-        event.preventDefault();
+  }else{
 
-        let score = 0;
+    result.className="lab-result fail";
 
-        data.questions.forEach(
-          (question,index) => {
-
-            const selected =
-              document.querySelector(
-                `input[name="simple-${index}"]:checked`
-              );
-
-            if (
-              selected &&
-              Number(selected.value) ===
-                question.answer
-            ) {
-              score++;
-            }
-          }
-        );
-
-        const result =
-          document.getElementById("simpleResult");
-
-        if (
-          score === data.questions.length
-        ) {
-
-          const rewarded =
-            rewardLab(id, LAB_XP[id]);
-
-          result.className =
-            "midnight-result show";
-
-          result.innerHTML = `
-            <h3>
-              <i class="fa-solid fa-circle-check"></i>
-              ممتاز — تم اجتياز اللاب
-            </h3>
-
-            <p>
-              نتيجتك ${score}/${data.questions.length}.
-              ${
-                rewarded
-                  ? `حصلت على +${LAB_XP[id]} XP.`
-                  : "الـXP لهذا اللاب تم أخذه سابقًا."
-              }
-            </p>
-          `;
-
-        } else {
-
-          result.className =
-            "midnight-result show";
-
-          result.style.borderColor =
-            "rgba(255,209,102,.2)";
-
-          result.style.background =
-            "rgba(255,209,102,.06)";
-
-          result.innerHTML = `
-            <h3 style="color:#ffd166;">
-              حاول مرة ثانية
-            </h3>
-
-            <p>
-              نتيجتك ${score}/${data.questions.length}.
-              ارجع للأدلة وركز على المؤشرات الموجودة فيها.
-            </p>
-          `;
-        }
-      });
+    result.innerHTML=`
+      <strong>✗ Investigation يحتاج مراجعة</strong>
+      <p style="margin-top:7px;color:var(--muted)">
+        النتيجة ${score}/${total}
+      </p>
+      <p style="margin-top:7px;color:var(--muted)">
+        راجع Auth logs وWeb logs وAlerts ثم حاول مرة ثانية.
+      </p>
+    `;
   }
 
-  /* =========================================================
-     Public Functions
-     ========================================================= */
+  updateStats();
+}
 
-  window.openLabs = function() {
-    showLabWarning(() => {
-      renderLabsHub();
 
-      if (
-        typeof window.showPage ===
-        "function"
-      ) {
-        window.showPage("labs");
-      }
+/* =========================
+   BANK TERMINAL
+========================= */
 
-      setTimeout(() => {
-        const labs =
-          document.getElementById("labs");
+function terminalPrint(text,type=""){
+  const terminal=document.getElementById("bankTerminal");
+  if(!terminal)return;
 
-        if (labs) {
-          labs.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-        }
-      }, 50);
-    });
-  };
+  const line=document.createElement("div");
+  line.className="terminal-line "+type;
+  line.textContent=text;
 
-  window.openLab = function(id) {
-    showLabWarning(() => {
+  terminal.appendChild(line);
+  terminal.scrollTop=terminal.scrollHeight;
+}
 
-      if (id === "bank") {
-        openBankLab();
-        return;
-      }
+function runBankCommand(){
 
-      openSimpleLab(id);
-    });
-  };
+  const input=document.getElementById("bankCommand");
+  if(!input)return;
 
-  window.closeLab = function() {
-    renderLabsHub();
-  };
+  const raw=input.value.trim();
 
-  /* =========================================================
-     Escape HTML
-     ========================================================= */
+  if(!raw)return;
 
-  function escapeHTML(value) {
-    return String(value)
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#039;");
+  terminalPrint("$ "+raw,"command");
+
+  input.value="";
+
+  const command=raw.toLowerCase();
+
+  if(command==="help"){
+
+    [
+      "help",
+      "status",
+      "nmap",
+      "ping auth-gw-01",
+      "ipconfig",
+      "netstat",
+      "nslookup portal-02",
+      "ls",
+      "cat /logs/auth.log",
+      "cat /logs/web.log",
+      "cat /logs/alerts.log",
+      'grep "FAILED" /logs/auth.log',
+      'grep "203.0.113.77" /logs/auth.log',
+      "timeline",
+      "evidence",
+      "report",
+      "curl https://ncb.local/portal",
+      "clear"
+    ].forEach(x=>terminalPrint(x));
+
+    return;
   }
 
-  /* =========================================================
-     Initial Render
-     ========================================================= */
-
-  function initializeLabs() {
-    const hub = document.getElementById("labsHub");
-
-    const workspace =
-      document.getElementById("labWorkspace");
-
-    if (!hub || !workspace) {
-      return;
-    }
-
-    renderLabsHub();
+  if(command==="clear"){
+    document.getElementById("bankTerminal").innerHTML="";
+    return;
   }
 
-  if (
-    document.readyState ===
-    "loading"
-  ) {
-    document.addEventListener(
-      "DOMContentLoaded",
-      initializeLabs
-    );
-  } else {
-    initializeLabs();
+  if(command==="status"){
+    terminalPrint("CASE: NCB-IR-2026-0919");
+    terminalPrint("STATUS: ACTIVE");
+    terminalPrint("SEVERITY: HIGH");
+    terminalPrint("ENVIRONMENT: TRAINING SIMULATION");
+    return;
   }
 
-})();
+  if(command==="nmap"){
+    BANK.nmap.forEach(x=>terminalPrint(x));
+    return;
+  }
+
+  if(command==="ping auth-gw-01"){
+    terminalPrint("PING auth-gw-01 [10.44.18.10]");
+    terminalPrint("Reply: 10.44.18.10 — simulated response");
+    return;
+  }
+
+  if(command==="ipconfig"){
+    terminalPrint("Training Analyst Workstation");
+    terminalPrint("IPv4: 10.44.18.34");
+    terminalPrint("Network: 10.44.18.0/24");
+    return;
+  }
+
+  if(command==="netstat"){
+    terminalPrint("10.44.18.34 → 10.44.18.20:443 ESTABLISHED");
+    terminalPrint("10.44.18.34 → 10.44.18.10:443 ESTABLISHED");
+    return;
+  }
+
+  if(command==="nslookup portal-02"){
+    terminalPrint("portal-02.ncb.local");
+    terminalPrint("Address: 10.44.18.20");
+    return;
+  }
+
+  if(command==="ls"){
+    terminalPrint("/logs/");
+    terminalPrint("auth.log");
+    terminalPrint("web.log");
+    terminalPrint("alerts.log");
+    return;
+  }
+
+  if(command==="cat /logs/auth.log"){
+    BANK.auth.forEach(x=>terminalPrint(x));
+    return;
+  }
+
+  if(command==="cat /logs/web.log"){
+    BANK.web.forEach(x=>terminalPrint(x));
+    return;
+  }
+
+  if(command==="cat /logs/alerts.log"){
+    BANK.alerts.forEach(x=>terminalPrint(x));
+    return;
+  }
+
+  if(command.includes('grep "failed" /logs/auth.log')){
+    terminalPrint(BANK.auth[1]);
+    return;
+  }
+
+  if(command.includes('grep "203.0.113.77" /logs/auth.log')){
+    BANK.auth
+      .filter(x=>x.includes("203.0.113.77"))
+      .forEach(x=>terminalPrint(x));
+    return;
+  }
+
+  if(command==="timeline"){
+    [
+      "08:41:02 — normal finance.ops login",
+      "08:44:18 — failed login from 203.0.113.77",
+      "08:44:22 — successful login from same source",
+      "08:45:07 — Web login on portal-02",
+      "08:47:13 — API access /internal/ledger",
+      "08:49:55 — impossible-travel HIGH alert"
+    ].forEach(x=>terminalPrint(x));
+    return;
+  }
+
+  if(command==="evidence"){
+    terminalPrint("Evidence set:");
+    terminalPrint("1. Auth logs");
+    terminalPrint("2. Web logs");
+    terminalPrint("3. Alert logs");
+    terminalPrint("4. Host inventory");
+    return;
+  }
+
+  if(command==="report"){
+    terminalPrint("Recommended classification:");
+    terminalPrint("Account compromise / unauthorized access");
+    terminalPrint("Priority host: portal-02");
+    terminalPrint("Preserve evidence and contain affected account/session.");
+    return;
+  }
+
+  if(command==="curl https://ncb.local/portal"){
+    terminalPrint("SIMULATION RESPONSE 200 OK");
+    terminalPrint("Training portal — no real network connection.");
+    return;
+  }
+
+  terminalPrint("command not found — type help","error");
+}
+
+
+/* =========================
+   SIMPLE LABS
+========================= */
+
+let simpleAnswers={};
+
+function openSimpleLab(id){
+
+  const data=SIMPLE_LAB_DATA[id];
+
+  if(!data)return;
+
+  currentLab=id;
+  simpleAnswers={};
+
+  document.getElementById("labsHub").innerHTML="";
+
+  const workspace=document.getElementById("labWorkspace");
+
+  workspace.innerHTML=`
+
+    <div class="lab-header">
+
+      <div>
+
+        <button class="btn back-btn" onclick="closeLab()">
+          ← كل Labs
+        </button>
+
+        <h1>${data.icon} ${escapeHTML(data.title)}</h1>
+
+        <p>${escapeHTML(data.desc)}</p>
+
+      </div>
+
+      <div class="midnight-lab-xp">
+        +${LAB_XP[id]} XP
+      </div>
+
+    </div>
+
+    <div class="lab-layout">
+
+      <div class="lab-panel">
+
+        <div class="panel-head">
+          Evidence
+        </div>
+
+        <div class="panel-body">
+
+          <div class="logs">
+            ${data.evidence.map(x=>escapeHTML(x)).join("<br>")}
+          </div>
+
+          <div class="lesson-example" style="margin-top:15px">
+            TRAINING ENVIRONMENT<br>
+            No real target<br>
+            Analysis only
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="lab-panel">
+
+        <div class="panel-head">
+          Investigation
+        </div>
+
+        <div class="panel-body">
+
+          <div id="simpleQuestions"></div>
+
+          <button class="btn btn-primary"
+            style="width:100%;margin-top:12px"
+            onclick="submitSimpleLab('${id}')">
+            Submit Investigation
+          </button>
+
+          <div id="simpleResult"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+  `;
+
+  renderSimpleQuestions(data);
+}
+
+function renderSimpleQuestions(data){
+
+  const box=document.getElementById("simpleQuestions");
+
+  if(!box)return;
+
+  box.innerHTML=data.questions.map((q,index)=>`
+
+    <div class="lab-question">
+
+      <h4>${index+1}. ${escapeHTML(q.q)}</h4>
+
+      ${q.o.map((option,i)=>`
+        <button
+          class="lab-option ${simpleAnswers[index]===i?"selected":""}"
+          onclick="selectSimpleAnswer(${index},${i})"
+        >
+          ${escapeHTML(option)}
+        </button>
+      `).join("")}
+
+    </div>
+
+  `).join("");
+}
+
+function selectSimpleAnswer(index,answer){
+
+  simpleAnswers[index]=answer;
+
+  renderSimpleQuestions(SIMPLE_LAB_DATA[currentLab]);
+}
+
+function submitSimpleLab(id){
+
+  const data=SIMPLE_LAB_DATA[id];
+
+  const total=data.questions.length;
+
+  if(Object.keys(simpleAnswers).length<total){
+    toast("جاوب كل الأسئلة أولًا");
+    return;
+  }
+
+  let score=0;
+
+  data.questions.forEach((q,i)=>{
+    if(simpleAnswers[i]===q.a)score++;
+  });
+
+  const result=document.getElementById("simpleResult");
+
+  if(score===total){
+
+    const rewarded=rewardLab(id,LAB_XP[id]);
+    saveCompletedLab(id);
+
+    result.className="lab-result success";
+
+    result.innerHTML=`
+      <strong>✓ Investigation Passed</strong>
+      <p style="margin-top:7px;color:var(--muted)">
+        النتيجة ${score}/${total}
+      </p>
+      <p style="margin-top:7px;color:var(--muted)">
+        ${rewarded?`+${LAB_XP[id]} XP 🔥`:"تم احتساب الـXP مسبقًا"}
+      </p>
+    `;
+
+    toast(rewarded?`Lab مكتمل +${LAB_XP[id]} XP 🔥`:"Lab مكتمل مسبقًا");
+
+  }else{
+
+    result.className="lab-result fail";
+
+    result.innerHTML=`
+      <strong>✗ حاول مرة ثانية</strong>
+      <p style="margin-top:7px;color:var(--muted)">
+        النتيجة ${score}/${total}
+      </p>
+    `;
+  }
+
+  updateStats();
+}
+
+
+/* =========================
+   STATS
+========================= */
+
+function updateStats(){
+
+  const completed=getCompleted();
+  const completedLabs=getCompletedLabs();
+
+  const lessonStat=document.getElementById("statLessons");
+  const completedStat=document.getElementById("statCompleted");
+  const xpStat=document.getElementById("statXP");
+  const labsStat=document.getElementById("statLabs");
+
+  if(lessonStat)lessonStat.textContent=lessons.length;
+  if(completedStat)completedStat.textContent=completed.length;
+  if(xpStat)xpStat.textContent=xp;
+  if(labsStat)labsStat.textContent=completedLabs.length;
+
+  const percent=Math.round((completed.length/lessons.length)*100);
+
+  const progress=document.getElementById("academyProgress");
+
+  if(progress){
+    progress.style.width=percent+"%";
+  }
+
+  const progressText=document.getElementById("academyProgressText");
+
+  if(progressText){
+    progressText.textContent=percent+"%";
+  }
+}
+
+
+/* =========================
+   UTILITIES
+========================= */
+
+function escapeHTML(value){
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+
+/* =========================
+   INIT
+========================= */
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+  updateStats();
+  renderLessons();
+  renderDictionary();
+
+  const savedPage=localStorage.getItem(STORAGE.lastPage);
+
+  /*
+    نخلي الصفحة الرئيسية هي الافتراضية
+    عشان كل مرة يدخل الموقع يلقى الصفحة الرئيسية.
+  */
+  if(savedPage==="lesson"){
+    showPage("home");
+  }
+
+});
+</script>
+
+</body>
+</html>
