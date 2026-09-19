@@ -210,6 +210,7 @@ header{
   gap:12px;
   flex-wrap:wrap;
   margin-top:30px;
+  align-items:stretch;
 }
 
 .btn{
@@ -236,6 +237,50 @@ header{
 .btn.discord{
   background:#5865f2;
   border:0;
+}
+
+/* COMING SOON */
+
+.coming-soon-mini{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-height:48px;
+  padding:8px 12px;
+  border-radius:13px;
+  background:var(--card);
+  border:1px solid var(--line);
+}
+
+.coming-soon-mini-title{
+  color:var(--yellow);
+  font-size:11px;
+  font-weight:900;
+  white-space:nowrap;
+}
+
+.coming-soon-mini-items{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  flex-wrap:wrap;
+}
+
+.mini-project{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:7px 9px;
+  border-radius:9px;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--line);
+  color:#d8d8e2;
+  font-size:11px;
+  white-space:nowrap;
+}
+
+.mini-project i{
+  color:var(--purple3);
 }
 
 /* IMAGE */
@@ -412,6 +457,20 @@ header{
 
 .search:focus{
   border-color:var(--purple);
+}
+
+/* BACK BUTTON */
+
+.page-back{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:25px;
+  background:var(--card);
+}
+
+.page-back:hover{
+  background:rgba(109,53,255,.12);
 }
 
 /* LESSON */
@@ -649,6 +708,11 @@ footer{
     justify-content:center;
   }
 
+  .coming-soon-mini{
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+
   .grid{
     grid-template-columns:1fr 1fr;
   }
@@ -695,6 +759,23 @@ footer{
   .logo{
     font-size:20px;
   }
+
+  .actions{
+    flex-direction:column;
+  }
+
+  .actions .btn{
+    width:100%;
+  }
+
+  .coming-soon-mini{
+    width:100%;
+  }
+
+  .coming-soon-mini-items{
+    justify-content:center;
+  }
+
 }
 </style>
 </head>
@@ -738,6 +819,7 @@ Labs
 class="btn nav-discord"
 href="https://discord.gg/TyUpVWQgA"
 target="_blank"
+rel="noopener noreferrer"
 >
 <i class="fa-brands fa-discord"></i>
 Discord
@@ -791,10 +873,35 @@ Discord
 class="btn discord"
 href="https://discord.gg/TyUpVWQgA"
 target="_blank"
+rel="noopener noreferrer"
 >
 <i class="fa-brands fa-discord"></i>
 سيرفر Discord
 </a>
+
+<!-- الأشياء القادمة -->
+
+<div class="coming-soon-mini">
+
+<div class="coming-soon-mini-title">
+قريبًا
+</div>
+
+<div class="coming-soon-mini-items">
+
+<div class="mini-project">
+<i class="fa-solid fa-book"></i>
+كتاب الأمن السيبراني
+</div>
+
+<div class="mini-project">
+<i class="fa-solid fa-robot"></i>
+DarkGPT
+</div>
+
+</div>
+
+</div>
 
 </div>
 
@@ -833,7 +940,6 @@ src="dead-penguin-cyber-new-background.png"
 alt="Midnight Cyber Security"
 >
 
-<!-- الحقوق الآن تحت الصورة -->
 <div class="copyright-tag">
 © Midnight • جميع الحقوق محفوظة
 </div>
@@ -931,6 +1037,7 @@ HTTP و Cookies و Sessions ومفاهيم أمن تطبيقات الويب.
 class="btn discord"
 href="https://discord.gg/TyUpVWQgA"
 target="_blank"
+rel="noopener noreferrer"
 >
 <i class="fa-brands fa-discord"></i>
 انضم إلى سيرفر Discord
@@ -948,6 +1055,10 @@ target="_blank"
 <section id="academy" class="page">
 
 <div class="container section">
+
+<button class="btn page-back" onclick="goBack()">
+← Back
+</button>
 
 <div class="section-head">
 <h2>🎓 أكاديمية Midnight</h2>
@@ -987,8 +1098,8 @@ oninput="renderLessons(this.value)"
 
 <div class="container section lesson-content">
 
-<button class="btn back" onclick="showPage('academy')">
-← العودة للدروس
+<button class="btn page-back back" onclick="goBack()">
+← Back
 </button>
 
 <div id="lessonContent"></div>
@@ -1003,6 +1114,10 @@ oninput="renderLessons(this.value)"
 <section id="labs" class="page">
 
 <div class="container section">
+
+<button class="btn page-back" onclick="goBack()">
+← Back
+</button>
 
 <div class="section-head">
 <h2>🧪 Midnight Labs</h2>
@@ -1107,6 +1222,10 @@ oninput="renderLessons(this.value)"
 
 <div class="container section">
 
+<button class="btn page-back" onclick="goBack()">
+← Back
+</button>
+
 <div class="section-head">
 <h2>🧠 اختبار Midnight</h2>
 <p>اختبر معلوماتك في الأمن السيبراني</p>
@@ -1164,6 +1283,10 @@ style="color:var(--muted);line-height:2"
 
 <div class="container section">
 
+<button class="btn page-back" onclick="goBack()">
+← Back
+</button>
+
 <div class="section-head">
 <h2>🎯 اختبار تحديد المستوى</h2>
 <p>جاوب على الأسئلة وشوف المستوى المناسب لك</p>
@@ -1211,6 +1334,10 @@ style="color:var(--muted);line-height:2"
 
 <div class="container section">
 
+<button class="btn page-back" onclick="goBack()">
+← Back
+</button>
+
 <div class="section-head">
 <h2>📖 قاموس الأمن السيبراني</h2>
 <p>مصطلحات مهمة مع شرح بسيط</p>
@@ -1235,6 +1362,10 @@ oninput="renderTerms(this.value)"
 <section id="projects" class="page">
 
 <div class="container section">
+
+<button class="btn page-back" onclick="goBack()">
+← Back
+</button>
 
 <div class="section-head">
 <h2>🚀 Midnight Projects</h2>
@@ -1307,6 +1438,7 @@ oninput="renderTerms(this.value)"
 class="btn discord"
 href="https://discord.gg/TyUpVWQgA"
 target="_blank"
+rel="noopener noreferrer"
 >
 <i class="fa-brands fa-discord"></i>
 انضم إلى سيرفر Discord
@@ -1700,6 +1832,12 @@ localStorage.getItem("midnightXP")||0
 );
 
 
+/* PAGE HISTORY */
+
+let pageHistory=["home"];
+let currentPage="home";
+
+
 function saveProgress(){
 
 localStorage.setItem(
@@ -1753,7 +1891,18 @@ text.textContent=percent+"%";
 }
 
 
-function showPage(id,button){
+function showPage(id,button,addHistory=true){
+
+if(id===currentPage)
+return;
+
+if(addHistory){
+
+pageHistory.push(id);
+
+}
+
+currentPage=id;
 
 document.querySelectorAll(".page")
 .forEach(p=>p.classList.remove("active"));
@@ -1788,6 +1937,30 @@ startLevel();
 
 }
 
+
+/* BACK */
+
+function goBack(){
+
+if(pageHistory.length>1){
+
+pageHistory.pop();
+
+const previous=
+pageHistory[pageHistory.length-1];
+
+showPage(previous,null,false);
+
+}else{
+
+showPage("home",null,false);
+
+}
+
+}
+
+
+/* LESSONS */
 
 function renderLessons(search=""){
 
@@ -1863,6 +2036,13 @@ ${done?"مراجعة الدرس":"ابدأ الدرس"}
 function openLesson(index){
 
 const l=lessons[index];
+
+if(currentPage!=="lesson"){
+
+pageHistory.push("lesson");
+currentPage="lesson";
+
+}
 
 document.getElementById("lessonContent").innerHTML=`
 
