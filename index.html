@@ -3,139 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Midnight | منصة الأمن السيبراني</title>
+    <title>Midnight | منصة التعلم والتميز</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #131b2e;
+            --accent-color: #6366f1;
+            --accent-glow: rgba(99, 102, 241, 0.4);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.08);
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            font-family: 'Tajawal', sans-serif;
+            scroll-behavior: smooth;
         }
+
         body {
-            background-color: #0b0b0f;
-            color: #ffffff;
-            font-family: Tahoma, sans-serif;
-            text-align: center;
-            padding: 30px 15px;
-        }
-        .container {
-            max-width: 650px;
-            margin: 0 auto;
-        }
-        .logo-img {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #8a2be2;
-            box-shadow: 0 0 25px rgba(138, 43, 226, 0.5);
-            margin-bottom: 15px;
-        }
-        h1 {
-            color: #dcd0ff;
-            font-size: 26px;
-            margin-bottom: 5px;
-        }
-        .subtitle {
-            color: #888899;
-            font-size: 15px;
-            margin-bottom: 25px;
-        }
-        .section-box {
-            background: #12121a;
-            border: 1px solid #2a1b4e;
-            border-radius: 14px;
-            padding: 20px;
-            margin-bottom: 20px;
-            text-align: right;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-        }
-        .section-box h2 {
-            color: #b19cd9;
-            font-size: 18px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .section-box p {
-            color: #bbbbcc;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-        .btn-list {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            margin-top: 25px;
+            overflow-x: hidden;
         }
+
+        /* خلفية جمالية خفيفة */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 60%);
+            z-index: -1;
+        }
+
+        header {
+            padding: 2rem 1rem;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(19, 27, 46, 0.7), transparent);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo-container {
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            padding: 4px;
+            background: linear-gradient(135deg, var(--accent-color), #a855f7);
+            box-shadow: 0 0 25px var(--accent-glow);
+            animation: pulse-glow 3s infinite alternate;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            background-color: #1a2238;
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 15px rgba(99, 102, 241, 0.3); }
+            100% { box-shadow: 0 0 30px rgba(168, 85, 247, 0.6); }
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #f8fafc, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p.subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.8rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 30px -10px var(--accent-glow);
+        }
+
+        .card i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
         .btn {
-            background: linear-gradient(135deg, #1a1a2e, #2e1a47);
-            color: #ffffff;
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-color), #4f46e5);
+            color: white;
+            padding: 0.75rem 1.8rem;
+            border-radius: 50px;
             text-decoration: none;
-            padding: 15px 20px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: bold;
-            border: 1px solid #4a237a;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
         }
+
         .btn:hover {
-            background: linear-gradient(135deg, #2e1a47, #4a237a);
-            border-color: #8a2be2;
-            transform: translateY(-2px);
+            opacity: 0.9;
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
         }
-        .discord-btn {
-            background: linear-gradient(135deg, #202225, #5865F2);
-            border-color: #5865F2;
-        }
+
         footer {
-            margin-top: 40px;
-            font-size: 13px;
-            color: #555566;
-            border-top: 1px solid #1a1a26;
-            padding-top: 20px;
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+            background-color: rgba(11, 15, 25, 0.5);
         }
     </style>
 </head>
 <body>
 
+    <header>
+        <div class="logo-container">
+            <img src="dead-penguin-cyber-new-background.png" alt="Midnight Logo">
+        </div>
+        <h1>Midnight</h1>
+        <p class="subtitle">منصتك الاحترافية المتقدمة للتعلم، الأدوات، والتطوير التقني المستمر.</p>
+    </header>
+
     <div class="container">
-        <!-- صورة البطريق كشعار رئيسي للموقع -->
-        <img src="penguin.png" alt="Midnight Logo" class="logo-img">
-        
-        <h1>Midnight Platform</h1>
-        <p class="subtitle">منصتك الشاملة لتعلم الأمن السيبراني والبرمجة من الصفر</p>
-
-        <!-- أقسام تعليمية حقيقية وليست مجرد واجهة فارغة -->
-        <div class="section-box">
-            <h2>🐍 بايثون للأمن السيبراني</h2>
-            <p>تعلم لغة البرمجة الأكثر طلباً، وكيف تستخدمها في بناء الأدوات الأمنية وفك الشفرات بسهولة.</p>
+        <div class="card">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <h3>المحتوى التعليمي</h3>
+            <p>استكشف أقوى الدورات، الملخصات، والمراجع التقنية المنسقة بعناية لرفع مستوى مهاراتك.</p>
+            <a href="#" class="btn">قريباً</a>
         </div>
 
-        <div class="section-box">
-            <h2>🐧 نظام لينكس والتحكم</h2>
-            <p>إتقان نظام التشغيل الأساسي لكل مختبر اختراق ومحترف حماية عبر الأوامر السريعة.</p>
+        <div class="card">
+            <i class="fa-solid fa-compass"></i>
+            <h3>الأدوات والمشاريع</h3>
+            <p>تصفح أحدث المشاريع المصغرة، السكربتات المبتكرة، والأدوات البرمجية الجاهزة للاستخدام.</p>
+            <a href="#" class="btn">استكشف</a>
         </div>
 
-        <div class="section-box">
-            <h2>🌐 أساسيات الشبكات</h2>
-            <p>فهم كيفية انتقال البيانات، البروتوكولات الأمنية، وكيف تعمل الثغرات وكيفية صدها.</p>
+        <div class="card">
+            <i class="fa-brands fa-discord"></i>
+            <h3>مجتمع الديسكورد</h3>
+            <p>انضم إلى مجتمعنا التقني المتفاعل، شارك أفكارك، وتواصل مباشرة مع زملائك المطورين.</p>
+            <a href="https://discord.gg" target="_blank" class="btn">انضم الآن</a>
         </div>
-
-        <!-- أزرار التوجيه وسيرفر الديسكورد -->
-        <div class="btn-list">
-            <a href="https://discord.gg/QBkfTZjh5" target="_blank" class="btn discord-btn">💬 انضم إلى سيرفر الديسكورد الرسمي</a>
-        </div>
-
-        <footer>
-            <p>جميع الحقوق محفوظة &copy; 2026 Midnight - حقوق النشر مسجلة لسيرفرنا ومنصتنا الرسمية.</p>
-        </footer>
     </div>
+
+    <footer>
+        <p>&copy; 2026 Midnight. جميع الحقوق محفوظة.</p>
+    </footer>
 
 </body>
 </html>
