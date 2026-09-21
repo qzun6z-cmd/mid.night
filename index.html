@@ -4,39 +4,39 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Midnight for Cyber</title>
+<title>Midnight | Cyber Security</title>
+<meta name="description" content="Midnight — تعلم الأمن السيبراني والشبكات والبرمجة بطريقة عملية وممتعة.">
 
-<meta name="description"
-content="Midnight for Cyber — منصة تعليم الأمن السيبراني بطريقة عملية وممتعة">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 
-<meta name="theme-color" content="#07070d">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <style>
-
 :root{
-    --bg:#06060b;
-    --bg2:#0b0b13;
-    --card:#10101a;
-    --card2:#151522;
-    --border:#252536;
-
-    --text:#f7f7fb;
-    --muted:#9696aa;
-
-    --purple:#8b5cf6;
-    --purple2:#6d3df0;
-
-    --discord:#5865f2;
-
-    --green:#35d07f;
-    --red:#ff5570;
-    --yellow:#ffd166;
-
-    --shadow:0 20px 70px rgba(0,0,0,.35);
+    --bg:#07070b;
+    --bg2:#0b0b11;
+    --panel:#101017;
+    --panel2:#14141d;
+    --line:#272735;
+    --purple:#6d35ff;
+    --purple2:#8b5cf6;
+    --purple3:#a78bfa;
+    --text:#f5f3ff;
+    --muted:#9493a5;
+    --green:#4ade80;
+    --red:#fb7185;
+    --yellow:#facc15;
+    --cyan:#67e8f9;
+    --shadow:0 20px 60px rgba(0,0,0,.45);
 }
 
 *{
     box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 html{
@@ -44,38 +44,24 @@ html{
 }
 
 body{
-    margin:0;
-    min-height:100vh;
+    font-family:Tajawal,Arial,sans-serif;
     background:
-    radial-gradient(circle at 80% 0%,#24134b 0%,transparent 30%),
-    radial-gradient(circle at 0% 70%,#111c43 0%,transparent 27%),
-    var(--bg);
-
+        radial-gradient(circle at 80% 10%,rgba(109,53,255,.08),transparent 25%),
+        radial-gradient(circle at 10% 80%,rgba(109,53,255,.05),transparent 25%),
+        var(--bg);
     color:var(--text);
-    font-family:
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
+    min-height:100vh;
+    overflow-x:hidden;
 }
 
 button,
 input,
-textarea,
 select{
-    font:inherit;
+    font-family:inherit;
 }
 
 button{
     cursor:pointer;
-}
-
-button:focus,
-input:focus,
-textarea:focus{
-    outline:2px solid var(--purple);
-    outline-offset:2px;
 }
 
 a{
@@ -83,110 +69,214 @@ a{
     text-decoration:none;
 }
 
-.container{
-    width:min(1150px,92%);
-    margin:auto;
+::selection{
+    background:var(--purple);
+    color:#fff;
 }
 
-/* NAV */
+/* =========================
+   BACKGROUND
+========================= */
 
-header{
+.bg-grid{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-3;
+    opacity:.28;
+    background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size:55px 55px;
+}
+
+.bg-glow{
+    position:fixed;
+    width:450px;
+    height:450px;
+    border-radius:50%;
+    background:rgba(109,53,255,.07);
+    filter:blur(100px);
+    pointer-events:none;
+    z-index:-2;
+    animation:glowMove 12s ease-in-out infinite alternate;
+}
+
+.glow-one{
+    top:-200px;
+    right:-100px;
+}
+
+.glow-two{
+    bottom:-250px;
+    left:-100px;
+    animation-delay:3s;
+}
+
+@keyframes glowMove{
+    from{transform:translate(0,0)}
+    to{transform:translate(80px,40px)}
+}
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar{
     position:sticky;
     top:0;
-    z-index:100;
-
-    background:rgba(6,6,11,.82);
+    z-index:500;
+    height:68px;
+    border-bottom:1px solid rgba(255,255,255,.07);
+    background:rgba(7,7,11,.88);
     backdrop-filter:blur(18px);
-
-    border-bottom:1px solid var(--border);
 }
 
-.nav{
-    height:70px;
-
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.logo{
-    border:0;
-    background:none;
-
-    color:white;
-
-    display:flex;
-    align-items:center;
-    gap:10px;
-
-    font-weight:900;
-}
-
-.logo img{
-    width:40px;
-    height:40px;
-
-    object-fit:cover;
-
-    border-radius:12px;
-}
-
-.nav-links{
-    display:flex;
-    gap:3px;
-
+.topbar-inner{
+    max-width:1450px;
+    height:100%;
     margin:auto;
-}
-
-.nav-links button{
-    background:none;
-    border:0;
-
-    color:var(--muted);
-
-    padding:10px 12px;
-    border-radius:10px;
-}
-
-.nav-links button:hover,
-.nav-links button.active{
-    color:white;
-    background:#ffffff0a;
-}
-
-.nav-right{
+    padding:0 22px;
     display:flex;
-    gap:7px;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
 }
 
-.lang-btn,
-.login-btn,
-.menu-btn{
-    border:1px solid var(--border);
-    background:var(--card);
+.brand{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    font-weight:900;
+    letter-spacing:2px;
+}
 
-    color:white;
+.brand-mark{
+    width:38px;
+    height:38px;
+    border:1px solid rgba(139,92,246,.5);
+    border-radius:12px;
+    display:grid;
+    place-items:center;
+    color:var(--purple3);
+    background:rgba(109,53,255,.08);
+    box-shadow:0 0 25px rgba(109,53,255,.12);
+}
 
+.brand span{
+    font-size:18px;
+}
+
+.top-actions{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.top-btn{
+    border:1px solid var(--line);
+    background:#0d0d14;
+    color:#ddd;
+    padding:8px 12px;
     border-radius:10px;
-
-    padding:9px 12px;
+    transition:.2s;
 }
 
-.login-btn{
-    border:0;
-    background:linear-gradient(135deg,var(--purple),var(--purple2));
-    font-weight:800;
+.top-btn:hover{
+    border-color:var(--purple);
+    color:#fff;
+    transform:translateY(-1px);
 }
 
-.menu-btn{
+.lang-btn.active{
+    color:#fff;
+    border-color:var(--purple);
+    background:rgba(109,53,255,.13);
+}
+
+.mobile-menu{
     display:none;
 }
 
-/* PAGES */
+/* =========================
+   LAYOUT
+========================= */
+
+.app{
+    max-width:1450px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:230px 1fr;
+    gap:18px;
+    padding:18px;
+}
+
+[dir="rtl"] .app{
+    grid-template-columns:1fr 230px;
+}
+
+.sidebar{
+    position:sticky;
+    top:86px;
+    height:calc(100vh - 104px);
+    border:1px solid var(--line);
+    border-radius:18px;
+    background:rgba(12,12,17,.88);
+    padding:13px;
+    overflow:auto;
+}
+
+.sidebar-title{
+    color:#777789;
+    font-size:11px;
+    margin:10px 10px 8px;
+    letter-spacing:1px;
+}
+
+.nav-btn{
+    width:100%;
+    border:0;
+    background:transparent;
+    color:#a6a5b5;
+    padding:12px;
+    border-radius:11px;
+    display:flex;
+    align-items:center;
+    gap:11px;
+    margin-bottom:4px;
+    text-align:right;
+    transition:.2s;
+}
+
+.nav-btn i{
+    width:20px;
+    text-align:center;
+}
+
+.nav-btn:hover{
+    color:#fff;
+    background:#15151f;
+}
+
+.nav-btn.active{
+    color:#fff;
+    background:linear-gradient(90deg,rgba(109,53,255,.2),rgba(109,53,255,.04));
+    border:1px solid rgba(109,53,255,.28);
+}
+
+.nav-bottom{
+    margin-top:25px;
+    padding-top:15px;
+    border-top:1px solid var(--line);
+}
+
+.content{
+    min-width:0;
+}
 
 .page{
     display:none;
-    animation:pageIn .2s ease;
+    animation:pageIn .35s ease;
 }
 
 .page.active{
@@ -198,4275 +288,3980 @@ header{
         opacity:0;
         transform:translateY(8px);
     }
-
     to{
         opacity:1;
         transform:none;
     }
 }
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero{
-    min-height:650px;
-
+    min-height:390px;
+    border:1px solid var(--line);
+    border-radius:24px;
+    background:
+        linear-gradient(120deg,rgba(109,53,255,.08),transparent 45%),
+        #0b0b10;
+    position:relative;
+    overflow:hidden;
     display:grid;
-    grid-template-columns:1fr 1fr;
-
+    grid-template-columns:1.15fr .85fr;
     align-items:center;
-
-    gap:40px;
+    padding:42px;
+    box-shadow:var(--shadow);
 }
 
-.badge{
+.hero::before{
+    content:"";
+    position:absolute;
+    width:420px;
+    height:420px;
+    background:rgba(109,53,255,.08);
+    border-radius:50%;
+    filter:blur(90px);
+    left:-200px;
+    bottom:-240px;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.kicker{
     display:inline-flex;
+    align-items:center;
+    gap:7px;
+    border:1px solid rgba(109,53,255,.3);
+    background:rgba(109,53,255,.07);
+    color:#b9a7ff;
+    padding:7px 11px;
+    border-radius:100px;
+    font-size:12px;
+    margin-bottom:17px;
+}
 
-    padding:7px 12px;
-
-    border-radius:999px;
-
-    background:#8b5cf615;
-    border:1px solid #8b5cf630;
-
-    color:#cbbcff;
-
-    font-size:13px;
-    font-weight:800;
+.kicker .dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 10px var(--green);
 }
 
 .hero h1{
-    font-size:clamp(45px,7vw,78px);
-
-    line-height:.98;
-
-    letter-spacing:-4px;
-
-    margin:18px 0;
-}
-
-.gradient{
-    background:linear-gradient(
-        90deg,
-        white,
-        #b79aff,
-        #6473ff
-    );
-
-    -webkit-background-clip:text;
-    background-clip:text;
-
-    color:transparent;
-}
-
-.hero p{
-    color:var(--muted);
-
-    max-width:650px;
-
-    font-size:18px;
-
-    line-height:1.8;
-}
-
-.actions{
-    display:flex;
-    flex-wrap:wrap;
-
-    gap:10px;
-
-    margin-top:25px;
-}
-
-.btn{
-    border:0;
-
-    border-radius:13px;
-
-    padding:13px 17px;
-
-    font-weight:850;
-}
-
-.btn-primary{
-    background:linear-gradient(
-        135deg,
-        var(--purple),
-        var(--purple2)
-    );
-
-    color:white;
-}
-
-.btn-secondary{
-    background:var(--card2);
-
-    border:1px solid var(--border);
-
-    color:white;
-}
-
-.btn-discord{
-    background:var(--discord);
-
-    color:white;
-
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:9px;
-}
-
-.discord-icon{
-    width:21px;
-    height:21px;
-
-    fill:white;
-}
-
-.hero-image{
-    text-align:center;
-    position:relative;
-}
-
-.hero-image::before{
-    content:"";
-
-    position:absolute;
-
-    width:330px;
-    height:330px;
-
-    left:50%;
-    top:50%;
-
-    transform:translate(-50%,-50%);
-
-    background:#8b5cf633;
-
-    filter:blur(80px);
-
-    border-radius:50%;
-}
-
-.hero-image img{
-    position:relative;
-
-    width:min(100%,450px);
-
-    max-height:480px;
-
-    object-fit:contain;
-
-    filter:drop-shadow(
-        0 30px 60px #000b
-    );
-
-    animation:float 5s ease-in-out infinite;
-}
-
-@keyframes float{
-    50%{
-        transform:translateY(-10px);
-    }
-}
-
-/* SECTIONS */
-
-.section{
-    padding:55px 0;
-}
-
-.section-title small{
-    color:#a78bfa;
-
+    font-size:clamp(45px,7vw,88px);
+    line-height:.9;
+    letter-spacing:4px;
+    margin-bottom:18px;
     font-weight:900;
 }
 
-.section-title h2{
-    font-size:34px;
-
-    margin:8px 0;
+.hero h1 span{
+    color:var(--purple3);
 }
 
-.section-title p{
-    color:var(--muted);
-
-    line-height:1.7;
+.hero-sub{
+    color:#aaa9b9;
+    max-width:600px;
+    line-height:1.9;
+    font-size:15px;
 }
 
-/* CARDS */
-
-.grid{
-    display:grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
-    gap:15px;
-}
-
-.card{
-    background:
-    linear-gradient(
-        145deg,
-        var(--card2),
-        var(--card)
-    );
-
-    border:1px solid var(--border);
-
-    border-radius:19px;
-
-    padding:22px;
-
-    box-shadow:0 15px 40px rgba(0,0,0,.12);
-}
-
-.card:hover{
-    border-color:#8b5cf650;
-}
-
-.card-icon{
-    font-size:30px;
-}
-
-.card h3{
-    margin:11px 0 7px;
-}
-
-.card p{
-    color:var(--muted);
-
-    line-height:1.75;
-
-    font-size:14px;
-}
-
-/* SECRET */
-
-.secret{
-    margin-top:16px;
-
-    padding:24px;
-
-    border-radius:20px;
-
-    border:1px solid #ffd16622;
-
-    background:
-    linear-gradient(
-        120deg,
-        #ffd1660b,
-        transparent
-    ),
-    var(--card);
-}
-
-.secret strong{
-    color:var(--yellow);
-}
-
-/* STATS */
-
-.stats{
-    display:grid;
-
-    grid-template-columns:
-    repeat(4,1fr);
-
-    gap:12px;
-}
-
-.stat{
-    padding:18px;
-
-    background:var(--card);
-
-    border:1px solid var(--border);
-
-    border-radius:15px;
-}
-
-.stat b{
-    display:block;
-
-    font-size:27px;
-}
-
-.stat span{
-    color:var(--muted);
-
-    font-size:13px;
-}
-
-/* SEARCH */
-
-.toolbar{
+.hero-buttons{
     display:flex;
-
     gap:10px;
-
-    margin:20px 0;
+    flex-wrap:wrap;
+    margin-top:25px;
 }
 
-.search{
-    width:100%;
+.primary{
+    border:1px solid var(--purple);
+    background:linear-gradient(135deg,#713cff,#5422d7);
+    color:#fff;
+    padding:12px 18px;
+    border-radius:11px;
+    font-weight:700;
+    box-shadow:0 10px 30px rgba(109,53,255,.2);
+    transition:.2s;
+}
 
-    background:var(--card);
+.primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 14px 35px rgba(109,53,255,.3);
+}
 
-    border:1px solid var(--border);
+.secondary{
+    border:1px solid var(--line);
+    background:#111118;
+    color:#ddd;
+    padding:12px 18px;
+    border-radius:11px;
+    font-weight:700;
+    transition:.2s;
+}
 
-    color:white;
+.secondary:hover{
+    border-color:#454557;
+    transform:translateY(-2px);
+}
 
+/* =========================
+   PENGUIN HERO
+========================= */
+
+.hero-penguin{
+    height:100%;
+    display:grid;
+    place-items:center;
+    position:relative;
+}
+
+.penguin-main{
+    width:min(430px,100%);
+    object-fit:contain;
+    filter:drop-shadow(0 25px 35px rgba(0,0,0,.65));
+    animation:penguinFloat 4s ease-in-out infinite;
+    user-select:none;
+    pointer-events:none;
+}
+
+.penguin-shadow{
+    position:absolute;
+    width:260px;
+    height:25px;
+    bottom:65px;
+    background:#000;
+    filter:blur(17px);
+    opacity:.6;
+    border-radius:50%;
+    animation:shadowFloat 4s ease-in-out infinite;
+}
+
+@keyframes penguinFloat{
+    0%,100%{
+        transform:translateY(4px) rotate(-.5deg);
+    }
+    50%{
+        transform:translateY(-12px) rotate(.7deg);
+    }
+}
+
+@keyframes shadowFloat{
+    0%,100%{transform:scaleX(1);opacity:.55}
+    50%{transform:scaleX(.8);opacity:.35}
+}
+
+.hero-tag{
+    position:absolute;
+    top:35px;
+    right:15px;
+    border:1px solid #34343f;
+    background:#101017;
+    padding:9px 12px;
     border-radius:12px;
-
-    padding:13px 14px;
+    font-size:12px;
+    color:#c9c8d4;
+    animation:tagFloat 3s ease-in-out infinite;
 }
 
-/* LESSON */
-
-.lesson{
-    background:var(--card);
-
-    border:1px solid var(--border);
-
-    border-radius:18px;
-
-    padding:19px;
+@keyframes tagFloat{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-5px)}
 }
 
-.lesson-top{
-    display:flex;
+/* =========================
+   DASHBOARD GRID
+========================= */
 
-    align-items:center;
-
-    justify-content:space-between;
-}
-
-.lesson-icon{
-    font-size:28px;
-}
-
-.tag{
-    padding:5px 9px;
-
-    border-radius:999px;
-
-    background:#8b5cf615;
-
-    color:#c7b8ff;
-
-    font-size:11px;
-}
-
-.lesson h3{
-    margin:13px 0 7px;
-}
-
-.lesson p{
-    color:var(--muted);
-
-    line-height:1.7;
-
-    font-size:14px;
-}
-
-.lesson button{
-    width:100%;
-
-    margin-top:12px;
-
-    padding:11px;
-
-    border-radius:10px;
-
-    border:1px solid #8b5cf62c;
-
-    background:#8b5cf615;
-
-    color:#c7b8ff;
-
-    font-weight:800;
-}
-
-/* READER */
-
-.reader{
-    max-width:900px;
-
-    margin:auto;
-
-    background:var(--card);
-
-    border:1px solid var(--border);
-
-    border-radius:22px;
-
-    padding:28px;
-}
-
-.reader h2{
-    font-size:34px;
-
-    margin:12px 0;
-}
-
-.reader-text{
-    background:#11111b;
-
-    border:1px solid var(--border);
-
-    border-radius:15px;
-
-    padding:20px;
-
-    line-height:1.9;
-}
-
-.analogy{
+.dashboard-grid{
     margin-top:18px;
-
-    padding:16px;
-
-    border-right:3px solid var(--purple);
-
-    background:#8b5cf60b;
-
-    line-height:1.9;
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:18px;
 }
 
-/* LAB */
-
-.lab{
-    background:var(--card);
-
-    border:1px solid var(--border);
-
+.panel{
+    background:rgba(13,13,19,.9);
+    border:1px solid var(--line);
     border-radius:18px;
-
-    padding:20px;
+    overflow:hidden;
 }
 
-.lab h3{
-    margin:12px 0 7px;
+.panel-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 16px;
+    border-bottom:1px solid var(--line);
 }
 
-.lab p{
-    color:var(--muted);
-
-    line-height:1.7;
+.panel-title{
+    font-weight:800;
+    font-size:14px;
+    display:flex;
+    align-items:center;
+    gap:9px;
 }
 
-.lab button{
-    width:100%;
-
-    margin-top:13px;
-
-    padding:11px;
-
-    border-radius:10px;
-
-    background:#8b5cf615;
-
-    color:#c7b8ff;
-
-    border:1px solid #8b5cf62c;
+.panel-title i{
+    color:var(--purple3);
 }
 
-/* TERMINAL */
+.panel-body{
+    padding:16px;
+}
+
+/* =========================
+   TERMINAL
+========================= */
 
 .terminal{
-    margin-top:22px;
-
-    background:#020204;
-
-    border:1px solid #292936;
-
-    border-radius:15px;
-
-    overflow:hidden;
-
+    height:270px;
+    background:#08090c;
+    font-family:monospace;
     direction:ltr;
-
-    text-align:left;
+    overflow:hidden;
 }
 
-.terminal-head{
-    padding:10px 13px;
+.terminal-top{
+    display:flex;
+    gap:6px;
+    padding:11px;
+    border-bottom:1px solid #191921;
+}
 
-    background:#111118;
-
-    color:#777;
-
-    font-size:12px;
+.term-dot{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#3d3d48;
 }
 
 .terminal-body{
-    padding:16px;
-
-    min-height:190px;
-
-    font:14px/1.7 ui-monospace,monospace;
-
-    white-space:pre-wrap;
-
-    color:#d6d6df;
-}
-
-.terminal-input{
-    display:flex;
-
-    gap:8px;
-
-    padding:10px;
-
-    border-top:1px solid #292936;
-}
-
-.terminal-input input{
-    flex:1;
-
-    min-width:0;
-
-    background:#09090e;
-
-    color:white;
-
-    border:1px solid #292936;
-
-    border-radius:9px;
-
-    padding:10px;
-}
-
-.terminal-input button{
-    border:0;
-
-    background:#252535;
-
-    color:white;
-
-    border-radius:9px;
-
-    padding:0 15px;
-}
-
-/* INVESTIGATION */
-
-.investigation{
-    margin-top:25px;
-
-    display:none;
-
-    background:#0b0b12;
-
-    border:1px solid var(--border);
-
-    border-radius:20px;
-
-    padding:22px;
-}
-
-.investigation.active{
-    display:block;
-}
-
-.case-header{
-    display:flex;
-
-    justify-content:space-between;
-
-    gap:15px;
-
-    align-items:flex-start;
-}
-
-.case-status{
-    padding:6px 10px;
-
-    border-radius:999px;
-
-    background:#ff557012;
-
-    color:#ff8a9b;
-
+    padding:15px;
+    color:#aaa;
+    line-height:1.8;
     font-size:12px;
-}
-
-.log-box{
-    margin:15px 0;
-
-    padding:17px;
-
-    background:#030305;
-
-    border:1px solid #272733;
-
-    border-radius:12px;
-
-    direction:ltr;
-
-    text-align:left;
-
-    font:13px/1.8 ui-monospace,monospace;
-
-    overflow:auto;
-}
-
-.question{
-    padding:17px;
-
-    background:var(--card);
-
-    border:1px solid var(--border);
-
-    border-radius:14px;
-
-    margin-top:12px;
-}
-
-.question h4{
-    margin-top:0;
-}
-
-.option{
-    display:block;
-
-    width:100%;
-
-    text-align:right;
-
-    margin:7px 0;
-
-    padding:11px;
-
-    border-radius:10px;
-
-    border:1px solid var(--border);
-
-    background:#151520;
-
-    color:white;
-}
-
-.option:hover{
-    border-color:var(--purple);
-}
-
-.option.correct{
-    border-color:var(--green);
-
-    background:#35d07f10;
-}
-
-.option.wrong{
-    border-color:var(--red);
-
-    background:#ff557010;
-}
-
-/* QUIZ */
-
-.quiz-box{
-    max-width:800px;
-
-    margin:auto;
-
-    background:var(--card);
-
-    border:1px solid var(--border);
-
-    border-radius:20px;
-
-    padding:25px;
-}
-
-.quiz-option{
-    display:block;
-
-    width:100%;
-
-    margin:9px 0;
-
-    padding:13px;
-
-    text-align:right;
-
-    background:var(--card2);
-
-    color:white;
-
-    border:1px solid var(--border);
-
-    border-radius:11px;
-}
-
-.quiz-option:hover{
-    border-color:var(--purple);
-}
-
-/* DASHBOARD */
-
-.profile-grid{
-    display:grid;
-
-    grid-template-columns:
-    1fr 1fr;
-
-    gap:15px;
-}
-
-.progress{
-    height:10px;
-
-    background:#1b1b27;
-
-    border-radius:99px;
-
+    height:220px;
     overflow:hidden;
 }
 
-.progress i{
-    display:block;
+.term-purple{color:#a78bfa}
+.term-green{color:#4ade80}
+.term-red{color:#fb7185}
+.term-yellow{color:#facc15}
 
+.term-cursor{
+    display:inline-block;
+    width:7px;
+    height:13px;
+    background:#aaa;
+    vertical-align:middle;
+    animation:blink 1s infinite;
+}
+
+@keyframes blink{
+    50%{opacity:0}
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.status-row{
+    display:grid;
+    grid-template-columns:95px 1fr 42px;
+    gap:10px;
+    align-items:center;
+    margin:14px 0;
+    font-size:12px;
+}
+
+.status-bar{
+    height:7px;
+    background:#1c1c27;
+    border-radius:99px;
+    overflow:hidden;
+}
+
+.status-fill{
     height:100%;
+    border-radius:99px;
+    background:linear-gradient(90deg,var(--purple),var(--purple3));
+    transition:width .6s ease;
+}
 
-    width:0;
+/* =========================
+   FUN CARDS
+========================= */
 
+.fun-grid{
+    margin-top:18px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.fun-card{
+    min-height:125px;
+    border:1px solid var(--line);
+    border-radius:15px;
+    padding:17px;
+    background:#0e0e15;
+    transition:.25s;
+    position:relative;
+    overflow:hidden;
+}
+
+.fun-card:hover{
+    transform:translateY(-4px);
+    border-color:#3d3560;
+}
+
+.fun-card::after{
+    content:"";
+    position:absolute;
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    background:rgba(109,53,255,.08);
+    filter:blur(30px);
+    left:-40px;
+    bottom:-50px;
+}
+
+.fun-icon{
+    width:36px;
+    height:36px;
+    border-radius:10px;
+    display:grid;
+    place-items:center;
+    background:rgba(109,53,255,.12);
+    color:#b9a7ff;
+    margin-bottom:13px;
+}
+
+.fun-card h3{
+    font-size:14px;
+    margin-bottom:5px;
+}
+
+.fun-card p{
+    font-size:11px;
+    color:var(--muted);
+    line-height:1.7;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section{
+    margin-top:24px;
+}
+
+.section-head{
+    display:flex;
+    align-items:end;
+    justify-content:space-between;
+    margin-bottom:13px;
+    gap:15px;
+}
+
+.section-head h2{
+    font-size:21px;
+}
+
+.section-head p{
+    color:var(--muted);
+    font-size:12px;
+}
+
+/* =========================
+   LABS
+========================= */
+
+.lab-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:13px;
+}
+
+.lab-card{
+    border:1px solid var(--line);
+    background:#0e0e15;
+    border-radius:16px;
+    padding:17px;
+    transition:.25s;
+    position:relative;
+    overflow:hidden;
+}
+
+.lab-card:hover{
+    transform:translateY(-4px);
+    border-color:#43376d;
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+}
+
+.lab-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:13px;
+}
+
+.lab-icon{
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    background:#171321;
+    display:grid;
+    place-items:center;
+    color:#b59cff;
+    font-size:17px;
+}
+
+.xp{
+    color:#bca9ff;
+    font-size:11px;
+}
+
+.lab-card h3{
+    font-size:16px;
+    margin-bottom:7px;
+}
+
+.lab-card p{
+    color:#92919f;
+    line-height:1.7;
+    font-size:12px;
+    min-height:43px;
+}
+
+.lab-meta{
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+    margin:13px 0;
+}
+
+.tag{
+    padding:4px 8px;
+    border-radius:7px;
+    background:#15151e;
+    border:1px solid #272733;
+    color:#aaa9b8;
+    font-size:10px;
+}
+
+.lab-btn{
+    width:100%;
+    border:1px solid #3a2b68;
+    background:#15101f;
+    color:#d9ccff;
+    padding:9px;
+    border-radius:9px;
+    transition:.2s;
+}
+
+.lab-btn:hover{
+    background:#211535;
+    border-color:var(--purple);
+}
+
+/* =========================
+   ACTIVITY
+========================= */
+
+.activity-list{
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+}
+
+.activity{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:9px;
+    border-radius:10px;
+    background:#0c0c12;
+    border:1px solid #1d1d27;
+    font-size:11px;
+    color:#a8a7b5;
+}
+
+.activity i{
+    color:var(--purple3);
+}
+
+/* =========================
+   DISCORD
+========================= */
+
+.discord-card{
+    margin-top:18px;
+    border:1px solid #302a42;
+    border-radius:18px;
     background:
-    linear-gradient(
-        90deg,
-        var(--purple),
-        var(--discord)
-    );
+        linear-gradient(110deg,rgba(109,53,255,.11),transparent 55%),
+        #101017;
+    padding:22px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    overflow:hidden;
+    position:relative;
+}
 
+.discord-card::before{
+    content:"";
+    position:absolute;
+    width:220px;
+    height:220px;
+    background:rgba(109,53,255,.08);
+    border-radius:50%;
+    filter:blur(70px);
+    left:-100px;
+    top:-100px;
+}
+
+.discord-left{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    position:relative;
+    z-index:1;
+}
+
+.discord-logo{
+    font-size:45px;
+    color:#a78bfa;
+    filter:drop-shadow(0 0 15px rgba(139,92,246,.18));
+}
+
+.discord-card h3{
+    font-size:18px;
+}
+
+.discord-card p{
+    color:#858493;
+    font-size:12px;
+    margin-top:4px;
+}
+
+/* =========================
+   DO NOT PRESS
+========================= */
+
+.danger-zone{
+    margin-top:18px;
+    padding:18px;
+    border:1px dashed #3a2931;
+    border-radius:16px;
+    background:rgba(251,113,133,.025);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.danger-zone p{
+    color:#888692;
+    font-size:11px;
+    margin-top:4px;
+}
+
+.dont-btn{
+    white-space:nowrap;
+    border:1px solid #57303a;
+    color:#ff9aaa;
+    background:#1a0f13;
+    padding:10px 14px;
+    border-radius:10px;
+    transition:.2s;
+}
+
+.dont-btn:hover{
+    transform:translateY(-2px);
+    background:#241217;
+}
+
+/* =========================
+   ACADEMY
+========================= */
+
+.page-header{
+    padding:22px 5px;
+}
+
+.page-header h1{
+    font-size:31px;
+    margin-bottom:7px;
+}
+
+.page-header p{
+    color:var(--muted);
+    line-height:1.8;
+}
+
+.path-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+}
+
+.path{
+    border:1px solid var(--line);
+    border-radius:17px;
+    padding:20px;
+    background:#0e0e15;
+}
+
+.path-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:15px;
+}
+
+.path-icon{
+    width:45px;
+    height:45px;
+    border-radius:13px;
+    display:grid;
+    place-items:center;
+    background:rgba(109,53,255,.1);
+    color:#bba9ff;
+}
+
+.path h3{
+    margin-bottom:7px;
+}
+
+.path p{
+    color:#92919f;
+    font-size:12px;
+    line-height:1.7;
+}
+
+.lesson-list{
+    margin-top:15px;
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.lesson-row{
+    border:1px solid #20202a;
+    border-radius:10px;
+    background:#0b0b11;
+    padding:11px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.lesson-row:hover{
+    border-color:#3a3260;
+    transform:translateX(-2px);
+}
+
+.lesson-info{
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+.lesson-number{
+    width:27px;
+    height:27px;
+    border-radius:8px;
+    background:#171320;
+    color:#a994ff;
+    display:grid;
+    place-items:center;
+    font-size:11px;
+}
+
+.lesson-info small{
+    display:block;
+    color:#6f6e7c;
+    margin-top:2px;
+}
+
+/* =========================
+   LESSON READER
+========================= */
+
+.reader{
+    max-width:900px;
+    margin:auto;
+}
+
+.back-btn{
+    border:1px solid var(--line);
+    background:#0e0e15;
+    color:#bbb;
+    padding:9px 13px;
+    border-radius:10px;
+    margin-bottom:18px;
+}
+
+.back-btn:hover{
+    color:#fff;
+    border-color:#40365c;
+}
+
+.reader-card{
+    border:1px solid var(--line);
+    border-radius:20px;
+    background:#0d0d14;
+    padding:30px;
+}
+
+.reader-icon{
+    width:52px;
+    height:52px;
+    border-radius:14px;
+    background:rgba(109,53,255,.12);
+    color:#b9a7ff;
+    display:grid;
+    place-items:center;
+    font-size:21px;
+    margin-bottom:15px;
+}
+
+.reader-card h1{
+    font-size:32px;
+    margin-bottom:8px;
+}
+
+.reader-sub{
+    color:#8e8d9b;
+    line-height:1.8;
+}
+
+.lesson-section{
+    margin-top:25px;
+    padding-top:22px;
+    border-top:1px solid var(--line);
+}
+
+.lesson-section h2{
+    font-size:18px;
+    margin-bottom:10px;
+}
+
+.lesson-section p,
+.lesson-section li{
+    color:#b2b1bd;
+    line-height:2;
+    font-size:14px;
+}
+
+.lesson-section ul{
+    padding-right:20px;
+}
+
+.code-box{
+    margin-top:13px;
+    background:#08090c;
+    border:1px solid #1e1e27;
+    border-radius:12px;
+    padding:15px;
+    direction:ltr;
+    text-align:left;
+    font-family:monospace;
+    color:#aaa;
+    overflow:auto;
+}
+
+.tip{
+    margin-top:15px;
+    border-right:3px solid var(--purple);
+    background:rgba(109,53,255,.06);
+    padding:13px;
+    border-radius:8px;
+    color:#c6baff;
+    font-size:12px;
+    line-height:1.8;
+}
+
+/* =========================
+   QUIZ
+========================= */
+
+.quiz-card{
+    border:1px solid var(--line);
+    border-radius:18px;
+    background:#0e0e15;
+    padding:25px;
+}
+
+.question{
+    padding:20px;
+    border:1px solid #24242e;
+    border-radius:14px;
+    background:#0a0a10;
+    margin-bottom:13px;
+}
+
+.question h3{
+    font-size:15px;
+    margin-bottom:14px;
+}
+
+.answers{
+    display:grid;
+    gap:8px;
+}
+
+.answer{
+    border:1px solid #292934;
+    background:#111119;
+    color:#aaa;
+    padding:11px;
+    border-radius:9px;
+    text-align:right;
+    transition:.2s;
+}
+
+.answer:hover{
+    border-color:#493d6c;
+    color:#fff;
+}
+
+.answer.correct{
+    border-color:#267442;
+    background:rgba(74,222,128,.08);
+    color:#86efac;
+}
+
+.answer.wrong{
+    border-color:#743041;
+    background:rgba(251,113,133,.07);
+    color:#fda4af;
+}
+
+.quiz-result{
+    display:none;
+    margin-top:15px;
+    padding:15px;
+    border-radius:12px;
+    background:#11111a;
+    border:1px solid #292933;
+}
+
+/* =========================
+   DICTIONARY
+========================= */
+
+.search{
+    width:100%;
+    padding:13px 15px;
+    border-radius:11px;
+    border:1px solid var(--line);
+    background:#0d0d14;
+    color:#fff;
+    outline:none;
+    margin-bottom:13px;
+}
+
+.search:focus{
+    border-color:#4b3b78;
+}
+
+.dict-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:11px;
+}
+
+.term-card{
+    border:1px solid var(--line);
+    background:#0e0e15;
+    padding:15px;
+    border-radius:13px;
+}
+
+.term-card strong{
+    display:block;
+    margin-bottom:5px;
+}
+
+.term-card span{
+    color:#898895;
+    font-size:11px;
+    line-height:1.7;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.profile{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+}
+
+.profile-card{
+    border:1px solid var(--line);
+    background:#0e0e15;
+    border-radius:17px;
+    padding:20px;
+}
+
+.level-big{
+    font-size:50px;
+    font-weight:900;
+    color:#b39eff;
+}
+
+.progress{
+    height:8px;
+    background:#1d1d27;
+    border-radius:99px;
+    overflow:hidden;
+    margin-top:12px;
+}
+
+.progress div{
+    height:100%;
+    width:0;
+    background:linear-gradient(90deg,var(--purple),var(--purple3));
     transition:.5s;
 }
 
 .achievements{
     display:grid;
-
-    grid-template-columns:
-    1fr 1fr;
-
-    gap:10px;
+    grid-template-columns:repeat(3,1fr);
+    gap:9px;
+    margin-top:13px;
 }
 
 .achievement{
-    padding:13px;
-
+    border:1px solid var(--line);
+    background:#0a0a10;
+    padding:14px;
     border-radius:12px;
-
-    border:1px solid var(--border);
-
-    background:#11111a;
-}
-
-.locked{
-    opacity:.3;
-}
-
-/* SUPPORT */
-
-.support{
-    max-width:850px;
-
-    margin:auto;
-
-    padding:45px 25px;
-
     text-align:center;
-
-    border-radius:25px;
-
-    background:
-    radial-gradient(
-        circle at top,
-        #8b5cf61c,
-        transparent 45%
-    ),
-    var(--card);
-
-    border:1px solid var(--border);
 }
 
-.support-icon{
-    font-size:55px;
+.achievement i{
+    font-size:21px;
+    color:#b59eff;
+    margin-bottom:7px;
 }
 
-/* MODAL */
+.achievement span{
+    display:block;
+    font-size:10px;
+    color:#888692;
+}
+
+/* =========================
+   SUPPORT
+========================= */
+
+.support-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.support-card{
+    border:1px solid var(--line);
+    background:#0e0e15;
+    border-radius:17px;
+    padding:22px;
+}
+
+.support-card i{
+    font-size:25px;
+    color:#b59eff;
+    margin-bottom:12px;
+}
+
+.support-card h3{
+    margin-bottom:7px;
+}
+
+.support-card p{
+    color:#888793;
+    font-size:12px;
+    line-height:1.8;
+}
+
+/* =========================
+   PENGUIN MASCOT
+========================= */
+
+.mascot{
+    position:fixed;
+    right:20px;
+    bottom:18px;
+    width:105px;
+    z-index:700;
+    cursor:pointer;
+    user-select:none;
+}
+
+[dir="rtl"] .mascot{
+    right:auto;
+    left:20px;
+}
+
+.mascot-img{
+    width:100%;
+    display:block;
+    filter:drop-shadow(0 15px 25px rgba(0,0,0,.65));
+    animation:mascotFloat 4.5s ease-in-out infinite;
+}
+
+@keyframes mascotFloat{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-6px)}
+}
+
+.mascot:hover .mascot-img{
+    animation:mascotWiggle .55s ease;
+}
+
+@keyframes mascotWiggle{
+    0%,100%{transform:rotate(0)}
+    25%{transform:rotate(-5deg)}
+    50%{transform:rotate(5deg)}
+    75%{transform:rotate(-3deg)}
+}
+
+/* اللسان 😂 */
+
+.penguin-tongue{
+    position:absolute;
+    width:7px;
+    height:3px;
+    border-radius:0 0 8px 8px;
+    background:#ff6b8a;
+    right:9px;
+    top:57%;
+    transform-origin:top;
+    transform:scaleY(0);
+    transition:.15s;
+    box-shadow:0 0 5px rgba(255,107,138,.35);
+    z-index:3;
+}
+
+.mascot.tongue .penguin-tongue{
+    animation:tongueOut .8s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes tongueOut{
+    0%{height:3px;transform:scaleY(0)}
+    25%{height:27px;transform:scaleY(1)}
+    45%{height:19px}
+    65%{height:30px}
+    100%{height:3px;transform:scaleY(0)}
+}
+
+.mascot-bubble{
+    position:absolute;
+    bottom:105px;
+    right:-45px;
+    width:190px;
+    padding:10px 12px;
+    background:#101017;
+    border:1px solid #393344;
+    border-radius:13px;
+    font-size:11px;
+    line-height:1.7;
+    box-shadow:0 15px 35px rgba(0,0,0,.4);
+    opacity:0;
+    transform:translateY(7px) scale(.96);
+    pointer-events:none;
+    transition:.2s;
+}
+
+.mascot-bubble.show{
+    opacity:1;
+    transform:none;
+}
+
+[dir="rtl"] .mascot-bubble{
+    right:auto;
+    left:-45px;
+}
+
+/* =========================
+   MODAL
+========================= */
 
 .modal{
     position:fixed;
-
     inset:0;
-
-    z-index:200;
-
+    z-index:1000;
+    background:rgba(0,0,0,.72);
+    backdrop-filter:blur(8px);
     display:none;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:20px;
-
-    background:#000b;
-
-    backdrop-filter:blur(10px);
+    place-items:center;
+    padding:18px;
 }
 
-.modal.active{
-    display:flex;
+.modal.show{
+    display:grid;
 }
 
 .modal-box{
-    width:min(480px,100%);
+    width:min(720px,100%);
+    max-height:90vh;
+    overflow:auto;
+    background:#0d0d14;
+    border:1px solid #34333f;
+    border-radius:20px;
+    box-shadow:0 30px 90px rgba(0,0,0,.6);
+    animation:modalIn .25s ease;
+}
 
-    background:#0c0c14;
+@keyframes modalIn{
+    from{
+        opacity:0;
+        transform:scale(.95) translateY(10px);
+    }
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
 
-    border:1px solid var(--border);
-
-    border-radius:21px;
-
-    padding:26px;
-
-    position:relative;
+.modal-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:17px;
+    border-bottom:1px solid var(--line);
 }
 
 .close{
-    position:absolute;
-
-    top:12px;
-    left:12px;
-
-    width:35px;
-    height:35px;
-
     border:0;
-
+    background:#171720;
+    color:#aaa;
+    width:32px;
+    height:32px;
     border-radius:9px;
-
-    background:#1a1a25;
-
-    color:white;
 }
 
-.modal-box input{
-    width:100%;
-
-    margin:6px 0;
-
-    padding:13px;
-
-    border-radius:10px;
-
-    border:1px solid var(--border);
-
-    background:#07070c;
-
-    color:white;
+.close:hover{
+    color:#fff;
 }
 
-.modal-box button{
-    width:100%;
-
-    margin-top:8px;
+.modal-body{
+    padding:20px;
 }
-
-/* TOAST */
-
-.toast{
-    position:fixed;
-
-    bottom:20px;
-
-    left:50%;
-
-    z-index:500;
-
-    transform:
-    translate(-50%,120px);
-
-    opacity:0;
-
-    background:#151520;
-
-    border:1px solid var(--border);
-
-    padding:13px 17px;
-
-    border-radius:12px;
-
-    transition:.25s;
-
-    max-width:90%;
-
-    text-align:center;
-}
-
-.toast.show{
-    opacity:1;
-
-    transform:
-    translate(-50%,0);
-}
-
-/* FOOTER */
-
-footer{
-    margin-top:40px;
-
-    border-top:1px solid var(--border);
-
-    padding:30px 0;
-
-    text-align:center;
-
-    color:var(--muted);
-
-    font-size:13px;
-}
-
-/* MOBILE */
-
-@media(max-width:850px){
-
-    .nav-links{
-        display:none;
-
-        position:absolute;
-
-        top:70px;
-
-        left:4%;
-        right:4%;
-
-        padding:8px;
-
-        background:#0b0b12;
-
-        border:1px solid var(--border);
-
-        border-radius:15px;
-
-        flex-direction:column;
-    }
-
-    .nav-links.open{
-        display:flex;
-    }
-
-    .menu-btn{
-        display:block;
-    }
-
-    .hero{
-        grid-template-columns:1fr;
-
-        text-align:center;
-
-        padding:45px 0;
-    }
-
-    .hero p{
-        margin-left:auto;
-        margin-right:auto;
-    }
-
-    .actions{
-        justify-content:center;
-    }
-
-    .hero-image{
-        order:-1;
-    }
-
-    .hero-image img{
-        width:280px;
-    }
-
-    .grid,
-    .profile-grid{
-        grid-template-columns:1fr;
-    }
-
-    .stats{
-        grid-template-columns:1fr 1fr;
-    }
-}
-
-@media(max-width:470px){
-
-    .hero h1{
-        font-size:47px;
-    }
-
-    .logo span{
-        display:none;
-    }
-
-    .achievements{
-        grid-template-columns:1fr;
-    }
-}
-
-</style>
-</head>
-
-<body>
-
-<header>
-
-<nav class="nav container">
-
-<button class="logo" onclick="showPage('home')">
-
-<img
-src="dead-penguin-cyber-new-background.png"
-alt="Midnight Penguin"
->
-
-<span>Midnight for Cyber</span>
-
-</button>
-
-
-<div class="nav-links" id="navLinks">
-
-<button data-page="home" onclick="showPage('home')">
-الرئيسية
-</button>
-
-<button data-page="academy" onclick="showPage('academy')">
-الأكاديمية
-</button>
-
-<button data-page="labs" onclick="showPage('labs')">
-Labs
-</button>
-
-<button data-page="quiz" onclick="showPage('quiz')">
-الاختبار
-</button>
-
-<button data-page="dictionary" onclick="showPage('dictionary')">
-القاموس
-</button>
-
-<button data-page="dashboard" onclick="showPage('dashboard')">
-حسابي
-</button>
-
-<button data-page="support" onclick="showPage('support')">
-الدعم
-</button>
-
-</div>
-
-
-<div class="nav-right">
-
-<button
-class="lang-btn"
-id="languageButton"
-onclick="toggleLanguage()"
->
-🇺🇸 English
-</button>
-
-<button
-class="login-btn"
-id="loginButton"
-onclick="openLogin()"
->
-تسجيل الدخول
-</button>
-
-<button
-class="menu-btn"
-onclick="toggleMenu()"
->
-☰
-</button>
-
-</div>
-
-</nav>
-
-</header>
-
-
-<main class="container">
-
-
-<!-- HOME -->
-
-<section
-id="home"
-class="page active"
->
-
-<div class="hero">
-
-<div>
-
-<span class="badge">
-🐧 Midnight for Cyber
-</span>
-
-<h1>
-
-<span data-ar="تعلم." data-en="Learn.">
-تعلم.
-</span>
-
-<br>
-
-<span data-ar="استكشف." data-en="Explore.">
-استكشف.
-</span>
-
-<br>
-
-<span
-class="gradient"
-data-ar="وانبسط."
-data-en="Have Fun."
->
-وانبسط.
-</span>
-
-</h1>
-
-
-<p
-data-ar="منصة أمن سيبراني مختلفة. دروس بسيطة، مختبرات عملية، اختبارات، مجتمع وأشياء كثيرة جاية بالطريق."
-data-en="A different cybersecurity platform. Simple lessons, practical labs, tests, community and much more coming."
->
-
-منصة أمن سيبراني مختلفة.
-دروس بسيطة، مختبرات عملية، اختبارات،
-مجتمع وأشياء كثيرة جاية بالطريق.
-
-</p>
-
-
-<div class="actions">
-
-<button
-class="btn btn-primary"
-onclick="showPage('academy')"
-data-ar="🚀 ابدأ رحلتك"
-data-en="🚀 Start Your Journey"
->
-🚀 ابدأ رحلتك
-</button>
-
-
-<button
-class="btn btn-secondary"
-onclick="showPage('labs')"
-data-ar="🧪 ادخل المختبرات"
-data-en="🧪 Enter Labs"
->
-🧪 ادخل المختبرات
-</button>
-
-
-<button
-class="btn btn-discord"
-onclick="openDiscord()"
->
-
-<svg
-class="discord-icon"
-viewBox="0 0 24 24"
->
-<path d="M19.54 5.11A16 16 0 0 0 15.5 4l-.5 1a15 15 0 0 0-6 0l-.5-1a16 16 0 0 0-4.04 1.11C1.9 8.03 1.2 11 1.5 15c1.9 1.45 3.8 2.35 5.8 2.8l.7-1.1c-.7-.25-1.4-.6-2-.95l.5-.4c3.9 1.8 7.6 1.8 11.5 0l.5.4c-.6.35-1.3.7-2 .95l.7 1.1c2-.45 3.9-1.35 5.8-2.8.3-4-.4-6.97-2.96-9.89ZM8.5 13.5c-.9 0-1.6-.8-1.6-1.8s.7-1.8 1.6-1.8 1.6.8 1.6 1.8-.7 1.8-1.6 1.8Zm7 0c-.9 0-1.6-.8-1.6-1.8s.7-1.8 1.6-1.8 1.6.8 1.6 1.8-.7 1.8-1.6 1.8Z"/>
-</svg>
-
-<span
-data-ar="سيرفر الديسكورد"
-data-en="Discord Server"
->
-سيرفر الديسكورد
-</span>
-
-</button>
-
-</div>
-
-</div>
-
-
-<div class="hero-image">
-
-<img
-src="dead-penguin-cyber-new-background.png"
-alt="Midnight Cyber Penguin"
->
-
-</div>
-
-</div>
-
-
-<div class="section">
-
-<div class="section-title">
-
-<small>WELCOME</small>
-
-<h2
-data-ar="وش تبي تسوي؟"
-data-en="What do you want to do?"
->
-وش تبي تسوي؟
-</h2>
-
-<p
-data-ar="مو لازم تدخل كل شيء مرة وحدة."
-data-en="You don't have to do everything at once."
->
-مو لازم تدخل كل شيء مرة وحدة.
-</p>
-
-</div>
-
-
-<div class="grid">
-
-
-<div class="card">
-
-<div class="card-icon">
-🚀
-</div>
-
-<h3
-data-ar="ابدأ التعلم"
-data-en="Start Learning"
->
-ابدأ التعلم
-</h3>
-
-<p
-data-ar="دروس مرتبة من أساسيات الشبكات واللينكس إلى الأمن السيبراني."
-data-en="Structured lessons from networking and Linux basics to cybersecurity."
->
-دروس مرتبة من أساسيات الشبكات واللينكس إلى الأمن السيبراني.
-</p>
-
-<button
-class="btn btn-primary"
-onclick="showPage('academy')"
-data-ar="دخول الأكاديمية"
-data-en="Open Academy"
->
-دخول الأكاديمية
-</button>
-
-</div>
-
-
-<div class="card">
-
-<div class="card-icon">
-🧪
-</div>
-
-<h3
-data-ar="العمليات السيبرانية"
-data-en="Cyber Operations"
->
-العمليات السيبرانية
-</h3>
-
-<p
-data-ar="حقق في حوادث وهمية وحلل Logs واختبر نفسك."
-data-en="Investigate fictional incidents, analyze logs and test yourself."
->
-حقق في حوادث وهمية وحلل Logs واختبر نفسك.
-</p>
-
-<button
-class="btn btn-secondary"
-onclick="showPage('labs')"
-data-ar="دخول المختبرات"
-data-en="Open Labs"
->
-دخول المختبرات
-</button>
-
-</div>
-
-
-<div class="card">
-
-<div class="card-icon">
-🧠
-</div>
-
-<h3
-data-ar="اختبر مستواك"
-data-en="Test Your Level"
->
-اختبر مستواك
-</h3>
-
-<p
-data-ar="اعرف مستواك التقريبي وخذ فكرة عن المسار المناسب لك."
-data-en="Estimate your level and get an idea of your learning path."
->
-اعرف مستواك التقريبي وخذ فكرة عن المسار المناسب لك.
-</p>
-
-<button
-class="btn btn-secondary"
-onclick="showPage('quiz')"
-data-ar="ابدأ الاختبار"
-data-en="Start Test"
->
-ابدأ الاختبار
-</button>
-
-</div>
-
-
-</div>
-
-
-<div class="secret">
-
-<h3>
-👀
-<span
-data-ar="عندنا أشياء ما قلناها لك..."
-data-en="We haven't told you everything..."
->
-عندنا أشياء ما قلناها لك...
-</span>
-</h3>
-
-<p
-data-ar="راح نضيف أشياء كثيييرة في المستقبل، وفي تسريبات تنزل في سيرفر الديسكورد... بس خلوها سر بيننا 👀"
-data-en="We're adding A LOT in the future, and some leaks will appear in the Discord server... keep it between us 👀"
->
-راح نضيف أشياء كثيييرة في المستقبل،
-وفي تسريبات تنزل في سيرفر الديسكورد...
-بس خلوها سر بيننا 👀
-</p>
-
-</div>
-
-</div>
-
-
-<div class="section">
-
-<div class="section-title">
-
-<small>MIDNIGHT STATUS</small>
-
-<h2
-data-ar="تقدمك"
-data-en="Your Progress"
->
-تقدمك
-</h2>
-
-</div>
-
-
-<div class="stats">
-
-<div class="stat">
-<b id="homeXP">0</b>
-<span>XP</span>
-</div>
-
-<div class="stat">
-<b id="homeLessons">0</b>
-<span
-data-ar="دروس مكتملة"
-data-en="Completed Lessons"
->
-دروس مكتملة
-</span>
-</div>
-
-<div class="stat">
-<b id="homeLabs">0</b>
-<span
-data-ar="Labs مكتملة"
-data-en="Completed Labs"
->
-Labs مكتملة
-</span>
-</div>
-
-<div class="stat">
-<b id="homeLevel">1</b>
-<span
-data-ar="المستوى"
-data-en="Level"
->
-المستوى
-</span>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ACADEMY -->
-
-<section
-id="academy"
-class="page"
->
-
-<div class="section">
-
-<div class="section-title">
-
-<small>ACADEMY</small>
-
-<h2
-data-ar="أكاديمية Midnight"
-data-en="Midnight Academy"
->
-أكاديمية Midnight
-</h2>
-
-<p
-data-ar="اضغط على الدرس لقراءة المحتوى. الـXP ما ينضاف إلا بعد إكمال الدرس."
-data-en="Open a lesson to read it. XP is only awarded after completing the lesson."
->
-اضغط على الدرس لقراءة المحتوى.
-الـXP ما ينضاف إلا بعد إكمال الدرس.
-</p>
-
-</div>
-
-
-<div class="toolbar">
-
-<input
-id="lessonSearch"
-class="search"
-placeholder="🔎 ابحث عن درس..."
->
-
-</div>
-
-
-<div
-id="lessonGrid"
-class="grid"
->
-</div>
-
-</div>
-
-</section>
-
-
-<!-- LESSON READER -->
-
-<section
-id="lessonReader"
-class="page"
->
-
-<div class="section">
-
-<div
-id="lessonReaderContent"
-class="reader"
->
-</div>
-
-</div>
-
-</section>
-
-
-<!-- LABS -->
-
-<section
-id="labs"
-class="page"
->
-
-<div class="section">
-
-<div class="section-title">
-
-<small>CYBER OPERATIONS</small>
-
-<h2
-data-ar="المختبرات العملية"
-data-en="Practical Labs"
->
-المختبرات العملية
-</h2>
-
-<p
-data-ar="كل شيء هنا محاكاة تعليمية. لا توجد أهداف حقيقية."
-data-en="Everything here is an educational simulation. No real targets."
->
-كل شيء هنا محاكاة تعليمية.
-لا توجد أهداف حقيقية.
-</p>
-
-</div>
-
-
-<div
-id="labGrid"
-class="grid"
->
-</div>
-
-
-<div
-id="nexoraInvestigation"
-class="investigation"
->
-
-<div class="case-header">
-
-<div>
-
-<span class="tag">
-NEXORA / IR-204
-</span>
-
-<h2>
-🏦 Nexora Capital Bank
-</h2>
-
-<p
-class="muted"
-data-ar="تحقيق حادثة دخول مشبوهة"
-data-en="Investigation of a suspicious login incident"
->
-تحقيق حادثة دخول مشبوهة
-</p>
-
-</div>
-
-<span
-class="case-status"
-id="caseStatus"
->
-INVESTIGATING
-</span>
-
-</div>
-
-
-<div class="log-box">
-
-[AUTH.LOG]
-
-2026-09-19 03:11:22
-203.0.113.77
-FAILED_LOGIN
-user=alex
-
-2026-09-19 03:11:25
-203.0.113.77
-FAILED_LOGIN
-user=alex
-
-2026-09-19 03:11:31
-203.0.113.77
-SUCCESS_LOGIN
-user=alex
-
-2026-09-19 03:14:02
-198.51.100.21
-SUCCESS_LOGIN
-user=finance
-
-[WEB.LOG]
-
-GET /login
-200
-
-POST /login
-401
-
-POST /login
-401
-
-POST /login
-200
-
-</div>
-
-
-<div
-id="investigationQuestions"
->
-</div>
-
-
-<div class="actions">
-
-<button
-class="btn btn-primary"
-onclick="submitInvestigation()"
-data-ar="إرسال التحقيق"
-data-en="Submit Investigation"
->
-إرسال التحقيق
-</button>
-
-<button
-class="btn btn-secondary"
-onclick="closeInvestigation()"
-data-ar="إغلاق"
-data-en="Close"
->
-إغلاق
-</button>
-
-</div>
-
-<div
-id="investigationResult"
-style="margin-top:15px"
->
-</div>
-
-</div>
-
-
-<div class="terminal">
-
-<div class="terminal-head">
-MIDNIGHT TRAINING TERMINAL
-</div>
-
-<div
-id="terminalOutput"
-class="terminal-body"
->
-┌──(midnight㉿kali)-[~/nexora]
-└─$ help
-
-Type "help" for safe training commands.
-</div>
-
-<div class="terminal-input">
-
-<input
-id="terminalInput"
-placeholder="training command..."
-dir="ltr"
->
-
-<button
-onclick="runTerminal()"
->
-Run
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- QUIZ -->
-
-<section
-id="quiz"
-class="page"
->
-
-<div class="section">
-
-<div class="section-title">
-
-<small>LEVEL CHECK</small>
-
-<h2>
-🧠
-<span
-data-ar="اختبار المستوى"
-data-en="Level Test"
->
-اختبار المستوى
-</span>
-</h2>
-
-<p
-data-ar="اختبار بسيط يعطيك مستوى تقريبي."
-data-en="A short test that gives you an approximate level."
->
-اختبار بسيط يعطيك مستوى تقريبي.
-</p>
-
-</div>
-
-
-<div
-id="quizBox"
-class="quiz-box"
->
-</div>
-
-</div>
-
-</section>
-
-
-<!-- DICTIONARY -->
-
-<section
-id="dictionary"
-class="page"
->
-
-<div class="section">
-
-<div class="section-title">
-
-<small>CYBER DICTIONARY</small>
-
-<h2>
-📖
-<span
-data-ar="قاموس Cyber"
-data-en="Cyber Dictionary"
->
-قاموس Cyber
-</span>
-</h2>
-
-</div>
-
-
-<input
-id="dictionarySearch"
-class="search"
-placeholder="🔎 ابحث عن مصطلح..."
->
-
-
-<br><br>
-
-
-<div
-id="dictionaryGrid"
-class="grid"
->
-</div>
-
-</div>
-
-</section>
-
-
-<!-- DASHBOARD -->
-
-<section
-id="dashboard"
-class="page"
->
-
-<div class="section">
-
-<div class="section-title">
-
-<small>PROFILE</small>
-
-<h2>
-👤
-<span
-data-ar="حسابك"
-data-en="Your Profile"
->
-حسابك
-</span>
-</h2>
-
-</div>
-
-
-<div class="profile-grid">
-
-
-<div class="card">
-
-<h2 id="profileName">
-Guest
-</h2>
-
-<p
-id="profileEmail"
-style="color:var(--muted)"
->
-</p>
-
-
-<h3>
-Level
-<span id="profileLevel">
-1
-</span>
-</h3>
-
-
-<div class="progress">
-
-<i id="xpProgress"></i>
-
-</div>
-
-
-<p
-style="color:var(--muted)"
->
-
-<span id="profileXP">
-0
-</span>
-
-XP
-
-</p>
-
-
-<button
-class="btn btn-primary"
-onclick="openLogin()"
-data-ar="تعديل الحساب"
-data-en="Edit Account"
->
-تعديل الحساب
-</button>
-
-</div>
-
-
-<div class="card">
-
-<h3>
-🏆 Achievements
-</h3>
-
-
-<div class="achievements">
-
-
-<div
-id="achievementLesson"
-class="achievement locked"
->
-🚀 البداية
-<br>
-<small>
-أكمل أول درس
-</small>
-</div>
-
-
-<div
-id="achievementLab"
-class="achievement locked"
->
-🧪 المحقق
-<br>
-<small>
-أكمل أول Lab
-</small>
-</div>
-
-
-<div
-id="achievementXP"
-class="achievement locked"
->
-⚡ 500 XP
-<br>
-<small>
-اجمع 500 XP
-</small>
-</div>
-
-
-<div
-id="achievementQuiz"
-class="achievement locked"
->
-🧠 المعرفة
-<br>
-<small>
-أكمل الاختبار
-</small>
-</div>
-
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- SUPPORT -->
-
-<section
-id="support"
-class="page"
->
-
-<div class="section">
-
-<div class="support">
-
-<div class="support-icon">
-🛠️
-</div>
-
-<h2
-data-ar="مركز الدعم"
-data-en="Support Center"
->
-مركز الدعم
-</h2>
-
-<p
-style="color:var(--muted);line-height:1.8"
-data-ar="عندك شكوى أو اقتراح أو Bug؟ ادخل السيرفر وافتح تذكرة."
-data-en="Have a complaint, suggestion or bug? Join the server and open a ticket."
->
-عندك شكوى أو اقتراح أو Bug؟
-ادخل السيرفر وافتح تذكرة.
-</p>
-
-
-<div class="actions" style="justify-content:center">
-
-<button
-class="btn btn-discord"
-onclick="openDiscord()"
->
-
-<svg
-class="discord-icon"
-viewBox="0 0 24 24"
->
-<path d="M19.54 5.11A16 16 0 0 0 15.5 4l-.5 1a15 15 0 0 0-6 0l-.5-1a16 16 0 0 0-4.04 1.11C1.9 8.03 1.2 11 1.5 15c1.9 1.45 3.8 2.35 5.8 2.8l.7-1.1c-.7-.25-1.4-.6-2-.95l.5-.4c3.9 1.8 7.6 1.8 11.5 0l.5.4c-.6.35-1.3.7-2 .95l.7 1.1c2-.45 3.9-1.35 5.8-2.8.3-4-.4-6.97-2.96-9.89ZM8.5 13.5c-.9 0-1.6-.8-1.6-1.8s.7-1.8 1.6-1.8 1.6.8 1.6 1.8-.7 1.8-1.6 1.8Zm7 0c-.9 0-1.6-.8-1.6-1.8s.7-1.8 1.6-1.8 1.6.8 1.6 1.8-.7 1.8-1.6 1.8Z"/>
-</svg>
-
-<span
-data-ar="سيرفر الديسكورد"
-data-en="Discord Server"
->
-سيرفر الديسكورد
-</span>
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<footer>
-
-🐧 Midnight for Cyber
-
-<br><br>
-
-Learn Cybersecurity • Build Skills • Have Fun
-
-</footer>
-
-</main>
-
-
-<!-- LOGIN MODAL -->
-
-<div
-id="loginModal"
-class="modal"
->
-
-<div class="modal-box">
-
-<button
-class="close"
-onclick="closeLogin()"
->
-×
-</button>
-
-
-<h2>
-🐧
-<span
-data-ar="أهلاً بك في Midnight"
-data-en="Welcome to Midnight"
->
-أهلاً بك في Midnight
-</span>
-</h2>
-
-
-<p
-style="color:var(--muted);line-height:1.7"
-data-ar="حساب محلي يحفظ تقدمك على جهازك. تسجيل Discord الحقيقي يحتاج Backend."
-data-en="A local account that saves your progress on this device. Real Discord login requires a backend."
->
-حساب محلي يحفظ تقدمك على جهازك.
-تسجيل Discord الحقيقي يحتاج Backend.
-</p>
-
-
-<input
-id="nameInput"
-maxlength="30"
-placeholder="اسمك"
-/>
-
-
-<input
-id="emailInput"
-maxlength="100"
-placeholder="البريد الإلكتروني"
-/>
-
-
-<button
-class="btn btn-primary"
-onclick="loginLocal()"
-data-ar="🔐 حفظ الحساب"
-data-en="🔐 Save Account"
->
-🔐 حفظ الحساب
-</button>
-
-
-<button
-class="btn btn-discord"
-onclick="openDiscord()"
->
-فتح Discord
-</button>
-
-
-<button
-class="btn btn-secondary"
-onclick="guestLogin()"
-data-ar="👤 المتابعة كزائر"
-data-en="👤 Continue as Guest"
->
-👤 المتابعة كزائر
-</button>
-
-</div>
-
-</div>
-
-
-<div
-id="toast"
-class="toast"
->
-</div>
-
-
-<script>
-
-/* =========================
-   CONFIG
-========================= */
-
-const DISCORD_URL =
-"https://discord.gg/TyUpVWQgA";
-
-const STORAGE_KEY =
-"midnight_for_cyber_v4";
-
-
-/* =========================
-   STATE
-========================= */
-
-let state =
-JSON.parse(
-localStorage.getItem(STORAGE_KEY)
-)
-||
-{
-    language:"ar",
-
-    name:"Guest",
-
-    email:"",
-
-    loggedIn:false,
-
-    xp:0,
-
-    level:1,
-
-    completedLessons:[],
-
-    completedLabs:[],
-
-    completedQuiz:false,
-
-    investigation:null
-};
-
-
-/* =========================
-   DATA
-========================= */
-
-const lessons = [
-
-{
-id:"ip",
-icon:"🌐",
-title:"IP Address",
-level:"Beginner",
-xp:30,
-ar:"عنوان IP هو عنوان منطقي يساعد الأجهزة على التعرف على بعضها داخل الشبكات.",
-en:"An IP address is a logical address used to identify devices across networks."
-},
-
-{
-id:"dns",
-icon:"📖",
-title:"DNS",
-level:"Beginner",
-xp:35,
-ar:"DNS يحول أسماء النطاقات مثل example.com إلى عناوين IP.",
-en:"DNS translates domain names such as example.com into IP addresses."
-},
-
-{
-id:"dhcp",
-icon:"📡",
-title:"DHCP",
-level:"Beginner",
-xp:35,
-ar:"DHCP يوزع إعدادات الشبكة على الأجهزة تلقائياً.",
-en:"DHCP automatically provides devices with network configuration."
-},
-
-{
-id:"arp",
-icon:"🔎",
-title:"ARP",
-level:"Beginner",
-xp:35,
-ar:"ARP يساعد الجهاز على معرفة MAC المرتبط بعنوان IP داخل الشبكة المحلية.",
-en:"ARP helps a device discover the MAC address associated with an IP on a local network."
-},
-
-{
-id:"nat",
-icon:"🔄",
-title:"NAT",
-level:"Beginner",
-xp:40,
-ar:"NAT يسمح لأجهزة داخلية كثيرة بمشاركة عنوان عام عند الوصول للإنترنت.",
-en:"NAT allows multiple private devices to share a public address."
-},
-
-{
-id:"ports",
-icon:"🚪",
-title:"Network Ports",
-level:"Beginner",
-xp:40,
-ar:"الـPort مثل باب مخصص لخدمة معينة على جهاز.",
-en:"A port is like a door associated with a network service."
-},
-
-{
-id:"tcpudp",
-icon:"🚚",
-title:"TCP vs UDP",
-level:"Intermediate",
-xp:45,
-ar:"TCP يهتم بالموثوقية والترتيب بينما UDP أخف ولا يضمن التسليم بنفس الطريقة.",
-en:"TCP focuses on reliability and ordering while UDP is lighter and does not provide the same guarantees."
-},
-
-{
-id:"http",
-icon:"🌍",
-title:"HTTP & HTTPS",
-level:"Intermediate",
-xp:50,
-ar:"HTTP يستخدم لطلبات واستجابات الويب وHTTPS يضيف حماية TLS.",
-en:"HTTP handles web requests and responses while HTTPS adds TLS protection."
-},
-
-{
-id:"packets",
-icon:"📨",
-title:"Network Packets",
-level:"Intermediate",
-xp:45,
-ar:"البيانات تنتقل في الشبكات على شكل وحدات تسمى Packets.",
-en:"Data travels through networks in units called packets."
-},
-
-{
-id:"firewall",
-icon:"🛡️",
-title:"Firewall",
-level:"Intermediate",
-xp:50,
-ar:"الجدار الناري يطبق قواعد للسماح أو منع الاتصالات.",
-en:"A firewall applies rules to allow or block network traffic."
-},
-
-{
-id:"vpn",
-icon:"🔐",
-title:"VPN",
-level:"Intermediate",
-xp:50,
-ar:"VPN يمكن أن ينشئ نفقاً مشفراً بين جهازك وخدمة VPN.",
-en:"A VPN can create an encrypted tunnel between your device and a VPN service."
-},
-
-{
-id:"linux",
-icon:"🐧",
-title:"Linux Terminal",
-level:"Beginner",
-xp:45,
-ar:"تعلم التنقل بين الملفات وتشغيل الأوامر وقراءة المعلومات.",
-en:"Learn to navigate files, run commands and inspect information."
-},
-
-{
-id:"python",
-icon:"🐍",
-title:"Python Basics",
-level:"Beginner",
-xp:45,
-ar:"المتغيرات والشروط والحلقات والدوال أساس مهم للأتمتة الأمنية.",
-en:"Variables, conditions, loops and functions are useful foundations for security automation."
-},
-
-{
-id:"web",
-icon:"🌐",
-title:"Web Security Basics",
-level:"Intermediate",
-xp:55,
-ar:"تعرف على الطلبات والاستجابات والجلسات وأساسيات حماية تطبيقات الويب.",
-en:"Learn about requests, responses, sessions and basic web security concepts."
-},
-
-{
-id:"phishing",
-icon:"🎣",
-title:"Phishing Analysis",
-level:"Intermediate",
-xp:55,
-ar:"تعلم تحليل رسائل التصيد ومعرفة مؤشرات الخداع.",
-en:"Learn how to analyze phishing messages and identify indicators of deception."
-},
-
-{
-id:"soc",
-icon:"🛡️",
-title:"SOC Fundamentals",
-level:"Intermediate",
-xp:60,
-ar:"تعلم التنبيهات والسجلات والفرز الأولي للحوادث.",
-en:"Learn about alerts, logs and initial incident triage."
-},
-
-{
-id:"ctf",
-icon:"🚩",
-title:"CTF Fundamentals",
-level:"Intermediate",
-xp:60,
-ar:"تعلم طريقة التفكير في تحديات الأمن السيبراني التعليمية.",
-en:"Learn how to approach educational cybersecurity challenges."
-}
-
-];
-
-
-const labs = [
-
-{
-id:"nexora",
-icon:"🏦",
-title:"Nexora Capital Bank",
-xp:150,
-desc:"تحقيق كامل في حادثة دخول مشبوهة."
-},
-
-{
-id:"phishing",
-icon:"📧",
-title:"Phishing Investigation",
-xp:100,
-desc:"حلل رسالة تصيد داخل بيئة تدريبية."
-},
-
-{
-id:"soc",
-icon:"🛡️",
-title:"SOC Alert Triage",
-xp:120,
-desc:"حلل Alert وحدد الأولوية."
-},
-
-{
-id:"endpoint",
-icon:"💻",
-title:"Endpoint Investigation",
-xp:120,
-desc:"حقق في نشاط جهاز وهمي."
-},
-
-{
-id:"webincident",
-icon:"🌐",
-title:"Web Incident",
-xp:130,
-desc:"حلل حادثة ويب وسجلات خيالية."
-}
-
-];
-
-
-const dictionary = [
-
-["IP Address","عنوان منطقي يستخدم لتحديد جهاز أو واجهة شبكة."],
-["DNS","نظام يحول أسماء النطاقات إلى IP."],
-["Port","رقم منطقي تستخدمه الخدمات للاتصالات."],
-["Firewall","نظام يطبق قواعد للسماح أو منع الاتصالات."],
-["Packet","وحدة من البيانات تنتقل عبر الشبكة."],
-["VPN","تقنية تنشئ اتصالاً مشفراً بين جهاز وخدمة VPN."],
-["Phishing","خداع إلكتروني يحاول دفع المستخدم لكشف معلومات أو تنفيذ إجراء."],
-["SOC","Security Operations Center."],
-["CTF","تحديات تعليمية لتعلم الأمن السيبراني."],
-["NAT","ترجمة عناوين الشبكات الخاصة والعامة."],
-["ARP","بروتوكول يساعد على معرفة MAC المرتبط بـIP داخل الشبكة المحلية."]
-
-];
-
-
-/* =========================
-   SAVE
-========================= */
-
-function save(){
-
-    localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(state)
-    );
-
-}
-
 
 /* =========================
    TOAST
 ========================= */
 
-function toast(message){
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:24px;
+    transform:translate(-50%,20px);
+    background:#111118;
+    border:1px solid #383544;
+    color:#ddd;
+    padding:11px 15px;
+    border-radius:11px;
+    z-index:2000;
+    opacity:0;
+    pointer-events:none;
+    transition:.25s;
+    font-size:12px;
+    box-shadow:0 15px 40px rgba(0,0,0,.4);
+}
 
-    const box =
-    document.getElementById("toast");
+.toast.show{
+    opacity:1;
+    transform:translate(-50%,0);
+}
 
-    box.textContent = message;
+/* =========================
+   FOOTER
+========================= */
 
-    box.classList.add("show");
+footer{
+    margin-top:35px;
+    padding:20px 5px 30px;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    color:#686774;
+    font-size:11px;
+}
 
-    clearTimeout(window.toastTimer);
+/* =========================
+   RESPONSIVE
+========================= */
 
-    window.toastTimer =
-    setTimeout(
-        ()=>{
-            box.classList.remove("show");
-        },
-        2800
-    );
+@media(max-width:1100px){
+    .app,
+    [dir="rtl"] .app{
+        grid-template-columns:1fr;
+    }
 
+    .sidebar{
+        position:fixed;
+        top:68px;
+        bottom:0;
+        height:auto;
+        width:280px;
+        z-index:600;
+        transform:translateX(110%);
+        transition:.25s;
+    }
+
+    [dir="rtl"] .sidebar{
+        right:0;
+        left:auto;
+        transform:translateX(110%);
+    }
+
+    .sidebar.open,
+    [dir="rtl"] .sidebar.open{
+        transform:translateX(0);
+    }
+
+    .mobile-menu{
+        display:block;
+    }
+}
+
+@media(max-width:850px){
+    .hero{
+        grid-template-columns:1fr;
+        padding:28px;
+    }
+
+    .hero-penguin{
+        min-height:240px;
+    }
+
+    .penguin-main{
+        width:320px;
+    }
+
+    .dashboard-grid{
+        grid-template-columns:1fr;
+    }
+
+    .fun-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .lab-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .dict-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .profile,
+    .support-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:550px){
+    .topbar-inner{
+        padding:0 12px;
+    }
+
+    .top-btn span{
+        display:none;
+    }
+
+    .app{
+        padding:10px;
+    }
+
+    .hero{
+        padding:23px;
+        min-height:520px;
+    }
+
+    .hero h1{
+        font-size:52px;
+    }
+
+    .hero-penguin{
+        min-height:190px;
+    }
+
+    .penguin-main{
+        width:280px;
+    }
+
+    .fun-grid,
+    .lab-grid,
+    .dict-grid{
+        grid-template-columns:1fr;
+    }
+
+    .path-grid{
+        grid-template-columns:1fr;
+    }
+
+    .discord-card,
+    .danger-zone{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .mascot{
+        width:78px;
+        right:10px;
+        bottom:10px;
+    }
+
+    [dir="rtl"] .mascot{
+        left:10px;
+        right:auto;
+    }
+
+    .mascot-bubble{
+        bottom:80px;
+        right:-70px;
+    }
+
+    [dir="rtl"] .mascot-bubble{
+        left:-70px;
+        right:auto;
+    }
+
+    footer{
+        flex-direction:column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-glow glow-one"></div>
+<div class="bg-glow glow-two"></div>
+
+<!-- ================= TOPBAR ================= -->
+
+<header class="topbar">
+    <div class="topbar-inner">
+
+        <div class="brand">
+            <div class="brand-mark">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <span>MIDNIGHT</span>
+        </div>
+
+        <div class="top-actions">
+
+            <button class="top-btn mobile-menu" onclick="toggleSidebar()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <button class="top-btn lang-btn active" id="arBtn" onclick="setLanguage('ar')">
+                عربي
+            </button>
+
+            <button class="top-btn lang-btn" id="enBtn" onclick="setLanguage('en')">
+                English
+            </button>
+
+            <button class="top-btn" onclick="randomEvent()" title="Random">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </button>
+
+        </div>
+    </div>
+</header>
+
+<!-- ================= APP ================= -->
+
+<div class="app">
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-title" data-ar="MIDNIGHT" data-en="MIDNIGHT">
+        MIDNIGHT
+    </div>
+
+    <button class="nav-btn active" data-page="home" onclick="go('home')">
+        <i class="fa-solid fa-house"></i>
+        <span data-ar="الرئيسية" data-en="Home">الرئيسية</span>
+    </button>
+
+    <button class="nav-btn" data-page="labs" onclick="go('labs')">
+        <i class="fa-solid fa-flask"></i>
+        <span data-ar="المختبرات" data-en="Labs">المختبرات</span>
+    </button>
+
+    <button class="nav-btn" data-page="academy" onclick="go('academy')">
+        <i class="fa-solid fa-book-open"></i>
+        <span data-ar="الأكاديمية" data-en="Academy">الأكاديمية</span>
+    </button>
+
+    <button class="nav-btn" data-page="quiz" onclick="go('quiz')">
+        <i class="fa-solid fa-brain"></i>
+        <span data-ar="الاختبارات" data-en="Quizzes">الاختبارات</span>
+    </button>
+
+    <button class="nav-btn" data-page="dictionary" onclick="go('dictionary')">
+        <i class="fa-solid fa-book"></i>
+        <span data-ar="قاموس السيك" data-en="Dictionary">قاموس السيك</span>
+    </button>
+
+    <button class="nav-btn" data-page="dashboard" onclick="go('dashboard')">
+        <i class="fa-solid fa-chart-line"></i>
+        <span data-ar="تقدمي" data-en="Progress">تقدمي</span>
+    </button>
+
+    <div class="nav-bottom">
+
+        <button class="nav-btn" data-page="support" onclick="go('support')">
+            <i class="fa-solid fa-circle-question"></i>
+            <span data-ar="المساعدة" data-en="Help">المساعدة</span>
+        </button>
+
+        <a class="nav-btn" href="https://discord.gg/TyUpVWQgA" target="_blank">
+            <i class="fa-brands fa-discord"></i>
+            <span>Discord</span>
+        </a>
+
+    </div>
+
+</aside>
+
+<!-- CONTENT -->
+
+<main class="content">
+
+<!-- ================= HOME ================= -->
+
+<section class="page active" id="home">
+
+    <div class="hero">
+
+        <div class="hero-content">
+
+            <div class="kicker">
+                <span class="dot"></span>
+                <span data-ar="النظام يعمل... غالبًا" data-en="System online... probably">
+                    النظام يعمل... غالبًا
+                </span>
+            </div>
+
+            <h1>
+                MID<span>NIGHT</span>
+            </h1>
+
+            <p class="hero-sub"
+               data-ar="مكان تتعلم فيه الأمن السيبراني بدون ما تحس إنك دخلت محاضرة مدتها 7 ساعات. دروس ومختبرات ومهام... والبطريق للأسف موجود."
+               data-en="Learn cybersecurity without feeling like you entered a seven-hour lecture. Lessons, labs and missions... and unfortunately the penguin is here.">
+                مكان تتعلم فيه الأمن السيبراني بدون ما تحس إنك دخلت محاضرة مدتها 7 ساعات.
+                دروس ومختبرات ومهام... والبطريق للأسف موجود.
+            </p>
+
+            <div class="hero-buttons">
+
+                <button class="primary" onclick="go('academy')">
+                    <i class="fa-solid fa-play"></i>
+                    <span data-ar="ابدأ المغامرة" data-en="Start exploring">
+                        ابدأ المغامرة
+                    </span>
+                </button>
+
+                <button class="secondary" onclick="go('labs')">
+                    <i class="fa-solid fa-flask"></i>
+                    <span data-ar="شوف المختبرات" data-en="Explore labs">
+                        شوف المختبرات
+                    </span>
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="hero-penguin">
+
+            <div class="hero-tag">
+                <i class="fa-solid fa-eye"></i>
+                <span data-ar="البطريق يراقب..." data-en="Penguin is watching...">
+                    البطريق يراقب...
+                </span>
+            </div>
+
+            <div class="penguin-shadow"></div>
+
+            <img
+                class="penguin-main"
+                src="dead-penguin-cyber-new-background.jpeg"
+                onerror="this.src='dead-penguin-cyber-new-background.png'"
+                alt="Midnight Penguin"
+            >
+
+        </div>
+
+    </div>
+
+    <!-- DASHBOARD -->
+
+    <div class="dashboard-grid">
+
+        <div class="panel">
+
+            <div class="panel-head">
+                <div class="panel-title">
+                    <i class="fa-solid fa-terminal"></i>
+                    <span data-ar="Terminal" data-en="Terminal">Terminal</span>
+                </div>
+
+                <span class="tag">LIVE</span>
+            </div>
+
+            <div class="terminal">
+
+                <div class="terminal-top">
+                    <span class="term-dot"></span>
+                    <span class="term-dot"></span>
+                    <span class="term-dot"></span>
+                </div>
+
+                <div class="terminal-body" id="terminalBody"></div>
+
+            </div>
+
+        </div>
+
+        <div class="panel">
+
+            <div class="panel-head">
+
+                <div class="panel-title">
+                    <i class="fa-solid fa-microchip"></i>
+                    <span data-ar="حالة النظام" data-en="System status">
+                        حالة النظام
+                    </span>
+                </div>
+
+                <span class="tag" style="color:#4ade80">
+                    ● ONLINE
+                </span>
+
+            </div>
+
+            <div class="panel-body">
+
+                <div class="status-row">
+                    <span>CPU</span>
+                    <div class="status-bar">
+                        <div class="status-fill" id="cpuBar" style="width:82%"></div>
+                    </div>
+                    <b id="cpuText">82%</b>
+                </div>
+
+                <div class="status-row">
+                    <span>NETWORK</span>
+                    <div class="status-bar">
+                        <div class="status-fill" id="netBar" style="width:94%"></div>
+                    </div>
+                    <b id="netText">94%</b>
+                </div>
+
+                <div class="status-row">
+                    <span>BRAIN</span>
+                    <div class="status-bar">
+                        <div class="status-fill" id="brainBar" style="width:31%"></div>
+                    </div>
+                    <b id="brainText">31%</b>
+                </div>
+
+                <div class="status-row">
+                    <span>PENGUIN</span>
+                    <div class="status-bar">
+                        <div class="status-fill" style="width:100%"></div>
+                    </div>
+                    <b>100%</b>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- QUICK CARDS -->
+
+    <div class="fun-grid">
+
+        <div class="fun-card" onclick="go('labs')">
+            <div class="fun-icon">
+                <i class="fa-solid fa-flask"></i>
+            </div>
+            <h3 data-ar="المختبرات" data-en="Labs">المختبرات</h3>
+            <p data-ar="قضايا وتحقيقات ومواقف تخليك تفكر قبل لا تضغط أي شيء."
+               data-en="Cases and investigations that make you think before clicking anything.">
+                قضايا وتحقيقات ومواقف تخليك تفكر قبل لا تضغط أي شيء.
+            </p>
+        </div>
+
+        <div class="fun-card" onclick="go('academy')">
+            <div class="fun-icon">
+                <i class="fa-solid fa-book-open"></i>
+            </div>
+            <h3 data-ar="الأكاديمية" data-en="Academy">الأكاديمية</h3>
+            <p data-ar="شبكات وLinux وWeb وPython وأساسيات السيك."
+               data-en="Networking, Linux, Web, Python and cybersecurity basics.">
+                شبكات وLinux وWeb وPython وأساسيات السيك.
+            </p>
+        </div>
+
+        <div class="fun-card" onclick="go('quiz')">
+            <div class="fun-icon">
+                <i class="fa-solid fa-brain"></i>
+            </div>
+            <h3 data-ar="اختبر نفسك" data-en="Test yourself">اختبر نفسك</h3>
+            <p data-ar="أسئلة بسيطة... إلى أن يأتي سؤال يخليك تطالع بالسقف."
+               data-en="Simple questions... until one makes you stare at the ceiling.">
+                أسئلة بسيطة... إلى أن يأتي سؤال يخليك تطالع بالسقف.
+            </p>
+        </div>
+
+        <div class="fun-card" onclick="penguinTalk(true)">
+            <div class="fun-icon">
+                <i class="fa-solid fa-feather"></i>
+            </div>
+            <h3 data-ar="البطريق" data-en="The penguin">البطريق</h3>
+            <p data-ar="لا تسألني وش وظيفته. هو نفسه ما يدري."
+               data-en="Don't ask me what his job is. He doesn't know either.">
+                لا تسألني وش وظيفته. هو نفسه ما يدري.
+            </p>
+        </div>
+
+    </div>
+
+    <!-- LAB PREVIEW -->
+
+    <div class="section">
+
+        <div class="section-head">
+
+            <div>
+                <h2 data-ar="مختبرات تنتظرك" data-en="Labs waiting for you">
+                    مختبرات تنتظرك
+                </h2>
+
+                <p data-ar="مو كل شيء بنك... ارتاح 😂"
+                   data-en="Not everything is a bank... relax 😂">
+                    مو كل شيء بنك... ارتاح 😂
+                </p>
+            </div>
+
+            <button class="secondary" onclick="go('labs')">
+                <span data-ar="عرض الكل" data-en="View all">عرض الكل</span>
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+
+        </div>
+
+        <div class="lab-grid" id="homeLabs"></div>
+
+    </div>
+
+    <!-- ACTIVITY + DISCORD -->
+
+    <div class="dashboard-grid">
+
+        <div class="panel">
+
+            <div class="panel-head">
+                <div class="panel-title">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span data-ar="نشاط Midnight" data-en="Midnight activity">
+                        نشاط Midnight
+                    </span>
+                </div>
+            </div>
+
+            <div class="panel-body">
+
+                <div class="activity-list" id="activityList"></div>
+
+            </div>
+
+        </div>
+
+        <div class="panel">
+
+            <div class="panel-head">
+                <div class="panel-title">
+                    <i class="fa-solid fa-bullseye"></i>
+                    <span data-ar="مهمتك الحالية" data-en="Current mission">
+                        مهمتك الحالية
+                    </span>
+                </div>
+            </div>
+
+            <div class="panel-body">
+
+                <h3 id="missionTitle">🎯</h3>
+
+                <p id="missionText"
+                   style="color:#888793;font-size:12px;line-height:1.9;margin-top:8px;">
+                </p>
+
+                <button class="primary"
+                        style="margin-top:14px;width:100%;"
+                        onclick="go('labs')">
+
+                    <span data-ar="روح للمختبرات" data-en="Go to labs">
+                        روح للمختبرات
+                    </span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- DISCORD -->
+
+    <div class="discord-card">
+
+        <div class="discord-left">
+
+            <i class="fa-brands fa-discord discord-logo"></i>
+
+            <div>
+                <h3>Discord</h3>
+
+                <p data-ar="Midnight Community — مكاننا الحقيقي خارج الموقع."
+                   data-en="Midnight Community — our real place outside the website.">
+                    Midnight Community — مكاننا الحقيقي خارج الموقع.
+                </p>
+            </div>
+
+        </div>
+
+        <a
+            class="primary"
+            href="https://discord.gg/TyUpVWQgA"
+            target="_blank"
+        >
+            <i class="fa-brands fa-discord"></i>
+            Join Discord
+        </a>
+
+    </div>
+
+    <!-- DON'T PRESS -->
+
+    <div class="danger-zone">
+
+        <div>
+            <strong data-ar="⚠️ فيه زر هنا لا تضغطه" data-en="⚠️ There is a button here. Don't press it.">
+                ⚠️ فيه زر هنا لا تضغطه
+            </strong>
+
+            <p data-ar="إحنا حذرناك. الباقي على مسؤوليتك."
+               data-en="We warned you. The rest is on you.">
+                إحنا حذرناك. الباقي على مسؤوليتك.
+            </p>
+        </div>
+
+        <button class="dont-btn" onclick="dontPress()">
+            <span data-ar="لا تضغط" data-en="Don't press">لا تضغط</span>
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= LABS ================= -->
+
+<section class="page" id="labs">
+
+    <div class="page-header">
+        <button class="back-btn" onclick="go('home')">
+            <i class="fa-solid fa-arrow-right"></i>
+            <span data-ar="عودة" data-en="Back">عودة</span>
+        </button>
+
+        <h1 data-ar="المختبرات" data-en="Labs">المختبرات</h1>
+
+        <p
+            data-ar="قضايا تدريبية خيالية. حلل الأدلة واتخذ القرار الصحيح بدون استهداف أي أنظمة حقيقية."
+            data-en="Fictional training cases. Analyze evidence and make decisions without targeting real systems.">
+            قضايا تدريبية خيالية. حلل الأدلة واتخذ القرار الصحيح بدون استهداف أي أنظمة حقيقية.
+        </p>
+    </div>
+
+    <div class="lab-grid" id="allLabs"></div>
+
+</section>
+
+
+<!-- ================= ACADEMY ================= -->
+
+<section class="page" id="academy">
+
+    <div class="page-header">
+
+        <button class="back-btn" onclick="go('home')">
+            <i class="fa-solid fa-arrow-right"></i>
+            <span data-ar="عودة" data-en="Back">عودة</span>
+        </button>
+
+        <h1 data-ar="الأكاديمية" data-en="Academy">الأكاديمية</h1>
+
+        <p
+            data-ar="تعلم الأساسيات خطوة بخطوة. الدروس قصيرة وواضحة، والباقي عليك يا وحش."
+            data-en="Learn the fundamentals step by step. Short and clear lessons. The rest is up to you.">
+            تعلم الأساسيات خطوة بخطوة. الدروس قصيرة وواضحة، والباقي عليك يا وحش.
+        </p>
+
+    </div>
+
+    <div class="path-grid" id="paths"></div>
+
+</section>
+
+
+<!-- ================= LESSON ================= -->
+
+<section class="page" id="lessonReader">
+
+    <div class="reader">
+
+        <button class="back-btn" onclick="go('academy')">
+            <i class="fa-solid fa-arrow-right"></i>
+            <span data-ar="عودة للأكاديمية" data-en="Back to Academy">
+                عودة للأكاديمية
+            </span>
+        </button>
+
+        <div class="reader-card" id="readerContent"></div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= QUIZ ================= -->
+
+<section class="page" id="quiz">
+
+    <div class="page-header">
+
+        <button class="back-btn" onclick="go('home')">
+            <i class="fa-solid fa-arrow-right"></i>
+            <span data-ar="عودة" data-en="Back">عودة</span>
+        </button>
+
+        <h1 data-ar="اختبر نفسك" data-en="Test yourself">
+            اختبر نفسك
+        </h1>
+
+        <p
+            data-ar="سؤال من كل موضوع تقريبًا. لا تخاف... البطريق ما يشوف نتيجتك."
+            data-en="A question from almost every topic. Don't worry... the penguin won't see your score.">
+            سؤال من كل موضوع تقريبًا. لا تخاف... البطريق ما يشوف نتيجتك.
+        </p>
+
+    </div>
+
+    <div class="quiz-card" id="quizContainer"></div>
+
+    <button class="primary" style="margin-top:14px" onclick="finishQuiz()">
+        <i class="fa-solid fa-check"></i>
+        <span data-ar="احسب النتيجة" data-en="Calculate score">
+            احسب النتيجة
+        </span>
+    </button>
+
+    <div class="quiz-result" id="quizResult"></div>
+
+</section>
+
+
+<!-- ================= DICTIONARY ================= -->
+
+<section class="page" id="dictionary">
+
+    <div class="page-header">
+
+        <button class="back-btn" onclick="go('home')">
+            <i class="fa-solid fa-arrow-right"></i>
+            <span data-ar="عودة" data-en="Back">عودة</span>
+        </button>
+
+        <h1 data-ar="قاموس السيك" data-en="Cyber Dictionary">
+            قاموس السيك
+        </h1>
+
+        <p data-ar="مصطلحات بتقابلك كثير في الأمن السيبراني."
+           data-en="Terms you'll encounter often in cybersecurity.">
+            مصطلحات بتقابلك كثير في الأمن السيبراني.
+        </p>
+
+    </div>
+
+    <input
+        class="search"
+        id="dictionarySearch"
+        oninput="renderDictionary()"
+        placeholder="ابحث عن IP أو DNS أو Firewall..."
+    >
+
+    <div class="dict-grid" id="dictionaryGrid"></div>
+
+</section>
+
+
+<!-- ================= DASHBOARD ================= -->
+
+<section class="page" id="dashboard">
+
+    <div class="page-header">
+
+        <button class="back-btn" onclick="go('home')">
+            <i class="fa-solid fa-arrow-right"></i>
+            <span data-ar="عودة" data-en="Back">عودة</span>
+        </button>
+
+        <h1 data-ar="تقدمي" data-en="My progress">تقدمي</h1>
+
+        <p data-ar="كل درس تكمله وكل مختبر تحله يرفع مستواك."
+           data-en="Every completed lesson and lab raises your level.">
+            كل درس تكمله وكل مختبر تحله يرفع مستواك.
+        </p>
+
+    </div>
+
+    <div class="profile">
+
+        <div class="profile-card">
+
+            <span style="color:#777684;font-size:12px"
+                  data-ar="مستواك الحالي"
+                  data-en="Current level">
+                مستواك الحالي
+            </span>
+
+            <div class="level-big" id="levelNumber">1</div>
+
+            <div style="color:#888793;font-size:11px">
+                <span id="xpValue">0</span> XP
+            </div>
+
+            <div class="progress">
+                <div id="xpProgress"></div>
+            </div>
+
+        </div>
+
+        <div class="profile-card">
+
+            <span style="color:#777684;font-size:12px"
+                  data-ar="إحصائيات"
+                  data-en="Statistics">
+                إحصائيات
+            </span>
+
+            <div style="margin-top:17px;display:grid;gap:12px">
+
+                <div>
+                    <b id="completedLessons">0</b>
+                    <small style="color:#777684"
+                           data-ar=" دروس مكتملة"
+                           data-en=" lessons completed">
+                        دروس مكتملة
+                    </small>
+                </div>
+
+                <div>
+                    <b id="completedLabs">0</b>
+                    <small style="color:#777684"
+                           data-ar=" مختبرات مكتملة"
+                           data-en=" labs completed">
+                        مختبرات مكتملة
+                    </small>
+                </div>
+
+                <div>
+                    <b id="quizScore">0</b>
+                    <small style="color:#777684"
+                           data-ar=" أعلى نتيجة"
+                           data-en=" best quiz score">
+                        أعلى نتيجة
+                    </small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="section">
+
+        <div class="section-head">
+            <h2 data-ar="الإنجازات" data-en="Achievements">الإنجازات</h2>
+        </div>
+
+        <div class="achievements">
+
+            <div class="achievement">
+                <i class="fa-solid fa-bolt"></i>
+                <strong>First Step</strong>
+                <span data-ar="أول درس" data-en="First lesson">أول درس</span>
+            </div>
+
+            <div class="achievement">
+                <i class="fa-solid fa-flask"></i>
+                <strong>Lab Rat</strong>
+                <span data-ar="أول مختبر" data-en="First lab">أول مختبر</span>
+            </div>
+
+            <div class="achievement">
+                <i class="fa-solid fa-brain"></i>
+                <strong>Think First</strong>
+                <span data-ar="أول اختبار" data-en="First quiz">أول اختبار</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SUPPORT ================= -->
+
+<section class="page" id="support">
+
+    <div class="page-header">
+
+        <button class="back-btn" onclick="go('home')">
+            <i class="fa-solid fa-arrow-right"></i>
+            <span data-ar="عودة" data-en="Back">عودة</span>
+        </button>
+
+        <h1 data-ar="المساعدة" data-en="Help">المساعدة</h1>
+
+        <p data-ar="إذا ضعت... عادي. حتى البطريق ضايع."
+           data-en="If you're lost... that's okay. Even the penguin is lost.">
+            إذا ضعت... عادي. حتى البطريق ضايع.
+        </p>
+
+    </div>
+
+    <div class="support-grid">
+
+        <div class="support-card">
+            <i class="fa-solid fa-book"></i>
+            <h3 data-ar="من وين أبدأ؟" data-en="Where do I start?">
+                من وين أبدأ؟
+            </h3>
+            <p data-ar="ابدأ بمسار الشبكات ثم انتقل للـ Linux والويب وبعدها المختبرات."
+               data-en="Start with networking, then Linux and web security, then move to labs.">
+                ابدأ بمسار الشبكات ثم انتقل للـ Linux والويب وبعدها المختبرات.
+            </p>
+        </div>
+
+        <div class="support-card">
+            <i class="fa-solid fa-shield-halved"></i>
+            <h3 data-ar="هل المختبرات حقيقية؟" data-en="Are the labs real?">
+                هل المختبرات حقيقية؟
+            </h3>
+            <p data-ar="لا. كل القضايا والأدلة داخل Midnight تدريبية وخيالية."
+               data-en="No. All cases and evidence inside Midnight are fictional training scenarios.">
+                لا. كل القضايا والأدلة داخل Midnight تدريبية وخيالية.
+            </p>
+        </div>
+
+        <div class="support-card">
+            <i class="fa-brands fa-discord"></i>
+            <h3>Discord</h3>
+            <p data-ar="للمجتمع والنقاشات ومشاركة الأشياء المتعلقة بالتعلم."
+               data-en="For the community, discussions and learning-related sharing.">
+                للمجتمع والنقاشات ومشاركة الأشياء المتعلقة بالتعلم.
+            </p>
+
+            <a class="primary"
+               href="https://discord.gg/TyUpVWQgA"
+               target="_blank"
+               style="display:inline-block;margin-top:13px">
+                <i class="fa-brands fa-discord"></i>
+                Discord
+            </a>
+        </div>
+
+        <div class="support-card">
+            <i class="fa-solid fa-feather"></i>
+            <h3 data-ar="إذا شفت البطريق..." data-en="If you see the penguin...">
+                إذا شفت البطريق...
+            </h3>
+            <p data-ar="لا تضغطه كثير. تم تحذيرك رسميًا."
+               data-en="Don't click him too much. You have officially been warned.">
+                لا تضغطه كثير. تم تحذيرك رسميًا.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+    <span>© Midnight • جميع الحقوق محفوظة</span>
+    <span>𝙈𝙞𝙙𝙣𝙞𝙜𝙝𝙩</span>
+</footer>
+
+</main>
+</div>
+
+
+<!-- ================= PENGUIN ================= -->
+
+<div class="mascot"
+     id="mascot"
+     onclick="penguinTalk(true)"
+     title="Midnight Penguin">
+
+    <div class="mascot-bubble" id="mascotBubble"></div>
+
+    <span class="penguin-tongue"></span>
+
+    <img
+        class="mascot-img"
+        src="dead-penguin-cyber-new-background.jpeg"
+        onerror="this.src='dead-penguin-cyber-new-background.png'"
+        alt="Midnight Penguin"
+    >
+
+</div>
+
+
+<!-- ================= MODAL ================= -->
+
+<div class="modal" id="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-head">
+
+            <strong id="modalTitle"></strong>
+
+            <button class="close" onclick="closeModal()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+        <div class="modal-body" id="modalBody"></div>
+
+    </div>
+
+</div>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+/* =========================================================
+   MIDNIGHT ENGINE
+========================================================= */
+
+let lang = localStorage.getItem("midnight_lang") || "ar";
+
+let state = JSON.parse(
+    localStorage.getItem("midnight_state") ||
+    '{"xp":0,"lessons":[],"labs":[],"quiz":0}'
+);
+
+function save(){
+    localStorage.setItem("midnight_state",JSON.stringify(state));
+    updateDashboard();
 }
 
 
-/* =========================
+/* =========================================================
+   LANGUAGE
+========================================================= */
+
+function setLanguage(newLang){
+
+    lang = newLang;
+
+    localStorage.setItem("midnight_lang",lang);
+
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+
+    document.querySelectorAll("[data-ar]").forEach(el=>{
+        el.textContent = el.dataset[lang];
+    });
+
+    document.getElementById("arBtn").classList.toggle("active",lang==="ar");
+    document.getElementById("enBtn").classList.toggle("active",lang==="en");
+
+    renderLabs();
+    renderPaths();
+    renderDictionary();
+    renderQuiz();
+    updateMission();
+
+    if(currentLesson){
+        openLesson(currentLesson);
+    }
+}
+
+
+/* =========================================================
    NAVIGATION
-========================= */
+========================================================= */
 
-function showPage(id){
+let currentPage = "home";
 
-    document
-    .querySelectorAll(".page")
-    .forEach(
-        page =>
-        page.classList.remove("active")
-    );
+function go(page){
 
+    document.querySelectorAll(".page").forEach(p=>{
+        p.classList.remove("active");
+    });
 
-    const page =
-    document.getElementById(id);
+    const target = document.getElementById(page);
 
-    if(!page)return;
+    if(target){
+        target.classList.add("active");
+    }
 
-    page.classList.add("active");
-
-
-    document
-    .querySelectorAll(".nav-links button")
-    .forEach(
-        button =>
-        button.classList.toggle(
+    document.querySelectorAll(".nav-btn").forEach(btn=>{
+        btn.classList.toggle(
             "active",
-            button.dataset.page === id
-        )
-    );
+            btn.dataset.page === page
+        );
+    });
 
+    currentPage = page;
 
-    document
-    .getElementById("navLinks")
-    .classList.remove("open");
-
+    document.getElementById("sidebar").classList.remove("open");
 
     window.scrollTo({
         top:0,
         behavior:"smooth"
     });
 
+    if(page === "labs") renderLabs();
+    if(page === "academy") renderPaths();
+    if(page === "quiz") renderQuiz();
+    if(page === "dictionary") renderDictionary();
+    if(page === "dashboard") updateDashboard();
+}
 
-    if(id==="academy")
-        renderLessons();
-
-    if(id==="labs")
-        renderLabs();
-
-    if(id==="quiz")
-        renderQuiz();
-
-    if(id==="dictionary")
-        renderDictionary();
-
-    if(id==="dashboard")
-        renderDashboard();
-
+function toggleSidebar(){
+    document.getElementById("sidebar").classList.toggle("open");
 }
 
 
-/* =========================
-   MOBILE MENU
-========================= */
+/* =========================================================
+   LAB DATA
+========================================================= */
 
-function toggleMenu(){
+const labs = [
 
-    document
-    .getElementById("navLinks")
-    .classList.toggle("open");
+{
+    id:"blackmail",
+    icon:"fa-user-secret",
+    titleAr:"قضية ابتزاز",
+    titleEn:"Blackmail Report",
+    textAr:"وصل بلاغ من شخص يقول إن حسابًا يحاول ابتزازه. مهمتك تعرف كيف تتعامل مع البلاغ وتحافظ على الأدلة.",
+    textEn:"A person reports an account attempting blackmail. Your task is to decide how to handle the report and preserve evidence.",
+    xp:150,
+    levelAr:"متوسط",
+    levelEn:"Medium",
+    scenarioAr:"المبلّغ أرسل لقطات شاشة ورسائل وتوقيتات. المطلوب ليس مطاردة الشخص بنفسك، بل فهم البلاغ وتحديد الخطوات المسؤولة.",
+    scenarioEn:"The reporter provides screenshots, messages and timestamps. The goal is not to hunt anyone yourself, but to understand the report and choose responsible next steps.",
+    questionAr:"ما الخطوة الأنسب أولًا؟",
+    questionEn:"What is the most appropriate first step?",
+    answersAr:[
+        "حفظ الأدلة وعدم حذف الرسائل وإبلاغ الجهة المناسبة",
+        "محاولة اختراق حساب المبتز",
+        "نشر معلوماته للناس",
+        "إرسال تهديد له"
+    ],
+    answersEn:[
+        "Preserve evidence, avoid deleting messages, and report through the appropriate channel",
+        "Try to hack the blackmailer's account",
+        "Publish their information",
+        "Threaten them back"
+    ],
+    correct:0
+},
 
+{
+    id:"phishing",
+    icon:"fa-fish",
+    titleAr:"رسالة تصيد",
+    titleEn:"Phishing Message",
+    textAr:"رسالة وصلت لموظف وتطلب منه تسجيل الدخول عبر رابط غريب. حلل العلامات المشبوهة.",
+    textEn:"An employee receives a message asking them to log in through a suspicious link. Analyze the warning signs.",
+    xp:100,
+    levelAr:"سهل",
+    levelEn:"Easy",
+    scenarioAr:"الرسالة تستعجل المستخدم وتستخدم رابطًا غير مألوف وتطلب بيانات دخول.",
+    scenarioEn:"The message creates urgency, uses an unfamiliar link and asks for login credentials.",
+    questionAr:"أي علامة تعتبر مؤشرًا واضحًا؟",
+    questionEn:"Which is a clear warning sign?",
+    answersAr:[
+        "الرابط غير مألوف ويطلب بيانات حساسة",
+        "الرسالة قصيرة",
+        "الرسالة وصلت في الصباح",
+        "وجود نقطة في نهاية الجملة"
+    ],
+    answersEn:[
+        "The link is unfamiliar and asks for sensitive credentials",
+        "The message is short",
+        "The message arrived in the morning",
+        "There is a period at the end"
+    ],
+    correct:0
+},
+
+{
+    id:"account",
+    icon:"fa-user-lock",
+    titleAr:"حساب مخترق",
+    titleEn:"Compromised Account",
+    textAr:"مستخدم لاحظ تسجيلات دخول غير معتادة إلى حسابه. حلل الأحداث وحدد التصرف المناسب.",
+    textEn:"A user notices unusual sign-ins on their account. Analyze the events and choose the appropriate response.",
+    xp:150,
+    levelAr:"متوسط",
+    levelEn:"Medium",
+    scenarioAr:"هناك تسجيل دخول من جهاز وموقع غير متوقعين ثم تغيّر في بعض إعدادات الحساب.",
+    scenarioEn:"There is an unexpected device and location followed by changes to some account settings.",
+    questionAr:"ما التصرف الأول المنطقي؟",
+    questionEn:"What is a logical first action?",
+    answersAr:[
+        "تأمين الحساب وتغيير كلمة المرور وفحص الجلسات",
+        "إعطاء كلمة المرور لصديق",
+        "حذف الحساب مباشرة",
+        "تجاهل التنبيه"
+    ],
+    answersEn:[
+        "Secure the account, change the password and review sessions",
+        "Give the password to a friend",
+        "Delete the account immediately",
+        "Ignore the alert"
+    ],
+    correct:0
+},
+
+{
+    id:"employee",
+    icon:"fa-laptop",
+    titleAr:"جهاز الموظف",
+    titleEn:"Employee Device",
+    textAr:"جهاز داخل شركة بدأ يتصرف بشكل غير طبيعي. عندك مجموعة Logs وتحتاج تحدد هل الحدث يستحق التصعيد.",
+    textEn:"A company device starts behaving unusually. You have logs and need to decide whether the event should be escalated.",
+    xp:200,
+    levelAr:"صعب",
+    levelEn:"Hard",
+    scenarioAr:"ظهرت محاولات تسجيل دخول متكررة وتغييرات غير متوقعة على الجهاز.",
+    scenarioEn:"Repeated login attempts and unexpected changes appeared on the device.",
+    questionAr:"ما التصرف المناسب في بيئة SOC؟",
+    questionEn:"What is appropriate in a SOC environment?",
+    answersAr:[
+        "تحليل التنبيه وجمع السياق ثم تصعيده إذا كان يستحق",
+        "حذف الـLogs",
+        "إيقاف كل أجهزة الشركة",
+        "نشر الـLogs على الإنترنت"
+    ],
+    answersEn:[
+        "Analyze the alert, gather context, and escalate if warranted",
+        "Delete the logs",
+        "Shut down every company device",
+        "Publish the logs online"
+    ],
+    correct:0
+},
+
+{
+    id:"leak",
+    icon:"fa-file-shield",
+    titleAr:"تسريب بيانات",
+    titleEn:"Data Leak",
+    textAr:"ملف حساس ظهر في مكان غير متوقع. مهمتك تحديد نطاق الحادث والتصرف المسؤول.",
+    textEn:"A sensitive file appears somewhere unexpected. Determine the incident scope and responsible response.",
+    xp:180,
+    levelAr:"متوسط",
+    levelEn:"Medium",
+    scenarioAr:"الفريق اكتشف أن ملفًا داخليًا تم الوصول إليه من مستخدم لم يكن يحتاجه.",
+    scenarioEn:"The team discovers an internal file was accessed by a user who did not need it.",
+    questionAr:"ما الشيء المهم في البداية؟",
+    questionEn:"What matters initially?",
+    answersAr:[
+        "تحديد نطاق الوصول وحفظ الأدلة وإبلاغ المسؤولين",
+        "حذف الملف بدون تحقيق",
+        "اتهام شخص مباشرة",
+        "إرسال الملف للجميع"
+    ],
+    answersEn:[
+        "Determine access scope, preserve evidence and notify responsible personnel",
+        "Delete the file without investigation",
+        "Immediately accuse someone",
+        "Send the file to everyone"
+    ],
+    correct:0
+},
+
+{
+    id:"soc",
+    icon:"fa-satellite-dish",
+    titleAr:"SOC Alert",
+    titleEn:"SOC Alert",
+    textAr:"وصلت مجموعة تنبيهات دفعة واحدة. فرز التنبيهات وحدد ما يحتاج التحقيق.",
+    textEn:"Multiple alerts arrive at once. Triage them and determine what needs investigation.",
+    xp:170,
+    levelAr:"متوسط",
+    levelEn:"Medium",
+    scenarioAr:"ثلاثة تنبيهات عادية وتنبيه واحد يحتوي على نشاط غير معتاد.",
+    scenarioEn:"Three alerts appear routine while one contains unusual activity.",
+    questionAr:"ما الهدف من الـTriage؟",
+    questionEn:"What is the purpose of triage?",
+    answersAr:[
+        "تحديد الأولويات وفهم أي تنبيه يحتاج تحقيقًا",
+        "فتح كل التنبيهات عشوائيًا",
+        "حذف التنبيهات القديمة",
+        "إرسال كل شيء للمستخدم"
+    ],
+    answersEn:[
+        "Prioritize and determine which alerts need investigation",
+        "Open every alert randomly",
+        "Delete old alerts",
+        "Send everything to the user"
+    ],
+    correct:0
+},
+
+{
+    id:"website",
+    icon:"fa-globe",
+    titleAr:"موقع مشبوه",
+    titleEn:"Suspicious Website",
+    textAr:"انتشر رابط لموقع يبدو مشابهًا لخدمة معروفة. حلل المؤشرات بدون تنفيذ أي شيء خطر.",
+    textEn:"A link to a site resembling a known service spreads. Analyze indicators without doing anything unsafe.",
+    xp:130,
+    levelAr:"سهل",
+    levelEn:"Easy",
+    scenarioAr:"اسم النطاق قريب من الاسم الحقيقي لكنه يحتوي على اختلاف واضح.",
+    scenarioEn:"The domain name is similar to the real one but contains a noticeable difference.",
+    questionAr:"ما الذي يجب فحصه؟",
+    questionEn:"What should be checked?",
+    answersAr:[
+        "اسم النطاق والرابط والجهة التي أرسلته",
+        "لون الصفحة فقط",
+        "عدد الصور",
+        "حجم الخط"
+    ],
+    correct:0
+},
+
+{
+    id:"threat",
+    icon:"fa-triangle-exclamation",
+    titleAr:"بلاغ تهديد",
+    titleEn:"Threat Report",
+    textAr:"وصل بلاغ عن رسائل تهديد. تعلم كيف توثق البلاغ وتتعامل معه بمسؤولية.",
+    textEn:"A report arrives involving threatening messages. Learn how to document and handle it responsibly.",
+    xp:160,
+    levelAr:"متوسط",
+    levelEn:"Medium",
+    scenarioAr:"المبلّغ لديه رسائل وتواريخ وأوقات. المطلوب تنظيم المعلومات ورفع البلاغ للجهة المناسبة.",
+    scenarioEn:"The reporter has messages, dates and times. The goal is to organize the information and report it through the appropriate channel.",
+    questionAr:"ما الأفضل؟",
+    questionEn:"What is preferable?",
+    answersAr:[
+        "حفظ المعلومات والتوقيتات ورفع البلاغ للجهة المناسبة",
+        "مواجهة صاحب الرسائل",
+        "نشر الرسائل",
+        "تجاهل الموضوع"
+    ],
+    correct:0
+},
+
+{
+    id:"social",
+    icon:"fa-people-arrows",
+    titleAr:"هندسة اجتماعية",
+    titleEn:"Social Engineering",
+    textAr:"شخص يحاول إقناع موظف بإعطائه معلومات بحجة أنه من الدعم الفني.",
+    textEn:"Someone attempts to persuade an employee to provide information while claiming to be technical support.",
+    xp:140,
+    levelAr:"متوسط",
+    levelEn:"Medium",
+    scenarioAr:"المتصل يستخدم الاستعجال والضغط النفسي ويطلب معلومات داخلية.",
+    scenarioEn:"The caller uses urgency and pressure and asks for internal information.",
+    questionAr:"ما العلامة الواضحة؟",
+    questionEn:"What is a clear warning sign?",
+    answersAr:[
+        "الضغط والاستعجال وطلب معلومات حساسة",
+        "التحدث بأدب",
+        "وجود رقم هاتف",
+        "الاتصال في وقت الدوام"
+    ],
+    correct:0
+},
+
+{
+    id:"ctf",
+    icon:"fa-flag",
+    titleAr:"CTF — الملف الغريب",
+    titleEn:"CTF — The Strange File",
+    textAr:"مختبر تدريبي يحاكي لغزًا بسيطًا داخل بيئة خيالية. ابحث عن المعلومة الصحيحة.",
+    textEn:"A fictional training puzzle inside a safe environment. Find the correct information.",
+    xp:180,
+    levelAr:"متوسط",
+    levelEn:"Medium",
+    scenarioAr:"لديك ملف نصي تدريبي يحتوي على عدة أسطر ومعلومة مخفية بين البيانات.",
+    scenarioEn:"You have a training text file containing several lines and a hidden piece of information.",
+    questionAr:"ما المهارة الأساسية هنا؟",
+    questionEn:"What is the core skill here?",
+    answersAr:[
+        "قراءة البيانات وتحليلها بعناية",
+        "حذف الملف",
+        "تجربة كلمات مرور على حساب حقيقي",
+        "نشر الملف"
+    ],
+    correct:0
 }
 
+];
 
-/* =========================
-   LANGUAGE
-========================= */
 
-function toggleLanguage(){
+/* =========================================================
+   LAB RENDER
+========================================================= */
 
-    state.language =
-    state.language === "ar"
-    ? "en"
-    : "ar";
+function labCard(lab){
 
-    save();
+    return `
+    <div class="lab-card">
 
-    applyLanguage();
+        <div class="lab-top">
 
-    renderAll();
+            <div class="lab-icon">
+                <i class="fa-solid ${lab.icon}"></i>
+            </div>
 
-    toast(
-        state.language === "ar"
-        ? "تم التحويل للعربية 🇸🇦"
-        : "Switched to English 🇺🇸"
-    );
-
-}
-
-
-function applyLanguage(){
-
-    document.documentElement.lang =
-    state.language;
-
-    document.documentElement.dir =
-    state.language === "ar"
-    ? "rtl"
-    : "ltr";
-
-
-    document.getElementById(
-        "languageButton"
-    ).textContent =
-    state.language === "ar"
-    ? "🇺🇸 English"
-    : "🇸🇦 العربية";
-
-
-    document
-    .querySelectorAll("[data-ar]")
-    .forEach(
-        element => {
-
-            element.textContent =
-            state.language === "ar"
-            ? element.dataset.ar
-            : element.dataset.en;
-
-        }
-    );
-
-
-    document.getElementById(
-        "lessonSearch"
-    ).placeholder =
-    state.language === "ar"
-    ? "🔎 ابحث عن درس..."
-    : "🔎 Search lessons...";
-
-
-    document.getElementById(
-        "dictionarySearch"
-    ).placeholder =
-    state.language === "ar"
-    ? "🔎 ابحث عن مصطلح..."
-    : "🔎 Search terms...";
-
-}
-
-
-/* =========================
-   DISCORD
-========================= */
-
-function openDiscord(){
-
-    window.open(
-        DISCORD_URL,
-        "_blank",
-        "noopener,noreferrer"
-    );
-
-}
-
-
-/* =========================
-   LOGIN
-========================= */
-
-function openLogin(){
-
-    document
-    .getElementById("loginModal")
-    .classList.add("active");
-
-
-    document.getElementById(
-        "nameInput"
-    ).value =
-    state.name === "Guest"
-    ? ""
-    : state.name;
-
-
-    document.getElementById(
-        "emailInput"
-    ).value =
-    state.email || "";
-
-}
-
-
-function closeLogin(){
-
-    document
-    .getElementById("loginModal")
-    .classList.remove("active");
-
-}
-
-
-function loginLocal(){
-
-    const name =
-    document
-    .getElementById("nameInput")
-    .value
-    .trim();
-
-
-    const email =
-    document
-    .getElementById("emailInput")
-    .value
-    .trim();
-
-
-    if(!name){
-
-        toast(
-            state.language === "ar"
-            ? "اكتب اسمك أول 😂"
-            : "Enter your name first 😂"
-        );
-
-        return;
-
-    }
-
-
-    state.name =
-    name.slice(0,30);
-
-
-    state.email =
-    email.slice(0,100);
-
-
-    state.loggedIn =
-    true;
-
-
-    save();
-
-    closeLogin();
-
-    renderAll();
-
-    toast(
-        state.language === "ar"
-        ? "تم حفظ حسابك 🐧"
-        : "Your account was saved 🐧"
-    );
-
-}
-
-
-function guestLogin(){
-
-    state.name="Guest";
-
-    state.email="";
-
-    state.loggedIn=false;
-
-    save();
-
-    closeLogin();
-
-    renderAll();
-
-}
-
-
-/* =========================
-   LESSONS
-========================= */
-
-function renderLessons(){
-
-    const search =
-    document
-    .getElementById("lessonSearch")
-    .value
-    .toLowerCase();
-
-
-    const grid =
-    document
-    .getElementById("lessonGrid");
-
-
-    const filtered =
-    lessons.filter(
-        lesson =>
-        lesson.title
-        .toLowerCase()
-        .includes(search)
-    );
-
-
-    grid.innerHTML =
-    filtered
-    .map(
-        lesson => {
-
-            const done =
-            state.completedLessons
-            .includes(lesson.id);
-
-
-            return `
-
-            <article class="lesson">
-
-                <div class="lesson-top">
-
-                    <span class="lesson-icon">
-                        ${lesson.icon}
-                    </span>
-
-                    <span class="tag">
-                        ${lesson.level}
-                    </span>
-
-                </div>
-
-
-                <h3>
-                    ${lesson.title}
-                </h3>
-
-
-                <p>
-                    ${
-                        state.language === "ar"
-                        ? lesson.ar
-                        : lesson.en
-                    }
-                </p>
-
-
-                <p style="color:#a78bfa">
-                    +${lesson.xp} XP
-                </p>
-
-
-                <button
-                onclick="openLesson('${lesson.id}')"
-                >
-
-                    ${
-                        done
-                        ? "✓ " +
-                        (
-                            state.language==="ar"
-                            ? "مكتمل"
-                            : "Completed"
-                        )
-                        :
-                        (
-                            state.language==="ar"
-                            ? "📖 دخول الدرس"
-                            : "📖 Open Lesson"
-                        )
-                    }
-
-                </button>
-
-            </article>
-
-            `;
-
-        }
-    )
-    .join("");
-
-}
-
-
-/* =========================
-   LESSON CONTENT
-========================= */
-
-function openLesson(id){
-
-    const lesson =
-    lessons.find(
-        x=>x.id===id
-    );
-
-    if(!lesson)return;
-
-
-    const done =
-    state.completedLessons
-    .includes(id);
-
-
-    const ar =
-    state.language === "ar";
-
-
-    const content =
-    {
-
-        ip: ar
-        ?
-        "كل جهاز على الشبكة يحتاج طريقة نقدر نعرفه فيها. الـIP يشبه عنوان المكان. لما ترسل بيانات، العنوان يساعد الشبكة تعرف وين تروح."
-        :
-        "Every device on a network needs an address. An IP is similar to a location address that helps traffic reach the right destination.",
-
-        dns: ar
-        ?
-        "بدلاً من حفظ أرقام IP لكل موقع، نستخدم أسماء سهلة. DNS يأخذ اسم النطاق ويبحث عن عنوان IP المرتبط به."
-        :
-        "Instead of remembering IP addresses for websites, we use readable names. DNS resolves a domain name to an IP address.",
-
-        dhcp: ar
-        ?
-        "عند اتصال جهاز جديد بالشبكة، DHCP يمكنه إعطاؤه IP وGateway وDNS بشكل تلقائي."
-        :
-        "When a device joins a network, DHCP can automatically provide an IP address, gateway and DNS settings.",
-
-        ports: ar
-        ?
-        "الجهاز الواحد يستطيع تشغيل خدمات كثيرة. الـPorts تساعد النظام على معرفة أي خدمة تستقبل الاتصال."
-        :
-        "A device can run many services. Ports help the operating system identify which service should receive traffic.",
-
-        tcpudp: ar
-        ?
-        "TCP يركز على الموثوقية والترتيب والتأكد من وصول البيانات. UDP أخف ويستخدم عندما تكون السرعة أو البساطة أهم."
-        :
-        "TCP focuses on reliability, ordering and delivery. UDP is lighter and is useful when speed or simplicity matters.",
-
-        http: ar
-        ?
-        "المتصفح يرسل Request والخادم يرجع Response. HTTPS يستخدم TLS لحماية الاتصال أثناء النقل."
-        :
-        "A browser sends a request and the server returns a response. HTTPS uses TLS to protect the connection in transit.",
-
-        firewall: ar
-        ?
-        "Firewall يطبق قواعد على حركة الشبكة. يمكنه السماح باتصال معين ورفض اتصال آخر حسب السياسة."
-        :
-        "A firewall applies rules to network traffic and can allow or block connections according to policy.",
-
-        linux: ar
-        ?
-        "Linux Terminal يعطيك طريقة مباشرة للتعامل مع النظام. الأمن السيبراني يعتمد كثيراً على فهم الطرفية."
-        :
-        "The Linux terminal provides direct interaction with the system. Cybersecurity relies heavily on understanding the command line.",
-
-        python: ar
-        ?
-        "Python مفيد للأتمتة وتحليل البيانات وكتابة أدوات صغيرة. الأساسيات أهم من حفظ مئات المكتبات."
-        :
-        "Python is useful for automation, data analysis and small tools. Fundamentals matter more than memorizing hundreds of libraries."
-
-    }[id]
-    ||
-    (
-        ar
-        ?
-        `في هذا الدرس نتعلم ${lesson.title} بطريقة عملية. ركز على الفكرة الأساسية، ثم جرب معلوماتك في المختبرات.`
-        :
-        `This lesson introduces ${lesson.title} using practical concepts. Focus on the core idea, then test yourself in the labs.`
-    );
-
-
-    const analogy =
-    ar
-    ?
-    "تخيل شبكة مثل فندق: الأجهزة غرف، العناوين تحدد مكانها، والبيانات مثل طرود تتحرك بين الأماكن."
-    :
-    "Imagine a network as a hotel: devices are rooms, addresses identify locations, and data is like parcels moving between them.";
-
-
-    document
-    .getElementById("lessonReaderContent")
-    .innerHTML = `
-
-        <span class="tag">
-            ${lesson.level}
-        </span>
-
-        <h2>
-            ${lesson.icon}
-            ${lesson.title}
-        </h2>
-
-        <p style="color:var(--muted)">
-            +${lesson.xp} XP
-        </p>
-
-        <div class="reader-text">
-
-            <h3>
-                ${
-                    ar
-                    ? "الشرح"
-                    : "Lesson"
-                }
-            </h3>
-
-            <p>
-                ${content}
-            </p>
+            <span class="xp">+${lab.xp} XP</span>
 
         </div>
 
+        <h3>${lang==="ar" ? lab.titleAr : lab.titleEn}</h3>
 
-        <div class="analogy">
+        <p>${lang==="ar" ? lab.textAr : lab.textEn}</p>
 
-            <b>
-                ${
-                    ar
-                    ? "💡 مثال بسيط"
-                    : "💡 Simple Analogy"
-                }
-            </b>
+        <div class="lab-meta">
+            <span class="tag">
+                ${lang==="ar" ? lab.levelAr : lab.levelEn}
+            </span>
 
-            <br>
-
-            ${analogy}
-
+            <span class="tag">TRAINING</span>
         </div>
 
+        <button class="lab-btn" onclick="openLab('${lab.id}')">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            ${lang==="ar" ? "ابدأ الآن" : "Start now"}
+        </button>
 
-        <div class="actions">
-
-            <button
-            class="btn btn-primary"
-            onclick="completeLesson('${lesson.id}')"
-            ${done ? "disabled" : ""}
-            >
-
-                ${
-                    done
-                    ?
-                    (
-                        ar
-                        ? "✓ الدرس مكتمل"
-                        : "✓ Lesson Completed"
-                    )
-                    :
-                    (
-                        ar
-                        ? "✅ إكمال الدرس + XP"
-                        : "✅ Complete Lesson + XP"
-                    )
-                }
-
-            </button>
-
-
-            <button
-            class="btn btn-secondary"
-            onclick="showPage('academy')"
-            >
-
-                ${
-                    ar
-                    ? "← العودة"
-                    : "← Back"
-                }
-
-            </button>
-
-        </div>
-
+    </div>
     `;
-
-
-    showPage("lessonReader");
-
 }
-
-
-function completeLesson(id){
-
-    const lesson =
-    lessons.find(
-        x=>x.id===id
-    );
-
-    if(!lesson)return;
-
-
-    if(
-        state.completedLessons
-        .includes(id)
-    ){
-
-        toast(
-            state.language==="ar"
-            ? "الدرس مكتمل من قبل 👀"
-            : "Already completed 👀"
-        );
-
-        return;
-
-    }
-
-
-    state.completedLessons.push(id);
-
-    state.xp += lesson.xp;
-
-    updateLevel();
-
-    save();
-
-    toast(
-        `+${lesson.xp} XP 🔥`
-    );
-
-    renderAll();
-
-    openLesson(id);
-
-}
-
-
-/* =========================
-   LEVEL
-========================= */
-
-function updateLevel(){
-
-    if(state.xp >= 1000)
-        state.level=5;
-
-    else if(state.xp >= 700)
-        state.level=4;
-
-    else if(state.xp >= 400)
-        state.level=3;
-
-    else if(state.xp >= 150)
-        state.level=2;
-
-    else
-        state.level=1;
-
-}
-
-
-/* =========================
-   LABS
-========================= */
 
 function renderLabs(){
 
-    document
-    .getElementById("labGrid")
-    .innerHTML =
+    const all = document.getElementById("allLabs");
+    const home = document.getElementById("homeLabs");
 
-    labs.map(
-        lab => `
+    if(all){
+        all.innerHTML = labs.map(labCard).join("");
+    }
 
-        <article class="lab">
-
-            <div class="lesson-top">
-
-                <span class="lesson-icon">
-                    ${lab.icon}
-                </span>
-
-                <span class="tag">
-                    +${lab.xp} XP
-                </span>
-
-            </div>
-
-            <h3>
-                ${lab.title}
-            </h3>
-
-            <p>
-                ${lab.desc}
-            </p>
-
-            <button
-            onclick="openLab('${lab.id}')"
-            >
-
-                ${
-                    state.completedLabs.includes(lab.id)
-                    ?
-                    "✓ Completed"
-                    :
-                    "🧪 Enter Lab"
-                }
-
-            </button>
-
-        </article>
-
-        `
-    )
-    .join("");
-
+    if(home){
+        home.innerHTML = labs.slice(0,6).map(labCard).join("");
+    }
 }
 
 
-/* =========================
-   LAB OPEN
-========================= */
+/* =========================================================
+   LAB MODAL
+========================================================= */
 
 function openLab(id){
 
-    if(id==="nexora"){
+    const lab = labs.find(x=>x.id===id);
 
-        document
-        .getElementById(
-            "nexoraInvestigation"
-        )
-        .classList.add("active");
+    if(!lab) return;
 
+    const title = lang==="ar" ? lab.titleAr : lab.titleEn;
+    const scenario = lang==="ar" ? lab.scenarioAr : lab.scenarioEn;
+    const question = lang==="ar" ? lab.questionAr : lab.questionEn;
+    const answers = lang==="ar" ? lab.answersAr : lab.answersEn;
 
-        buildInvestigation();
+    document.getElementById("modalTitle").textContent = title;
 
+    document.getElementById("modalBody").innerHTML = `
 
-        document
-        .getElementById(
-            "nexoraInvestigation"
-        )
-        .scrollIntoView({
-            behavior:"smooth"
-        });
-
-        return;
-
-    }
-
-
-    const lab =
-    labs.find(
-        x=>x.id===id
-    );
-
-    if(!lab)return;
-
-
-    toast(
-        state.language==="ar"
-        ?
-        `${lab.title} قريباً 👀`
-        :
-        `${lab.title} is coming 👀`
-    );
-
-}
-
-
-/* =========================
-   NEXORA INVESTIGATION
-========================= */
-
-const investigationQuestions = [
-
-{
-id:"ip",
-
-questionAr:
-"ما هو الـIP المشبوه في السجل؟",
-
-questionEn:
-"Which IP is suspicious in the logs?",
-
-options:[
-"203.0.113.77",
-"198.51.100.21",
-"192.168.1.1"
-],
-
-answer:0
-
-},
-
-{
-id:"account",
-
-questionAr:
-"أي حساب ظهر في محاولات الدخول المشبوهة؟",
-
-questionEn:
-"Which account appeared in the suspicious login attempts?",
-
-options:[
-"finance",
-"alex",
-"admin"
-],
-
-answer:1
-
-},
-
-{
-id:"pattern",
-
-questionAr:
-"ما النمط الذي تلاحظه؟",
-
-questionEn:
-"What pattern do you notice?",
-
-options:[
-"محاولات فاشلة ثم نجاح من نفس المصدر",
-"نجاح واحد فقط",
-"لا يوجد أي نشاط"
-],
-
-answer:0
-
-},
-
-{
-id:"priority",
-
-questionAr:
-"كيف تتعامل مع التنبيه؟",
-
-questionEn:
-"How should the alert be handled?",
-
-options:[
-"تجاهله",
-"رفعه للتحقيق بسبب نمط الدخول",
-"حذف السجلات"
-],
-
-answer:1
-
-},
-
-{
-id:"evidence",
-
-questionAr:
-"ما أفضل دليل إضافي تطلبه؟",
-
-questionEn:
-"What additional evidence would be useful?",
-
-options:[
-"Authentication logs إضافية وسجلات الجهاز",
-"صورة خلفية",
-"تغيير اسم البنك"
-],
-
-answer:0
-
-}
-
-];
-
-
-let investigationAnswers={};
-
-
-function buildInvestigation(){
-
-    const container =
-    document.getElementById(
-        "investigationQuestions"
-    );
-
-
-    const ar =
-    state.language==="ar";
-
-
-    container.innerHTML =
-
-    investigationQuestions
-    .map(
-        (q,index)=>`
-
-        <div class="question">
-
-            <h4>
-                ${index+1}.
-                ${
-                    ar
-                    ? q.questionAr
-                    : q.questionEn
-                }
-            </h4>
-
-
-            ${q.options.map(
-                (option,i)=>`
-
-                <button
-                class="option"
-                data-question="${q.id}"
-                onclick="chooseInvestigation('${q.id}',${i},this)"
-                >
-
-                    ${option}
-
-                </button>
-
-                `
-            ).join("")}
-
+        <div class="tip">
+            <i class="fa-solid fa-circle-info"></i>
+            ${lang==="ar"
+                ? "هذه قضية تدريبية خيالية. حلل المعلومات ولا تستهدف أي نظام حقيقي."
+                : "This is a fictional training case. Analyze the information and never target real systems."}
         </div>
 
-        `
-    )
-    .join("");
+        <h3 style="margin-top:20px">${lang==="ar" ? "القضية" : "Scenario"}</h3>
 
-}
+        <p style="color:#aaa;line-height:1.9;font-size:13px;margin-top:8px">
+            ${scenario}
+        </p>
 
+        <div class="lesson-section">
 
-function chooseInvestigation(
-    questionId,
-    answer,
-    button
-){
+            <h2>${question}</h2>
 
-    investigationAnswers[
-        questionId
-    ] = answer;
+            <div class="answers">
 
-
-    const parent =
-    button.parentElement;
-
-
-    parent
-    .querySelectorAll(".option")
-    .forEach(
-        x=>{
-            x.classList.remove(
-                "correct",
-                "wrong"
-            );
-        }
-    );
-
-
-    button.style.borderColor =
-    "var(--purple)";
-
-
-    button.dataset.selected =
-    "true";
-
-}
-
-
-function submitInvestigation(){
-
-    let score=0;
-
-
-    investigationQuestions
-    .forEach(
-        q=>{
-
-            if(
-                investigationAnswers[q.id]
-                ===
-                q.answer
-            ){
-
-                score++;
-
-            }
-
-        }
-    );
-
-
-    const total =
-    investigationQuestions.length;
-
-
-    const result =
-    document.getElementById(
-        "investigationResult"
-    );
-
-
-    if(score===total){
-
-        if(
-            !state.completedLabs
-            .includes("nexora")
-        ){
-
-            state.completedLabs
-            .push("nexora");
-
-            state.xp += 150;
-
-            updateLevel();
-
-            save();
-
-        }
-
-
-        document
-        .getElementById(
-            "caseStatus"
-        )
-        .textContent =
-        "CASE CLOSED";
-
-
-        result.innerHTML = `
-
-            <div
-            class="card"
-            style="border-color:var(--green)"
-            >
-
-                <h3>
-                    🟢 Investigation Complete
-                </h3>
-
-                <p>
-                    ${
-                        state.language==="ar"
-                        ?
-                        "ممتاز! وصلت للنتيجة الصحيحة وحللت الحادثة بالكامل."
-                        :
-                        "Excellent! You correctly analyzed the incident."
-                    }
-                </p>
-
-                <strong>
-                    +150 XP
-                </strong>
+                ${answers.map((a,i)=>`
+                    <button
+                        class="answer"
+                        onclick="labAnswer(this,'${lab.id}',${i})">
+                        ${a}
+                    </button>
+                `).join("")}
 
             </div>
 
-        `;
-
-
-        toast("+150 XP 🏦🔥");
-
-        renderAll();
-
-        return;
-
-    }
-
-
-    result.innerHTML = `
-
-        <div
-        class="card"
-        style="border-color:var(--red)"
-        >
-
-            <h3>
-                🔴 ${score}/${total}
-            </h3>
-
-            <p>
-                ${
-                    state.language==="ar"
-                    ?
-                    "لسه فيه أدلة ما ربطتها. راجع السجلات وحاول مرة ثانية."
-                    :
-                    "Some evidence is still disconnected. Review the logs and try again."
-                }
-            </p>
-
         </div>
 
+        <div id="labFeedback"></div>
     `;
 
+    document.getElementById("modal").classList.add("show");
 }
 
+function labAnswer(button,id,index){
 
-function closeInvestigation(){
+    const lab = labs.find(x=>x.id===id);
 
-    document
-    .getElementById(
-        "nexoraInvestigation"
-    )
-    .classList.remove("active");
+    document.querySelectorAll(".answer").forEach(b=>{
+        b.disabled=true;
+    });
 
-}
+    if(index===lab.correct){
 
+        button.classList.add("correct");
 
-/* =========================
-   TERMINAL
-========================= */
+        const already = state.labs.includes(id);
 
-function runTerminal(){
+        if(!already){
 
-    const input =
-    document
-    .getElementById(
-        "terminalInput"
-    );
+            state.labs.push(id);
+            state.xp += lab.xp;
+            save();
 
+            toast(
+                lang==="ar"
+                ? `🔥 صح! +${lab.xp} XP`
+                : `🔥 Correct! +${lab.xp} XP`
+            );
 
-    const output =
-    document
-    .getElementById(
-        "terminalOutput"
-    );
+        }else{
 
-
-    const command =
-    input.value
-    .trim()
-    .toLowerCase();
-
-
-    if(!command)return;
-
-
-    if(command==="clear"){
-
-        output.textContent =
-        "┌──(midnight㉿kali)-[~/nexora]\n└─$";
-
-        input.value="";
-
-        return;
-
-    }
-
-
-    const responses={
-
-        "help":
-`Available training commands:
-
-help
-clear
-whoami
-pwd
-ls
-cat auth.log
-cat web.log
-nmap --training
-dig nexora.test
-grep FAILED auth.log`,
-
-        "whoami":
-        "midnight",
-
-        "pwd":
-        "/home/midnight/nexora",
-
-        "ls":
-        "auth.log  web.log  alerts.txt  notes.txt",
-
-        "cat auth.log":
-`203.0.113.77 FAILED_LOGIN user=alex
-203.0.113.77 FAILED_LOGIN user=alex
-203.0.113.77 SUCCESS_LOGIN user=alex
-198.51.100.21 SUCCESS_LOGIN user=finance`,
-
-        "cat web.log":
-`POST /login 401
-POST /login 401
-POST /login 200
-GET /dashboard 200`,
-
-        "nmap --training":
-`TRAINING SCAN ONLY
-
-443/tcp HTTPS
-22/tcp SSH
-53/tcp DNS
-
-No real network connection is performed.`,
-
-        "dig nexora.test":
-`nexora.test
-A
-203.0.113.10`,
-
-        "grep failed auth.log":
-`203.0.113.77 FAILED_LOGIN user=alex
-203.0.113.77 FAILED_LOGIN user=alex`
-
-    };
-
-
-    const response =
-    responses[command]
-    ||
-    "Unknown training command. Type help.";
-
-
-    output.textContent +=
-    `\n\n┌──(midnight㉿kali)-[~/nexora]\n└─$ ${command}\n${response}`;
-
-
-    input.value="";
-
-
-    output.scrollTop =
-    output.scrollHeight;
-
-}
-
-
-/* =========================
-   QUIZ
-========================= */
-
-const quizQuestions=[
-
-{
-qAr:"ما وظيفة DNS؟",
-qEn:"What does DNS do?",
-options:[
-"تحويل أسماء النطاقات إلى IP",
-"زيادة سرعة المعالج",
-"تغيير MAC"
-],
-answer:0
-},
-
-{
-qAr:"أي واحد يعتبر Port؟",
-qEn:"Which one is a port?",
-options:[
-"443",
-"192.168.1.1",
-"AA:BB:CC"
-],
-answer:0
-},
-
-{
-qAr:"ما وظيفة Firewall؟",
-qEn:"What does a firewall do?",
-options:[
-"التحكم في الاتصالات حسب قواعد",
-"تشغيل الألعاب",
-"تغيير دقة الشاشة"
-],
-answer:0
-},
-
-{
-qAr:"أي نظام مشهور في الأمن السيبراني؟",
-qEn:"Which operating system is widely used in cybersecurity?",
-options:[
-"Linux",
-"Calculator OS",
-"Printer BIOS"
-],
-answer:0
-},
-
-{
-qAr:"ما هو Packet؟",
-qEn:"What is a packet?",
-options:[
-"وحدة من البيانات تنتقل عبر الشبكة",
-"نوع شاشة",
-"نوع كيبورد"
-],
-answer:0
-},
-
-{
-qAr:"ما الفرق الأساسي بين TCP وUDP؟",
-qEn:"What is a key difference between TCP and UDP?",
-options:[
-"TCP يركز على الموثوقية",
-"UDP دائماً مشفر",
-"لا يوجد فرق"
-],
-answer:0
-}
-
-];
-
-
-let quizIndex=0;
-
-let quizScore=0;
-
-
-function renderQuiz(){
-
-    const box =
-    document.getElementById(
-        "quizBox"
-    );
-
-
-    if(state.completedQuiz){
-
-        box.innerHTML=`
-
-            <h2>
-                ✓ ${
-                    state.language==="ar"
-                    ? "الاختبار مكتمل"
-                    : "Test Completed"
-                }
-            </h2>
-
-            <p style="color:var(--muted)">
-                ${
-                    state.language==="ar"
-                    ? "مستواك التقريبي:"
-                    : "Your estimated level:"
-                }
-
-                <b>
-                    ${getLevelName()}
-                </b>
-            </p>
-
-            <button
-            class="btn btn-primary"
-            onclick="resetQuiz()"
-            >
-                ${
-                    state.language==="ar"
-                    ? "إعادة الاختبار"
-                    : "Retake Test"
-                }
-            </button>
-
-        `;
-
-        return;
-
-    }
-
-
-    box.innerHTML=`
-
-        <h2>
-            🧠
-            ${
-                state.language==="ar"
-                ? "جاهز؟"
-                : "Ready?"
-            }
-        </h2>
-
-        <p style="color:var(--muted)">
-            ${
-                state.language==="ar"
-                ? "6 أسئلة بسيطة تحدد مستواك التقريبي."
-                : "6 questions will estimate your level."
-            }
-        </p>
-
-        <button
-        class="btn btn-primary"
-        onclick="startQuiz()"
-        >
-            ${
-                state.language==="ar"
-                ? "ابدأ الاختبار"
-                : "Start Test"
-            }
-        </button>
-
-    `;
-
-}
-
-
-function startQuiz(){
-
-    quizIndex=0;
-
-    quizScore=0;
-
-    showQuizQuestion();
-
-}
-
-
-function showQuizQuestion(){
-
-    const box =
-    document.getElementById(
-        "quizBox"
-    );
-
-
-    const q =
-    quizQuestions[
-        quizIndex
-    ];
-
-
-    const ar =
-    state.language==="ar";
-
-
-    box.innerHTML=`
-
-        <span class="tag">
-            ${quizIndex+1}/${quizQuestions.length}
-        </span>
-
-        <h3>
-            ${
-                ar
-                ? q.qAr
-                : q.qEn
-            }
-        </h3>
-
-
-        ${
-            q.options
-            .map(
-                (option,index)=>`
-
-                <button
-                class="quiz-option"
-                onclick="answerQuiz(${index})"
-                >
-
-                    ${option}
-
-                </button>
-
-                `
-            )
-            .join("")
+            toast(
+                lang==="ar"
+                ? "صح! لكن أخذت XP من القضية قبل 😂"
+                : "Correct! But you already earned XP from this case 😂"
+            );
         }
 
-    `;
-
-}
-
-
-function answerQuiz(answer){
-
-    if(
-        answer ===
-        quizQuestions[
-            quizIndex
-        ].answer
-    ){
-
-        quizScore++;
-
-    }
-
-
-    quizIndex++;
-
-
-    if(
-        quizIndex <
-        quizQuestions.length
-    ){
-
-        showQuizQuestion();
-
-        return;
-
-    }
-
-
-    state.completedQuiz=true;
-
-
-    if(quizScore>=5){
-
-        state.level=4;
-
-    }else if(quizScore>=4){
-
-        state.level=3;
-
-    }else if(quizScore>=2){
-
-        state.level=2;
+        document.getElementById("labFeedback").innerHTML = `
+            <div class="tip">
+                ${lang==="ar"
+                    ? "قرار ممتاز. المسؤول الأمني ما يتصرف بعشوائية."
+                    : "Good decision. A security professional should avoid reckless actions."}
+            </div>
+        `;
 
     }else{
 
-        state.level=1;
+        button.classList.add("wrong");
 
+        document.getElementById("labFeedback").innerHTML = `
+            <div class="tip" style="border-color:#fb7185;color:#fda4af">
+                ${lang==="ar"
+                    ? "مو هذا 😭 فكر بالتصرف المسؤول وحماية الأدلة."
+                    : "Not quite 😭 Think about responsible handling and evidence preservation."}
+            </div>
+        `;
+    }
+}
+
+function closeModal(){
+    document.getElementById("modal").classList.remove("show");
+}
+
+document.getElementById("modal").addEventListener("click",e=>{
+    if(e.target.id==="modal") closeModal();
+});
+
+
+/* =========================================================
+   LESSONS
+========================================================= */
+
+const lessons = [
+
+{
+ id:"ip",
+ titleAr:"IP Address",
+ titleEn:"IP Address",
+ icon:"fa-network-wired",
+ xp:30,
+ textAr:"عنوان IP هو عنوان منطقي يساعد الأجهزة على معرفة مكان الجهاز داخل الشبكة أو الوصول إليه عبر الشبكات.",
+ textEn:"An IP address is a logical address used to identify devices and help networks deliver traffic.",
+ sections:[
+  ["وش يعني IP؟","تخيله مثل عنوان بيت. إذا عندك جهازين داخل شبكة، تحتاج الشبكة طريقة تميز بينهم.","Think of it like a house address. Devices need addresses so traffic can reach the right place."],
+  ["IPv4","غالبًا تشوفه بهذا الشكل: 192.168.1.10. وهو مكوّن من أربع خانات.","You may see it like 192.168.1.10. It contains four decimal parts."],
+  ["مهم","مو كل IP على الإنترنت يمثل جهاز شخص مباشرة. الشبكات تستخدم NAT وأشياء ثانية.","Not every public IP directly represents a single personal device. NAT and other systems are commonly involved."]
+ ]
+},
+
+{
+ id:"dns",
+ titleAr:"DNS",
+ titleEn:"DNS",
+ icon:"fa-globe",
+ xp:35,
+ textAr:"DNS يحول أسماء النطاقات التي يسهل على البشر قراءتها إلى معلومات تساعد الشبكة في الوصول للخدمة المطلوبة.",
+ textEn:"DNS translates human-friendly domain names into information used to locate services.",
+ sections:[
+  ["ليش نحتاجه؟","لأن حفظ أرقام لكل موقع بنزوره بيكون شيء مزعج جدًا 😂.","Because remembering numerical addresses for every site would be annoying 😂."],
+  ["مثال","لما تكتب اسم نطاق في المتصفح، جهازك يستخدم DNS للحصول على عنوان مناسب.","When you enter a domain name, your device can use DNS to obtain an appropriate address."],
+  ["فكرة مهمة","DNS ليس هو الإنترنت نفسه. هو خدمة تساعدك في الوصول للأسماء والخدمات.","DNS is not the internet itself. It is a service that helps resolve names."]
+ ]
+},
+
+{
+ id:"dhcp",
+ titleAr:"DHCP",
+ titleEn:"DHCP",
+ icon:"fa-server",
+ xp:35,
+ textAr:"DHCP يساعد الأجهزة في الحصول على إعدادات الشبكة تلقائيًا مثل عنوان IP.",
+ textEn:"DHCP helps devices automatically obtain network configuration such as an IP address.",
+ sections:[
+  ["بدون DHCP","كان عليك إعداد معلومات الشبكة يدويًا في كل جهاز.","Without DHCP, network configuration would often need to be entered manually."],
+  ["الفكرة","الجهاز يطلب إعدادات والشبكة تعطيه إعدادات مناسبة.","The device requests configuration and the network provides appropriate settings."],
+  ["تذكر","DHCP = توزيع إعدادات الشبكة تلقائيًا.","Remember: DHCP = automatic network configuration."]
+ ]
+},
+
+{
+ id:"arp",
+ titleAr:"ARP",
+ titleEn:"ARP",
+ icon:"fa-route",
+ xp:35,
+ textAr:"ARP يستخدم داخل شبكات IPv4 المحلية للمساعدة في معرفة عنوان MAC المرتبط بعنوان IP.",
+ textEn:"ARP helps map an IPv4 address to a MAC address on a local network.",
+ sections:[
+  ["الفكرة","الجهاز يعرف IP لكنه يحتاج عنوان MAC المحلي حتى يرسل الإطار بشكل مناسب.","A device knows an IP but may need the local MAC address to deliver the frame."],
+  ["ببساطة","IP يقول: وين الجهاز؟ وMAC يساعد في التسليم داخل الشبكة المحلية.","IP helps identify the logical destination; MAC helps with local delivery."]
+ ]
+},
+
+{
+ id:"nat",
+ titleAr:"NAT",
+ titleEn:"NAT",
+ icon:"fa-shuffle",
+ xp:40,
+ textAr:"NAT يسمح للشبكات الخاصة بمشاركة عناوين عامة بطريقة منظمة عند التواصل مع الإنترنت.",
+ textEn:"NAT allows private networks to share public addressing when communicating with the internet.",
+ sections:[
+  ["ليش موجود؟","عناوين IPv4 محدودة، وNAT يساعد الشبكات الخاصة في مشاركة عنوان عام.","IPv4 addresses are limited, and NAT helps private networks share public addressing."],
+  ["مثال","أجهزة كثيرة في المنزل قد تستخدم عناوين خاصة، بينما الراوتر يتعامل مع الإنترنت من خلال عنوان عام.","Many devices at home can use private addresses while the router communicates externally using public addressing."]
+ ]
+},
+
+{
+ id:"ports",
+ titleAr:"Ports",
+ titleEn:"Network Ports",
+ icon:"fa-door-open",
+ xp:40,
+ textAr:"الـPort يساعد النظام في توجيه الاتصال إلى الخدمة أو التطبيق المناسب.",
+ textEn:"A port helps the operating system direct traffic to the appropriate service or application.",
+ sections:[
+  ["تخيلها أبواب","IP يحدد الجهاز، والـPort يساعد في تحديد الخدمة الموجودة على الجهاز.","Think of them as doors. The IP identifies the host and the port helps identify the service."],
+  ["مثال","HTTP وHTTPS من البروتوكولات المرتبطة عادة بخدمات الويب.","HTTP and HTTPS are commonly associated with web services."]
+ ]
+},
+
+{
+ id:"tcpudp",
+ titleAr:"TCP vs UDP",
+ titleEn:"TCP vs UDP",
+ icon:"fa-arrows-left-right",
+ xp:45,
+ textAr:"TCP يركز على الاعتمادية وترتيب البيانات، بينما UDP أخف ولا يضمن نفس مستوى الاعتمادية.",
+ textEn:"TCP focuses on reliable ordered delivery, while UDP is lighter and does not provide the same guarantees.",
+ sections:[
+  ["TCP","مفيد عندما تكون صحة وترتيب البيانات مهمين.","Useful when reliable ordered delivery matters."],
+  ["UDP","مفيد في حالات يكون فيها تقليل التأخير مهمًا ويمكن للتطبيق التعامل مع فقدان بعض البيانات.","Useful when lower overhead matters and the application can tolerate some loss."]
+ ]
+},
+
+{
+ id:"http",
+ titleAr:"HTTP & HTTPS",
+ titleEn:"HTTP & HTTPS",
+ icon:"fa-lock",
+ xp:50,
+ textAr:"HTTP يستخدم لنقل محتوى الويب، بينما HTTPS يضيف حماية عبر TLS لتأمين الاتصال.",
+ textEn:"HTTP transfers web content, while HTTPS uses TLS to protect the connection.",
+ sections:[
+  ["HTTPS","يساعد على حماية البيانات أثناء انتقالها بين المتصفح والخدمة.","HTTPS helps protect data in transit between the browser and service."],
+  ["تذكر","وجود HTTPS لا يعني أن الموقع نفسه آمن أو حسن النية بالضرورة.","HTTPS does not by itself prove that a site is trustworthy."]
+ ]
+},
+
+{
+ id:"packets",
+ titleAr:"Network Packets",
+ titleEn:"Network Packets",
+ icon:"fa-box",
+ xp:45,
+ textAr:"البيانات تنتقل عبر الشبكات على شكل وحدات صغيرة تسمى packets.",
+ textEn:"Data travels through networks in smaller units commonly called packets.",
+ sections:[
+  ["الفكرة","بدل إرسال كل شيء ككتلة واحدة، يتم تقسيم البيانات وإرسالها بطريقة تناسب البروتوكولات.","Instead of sending everything as one huge block, data is handled in smaller units according to protocols."],
+  ["المسار","قد تمر البيانات عبر عدة أجهزة قبل الوصول إلى الوجهة.","Data may pass through multiple network devices before reaching its destination."]
+ ]
+},
+
+{
+ id:"firewall",
+ titleAr:"Firewall",
+ titleEn:"Firewall",
+ icon:"fa-shield-halved",
+ xp:50,
+ textAr:"الجدار الناري يطبق قواعد للتحكم في حركة الشبكة حسب السياسة المحددة.",
+ textEn:"A firewall applies rules to control network traffic according to policy.",
+ sections:[
+  ["مو سحر","Firewall لا يعني أن الجهاز مستحيل ينخترق. هو طبقة من طبقات الحماية.","A firewall does not make a device impossible to compromise. It is one security layer."],
+  ["القواعد","يمكن أن تسمح أو تمنع حركة معينة بناءً على خصائص الاتصال.","Rules can allow or block traffic based on connection properties."]
+ ]
+},
+
+{
+ id:"vpn",
+ titleAr:"VPN",
+ titleEn:"VPN",
+ icon:"fa-user-shield",
+ xp:50,
+ textAr:"VPN ينشئ قناة مشفرة بين جهازك وخادم VPN، ثم يمرر حركة معينة من خلالها.",
+ textEn:"A VPN creates an encrypted connection between your device and a VPN server.",
+ sections:[
+  ["مهم","VPN لا يجعلك مجهولًا بشكل سحري.","A VPN does not magically make you anonymous."],
+  ["الفكرة","يوفر طبقة حماية وخصوصية معينة حسب الخدمة وطريقة استخدامها.","It can provide certain privacy and security benefits depending on the service and use."]
+ ]
+},
+
+{
+ id:"linux",
+ titleAr:"Linux Terminal",
+ titleEn:"Linux Terminal",
+ icon:"fa-terminal",
+ xp:45,
+ textAr:"الـTerminal طريقة للتفاعل مع النظام باستخدام أوامر نصية.",
+ textEn:"A terminal lets you interact with a system using text commands.",
+ sections:[
+  ["ليش مهم؟","Linux منتشر جدًا في السيرفرات والأمن السيبراني، لذلك معرفة الأساسيات مفيدة.","Linux is widely used in servers and security, making basic familiarity useful."],
+  ["نصيحة","تعلم الأوامر في بيئة تدريبية أو جهاز تملكه.","Practice commands in a training environment or on a system you own."]
+ ]
+},
+
+{
+ id:"python",
+ titleAr:"Python Basics",
+ titleEn:"Python Basics",
+ icon:"fa-code",
+ xp:45,
+ textAr:"Python لغة برمجة سهلة نسبيًا ومفيدة للأتمتة وتحليل البيانات وبناء الأدوات.",
+ textEn:"Python is a relatively accessible language useful for automation, data analysis and tooling.",
+ sections:[
+  ["هل لازم؟","مو لازم تحفظها قبل ما تبدأ الأمن السيبراني، لكن تعلم الأساسيات بيفيدك كثير.","You don't have to master it before cybersecurity, but basic knowledge is very useful."],
+  ["ابدأ","متغيرات، شروط، حلقات، دوال، قوائم وقراءة ملفات.","Start with variables, conditions, loops, functions, lists and file handling."]
+ ]
+},
+
+{
+ id:"web",
+ titleAr:"Web Security",
+ titleEn:"Web Security",
+ icon:"fa-globe",
+ xp:55,
+ textAr:"أمن الويب يهتم بحماية التطبيقات والمواقع من أخطاء قد تؤدي إلى مشاكل أمنية.",
+ textEn:"Web security focuses on protecting applications and websites from security weaknesses.",
+ sections:[
+  ["تعلم بشكل قانوني","استخدم مختبرات تدريبية مثل بيئات CTF أو التطبيقات التي تملك إذنًا لاختبارها.","Practice only in authorized labs or systems you own or have permission to test."],
+  ["فكرة","افهم كيف تعمل التطبيقات قبل أن تفكر في كيفية حمايتها.","Understand how applications work before thinking about how to secure them."]
+ ]
+},
+
+{
+ id:"phishing",
+ titleAr:"Phishing",
+ titleEn:"Phishing",
+ icon:"fa-fish",
+ xp:55,
+ textAr:"التصيد يحاول خداع المستخدم للحصول على معلومات أو دفعه لتنفيذ إجراء غير آمن.",
+ textEn:"Phishing attempts to trick users into revealing information or performing unsafe actions.",
+ sections:[
+  ["علامات","الاستعجال، الروابط الغريبة، طلب البيانات الحساسة والانتحال.","Urgency, suspicious links, sensitive requests and impersonation are common signs."],
+  ["الدفاع","تأكد من المصدر ولا تضغط الروابط المشبوهة.","Verify the source and avoid suspicious links."]
+ ]
+},
+
+{
+ id:"soc",
+ titleAr:"SOC Fundamentals",
+ titleEn:"SOC Fundamentals",
+ icon:"fa-shield",
+ xp:60,
+ textAr:"فريق SOC يراقب الأحداث الأمنية ويحلل التنبيهات ويحقق في الحوادث.",
+ textEn:"A SOC monitors security events, analyzes alerts and investigates incidents.",
+ sections:[
+  ["المهام","Monitoring وTriage وInvestigation وIncident Response من الأشياء الأساسية.","Monitoring, triage, investigation and incident response are core activities."],
+  ["الفكرة","مو كل Alert يعني اختراق. لازم تجمع السياق قبل القرار.","Not every alert means a compromise. Context matters."]
+ ]
+},
+
+{
+ id:"ctf",
+ titleAr:"CTF Fundamentals",
+ titleEn:"CTF Fundamentals",
+ icon:"fa-flag",
+ xp:60,
+ textAr:"CTF عبارة عن تحديات تدريبية تساعدك تتعلم الأمن السيبراني من خلال حل ألغاز ومشاكل مصممة للتعلم.",
+ textEn:"CTFs are training challenges designed to teach cybersecurity through puzzles and controlled problems.",
+ sections:[
+  ["الهدف","التعلم، التفكير والتحليل داخل بيئة مصممة للتدريب.","The goal is learning, reasoning and analysis in a controlled environment."],
+  ["قاعدة Midnight","لا تجرب مهاراتك على أهداف حقيقية بدون إذن.","Don't test skills on real targets without authorization."]
+ ]
+}
+
+];
+
+let currentLesson=null;
+
+function renderPaths(){
+
+    const groups = [
+
+        {
+            titleAr:"أساسيات الشبكات",
+            titleEn:"Networking Basics",
+            icon:"fa-network-wired",
+            ids:["ip","dns","dhcp","arp","nat","ports","tcpudp","packets"]
+        },
+
+        {
+            titleAr:"الأمن السيبراني",
+            titleEn:"Cybersecurity",
+            icon:"fa-shield-halved",
+            ids:["firewall","vpn","http","web","phishing","soc"]
+        },
+
+        {
+            titleAr:"Linux & Python",
+            titleEn:"Linux & Python",
+            icon:"fa-terminal",
+            ids:["linux","python"]
+        },
+
+        {
+            titleAr:"CTF",
+            titleEn:"CTF",
+            icon:"fa-flag",
+            ids:["ctf"]
+        }
+
+    ];
+
+    document.getElementById("paths").innerHTML = groups.map(group=>{
+
+        const items = group.ids.map(id=>{
+            const lesson = lessons.find(x=>x.id===id);
+
+            return `
+                <div class="lesson-row" onclick="openLesson('${id}')">
+
+                    <div class="lesson-info">
+
+                        <div class="lesson-number">
+                            ${group.ids.indexOf(id)+1}
+                        </div>
+
+                        <div>
+                            <strong>
+                                ${lang==="ar" ? lesson.titleAr : lesson.titleEn}
+                            </strong>
+
+                            <small>
+                                +${lesson.xp} XP
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <i class="fa-solid fa-chevron-left"></i>
+
+                </div>
+            `;
+        }).join("");
+
+        return `
+            <div class="path">
+
+                <div class="path-top">
+
+                    <div>
+                        <h3>
+                            ${lang==="ar" ? group.titleAr : group.titleEn}
+                        </h3>
+                    </div>
+
+                    <div class="path-icon">
+                        <i class="fa-solid ${group.icon}"></i>
+                    </div>
+
+                </div>
+
+                <p>
+                    ${lang==="ar"
+                    ? "مسار مرتب عشان ما تدخل الأمن السيبراني وتقول وين أنا 😂"
+                    : "A structured path so you don't enter cybersecurity and wonder where you are 😂"}
+                </p>
+
+                <div class="lesson-list">
+                    ${items}
+                </div>
+
+            </div>
+        `;
+
+    }).join("");
+}
+
+function openLesson(id){
+
+    const lesson = lessons.find(x=>x.id===id);
+
+    if(!lesson) return;
+
+    currentLesson=id;
+
+    go("lessonReader");
+
+    document.getElementById("readerContent").innerHTML = `
+
+        <div class="reader-icon">
+            <i class="fa-solid ${lesson.icon}"></i>
+        </div>
+
+        <h1>
+            ${lang==="ar" ? lesson.titleAr : lesson.titleEn}
+        </h1>
+
+        <p class="reader-sub">
+            ${lesson.textAr && lang==="ar"
+                ? lesson.textAr
+                : lesson.textEn}
+        </p>
+
+        ${lesson.sections.map(s=>`
+
+            <div class="lesson-section">
+
+                <h2>${lang==="ar" ? s[0] : s[0]}</h2>
+
+                <p>
+                    ${lang==="ar" ? s[1] : s[2]}
+                </p>
+
+            </div>
+
+        `).join("")}
+
+        <div class="tip">
+
+            <i class="fa-solid fa-lightbulb"></i>
+
+            ${lang==="ar"
+            ? "ملاحظة Midnight: الفهم أهم من حفظ المصطلحات. إذا فهمت الفكرة، المصطلح بيجي معك."
+            : "Midnight tip: Understanding matters more than memorizing terms."}
+
+        </div>
+
+        <button
+            class="primary"
+            style="margin-top:22px"
+            onclick="completeLesson('${lesson.id}')">
+
+            <i class="fa-solid fa-check"></i>
+
+            ${lang==="ar"
+                ? "خلصت الدرس"
+                : "Complete lesson"}
+
+        </button>
+    `;
+}
+
+function completeLesson(id){
+
+    const lesson=lessons.find(x=>x.id===id);
+
+    if(state.lessons.includes(id)){
+
+        toast(
+            lang==="ar"
+            ? "هذا الدرس محسوب عندك من قبل 😂"
+            : "This lesson is already counted 😂"
+        );
+
+        return;
     }
 
+    state.lessons.push(id);
+    state.xp+=lesson.xp;
 
     save();
-
-    renderAll();
-
 
     toast(
-        `Quiz ${quizScore}/${quizQuestions.length} 🧠`
+        lang==="ar"
+        ? `🔥 ممتاز! +${lesson.xp} XP`
+        : `🔥 Nice! +${lesson.xp} XP`
+    );
+}
+
+
+/* =========================================================
+   QUIZ
+========================================================= */
+
+const quizQuestions=[
+
+ ["ما وظيفة DNS؟",
+  "تحويل أسماء النطاقات إلى معلومات تساعد في الوصول للخدمة",
+  "تشفير كل ملفات الجهاز",
+  "رفع سرعة المعالج",
+  "إيقاف الإنترنت",0],
+
+ ["ما الذي يميز TCP؟",
+  "الاعتمادية وترتيب البيانات",
+  "أنه لا يرسل بيانات",
+  "أنه خاص بالصور فقط",
+  "أنه يعمل بدون شبكة",0],
+
+ ["ما وظيفة Firewall؟",
+  "التحكم في حركة الشبكة وفق قواعد",
+  "زيادة RAM",
+  "إنشاء حسابات",
+  "تشغيل الألعاب",0],
+
+ ["ما أفضل تصرف عند رسالة تصيد؟",
+  "التحقق من المصدر وعدم إدخال معلومات حساسة عبر رابط مشبوه",
+  "إرسال كلمة المرور",
+  "إعادة إرسالها للجميع",
+  "تحميل كل الملفات",0],
+
+ ["ما وظيفة DHCP غالبًا؟",
+  "توزيع إعدادات الشبكة تلقائيًا",
+  "تشفير الصور",
+  "حذف الـLogs",
+  "تشغيل DNS فقط",0],
+
+ ["ما معنى CTF في الأمن السيبراني؟",
+  "تحديات تدريبية في بيئة مخصصة",
+  "اختراق أي موقع",
+  "برنامج حماية",
+  "نوع من الراوترات",0],
+
+ ["ما وظيفة Port؟",
+  "المساعدة في توجيه الاتصال للخدمة المناسبة",
+  "تغيير دقة الشاشة",
+  "تشفير القرص",
+  "حذف IP",0],
+
+ ["هل HTTPS يعني أن الموقع آمن 100%؟",
+  "لا",
+  "نعم دائمًا",
+  "فقط على الجوال",
+  "فقط في الليل",0]
+
+];
+
+function renderQuiz(){
+
+    document.getElementById("quizContainer").innerHTML =
+        quizQuestions.map((q,i)=>`
+
+            <div class="question">
+
+                <h3>
+                    ${i+1}. ${lang==="ar" ? q[0] : q[0]}
+                </h3>
+
+                <div class="answers">
+
+                    ${q.slice(1,5).map((a,j)=>`
+
+                        <button
+                            class="answer"
+                            data-q="${i}"
+                            data-a="${j}"
+                            onclick="chooseQuiz(this,${i},${j})">
+
+                            ${a}
+
+                        </button>
+
+                    `).join("")}
+
+                </div>
+
+            </div>
+
+        `).join("");
+}
+
+let quizAnswers={};
+
+function chooseQuiz(button,q,a){
+
+    document
+        .querySelectorAll(`.answer[data-q="${q}"]`)
+        .forEach(b=>b.classList.remove("correct","wrong"));
+
+    button.classList.add("correct");
+
+    quizAnswers[q]=a;
+}
+
+function finishQuiz(){
+
+    let score=0;
+
+    quizQuestions.forEach((q,i)=>{
+        if(quizAnswers[i]===q[5]) score++;
+    });
+
+    const percentage=Math.round(
+        score/quizQuestions.length*100
     );
 
+    if(percentage>state.quiz){
+        state.quiz=percentage;
+        save();
+    }
+
+    document.getElementById("quizResult").style.display="block";
+
+    document.getElementById("quizResult").innerHTML=`
+
+        <strong>
+            ${lang==="ar"
+                ? `نتيجتك: ${score}/${quizQuestions.length}`
+                : `Your score: ${score}/${quizQuestions.length}`}
+        </strong>
+
+        <p style="margin-top:7px;color:#888">
+            ${percentage>=80
+                ? (lang==="ar"
+                    ? "🔥 ممتاز يا وحش. حتى البطريق انصدم."
+                    : "🔥 Excellent. Even the penguin is impressed.")
+                : percentage>=50
+                    ? (lang==="ar"
+                        ? "كويس، بس فيه مجال تخلي البطريق يندم إنه شك فيك 😂"
+                        : "Good, but there's room to make the penguin regret doubting you 😂")
+                    : (lang==="ar"
+                        ? "البطريق يقول ارجع راجع الدروس 💀"
+                        : "The penguin says go review the lessons 💀")}
+        </p>
+    `;
+
+    toast(
+        lang==="ar"
+        ? "تم حفظ أعلى نتيجة عندك"
+        : "Your best score has been saved"
+    );
 }
 
 
-function resetQuiz(){
-
-    state.completedQuiz=false;
-
-    state.level=1;
-
-    save();
-
-    renderQuiz();
-
-}
-
-
-function getLevelName(){
-
-    const ar =
-    state.language==="ar";
-
-
-    if(state.level>=4)
-        return ar
-        ? "Advanced"
-        : "Advanced";
-
-
-    if(state.level===3)
-        return ar
-        ? "Intermediate+"
-        : "Intermediate+";
-
-
-    if(state.level===2)
-        return ar
-        ? "Intermediate"
-        : "Intermediate";
-
-
-    return ar
-    ? "Beginner"
-    : "Beginner";
-
-}
-
-
-/* =========================
+/* =========================================================
    DICTIONARY
-========================= */
+========================================================= */
+
+const dictionary=[
+
+["IP","عنوان منطقي يستخدم للتعامل مع الأجهزة عبر الشبكة."],
+["MAC","عنوان مرتبط بواجهة الشبكة على مستوى طبقة ربط البيانات."],
+["DNS","خدمة تساعد في تحويل أسماء النطاقات إلى معلومات قابلة للاستخدام في الوصول."],
+["DHCP","خدمة تساعد الأجهزة في الحصول على إعدادات الشبكة تلقائيًا."],
+["ARP","آلية تساعد في ربط IPv4 بعنوان MAC داخل الشبكة المحلية."],
+["NAT","آلية تسمح بترجمة العناوين بين نطاقات شبكية مختلفة."],
+["Port","رقم يساعد النظام في توجيه الاتصال إلى الخدمة المناسبة."],
+["TCP","بروتوكول نقل يركز على الاعتمادية وترتيب البيانات."],
+["UDP","بروتوكول نقل أخف ولا يقدم نفس ضمانات TCP."],
+["HTTPS","HTTP مع حماية الاتصال باستخدام TLS."],
+["Firewall","نظام يطبق قواعد للتحكم في حركة الشبكة."],
+["VPN","اتصال مشفر بين الجهاز وخادم VPN."],
+["Phishing","محاولة خداع المستخدم للحصول على معلومات أو تنفيذ إجراء."],
+["SOC","فريق أو مركز لمراقبة وتحليل الأحداث الأمنية."],
+["CTF","تحديات تدريبية في بيئة مصممة للتعلم."],
+["Log","سجل للأحداث التي تحدث داخل نظام أو خدمة."],
+["Incident","حادث أمني أو حدث يحتاج إلى تحقيق واستجابة."],
+["Triage","فرز وترتيب التنبيهات حسب الأولوية والسياق."]
+];
 
 function renderDictionary(){
 
-    const search =
-    document
-    .getElementById(
-        "dictionarySearch"
-    )
-    .value
-    .toLowerCase();
+    const input=document.getElementById("dictionarySearch");
 
+    if(!input) return;
 
-    document
-    .getElementById(
-        "dictionaryGrid"
-    )
-    .innerHTML =
+    const search=input.value.toLowerCase();
 
-    dictionary
-    .filter(
-        item =>
-        (
-            item[0]+" "+item[1]
-        )
-        .toLowerCase()
-        .includes(search)
-    )
-    .map(
-        item => `
-
-        <article class="card">
-
-            <div class="card-icon">
-                📖
-            </div>
-
-            <h3>
-                ${item[0]}
-            </h3>
-
-            <p>
-                ${item[1]}
-            </p>
-
-        </article>
-
-        `
-    )
-    .join("");
-
-}
-
-
-/* =========================
-   DASHBOARD
-========================= */
-
-function renderDashboard(){
-
-    document.getElementById(
-        "profileName"
-    ).textContent =
-    state.name;
-
-
-    document.getElementById(
-        "profileEmail"
-    ).textContent =
-    state.email;
-
-
-    document.getElementById(
-        "profileLevel"
-    ).textContent =
-    state.level;
-
-
-    document.getElementById(
-        "profileXP"
-    ).textContent =
-    state.xp;
-
-
-    const progress =
-    (state.xp % 250) / 250 * 100;
-
-
-    document.getElementById(
-        "xpProgress"
-    ).style.width =
-    progress + "%";
-
-
-    if(
-        state.completedLessons.length
-        >0
-    ){
-
-        document
-        .getElementById(
-            "achievementLesson"
-        )
-        .classList.remove("locked");
-
-    }
-
-
-    if(
-        state.completedLabs.length
-        >0
-    ){
-
-        document
-        .getElementById(
-            "achievementLab"
-        )
-        .classList.remove("locked");
-
-    }
-
-
-    if(state.xp>=500){
-
-        document
-        .getElementById(
-            "achievementXP"
-        )
-        .classList.remove("locked");
-
-    }
-
-
-    if(state.completedQuiz){
-
-        document
-        .getElementById(
-            "achievementQuiz"
-        )
-        .classList.remove("locked");
-
-    }
-
-}
-
-
-/* =========================
-   HOME STATS
-========================= */
-
-function updateHome(){
-
-    document.getElementById(
-        "homeXP"
-    ).textContent =
-    state.xp;
-
-
-    document.getElementById(
-        "homeLessons"
-    ).textContent =
-    state.completedLessons.length;
-
-
-    document.getElementById(
-        "homeLabs"
-    ).textContent =
-    state.completedLabs.length;
-
-
-    document.getElementById(
-        "homeLevel"
-    ).textContent =
-    state.level;
-
-
-    document.getElementById(
-        "loginButton"
-    ).textContent =
-    state.loggedIn
-    ? `👤 ${state.name}`
-    :
-    (
-        state.language==="ar"
-        ? "تسجيل الدخول"
-        : "Login"
+    const filtered=dictionary.filter(x=>
+        x[0].toLowerCase().includes(search) ||
+        x[1].toLowerCase().includes(search)
     );
 
+    document.getElementById("dictionaryGrid").innerHTML =
+        filtered.map(x=>`
+
+            <div class="term-card">
+
+                <strong>${x[0]}</strong>
+
+                <span>
+                    ${x[1]}
+                </span>
+
+            </div>
+
+        `).join("");
 }
 
 
-/* =========================
-   RENDER ALL
-========================= */
+/* =========================================================
+   DASHBOARD
+========================================================= */
 
-function renderAll(){
+function getLevel(xp){
 
-    applyLanguage();
-
-    updateLevel();
-
-    updateHome();
-
-    renderLessons();
-
-    renderLabs();
-
-    renderQuiz();
-
-    renderDictionary();
-
-    renderDashboard();
-
-    save();
-
+    if(xp>=1000) return 5;
+    if(xp>=700) return 4;
+    if(xp>=400) return 3;
+    if(xp>=150) return 2;
+    return 1;
 }
 
+function updateDashboard(){
 
-/* =========================
-   EVENTS
-========================= */
+    const level=getLevel(state.xp);
 
-document
-.getElementById("lessonSearch")
-.addEventListener(
-    "input",
-    renderLessons
-);
+    let currentMin=0;
+    let currentMax=150;
 
-
-document
-.getElementById("dictionarySearch")
-.addEventListener(
-    "input",
-    renderDictionary
-);
-
-
-document
-.getElementById("terminalInput")
-.addEventListener(
-    "keydown",
-    event => {
-
-        if(event.key==="Enter")
-            runTerminal();
-
+    if(level===2){
+        currentMin=150;
+        currentMax=400;
     }
-);
+
+    if(level===3){
+        currentMin=400;
+        currentMax=700;
+    }
+
+    if(level===4){
+        currentMin=700;
+        currentMax=1000;
+    }
+
+    if(level===5){
+        currentMin=1000;
+        currentMax=1500;
+    }
+
+    const percent=
+        level===5
+        ? 100
+        : Math.max(
+            0,
+            Math.min(
+                100,
+                ((state.xp-currentMin)/(currentMax-currentMin))*100
+            )
+        );
+
+    document.getElementById("levelNumber").textContent=level;
+    document.getElementById("xpValue").textContent=state.xp;
+    document.getElementById("xpProgress").style.width=percent+"%";
+
+    document.getElementById("completedLessons").textContent=
+        state.lessons.length;
+
+    document.getElementById("completedLabs").textContent=
+        state.labs.length;
+
+    document.getElementById("quizScore").textContent=
+        state.quiz+"%";
+}
 
 
-document
-.getElementById("loginModal")
-.addEventListener(
-    "click",
-    event => {
+/* =========================================================
+   PENGUIN
+========================================================= */
 
-        if(
-            event.target.id ===
-            "loginModal"
-        ){
+let penguinClicks=0;
+let penguinTimer;
 
-            closeLogin();
+const penguinMessagesAr=[
+    "وش تبي؟ 👀",
+    "قلت لك وش تبي 😭",
+    "ياخي عندي دوام",
+    "لا تضغطني كثير",
+    "أنا بطريق مو زر 😂",
+    "عندك مختبرات روح حلها",
+    "والله ما أعرف DNS أكثر منك",
+    "قاعد أراقبك 👀",
+    "لا تقول جاي تضغط مرة ثانية",
+    "أحس الموقع صار ملكي",
+    "وين الـXP حقي؟",
+    "أنا المسؤول هنا مؤقتًا"
+];
+
+const penguinMessagesEn=[
+    "What do you want? 👀",
+    "I said what do you want 😭",
+    "Bro I have work",
+    "Stop clicking me",
+    "I'm a penguin, not a button 😂",
+    "Go solve some labs",
+    "I don't know DNS better than you",
+    "I'm watching you 👀",
+    "Don't tell me you're clicking again",
+    "I think this website is mine now",
+    "Where's my XP?",
+    "I'm in charge temporarily"
+];
+
+function penguinTalk(clicked=false){
+
+    const mascot=document.getElementById("mascot");
+    const bubble=document.getElementById("mascotBubble");
+
+    if(clicked){
+
+        penguinClicks++;
+
+        mascot.classList.remove("tongue");
+        void mascot.offsetWidth;
+        mascot.classList.add("tongue");
+
+        let msg;
+
+        if(penguinClicks===1){
+            msg=lang==="ar" ? "وش تبي؟ 👀" : "What do you want? 👀";
+        }
+        else if(penguinClicks===2){
+            msg=lang==="ar" ? "قلت لك وش تبي 😭" : "I said what do you want 😭";
+        }
+        else if(penguinClicks===3){
+            msg=lang==="ar" ? "ياخي عندي دوام" : "Bro I have work";
+        }
+        else if(penguinClicks===4){
+            msg=lang==="ar"
+                ? "تم حظرك من البطريق لمدة 3 ثواني 💀"
+                : "You are banned from the penguin for 3 seconds 💀";
+
+            mascot.style.pointerEvents="none";
+
+            setTimeout(()=>{
+                mascot.style.pointerEvents="auto";
+
+                showPenguin(
+                    lang==="ar"
+                    ? "اشتقت لي؟ 👀"
+                    : "Miss me? 👀"
+                );
+            },3000);
 
         }
+        else{
+
+            msg=
+                (lang==="ar"
+                    ? penguinMessagesAr
+                    : penguinMessagesEn)
+                [Math.floor(
+                    Math.random()*
+                    (lang==="ar"
+                        ? penguinMessagesAr.length
+                        : penguinMessagesEn.length)
+                )];
+        }
+
+        showPenguin(msg);
+    }
+}
+
+function showPenguin(msg){
+
+    const bubble=document.getElementById("mascotBubble");
+
+    bubble.textContent=msg;
+    bubble.classList.add("show");
+
+    clearTimeout(penguinTimer);
+
+    penguinTimer=setTimeout(()=>{
+        bubble.classList.remove("show");
+    },3500);
+}
+
+setInterval(()=>{
+
+    if(Math.random()<.28 && currentPage==="home"){
+
+        const messages=lang==="ar"
+            ? penguinMessagesAr
+            : penguinMessagesEn;
+
+        showPenguin(
+            messages[
+                Math.floor(Math.random()*messages.length)
+            ]
+        );
 
     }
-);
+
+},18000);
 
 
-document.addEventListener(
-    "keydown",
-    event => {
+/* =========================================================
+   DON'T PRESS 😂
+========================================================= */
 
-        if(event.key==="Escape")
-            closeLogin();
+let dontClicks=0;
 
+function dontPress(){
+
+    dontClicks++;
+
+    const messagesAr=[
+        "ليش ضغطت؟",
+        "قلت لك لا تضغط 😭",
+        "أنت ما تتعلم",
+        "واضح إنك تحتاج Midnight Academy 💀",
+        "البطريق: خلاص تكفى",
+        "آخر تحذير...",
+        "طيب خلاص أنت فزت 😂"
+    ];
+
+    const messagesEn=[
+        "Why did you press it?",
+        "I told you not to 😭",
+        "You never learn",
+        "You clearly need Midnight Academy 💀",
+        "Penguin: please stop",
+        "Last warning...",
+        "Fine, you win 😂"
+    ];
+
+    const list=lang==="ar"?messagesAr:messagesEn;
+
+    toast(list[Math.min(dontClicks-1,list.length-1)]);
+
+    if(dontClicks===5){
+
+        document.body.animate([
+            {transform:"translateX(0)"},
+            {transform:"translateX(-4px)"},
+            {transform:"translateX(4px)"},
+            {transform:"translateX(0)"}
+        ],{duration:300});
+
+        showPenguin(
+            lang==="ar"
+            ? "قلت لك لا تضغط 💀"
+            : "I told you not to press it 💀"
+        );
     }
-);
+}
 
 
-/* =========================
+/* =========================================================
+   TERMINAL
+========================================================= */
+
+const terminalLinesAr=[
+    "> booting midnight...",
+    "> checking user...",
+    "> user found.",
+    "> loading penguin...",
+    "> penguin loaded.",
+    "> checking intelligence...",
+    "> ERROR: intelligence not found 💀",
+    "> restarting...",
+    "> just kidding.",
+    "> welcome back legend.",
+    "> _"
+];
+
+const terminalLinesEn=[
+    "> booting midnight...",
+    "> checking user...",
+    "> user found.",
+    "> loading penguin...",
+    "> penguin loaded.",
+    "> checking intelligence...",
+    "> ERROR: intelligence not found 💀",
+    "> restarting...",
+    "> just kidding.",
+    "> welcome back legend.",
+    "> _"
+];
+
+let terminalIndex=0;
+
+function runTerminal(){
+
+    const body=document.getElementById("terminalBody");
+
+    if(!body) return;
+
+    const lines=lang==="ar"
+        ? terminalLinesAr
+        : terminalLinesEn;
+
+    body.innerHTML="";
+
+    lines.forEach((line,i)=>{
+
+        const div=document.createElement("div");
+
+        if(line.includes("ERROR")){
+            div.className="term-red";
+        }
+        else if(line.includes("welcome")){
+            div.className="term-green";
+        }
+        else if(line.includes("penguin")){
+            div.className="term-purple";
+        }
+
+        div.textContent=line;
+
+        body.appendChild(div);
+
+    });
+
+}
+
+setInterval(runTerminal,9000);
+
+
+/* =========================================================
+   SYSTEM STATUS
+========================================================= */
+
+function randomStatus(){
+
+    const cpu=Math.floor(60+Math.random()*35);
+    const net=Math.floor(80+Math.random()*20);
+    const brain=Math.floor(20+Math.random()*45);
+
+    document.getElementById("cpuBar").style.width=cpu+"%";
+    document.getElementById("cpuText").textContent=cpu+"%";
+
+    document.getElementById("netBar").style.width=net+"%";
+    document.getElementById("netText").textContent=net+"%";
+
+    document.getElementById("brainBar").style.width=brain+"%";
+    document.getElementById("brainText").textContent=brain+"%";
+}
+
+setInterval(randomStatus,4500);
+
+
+/* =========================================================
+   ACTIVITY
+========================================================= */
+
+const activitiesAr=[
+    ["fa-user","زائر دخل الموقع"],
+    ["fa-flask","مختبر جديد أصبح متاحًا"],
+    ["fa-network-wired","تم فتح درس DNS"],
+    ["fa-bolt","النظام يراقب النشاط"],
+    ["fa-feather","البطريق يتحرك..."],
+    ["fa-shield-halved","Security check completed"]
+];
+
+const activitiesEn=[
+    ["fa-user","A visitor entered"],
+    ["fa-flask","A new lab became available"],
+    ["fa-network-wired","DNS lesson opened"],
+    ["fa-bolt","System is monitoring activity"],
+    ["fa-feather","Penguin moved..."],
+    ["fa-shield-halved","Security check completed"]
+];
+
+function renderActivity(){
+
+    const list=document.getElementById("activityList");
+
+    const data=lang==="ar"?activitiesAr:activitiesEn;
+
+    list.innerHTML=data.slice(0,5).map((x,i)=>`
+
+        <div class="activity">
+
+            <i class="fa-solid ${x[0]}"></i>
+
+            <span>${x[1]}</span>
+
+            <small style="margin-right:auto;color:#555">
+                ${i+1}m
+            </small>
+
+        </div>
+
+    `).join("");
+}
+
+
+/* =========================================================
+   MISSION
+========================================================= */
+
+const missions=[
+    {
+        ar:["🎯 مهمة اليوم","حل قضية التصيد وافهم كيف تكتشف العلامات المشبوهة."],
+        en:["🎯 Mission of the day","Solve the phishing case and learn how to spot warning signs."]
+    },
+    {
+        ar:["🧠 مهمة اليوم","افتح درس DNS وبعدها جرّب اختبارك."],
+        en:["🧠 Mission of the day","Open the DNS lesson and then test yourself."]
+    },
+    {
+        ar:["🛡️ مهمة اليوم","حل قضية الحساب المخترق وتعلم كيف تتعامل مع الحادث."],
+        en:["🛡️ Mission of the day","Solve the compromised account case and learn incident handling."]
+    }
+];
+
+let missionIndex=Math.floor(Math.random()*missions.length);
+
+function updateMission(){
+
+    const m=missions[missionIndex][lang];
+
+    document.getElementById("missionTitle").textContent=m[0];
+    document.getElementById("missionText").textContent=m[1];
+}
+
+
+/* =========================================================
+   RANDOM EVENT
+========================================================= */
+
+function randomEvent(){
+
+    const eventsAr=[
+        "🚨 تم اكتشاف شخص يضغط الأزرار بشكل مريب.",
+        "🐧 البطريق طلب زيادة راتب.",
+        "💻 Terminal يقول إنه يعرف أسرارك... ثم قال كان يمزح.",
+        "🧠 مستوى التركيز ارتفع 2% ثم رجع.",
+        "⚠️ لا يوجد شيء خطير. فقط Midnight.",
+        "📡 الشبكة بخير. لا تسأل لماذا.",
+        "🐧 البطريق يراقبك من بعيد."
+    ];
+
+    const eventsEn=[
+        "🚨 Someone is pressing buttons suspiciously.",
+        "🐧 The penguin requested a salary increase.",
+        "💻 Terminal claims it knows your secrets... just kidding.",
+        "🧠 Focus level increased by 2% then disappeared.",
+        "⚠️ Nothing dangerous. Just Midnight.",
+        "📡 Network is fine. Don't ask why.",
+        "🐧 The penguin is watching."
+    ];
+
+    const list=lang==="ar"?eventsAr:eventsEn;
+
+    toast(
+        list[Math.floor(Math.random()*list.length)]
+    );
+
+    penguinTalk(true);
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer;
+
+function toast(message){
+
+    const t=document.getElementById("toast");
+
+    t.textContent=message;
+    t.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer=setTimeout(()=>{
+        t.classList.remove("show");
+    },2800);
+}
+
+
+/* =========================================================
+   IDLE MODE
+========================================================= */
+
+let idleTimer;
+let idleShown=false;
+
+function resetIdle(){
+
+    clearTimeout(idleTimer);
+
+    idleTimer=setTimeout(()=>{
+
+        if(idleShown) return;
+
+        idleShown=true;
+
+        const yes=confirm(
+            lang==="ar"
+            ? "⚠️ USER INACTIVE\n\nهل أنت ما زلت معنا؟"
+            : "⚠️ USER INACTIVE\n\nAre you still here?"
+        );
+
+        if(yes){
+
+            toast(
+                lang==="ar"
+                ? "الحمدلله حسبتك رحت 😂"
+                : "Thank goodness, I thought you left 😂"
+            );
+
+        }else{
+
+            toast(
+                lang==="ar"
+                ? "MIDNIGHT: ممتاز... بلّغنا الدفاع المدني 🗿"
+                : "MIDNIGHT: Great... notify the authorities 🗿"
+            );
+        }
+
+        setTimeout(()=>{
+            idleShown=false;
+        },5000);
+
+    },60000);
+}
+
+["mousemove","keydown","click","touchstart","scroll"].forEach(event=>{
+    document.addEventListener(event,resetIdle,{passive:true});
+});
+
+
+/* =========================================================
    INIT
-========================= */
+========================================================= */
 
-renderAll();
+function init(){
+
+    document.documentElement.lang=lang;
+    document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+
+    document.querySelectorAll("[data-ar]").forEach(el=>{
+        el.textContent=el.dataset[lang];
+    });
+
+    document.getElementById("arBtn").classList.toggle("active",lang==="ar");
+    document.getElementById("enBtn").classList.toggle("active",lang==="en");
+
+    renderLabs();
+    renderPaths();
+    renderQuiz();
+    renderDictionary();
+    renderActivity();
+    updateMission();
+    updateDashboard();
+    runTerminal();
+    resetIdle();
+
+    /* welcome */
+
+    setTimeout(()=>{
+
+        showPenguin(
+            lang==="ar"
+            ? "حياك الله في Midnight 👀"
+            : "Welcome to Midnight 👀"
+        );
+
+    },1200);
+}
+
+init();
 
 </script>
 
