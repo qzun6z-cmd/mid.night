@@ -3,4020 +3,2805 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<title>Midnight For Cyber</title>
+<!-- ============ Security Headers (Meta) ============ -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; script-src 'self' 'unsafe-inline'; connect-src 'self' https://discord.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+<meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=(), payment=()">
+<meta name="theme-color" content="#0a0614">
 
-<meta name="description"
-content="Midnight For Cyber — منصة عربية تفاعلية لتعلم الأمن السيبراني من الصفر عبر مسارات ودروس ومختبرات واختبارات.">
-
+<!-- ============ SEO ============ -->
+<title>Midnight For Cyber — منصة تعلم الأمن السيبراني من الصفر</title>
+<meta name="description" content="منصة Midnight For Cyber لتعلم الأمن السيبراني من الصفر — شبكات، Python، Kali Linux، Web Security، Blue Team، واختبارات تفاعلية.">
+<meta name="keywords" content="cybersecurity, أمن سيبراني, تعلم, hacking, kali linux, networks, python, web security">
+<meta name="author" content="Midnight For Cyber">
 <meta property="og:title" content="Midnight For Cyber">
-<meta property="og:description"
-content="منصة عربية لتعلم الأمن السيبراني والشبكات والبرمجة بطريقة تفاعلية وعملية وآمنة.">
+<meta property="og:description" content="تعلم الأمن السيبراني من الصفر">
 <meta property="og:type" content="website">
+<meta property="og:image" content="dead-penguin-cyber-new-background.png">
 
-<meta name="theme-color" content="#7c3aed">
+<!-- ============ Favicon ============ -->
+<link rel="icon" type="image/png" href="dead-penguin-cyber-new-background.png">
+
+<!-- ============ Fonts ============ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-
-/* =========================================================
-   MIDNIGHT FOR CYBER
-   CORE
-========================================================= */
-
-:root{
-    --bg:#06040b;
-    --bg2:#0b0712;
-    --panel:#100a18;
-    --panel2:#150d21;
-    --border:#2b1742;
-
-    --purple:#8b5cf6;
-    --purple2:#6d28d9;
-    --purple3:#b794ff;
-
-    --text:#f8f5ff;
-    --muted:#a99bb8;
-
-    --green:#35d399;
-    --red:#ff5570;
-    --yellow:#f4c95d;
-
-    --shadow:0 25px 80px rgba(0,0,0,.45);
-}
-
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    min-height:100vh;
-    background:
-        radial-gradient(
-            circle at 80% -10%,
-            rgba(124,58,237,.25),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at 10% 30%,
-            rgba(91,33,182,.08),
-            transparent 30%
-        ),
-        var(--bg);
-
-    color:var(--text);
-
-    font-family:
-        Arial,
-        Tahoma,
-        sans-serif;
-}
-
-button,
-input{
-    font:inherit;
-}
-
-button{
-    cursor:pointer;
-}
-
-::-webkit-scrollbar{
-    width:8px;
-}
-
-::-webkit-scrollbar-track{
-    background:#08050d;
-}
-
-::-webkit-scrollbar-thumb{
-    background:#32184d;
-    border-radius:20px;
-}
-
-::-webkit-scrollbar-thumb:hover{
-    background:#5b2c87;
-}
-
-/* =========================================================
-   HEADER
-========================================================= */
-
-header{
-    position:sticky;
-    top:0;
-    z-index:1000;
-
-    background:rgba(6,4,11,.86);
-
-    backdrop-filter:blur(18px);
-
-    border-bottom:
-        1px solid var(--border);
-}
-
-.navbar{
-    max-width:1300px;
-    margin:auto;
-
-    padding:
-        15px
-        20px;
-
-    display:flex;
-    align-items:center;
-
-    gap:12px;
-}
-
-.logo{
-    font-size:21px;
-    font-weight:900;
-
-    cursor:pointer;
-
-    margin-left:auto;
-
-    white-space:nowrap;
-}
-
-.logo span{
-    color:var(--purple);
-}
-
-.nav-links{
-    display:flex;
-    gap:5px;
-
-    overflow-x:auto;
-}
-
-.nav-btn{
-    border:
-        1px solid transparent;
-
-    background:transparent;
-
-    color:var(--muted);
-
-    padding:
-        9px
-        13px;
-
-    border-radius:10px;
-
-    transition:.2s;
-}
-
-.nav-btn:hover,
-.nav-btn.active{
-    color:white;
-
-    background:rgba(255,255,255,.04);
-
-    border-color:var(--border);
-}
-
-.language{
-    margin-right:auto;
-
-    border:
-        1px solid var(--border);
-
-    background:
-        rgba(255,255,255,.03);
-
-    color:white;
-
-    padding:
-        9px
-        13px;
-
-    border-radius:10px;
-}
-
-/* =========================================================
-   MAIN
-========================================================= */
-
-main{
-    width:min(1300px,100%);
-
-    margin:auto;
-
-    padding:
-        25px
-        20px
-        80px;
-}
-
-.page{
-    display:none;
-
-    animation:
-        pageIn
-        .35s
-        ease;
-}
-
-.page.active{
-    display:block;
-}
-
-@keyframes pageIn{
-
-    from{
-        opacity:0;
-        transform:translateY(12px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-
-}
-
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero{
-    min-height:650px;
-
-    display:grid;
-
-    grid-template-columns:
-        1.2fr
-        .8fr;
-
-    gap:40px;
-
-    align-items:center;
-}
-
-.eyebrow{
-    color:#c9b5ff;
-
-    font-size:13px;
-
-    font-weight:900;
-
-    letter-spacing:2px;
-}
-
-.hero h1{
-    font-size:
-        clamp(
-            45px,
-            7vw,
-            88px
-        );
-
-    line-height:.95;
-
-    margin:
-        18px
-        0;
-}
-
-.hero h1 span{
-    color:var(--purple);
-}
-
-.hero p{
-    color:var(--muted);
-
-    font-size:18px;
-
-    line-height:1.9;
-
-    max-width:700px;
-}
-
-.hero-actions{
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:12px;
-
-    margin-top:28px;
-}
-
-.primary{
-    border:0;
-
-    color:white;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--purple),
-            var(--purple2)
-        );
-
-    padding:
-        14px
-        20px;
-
-    border-radius:13px;
-
-    font-weight:900;
-
-    box-shadow:
-        0 15px 40px
-        rgba(124,58,237,.28);
-
-    transition:.2s;
-}
-
-.primary:hover{
-    transform:translateY(-2px);
-
-    box-shadow:
-        0 20px 50px
-        rgba(124,58,237,.4);
-}
-
-.secondary{
-    border:
-        1px solid var(--border);
-
-    color:white;
-
-    background:
-        rgba(255,255,255,.03);
-
-    padding:
-        14px
-        20px;
-
-    border-radius:13px;
-
-    font-weight:800;
-
-    transition:.2s;
-}
-
-.secondary:hover{
-    background:
-        rgba(139,92,246,.1);
-
-    border-color:
-        #63379b;
-}
-
-.hero-visual{
-    min-height:390px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    padding:30px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #160d24,
-            #0b0710
-        );
-
-    border:
-        1px solid var(--border);
-
-    border-radius:30px;
-
-    box-shadow:var(--shadow);
-}
-
-.hero-visual img{
-    width:100%;
-
-    max-width:430px;
-
-    max-height:350px;
-
-    object-fit:contain;
-
-    filter:
-        drop-shadow(
-            0 30px 40px
-            rgba(0,0,0,.65)
-        );
-}
-
-/* =========================================================
-   SECTIONS
-========================================================= */
-
-.section-header{
-    margin:
-        40px
-        0
-        18px;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:end;
-
-    gap:20px;
-}
-
-.section-header h2{
-    font-size:30px;
-}
-
-.section-header p{
-    color:var(--muted);
-
-    margin-top:7px;
-}
-
-/* =========================================================
-   GRID
-========================================================= */
-
-.grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(
-            3,
-            1fr
-        );
-
-    gap:16px;
-}
-
-.card{
-    position:relative;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(20,12,31,.95),
-            rgba(10,7,15,.95)
-        );
-
-    border:
-        1px solid var(--border);
-
-    border-radius:19px;
-
-    padding:22px;
-
-    box-shadow:
-        0 12px 40px
-        rgba(0,0,0,.2);
-
-    transition:
-        transform
-        .2s,
-        border-color
-        .2s;
-}
-
-.card:hover{
-    transform:translateY(-3px);
-
-    border-color:#59318a;
-}
-
-.card h3{
-    margin-bottom:9px;
-}
-
-.card p{
-    color:var(--muted);
-
-    line-height:1.8;
-}
-
-.tag{
-    display:inline-block;
-
-    padding:
-        5px
-        9px;
-
-    border-radius:999px;
-
-    border:
-        1px solid
-        rgba(139,92,246,.2);
-
-    background:
-        rgba(139,92,246,.08);
-
-    color:#cdbbff;
-
-    font-size:11px;
-
-    font-weight:800;
-
-    margin-bottom:12px;
-}
-
-/* =========================================================
-   PATHS
-========================================================= */
-
-.path-list{
-    display:flex;
-
-    flex-direction:column;
-
-    gap:13px;
-}
-
-.path-card{
-    display:flex;
-
-    align-items:center;
-
-    gap:17px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #120b1d,
-            #0b0710
-        );
-
-    border:
-        1px solid var(--border);
-
-    border-radius:18px;
-
-    padding:20px;
-
-    transition:.2s;
-}
-
-.path-card:hover{
-    border-color:#63379b;
-
-    transform:translateY(-2px);
-}
-
-.path-icon{
-    width:55px;
-
-    height:55px;
-
-    flex-shrink:0;
-
-    display:grid;
-
-    place-items:center;
-
-    border-radius:15px;
-
-    background:
-        rgba(139,92,246,.1);
-
-    color:#cbb6ff;
-
-    font-weight:900;
-}
-
-.path-info{
-    flex:1;
-}
-
-.path-info h3{
-    margin-bottom:5px;
-}
-
-.path-info p{
-    color:var(--muted);
-
-    line-height:1.7;
-}
-
-.progress{
-    height:7px;
-
-    background:#21152e;
-
-    border-radius:99px;
-
-    overflow:hidden;
-
-    margin-top:12px;
-}
-
-.progress span{
-    display:block;
-
-    height:100%;
-
-    width:0;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--purple),
-            #d8baff
-        );
-
-    transition:.5s;
-}
-
-/* =========================================================
-   LESSON
-========================================================= */
-
-.lesson-container{
-    max-width:950px;
-
-    margin:auto;
-}
-
-.lesson{
-    background:
-        linear-gradient(
-            145deg,
-            #120b1d,
-            #09060d
-        );
-
-    border:
-        1px solid var(--border);
-
-    border-radius:22px;
-
-    padding:30px;
-
-    box-shadow:var(--shadow);
-}
-
-.lesson h2{
-    font-size:34px;
-
-    margin-bottom:14px;
-}
-
-.lesson h3{
-    margin:
-        28px
-        0
-        10px;
-}
-
-.lesson p,
-.lesson li{
-    color:#c9bfd4;
-
-    line-height:2;
-
-    font-size:16px;
-}
-
-.lesson ul{
-    padding-right:22px;
-}
-
-.code{
-    direction:ltr;
-
-    text-align:left;
-
-    background:#030305;
-
-    border:
-        1px solid
-        #30203d;
-
-    border-radius:13px;
-
-    padding:18px;
-
-    margin:
-        17px
-        0;
-
-    color:#d9caff;
-
-    overflow:auto;
-
-    white-space:pre-wrap;
-
-    font-family:
-        Consolas,
-        monospace;
-}
-
-.lesson-actions{
-    display:flex;
-
-    gap:10px;
-
-    flex-wrap:wrap;
-
-    margin-top:28px;
-}
-
-/* =========================================================
-   TERMINAL
-========================================================= */
-
-.terminal{
-    background:#020204;
-
-    border:
-        1px solid
-        #30203d;
-
-    border-radius:20px;
-
-    overflow:hidden;
-}
-
-.terminal-top{
-    padding:12px 16px;
-
-    background:#120b1a;
-
-    color:#a999b7;
-
-    font-family:monospace;
-
-    direction:ltr;
-
-    text-align:left;
-}
-
-.terminal-output{
-    min-height:320px;
-
-    padding:20px;
-
-    color:#baffd1;
-
-    font-family:monospace;
-
-    direction:ltr;
-
-    text-align:left;
-
-    white-space:pre-wrap;
-
-    overflow:auto;
-}
-
-.terminal-input{
-    display:flex;
-
-    border-top:
-        1px solid
-        #24172f;
-}
-
-.terminal-input input{
-    flex:1;
-
-    background:#050507;
-
-    border:0;
-
-    outline:0;
-
-    color:white;
-
-    padding:16px;
-
-    direction:ltr;
-
-    font-family:monospace;
-}
-
-.terminal-input button{
-    border:0;
-
-    background:
-        var(--purple);
-
-    color:white;
-
-    padding:
-        0
-        22px;
-}
-
-/* =========================================================
-   BOOK
-========================================================= */
-
-.search{
-    width:100%;
-
-    background:#0b0710;
-
-    color:white;
-
-    border:
-        1px solid
-        var(--border);
-
-    padding:15px;
-
-    border-radius:13px;
-
-    outline:none;
-
-    margin-bottom:18px;
+/* ============================================================
+   MIDNIGHT FOR CYBER — MAIN STYLESHEET
+   ============================================================ */
+
+:root {
+  /* Colors */
+  --bg-void: #05030a;
+  --bg-deep: #0a0614;
+  --bg-primary: #0f0a1e;
+  --bg-secondary: #15102a;
+  --bg-card: #1a1332;
+  --bg-elevated: #221a3f;
+
+  --purple-main: #8b5cf6;
+  --purple-bright: #a78bfa;
+  --purple-dark: #6d28d9;
+  --purple-glow: rgba(139, 92, 246, 0.5);
+  --purple-soft: rgba(139, 92, 246, 0.15);
+
+  --cyan-accent: #22d3ee;
+  --green-matrix: #22c55e;
+  --red-alert: #ef4444;
+  --yellow-warn: #facc15;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+
+  --discord-blurple: #5865F2;
+  --discord-hover: #4752c4;
+
+  /* Effects */
+  --gradient-main: linear-gradient(135deg, #8b5cf6 0%, #6366f1 50%, #a78bfa 100%);
+  --gradient-dark: linear-gradient(180deg, #0a0614 0%, #1a1332 100%);
+  --shadow-glow: 0 0 30px rgba(139, 92, 246, 0.4);
+  --shadow-card: 0 10px 40px rgba(0, 0, 0, 0.5);
+  --border-glow: 1px solid rgba(139, 92, 246, 0.3);
+
+  /* Spacing */
+  --container: 1240px;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-lg: 24px;
+
+  /* Transitions */
+  --t-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --t-med: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  --t-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============ RESET ============ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: 'Cairo', system-ui, sans-serif;
+  background: var(--bg-void);
+  color: var(--text-primary);
+  line-height: 1.7;
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+}
+
+body[dir="ltr"] { font-family: 'Orbitron', 'Cairo', sans-serif; }
+
+/* ============ BACKGROUND EFFECTS ============ */
+#matrix-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(139, 92, 246, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+}
+
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.35;
+}
+.orb-1 { width: 500px; height: 500px; background: #8b5cf6; top: -150px; left: -150px; animation: float 20s infinite; }
+.orb-2 { width: 400px; height: 400px; background: #6366f1; bottom: -100px; right: -100px; animation: float 25s infinite reverse; }
+.orb-3 { width: 300px; height: 300px; background: #a78bfa; top: 40%; right: 20%; animation: float 30s infinite; }
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(60px, -80px) scale(1.1); }
+  66% { transform: translate(-40px, 60px) scale(0.9); }
+}
+
+/* ============ LOADING SCREEN ============ */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-void);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+#loader.hidden { opacity: 0; visibility: hidden; }
+
+.loader-logo {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 6px;
+  background: var(--gradient-main);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: pulse 2s infinite;
+}
+
+.loader-bar {
+  width: 260px;
+  height: 3px;
+  background: rgba(139, 92, 246, 0.15);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.loader-bar::after {
+  content: '';
+  display: block;
+  height: 100%;
+  width: 40%;
+  background: var(--gradient-main);
+  box-shadow: 0 0 15px var(--purple-glow);
+  animation: load 1.4s infinite ease-in-out;
+}
+@keyframes load {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(350%); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* ============ CONTAINER ============ */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ============ HEADER ============ */
+header.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 14px 0;
+  background: rgba(10, 6, 20, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+  transition: var(--t-med);
+}
+header.site-header.scrolled {
+  padding: 10px 0;
+  background: rgba(10, 6, 20, 0.95);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 900;
+  white-space: nowrap;
+  transition: var(--t-fast);
+}
+.logo:hover { transform: scale(1.03); }
+.logo .m { color: #fff; text-shadow: 0 0 20px rgba(255,255,255,0.3); }
+.logo .f { color: var(--purple-bright); text-shadow: 0 0 20px var(--purple-glow); }
+
+/* Nav */
+nav.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  justify-content: center;
+}
+
+nav.main-nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 9px 16px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: var(--t-fast);
+  position: relative;
+  white-space: nowrap;
+}
+nav.main-nav a:hover {
+  color: #fff;
+  background: var(--purple-soft);
+}
+nav.main-nav a.active {
+  color: #fff;
+  background: var(--purple-soft);
+  border: var(--border-glow);
+}
+
+/* Header actions */
+.header-actions { display: flex; align-items: center; gap: 10px; }
+
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: rgba(139, 92, 246, 0.1);
+  border: var(--border-glow);
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--t-fast);
+  white-space: nowrap;
+}
+.lang-switch:hover {
+  background: rgba(139, 92, 246, 0.25);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+.lang-flag { font-size: 1.1rem; }
+
+.discord-btn-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  background: var(--discord-blurple);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: var(--t-fast);
+  white-space: nowrap;
+}
+.discord-btn-header:hover {
+  background: var(--discord-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(88, 101, 242, 0.5);
+}
+.discord-btn-header svg { width: 18px; height: 18px; fill: #fff; }
+
+/* Mobile menu */
+.menu-toggle {
+  display: none;
+  background: rgba(139, 92, 246, 0.1);
+  border: var(--border-glow);
+  border-radius: 10px;
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1.4rem;
+  align-items: center;
+  justify-content: center;
+  transition: var(--t-fast);
+}
+.menu-toggle:hover { background: rgba(139, 92, 246, 0.25); }
+
+/* ============ HERO ============ */
+.hero {
+  position: relative;
+  padding: 140px 0 80px;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.hero-tag {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 4px;
+  color: var(--purple-bright);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  padding: 8px 18px;
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  border-radius: 100px;
+  background: rgba(139, 92, 246, 0.08);
+  animation: fadeUp 0.8s ease both;
+}
+
+.hero h1 {
+  font-family: 'Cairo', 'Orbitron', sans-serif;
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  font-weight: 900;
+  line-height: 1.15;
+  margin-bottom: 24px;
+  animation: fadeUp 0.8s ease 0.15s both;
+}
+.hero h1 .accent {
+  background: var(--gradient-main);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 30px var(--purple-glow));
+}
+
+.hero p.hero-desc {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 620px;
+  margin-bottom: 36px;
+  animation: fadeUp 0.8s ease 0.3s both;
+}
+.hero p.hero-desc strong { color: var(--purple-bright); font-weight: 700; }
+
+.hero-buttons {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+  animation: fadeUp 0.8s ease 0.45s both;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 30px;
+  border-radius: 14px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  transition: var(--t-med);
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--gradient-main);
+  color: #fff;
+  box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
+}
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  transition: 0.6s;
+}
+.btn-primary:hover::before { left: 100%; }
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px rgba(139, 92, 246, 0.6);
+}
+
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-primary);
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  backdrop-filter: blur(10px);
+}
+.btn-ghost:hover {
+  background: rgba(139, 92, 246, 0.15);
+  border-color: var(--purple-bright);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+}
+
+/* Hero stats */
+.hero-stats {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  animation: fadeUp 0.8s ease 0.6s both;
+}
+.stat { display: flex; flex-direction: column; }
+.stat .num {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--purple-bright);
+  line-height: 1;
+}
+.stat .lbl {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* Hero image / penguin */
+.hero-visual {
+  position: relative;
+  animation: fadeUp 0.8s ease 0.3s both;
+}
+.penguin-card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  box-shadow: 0 20px 80px rgba(139, 92, 246, 0.35),
+              inset 0 0 60px rgba(139, 92, 246, 0.05);
+  aspect-ratio: 1 / 1;
+  background: var(--bg-deep);
+  transition: var(--t-slow);
+  transform-style: preserve-3d;
+}
+.penguin-card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: conic-gradient(from 0deg, transparent, var(--purple-main), transparent 30%);
+  border-radius: var(--radius-lg);
+  z-index: -1;
+  animation: rotate 6s linear infinite;
+  opacity: 0.6;
+}
+@keyframes rotate { to { transform: rotate(360deg); } }
+
+.penguin-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: var(--t-slow);
+}
+.penguin-card:hover img { transform: scale(1.05); }
+
+.penguin-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(5, 3, 10, 0.9) 100%);
+  pointer-events: none;
+}
+.penguin-badge {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--purple-bright);
+  letter-spacing: 2px;
+}
+.penguin-badge .status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--green-matrix);
+}
+.penguin-badge .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--green-matrix);
+  box-shadow: 0 0 10px var(--green-matrix);
+  animation: blink 1.5s infinite;
+}
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+/* Floating badges around hero */
+.float-badge {
+  position: absolute;
+  background: rgba(15, 10, 30, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  animation: floatBadge 4s ease-in-out infinite;
+}
+.float-badge.fb1 { top: 8%; left: -30px; animation-delay: 0s; color: var(--cyan-accent); }
+.float-badge.fb2 { top: 45%; right: -30px; animation-delay: 1s; color: var(--green-matrix); }
+.float-badge.fb3 { bottom: 8%; left: 20px; animation-delay: 2s; color: var(--purple-bright); }
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============ SECTIONS ============ */
+section { position: relative; padding: 80px 0; z-index: 1; }
+
+.section-head { text-align: center; margin-bottom: 56px; }
+.section-head .eyebrow {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 5px;
+  color: var(--purple-bright);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  padding: 6px 16px;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 100px;
+  background: rgba(139, 92, 246, 0.08);
+}
+.section-head h2 {
+  font-family: 'Cairo', 'Orbitron', sans-serif;
+  font-size: clamp(1.9rem, 4.5vw, 3rem);
+  font-weight: 900;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+.section-head h2 .accent {
+  background: var(--gradient-main);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.section-head p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+/* ============ CARDS GRID ============ */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  position: relative;
+  background: linear-gradient(145deg, var(--bg-card), var(--bg-secondary));
+  border: 1px solid rgba(139, 92, 246, 0.18);
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  cursor: pointer;
+  transition: var(--t-med);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px);
+}
+.card.reveal { opacity: 1; transform: translateY(0); }
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: var(--gradient-main);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--t-med);
+}
+.card:hover::before { transform: scaleX(1); transform-origin: left; }
+
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 50%), rgba(139, 92, 246, 0.12), transparent 40%);
+  opacity: 0;
+  transition: opacity var(--t-med);
+  pointer-events: none;
+}
+.card:hover::after { opacity: 1; }
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow: 0 20px 50px rgba(139, 92, 246, 0.25), 0 0 0 1px rgba(139, 92, 246, 0.3);
+}
+
+.card-tag {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  padding: 5px 12px;
+  border-radius: 100px;
+  background: rgba(139, 92, 246, 0.15);
+  color: var(--purple-bright);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  margin-bottom: 18px;
+  font-weight: 700;
+}
+
+.card h3 {
+  font-family: 'Orbitron', 'Cairo', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+.card p {
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  margin-bottom: 20px;
+  min-height: 52px;
+}
+.card .card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 18px;
+  border-top: 1px solid rgba(139, 92, 246, 0.12);
+}
+.card .card-meta .level {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+.card .card-meta .level .pip {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(139, 92, 246, 0.25);
+}
+.card .card-meta .level .pip.on { background: var(--purple-bright); box-shadow: 0 0 8px var(--purple-glow); }
+.card .arrow {
+  font-size: 1.3rem;
+  color: var(--purple-bright);
+  transition: var(--t-fast);
+}
+.card:hover .arrow { transform: translateX(-6px); }
+
+/* Card colors per category */
+.card[data-cat="networking"] .card-tag { color: #22d3ee; border-color: rgba(34,211,238,0.4); background: rgba(34,211,238,0.1); }
+.card[data-cat="networking"]::before { background: linear-gradient(90deg, #22d3ee, #0891b2); }
+.card[data-cat="python"] .card-tag { color: #facc15; border-color: rgba(250,204,21,0.4); background: rgba(250,204,21,0.1); }
+.card[data-cat="python"]::before { background: linear-gradient(90deg, #facc15, #eab308); }
+.card[data-cat="linux"] .card-tag { color: #f97316; border-color: rgba(249,115,22,0.4); background: rgba(249,115,22,0.1); }
+.card[data-cat="linux"]::before { background: linear-gradient(90deg, #f97316, #ea580c); }
+.card[data-cat="web"] .card-tag { color: #ef4444; border-color: rgba(239,68,68,0.4); background: rgba(239,68,68,0.1); }
+.card[data-cat="web"]::before { background: linear-gradient(90deg, #ef4444, #dc2626); }
+.card[data-cat="blue"] .card-tag { color: #3b82f6; border-color: rgba(59,130,246,0.4); background: rgba(59,130,246,0.1); }
+.card[data-cat="blue"]::before { background: linear-gradient(90deg, #3b82f6, #2563eb); }
+.card[data-cat="osint"] .card-tag { color: #10b981; border-color: rgba(16,185,129,0.4); background: rgba(16,185,129,0.1); }
+.card[data-cat="osint"]::before { background: linear-gradient(90deg, #10b981, #059669); }
+.card[data-cat="crypto"] .card-tag { color: #ec4899; border-color: rgba(236,72,153,0.4); background: rgba(236,72,153,0.1); }
+.card[data-cat="crypto"]::before { background: linear-gradient(90deg, #ec4899, #db2777); }
+.card[data-cat="re"] .card-tag { color: #a78bfa; border-color: rgba(167,139,250,0.4); background: rgba(167,139,250,0.1); }
+.card[data-cat="re"]::before { background: linear-gradient(90deg, #a78bfa, #8b5cf6); }
+
+/* ============ SCROLL INDICATOR ============ */
+.scroll-hint {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  font-family: 'JetBrains Mono', monospace;
+  animation: bounce 2s infinite;
+}
+.scroll-hint .mouse {
+  width: 24px; height: 38px;
+  border: 2px solid rgba(139, 92, 246, 0.5);
+  border-radius: 12px;
+  position: relative;
+}
+.scroll-hint .mouse::after {
+  content: '';
+  position: absolute;
+  top: 8px; left: 50%;
+  transform: translateX(-50%);
+  width: 4px; height: 8px;
+  background: var(--purple-bright);
+  border-radius: 2px;
+  animation: scrollDot 1.6s infinite;
+}
+@keyframes scrollDot {
+  0% { opacity: 0; transform: translate(-50%, 0); }
+  40% { opacity: 1; }
+  80% { opacity: 0; transform: translate(-50%, 12px); }
+  100% { opacity: 0; }
+}
+@keyframes bounce {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, 6px); }
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1100px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 50px; text-align: center; }
+  .hero p.hero-desc { margin-left: auto; margin-right: auto; }
+  .hero-buttons { justify-content: center; }
+  .hero-stats { justify-content: center; }
+  .float-badge.fb1, .float-badge.fb2 { display: none; }
+}
+
+@media (max-width: 900px) {
+  nav.main-nav {
+    position: fixed;
+    top: 70px;
+    right: -100%;
+    width: 280px;
+    height: calc(100vh - 70px);
+    background: rgba(10, 6, 20, 0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px;
+    gap: 6px;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-left: 1px solid rgba(139, 92, 246, 0.2);
+    overflow-y: auto;
+  }
+  body[dir="ltr"] nav.main-nav { right: auto; left: -100%; border-left: none; border-right: 1px solid rgba(139, 92, 246, 0.2); }
+  nav.main-nav.open { right: 0; }
+  body[dir="ltr"] nav.main-nav.open { left: 0; }
+  nav.main-nav a { padding: 14px 18px; font-size: 1rem; }
+  .menu-toggle { display: flex; }
+  .discord-btn-header span { display: none; }
+  .discord-btn-header { padding: 9px 12px; }
+}
+
+@media (max-width: 640px) {
+  .container { padding: 0 16px; }
+  header.site-header { padding: 10px 0; }
+  .logo { font-size: 1.05rem; }
+  .lang-switch { padding: 7px 10px; font-size: 0.8rem; }
+  .lang-switch .lang-text { display: none; }
+  .hero { padding: 110px 0 60px; min-height: auto; }
+  .hero h1 { font-size: 2.2rem; }
+  .hero p.hero-desc { font-size: 1rem; }
+  .btn { padding: 13px 22px;
+font-size: 0.9rem; }
+  .hero-stats { gap: 20px; }
+  .stat .num { font-size: 1.4rem; }
+  .section-head h2 { font-size: 1.6rem; }
+  .card { padding: 24px 20px; }
+  .card h3 { font-size: 1.2rem; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .float-badge.fb3 { display: none; }
+  .scroll-hint { display: none; }
+  .hero-buttons { flex-direction: column; width: 100%; }
+  .hero-buttons .btn { justify-content: center; width: 100%; }
+  .penguin-card { aspect-ratio: 4 / 3; }
+}
+
+@media (max-width: 400px) {
+  .logo { font-size: 0.95rem; }
+  .lang-switch { padding: 6px 8px; }
+  .hero h1 { font-size: 1.9rem; }
+}
+
+/* ============ UTILITY ============ */
+.hidden-el { display: none !important; }
+.text-accent { color: var(--purple-bright); }
+.mono { font-family: 'JetBrains Mono', monospace; }
+
+/* ============ SCROLLBAR ============ */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-void); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--purple-main), var(--purple-dark));
+  border-radius: 10px;
+  border: 2px solid var(--bg-void);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--purple-bright); }
+
+/* ============ SELECTION ============ */
+::selection { background: var(--purple-main); color: #fff; }
+
+/* ============ FOCUS ============ */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--purple-bright);
+  outline-offset: 3px;
+  border-radius: 8px;
 }
-
-.book-item{
-    background:
-        linear-gradient(
-            145deg,
-            #120b1c,
-            #0a070e
-        );
-
-    border:
-        1px solid var(--border);
-
-    border-radius:18px;
-
-    padding:23px;
-
-    margin-bottom:13px;
-}
-
-.book-item h3{
-    margin-bottom:9px;
-}
-
-.book-item p{
-    color:var(--muted);
-
-    line-height:1.9;
-}
-
-/* =========================================================
-   QUIZ
-========================================================= */
-
-.question{
-    background:
-        #0f0917;
-
-    border:
-        1px solid var(--border);
-
-    border-radius:17px;
-
-    padding:20px;
-
-    margin-bottom:14px;
-}
-
-.question-title{
-    font-weight:900;
-
-    line-height:1.8;
-}
-
-.option{
-    width:100%;
-
-    text-align:right;
-
-    margin-top:9px;
-
-    padding:12px;
-
-    border:
-        1px solid
-        var(--border);
-
-    background:
-        rgba(255,255,255,.025);
-
-    color:white;
-
-    border-radius:11px;
-
-    transition:.2s;
-}
-
-.option:hover{
-    background:
-        rgba(139,92,246,.1);
-
-    border-color:#5e348f;
-}
-
-.option.correct{
-    border-color:
-        var(--green);
-
-    background:
-        rgba(53,211,153,.08);
-}
-
-.option.wrong{
-    border-color:
-        var(--red);
-
-    background:
-        rgba(255,85,112,.08);
-}
-
-.feedback{
-    margin-top:10px;
-
-    color:var(--muted);
-
-    line-height:1.7;
-}
-
-/* =========================================================
-   DASHBOARD
-========================================================= */
-
-.stats{
-    display:grid;
-
-    grid-template-columns:
-        repeat(
-            4,
-            1fr
-        );
-
-    gap:13px;
-}
-
-.stat{
-    background:
-        #100a18;
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius:16px;
-
-    padding:20px;
-}
-
-.stat small{
-    color:var(--muted);
-}
-
-.stat strong{
-    display:block;
-
-    margin-top:6px;
-
-    font-size:30px;
-}
-
-/* =========================================================
-   TOAST
-========================================================= */
-
-.toast{
-    position:fixed;
-
-    left:20px;
-
-    bottom:20px;
-
-    z-index:5000;
-
-    background:#171021;
-
-    border:
-        1px solid
-        var(--border);
-
-    padding:
-        13px
-        17px;
-
-    border-radius:12px;
-
-    opacity:0;
-
-    pointer-events:none;
-
-    transform:translateY(10px);
-
-    transition:.25s;
-}
-
-.toast.show{
-    opacity:1;
-
-    transform:translateY(0);
-}
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-footer{
-    border-top:
-        1px solid
-        var(--border);
-
-    text-align:center;
-
-    padding:30px 20px;
-
-    color:var(--muted);
-}
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:900px){
-
-    .hero{
-        grid-template-columns:1fr;
-
-        min-height:auto;
-
-        padding:
-            45px
-            0;
-    }
-
-    .grid{
-        grid-template-columns:1fr;
-    }
-
-    .stats{
-        grid-template-columns:
-            repeat(
-                2,
-                1fr
-            );
-    }
-
-    .navbar{
-        flex-wrap:wrap;
-    }
-
-    .logo{
-        margin-left:0;
-    }
-
-    .nav-links{
-        width:100%;
-
-        order:3;
-    }
-
-    .language{
-        margin-right:0;
-    }
-
-}
-
-@media(max-width:550px){
-
-    main{
-        padding:
-            18px
-            13px
-            60px;
-    }
-
-    .hero h1{
-        font-size:48px;
-    }
-
-    .path-card{
-        align-items:flex-start;
-
-        flex-wrap:wrap;
-    }
-
-    .path-card button{
-        width:100%;
-    }
-
-    .stats{
-        grid-template-columns:1fr;
-    }
-
-}
-
-/* =========================================================
-   END CSS
-========================================================= */
-
 </style>
 </head>
 
 <body>
 
-<header>
-
-<nav class="navbar">
-
-<div
-    class="logo"
-    id="logo"
->
-    Midnight
-    <span>For Cyber</span>
+<!-- ============ LOADER ============ -->
+<div id="loader">
+  <div class="loader-logo">MIDNIGHT</div>
+  <div class="loader-bar"></div>
 </div>
 
-<div class="nav-links">
+<!-- ============ BACKGROUND EFFECTS ============ -->
+<canvas id="matrix-bg"></canvas>
+<div class="bg-grid"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
 
-<button
-    class="nav-btn active"
-    data-page="home"
->
-    الرئيسية
-</button>
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a href="#" class="logo">
+      <span class="m">Midnight</span>
+      <span class="f">For Cyber</span>
+    </a>
 
-<button
-    class="nav-btn"
-    data-page="paths"
->
-    المسارات
-</button>
+    <nav class="main-nav" id="mainNav">
+      <a href="#home" class="active" data-i18n="nav.home">الرئيسية</a>
+      <a href="#paths" data-i18n="nav.paths">المسارات</a>
+      <a href="#labs" data-i18n="nav.labs">Labs</a>
+      <a href="#quizzes" data-i18n="nav.quizzes">الاختبارات</a>
+      <a href="#book" data-i18n="nav.book">كتاب الأمن</a>
+    </nav>
 
-<button
-    class="nav-btn"
-    data-page="labs"
->
-    Labs
-</button>
+    <div class="header-actions">
+      <button class="lang-switch" id="langSwitch" aria-label="Switch language">
+        <span class="lang-flag" id="langFlag">🇸🇦</span>
+        <span class="lang-text" id="langText">English</span>
+      </button>
 
-<button
-    class="nav-btn"
-    data-page="quiz"
->
-    الاختبارات
-</button>
+      <a href="https://discord.gg/zsuqE6pss" target="_blank" rel="noopener noreferrer" class="discord-btn-header" aria-label="Discord">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+        <span>Discord</span>
+      </a>
 
-<button
-    class="nav-btn"
-    data-page="book"
->
-    كتاب الأمن
-</button>
-
-<button
-    class="nav-btn"
-    data-page="dashboard"
->
-    تقدمي
-</button>
-
-</div>
-
-<button
-    class="language"
-    id="languageButton"
->
-    🇺🇸 English
-</button>
-
-</nav>
-
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+    </div>
+  </div>
 </header>
 
-
-<main>
-
-
-<!-- =====================================================
-     HOME
-===================================================== -->
-
-<section
-    id="page-home"
-    class="page active"
->
-
-<div class="hero">
-
-<div>
-
-<div class="eyebrow">
-MIDNIGHT • CYBER LEARNING PLATFORM
-</div>
-
-<h1>
-تعلم الأمن السيبراني
-<br>
-<span>
-من الصفر.
-</span>
-</h1>
-
-<p>
-منصة Midnight For Cyber تساعدك تبدأ من الصفر
-وتبني أساس قوي في الشبكات والبرمجة وLinux
-وأمن الويب والدفاع السيبراني، من خلال مسارات
-ودروس ومختبرات محاكاة واختبارات.
-</p>
-
-<div class="hero-actions">
-
-<button
-    class="primary"
-    id="startJourney"
->
-    ابدأ رحلتك 🎓
-</button>
-
-<button
-    class="secondary"
-    data-page="book"
->
-    كتاب الأمن السيبراني
-</button>
-
-</div>
-
-</div>
-
-
-<div class="hero-visual">
-
-<img
-    src="dead-penguin-cyber-new-background.png"
-    alt="Midnight Cyber"
->
-
-</div>
-
-</div>
-
-
-<div class="section-header">
-
-<div>
-
-<h2>
-وش بتتعلم؟
-</h2>
-
-<p>
-اختر مسارك بعد الضغط على ابدأ رحلتك.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="grid">
-
-
-<div class="card">
-
-<span class="tag">
-NETWORKING
-</span>
-
-<h3>
-أساسيات الشبكات
-</h3>
-
-<p>
-IP و MAC و DNS و DHCP و NAT
-والـRouter والـSwitch والـPorts
-والبروتوكولات.
-</p>
-
-</div>
-
-
-<div class="card">
-
-<span class="tag">
-PROGRAMMING
-</span>
-
-<h3>
-Python
-</h3>
-
-<p>
-ابدأ البرمجة من الصفر وتعلم
-المتغيرات والشروط والحلقات
-والدوال والقوائم.
-</p>
-
-</div>
-
-
-<div class="card">
-
-<span class="tag">
-LINUX
-</span>
-
-<h3>
-Kali Linux
-</h3>
-
-<p>
-تعرف على الطرفية والملفات
-والصلاحيات وأوامر الشبكات
-داخل بيئة آمنة.
-</p>
-
-</div>
-
-
-<div class="card">
-
-<span class="tag">
-WEB
-</span>
-
-<h3>
-Web Security
-</h3>
-
-<p>
-تعرف كيف يعمل HTTP والجلسات
-والكوكيز والتحقق من المدخلات.
-</p>
-
-</div>
-
-
-<div class="card">
-
-<span class="tag">
-BLUE TEAM
-</span>
-
-<h3>
-SOC & Defense
-</h3>
-
-<p>
-السجلات والتنبيهات وتحليل
-الأحداث والاستجابة للحوادث.
-</p>
-
-</div>
-
-
-<div class="card">
-
-<span class="tag">
-LABS
-</span>
-
-<h3>
-مختبرات Midnight
-</h3>
-
-<p>
-أوامر محاكاة تعليمية تساعدك
-تفهم المفاهيم بدون استهداف
-أنظمة حقيقية.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="section-header">
-
-<div>
-
-<h2>
-روابط سريعة
-</h2>
-
-</div>
-
-</div>
-
-
-<div class="grid">
-
-
-<div
-    class="card"
-    id="discordCard"
->
-
-<h3>
-Discord
-</h3>
-
-<p>
-انضم إلى مجتمع Midnight.
-</p>
-
-<button class="secondary">
-فتح Discord
-</button>
-
-</div>
-
-
-<div
-    class="card"
-    id="homeQuiz"
->
-
-<h3>
-الاختبارات
-</h3>
-
-<p>
-اختبر فهمك للمفاهيم الأساسية.
-</p>
-
-<button class="secondary">
-ابدأ الاختبارات
-</button>
-
-</div>
-
-
-<div
-    class="card"
-    id="homeProgress"
->
-
-<h3>
-تقدمك
-</h3>
-
-<p>
-تابع XP والدروس التي أنجزتها.
-</p>
-
-<button class="secondary">
-عرض التقدم
-</button>
-
-</div>
-
-
-</div>
-
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="container hero-inner">
+    <div class="hero-content">
+      <div class="hero-tag" data-i18n="hero.tag">MIDNIGHT • CYBER LEARNING PLATFORM</div>
+
+      <h1 data-i18n="hero.title">
+        تعلّم <span class="accent">الأمن السيبراني</span><br>
+        من <span class="accent">الصفر</span>
+      </h1>
+
+      <p class="hero-desc" data-i18n="hero.desc">
+        منصة <strong>Midnight For Cyber</strong> تساعدك تبدأ من الصفر وتبني أساس قوي في الشبكات والبرمجة و Linux وأمن الويب والدفاع السيبراني، من خلال مسارات ودروس ومختبرات محاكاة واختبارات.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#paths" class="btn btn-primary">
+          <span>🎓</span>
+          <span data-i18n="hero.btnStart">ابدأ رحلتك</span>
+        </a>
+        <a href="#book" class="btn btn-ghost">
+          <span data-i18n="hero.btnBook">كتاب الأمن السيبراني</span>
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="num" data-count="8">0</span>
+          <span class="lbl" data-i18n="stats.paths">مسارات</span>
+        </div>
+        <div class="stat">
+          <span class="num" data-count="50">0</span>
+          <span class="lbl" data-i18n="stats.lessons">درس</span>
+        </div>
+        <div class="stat">
+          <span class="num" data-count="12">0</span>
+          <span class="lbl" data-i18n="stats.labs">مختبر</span>
+        </div>
+        <div class="stat">
+          <span class="num" data-count="100">0</span>
+          <span class="lbl" data-i18n="stats.quiz">اختبار</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="float-badge fb1">🛡️ &lt;/&gt; secure</div>
+      <div class="float-badge fb2">⚡ nmap -sS</div>
+      <div class="float-badge fb3">🐧 kali@midnight</div>
+
+      <div class="penguin-card">
+        <img src="dead-penguin-cyber-new-background.png" alt="Midnight Penguin" loading="eager">
+        <div class="penguin-overlay"></div>
+        <div class="penguin-badge">
+          <span>Midnight</span>
+          <span class="status"><span class="dot"></span>online</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="mouse"></div>
+    <span data-i18n="scroll">SCROLL</span>
+  </div>
 </section>
 
+<!-- ============ PATHS / LEARN ============ -->
+<section id="paths">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow" data-i18n="learn.eyebrow">LEARNING PATHS</div>
+      <h2 data-i18n="learn.title">وش <span class="accent">بتتعلم؟</span></h2>
+      <p data-i18n="learn.desc">اختر مسارك بعد الضغط على ابدأ رحلتك.</p>
+    </div>
 
+    <div class="cards-grid" id="cardsGrid">
+      <!-- Networking -->
+      <article class="card" data-cat="networking">
+        <span class="card-tag">NETWORKING</span>
+        <h3 data-i18n="card.net.title">أساسيات الشبكات</h3>
+        <p data-i18n="card.net.desc">IP و MAC و DNS و DHCP و NAT و Router و Switch و Ports والبروتوكولات.</p>
+        <div class="card-meta">
+          <span class="level">
+            <span class="pip on"></span><span class="pip"></span><span class="pip"></span>
+            <span data-i18n="level.beginner">مبتدئ</span>
+          </span>
+          <span class="arrow">←</span>
+        </div>
+      </article>
 
-<!-- =====================================================
-     PATHS
-===================================================== -->
+      <!-- Python -->
+      <article class="card" data-cat="python">
+        <span class="card-tag">PROGRAMMING</span>
+        <h3>Python</h3>
+        <p data-i18n="card.py.desc">ابدأ البرمجة من الصفر وتعلم المتغيرات والشروط والحلقات والدوال والقوائم.</p>
+        <div class="card-meta">
+          <span class="level">
+            <span class="pip on"></span><span class="pip"></span><span class="pip"></span>
+            <span data-i18n="level.beginner">مبتدئ</span>
+          </span>
+          <span class="arrow">←</span>
+        </div>
+      </article>
 
-<section
-    id="page-paths"
-    class="page"
->
+      <!-- Kali Linux -->
+      <article class="card" data-cat="linux">
+        <span class="card-tag">LINUX</span>
+        <h3>Kali Linux</h3>
+        <p data-i18n="card.kali.desc">تعرف على الطرفية والملفات والصلاحيات وأوامر الشبكات داخل بيئة آمنة.</p>
+        <div class="card-meta">
+          <span class="level">
+            <span class="pip on"></span><span class="pip on"></span><span class="pip"></span>
+            <span data-i18n="level.intermediate">متوسط</span>
+          </span>
+          <span class="arrow">←</span>
+        </div>
+      </article>
 
-<div class="section-header">
+      <!-- Web Security -->
+      <article class="card" data-cat="web">
+        <span class="card-tag">WEB</span>
+        <h3>Web Security</h3>
+        <p data-i18n="card.web.desc">تعرف كيف يعمل HTTP والجلسات والكوكيز والتحقق من المدخلات.</p>
+        <div class="card-meta">
+          <span class="level">
+            <span class="pip on"></span><span class="pip on"></span><span class="pip"></span>
+            <span data-i18n="level.intermediate">متوسط</span>
+          </span>
+          <span class="arrow">←</span>
+        </div>
+      </article>
 
-<div>
+      <!-- Blue Team -->
+      <article class="card" data-cat="blue">
+        <span class="card-tag">BLUE TEAM</span>
+        <h3 data-i18n="card.blue.title">&amp; Defense</h3>
+        <p data-i18n="card.blue.desc">حماية الأنظمة، تحليل الأحداث، والاستجابة للحوادث الأمنية.</p>
+        <div class="card-meta">
+          <span class="level">
+            <span class="pip on"></span><span class="pip on"></span><span class="pip on"></span>
+            <span data-i18n="level.advanced">متقدم</span>
+          </span>
+          <span class="arrow">←</span>
+        </div>
+      </article>
 
-<h2>
-اختر مسارك
-</h2>
+      <!-- OSINT -->
+      <article class="card" data-cat="osint">
+        <span class="card-tag">OSINT</span>
+        <h3 data-i18n="card.osint.title">الاستخبارات المفتوحة</h3>
+        <p data-i18n="card.osint.desc">جمع المعلومات من المصادر العامة وأدوات البحث المتقدم.</p>
+        <div class="card-meta">
+          <span class="level">
+            <span class="pip on"></span><span class="pip"></span><span class="pip"></span>
+            <span data-i18n="level.beginner">مبتدئ</span>
+          </span>
+          <span class="arrow">←</span>
+        </div>
+      </article>
 
-<p>
-هنا تبدأ الرحلة الحقيقية. اختر المجال
-اللي تبغى تتعلمه.
-</p>
+      <!-- Crypto -->
+      <article class="card" data-cat="crypto">
+        <span class="card-tag">CRYPTOGRAPHY</span>
+        <h3 data-i18n="card.crypto.title">التشفير</h3>
+        <p data-i18n="card.crypto.desc">مفاهيم التشفير، الهاش، المفاتيح، والتوقيعات الرقمية.</p>
+        <div class="card-meta">
+          <span class="level">
+            <span class="pip on"></span><span class="pip on"></span><span class="pip on"></span>
+            <span data-i18n="level.advanced">متقدم</span>
+          </span>
+          <span class="arrow">←</span>
+        </div>
+      </article>
 
-</div>
-
-</div>
-
-
-<div
-    id="pathsContainer"
-    class="path-list"
->
-</div>
-
+      <!-- Reverse Engineering -->
+      <article class="card" data-cat="re">
+        <span class="card-tag">REVERSE</span>
+        <h3 data-i18n="card.re.title">الهندسة العكسية</h3>
+        <p data-i18n="card.re.desc">تحليل البرامج وفهم طريقة عملها واستخراج المعلومات منها.</p>
+        <div class="card-meta">
+          <span class="level">
+            <span class="pip on"></span><span class="pip on"></span><span class="pip on"></span>
+            <span data-i18n="level.advanced">متقدم</span>
+          </span>
+          <span class="arrow">←</span>
+        </div>
+      </article>
+    </div>
+  </div>
 </section>
 
+<!-- ⬇️ الجزء 2 سيكمل من هنا: قسم Labs + الاختبارات + Terminal + Footer + JavaScript ⬇️ -->
+<!-- ============ LABS ============ -->
+<section id="labs">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow" data-i18n="labs.eyebrow">INTERACTIVE LABS</div>
+      <h2 data-i18n="labs.title">مختبرات <span class="accent">تفاعلية</span></h2>
+      <p data-i18n="labs.desc">جرّب أدوات حقيقية داخل بيئة آمنة ومحاكاة واقعية.</p>
+    </div>
 
-
-<!-- =====================================================
-     LESSON
-===================================================== -->
-
-<section
-    id="page-lesson"
-    class="page"
->
-
-<div
-    id="lessonContainer"
-    class="lesson-container"
->
-</div>
-
+    <div class="labs-grid">
+      <div class="lab-card">
+        <div class="lab-icon">🌐</div>
+        <h4 data-i18n="lab1.title">مختبر الشبكات</h4>
+        <p data-i18n="lab1.desc">اكتشف الأجهزة المتصلة، افتح المنافذ، وحلل الحزم.</p>
+        <span class="lab-tag">nmap • ping • netstat</span>
+      </div>
+      <div class="lab-card">
+        <div class="lab-icon">💻</div>
+        <h4 data-i18n="lab2.title">طرفية Linux</h4>
+        <p data-i18n="lab2.desc">تعلم الأوامر الأساسية في بيئة Kali Linux محاكاة.</p>
+        <span class="lab-tag">ls • cd • grep • cat</span>
+      </div>
+      <div class="lab-card">
+        <div class="lab-icon">🔐</div>
+        <h4 data-i18n="lab3.title">تحليل التشفير</h4>
+        <p data-i18n="lab3.desc">فك الشيفرات البسيطة، تعرف على Base64 و Caesar.</p>
+        <span class="lab-tag">base64 • rot13 • hashes</span>
+      </div>
+      <div class="lab-card">
+        <div class="lab-icon">🕵️</div>
+        <h4 data-i18n="lab4.title">التحقيق الرقمي</h4>
+        <p data-i18n="lab4.desc">حلل الأدلة، تتبع الأثر الرقمي، وحدد المهاجم.</p>
+        <span class="lab-tag">logs • forensics • IR</span>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- ============ QUIZZES ============ -->
+<section id="quizzes">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow" data-i18n="quiz.eyebrow">STORY-BASED MISSIONS</div>
+      <h2 data-i18n="quiz.title">اختبارات <span class="accent">قصصية</span></h2>
+      <p data-i18n="quiz.desc">مهام واقعية — تحقق، حلل، واكتشف المهاجم باستخدام أوامر حقيقية.</p>
+    </div>
 
+    <div class="quiz-selector" id="quizSelector">
+      <div class="quiz-card" data-quiz="bank">
+        <div class="quiz-card-head">
+          <span class="difficulty easy" data-i18n="diff.easy">سهل</span>
+          <span class="reward">+150 XP</span>
+        </div>
+        <div class="quiz-icon">🏦</div>
+        <h3 data-i18n="quiz.bank.title">البنك المخترق</h3>
+        <p data-i18n="quiz.bank.desc">تم اختراق أحد البنوك! المدير استدعاك لفحص الأمر. ابدأ التحقيق واستخدم أوامر مثل nmap و ping لتحديد المهاجم.</p>
+        <button class="btn btn-primary quiz-start" data-quiz="bank">
+          <span>▶</span>
+          <span data-i18n="quiz.start">ابدأ التحقيق</span>
+        </button>
+      </div>
 
-<!-- =====================================================
-     LABS
-===================================================== -->
+      <div class="quiz-card locked">
+        <div class="quiz-card-head">
+          <span class="difficulty medium" data-i18n="diff.medium">متوسط</span>
+          <span class="reward">+300 XP</span>
+        </div>
+        <div class="quiz-icon">🏥</div>
+        <h3 data-i18n="quiz.hosp.title">المستشفى المهدد</h3>
+        <p data-i18n="quiz.hosp.desc">تهديد فدية لمستشفى كبير، ومعلومات المرضى في خطر. ابدأ التحقيق قبل فوات الأوان.</p>
+        <button class="btn btn-ghost quiz-start" data-quiz="hospital" disabled>
+          <span>🔒</span>
+          <span data-i18n="quiz.locked">مقفل</span>
+        </button>
+      </div>
 
-<section
-    id="page-labs"
-    class="page"
->
+      <div class="quiz-card locked">
+        <div class="quiz-card-head">
+          <span class="difficulty hard" data-i18n="diff.hard">صعب</span>
+          <span class="reward">+500 XP</span>
+        </div>
+        <div class="quiz-icon">🏛️</div>
+        <h3 data-i18n="quiz.gov.title">هجوم حكومي</h3>
+        <p data-i18n="quiz.gov.desc">بنية تحتية حكومية مستهدفة من جهة خارجية. تحليل متقدم مطلوب.</p>
+        <button class="btn btn-ghost quiz-start" data-quiz="gov" disabled>
+          <span>🔒</span>
+          <span data-i18n="quiz.locked">مقفل</span>
+        </button>
+      </div>
+    </div>
 
-<div class="section-header">
+    <!-- ============ TERMINAL MISSION ============ -->
+    <div class="terminal-wrap" id="terminalWrap" style="display:none;">
+      <div class="terminal-header">
+        <div class="terminal-title">
+          <span class="status-led"></span>
+          <span id="missionTitle" data-i18n="mission.title">MISSION: BANK BREACH</span>
+        </div>
+        <div class="terminal-controls">
+          <button class="tc-btn" id="resetMission" title="Restart">⟳</button>
+          <button class="tc-btn" id="closeMission" title="Close">✕</button>
+        </div>
+      </div>
 
-<div>
+      <div class="mission-grid">
+        <!-- Briefing panel -->
+        <aside class="mission-briefing">
+          <div class="mb-header">
+            <span class="mb-label" data-i18n="mission.objectives">OBJECTIVES</span>
+          </div>
+          <ul class="objectives" id="objectivesList">
+            <li data-obj="1"><span class="obj-check"></span><span data-i18n="obj1">اكتشف الأجهزة المتصلة بالشبكة</span></li>
+            <li data-obj="2"><span class="obj-check"></span><span data-i18n="obj2">افحص المنافذ المفتوحة على السيرفر المشتبه به</span></li>
+            <li data-obj="3"><span class="obj-check"></span><span data-i18n="obj3">افحص السجلات (logs) للعثور على الدليل</span></li>
+            <li data-obj="4"><span class="obj-check"></span><span data-i18n="obj4">حدد عنوان IP المهاجم</span></li>
+          </ul>
 
-<h2>
-Midnight Labs
-</h2>
+          <div class="progress-block">
+            <div class="progress-label">
+              <span data-i18n="mission.progress">PROGRESS</span>
+              <span id="progressText">0%</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+          </div>
 
-<p>
-مختبر محاكاة آمن. الأوامر هنا لا تفحص
-أجهزة أو مواقع حقيقية.
-</p>
+          <div class="xp-block">
+            <span data-i18n="mission.xp">XP</span>
+            <span id="xpValue" class="xp-value">0</span>
+          </div>
 
-</div>
+          <div class="hint-box">
+            <div class="hint-title">💡 <span data-i18n="mission.hint">تلميح</span></div>
+            <div class="hint-text" id="hintText" data-i18n="mission.hintDefault">ابدأ بكتابة <code>help</code> لرؤية الأوامر المتاحة.</div>
+          </div>
+        </aside>
 
-</div>
-
-
-<div class="terminal">
-
-<div class="terminal-top">
-midnight@student:~/safe-lab$
-</div>
-
-<div
-    class="terminal-output"
-    id="terminalOutput"
->
-Midnight Safe Lab
-
-اكتب:
-help
-
-لعرض الأوامر المتاحة.
-</div>
-
-
-<div class="terminal-input">
-
-<input
-    id="terminalInput"
-    placeholder="اكتب أمرًا..."
-    autocomplete="off"
->
-
-<button
-    id="terminalRun"
->
-تشغيل
-</button>
-
-</div>
-
-</div>
-
-
-<div
-    class="grid"
-    style="margin-top:16px"
->
-
-
-<div class="card">
-
-<span class="tag">
-شرح الاختبار
-</span>
-
-<h3>
-كيف تعمل الأوامر؟
-</h3>
-
-<p>
-الأوامر الموجودة هنا مجرد محاكاة
-لنتائج تعليمية، حتى تتعلم فكرة
-الأداة قبل استخدامها داخل مختبر
-مصرح لك به.
-</p>
-
-<button
-    class="secondary"
-    id="labExplain"
->
-شرح الاختبار
-</button>
-
-</div>
-
-
-<div class="card">
-
-<span class="tag">
-COMMANDS
-</span>
-
-<h3>
-الأوامر
-</h3>
-
-<p>
-help
-<br>
-ipconfig
-<br>
-ping 127.0.0.1
-<br>
-nslookup example.local
-<br>
-ports
-<br>
-whoami
-<br>
-clear
-</p>
-
-</div>
-
-
-</div>
-
+        <!-- Terminal -->
+        <div class="terminal">
+          <div class="terminal-body" id="terminalBody">
+            <div class="t-line t-sys">Midnight Shell v2.1 — Secure Lab Environment</div>
+            <div class="t-line t-sys">Type <span class="t-cmd">help</span> for available commands.</div>
+            <div class="t-line t-sys">—</div>
+          </div>
+          <div class="terminal-input-row">
+            <span class="t-prompt">root@midnight:~#</span>
+            <input type="text" id="terminalInput" autocomplete="off" spellcheck="false" placeholder="type a command...">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-
-
-<!-- =====================================================
-     QUIZ
-===================================================== -->
-
-<section
-    id="page-quiz"
-    class="page"
->
-
-<div class="section-header">
-
-<div>
-
-<h2>
-الاختبارات
-</h2>
-
-<p>
-اختبر معلوماتك في المفاهيم التي تعلمتها.
-</p>
-
-</div>
-
-</div>
-
-
-<div
-    id="quizContainer"
->
-</div>
-
-
+<!-- ============ BOOK ============ -->
+<section id="book">
+  <div class="container">
+    <div class="book-wrap">
+      <div class="book-visual">
+        <div class="book-cover">
+          <div class="book-title">CYBER<br>SECURITY</div>
+          <div class="book-sub">MIDNIGHT FOR CYBER</div>
+        </div>
+      </div>
+      <div class="book-content">
+        <div class="eyebrow" data-i18n="book.eyebrow">FREE EBOOK</div>
+        <h2 data-i18n="book.title">كتاب <span class="accent">الأمن السيبراني</span></h2>
+        <p data-i18n="book.desc">كتاب شامل يشرح لك ما هو الأمن السيبراني، المفاهيم الأساسية، أنواع الهجمات، وطرق الحماية — بلغة مبسطة ومباشرة.</p>
+        <ul class="book-features">
+          <li>✓ <span data-i18n="book.f1">مقدمة كاملة عن المجال</span></li>
+          <li>✓ <span data-i18n="book.f2">شرح المفاهيم الأساسية</span></li>
+          <li>✓ <span data-i18n="book.f3">أنواع الهجمات الشائعة</span></li>
+          <li>✓ <span data-i18n="book.f4">كيف تحمي نفسك وتبدأ</span></li>
+        </ul>
+        <a href="#" class="btn btn-primary" id="downloadBook">
+          <span>📘</span>
+          <span data-i18n="book.download">تحميل الكتاب</span>
+        </a>
+      </div>
+    </div>
+  </div>
 </section>
 
-
-
-<!-- =====================================================
-     BOOK
-===================================================== -->
-
-<section
-    id="page-book"
-    class="page"
->
-
-<div class="section-header">
-
-<div>
-
-<h2>
-كتاب الأمن السيبراني
-</h2>
-
-<p>
-مرجع Midnight للمفاهيم الأساسية.
-</p>
-
-</div>
-
-</div>
-
-
-<input
-    class="search"
-    id="bookSearch"
-    placeholder="ابحث داخل الكتاب..."
->
-
-
-<div
-    id="bookContainer"
->
-</div>
-
+<!-- ============ DISCORD CTA ============ -->
+<section id="community">
+  <div class="container">
+    <div class="discord-cta">
+      <div class="dc-bg"></div>
+      <div class="dc-content">
+        <div class="dc-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+        </div>
+        <h2 data-i18n="dc.title">انضم لمجتمع <span class="accent">Midnight</span></h2>
+        <p data-i18n="dc.desc">تواصل مع متعلمين آخرين، اسأل، شارك، وتابع التحديثات والدروس الجديدة على سيرفر الديسكورد.</p>
+        <a href="https://discord.gg/zsuqE6pss" target="_blank" rel="noopener noreferrer" class="btn discord-btn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:20px;height:20px;fill:#fff;"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+          <span data-i18n="dc.join">انضم للسيرفر</span>
+        </a>
+        <div class="dc-online">
+          <span class="dot"></span>
+          <span data-i18n="dc.online">متصل الآن</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <div class="logo">
+        <span class="m">Midnight</span>
+        <span class="f">For Cyber</span>
+      </div>
+      <p data-i18n="footer.tagline">منصة تعلم الأمن السيبراني من الصفر — مسارات، مختبرات، واختبارات تفاعلية.</p>
+      <a href="https://discord.gg/zsuqE6pss" target="_blank" rel="noopener noreferrer" class="discord-btn-header" style="margin-top:14px;">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+        <span>Discord</span>
+      </a>
+    </div>
 
+    <div class="footer-col">
+      <h5 data-i18n="footer.learn">تعلّم</h5>
+      <a href="#paths" data-i18n="nav.paths">المسارات</a>
+      <a href="#labs" data-i18n="nav.labs">Labs</a>
+      <a href="#quizzes" data-i18n="nav.quizzes">الاختبارات</a>
+      <a href="#book" data-i18n="nav.book">كتاب الأمن</a>
+    </div>
 
-<!-- =====================================================
-     DASHBOARD
-===================================================== -->
+    <div class="footer-col">
+      <h5 data-i18n="footer.community">المجتمع</h5>
+      <a href="https://discord.gg/zsuqE6pss" target="_blank" rel="noopener noreferrer">Discord</a>
+      <a href="#" data-i18n="footer.contribute">ساهم</a>
+      <a href="#" data-i18n="footer.report">أبلغ عن مشكلة</a>
+    </div>
 
-<section
-    id="page-dashboard"
-    class="page"
->
+    <div class="footer-col">
+      <h5 data-i18n="footer.legal">قانوني</h5>
+      <a href="#" data-i18n="footer.privacy">الخصوصية</a>
+      <a href="#" data-i18n="footer.terms">الشروط</a>
+      <a href="#" data-i18n="footer.disclaimer">إخلاء مسؤولية</a>
+    </div>
+  </div>
 
-<div class="section-header">
-
-<div>
-
-<h2>
-تقدمك
-</h2>
-
-<p>
-بيانات تقدمك محفوظة محليًا داخل المتصفح.
-</p>
-
-</div>
-
-
-<button
-    class="secondary"
-    id="resetProgress"
->
-تصفير التقدم
-</button>
-
-</div>
-
-
-<div class="stats">
-
-
-<div class="stat">
-
-<small>
-XP
-</small>
-
-<strong id="xpValue">
-0
-</strong>
-
-</div>
-
-
-<div class="stat">
-
-<small>
-الدروس المكتملة
-</small>
-
-<strong id="completedValue">
-0
-</strong>
-
-</div>
-
-
-<div class="stat">
-
-<small>
-إجمالي الدروس
-</small>
-
-<strong id="totalValue">
-0
-</strong>
-
-</div>
-
-
-<div class="stat">
-
-<small>
-النسبة
-</small>
-
-<strong id="percentValue">
-0%
-</strong>
-
-</div>
-
-
-</div>
-
-
-<div class="section-header">
-
-<div>
-
-<h2>
-تفاصيل المسارات
-</h2>
-
-</div>
-
-</div>
-
-
-<div
-    id="dashboardContainer"
-    class="grid"
->
-</div>
-
-</section>
-
-
-</main>
-
-
-
-<footer>
-
-© Midnight For Cyber • جميع الحقوق محفوظة
-
+  <div class="footer-bottom">
+    <div class="container">
+      <span data-i18n="footer.copy">© 2025 Midnight For Cyber — صُنع بشغف لتعليم الأمن السيبراني</span>
+      <span class="footer-warn" data-i18n="footer.warn">⚠️ المحتوى لأغراض تعليمية فقط — استخدم مهاراتك بمسؤولية وأخلاق</span>
+    </div>
+  </div>
 </footer>
 
+<!-- ⬇️ الجزء 3 سيكمل من هنا: CSS للأقسام الجديدة + JavaScript ⬇️ -->
+<!-- ============ ADDITIONAL STYLES (Part 2 Sections) ============ -->
+<style>
+/* ============ LABS ============ */
+.labs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+.lab-card {
+  background: linear-gradient(145deg, var(--bg-card), var(--bg-secondary));
+  border: 1px solid rgba(139, 92, 246, 0.18);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  transition: var(--t-med);
+  position: relative;
+  overflow: hidden;
+}
+.lab-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(139, 92, 246, 0.15), transparent 60%);
+  opacity: 0;
+  transition: var(--t-med);
+}
+.lab-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow: 0 15px 40px rgba(139, 92, 246, 0.2);
+}
+.lab-card:hover::before { opacity: 1; }
+.lab-icon { font-size: 2.4rem; margin-bottom: 14px; display: block; }
+.lab-card h4 { font-family: 'Orbitron', sans-serif; font-size: 1.15rem; margin-bottom: 10px; }
+.lab-card p { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 14px; }
+.lab-tag {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--purple-bright);
+  padding: 4px 10px;
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  border-radius: 6px;
+}
 
-<div
-    class="toast"
-    id="toast"
->
-</div>
+/* ============ QUIZ SELECTOR ============ */
+.quiz-selector {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+.quiz-card {
+  background: linear-gradient(145deg, var(--bg-card), var(--bg-secondary));
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: var(--radius);
+  padding: 28px;
+  transition: var(--t-med);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.quiz-card:not(.locked):hover {
+  transform: translateY(-6px);
+  border-color: var(--purple-bright);
+  box-shadow: 0 15px 50px rgba(139, 92, 246, 0.3);
+}
+.quiz-card.locked { opacity: 0.55; cursor: not-allowed; }
+.quiz-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.difficulty {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  padding: 4px 10px;
+  border-radius: 100px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.difficulty.easy { color: #22c55e; background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.3); }
+.difficulty.medium { color: #facc15; background: rgba(250,204,21,0.12); border: 1px solid rgba(250,204,21,0.3); }
+.difficulty.hard { color: #ef4444; background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.3); }
+.reward {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--purple-bright);
+  font-weight: 700;
+}
+.quiz-icon {
+  font-size: 3rem;
+  margin-bottom: 12px;
+  text-align: center;
+  filter: drop-shadow(0 0 20px var(--purple-glow));
+}
+.quiz-card h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+  text-align: center;
+}
+.quiz-card p {
+  color: var(--text-muted);
+  font-size: 0.93rem;
+  margin-bottom: 20px;
+  flex: 1;
+  text-align: center;
+}
+.quiz-start { justify-content: center; margin-top: auto; }
+.quiz-start:disabled { opacity: 0.5; cursor: not-allowed; }
 
+/* ============ TERMINAL MISSION ============ */
+.terminal-wrap {
+  margin-top: 40px;
+  background: var(--bg-deep);
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 80px rgba(139, 92, 246, 0.15);
+  animation: fadeUp 0.5s ease both;
+}
+.terminal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 18px;
+  background: linear-gradient(180deg, #1a1332, #0f0a1e);
+  border-bottom: 1px solid rgba(139, 92, 246, 0.25);
+}
+.terminal-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+}
+.status-led {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--green-matrix);
+  box-shadow: 0 0 10px var(--green-matrix);
+  animation: blink 1.5s infinite;
+}
+.terminal-controls { display: flex; gap: 8px; }
+.tc-btn {
+  background: rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: var(--text-secondary);
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: var(--t-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tc-btn:hover { background: rgba(139, 92, 246, 0.35); color: #fff; }
 
+.mission-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  min-height: 500px;
+}
 
+/* Briefing */
+.mission-briefing {
+  background: linear-gradient(180deg, #0f0a1e, #0a0614);
+  border-left: 1px solid rgba(139, 92, 246, 0.2);
+  padding: 24px 20px;
+  overflow-y: auto;
+}
+body[dir="ltr"] .mission-briefing { border-left: none; border-right: 1px solid rgba(139, 92, 246, 0.2); }
+.mb-header { margin-bottom: 16px; }
+.mb-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  color: var(--purple-bright);
+}
+.objectives { list-style: none; margin-bottom: 24px; }
+.objectives li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  transition: var(--t-fast);
+  border-bottom: 1px solid rgba(139, 92, 246, 0.08);
+}
+.objectives li.completed { color: var(--green-matrix); }
+.objectives li.completed .obj-check {
+  background: var(--green-matrix);
+  border-color: var(--green-matrix);
+  box-shadow: 0 0 10px var(--green-matrix);
+}
+.objectives li.completed .obj-check::after {
+  content: '✓';
+  color: #000;
+  font-size: 0.7rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.obj-check {
+  width: 18px; height: 18px;
+  min-width: 18px;
+  border: 2px solid rgba(139, 92, 246, 0.4);
+  border-radius: 5px;
+  margin-top: 2px;
+  transition: var(--t-fast);
+}
+
+.progress-block { margin-bottom: 20px; }
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+.progress-bar {
+  height: 8px;
+  background: rgba(139, 92, 246, 0.12);
+  border-radius: 100px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--gradient-main);
+  box-shadow: 0 0 15px var(--purple-glow);
+  border-radius: 100px;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.xp-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: rgba(139, 92, 246, 0.08);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+}
+.xp-value { color: var(--purple-bright); font-weight: 900; font-size: 1.1rem; }
+
+.hint-box {
+  background: rgba(250, 204, 21, 0.06);
+  border: 1px solid rgba(250, 204, 21, 0.2);
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 0.85rem;
+}
+.hint-title {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--yellow-warn);
+  font-size: 0.78rem;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+.hint-text { color: var(--text-muted); line-height: 1.6; }
+.hint-text code {
+  background: rgba(139, 92, 246, 0.15);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--purple-bright);
+  font-size: 0.85em;
+}
+
+/* Terminal */
+.terminal {
+  background: #05030a;
+  display: flex;
+  flex-direction: column;
+  font-family: 'JetBrains Mono', monospace;
+}
+.terminal-body {
+  flex: 1;
+  padding: 20px 22px;
+  overflow-y: auto;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  max-height: 480px;
+  color: #d1d5db;
+}
+.terminal-body::-webkit-scrollbar { width: 8px; }
+.terminal-body::-webkit-scrollbar-thumb { background: rgba(139, 92, 246, 0.3); border-radius: 4px; }
+
+.t-line { margin-bottom: 4px; word-break: break-word; }
+.t-sys { color: var(--text-dim); }
+.t-cmd { color: var(--purple-bright); }
+.t-success { color: var(--green-matrix); }
+.t-error { color: var(--red-alert); }
+.t-warn { color: var(--yellow-warn); }
+.t-info { color: var(--cyan-accent); }
+.t-user-cmd { color: #fff; }
+.t-user-cmd::before { content: '$ '; color: var(--purple-bright); }
+
+.terminal-input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  border-top: 1px solid rgba(139, 92, 246, 0.2);
+  background: #0a0614;
+}
+.t-prompt {
+  color: var(--green-matrix);
+  font-weight: 700;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+#terminalInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  caret-color: var(--purple-bright);
+}
+
+/* ============ BOOK ============ */
+.book-wrap {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 60px;
+  align-items: center;
+}
+.book-visual { display: flex; justify-content: center; }
+.book-cover {
+  width: 260px;
+  height: 360px;
+  background: linear-gradient(135deg, #1a1332, #0a0614);
+  border: 2px solid rgba(139, 92, 246, 0.5);
+  border-radius: 12px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 20px 20px 60px rgba(0,0,0,0.7), 0 0 60px rgba(139,92,246,0.3), inset 0 0 40px rgba(139,92,246,0.08);
+  transform: rotateY(-15deg) rotateX(5deg);
+  transition: var(--t-slow);
+  position: relative;
+  overflow: hidden;
+}
+.book-cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent, rgba(139, 92, 246, 0.15));
+}
+.book-cover:hover { transform: rotateY(-8deg) rotateX(2deg) translateY(-10px); }
+.book-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  line-height: 1.1;
+  color: #fff;
+  text-shadow: 0 0 30px var(--purple-glow);
+  position: relative;
+}
+.book-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  color: var(--purple-bright);
+  position: relative;
+}
+.book-content .eyebrow {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 4px;
+  color: var(--purple-bright);
+  margin-bottom: 14px;
+  padding: 6px 14px;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 100px;
+  background: rgba(139, 92, 246, 0.08);
+}
+.book-content h2 {
+  font-family: 'Cairo', 'Orbitron', sans-serif;
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  font-weight: 900;
+  margin-bottom: 16px;
+}
+.book-content > p {
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  font-size: 1.05rem;
+}
+.book-features {
+  list-style: none;
+  margin-bottom: 28px;
+}
+.book-features li {
+  padding: 8px 0;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* ============ DISCORD CTA ============ */
+.discord-cta {
+  position: relative;
+  background: linear-gradient(135deg, #2c2f6e, #1e1f4d);
+  border-radius: var(--radius-lg);
+  padding: 60px 40px;
+  text-align: center;
+  overflow: hidden;
+  border: 1px solid rgba(88, 101, 242, 0.4);
+  box-shadow: 0 20px 60px rgba(88, 101, 242, 0.25);
+}
+.dc-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(88, 101, 242, 0.4), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.3), transparent 45%);
+  pointer-events: none;
+}
+.dc-content { position: relative; z-index: 1; }
+.dc-icon {
+  width: 72px; height: 72px;
+  margin: 0 auto 20px;
+  background: var(--discord-blurple);
+  border-radius: 20px;
+  display: flex;
+  align-icon-items: center;
+  justify-content: center;
+  box-shadow: 0 15 svpx 40px rgba(88g, 101, 242, 0. {5);
+  animation: floatBadge 3s ease-in width-out infinite;
+}
+.dc: 44px; height: 44px; fill: #fff; }
+.dc-content h2 {
+  font-family: 'Cairo', 'Orbitron', sans-serif;
+  font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+  font-weight: 900;
+  margin-bottom: 14px;
+}
+.dc-content h2 .accent {
+  background: linear-gradient(90deg, #a78bfa, #22d3ee);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.dc-content p {
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 560px;
+  margin: 0 auto 28px;
+  font-size: 1.05rem;
+}
+.discord-btn {
+  background: var(--discord-blurple);
+  color: #fff;
+  padding: 16px 36px;
+  font-size: 1.05rem;
+  box-shadow: 0 10px 30px rgba(88, 101, 242, 0.5);
+}
+.discord-btn:hover {
+  background: var(--discord-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(88, 101, 242, 0.7);
+}
+.dc-online {
+  margin-top: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-family: 'JetBrains Mono', monospace;
+}
+.dc-online .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--green-matrix);
+  box-shadow: 0 0 10px var(--green-matrix);
+  animation: blink 1.5s infinite;
+}
+
+/* ============ FOOTER ============ */
+.site-footer {
+  background: linear-gradient(180deg, var(--bg-deep), #05030a);
+  border-top: 1px solid rgba(139, 92, 246, 0.2);
+  padding: 60px 0 0;
+  margin-top: 60px;
+  position: relative;
+  z-index: 1;
+}
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 40px;
+}
+.footer-brand .logo { margin-bottom: 14px; font-size: 1.3rem; }
+.footer-brand p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  max-width: 340px;
+}
+.footer-col h5 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  color: var(--purple-bright);
+  margin-bottom: 18px;
+}
+.footer-col a {
+  display: block;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 6px 0;
+  transition: var(--t-fast);
+}
+.footer-col a:hover { color: var(--purple-bright); padding-right: 6px; }
+body[dir="ltr"] .footer-col a:hover { padding-right: 0; padding-left: 6px; }
+
+.footer-bottom {
+  border-top: 1px solid rgba(139, 92, 246, 0.12);
+  padding: 20px 0;
+  font-size: 0.82rem;
+  color: var(--text-dim);
+}
+.footer-bottom .container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+.footer-warn { color: var(--yellow-warn); }
+
+/* ============ RESPONSIVE (Additional) ============ */
+@media (max-width: 1000px) {
+  .mission-grid { grid-template-columns: 1fr; }
+  .mission-briefing { border-left: none; border-bottom: 1px solid rgba(139, 92, 246, 0.2); max-height: 300px; }
+  .book-wrap { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+  .book-cover { transform: none; }
+  .book-cover:hover { transform: translateY(-10px); }
+  .footer-inner { grid-template-columns: 1fr 1fr; gap: 30px; }
+}
+@media (max-width: 640px) {
+  .discord-cta { padding: 40px 20px; }
+  .terminal-body { font-size: 0.8rem; padding: 14px; }
+  .terminal-input-row { padding: 10px 14px; }
+  .t-prompt { font-size: 0.78rem; }
+  #terminalInput { font-size: 0.82rem; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .footer-bottom .container { flex-direction: column; text-align: center; }
+}
+</style>
+
+<!-- ============ JAVASCRIPT ============ -->
 <script>
+/* ============================================================
+   MIDNIGHT FOR CYBER — MAIN SCRIPT
+   Part 3: Core functionality
+   ============================================================ */
+(function() {
+  'use strict';
 
-/* =========================================================
-   MIDNIGHT DATA
-========================================================= */
-
-const Midnight = {
-
-    state: {
-
-        xp:
-            Number(
-                localStorage.getItem(
-                    "midnight_xp"
-                ) || 0
-            ),
-
-        completed:
-            JSON.parse(
-                localStorage.getItem(
-                    "midnight_completed"
-                ) || "[]"
-            )
-
+  // ============ SECURITY: Basic sanitizer ============
+  const Sanitize = {
+    text(str) {
+      if (typeof str !== 'string') return '';
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
     },
-
-
-    paths: [
-
-        {
-
-            id:"network",
-
-            icon:"NET",
-
-            title:"أساسيات الشبكات",
-
-            description:
-                "تعلم كيف تتواصل الأجهزة داخل الشبكات والإنترنت.",
-
-            lessons:[
-
-                {
-                    id:"network-1",
-                    title:"كيف تعمل الشبكة؟",
-                    description:
-                        "الصورة الكبيرة للشبكات والأجهزة والراوتر والسويتش.",
-                    content:`
-
-                        <h3>
-                            الصورة الكبيرة
-                        </h3>
-
-                        <p>
-                            الشبكة هي مجموعة أجهزة تستطيع
-                            التواصل مع بعضها باستخدام
-                            قواعد وبروتوكولات محددة.
-                        </p>
-
-                        <p>
-                            في شبكة منزلية بسيطة قد يكون
-                            عندك هاتف وكمبيوتر وراوتر.
-                            الراوتر يربط شبكتك المنزلية
-                            بشبكات أخرى مثل الإنترنت.
-                        </p>
-
-                        <div class="code">
-جهاز
-   ↓
-Switch
-   ↓
-Router
-   ↓
-Internet
-                        </div>
-
-                        <h3>
-                            Switch
-                        </h3>
-
-                        <p>
-                            السويتش يستخدم غالبًا لربط
-                            أجهزة داخل شبكة محلية.
-                        </p>
-
-                        <h3>
-                            Router
-                        </h3>
-
-                        <p>
-                            الراوتر يربط بين شبكات مختلفة
-                            ويساعد في توجيه الحزم.
-                        </p>
-
-                    `
-                },
-
-
-                {
-                    id:"network-2",
-                    title:"IP و MAC Address",
-                    description:
-                        "تعرف على الفرق بين IP وMAC.",
-                    content:`
-
-                        <h3>
-                            IP Address
-                        </h3>
-
-                        <p>
-                            عنوان IP هو عنوان منطقي يستخدم
-                            للمساعدة في تحديد الجهاز أو
-                            الواجهة ضمن شبكة معينة.
-                        </p>
-
-                        <div class="code">
-192.168.1.20
-                        </div>
-
-                        <h3>
-                            MAC Address
-                        </h3>
-
-                        <p>
-                            عنوان MAC مرتبط بواجهة الشبكة
-                            ويستخدم ضمن الاتصال المحلي.
-                        </p>
-
-                        <div class="code">
-AA:BB:CC:DD:EE:FF
-                        </div>
-
-                        <p>
-                            لا تعتبر IP وMAC نفس الشيء.
-                            لكل واحد دور مختلف.
-                        </p>
-
-                    `
-                },
-
-
-                {
-                    id:"network-3",
-                    title:"DNS و DHCP",
-                    description:
-                        "تعلم كيف يحصل الجهاز على إعدادات الشبكة وكيف تعمل أسماء النطاقات.",
-                    content:`
-
-                        <h3>
-                            DNS
-                        </h3>
-
-                        <p>
-                            DNS يساعد على تحويل أسماء
-                            النطاقات إلى عناوين IP.
-                        </p>
-
-                        <div class="code">
-example.com
-      ↓
-DNS
-      ↓
-93.184.216.34
-                        </div>
-
-                        <h3>
-                            DHCP
-                        </h3>
-
-                        <p>
-                            DHCP يساعد الأجهزة على الحصول
-                            على إعدادات مثل IP والـGateway
-                            وDNS.
-                        </p>
-
-                    `
-                },
-
-
-                {
-                    id:"network-4",
-                    title:"Ports و TCP و UDP",
-                    description:
-                        "افهم المنافذ والبروتوكولات الأساسية.",
-                    content:`
-
-                        <h3>
-                            ما هو Port؟
-                        </h3>
-
-                        <p>
-                            يمكن تبسيط الفكرة بأن IP يشير
-                            إلى الجهاز أو الواجهة بينما
-                            المنفذ يساعد في تحديد الخدمة
-                            المنطقية التي تتعامل معها.
-                        </p>
-
-                        <div class="code">
-80    HTTP
-443   HTTPS
-22    SSH
-53    DNS
-                        </div>
-
-                        <h3>
-                            TCP
-                        </h3>
-
-                        <p>
-                            TCP يهتم بإنشاء اتصال موثوق
-                            وترتيب البيانات وإعادة الإرسال
-                            عند الحاجة.
-                        </p>
-
-                        <h3>
-                            UDP
-                        </h3>
-
-                        <p>
-                            UDP أبسط ولا يوفر نفس مستوى
-                            الموثوقية الموجود في TCP،
-                            وقد يكون مناسبًا لحالات تحتاج
-                            تقليل التأخير.
-                        </p>
-
-                    `
-                },
-
-
-                {
-                    id:"network-5",
-                    title:"NAT و Gateway و Firewall",
-                    description:
-                        "تعرف على مفاهيم مهمة في الشبكات والحماية.",
-                    content:`
-
-                        <h3>
-                            Default Gateway
-                        </h3>
-
-                        <p>
-                            البوابة الافتراضية هي الجهاز
-                            الذي يستخدمه جهازك للوصول إلى
-                            شبكات أخرى.
-                        </p>
-
-                        <h3>
-                            NAT
-                        </h3>
-
-                        <p>
-                            NAT يمكن أن يترجم عناوين
-                            خاصة إلى عنوان عام في بعض
-                            سيناريوهات الاتصال بالإنترنت.
-                        </p>
-
-                        <h3>
-                            Firewall
-                        </h3>
-
-                        <p>
-                            الجدار الناري يستخدم قواعد
-                            للتحكم في الاتصالات المسموحة
-                            أو المرفوضة.
-                        </p>
-
-                    `
-                }
-
-            ]
-
-        },
-
-
-        {
-
-            id:"python",
-
-            icon:"PY",
-
-            title:"أساسيات Python",
-
-            description:
-                "ابدأ البرمجة من الصفر.",
-
-            lessons:[
-
-                {
-                    id:"python-1",
-                    title:"المتغيرات والأنواع",
-                    description:
-                        "تعلم تخزين البيانات والتعامل مع الأنواع.",
-                    content:`
-
-                        <h3>
-                            Variables
-                        </h3>
-
-                        <p>
-                            المتغير اسم يشير إلى قيمة
-                            تستخدمها في البرنامج.
-                        </p>
-
-                        <div class="code">
-name = "Midnight"
-
-xp = 25
-
-active = True
-                        </div>
-
-                        <p>
-                            في المثال لدينا نص ورقم
-                            وقيمة منطقية.
-                        </p>
-
-                    `
-                },
-
-
-                {
-                    id:"python-2",
-                    title:"الشروط",
-                    description:
-                        "استخدم if لاتخاذ قرارات داخل البرنامج.",
-                    content:`
-
-                        <h3>
-                            if
-                        </h3>
-
-                        <div class="code">
-xp = 80
-
-if xp >= 50:
-    print("Unlocked")
-else:
-    print("Keep learning")
-                        </div>
-
-                        <p>
-                            الشروط تجعل البرنامج يتصرف
-                            بشكل مختلف حسب البيانات.
-                        </p>
-
-                    `
-                },
-
-
-                {
-                    id:"python-3",
-                    title:"الحلقات",
-                    description:
-                        "كرر العمليات باستخدام for وwhile.",
-                    content:`
-
-                        <h3>
-                            for
-                        </h3>
-
-                        <div class="code">
-courses = [
-    "Network",
-    "Python",
-    "Web"
-]
-
-for course in courses:
-    print(course)
-                        </div>
-
-                    `
-                },
-
-
-                {
-                    id:"python-4",
-                    title:"الدوال والقوائم",
-                    description:
-                        "نظم الكود باستخدام functions وlists.",
-                    content:`
-
-                        <h3>
-                            Function
-                        </h3>
-
-                        <div class="code">
-def greet(name):
-
-    return "Hello " + name
-                        </div>
-
-                        <h3>
-                            List
-                        </h3>
-
-                        <div class="code">
-courses = [
-    "Network",
-    "Python"
-]
-                        </div>
-
-                    `
-                }
-
-            ]
-
-        },
-
-
-        {
-
-            id:"kali",
-
-            icon:"K",
-
-            title:"أساسيات Kali Linux",
-
-            description:
-                "تعلم Linux والطرفية بطريقة آمنة.",
-
-            lessons:[
-
-                {
-                    id:"kali-1",
-                    title:"الطرفية والملفات",
-                    description:
-                        "تعلم أوامر الملفات الأساسية.",
-                    content:`
-
-                        <div class="code">
-pwd
-
-ls
-
-cd folder
-
-mkdir lab
-
-cp file.txt copy.txt
-
-mv old.txt new.txt
-                        </div>
-
-                        <p>
-                            جرب هذه الأوامر داخل جهازك
-                            أو مختبرك فقط.
-                        </p>
-
-                    `
-                },
-
-
-                {
-                    id:"kali-2",
-                    title:"الصلاحيات",
-                    description:
-                        "افهم المستخدمين والملكية والصلاحيات.",
-                    content:`
-
-                        <h3>
-                            Least Privilege
-                        </h3>
-
-                        <p>
-                            مبدأ أقل امتياز يعني إعطاء
-                            المستخدم أو الخدمة أقل صلاحيات
-                            يحتاجها لإنجاز المهمة.
-                        </p>
-
-                    `
-                },
-
-
-                {
-                    id:"kali-3",
-                    title:"أوامر الشبكة",
-                    description:
-                        "تعرف على أدوات تشخيص الشبكات.",
-                    content:`
-
-                        <div class="code">
-ip addr
-
-ss -tuln
-
-ping 127.0.0.1
-                        </div>
-
-                        <p>
-                            هذه أوامر تشخيصية. استخدمها
-                            على جهازك أو مختبرك.
-                        </p>
-
-                    `
-                }
-
-            ]
-
-        },
-
-
-        {
-
-            id:"web",
-
-            icon:"WEB",
-
-            title:"Web Security",
-
-            description:
-                "افهم أساسيات أمن تطبيقات الويب.",
-
-            lessons:[
-
-                {
-                    id:"web-1",
-                    title:"كيف يعمل HTTP؟",
-                    description:
-                        "تعلم فكرة request وresponse.",
-                    content:`
-
-                        <div class="code">
-Client
-   ↓
-HTTP Request
-   ↓
-Server
-   ↓
-HTTP Response
-   ↓
-Client
-                        </div>
-
-                        <p>
-                            رموز الحالة مثل 200 و404
-                            و500 تساعد في فهم نتيجة الطلب.
-                        </p>
-
-                    `
-                },
-
-
-                {
-                    id:"web-2",
-                    title:"المدخلات والتحقق",
-                    description:
-                        "لماذا يجب عدم الثقة ببيانات المستخدم.",
-                    content:`
-
-                        <p>
-                            أي بيانات تأتي من المستخدم
-                            يجب التعامل معها بحذر والتحقق
-                            من نوعها وطولها وقيمها المسموحة.
-                        </p>
-
-                        <p>
-                            التطبيقات الآمنة لا تفترض أن
-                            المستخدم سيرسل بيانات صحيحة
-                            دائمًا.
-                        </p>
-
-                    `
-                },
-
-
-                {
-                    id:"web-3",
-                    title:"Sessions و Cookies",
-                    description:
-                        "تعرف على الجلسات والكوكيز.",
-                    content:`
-
-                        <p>
-                            الجلسة تساعد الخادم على ربط
-                            طلبات متعددة بالمستخدم بعد
-                            تسجيل الدخول.
-                        </p>
-
-                        <p>
-                            إعدادات مثل Secure وHttpOnly
-                            وSameSite يمكن أن تساعد في
-                            تقليل بعض المخاطر.
-                        </p>
-
-                    `
-                }
-
-            ]
-
-        },
-
-
-        {
-
-            id:"blue",
-
-            icon:"SOC",
-
-            title:"Blue Team و SOC",
-
-            description:
-                "تعلم أساسيات الدفاع والمراقبة.",
-
-            lessons:[
-
-                {
-                    id:"blue-1",
-                    title:"Logs",
-                    description:
-                        "تعلم أهمية السجلات.",
-                    content:`
-
-                        <p>
-                            السجلات يمكن أن تحتوي على
-                            الوقت والمصدر والإجراء والنتيجة.
-                        </p>
-
-                        <p>
-                            تحليل السجلات يساعد الفريق
-                            الدفاعي على فهم ما حدث.
-                        </p>
-
-                    `
-                },
-
-
-                {
-                    id:"blue-2",
-                    title:"التنبيهات",
-                    description:
-                        "افهم كيف يتم تحليل التنبيهات.",
-                    content:`
-
-                        <p>
-                            ليس كل تنبيه يعني وجود حادث
-                            أمني مؤكد. يحتاج المحلل إلى
-                            جمع السياق وربط الأحداث.
-                        </p>
-
-                    `
-                },
-
-
-                {
-                    id:"blue-3",
-                    title:"Incident Response",
-                    description:
-                        "تعلم الفكرة العامة للاستجابة للحوادث.",
-                    content:`
-
-                        <p>
-                            الاستجابة للحوادث عملية منظمة
-                            تشمل الاكتشاف والتحليل والاحتواء
-                            والتعافي والتعلم من الحادث.
-                        </p>
-
-                    `
-                }
-
-            ]
-
-        }
-
-    ],
-
-
-
-    book:[
-
-        [
-            "ما هو الأمن السيبراني؟",
-
-            "هو مجموعة ممارسات وتقنيات لحماية الأنظمة والشبكات والبيانات من الوصول أو التغيير أو التعطيل غير المصرح به."
-        ],
-
-        [
-            "CIA Triad",
-
-            "السرية Confidentiality والسلامة Integrity والتوافر Availability من المفاهيم الأساسية لفهم أهداف الحماية."
-        ],
-
-        [
-            "Pentesting",
-
-            "اختبار اختراق مصرح به يبحث عن نقاط ضعف داخل نطاق محدد بهدف تحسين الأمان. الإذن والنطاق أساسيان."
-        ],
-
-        [
-            "Web Security",
-
-            "حماية تطبيقات الويب والواجهات والبيانات من أخطاء التصميم والتنفيذ."
-        ],
-
-        [
-            "Network Security",
-
-            "حماية الشبكات والاتصالات باستخدام التقسيم والمراقبة والجدران النارية وغيرها."
-        ],
-
-        [
-            "Blue Team",
-
-            "الفريق الدفاعي يراقب الأنظمة ويحلل التنبيهات والسجلات ويستجيب للحوادث."
-        ],
-
-        [
-            "Social Engineering",
-
-            "استغلال سلوك البشر أو الثقة للحصول على معلومات أو تنفيذ إجراء. الوعي والتحقق يقللان المخاطر."
-        ],
-
-        [
-            "Encryption",
-
-            "التشفير يحول البيانات إلى صيغة لا يمكن فهمها بسهولة دون طريقة فك مناسبة."
-        ],
-
-        [
-            "Authentication",
-
-            "التحقق من هوية المستخدم أو النظام."
-        ],
-
-        [
-            "Authorization",
-
-            "تحديد ما الذي يسمح للهوية الموثقة بفعله."
-        ],
-
-        [
-            "Least Privilege",
-
-            "إعطاء كل مستخدم أو خدمة أقل صلاحيات يحتاجها لتنفيذ مهمته."
-        ],
-
-        [
-            "Vulnerability",
-
-            "ضعف يمكن أن يؤدي إلى أثر أمني عند استغلاله ضمن ظروف معينة."
-        ],
-
-        [
-            "Responsible Disclosure",
-
-            "التعامل مع المشاكل الأمنية ضمن القوانين والسياسات والنطاق المصرح به."
-        ]
-
-    ],
-
-
-
-    quiz:[
-
-        {
-            question:
-                "أي خدمة تحول اسم النطاق إلى عنوان IP؟",
-
-            options:[
-                "DNS",
-                "DHCP",
-                "NAT",
-                "ARP"
-            ],
-
-            answer:0
-
-        },
-
-
-        {
-            question:
-                "ما الذي يميز TCP؟",
-
-            options:[
-                "لا يهتم بالترتيب",
-                "يهتم بالترتيب والموثوقية",
-                "هو عنوان جهاز",
-                "هو نظام أسماء"
-            ],
-
-            answer:1
-
-        },
-
-
-        {
-            question:
-                "ما وظيفة DHCP غالبًا؟",
-
-            options:[
-                "توزيع إعدادات الشبكة",
-                "تشفير القرص",
-                "عرض HTML",
-                "إيقاف الراوتر"
-            ],
-
-            answer:0
-
-        },
-
-
-        {
-            question:
-                "ما وظيفة Firewall بشكل عام؟",
-
-            options:[
-                "عرض الصور",
-                "التحكم في الاتصالات حسب قواعد",
-                "زيادة RAM",
-                "تغيير اسم المستخدم"
-            ],
-
-            answer:1
-
-        },
-
-
-        {
-            question:
-                "ما معنى Authentication؟",
-
-            options:[
-                "التحقق من الهوية",
-                "إعطاء الصلاحيات",
-                "ضغط الملفات",
-                "حذف السجلات"
-            ],
-
-            answer:0
-
-        },
-
-
-        {
-            question:
-                "لماذا نتحقق من مدخلات المستخدم؟",
-
-            options:[
-                "لزيادة حجم الصفحة",
-                "لتقليل التعامل غير الآمن مع البيانات",
-                "لإلغاء HTTPS",
-                "لتعطيل DNS"
-            ],
-
-            answer:1
-
-        }
-
-    ],
-
-
-
-    /* =====================================================
-       STORAGE
-    ===================================================== */
-
-    save(){
-
-        localStorage.setItem(
-            "midnight_xp",
-            this.state.xp
-        );
-
-        localStorage.setItem(
-            "midnight_completed",
-            JSON.stringify(
-                this.state.completed
-            )
-        );
-
-    },
-
-
-    /* =====================================================
-       NAVIGATION
-    ===================================================== */
-
-    go(page){
-
-        document
-            .querySelectorAll(".page")
-            .forEach(
-                pageElement=>{
-                    pageElement.classList.remove(
-                        "active"
-                    );
-                }
-            );
-
-
-        const target =
-            document.getElementById(
-                "page-"+page
-            );
-
-
-        if(target){
-
-            target.classList.add(
-                "active"
-            );
-
-        }
-
-
-        document
-            .querySelectorAll(".nav-btn")
-            .forEach(
-                button=>{
-                    button.classList.toggle(
-                        "active",
-                        button.dataset.page===page
-                    );
-                }
-            );
-
-
-        window.scrollTo({
-            top:0,
-            behavior:"smooth"
-        });
-
-    },
-
-
-    /* =====================================================
-       TOAST
-    ===================================================== */
-
-    toast(message){
-
-        const toast =
-            document.getElementById(
-                "toast"
-            );
-
-
-        toast.textContent =
-            message;
-
-
-        toast.classList.add(
-            "show"
-        );
-
-
-        clearTimeout(
-            this.toastTimer
-        );
-
-
-        this.toastTimer =
-            setTimeout(
-                ()=>{
-                    toast.classList.remove(
-                        "show"
-                    );
-                },
-                2400
-            );
-
-    },
-
-
-    /* =====================================================
-       PATH PROGRESS
-    ===================================================== */
-
-    getPathProgress(path){
-
-        const total =
-            path.lessons.length;
-
-
-        const completed =
-            path.lessons.filter(
-                lesson =>
-                    this.state.completed.includes(
-                        lesson.id
-                    )
-            ).length;
-
-
-        return total
-            ? Math.round(
-                completed /
-                total *
-                100
-            )
-            : 0;
-
-    },
-
-
-    /* =====================================================
-       RENDER PATHS
-    ===================================================== */
-
-    renderPaths(){
-
-        const container =
-            document.getElementById(
-                "pathsContainer"
-            );
-
-
-        container.innerHTML =
-            this.paths
-            .map(
-                path=>{
-
-                    const progress =
-                        this.getPathProgress(
-                            path
-                        );
-
-
-                    return `
-
-                    <div
-                        class="path-card"
-                    >
-
-                        <div
-                            class="path-icon"
-                        >
-                            ${path.icon}
-                        </div>
-
-
-                        <div
-                            class="path-info"
-                        >
-
-                            <h3>
-                                ${path.title}
-                            </h3>
-
-                            <p>
-                                ${path.description}
-                            </p>
-
-
-                            <div
-                                class="progress"
-                            >
-
-                                <span
-                                    style="
-                                    width:${progress}%
-                                    "
-                                ></span>
-
-                            </div>
-
-                        </div>
-
-
-                        <button
-                            class="primary"
-                            onclick="
-                                Midnight.openPath(
-                                    '${path.id}'
-                                )
-                            "
-                        >
-                            دخول المسار
-                        </button>
-
-                    </div>
-
-                    `;
-
-                }
-            )
-            .join("");
-
-    },
-
-
-    /* =====================================================
-       OPEN PATH
-    ===================================================== */
-
-    openPath(pathId){
-
-        const path =
-            this.paths.find(
-                p=>p.id===pathId
-            );
-
-
-        if(!path){
-            return;
-        }
-
-
-        const container =
-            document.getElementById(
-                "lessonContainer"
-            );
-
-
-        container.innerHTML = `
-
-            <div class="section-header">
-
-                <div>
-
-                    <span class="tag">
-                        PATH
-                    </span>
-
-                    <h2>
-                        ${path.title}
-                    </h2>
-
-                    <p>
-                        ${path.description}
-                    </p>
-
-                </div>
-
-                <button
-                    class="secondary"
-                    onclick="
-                        Midnight.go('paths')
-                    "
-                >
-                    رجوع
-                </button>
-
-            </div>
-
-
-            <div class="grid">
-
-                ${path.lessons
-                    .map(
-                        (lesson,index)=>`
-
-                        <div
-                            class="card"
-                        >
-
-                            <span
-                                class="tag"
-                            >
-                                LESSON ${index+1}
-                            </span>
-
-                            <h3>
-                                ${lesson.title}
-                            </h3>
-
-                            <p>
-                                ${lesson.description}
-                            </p>
-
-                            <br>
-
-                            <button
-                                class="primary"
-                                onclick="
-                                    Midnight.openLesson(
-                                        '${path.id}',
-                                        '${lesson.id}'
-                                    )
-                                "
-                            >
-                                ${
-                                    this.state.completed.includes(
-                                        lesson.id
-                                    )
-                                    ?
-                                    "مراجعة الدرس ✓"
-                                    :
-                                    "ابدأ الدرس"
-                                }
-                            </button>
-
-                        </div>
-
-                        `
-                    )
-                    .join("")}
-
-            </div>
-
-        `;
-
-
-        this.go(
-            "lesson"
-        );
-
-    },
-
-
-    /* =====================================================
-       OPEN LESSON
-    ===================================================== */
-
-    openLesson(
-        pathId,
-        lessonId
-    ){
-
-        const path =
-            this.paths.find(
-                p=>p.id===pathId
-            );
-
-
-        const lesson =
-            path.lessons.find(
-                l=>l.id===lessonId
-            );
-
-
-        if(!lesson){
-            return;
-        }
-
-
-        const completed =
-            this.state.completed.includes(
-                lessonId
-            );
-
-
-        const container =
-            document.getElementById(
-                "lessonContainer"
-            );
-
-
-        container.innerHTML = `
-
-            <div class="lesson">
-
-                <span class="tag">
-                    ${path.title}
-                </span>
-
-                <h2>
-                    ${lesson.title}
-                </h2>
-
-                <p>
-                    ${lesson.description}
-                </p>
-
-
-                ${lesson.content}
-
-
-                <div class="lesson-actions">
-
-                    <button
-                        class="primary"
-                        id="completeLesson"
-                    >
-                        ${
-                            completed
-                            ?
-                            "الدرس مكتمل ✓"
-                            :
-                            "إكمال الدرس +25 XP"
-                        }
-                    </button>
-
-
-                    <button
-                        class="secondary"
-                        id="backPath"
-                    >
-                        رجوع للمسار
-                    </button>
-
-                </div>
-
-            </div>
-
-        `;
-
-
-        document
-            .getElementById(
-                "completeLesson"
-            )
-            .onclick =
-            ()=>{
-
-                if(
-                    !this.state.completed.includes(
-                        lessonId
-                    )
-                ){
-
-                    this.state.completed.push(
-                        lessonId
-                    );
-
-                    this.state.xp += 25;
-
-                    this.save();
-
-                    this.updateDashboard();
-
-                    this.renderPaths();
-
-                    this.toast(
-                        "+25 XP — تم حفظ تقدمك"
-                    );
-
-
-                    document
-                        .getElementById(
-                            "completeLesson"
-                        )
-                        .textContent =
-                        "الدرس مكتمل ✓";
-
-                }
-                else{
-
-                    this.toast(
-                        "هذا الدرس مكتمل بالفعل"
-                    );
-
-                }
-
-            };
-
-
-        document
-            .getElementById(
-                "backPath"
-            )
-            .onclick =
-            ()=>{
-                this.openPath(
-                    pathId
-                );
-            };
-
-
-        this.go(
-            "lesson"
-        );
-
-    },
-
-
-    /* =====================================================
-       TERMINAL
-    ===================================================== */
-
-    terminalCommand(command){
-
-        const output =
-            document.getElementById(
-                "terminalOutput"
-            );
-
-
-        const clean =
-            command
-                .trim()
-                .toLowerCase();
-
-
-        if(clean==="clear"){
-
-            output.textContent =
-                "";
-
-            return;
-
-        }
-
-
-        let result = "";
-
-
-        if(clean==="help"){
-
-            result =
-`Available safe commands:
-
-help
-ipconfig
-ping 127.0.0.1
-nslookup example.local
-ports
-whoami
-clear`;
-
-        }
-
-
-        else if(
-            clean==="ipconfig"
-        ){
-
-            result =
-`Windows IP Configuration
-
-IPv4 Address . . . : 192.168.1.20
-Subnet Mask . . . : 255.255.255.0
-Default Gateway . : 192.168.1.1`;
-
-        }
-
-
-        else if(
-            clean==="ping 127.0.0.1"
-        ){
-
-            result =
-`Pinging 127.0.0.1 with 32 bytes:
-
-Reply from 127.0.0.1:
-bytes=32
-time<1ms
-TTL=128
-
-Packets:
-Sent = 1
-Received = 1
-Lost = 0`;
-
-        }
-
-
-        else if(
-            clean==="nslookup example.local"
-        ){
-
-            result =
-`Server:
-midnight.local
-
-Address:
-192.168.1.1
-
-Name:
-example.local
-
-Address:
-192.168.1.50`;
-
-        }
-
-
-        else if(
-            clean==="ports"
-        ){
-
-            result =
-`SIMULATED PORT TABLE
-
-22/tcp    SSH
-53/udp    DNS
-80/tcp    HTTP
-443/tcp   HTTPS`;
-
-        }
-
-
-        else if(
-            clean==="whoami"
-        ){
-
-            result =
-                "midnight-student";
-
-        }
-
-
-        else{
-
-            result =
-`Unknown command:
-
-${command}
-
-Type:
-help`;
-
-        }
-
-
-        output.textContent +=
-            `
-
-$ ${command}
-
-${result}
-`;
-
-
-        output.scrollTop =
-            output.scrollHeight;
-
-    },
-
-
-    /* =====================================================
-       QUIZ
-    ===================================================== */
-
-    renderQuiz(){
-
-        const container =
-            document.getElementById(
-                "quizContainer"
-            );
-
-
-        container.innerHTML =
-            this.quiz
-            .map(
-                (question,index)=>`
-
-                <div
-                    class="question"
-                >
-
-                    <div
-                        class="question-title"
-                    >
-                        ${index+1}.
-                        ${question.question}
-                    </div>
-
-
-                    ${question.options
-                        .map(
-                            (option,optionIndex)=>`
-
-                            <button
-                                class="option"
-                                data-question="${index}"
-                                data-answer="${optionIndex}"
-                            >
-                                ${option}
-                            </button>
-
-                            `
-                        )
-                        .join("")}
-
-
-                    <div
-                        class="feedback"
-                        id="
-                            feedback-${index}
-                        "
-                    ></div>
-
-                </div>
-
-                `
-            )
-            .join("");
-
-
-        container
-            .querySelectorAll(
-                ".option"
-            )
-            .forEach(
-                button=>{
-
-                    button.onclick =
-                    ()=>{
-
-                        const questionIndex =
-                            Number(
-                                button.dataset.question
-                            );
-
-
-                        const answerIndex =
-                            Number(
-                                button.dataset.answer
-                            );
-
-
-                        const question =
-                            this.quiz[
-                                questionIndex
-                            ];
-
-
-                        const feedback =
-                            document.getElementById(
-                                "feedback-"+
-                                questionIndex
-                            );
-
-
-                        const options =
-                            button
-                            .parentElement
-                            .querySelectorAll(
-                                ".option"
-                            );
-
-
-                        options.forEach(
-                            x=>{
-                                x.disabled =
-                                    true;
-                            }
-                        );
-
-
-                        if(
-                            answerIndex===
-                            question.answer
-                        ){
-
-                            button.classList.add(
-                                "correct"
-                            );
-
-
-                            feedback.textContent =
-                                "إجابة صحيحة ✓";
-
-                            feedback.style.color =
-                                "var(--green)";
-
-                            this.state.xp += 10;
-
-                            this.save();
-
-                            this.updateDashboard();
-
-                            this.toast(
-                                "+10 XP"
-                            );
-
-                        }
-                        else{
-
-                            button.classList.add(
-                                "wrong"
-                            );
-
-
-                            feedback.textContent =
-                                "إجابة غير صحيحة — راجع الدرس.";
-
-                            feedback.style.color =
-                                "var(--red)";
-
-                        }
-
-                    };
-
-                }
-            );
-
-    },
-
-
-    /* =====================================================
-       BOOK
-    ===================================================== */
-
-    renderBook(){
-
-        const container =
-            document.getElementById(
-                "bookContainer"
-            );
-
-
-        const search =
-            (
-                document.getElementById(
-                    "bookSearch"
-                ).value ||
-                ""
-            )
-            .toLowerCase();
-
-
-        const results =
-            this.book.filter(
-                item=>
-                    (
-                        item[0]+
-                        " "+
-                        item[1]
-                    )
-                    .toLowerCase()
-                    .includes(
-                        search
-                    )
-            );
-
-
-        container.innerHTML =
-            results
-            .map(
-                (item,index)=>`
-
-                <div
-                    class="book-item"
-                >
-
-                    <span
-                        class="tag"
-                    >
-                        CHAPTER ${index+1}
-                    </span>
-
-                    <h3>
-                        ${item[0]}
-                    </h3>
-
-                    <p>
-                        ${item[1]}
-                    </p>
-
-                </div>
-
-                `
-            )
-            .join("");
-
-
-        if(!results.length){
-
-            container.innerHTML = `
-
-                <div class="card">
-
-                    <h3>
-                        لا توجد نتائج
-                    </h3>
-
-                    <p>
-                        جرب كلمة بحث مختلفة.
-                    </p>
-
-                </div>
-
-            `;
-
-        }
-
-    },
-
-
-    /* =====================================================
-       DASHBOARD
-    ===================================================== */
-
-    updateDashboard(){
-
-        const total =
-            this.paths.reduce(
-                (
-                    sum,
-                    path
-                )=>
-                    sum+
-                    path.lessons.length,
-                0
-            );
-
-
-        const completed =
-            this.state.completed.length;
-
-
-        const percent =
-            total
-            ?
-            Math.round(
-                completed /
-                total *
-                100
-            )
-            :
-            0;
-
-
-        document
-            .getElementById(
-                "xpValue"
-            )
-            .textContent =
-            this.state.xp;
-
-
-        document
-            .getElementById(
-                "completedValue"
-            )
-            .textContent =
-            completed;
-
-
-        document
-            .getElementById(
-                "totalValue"
-            )
-            .textContent =
-            total;
-
-
-        document
-            .getElementById(
-                "percentValue"
-            )
-            .textContent =
-            percent+
-            "%";
-
-
-        const dashboard =
-            document.getElementById(
-                "dashboardContainer"
-            );
-
-
-        dashboard.innerHTML =
-            this.paths
-            .map(
-                path=>{
-
-                    const progress =
-                        this.getPathProgress(
-                            path
-                        );
-
-
-                    return `
-
-                    <div
-                        class="card"
-                    >
-
-                        <span
-                            class="tag"
-                        >
-                            ${path.icon}
-                        </span>
-
-                        <h3>
-                            ${path.title}
-                        </h3>
-
-                        <p>
-                            ${progress}%
-                            مكتمل
-                        </p>
-
-                        <div
-                            class="progress"
-                        >
-
-                            <span
-                                style="
-                                width:${progress}%
-                                "
-                            ></span>
-
-                        </div>
-
-                    </div>
-
-                    `;
-
-                }
-            )
-            .join("");
-
-    },
-
-
-    /* =====================================================
-       INIT
-    ===================================================== */
-
-    init(){
-
-        document
-            .querySelectorAll(
-                "[data-page]"
-            )
-            .forEach(
-                button=>{
-
-                    button.onclick =
-                    ()=>{
-
-                        this.go(
-                            button.dataset.page
-                        );
-
-                    };
-
-                }
-            );
-
-
-        document
-            .getElementById(
-                "logo"
-            )
-            .onclick =
-            ()=>{
-                this.go("home");
-            };
-
-
-        document
-            .getElementById(
-                "startJourney"
-            )
-            .onclick =
-            ()=>{
-                this.go("paths");
-            };
-
-
-        document
-            .getElementById(
-                "homeQuiz"
-            )
-            .onclick =
-            ()=>{
-                this.go("quiz");
-            };
-
-
-        document
-            .getElementById(
-                "homeProgress"
-            )
-            .onclick =
-            ()=>{
-                this.go("dashboard");
-            };
-
-
-        document
-            .getElementById(
-                "discordCard"
-            )
-            .onclick =
-            ()=>{
-                window.open(
-                    "https://discord.gg/TyUpVWQgA",
-                    "_blank",
-                    "noopener,noreferrer"
-                );
-            };
-
-
-        document
-            .getElementById(
-                "bookSearch"
-            )
-            .oninput =
-            ()=>{
-                this.renderBook();
-            };
-
-
-        document
-            .getElementById(
-                "terminalRun"
-            )
-            .onclick =
-            ()=>{
-
-                const input =
-                    document.getElementById(
-                        "terminalInput"
-                    );
-
-
-                this.terminalCommand(
-                    input.value
-                );
-
-
-                input.value="";
-
-                input.focus();
-
-            };
-
-
-        document
-            .getElementById(
-                "terminalInput"
-            )
-            .onkeydown =
-            event=>{
-
-                if(
-                    event.key==="Enter"
-                ){
-
-                    document
-                        .getElementById(
-                            "terminalRun"
-                        )
-                        .click();
-
-                }
-
-            };
-
-
-        document
-            .getElementById(
-                "labExplain"
-            )
-            .onclick =
-            ()=>{
-
-                alert(
-`شرح الاختبار:
-
-ipconfig
-يعرض إعدادات الشبكة المحاكاة.
-
-ping
-يختبر إمكانية الوصول إلى عنوان
-داخل المختبر.
-
-nslookup
-يحاكي البحث عن اسم نطاق.
-
-ports
-يعرض منافذ وهمية لخدمات تعليمية.
-
-كل النتائج داخل Midnight محاكاة
-ولا يتم فحص أي جهاز خارجي.`
-                );
-
-            };
-
-
-        document
-            .getElementById(
-                "languageButton"
-            )
-            .onclick =
-            ()=>{
-
-                this.toast(
-                    "English mode قريبًا — النسخة العربية تعمل الآن"
-                );
-
-            };
-
-
-        document
-            .getElementById(
-                "resetProgress"
-            )
-            .onclick =
-            ()=>{
-
-                const confirmReset =
-                    confirm(
-                        "هل تريد تصفير تقدمك بالكامل؟"
-                    );
-
-
-                if(!confirmReset){
-                    return;
-                }
-
-
-                this.state.xp =
-                    0;
-
-
-                this.state.completed =
-                    [];
-
-
-                this.save();
-
-                this.updateDashboard();
-
-                this.renderPaths();
-
-                this.toast(
-                    "تم تصفير التقدم"
-                );
-
-            };
-
-
-        this.renderPaths();
-
-        this.renderBook();
-
-        this.renderQuiz();
-
-        this.updateDashboard();
-
+    escapeHTML(str) { return this.text(str); }
+  };
+
+  // ============ LOADER ============
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const loader = document.getElementById('loader');
+      if (loader) loader.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }, 900);
+  });
+  document.body.style.overflow = 'hidden';
+
+  // ============ MATRIX RAIN ============
+  const canvas = document.getElementById('matrix-bg');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let cols, drops;
+
+    function setupCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      cols = Math.floor(canvas.width / 16);
+      drops = Array(cols).fill(1);
     }
+    setupCanvas();
+    window.addEventListener('resize', setupCanvas);
 
-};
-
-
-
-/* =========================================================
-   START
-========================================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    ()=>{
-        Midnight.init();
+    const chars = '01アイウエオカキクケコサシスセソABCDEF日本語サイバー';
+    function drawMatrix() {
+      ctx.fillStyle = 'rgba(5, 3, 10, 0.08)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#8b5cf6';
+      ctx.font = '14px JetBrains Mono, monospace';
+      for (let i = 0; i < drops.length; i++) {
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(text, i * 16, drops[i] * 16);
+        if (drops[i] * 16 > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+      }
     }
-);
+    setInterval(drawMatrix, 55);
+  }
 
+  // ============ HEADER SCROLL ============
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    if (header) header.classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  // ============ MOBILE MENU ============
+  const menuToggle = document.getElementById('menuToggle');
+  const mainNav = document.getElementById('mainNav');
+  if (menuToggle && mainNav) {
+    menuToggle.addEventListener('click', () => {
+      mainNav.classList.toggle('open');
+      menuToggle.textContent = mainNav.classList.contains('open') ? '✕' : '☰';
+    });
+    mainNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mainNav.classList.remove('open');
+        menuToggle.textContent = '☰';
+      });
+    });
+  }
+
+  // ============ CARD REVEAL ON SCROLL ============
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const cards = e.target.querySelectorAll('.card');
+        cards.forEach((c, i) => setTimeout(() => c.classList.add('reveal'), i * 80));
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  const grid = document.getElementById('cardsGrid');
+  if (grid) io.observe(grid);
+
+  // ============ CARD CURSOR GLOW ============
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+
+  // ============ COUNTER ANIMATION ============
+  const counters = document.querySelectorAll('[data-count]');
+  const counterIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const el = e.target;
+        const target = parseInt(el.dataset.count, 10);
+        let current = 0;
+        const step = Math.max(1, Math.ceil(target / 60));
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) { current = target; clearInterval(timer); }
+          el.textContent = current + (target >= 100 ? '+' : '');
+        }, 30);
+        counterIO.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => counterIO.observe(c));
+
+  // ============ ACTIVE NAV ON SCROLL ============
+  const sections = ['home', 'paths', 'labs', 'quizzes', 'book'];
+  const navLinks = document.querySelectorAll('nav.main-nav a');
+  window.addEventListener('scroll', () => {
+    let current = 'home';
+    sections.forEach(id => {
+      const sec = document.getElementById(id);
+      if (sec && window.scrollY >= sec.offsetTop - 200) current = id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+
+  // ============ LANGUAGE SWITCH ============
+  const translations = {
+    ar: {
+      'nav.home': 'الرئيسية', 'nav.paths': 'المسارات', 'nav.labs': 'Labs',
+      'nav.quizzes': 'الاختبارات', 'nav.book': 'كتاب الأمن',
+      'hero.tag': 'MIDNIGHT • CYBER LEARNING PLATFORM',
+      'hero.title': 'تعلّم <span class="accent">الأمن السيبراني</span><br>من <span class="accent">الصفر</span>',
+      'hero.desc': 'منصة <strong>Midnight For Cyber</strong> تساعدك تبدأ من الصفر وتبني أساس قوي في الشبكات والبرمجة و Linux وأمن الويب والدفاع السيبراني، من خلال مسارات ودروس ومختبرات محاكاة واختبارات.',
+      'hero.btnStart': 'ابدأ رحلتك', 'hero.btnBook': 'كتاب الأمن السيبراني',
+      'stats.paths': 'مسارات', 'stats.lessons': 'درس', 'stats.labs': 'مختبر', 'stats.quiz': 'اختبار',
+      'scroll': 'SCROLL',
+      'learn.eyebrow': 'LEARNING PATHS',
+      'learn.title': 'وش <span class="accent">بتتعلم؟</span>',
+      'learn.desc': 'اختر مسارك بعد الضغط على ابدأ رحلتك.',
+      'card.net.title': 'أساسيات الشبكات',
+      'card.net.desc': 'IP و MAC و DNS و DHCP و NAT و Router و Switch و Ports والبروتوكولات.',
+      'card.py.desc': 'ابدأ البرمجة من الصفر وتعلم المتغيرات والشروط والحلقات والدوال والقوائم.',
+      'card.kali.desc': 'تعرف على الطرفية والملفات والصلاحيات وأوامر الشبكات داخل بيئة آمنة.',
+      'card.web.desc': 'تعرف كيف يعمل HTTP والجلسات والكوكيز والتحقق من المدخلات.',
+      'card.blue.title': '& Defense',
+      'card.blue.desc': 'حماية الأنظمة، تحليل الأحداث، والاستجابة للحوادث الأمنية.',
+      'card.osint.title': 'الاستخبارات المفتوحة',
+      'card.osint.desc': 'جمع المعلومات من المصادر العامة وأدوات البحث المتقدم.',
+      'card.crypto.title': 'التشفير',
+      'card.crypto.desc': 'مفاهيم التشفير، الهاش، المفاتيح، والتوقيعات الرقمية.',
+      'card.re.title': 'الهندسة العكسية',
+      'card.re.desc': 'تحليل البرامج وفهم طريقة عملها واستخراج المعلومات منها.',
+      'level.beginner': 'مبتدئ', 'level.intermediate': 'متوسط', 'level.advanced': 'متقدم',
+      'labs.eyebrow': 'INTERACTIVE LABS',
+      'labs.title': 'مختبرات <span class="accent">تفاعلية</span>',
+      'labs.desc': 'جرّب أدوات حقيقية داخل بيئة آمنة ومحاكاة واقعية.',
+      'lab1.title': 'مختبر الشبكات', 'lab1.desc': 'اكتشف الأجهزة المتصلة، افتح المنافذ، وحلل الحزم.',
+      'lab2.title': 'طرفية Linux', 'lab2.desc': 'تعلم الأوامر الأساسية في بيئة Kali Linux محاكاة.',
+      'lab3.title': 'تحليل التشفير', 'lab3.desc': 'فك الشيفرات البسيطة، تعرف على Base64 و Caesar.',
+      'lab4.title': 'التحقيق الرقمي', 'lab4.desc': 'حلل الأدلة، تتبع الأثر الرقمي، وحدد المهاجم.',
+      'quiz.eyebrow': 'STORY-BASED MISSIONS',
+      'quiz.title': 'اختبارات <span class="accent">قصصية</span>',
+      'quiz.desc': 'مهام واقعية — تحقق، حلل، واكتشف المهاجم باستخدام أوامر حقيقية.',
+      'diff.easy': 'سهل', 'diff.medium': 'متوسط', 'diff.hard': 'صعب',
+      'quiz.bank.title': 'البنك المخترق',
+      'quiz.bank.desc': 'تم اختراق أحد البنوك! المدير استدعاك لفحص الأمر. ابدأ التحقيق واستخدم أوامر مثل nmap و ping لتحديد المهاجم.',
+      'quiz.hosp.title': 'المستشفى المهدد',
+      'quiz.hosp.desc': 'تهديد فدية لمستشفى كبير، ومعلومات المرضى في خطر. ابدأ التحقيق قبل فوات الأوان.',
+      'quiz.gov.title': 'هجوم حكومي',
+      'quiz.gov.desc': 'بنية تحتية حكومية مستهدفة من جهة خارجية. تحليل متقدم مطلوب.',
+      'quiz.start': 'ابدأ التحقيق', 'quiz.locked': 'مقفل',
+      'mission.title': 'MISSION: BANK BREACH',
+      'mission.objectives': 'OBJECTIVES',
+      'obj1': 'اكتشف الأجهزة المتصلة بالشبكة',
+      'obj2': 'افحص المنافذ المفتوحة على السيرفر المشتبه به',
+      'obj3': 'افحص السجلات (logs) للعثور على الدليل',
+      'obj4': 'حدد عنوان IP المهاجم',
+      'mission.progress': 'PROGRESS', 'mission.xp': 'XP', 'mission.hint': 'تلميح',
+      'mission.hintDefault': 'ابدأ بكتابة help لرؤية الأوامر المتاحة.',
+      'book.eyebrow': 'FREE EBOOK',
+      'book.title': 'كتاب <span class="accent">الأمن السيبراني</span>',
+      'book.desc': 'كتاب شامل يشرح لك ما هو الأمن السيبراني،
+      'book.desc': 'كتاب شامل يشرح لك ما هو الأمن السيبراني، المفاهيم الأساسية، أنواع الهجمات، وطرق الحماية — بلغة مبسطة ومباشرة.',
+      'book.f1': 'مقدمة كاملة عن المجال',
+      'book.f2': 'شرح المفاهيم الأساسية',
+      'book.f3': 'أنواع الهجمات الشائعة',
+      'book.f4': 'كيف تحمي نفسك وتبدأ',
+      'book.download': 'تحميل الكتاب',
+      'dc.title': 'انضم لمجتمع <span class="accent">Midnight</span>',
+      'dc.desc': 'تواصل مع متعلمين آخرين، اسأل، شارك، وتابع التحديثات والدروس الجديدة على سيرفر الديسكورد.',
+      'dc.join': 'انضم للسيرفر', 'dc.online': 'متصل الآن',
+      'footer.tagline': 'منصة تعلم الأمن السيبراني من الصفر — مسارات، مختبرات، واختبارات تفاعلية.',
+      'footer.learn': 'تعلّم', 'footer.community': 'المجتمع', 'footer.legal': 'قانوني',
+      'footer.contribute': 'ساهم', 'footer.report': 'أبلغ عن مشكلة',
+      'footer.privacy': 'الخصوصية', 'footer.terms': 'الشروط', 'footer.disclaimer': 'إخلاء مسؤولية',
+      'footer.copy': '© 2025 Midnight For Cyber — صُنع بشغف لتعليم الأمن السيبراني',
+      'footer.warn': '⚠️ المحتوى لأغراض تعليمية فقط — استخدم مهاراتك بمسؤولية وأخلاق'
+    },
+    en: {
+      'nav.home': 'Home', 'nav.paths': 'Paths', 'nav.labs': 'Labs',
+      'nav.quizzes': 'Quizzes', 'nav.book': 'Cyber Book',
+      'hero.tag': 'MIDNIGHT • CYBER LEARNING PLATFORM',
+      'hero.title': 'Learn <span class="accent">Cybersecurity</span><br>From <span class="accent">Scratch</span>',
+      'hero.desc': '<strong>Midnight For Cyber</strong> helps you start from scratch and build a strong foundation in networking, programming, Linux, web security, and cyber defense through paths, lessons, simulated labs, and quizzes.',
+      'hero.btnStart': 'Start Your Journey', 'hero.btnBook': 'Cyber Security Book',
+      'stats.paths': 'Paths', 'stats.lessons': 'Lessons', 'stats.labs': 'Labs', 'stats.quiz': 'Quizzes',
+      'scroll': 'SCROLL',
+      'learn.eyebrow': 'LEARNING PATHS',
+      'learn.title': 'What will you <span class="accent">learn?</span>',
+      'learn.desc': 'Choose your path after clicking Start Your Journey.',
+      'card.net.title': 'Networking Basics',
+      'card.net.desc': 'IP, MAC, DNS, DHCP, NAT, Router, Switch, Ports, and protocols.',
+      'card.py.desc': 'Start programming from scratch and learn variables, conditions, loops, functions, and lists.',
+      'card.kali.desc': 'Learn the terminal, files, permissions, and network commands in a safe environment.',
+      'card.web.desc': 'Learn how HTTP, sessions, cookies, and input validation work.',
+      'card.blue.title': '& Defense',
+      'card.blue.desc': 'System protection, event analysis, and incident response.',
+      'card.osint.title': 'Open Source Intelligence',
+      'card.osint.desc': 'Gather information from public sources and advanced research tools.',
+      'card.crypto.title': 'Cryptography',
+      'card.crypto.desc': 'Encryption concepts, hashing, keys, and digital signatures.',
+      'card.re.title': 'Reverse Engineering',
+      'card.re.desc': 'Analyze software, understand how it works, and extract information.',
+      'level.beginner': 'Beginner', 'level.intermediate': 'Intermediate', 'level.advanced': 'Advanced',
+      'labs.eyebrow': 'INTERACTIVE LABS',
+      'labs.title': 'Interactive <span class="accent">Labs</span>',
+      'labs.desc': 'Try real tools inside a safe environment with realistic simulation.',
+      'lab1.title': 'Networking Lab', 'lab1.desc': 'Discover connected devices, open ports, and analyze packets.',
+      'lab2.title': 'Linux Terminal', 'lab2.desc': 'Learn basic commands in a simulated Kali Linux environment.',
+      'lab3.title': 'Crypto Analysis', 'lab3.desc': 'Decode simple ciphers, learn Base64 and Caesar.',
+      'lab4.title': 'Digital Forensics', 'lab4.desc': 'Analyze evidence, trace digital footprints, and identify attackers.',
+      'quiz.eyebrow': 'STORY-BASED MISSIONS',
+      'quiz.title': 'Story <span class="accent">Missions</span>',
+      'quiz.desc': 'Realistic tasks — investigate, analyze, and identify the attacker using real commands.',
+      'diff.easy': 'Easy', 'diff.medium': 'Medium', 'diff.hard': 'Hard',
+      'quiz.bank.title': 'Bank Breach',
+      'quiz.bank.desc': 'A bank has been breached! The manager called you to investigate. Start investigating and use commands like nmap and ping to identify the attacker.',
+      'quiz.hosp.title': 'Hospital Threat',
+      'quiz.hosp.desc': 'Ransomware threat to a large hospital, and patient data is at risk. Start investigating before it is too late.',
+      'quiz.gov.title': 'Government Attack',
+      'quiz.gov.desc': 'Government infrastructure targeted by an external actor. Advanced analysis required.',
+      'quiz.start': 'Start Investigation', 'quiz.locked': 'Locked',
+      'mission.title': 'MISSION: BANK BREACH',
+      'mission.objectives': 'OBJECTIVES',
+      'obj1': 'Discover devices connected to the network',
+      'obj2': 'Scan open ports on the suspect server',
+      'obj3': 'Inspect logs to find the evidence',
+      'obj4': 'Identify the attacker IP address',
+      'mission.progress': 'PROGRESS', 'mission.xp': 'XP', 'mission.hint': 'Hint',
+      'mission.hintDefault': 'Start by typing help to see available commands.',
+      'book.eyebrow': 'FREE EBOOK',
+      'book.title': 'Cybersecurity <span class="accent">Book</span>',
+      'book.desc': 'A comprehensive book explaining what cybersecurity is, the fundamentals, common attacks, and protection methods — in simple language.',
+      'book.f1': 'Complete introduction to the field',
+      'book.f2': 'Explanation of fundamentals',
+      'book.f3': 'Common attack types',
+      'book.f4': 'How to protect yourself and start',
+      'book.download': 'Download Book',
+      'dc.title': 'Join the <span class="accent">Midnight</span> Community',
+      'dc.desc': 'Connect with other learners, ask questions, share, and follow updates and new lessons on our Discord server.',
+      'dc.join': 'Join Server', 'dc.online': 'Online now',
+      'footer.tagline': 'Learn cybersecurity from scratch — paths, labs, and interactive quizzes.',
+      'footer.learn': 'Learn', 'footer.community': 'Community', 'footer.legal': 'Legal',
+      'footer.contribute': 'Contribute', 'footer.report': 'Report Issue',
+      'footer.privacy': 'Privacy', 'footer.terms': 'Terms', 'footer.disclaimer': 'Disclaimer',
+      'footer.copy': '© 2025 Midnight For Cyber — Made with passion for cybersecurity education',
+      'footer.warn': '⚠️ Content is for educational purposes only — use your skills responsibly and ethically'
+    }
+  };
+
+  let currentLang = localStorage.getItem('mfc_lang') || 'ar';
+
+  function applyLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem('mfc_lang', lang);
+    const html = document.documentElement;
+    const body = document.body;
+    html.lang = lang;
+    html.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const val = translations[lang][key];
+      if (val) el.innerHTML = val;
+    });
+
+    const flag = document.getElementById('langFlag');
+    const text = document.getElementById('langText');
+    if (flag) flag.textContent = lang === 'ar' ? '🇺🇸' : '🇸🇦';
+    if (text) text.textContent = lang === 'ar' ? 'English' : 'العربية';
+  }
+
+  const langBtn = document.getElementById('langSwitch');
+  if (langBtn) {
+    langBtn.addEventListener('click', () => {
+      applyLanguage(currentLang === 'ar' ? 'en' : 'ar');
+    });
+  }
+  applyLanguage(currentLang);
+
+  // ============ TERMINAL / MISSION SYSTEM ============
+  const MissionState = {
+    active: false,
+    objectives: { 1: false, 2: false, 3: false, 4: false },
+    xp: 0,
+    hintIndex: 0,
+    history: [],
+    histIdx: -1
+  };
+
+  const terminalBody = document.getElementById('terminalBody');
+  const terminalInput = document.getElementById('terminalInput');
+  const terminalWrap = document.getElementById('terminalWrap');
+  const progressFill = document.getElementById('progressFill');
+  const progressText = document.getElementById('progressText');
+  const xpValue = document.getElementById('xpValue');
+  const hintText = document.getElementById('hintText');
+
+  function tPrint(text, cls) {
+    if (!terminalBody) return;
+    const div = document.createElement('div');
+    div.className = 't-line' + (cls ? ' ' + cls : '');
+    div.innerHTML = text;
+    terminalBody.appendChild(div);
+    terminalBody.scrollTop = terminalBody.scrollHeight;
+  }
+
+  function updateProgress() {
+    const total = 4;
+    const done = Object.values(MissionState.objectives).filter(Boolean).length;
+    const pct = Math.round((done / total) * 100);
+    if (progressFill) progressFill.style.width = pct + '%';
+    if (progressText) progressText.textContent = pct + '%';
+    if (xpValue) xpValue.textContent = MissionState.xp;
+  }
+
+  function completeObjective(num, xp) {
+    if (MissionState.objectives[num]) return;
+    MissionState.objectives[num] = true;
+    MissionState.xp += xp;
+    const li = document.querySelector(`[data-obj="${num}"]`);
+    if (li) li.classList.add('completed');
+    updateProgress();
+    tPrint(`<span class="t-success">[✓] Objective ${num} complete! +${xp} XP</span>`);
+    if (Object.values(MissionState.objectives).every(Boolean)) {
+      setTimeout(() => {
+        tPrint('<span class="t-success">═══ MISSION COMPLETE ═══</span>');
+        tPrint(`<span class="t-warn">Total XP earned: ${MissionState.xp}</span>`);
+        tPrint('<span class="t-info">Great work, agent. Next mission unlocked soon.</span>');
+      }, 400);
+    }
+  }
+
+  // ============ MISSION COMMANDS ============
+  const COMMANDS = {
+    help() {
+      tPrint('<span class="t-info">Available commands:</span>');
+      tPrint('  <span class="t-cmd">help</span>            Show this help message');
+      tPrint('  <span class="t-cmd">clear</span>           Clear the terminal');
+      tPrint('  <span class="t-cmd">whoami</span>          Show current user');
+      tPrint('  <span class="t-cmd">ifconfig</span>        Show network interfaces');
+      tPrint('  <span class="t-cmd">ping &lt;host&gt;</span>     Ping a host to check reachability');
+      tPrint('  <span class="t-cmd">nmap &lt;host&gt;</span>     Scan ports on a target host');
+      tPrint('  <span class="t-cmd">ls &lt;dir&gt;</span>        List files in a directory');
+      tPrint('  <span class="t-cmd">cat &lt;file&gt;</span>      Read a file content');
+      tPrint('  <span class="t-cmd">hint</span>            Get a hint for the current objective');
+      tPrint('  <span class="t-cmd">objectives</span>      Show mission objectives');
+      tPrint('  <span class="t-cmd">exit</span>            Close the mission');
+    },
+    clear() { if (terminalBody) terminalBody.innerHTML = ''; },
+    whoami() { tPrint('<span class="t-info">root@midnight (cyber analyst)</span>'); },
+    ifconfig() {
+      tPrint('<span class="t-info">eth0:</span> inet 192.168.1.10  netmask 255.255.255.0');
+      tPrint('<span class="t-info">lo:</span>   inet 127.0.0.1      netmask 255.0.0.0');
+    },
+    ping(args) {
+      const host = args[0] || '192.168.1.1';
+      if (host === '192.168.1.1') {
+        tPrint('<span class="t-info">PING 192.168.1.1 (gateway) 56(84) bytes of data.</span>');
+        setTimeout(() => tPrint('64 bytes from 192.168.1.1: icmp_seq=1 ttl=64 time=0.42 ms'), 200);
+        setTimeout(() => tPrint('64 bytes from 192.168.1.1: icmp_seq=2 ttl=64 time=0.38 ms'), 500);
+        setTimeout(() => tPrint('<span class="t-success">Gateway is reachable.</span>'), 800);
+      } else if (host === '192.168.1.50') {
+        tPrint('<span class="t-warn">PING 192.168.1.50 (bank-server) ...</span>');
+        setTimeout(() => tPrint('<span class="t-warn">Warning: unknown device on the network.</span>'), 600);
+        setTimeout(() => completeObjective(1, 50), 900);
+      } else {
+        tPrint(`<span class="t-error">ping: ${Sanitize.text(host)}: Name or service not known</span>`);
+      }
+    },
+    nmap(args) {
+      const host = args[0] || '192.168.1.50';
+      if (host === '192.168.1.50') {
+        tPrint('<span class="t-info">Starting Nmap 7.94 ( https://nmap.org )</span>');
+        setTimeout(() => tPrint('Nmap scan report for 192.168.1.50 (bank-server)'), 300);
+        setTimeout(() => tPrint('Host is up (0.023s latency).'), 600);
+        setTimeout(() => tPrint('PORT     STATE    SERVICE'), 900);
+        setTimeout(() => tPrint('<span class="t-success">22/tcp   open     ssh</span>'), 1100);
+        setTimeout(() => tPrint('<span class="t-success">80/tcp   open     http</span>'), 1300);
+        setTimeout(() => tPrint('<span class="t-error">4444/tcp open     unknown (SUSPICIOUS!)</span>'), 1500);
+        setTimeout(() => tPrint('<span class="t-warn">Port 4444 is commonly used by reverse shells!</span>'), 1800);
+        setTimeout(() => completeObjective(2, 75), 2100);
+      } else {
+        tPrint(`<span class="t-error">nmap: failed to resolve "${Sanitize.text(host)}"</span>`);
+        tPrint('<span class="t-sys">Try scanning 192.168.1.50</span>');
+      }
+    },
+    ls(args) {
+      const dir = args[0] || '.';
+      if (dir === '/var/log' || dir === 'logs') {
+        tPrint('<span class="t-info">total 24</span>');
+        tPrint('  auth.log');
+        tPrint('  bank-server.log');
+        tPrint('  access.log');
+      } else if (dir === '/') {
+        tPrint('bin  boot  dev  etc  home  root  var');
+      } else {
+        tPrint('bank-server.log  access.log  auth.log  readme.txt');
+      }
+    },
+    cat(args) {
+      const file = args[0];
+      if (!file) { tPrint('<span class="t-error">cat: missing operand</span>'); return; }
+      if (file === 'bank-server.log' || file === 'auth.log') {
+        tPrint('<span class="t-info">[2025-01-15 03:42:11] WARN  Multiple failed logins from 10.0.0.99</span>');
+        tPrint('<span class="t-info">[2025-01-15 03:45:33] ERROR Unauthorized access attempt</span>');
+        tPrint('<span class="t-error">[2025-01-15 03:47:02] CRIT  Reverse shell connection from 10.0.0.99:4444</span>');
+        tPrint('<span class="t-info">[2025-01-15 03:50:18] INFO  Admin session terminated</span>');
+        setTimeout(() => completeObjective(3, 100), 400);
+        setTimeout(() => {
+          tPrint('<span class="t-warn">Looks like 10.0.0.99 is the attacker IP. Report it using: report &lt;ip&gt;</span>');
+        }, 1200);
+      } else if (file === 'readme.txt') {
+        tPrint('Welcome to the Midnight Lab. This is a simulated environment.');
+      } else {
+        tPrint(`<span class="t-error">cat: ${Sanitize.text(file)}: No such file or directory</span>`);
+      }
+    },
+    report(args) {
+      const ip = args[0];
+      if (ip === '10.0.0.99') {
+        tPrint('<span class="t-success">[✓] Attacker IP identified: 10.0.0.99</span>');
+        tPrint('<span class="t-success">Report submitted to the bank\'s CISO.</span>');
+        completeObjective(4, 200);
+      } else {
+        tPrint('<span class="t-error">Report rejected. Verify the IP from the logs.</span>');
+      }
+    },
+    objectives() {
+      tPrint('<span class="t-info">Mission Objectives:</span>');
+      [1,2,3,4].forEach(n => {
+        const done = MissionState.objectives[n];
+        const li = document.querySelector(`[data-obj="${n}"] span:last-child`);
+        const label = li ? li.textContent : `Objective ${n}`;
+        tPrint(`  ${done ? '<span class="t-success">[✓]</span>' : '<span class="t-warn">[ ]</span>'} ${Sanitize.text(label)}`);
+      });
+    },
+    hint() {
+      const hints = [
+        'Try <span class="t-cmd">ifconfig</span> to see your IP, then <span class="t-cmd">ping 192.168.1.1</span> and <span class="t-cmd">ping 192.168.1.50</span>.',
+        'Use <span class="t-cmd">nmap 192.168.1.50</span> to scan the suspect server.',
+        'Check logs with <span class="t-cmd">cat bank-server.log</span>.',
+        'Report the attacker IP using <span class="t-cmd">report &lt;ip&gt;</span>.'
+      ];
+      const idx = Math.min(MissionState.hintIndex, hints.length - 1);
+      tPrint(`<span class="t-warn">💡 Hint: ${hints[idx]}</span>`);
+      if (hintText) hintText.innerHTML = hints[idx];
+      MissionState.hintIndex++;
+    },
+    exit() { closeMission(); }
+  };
+
+  function runCommand(raw) {
+    const trimmed = raw.trim();
+    if (!trimmed) return;
+
+    tPrint(`<span class="t-user-cmd">${Sanitize.text(trimmed)}</span>`);
+    MissionState.history.push(trimmed);
+    MissionState.histIdx = MissionState.history.length;
+
+    const parts = trimmed.split(/\s+/);
+    const cmd = parts[0].toLowerCase();
+    const args = parts.slice(1);
+
+    if (COMMANDS[cmd]) {
+      try { COMMANDS[cmd](args); } catch (e) { tPrint('<span class="t-error">Command failed.</span>'); }
+    } else {
+      tPrint(`<span class="t-error">command not found: ${Sanitize.text(cmd)}</span>`);
+      tPrint('<span class="t-sys">Type <span class="t-cmd">help</span> for available commands.</span>');
+    }
+  }
+
+  function openMission() {
+    if (!terminalWrap) return;
+    terminalWrap.style.display = 'block';
+    MissionState.active = true;
+    setTimeout(() => {
+      terminalWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (terminalInput) terminalInput.focus();
+    }, 100);
+  }
+
+  function closeMission() {
+    if (!terminalWrap) return;
+    terminalWrap.style.display = 'none';
+    MissionState.active = false;
+  }
+
+  function resetMission() {
+    MissionState.objectives = { 1: false, 2: false, 3: false, 4: false };
+    MissionState.xp = 0;
+    MissionState.hintIndex = 0;
+    if (terminalBody) {
+      terminalBody.innerHTML =
+        '<div class="t-line t-sys">Midnight Shell v2.1 — Secure Lab Environment</div>' +
+        '<div class="t-line t-sys">Type <span class="t-cmd">help</span> for available commands.</div>' +
+        '<div class="t-line t-sys">—</div>';
+    }
+    document.querySelectorAll('.objectives li').forEach(li => li.classList.remove('completed'));
+    updateProgress();
+    if (hintText) hintText.innerHTML = translations[currentLang]['mission.hintDefault'];
+  }
+
+  // Quiz start buttons
+  document.querySelectorAll('.quiz-start').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const quiz = e.currentTarget.getAttribute('data-quiz');
+      if (quiz === 'bank') openMission();
+    });
+  });
+
+  // Reset / Close
+  const resetBtn = document.getElementById('resetMission');
+  if (resetBtn) resetBtn.addEventListener('click', resetMission);
+  const closeBtn = document.getElementById('closeMission');
+  if (closeBtn) closeBtn.addEventListener('click', closeMission);
+
+  // Terminal input
+  if (terminalInput) {
+    terminalInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        runCommand(terminalInput.value);
+        terminalInput.value = '';
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (MissionState.histIdx > 0) {
+          MissionState.histIdx--;
+          terminalInput.value = MissionState.history[MissionState.histIdx] || '';
+        }
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (MissionState.histIdx < MissionState.history.length - 1) {
+          MissionState.histIdx++;
+          terminalInput.value = MissionState.history[MissionState.histIdx] || '';
+        } else {
+          MissionState.histIdx = MissionState.history.length;
+          terminalInput.value = '';
+        }
+      }
+    });
+  }
+
+  // Download book (placeholder)
+  const dlBtn = document.getElementById('downloadBook');
+  if (dlBtn) {
+    dlBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      alert(currentLang === 'ar' ? '📘 الكتاب سيتم إضافته قريباً!' : '📘 The book will be available soon!');
+    });
+  }
+
+  // ============ CONSOLE EASTER EGG ============
+  console.log('%c🌙 Midnight For Cyber', 'color:#a78bfa;font-size:20px;font-weight:900;text-shadow:0 0 20px #8b5cf6');
+  console.log('%cWelcome, agent. Stay curious. Stay ethical.', 'color:#22d3ee;font-size:13px');
+  console.log('%cDiscord: https://discord.gg/zsuqE6pss', 'color:#5865F2;font-size:13px');
+
+})();
+</script>
+
+<!-- ⬇️ الجزء 4 سيكمل من هنا: إغلاق body و html + إضافات أخيرة ⬇️ -->
+<!-- ============ FINAL TOUCHES: Custom Cursor ============ -->
+<style>
+/* Custom glow cursor follower */
+#cursor-glow {
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+  mix-blend-mode: screen;
+  will-change: transform;
+}
+@media (max-width: 900px) { #cursor-glow { display: none; } }
+
+/* Scroll to top button */
+#scrollTop {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: var(--gradient-main);
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 30px rgba(139, 92, 246, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: var(--t-med);
+  z-index: 999;
+}
+#scrollTop.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+#scrollTop:hover { transform: translateY(-4px); box-shadow: 0 15px 40px rgba(139, 92, 246, 0.7); }
+body[dir="ltr"] #scrollTop { right: auto; left: 30px; }
+
+/* Achievement popup */
+.achievement {
+  position: fixed;
+  top: 90px;
+  right: 20px;
+  background: linear-gradient(135deg, var(--bg-elevated), var(--bg-card));
+  border: 1px solid var(--purple-bright);
+  border-radius: 14px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 15px 50px rgba(139, 92, 246, 0.4);
+  z-index: 9999;
+  opacity: 0;
+  transform: translateX(120%);
+  transition: var(--t-slow);
+  max-width: 320px;
+}
+body[dir="ltr"] .achievement { right: auto; left: 20px; transform: translateX(-120%); }
+.achievement.show { opacity: 1; transform: translateX(0); }
+body[dir="ltr"] .achievement.show { transform: translateX(0); }
+.achievement .ach-icon { font-size: 1.8rem; }
+.achievement .ach-text { display: flex; flex-direction: column; }
+.achievement .ach-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 2px;
+  color: var(--purple-bright);
+  font-weight: 700;
+}
+.achievement .ach-name { font-size: 0.95rem; color: #fff; font-weight: 600; margin-top: 2px; }
+
+/* Skill bar animation */
+.card .card-meta .level .pip.on {
+  animation: pipPulse 2s infinite;
+}
+@keyframes pipPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.15); }
+}
+
+/* Terminal typing cursor */
+#terminalBody::after {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 14px;
+  background: var(--purple-bright);
+  animation: blink 1s infinite;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+</style>
+
+<!-- Cursor glow element -->
+<div id="cursor-glow"></div>
+
+<!-- Scroll to top button -->
+<button id="scrollTop" aria-label="Scroll to top">↑</button>
+
+<!-- Achievement container -->
+<div id="achievementBox"></div>
+
+<!-- ============ FINAL JAVASCRIPT ============ -->
+<script>
+(function() {
+  'use strict';
+
+  // ============ CUSTOM CURSOR GLOW ============
+  const cursorGlow = document.getElementById('cursor-glow');
+  if (cursorGlow && window.innerWidth > 900) {
+    let cx = 0, cy = 0, tx = 0, ty = 0;
+    document.addEventListener('mousemove', (e) => {
+      tx = e.clientX; ty = e.clientY;
+    });
+    function animate() {
+      cx += (tx - cx) * 0.12;
+      cy += (ty - cy) * 0.12;
+      cursorGlow.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%)`;
+      requestAnimationFrame(animate);
+    }
+    animate();
+  }
+
+  // ============ SCROLL TO TOP ============
+  const scrollBtn = document.getElementById('scrollTop');
+  if (scrollBtn) {
+    window.addEventListener('scroll', () => {
+      scrollBtn.classList.toggle('visible', window.scrollY > 500);
+    });
+    scrollBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // ============ ACHIEVEMENT SYSTEM ============
+  const achievements = {
+    firstVisit: { icon: '👋', title: 'WELCOME', name: 'Welcome to Midnight!' },
+    scrolled:   { icon: '📜', title: 'EXPLORER', name: 'Scrolled through the site' },
+    openedQuiz: { icon: '🎯', title: 'AGENT', name: 'Started first mission' },
+    firstCmd:   { icon: '⌨️', title: 'TERMINAL', name: 'Executed first command' },
+    completed:  { icon: '🏆', title: 'HERO', name: 'Completed the Bank mission' },
+    konami:     { icon: '🎮', title: 'SECRET', name: 'Konami code activated!' }
+  };
+  const unlocked = new Set();
+
+  function showAchievement(key) {
+    if (unlocked.has(key)) return;
+    unlocked.add(key);
+    const a = achievements[key];
+    if (!a) return;
+    const box = document.getElementById('achievementBox');
+    if (!box) return;
+    const el = document.createElement('div');
+    el.className = 'achievement';
+    el.innerHTML = `
+      <div class="ach-icon">${a.icon}</div>
+      <div class="ach-text">
+        <span class="ach-title">🎉 ${a.title} UNLOCKED</span>
+        <span class="ach-name">${a.name}</span>
+      </div>`;
+    box.appendChild(el);
+    setTimeout(() => el.classList.add('show'), 50);
+    setTimeout(() => {
+      el.classList.remove('show');
+      setTimeout(() => el.remove(), 600);
+    }, 4000);
+  }
+
+  // Trigger first visit after 3s
+  setTimeout(() => showAchievement('firstVisit'), 3000);
+
+  // Scroll achievement
+  let scrollTriggered = false;
+  window.addEventListener('scroll', () => {
+    if (!scrollTriggered && window.scrollY > 800) {
+      scrollTriggered = true;
+      showAchievement('scrolled');
+    }
+  });
+
+  // Hook into quiz buttons
+  document.querySelectorAll('.quiz-start').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (!btn.disabled) showAchievement('openedQuiz');
+    });
+  });
+
+  // Hook into terminal input
+  const ti = document.getElementById('terminalInput');
+  if (ti) {
+    let firstCmd = false;
+    ti.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !firstCmd && ti.value.trim()) {
+        firstCmd = true;
+        showAchievement('firstCmd');
+      }
+    });
+  }
+
+  // Hook into mission completion
+  const origComplete = window.__mfcCompleteObjective;
+  // Monitor DOM for progress 100%
+  const progressObserver = new MutationObserver(() => {
+    const pt = document.getElementById('progressText');
+    if (pt && pt.textContent === '100%') {
+      showAchievement('completed');
+    }
+  });
+  const pf = document.getElementById('progressFill');
+  if (pf) progressObserver.observe(pf, { attributes: true, attributeFilter: ['style'] });
+
+  // ============ KONAMI CODE ============
+  const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+  let konamiIdx = 0;
+  document.addEventListener('keydown', (e) => {
+    const k = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+    if (k === konami[konamiIdx]) {
+      konamiIdx++;
+      if (konamiIdx === konami.length) {
+        showAchievement('konami');
+        // Matrix burst effect
+        document.body.style.transition = 'filter 0.3s';
+        document.body.style.filter = 'hue-rotate(180deg)';
+        setTimeout(() => { document.body.style.filter = ''; }, 1500);
+        konamiIdx = 0;
+      }
+    } else {
+      konamiIdx = 0;
+    }
+  });
+
+  // ============ SMOOTH SCROLL FOR ANCHORS ============
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target && a.getAttribute('href') !== '#') {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // ============ PRELOAD IMAGES ============
+  const preloadImg = new Image();
+  preloadImg.src = 'dead-penguin-cyber-new-background.png';
+
+  // ============ DISCORD BUTTON PULSE ============
+  const discordBtns = document.querySelectorAll('.discord-btn-header, .discord-btn');
+  discordBtns.forEach((btn, i) => {
+    setInterval(() => {
+      btn.style.boxShadow = '0 0 25px rgba(88, 101, 242, 0.8)';
+      setTimeout(() => {
+        btn.style.boxShadow = '';
+      }, 400);
+    }, 6000 + (i * 500));
+  });
+
+  console.log('%c[Midnight] All systems online ✓', 'color:#22c55e;font-family:monospace');
+  console.log('%c[Midnight] Try the Konami code: ↑↑↓↓←→←→BA', 'color:#a78bfa;font-family:monospace');
+
+})();
 </script>
 
 </body>
