@@ -1,2767 +1,468 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
-<meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Midnight — رحلتك تبدأ من هنا</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#09070f">
+<meta name="description" content="Midnight — تعلم الأمن السيبراني والشبكات والبرمجة من الصفر عبر دروس ومختبرات تعليمية.">
+<title>Midnight — Cyber Academy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #0a0a0f;
-  --bg-card: #12121a;
-  --bg-elevated: #1a1a25;
-  --purple: #7c3aed;
-  --purple-light: #a78bfa;
-  --purple-dark: #5b21b6;
-  --purple-glow: rgba(124, 58, 237, 0.15);
-  --text: #e5e5ea;
-  --text-muted: #9ca3af;
-  --border: rgba(124, 58, 237, 0.2);
-  --success: #22c55e;
-  --warning: #f59e0b;
-  --danger: #ef4444;
-  --font-ar: 'Cairo', system-ui, sans-serif;
-  --font-en: 'Inter', system-ui, sans-serif;
-  --radius: 12px;
-  --radius-lg: 20px;
-  --transition: 0.25s ease;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-ar);
-  line-height: 1.7;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-[dir="ltr"] body { font-family: var(--font-en); }
-
-body::before {
-  content: '';
-  position: fixed;
-  top: -30%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120%;
-  height: 80%;
-  background: radial-gradient(ellipse, var(--purple-glow) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(10, 10, 15, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-}
-
-.nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 64px;
-  gap: 16px;
-}
-
-.nav-logo {
-  font-family: var(--font-en);
-  font-weight: 900;
-  font-size: 1.4rem;
-  color: var(--purple-light);
-  text-decoration: none;
-  letter-spacing: -0.5px;
-  flex-shrink: 0;
-  cursor: pointer;
-}
-
-.nav-links {
-  display: flex;
-  gap: 4px;
-  flex: 1;
-  justify-content: center;
-}
-
-.nav-links a {
-  color: var(--text-muted);
-  text-decoration: none;
-  font-size: 0.9rem;
-  padding: 8px 14px;
-  border-radius: 8px;
-  transition: var(--transition);
-  white-space: nowrap;
-  cursor: pointer;
-}
-
-.nav-links a:hover,
-.nav-links a.active {
-  color: var(--purple-light);
-  background: var(--purple-glow);
-}
-
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-}
-
-.lang-toggle {
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  color: var(--purple-light);
-  padding: 8px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-family: var(--font-en);
-  font-weight: 700;
-  font-size: 0.85rem;
-  transition: var(--transition);
-}
-
-.lang-toggle:hover {
-  background: var(--purple-dark);
-  color: #fff;
-}
-
-.btn-discord-nav {
-  background: #5865F2;
-  color: #fff;
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: var(--transition);
-}
-
-.btn-discord-nav:hover {
-  background: #4752c4;
-  transform: translateY(-2px);
-}
-
-.nav-hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-}
-
-.nav-hamburger span {
-  width: 22px;
-  height: 2px;
-  background: var(--purple-light);
-  border-radius: 2px;
-  transition: var(--transition);
-}
-
-.hero {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 80px 24px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-  position: relative;
-  z-index: 1;
-  min-height: calc(100vh - 64px);
-}
-
-.hero-title {
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
-  font-weight: 900;
-  line-height: 1.2;
-  background: linear-gradient(135deg, #ffffff 0%, var(--purple-light) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 8px;
-}
-
-.hero-subtitle {
-  font-family: var(--font-en);
-  font-size: 0.85rem;
-  letter-spacing: 4px;
-  color: var(--purple);
-  text-transform: uppercase;
-  margin-bottom: 20px;
-  font-weight: 700;
-}
-
-.hero-desc {
-  font-size: 1.15rem;
-  color: var(--text-muted);
-  line-height: 1.9;
-  margin-bottom: 40px;
-  max-width: 600px;
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 14px 28px;
-  border-radius: var(--radius);
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: 700;
-  text-decoration: none;
-  cursor: pointer;
-  transition: var(--transition);
-  border: none;
-  text-align: center;
-}
-
-.btn-primary {
-  background: var(--purple);
-  color: #fff;
-  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
-}
-
-.btn-primary:hover {
-  background: var(--purple-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 28px rgba(124, 58, 237, 0.45);
-}
-
-.btn-secondary {
-  background: var(--bg-elevated);
-  color: var(--purple-light);
-  border: 1px solid var(--purple);
-}
-
-.btn-secondary:hover {
-  background: var(--purple-dark);
-  color: #fff;
-}
-
-.btn-outline {
-  background: transparent;
-  color: var(--text-muted);
-  border: 1px solid var(--border);
-}
-
-.btn-outline:hover {
-  border-color: var(--purple);
-  color: var(--purple-light);
-}
-
-.btn-discord {
-  background: #5865F2;
-  color: #fff;
-}
-
-.btn-discord:hover {
-  background: #4752c4;
-  transform: translateY(-2px);
-}
-
-.btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  transform: none !important;
-}
-
-.hero-image {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.penguin-img {
-  width: 100%;
-  max-width: 500px;
-  height: auto;
-  object-fit: contain;
-  display: block;
-  filter: drop-shadow(0 0 40px var(--purple-glow));
-  border-radius: var(--radius-lg);
-  background: var(--bg-card);
-  padding: 20px;
-  border: 1px solid var(--border);
-}
-
-.page-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 48px 24px;
-  position: relative;
-  z-index: 1;
-  min-height: calc(100vh - 200px);
-}
-
-.page-header {
-  margin-bottom: 40px;
-}
-
-.page-title {
-  font-size: clamp(1.6rem, 3vw, 2rem);
-  font-weight: 900;
-  color: #fff;
-  margin-bottom: 8px;
-}
-
-.page-desc {
-  color: var(--text-muted);
-  font-size: 1.05rem;
-}
-
-.filters-bar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 32px;
-  align-items: center;
-}
-
-.search-input {
-  flex: 1;
-  min-width: 240px;
-  padding: 14px 18px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  color: var(--text);
-  font-family: inherit;
-  font-size: 0.95rem;
-  outline: none;
-  transition: var(--transition);
-}
-
-.search-input:focus {
-  border-color: var(--purple);
-  box-shadow: 0 0 0 3px var(--purple-glow);
-}
-
-.search-input::placeholder { color: var(--text-muted); }
-
-.filter-select {
-  padding: 14px 18px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  color: var(--text);
-  font-family: inherit;
-  font-size: 0.9rem;
-  outline: none;
-  cursor: pointer;
-}
-
-.filter-select:focus { border-color: var(--purple); }
-
-.paths-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 20px;
-}
-
-.path-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 28px;
-  transition: var(--transition);
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-
-.path-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--purple), var(--purple-light));
-  opacity: 0;
-  transition: var(--transition);
-}
-
-.path-card:hover {
-  border-color: var(--purple);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(124, 58, 237, 0.15);
-}
-
-.path-card:hover::before { opacity: 1; }
-
-.path-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-
-.path-card-title {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #fff;
-  line-height: 1.4;
-}
-
-.path-badge {
-  font-size: 0.72rem;
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-weight: 700;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.badge-beginner { background: rgba(34, 197, 94, 0.15); color: var(--success); }
-.badge-intermediate { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
-.badge-advanced { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
-
-.path-card-desc {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  margin-bottom: 16px;
-  line-height: 1.7;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.path-card-meta {
-  display: flex;
-  gap: 16px;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  flex-wrap: wrap;
-}
-
-.path-card-meta span { display: flex; align-items: center; gap: 4px; }
-
-.beginner-cta {
-  background: linear-gradient(135deg, var(--bg-elevated), var(--bg-card));
-  border: 1px solid var(--purple);
-  border-radius: var(--radius-lg);
-  padding: 24px 32px;
-  margin-bottom: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.beginner-cta p { font-size: 1rem; color: var(--text); }
-.beginner-cta .btn { flex-shrink: 0; }
-
-.path-hero {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 40px;
-  margin-bottom: 32px;
-}
-
-.back-link {
-  display: inline-block;
-  color: var(--purple-light);
-  text-decoration: none;
-  font-size: 0.9rem;
-  margin-bottom: 20px;
-  transition: var(--transition);
-  cursor: pointer;
-  background: none;
-  border: none;
-  font-family: inherit;
-}
-
-.back-link:hover { color: #fff; }
-
-.path-hero h1 {
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  color: #fff;
-  margin-bottom: 12px;
-}
-
-.path-desc-full {
-  color: var(--text-muted);
-  font-size: 1.05rem;
-  line-height: 1.9;
-  margin-bottom: 20px;
-}
-
-.path-skills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 24px;
-}
-
-.skill-tag {
-  background: var(--purple-glow);
-  color: var(--purple-light);
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  border: 1px solid var(--border);
-}
-
-.progress-section { margin-bottom: 32px; }
-
-.progress-label {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
-  font-size: 0.9rem;
-  color: var(--text-muted);
-}
-
-.progress-bar {
-  height: 8px;
-  background: var(--bg-elevated);
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--purple), var(--purple-light));
-  border-radius: 4px;
-  transition: width 0.5s ease;
-  width: 0%;
-}
-
-.module-section { margin-bottom: 32px; }
-
-.module-title {
-  font-size: 1.2rem;
-  color: var(--purple-light);
-  margin-bottom: 16px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border);
-}
-
-.lesson-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.lesson-item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 16px 20px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  transition: var(--transition);
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-}
-
-.lesson-item:hover {
-  border-color: var(--purple);
-  background: var(--bg-elevated);
-}
-
-.lesson-item.completed {
-  border-color: rgba(34, 197, 94, 0.3);
-  background: rgba(34, 197, 94, 0.03);
-}
-
-.lesson-check {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  border: 2px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  font-size: 0.75rem;
-  color: transparent;
-  transition: var(--transition);
-}
-
-.lesson-item.completed .lesson-check {
-  background: var(--success);
-  border-color: var(--success);
-  color: #fff;
-}
-
-.lesson-info { flex: 1; min-width: 0; }
-
-.lesson-name {
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 2px;
-}
-
-.lesson-type {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-
-.lesson-arrow {
-  color: var(--text-muted);
-  font-size: 1.2rem;
-  flex-shrink: 0;
-}
-
-.footer {
-  text-align: center;
-  padding: 32px 24px;
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  border-top: 1px solid var(--border);
-  margin-top: 60px;
-  position: relative;
-  z-index: 1;
-}
-
-.empty-state {
-  text-align: center;
-  padding: 60px 20px;
-  color: var(--text-muted);
-}
-
-.empty-state h3 {
-  color: var(--text);
-  margin-bottom: 8px;
-  font-size: 1.2rem;
-}
-
-@media (max-width: 900px) {
-  .hero {
-    grid-template-columns: 1fr;
-    padding: 40px 24px;
-    gap: 40px;
-    min-height: auto;
-  }
-  .hero-image { order: -1; }
-  .penguin-img { max-width: 320px; padding: 12px; }
-  .nav-links {
-    display: none;
-    position: absolute;
-    top: 64px;
-    left: 0;
-    right: 0;
-    background: var(--bg-elevated);
-    flex-direction: column;
-    padding: 16px;
-    border-bottom: 1px solid var(--border);
-    gap: 4px;
-  }
-  .nav-links.open { display: flex; }
-  .nav-hamburger { display: flex; }
-  .paths-grid { grid-template-columns: 1fr; }
-  .path-hero { padding: 24px; }
-  .beginner-cta { flex-direction: column; text-align: center; }
-  .beginner-cta .btn { width: 100%; }
-}
-
-@media (max-width: 480px) {
-  .hero-actions { flex-direction: column; }
-  .btn { width: 100%; }
-  .filters-bar { flex-direction: column; }
-  .search-input, .filter-select { width: 100%; }
-  .nav-container { padding: 0 16px; }
-  .page-container { padding: 32px 16px; }
-}
+:root{color-scheme:dark;--bg:#09070f;--panel:#100d19;--panel2:#151020;--line:#292137;--purple:#a875ff;--bright:#c7a5ff;--text:#f6f1ff;--muted:#a49ab5;--green:#80e5b1;--radius:17px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Tajawal",sans-serif;min-height:100vh}
+body.en{font-family:"Inter",sans-serif}
+button,input,select{font:inherit}
+button,a{-webkit-tap-highlight-color:transparent}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--bright);outline-offset:3px}
+::selection{background:#7545bd;color:white}
+.topbar{height:68px;position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:#09070fee;border-bottom:1px solid var(--line);backdrop-filter:blur(16px)}
+.brand{display:flex;align-items:center;gap:10px;font-family:Inter,sans-serif;font-weight:800;letter-spacing:1.5px}
+.brand-mark{width:35px;height:35px;display:grid;place-items:center;border:1px solid #644294;border-radius:11px;background:linear-gradient(145deg,#372052,#130d20);color:var(--bright)}
+.top-actions{display:flex;gap:8px;align-items:center}
+.small-btn,.nav-btn,.btn{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:10px;padding:10px 13px;transition:.2s}
+.small-btn:hover,.nav-btn:hover,.btn:hover{border-color:#8055bc;transform:translateY(-1px)}
+.btn.primary{background:linear-gradient(120deg,#8e54d8,#6337a7);border-color:#a47add;font-weight:800}
+.btn.ghost{background:#171021}
+.layout{display:grid;grid-template-columns:220px minmax(0,1fr);max-width:1500px;margin:auto}
+.sidebar{padding:26px 16px;border-inline-end:1px solid var(--line);min-height:calc(100vh - 68px)}
+.side-label{font-size:11px;color:#827590;letter-spacing:1.5px;margin:18px 12px 9px}
+.nav-btn{width:100%;text-align:start;display:flex;gap:11px;align-items:center;margin:5px 0;border-color:transparent;background:transparent;color:var(--muted)}
+.nav-btn .ico{width:22px;text-align:center}
+.nav-btn.active{color:white;background:#211631;border-color:#493064}
+.nav-btn.active .ico{color:var(--bright)}
+.side-bottom{margin-top:30px;padding:14px;border:1px solid var(--line);border-radius:13px;background:#100b18}
+.side-bottom p{font-size:12px;color:var(--muted);line-height:1.8}
+main{min-width:0;padding:30px clamp(16px,4vw,48px) 55px}
+.view{display:none;animation:appear .25s ease}
+.view.active{display:block}
+@keyframes appear{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.hero{position:relative;overflow:hidden;min-height:355px;padding:clamp(25px,5vw,55px);border:1px solid #38234e;border-radius:23px;background:radial-gradient(ellipse at 80% 15%,#40225d66,transparent 48%),linear-gradient(120deg,#171020,#0e0a15 70%);display:grid;grid-template-columns:1.1fr .9fr;gap:25px;align-items:center}
+.eyebrow{font:700 11px Inter,sans-serif;color:var(--bright);letter-spacing:2px;text-transform:uppercase}
+.hero h1{font-size:clamp(39px,6vw,72px);line-height:1.08;margin:17px 0}
+.gradient{background:linear-gradient(100deg,#fff,#bd91ff);color:transparent;background-clip:text}
+.hero p{max-width:510px;color:var(--muted);line-height:1.95}
+.hero-buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.hero-art{min-width:0;display:flex;justify-content:center;align-items:center}
+.hero-art img{width:100%;max-width:400px;max-height:270px;object-fit:contain;filter:drop-shadow(0 0 35px #8b4b8a24)}
+.art-placeholder{width:220px;height:220px;display:grid;place-items:center;border-radius:50%;border:1px solid #51356f;background:radial-gradient(circle,#38204f,#100b18 70%);font-size:85px;box-shadow:0 0 80px #8c49ca1b}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0 34px}
+.stat,.card,.lesson-panel,.content-panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius)}
+.stat{padding:17px}
+.stat span{font-size:12px;color:var(--muted)}
+.stat strong{display:block;font:800 27px Inter,sans-serif;margin-top:8px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin:28px 0 17px}
+.section-head h2,.page-title{margin:7px 0;font-size:clamp(24px,4vw,34px)}
+.section-head p{color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.card{padding:20px;min-width:0;transition:border-color .2s,transform .2s}
+.card:hover{border-color:#64458a;transform:translateY(-2px)}
+.card-icon{width:42px;height:42px;display:grid;place-items:center;background:#261738;border:1px solid #49305f;border-radius:12px;font-size:20px}
+.card h3{font-size:18px;margin:16px 0 8px}
+.card p{color:var(--muted);font-size:13px;line-height:1.9;min-height:48px}
+.card-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:16px}
+.tag{display:inline-block;border:1px solid #41304e;background:#1c1425;color:#c6b1de;border-radius:7px;padding:5px 8px;font-size:11px}
+.text-btn{border:0;background:none;color:var(--bright);padding:8px 0;font-weight:700}
+.text-btn:hover{color:white}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0}
+.search{flex:1;min-width:160px;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:12px 14px;color:white}
+select{background:var(--panel);border:1px solid var(--line);color:white;border-radius:11px;padding:10px;max-width:100%}
+.muted{color:var(--muted);line-height:1.9}
+.empty{padding:28px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:14px}
+.progress{height:6px;background:#292033;border-radius:20px;overflow:hidden;margin:13px 0}
+.progress span{display:block;height:100%;background:linear-gradient(90deg,#8350c4,#c29aff);transition:width .3s}
+.lesson-layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:15px;margin-top:22px}
+.lesson-list{padding:10px;background:var(--panel);border:1px solid var(--line);border-radius:15px;align-self:start}
+.lesson-item{width:100%;padding:12px 10px;text-align:start;background:none;color:var(--muted);border:0;border-radius:9px}
+.lesson-item.active,.lesson-item:hover{background:#241832;color:white}
+.lesson-panel{padding:clamp(18px,3vw,30px)}
+.lesson-panel h2{margin-top:0}
+.lesson-panel h3{margin-top:25px}
+.lesson-panel p,.lesson-panel li{color:#c6bdcf;line-height:2}
+.example{direction:ltr;text-align:left;background:#08070d;border:1px solid var(--line);border-radius:11px;padding:15px;color:#c9a7ff;font:13px/1.9 monospace;overflow:auto}
+.callout{border-inline-start:3px solid var(--purple);background:#1b1326;padding:12px 15px;color:#d6c8e6;border-radius:7px;line-height:1.9}
+.quiz-option{display:flex;gap:10px;align-items:center;padding:14px;margin:9px 0;border:1px solid var(--line);border-radius:11px;cursor:pointer}
+.quiz-option:has(input:checked){border-color:var(--purple);background:#21152f}
+.quiz-option input{accent-color:#ad7aff}
+.result{padding:16px;margin-top:15px;border-radius:12px;background:#161126;border:1px solid #49325f;line-height:1.9}
+.terminal{background:#07070b;border:1px solid #3c2c4d;border-radius:14px;overflow:hidden}
+.terminal-head{padding:12px 15px;background:#17101f;color:var(--muted);font:12px Inter,sans-serif}
+.terminal-output{height:190px;overflow:auto;padding:15px;color:#bca4d8;font:13px/1.9 monospace;white-space:pre-wrap;direction:ltr;text-align:left}
+.terminal-form{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
+.terminal-form input{flex:1;min-width:0;background:#100d16;color:white;border:1px solid var(--line);border-radius:8px;padding:10px;direction:ltr}
+footer{border-top:1px solid var(--line);padding:24px 5%;color:#81758e;font-size:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+dialog{width:min(680px,calc(100% - 24px));max-height:85vh;overflow:auto;background:#100d18;color:var(--text);border:1px solid #49325f;border-radius:18px;padding:25px}
+dialog::backdrop{background:#030207cc;backdrop-filter:blur(5px)}
+.dialog-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.close-btn{background:#25182f;color:white;border:1px solid var(--line);border-radius:9px;padding:8px 12px}
+.mobile-nav{display:none}
+@media(max-width:950px){.layout{grid-template-columns:1fr}.sidebar{display:none}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{grid-template-columns:1fr .65fr}.lesson-layout{grid-template-columns:1fr}.lesson-list{display:flex;overflow:auto;gap:5px}.lesson-item{min-width:130px}}
+@media(max-width:600px){.topbar{height:60px;padding:0 13px}.brand{font-size:13px}.brand-mark{width:31px;height:31px}.top-actions .small-btn{padding:8px;font-size:12px}.layout{padding-bottom:65px}main{padding:17px 13px 30px}.hero{grid-template-columns:1fr;padding:24px;gap:10px;min-height:0}.hero-art{grid-row:1}.hero-art img{max-height:150px;max-width:220px}.art-placeholder{width:125px;height:125px;font-size:55px}.hero h1{font-size:43px;margin:10px 0}.hero p{font-size:13px}.stats{gap:7px}.stat{padding:12px}.stat strong{font-size:22px}.stat span{font-size:10px}.grid{grid-template-columns:1fr}.card{padding:17px}.card p{min-height:0}.section-head{align-items:start;flex-direction:column;gap:5px}.mobile-nav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;z-index:30;bottom:0;left:0;right:0;background:#0d0913f5;border-top:1px solid var(--line);padding:7px 3px calc(7px + env(safe-area-inset-bottom));backdrop-filter:blur(14px)}.mobile-nav button{border:0;background:none;color:var(--muted);font-size:10px;padding:7px 1px;display:grid;gap:4px;justify-items:center}.mobile-nav button.active{color:var(--bright)}.mobile-nav b{font-size:17px}.toolbar>*{width:100%}.lesson-panel{padding:17px}.topbar .brand span:last-child{display:none}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
 <body>
+<header class="topbar">
+  <a class="brand" href="#home" aria-label="Midnight Home" onclick="go('home');return false">
+    <span class="brand-mark">M</span><span>MIDNIGHT</span>
+  </a>
+  <div class="top-actions">
+    <button class="small-btn" id="langBtn" onclick="toggleLang()">🇸🇦 العربية</button>
+    <a class="small-btn" href="https://discord.gg/3Svejf4Kh" target="_blank" rel="noopener noreferrer">Discord ↗</a>
+  </div>
+</header>
 
-<nav class="navbar" id="navbar">
-  <div class="nav-container">
-    <a class="nav-logo" data-nav="home">Midnight</a>
-    <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-    <div class="nav-links" id="navLinks">
-      <a data-nav="paths" data-i18n="nav.paths">المسارات</a>
-      <a data-nav="labs" data-i18n="nav.labs">المختبرات</a>
-      <a data-nav="library" data-i18n="nav.library">المكتبة</a>
-      <a data-nav="cases" data-i18n="nav.cases">القضايا الرقمية</a>
-      <a data-nav="dashboard" data-i18n="nav.dashboard">حسابي</a>
+<div class="layout">
+<aside class="sidebar">
+  <div class="side-label" data-ar="مساحة التعلّم" data-en="LEARNING SPACE">مساحة التعلّم</div>
+  <nav id="sideNav"></nav>
+  <div class="side-bottom">
+    <strong data-ar="رحلتك تبدأ من هنا" data-en="Your journey starts here">رحلتك تبدأ من هنا</strong>
+    <p data-ar="تعلم خطوة بخطوة، وجرّب داخل مختبرات تعليمية آمنة." data-en="Learn step by step in safe educational labs.">تعلم خطوة بخطوة، وجرّب داخل مختبرات تعليمية آمنة.</p>
+    <a class="btn primary" style="display:block;text-align:center" href="https://discord.gg/3Svejf4Kh" target="_blank" rel="noopener noreferrer">Discord ↗</a>
+  </div>
+</aside>
+
+<main>
+<section class="view active" id="home">
+  <div class="hero">
+    <div>
+      <div class="eyebrow">CYBERSECURITY / LEARNING / PRACTICE</div>
+      <h1>MIDNIGHT<br><span class="gradient" data-ar="رحلتك تبدأ من هنا" data-en="Your journey starts here">رحلتك تبدأ من هنا</span></h1>
+      <p data-ar="افهم التقنية بدل ما تحفظها. ابدأ من الشبكات والبرمجة، ثم انتقل إلى الأمن السيبراني عبر دروس عملية ومختبرات محاكاة." data-en="Understand technology instead of memorizing it. Start with networking and coding, then explore cybersecurity through practical lessons and simulated labs.">افهم التقنية بدل ما تحفظها. ابدأ من الشبكات والبرمجة، ثم انتقل إلى الأمن السيبراني عبر دروس عملية ومختبرات محاكاة.</p>
+      <div class="hero-buttons">
+        <button class="btn primary" onclick="go('paths')" data-ar="🎓 ابدأ رحلتك" data-en="🎓 Start learning">🎓 ابدأ رحلتك</button>
+        <button class="btn ghost" onclick="go('assessment')" data-ar="🚀 اختبر مستواك" data-en="🚀 Check your level">🚀 اختبر مستواك</button>
+      </div>
     </div>
-    <div class="nav-actions">
-      <button class="lang-toggle" id="langToggle" aria-label="Switch language">EN</button>
-      <a href="https://discord.gg/3Svejf4Kh" target="_blank" rel="noopener noreferrer" class="btn-discord-nav" aria-label="Discord">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
-      </a>
+    <div class="hero-art">
+      <img src="dead-penguin-cyber-new-background.png" alt="Midnight cyber mascot" onerror="this.style.display='none';this.nextElementSibling.hidden=false">
+      <div class="art-placeholder" hidden>◈</div>
     </div>
   </div>
-</nav>
 
-<main id="app"></main>
+  <div class="stats">
+    <div class="stat"><span data-ar="دروس مكتملة" data-en="Lessons completed">دروس مكتملة</span><strong id="statLessons">0</strong></div>
+    <div class="stat"><span data-ar="مختبرات محلولة" data-en="Labs completed">مختبرات محلولة</span><strong id="statLabs">0</strong></div>
+    <div class="stat"><span data-ar="نقاط التقدم" data-en="XP earned">نقاط التقدم</span><strong id="statXP">0</strong></div>
+  </div>
 
-<footer class="footer">
-  <p data-i18n="footer.text">Midnight — منصة عربية لتعلّم الأمن السيبراني</p>
-</footer>
+  <div class="section-head"><div><div class="eyebrow">YOUR NEXT STEP</div><h2 data-ar="ابدأ من المكان المناسب" data-en="Choose your next step">ابدأ من المكان المناسب</h2></div></div>
+  <div class="grid">
+    <article class="card"><div class="card-icon">🎓</div><h3 data-ar="المسارات التعليمية" data-en="Learning paths">المسارات التعليمية</h3><p data-ar="خطط مرتبة من الأساسيات إلى التخصصات." data-en="Structured paths from fundamentals to specializations.">خطط مرتبة من الأساسيات إلى التخصصات.</p><div class="card-foot"><span class="tag">ACADEMY</span><button class="text-btn" onclick="go('paths')" data-ar="استكشف ←" data-en="Explore →">استكشف ←</button></div></article>
+    <article class="card"><div class="card-icon">🧪</div><h3 data-ar="المختبرات" data-en="Labs">المختبرات</h3><p data-ar="طبّق ما تعلمته داخل تحديات آمنة." data-en="Practice what you learn in safe challenges.">طبّق ما تعلمته داخل تحديات آمنة.</p><div class="card-foot"><span class="tag">PRACTICE</span><button class="text-btn" onclick="go('labs')" data-ar="ابدأ ←" data-en="Start →">ابدأ ←</button></div></article>
+    <article class="card"><div class="card-icon">🔎</div><h3 data-ar="القضايا الرقمية" data-en="Digital cases">القضايا الرقمية</h3><p data-ar="حلل أدلة افتراضية واربط الأحداث ببعضها." data-en="Analyze fictional evidence and connect events.">حلل أدلة افتراضية واربط الأحداث ببعضها.</p><div class="card-foot"><span class="tag">INVESTIGATION</span><button class="text-btn" onclick="go('cases')" data-ar="اكتشف ←" data-en="Investigate →">اكتشف ←</button></div></article>
+  </div>
+</section>
+
+<section class="view" id="paths">
+  <div class="eyebrow">MIDNIGHT ACADEMY</div><h1 class="page-title" data-ar="المسارات التعليمية" data-en="Learning paths">المسارات التعليمية</h1>
+  <p class="muted" data-ar="اختر مجالًا وابدأ من مستواك. جميع المسارات متاحة للجميع." data-en="Choose a field and learn at your own level. Every path is open to everyone.">اختر مجالًا وابدأ من مستواك. جميع المسارات متاحة للجميع.</p>
+  <div class="toolbar"><input class="search" id="pathSearch" placeholder="ابحث عن مسار..." data-ar-placeholder="ابحث عن مسار..." data-en-placeholder="Search paths..." oninput="renderPaths()"><select id="pathLevel" onchange="renderPaths()"><option value="all" data-ar="كل المستويات" data-en="All levels">كل المستويات</option><option value="beginner" data-ar="مبتدئ" data-en="Beginner">مبتدئ</option><option value="intermediate" data-ar="متوسط" data-en="Intermediate">متوسط</option></select></div>
+  <div class="grid" id="pathGrid"></div>
+</section>
+
+<section class="view" id="lesson">
+  <button class="btn ghost" onclick="go('paths')" data-ar="← رجوع للمسارات" data-en="← Back to paths">← رجوع للمسارات</button>
+  <div class="lesson-layout"><div class="lesson-list" id="lessonList"></div><article class="lesson-panel" id="lessonContent"></article></div>
+</section>
+
+<section class="view" id="labs">
+  <div class="eyebrow">SAFE PRACTICE</div><h1 class="page-title" data-ar="المختبرات" data-en="Labs">المختبرات</h1>
+  <p class="muted" data-ar="تحديات تعليمية تعمل داخل المتصفح. لا يتم فحص أجهزة أو مواقع حقيقية." data-en="Browser-based educational challenges. No real systems or websites are scanned.">تحديات تعليمية تعمل داخل المتصفح. لا يتم فحص أجهزة أو مواقع حقيقية.</p>
+  <div class="toolbar"><input class="search" id="labSearch" placeholder="ابحث في المختبرات..." data-ar-placeholder="ابحث في المختبرات..." data-en-placeholder="Search labs..." oninput="renderLabs()"><select id="labCategory" onchange="renderLabs()"><option value="all" data-ar="كل المجالات" data-en="All topics">كل المجالات</option><option value="network" data-ar="شبكات" data-en="Networking">شبكات</option><option value="linux" data-ar="لينكس" data-en="Linux">لينكس</option><option value="web" data-ar="أمن الويب" data-en="Web security">أمن الويب</option><option value="forensics" data-ar="تحقيق رقمي" data-en="Forensics">تحقيق رقمي</option></select></div>
+  <div class="grid" id="labGrid"></div>
+</section>
+
+<section class="view" id="labwork">
+  <button class="btn ghost" onclick="go('labs')" data-ar="← كل المختبرات" data-en="← All labs">← كل المختبرات</button>
+  <div class="content-panel" style="padding:22px;margin-top:15px"><div class="eyebrow">SIMULATED ENVIRONMENT</div><h1 class="page-title" id="labTitle"></h1><p class="muted" id="labDescription"></p><div class="callout" id="labHint"></div><div id="labTask" style="margin-top:20px"></div><div id="labFeedback" class="result" hidden></div></div>
+</section>
+
+<section class="view" id="assessment">
+  <div class="eyebrow">SKILL CHECK</div><h1 class="page-title" data-ar="اختبر مستواك" data-en="Check your level">اختبر مستواك</h1>
+  <p class="muted" data-ar="اختبار قصير يساعدك على اختيار بداية مناسبة. لا يمنعك من دخول أي مسار." data-en="A short quiz to help you choose a starting point. It never locks any path.">اختبار قصير يساعدك على اختيار بداية مناسبة. لا يمنعك من دخول أي مسار.</p>
+  <div class="content-panel" style="padding:22px;max-width:750px" id="assessmentBox"></div>
+</section>
+
+<section class="view" id="cases">
+  <div class="eyebrow">DIGITAL FORENSICS</div><h1 class="page-title" data-ar="القضايا الرقمية" data-en="Digital cases">القضايا الرقمية</h1>
+  <p class="muted" data-ar="قضايا خيالية بأدلة قابلة للمراجعة. اقرأ السجلات، كوّن فرضية، ثم أجب." data-en="Fictional cases with reviewable evidence. Inspect logs, form a theory, then answer.">قضايا خيالية بأدلة قابلة للمراجعة. اقرأ السجلات، كوّن فرضية، ثم أجب.</p>
+  <div class="grid" id="caseGrid"></div>
+</section>
+
+<section class="view" id="casework">
+  <button class="btn ghost" onclick="go('cases')" data-ar="← كل القضايا" data-en="← All cases">← كل القضايا</button>
+  <div class="content-panel" style="padding:22px;margin-top:15px"><h1 class="page-title" id="caseTitle"></h1><p class="muted" id="caseIntro"></p><h3 data-ar="الأدلة" data-en="Evidence">الأدلة</h3><div class="example" id="caseEvidence"></div><div id="caseQuestion" style="margin-top:20px"></div><div id="caseFeedback" class="result" hidden></div></div>
+</section>
+
+<section class="view" id="book">
+  <div class="eyebrow">MIDNIGHT LIBRARY</div><h1 class="page-title" data-ar="المكتبة" data-en="Library">المكتبة</h1>
+  <p class="muted" data-ar="مواد مختارة لتبدأ صح، مع أمثلة ومفاهيم أساسية." data-en="Selected resources to build solid foundations with practical examples.">مواد مختارة لتبدأ صح، مع أمثلة ومفاهيم أساسية.</p>
+  <div class="grid" id="bookGrid"></div>
+  <article class="lesson-panel" id="bookReader" hidden style="margin-top:18px"></article>
+</section>
+
+<section class="view" id="glossary">
+  <div class="eyebrow">REFERENCE</div><h1 class="page-title" data-ar="قاموس المصطلحات" data-en="Glossary">قاموس المصطلحات</h1>
+  <input class="search" id="glossSearch" style="width:100%;margin:15px 0" placeholder="ابحث عن مصطلح..." data-ar-placeholder="ابحث عن مصطلح..." data-en-placeholder="Search terms..." oninput="renderGlossary()">
+  <div class="grid" id="glossGrid"></div>
+</section>
+
+<section class="view" id="profile">
+  <div class="eyebrow">YOUR PROGRESS</div><h1 class="page-title" data-ar="حسابي وتقدمي" data-en="My progress">حسابي وتقدمي</h1>
+  <div class="stats"><div class="stat"><span data-ar="الدروس" data-en="Lessons">الدروس</span><strong id="profileLessons">0</strong></div><div class="stat"><span data-ar="المختبرات" data-en="Labs">المختبرات</span><strong id="profileLabs">0</strong></div><div class="stat"><span data-ar="النقاط" data-en="XP">النقاط</span><strong id="profileXP">0</strong></div></div>
+  <div class="content-panel" style="padding:22px"><h2 data-ar="إنجازاتك" data-en="Achievements">إنجازاتك</h2><div id="achievements" class="grid"></div><h2 style="margin-top:30px" data-ar="التقدم في المسارات" data-en="Path progress">التقدم في المسارات</h2><div id="pathProgress"></div><button class="btn" style="margin-top:20px" onclick="resetProgress()" data-ar="إعادة ضبط التقدم" data-en="Reset progress">إعادة ضبط التقدم</button></div>
+</section>
+</main>
+</div>
+
+<nav class="mobile-nav" id="mobileNav"></nav>
+<footer><span>© Midnight • <span data-ar="جميع الحقوق محفوظة" data-en="All rights reserved">جميع الحقوق محفوظة</span></span><span>MIDNIGHT — YOUR JOURNEY STARTS HERE</span></footer>
+<dialog id="infoDialog"><div class="dialog-head"><h2 id="dialogTitle"></h2><button class="close-btn" onclick="infoDialog.close()">✕</button></div><div id="dialogBody"></div></dialog>
 
 <script>
-/* ============================================================
-   Midnight — Single File App
-   ============================================================ */
+"use strict";
+const $=id=>document.getElementById(id);
+const storeKey="midnight-academy-v1";
+const initial={lang:"ar",lessons:[],labs:[],xp:0,answers:[],caseSolved:[]};
+let state=loadState(),currentPath=0,currentLesson=0,labActive=0,caseActive=0,quizIndex=0,quizAnswers={};
 
-/* ---------- i18n Translations ---------- */
-const I18N = {
-  ar: {
-    'nav.paths': 'المسارات',
-    'nav.labs': 'المختبرات',
-    'nav.library': 'المكتبة',
-    'nav.cases': 'القضايا الرقمية',
-    'nav.dashboard': 'حسابي',
-    'hero.title': 'رحلتك تبدأ من هنا',
-    'hero.subtitle': 'YOUR JOURNEY STARTS HERE',
-    'hero.desc': 'ابدأ من الأساسيات، تعلّم كيف تعمل الشبكات والأنظمة، وطبّق معرفتك في مختبرات وتحديات عملية، واكتشف المجال السيبراني اللي يناسبك.',
-    'hero.start': '🎓 ابدأ رحلتك',
-    'hero.assess': '🚀 طوّر مستواك',
-    'hero.labs': '🧪 استكشف المختبرات',
-    'hero.library': '📚 المكتبة',
-    'hero.cases': '🔎 القضايا الرقمية',
-    'hero.discord': '💬 انضم إلى ديسكورد',
-    'footer.text': 'Midnight — منصة عربية لتعلّم الأمن السيبراني',
-    'paths.title': 'اختر مسارك وابدأ التعلّم',
-    'paths.desc': 'اختر المجال اللي يناسبك. كل مسار يحتوي على وحدات ودروس ومختبرات واختبار نهائي.',
-    'paths.search': 'ابحث عن مسار...',
-    'paths.filterLevel': 'كل المستويات',
-    'paths.beginner': 'مبتدئ',
-    'paths.intermediate': 'متوسط',
-    'paths.advanced': 'متقدم',
-    'paths.beginnerCta': 'أنا مبتدئ وأبي أبدأ من الصفر',
-    'paths.beginnerCtaBtn': 'ابدأ بالأساسيات',
-    'paths.lessons': 'درس',
-    'paths.labs': 'مختبر',
-    'paths.empty': 'ما في مسارات مطابقة لبحثك.',
-    'path.back': '← العودة للمسارات',
-    'path.start': 'ابدأ التعلّم',
-    'path.continue': 'تابع من حيث توقفت',
-    'path.progress': 'نسبة الإنجاز',
-    'path.skills': 'المهارات التي ستكتسبها',
-    'path.modules': 'الوحدات والدروس',
-    'path.completed': 'مكتمل',
-    'path.notStarted': 'لم يبدأ',
-    'path.notFound': 'المسار غير موجود.',
-    'path.level': 'المستوى',
-    'common.loading': 'جاري التحميل...',
-    'common.error': 'حدث خطأ.',
-    'assessment.title': 'خلنا نعرف مستواك ونختار لك المسار المناسب',
-    'assessment.desc': 'اختبار اختياري يساعدنا نفهم معرفتك الحالية ونقترح عليك نقطة بداية مناسبة. ما يمنعك من دخول أي مسار.',
-    'assessment.start': 'ابدأ الاختبار',
-    'assessment.prev': 'السابق',
-    'assessment.next': 'التالي',
-    'assessment.finish': 'عرض النتيجة',
-    'assessment.dontKnow': 'ما أعرف',
-    'assessment.question': 'السؤال',
-    'assessment.of': 'من',
-    'assessment.resultsTitle': 'نتيجتك والتوصيات',
-    'assessment.level': 'مستواك التقريبي',
-    'assessment.strong': 'المجالات التي أظهرت فيها فهمًا جيدًا',
-    'assessment.weak': 'الموضوعات التي تحتاج إلى تعلّمها',
-    'assessment.recommended': 'المسارات المناسبة لك',
-    'assessment.why': 'سبب الاقتراح',
-    'assessment.startPath': 'ابدأ هذا المسار',
-    'assessment.retake': 'إعادة الاختبار',
-    'assessment.mustAnswer': 'اختر إجابة للمتابعة.',
-    'assessment.levelBeginner': 'مبتدئ',
-    'assessment.levelIntermediate': 'متوسط',
-    'assessment.levelAdvanced': 'متقدم'
-  },
-  en: {
-    'nav.paths': 'Paths',
-    'nav.labs': 'Labs',
-    'nav.library': 'Library',
-    'nav.cases': 'Digital Cases',
-    'nav.dashboard': 'My Account',
-    'hero.title': 'Your Journey Starts Here',
-    'hero.subtitle': 'YOUR JOURNEY STARTS HERE',
-    'hero.desc': 'Start with the fundamentals, learn how networks and systems work, apply your knowledge in hands-on labs and challenges, and discover the cybersecurity field that suits you.',
-    'hero.start': '🎓 Start Your Journey',
-    'hero.assess': '🚀 Level Up',
-    'hero.labs': '🧪 Explore Labs',
-    'hero.library': '📚 Library',
-    'hero.cases': '🔎 Digital Cases',
-    'hero.discord': '💬 Join Discord',
-    'footer.text': 'Midnight — Arabic cybersecurity learning platform',
-    'paths.title': 'Choose Your Path and Start Learning',
-    'paths.desc': 'Pick the field that suits you. Each path includes modules, lessons, labs, and a final exam.',
-    'paths.search': 'Search paths...',
-    'paths.filterLevel': 'All Levels',
-    'paths.beginner': 'Beginner',
-    'paths.intermediate': 'Intermediate',
-    'paths.advanced': 'Advanced',
-    'paths.beginnerCta': 'I am a beginner and want to start from scratch',
-    'paths.beginnerCtaBtn': 'Start with fundamentals',
-    'paths.lessons': 'lessons',
-    'paths.labs': 'labs',
-    'paths.empty': 'No paths match your search.',
-    'path.back': '← Back to Paths',
-    'path.start': 'Start Learning',
-    'path.continue': 'Continue Where You Left Off',
-    'path.progress': 'Progress',
-    'path.skills': 'Skills You Will Gain',
-    'path.modules': 'Modules & Lessons',
-    'path.completed': 'Completed',
-    'path.notStarted': 'Not Started',
-    'path.notFound': 'Path not found.',
-    'path.level': 'Level',
-    'common.loading': 'Loading...',
-    'common.error': 'An error occurred.',
-    'assessment.title': 'Let Us Know Your Level and Recommend a Path',
-    'assessment.desc': 'An optional quiz to understand your current knowledge and suggest a suitable starting point. It will not block you from any path.',
-    'assessment.start': 'Start Quiz',
-    'assessment.prev': 'Previous',
-    'assessment.next': 'Next',
-    'assessment.finish': 'Show Results',
-    'assessment.dontKnow': 'I do not know',
-    'assessment.question': 'Question',
-    'assessment.of': 'of',
-    'assessment.resultsTitle': 'Your Result and Recommendations',
-    'assessment.level': 'Your Approximate Level',
-    'assessment.strong': 'Areas Where You Showed Good Understanding',
-    'assessment.weak': 'Topics You Need to Learn',
-    'assessment.recommended': 'Recommended Paths',
-    'assessment.why': 'Why This Recommendation',
-    'assessment.startPath': 'Start This Path',
-    'assessment.retake': 'Retake Quiz',
-    'assessment.mustAnswer': 'Please choose an answer to continue.',
-    'assessment.levelBeginner': 'Beginner',
-    'assessment.levelIntermediate': 'Intermediate',
-    'assessment.levelAdvanced': 'Advanced'
-  }
-};
-
-/* نهاية الجزء الأول */
-/* ============================================================
-   الجزء الثاني — نظام اللغة، التخزين، الراوتر، والصفحة الرئيسية
-   ============================================================ */
-
-/* ---------- اللغة ---------- */
-const LANG_KEY = 'midnight-lang';
-
-function getLang() {
-  try {
-    const saved = localStorage.getItem(LANG_KEY);
-    if (saved === 'ar' || saved === 'en') return saved;
-  } catch (e) {}
-  return 'ar';
+function loadState(){
+ try{return {...initial,...JSON.parse(localStorage.getItem(storeKey)||"{}")}}catch{return {...initial}}
 }
-
-function setLang(lang) {
-  if (lang !== 'ar' && lang !== 'en') return;
-  try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
-  applyLang();
+function save(){
+ try{localStorage.setItem(storeKey,JSON.stringify(state))}catch{}
+ updateStats();
 }
-
-function t(key) {
-  const lang = getLang();
-  return (I18N[lang] && I18N[lang][key]) || I18N.ar[key] || key;
-}
-
-function applyLang() {
-  const lang = getLang();
-  document.documentElement.lang = lang;
-  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-
-  document.querySelectorAll('[data-i18n]').forEach(function(el) {
-    const key = el.getAttribute('data-i18n');
-    const val = t(key);
-    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-      el.placeholder = val;
-    } else {
-      el.textContent = val;
-    }
-  });
-
-  const toggle = document.getElementById('langToggle');
-  if (toggle) toggle.textContent = lang === 'ar' ? 'EN' : 'ع';
-
-  document.dispatchEvent(new CustomEvent('langChanged', { detail: { lang: lang } }));
-}
-
-/* ---------- التخزين المحلي (تقدم المستخدم) ---------- */
-const STORAGE_KEY = 'midnight-progress-v1';
-
-function getProgress() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return { lessons: {}, labs: {}, xp: 0, pathsStarted: [] };
-    const data = JSON.parse(raw);
-    return {
-      lessons: data.lessons || {},
-      labs: data.labs || {},
-      xp: data.xp || 0,
-      pathsStarted: data.pathsStarted || []
-    };
-  } catch (e) {
-    return { lessons: {}, labs: {}, xp: 0, pathsStarted: [] };
-  }
-}
-
-function saveProgress(p) {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); } catch (e) {}
-}
-
-function isLessonDone(pathId, lessonId) {
-  const p = getProgress();
-  return !!(p.lessons[pathId] && p.lessons[pathId][lessonId]);
-}
-
-function markLessonDone(pathId, lessonId) {
-  const p = getProgress();
-  if (!p.lessons[pathId]) p.lessons[pathId] = {};
-  if (p.lessons[pathId][lessonId]) return;
-  p.lessons[pathId][lessonId] = true;
-  p.xp += 10;
-  if (p.pathsStarted.indexOf(pathId) === -1) p.pathsStarted.push(pathId);
-  saveProgress(p);
-}
-
-function markPathStarted(pathId) {
-  const p = getProgress();
-  if (p.pathsStarted.indexOf(pathId) === -1) {
-    p.pathsStarted.push(pathId);
-    saveProgress(p);
-  }
-}
-
-function countDoneLessons(pathId, allLessons) {
-  let done = 0;
-  allLessons.forEach(function(l) { if (isLessonDone(pathId, l.id)) done++; });
-  return done;
-}
-
-/* ---------- بيانات المسارات ---------- */
-const PATHS_DATA = [
-  {
-    id: 'networking',
-    title: { ar: 'أساسيات الشبكات والإنترنت', en: 'Networking & Internet Fundamentals' },
-    desc: { ar: 'تعلّم كيف تتواصل الأجهزة، وما هي عناوين IP، والبروتوكولات، وكيف تنتقل البيانات عبر الشبكات.', en: 'Learn how devices communicate, what IP addresses are, protocols, and how data travels across networks.' },
-    level: 'beginner',
-    skills: ['TCP/IP', 'IP Addressing', 'DNS', 'DHCP', 'OSI Model', 'Wireshark'],
-    modules: [
-      { title: { ar: 'الوحدة الأولى: مقدمة في الشبكات', en: 'Module 1: Introduction to Networking' }, lessons: [
-        { id: 'net-1', title: { ar: 'ما هي الشبكات؟', en: 'What Are Networks?' } },
-        { id: 'net-2', title: { ar: 'عناوين IP', en: 'IP Addresses' } },
-        { id: 'net-3', title: { ar: 'قناع الشبكة', en: 'Subnet Mask' } },
-        { id: 'net-4', title: { ar: 'عنوان MAC وبروتوكول ARP', en: 'MAC Address & ARP' } }
-      ]},
-      { title: { ar: 'الوحدة الثانية: الخدمات والبروتوكولات', en: 'Module 2: Services & Protocols' }, lessons: [
-        { id: 'net-5', title: { ar: 'DNS وDHCP', en: 'DNS & DHCP' } },
-        { id: 'net-6', title: { ar: 'المنافذ والبروتوكولات', en: 'Ports & Protocols' } },
-        { id: 'net-7', title: { ar: 'كيف تنتقل البيانات؟ OSI وTCP/IP', en: 'How Data Travels: OSI & TCP/IP' } },
-        { id: 'net-8', title: { ar: 'أجهزة الشبكات', en: 'Network Devices' } }
-      ]},
-      { title: { ar: 'الوحدة الثالثة: الحماية والتحليل', en: 'Module 3: Security & Analysis' }, lessons: [
-        { id: 'net-9', title: { ar: 'حماية الشبكات اللاسلكية', en: 'Wireless Network Security' } },
-        { id: 'net-10', title: { ar: 'أدوات استكشاف مشاكل الشبكة', en: 'Network Troubleshooting Tools' } },
-        { id: 'net-11', title: { ar: 'تحليل حركة الشبكة مع Wireshark', en: 'Traffic Analysis with Wireshark' } },
-        { id: 'net-12', title: { ar: 'حماية الشبكات', en: 'Network Hardening' } }
-      ]}
-    ]
-  },
-  {
-    id: 'linux',
-    title: { ar: 'تعلّم لينكس وكالي لينكس', en: 'Linux & Kali Linux' },
-    desc: { ar: 'تعلم نظام لينكس من الصفر: الطرفية، الصلاحيات، إدارة الحزم، الخدمات، والشبكات.', en: 'Learn Linux from scratch: terminal, permissions, package management, services, and networking.' },
-    level: 'beginner',
-    skills: ['Bash', 'File Permissions', 'systemd', 'SSH', 'apt', 'Kali Tools'],
-    modules: [
-      { title: { ar: 'الوحدة الأولى: الأساسيات', en: 'Module 1: Basics' }, lessons: [
-        { id: 'linux-1', title: { ar: 'ما هو لينكس؟', en: 'What is Linux?' } },
-        { id: 'linux-2', title: { ar: 'بنية نظام الملفات', en: 'Filesystem Structure' } },
-        { id: 'linux-3', title: { ar: 'الطرفية والأوامر الأساسية', en: 'Terminal & Basic Commands' } },
-        { id: 'linux-4', title: { ar: 'المستخدمون والمجموعات', en: 'Users & Groups' } }
-      ]},
-      { title: { ar: 'الوحدة الثانية: الإدارة', en: 'Module 2: Administration' }, lessons: [
-        { id: 'linux-5', title: { ar: 'الصلاحيات chmod وchown', en: 'Permissions chmod & chown' } },
-        { id: 'linux-6', title: { ar: 'إدارة الحزم', en: 'Package Management' } },
-        { id: 'linux-7', title: { ar: 'الخدمات وsystemd', en: 'Services & systemd' } },
-        { id: 'linux-8', title: { ar: 'سجلات النظام', en: 'System Logs' } }
-      ]},
-      { title: { ar: 'الوحدة الثالثة: الشبكات والاختراق الأخلاقي', en: 'Module 3: Networking & Ethical Hacking' }, lessons: [
-        { id: 'linux-9', title: { ar: 'أوامر الشبكة في لينكس', en: 'Linux Networking Commands' } },
-        { id: 'linux-10', title: { ar: 'SSH والاتصال الآمن', en: 'SSH & Secure Connection' } },
-        { id: 'linux-11', title: { ar: 'Bash Scripting', en: 'Bash Scripting' } },
-        { id: 'linux-12', title: { ar: 'مقدمة إلى كالي لينكس', en: 'Intro to Kali Linux' } }
-      ]}
-    ]
-  },
-  {
-    id: 'python',
-    title: { ar: 'تعلّم بايثون من الصفر', en: 'Python from Scratch' },
-    desc: { ar: 'ابدأ من المتغيرات والحلقات والدوال، وانتقل إلى مشاريع تحليل سجلات وأدوات أمنية.', en: 'Start with variables, loops, functions, and move to log analysis and security tooling projects.' },
-    level: 'beginner',
-    skills: ['Python Basics', 'File I/O', 'Regex', 'JSON/CSV', 'Hashing', 'Log Parsing'],
-    modules: [
-      { title: { ar: 'الوحدة الأولى: الأساسيات', en: 'Module 1: Basics' }, lessons: [
-        { id: 'py-1', title: { ar: 'المتغيرات وأنواع البيانات', en: 'Variables & Data Types' } },
-        { id: 'py-2', title: { ar: 'الشروط والحلقات', en: 'Conditionals & Loops' } },
-        { id: 'py-3', title: { ar: 'القوائم والقواميس', en: 'Lists & Dictionaries' } },
-        { id: 'py-4', title: { ar: 'الدوال', en: 'Functions' } }
-      ]},
-      { title: { ar: 'الوحدة الثانية: الملفات والبيانات', en: 'Module 2: Files & Data' }, lessons: [
-        { id: 'py-5', title: { ar: 'معالجة الأخطاء', en: 'Error Handling' } },
-        { id: 'py-6', title: { ar: 'قراءة وكتابة الملفات', en: 'File I/O' } },
-        { id: 'py-7', title: { ar: 'JSON وCSV', en: 'JSON & CSV' } },
-        { id: 'py-8', title: { ar: 'التعبيرات النمطية Regex', en: 'Regular Expressions' } }
-      ]},
-      { title: { ar: 'الوحدة الثالثة: مشاريع أمنية', en: 'Module 3: Security Projects' }, lessons: [
-        { id: 'py-9', title: { ar: 'تحليل سجلات الوصول', en: 'Access Log Analysis' } },
-        { id: 'py-10', title: { ar: 'حساب بصمات الملفات', en: 'File Hashing' } },
-        { id: 'py-11', title: { ar: 'استخراج مؤشرات الاختراق', en: 'IOC Extraction' } },
-        { id: 'py-12', title: { ar: 'أداة فحص بسيطة', en: 'Simple Scanner Tool' } }
-      ]}
-    ]
-  },
-  {
-    id: 'websec',
-    title: { ar: 'أمن المواقع الإلكترونية', en: 'Web Application Security' },
-    desc: { ar: 'افهم HTTP، الكوكيز، الجلسات، وثغرات OWASP مثل SQLi وXSS وIDOR.', en: 'Understand HTTP, cookies, sessions, and OWASP vulnerabilities like SQLi, XSS, and IDOR.' },
-    level: 'intermediate',
-    skills: ['HTTP', 'OWASP Top 10', 'SQLi', 'XSS', 'CSRF', 'Burp Suite'],
-    modules: [
-      { title: { ar: 'الوحدة الأولى: أساسيات الويب', en: 'Module 1: Web Basics' }, lessons: [
-        { id: 'web-1', title: { ar: 'كيف يعمل المتصفح والخادم', en: 'Browser & Server' } },
-        { id: 'web-2', title: { ar: 'طلبات HTTP والرؤوس', en: 'HTTP Requests & Headers' } },
-        { id: 'web-3', title: { ar: 'الكوكيز والجلسات', en: 'Cookies & Sessions' } },
-        { id: 'web-4', title: { ar: 'المصادقة والصلاحيات', en: 'Auth & Authorization' } }
-      ]},
-      { title: { ar: 'الوحدة الثانية: ثغرات شائعة', en: 'Module 2: Common Vulnerabilities' }, lessons: [
-        { id: 'web-5', title: { ar: 'حقن SQL', en: 'SQL Injection' } },
-        { id: 'web-6', title: { ar: 'XSS', en: 'Cross-Site Scripting' } },
-        { id: 'web-7', title: { ar: 'IDOR', en: 'IDOR' } },
-        { id: 'web-8', title: { ar: 'CSRF وSSRF', en: 'CSRF & SSRF' } }
-      ]},
-      { title: { ar: 'الوحدة الثالثة: الأدوات والتطبيق', en: 'Module 3: Tooling' }, lessons: [
-        { id: 'web-9', title: { ar: 'رفع الملفات واجتياز المسارات', en: 'File Upload & Path Traversal' } },
-        { id: 'web-10', title: { ar: 'مقدمة إلى Burp Suite', en: 'Intro to Burp Suite' } },
-        { id: 'web-11', title: { ar: 'OWASP Top 10', en: 'OWASP Top 10' } },
-        { id: 'web-12', title: { ar: 'كتابة تقرير ثغرة', en: 'Writing a Vulnerability Report' } }
-      ]}
-    ]
-  }
+const en=()=>state.lang==="en";
+const txt=(ar,english)=>en()?english:ar;
+const paths=[
+{id:"network",icon:"🌐",level:"beginner",ar:"أساسيات الشبكات",en:"Network foundations",desc:"افهم IP وDNS والمنافذ وكيف تتواصل الأجهزة.",descEn:"Understand IP, DNS, ports and how devices communicate.",lessons:[
+["كيف تعمل الشبكات؟","How networks work","الشبكة تربط الأجهزة لتبادل البيانات. الشبكة المحلية LAN تربط أجهزة في مكان محدود، أما WAN فتربط شبكات عبر مسافات أكبر. الإنترنت شبكة ضخمة من الشبكات.","A network connects devices so they can exchange data. A LAN covers a limited area; a WAN connects networks over larger distances.","تخيل أنك ترسل رسالة لصديقك: يحتاج جهازك إلى معرفة وجهة البيانات، ثم تمر عبر الشبكات المناسبة حتى تصل.","Imagine sending a message to a friend: your device needs a destination, and the data travels through networks to reach it."],
+["IP و MAC","IP and MAC addresses","عنوان IP يساعد على توجيه البيانات عبر الشبكات. أما MAC فعنوان مرتبط بواجهة الشبكة ويُستخدم في الاتصال المحلي. لكل منهما وظيفة مختلفة.","An IP address helps route data between networks. A MAC address identifies a network interface for local communication. They serve different purposes.","مثال عنوان خاص شائع: 192.168.1.10. غالبًا يكون عنوان الراوتر في الشبكة نفسها 192.168.1.1.","Example private address: 192.168.1.10. A router on that network commonly uses 192.168.1.1."],
+["DNS و DHCP","DNS and DHCP","DNS يحوّل اسم النطاق إلى معلومات مثل عنوان IP. DHCP يوزّع إعدادات الشبكة تلقائيًا على الأجهزة.","DNS resolves domain names to information such as IP addresses. DHCP automatically assigns network settings to devices.","DNS مثل دليل جهات الاتصال، وDHCP مثل موظف يسلّمك إعدادات الاتصال عند دخولك الشبكة.","DNS is like a contacts directory; DHCP is like receiving network settings when joining a network."],
+["المنافذ والبروتوكولات","Ports and protocols","المنفذ يحدد الخدمة المقصودة داخل الجهاز. TCP يوفّر نقلًا موثوقًا، بينما UDP يفضّل السرعة والبساطة في حالات كثيرة.","A port identifies a service on a device. TCP provides reliable delivery, while UDP often prioritizes simplicity and speed.","HTTP يستخدم غالبًا المنفذ 80 وHTTPS المنفذ 443 وDNS غالبًا المنفذ 53. هذه قيم شائعة وليست وصفًا لكل إعداد.","HTTP commonly uses port 80, HTTPS 443, and DNS 53. These are common defaults, not every possible configuration."],
+["الراوتر و NAT","Routers and NAT","الراوتر يوجّه البيانات بين الشبكات. NAT يسمح عادةً لأجهزة بعناوين خاصة بمشاركة عنوان عام عند الاتصال بالإنترنت.","A router forwards data between networks. NAT commonly lets private-address devices share a public address when accessing the internet.","فكّر في الراوتر كموظف توجيه يرسل كل حزمة إلى المسار المناسب.","Think of a router as a dispatcher forwarding each packet along the appropriate route."]
+]},
+{id:"linux",icon:"🐧",level:"beginner",ar:"لينكس والطرفية",en:"Linux and terminal",desc:"تعلم الملفات والأوامر والصلاحيات من البداية.",descEn:"Learn files, commands and permissions from scratch.",lessons:[
+["ما هو لينكس؟","What is Linux?","لينكس نظام تشغيل شائع في الخوادم والأدوات الأمنية. التوزيعات مثل Ubuntu وKali تختلف في الحزم والإعدادات.","Linux is widely used on servers and in security tools. Distributions such as Ubuntu and Kali differ in packages and configuration.","تعلم المفاهيم الأساسية أولًا؛ اسم التوزيعة أقل أهمية من فهم النظام.","Learn the fundamentals first; the distribution matters less than understanding the system."],
+["الملفات والأوامر","Files and commands","تساعدك pwd على معرفة المجلد الحالي، وls على عرض محتوياته، وcd على الانتقال بين المجلدات.","pwd shows your current directory, ls lists its contents, and cd changes directories.","نفّذ هذه الأوامر في بيئة لينكس تملكها أو مختبر تعليمي.","Run these commands in your own Linux environment or an educational lab."],
+["الصلاحيات","Permissions","تحدد الصلاحيات من يستطيع قراءة الملف أو تعديله أو تشغيله. لا تستخدم صلاحيات واسعة بلا حاجة.","Permissions control who can read, modify or execute files. Avoid overly broad permissions.","راجع مالك الملف وصلاحياته قبل تغييرها، خصوصًا في الأنظمة المهمة.","Check ownership and permissions before changing them, especially on important systems."]
+]},
+{id:"python",icon:"🐍",level:"beginner",ar:"بايثون من الصفر",en:"Python from scratch",desc:"متغيرات وشروط ودوال ومشاريع تحليل بسيطة.",descEn:"Variables, conditions, functions and simple analysis projects.",lessons:[
+["المتغيرات والأنواع","Variables and types","المتغير يخزن قيمة يمكن استخدامها لاحقًا. من الأنواع الشائعة النصوص والأعداد والقيم المنطقية.","A variable stores a value for later use. Common types include strings, numbers and booleans.","مثال: name = 'Midnight' ثم اطبع قيمة المتغير.","Example: name = 'Midnight', then print the variable."],
+["الشروط والحلقات","Conditions and loops","تستخدم if لاتخاذ قرار، وتستخدم for لتكرار عملية على عناصر أو مجموعة قيم.","Use if for decisions and for loops to repeat work over items or values.","جرّب كتابة برنامج يطبع الأعداد من 1 إلى 5.","Try writing a program that prints numbers from 1 to 5."],
+["الدوال والملفات","Functions and files","الدالة تجمع خطوات قابلة لإعادة الاستخدام. وتتيح الملفات حفظ البيانات وقراءتها عند الحاجة.","Functions group reusable steps. Files let programs save and read data.","مشروع تدريبي: اقرأ ملف سجلات تجريبيًا وعدّ عدد الأسطر.","Practice project: read a sample log file and count its lines."]
+]},
+{id:"web",icon:"🛡️",level:"intermediate",ar:"أمن تطبيقات الويب",en:"Web application security",desc:"HTTP والجلسات وأهم مخاطر تطبيقات الويب.",descEn:"HTTP, sessions and common web application risks.",lessons:[
+["كيف يعمل الويب؟","How the web works","يرسل المتصفح طلب HTTP إلى الخادم، ثم يستقبل استجابة قد تحتوي HTML أو بيانات أخرى.","A browser sends an HTTP request to a server and receives a response that may contain HTML or other data.","تعرّف على الطلبات والاستجابات ورموز الحالة مثل 200 و404 و500.","Learn requests, responses and status codes such as 200, 404 and 500."],
+["المصادقة والصلاحيات","Authentication and authorization","المصادقة تتحقق من هوية المستخدم، بينما الصلاحيات تحدد ما يمكنه الوصول إليه.","Authentication verifies identity; authorization determines what a user may access.","تسجيل الدخول الناجح لا يعني أن المستخدم مسموح له بفتح كل البيانات.","A successful login does not mean a user may access every record."],
+["مخاطر الويب","Web risks","تشمل المخاطر XSS وحقن SQL وضعف التحكم بالوصول. تعلّم اكتشافها والوقاية منها داخل مختبرات مصرح بها.","Risks include XSS, SQL injection and broken access control. Learn to identify and prevent them in authorized labs.","التحقق من المدخلات والاستعلامات المعلّمة واختبارات الصلاحيات تساعد على تقليل المخاطر.","Input validation, parameterized queries and access-control tests help reduce risk."]
+]},
+{id:"defense",icon:"🔍",level:"intermediate",ar:"الدفاع والتحقيق الرقمي",en:"Defense and forensics",desc:"السجلات والأدلة الرقمية ومراقبة الأحداث.",descEn:"Logs, digital evidence and event monitoring.",lessons:[
+["قراءة السجلات","Reading logs","السجلات تسجل أحداث النظام والتطبيق. افحص التوقيت والمصدر ونوع الحدث قبل الاستنتاج.","Logs record system and application events. Review timestamps, sources and event types before drawing conclusions.","لا يكفي حدث واحد لإثبات اختراق؛ ابحث عن أدلة متوافقة وسياق زمني.","A single event rarely proves a compromise; look for corroborating evidence and timeline context."],
+["سلامة الأدلة","Evidence integrity","حافظ على النسخ الأصلية وسجل وقت جمع الدليل ومصدره، واستخدم التجزئة للتحقق من عدم تغيّره.","Preserve originals, record collection time and source, and use hashes to check whether evidence changed.","التجزئة بصمة للملف؛ اختلافها قد يدل على اختلاف المحتوى.","A hash is a file fingerprint; a changed hash may indicate changed content."]
+]},
+{id:"crypto",icon:"🔐",level:"intermediate",ar:"التشفير والمفاهيم الأمنية",en:"Cryptography and security",desc:"الفرق بين التشفير والتجزئة والمفاتيح.",descEn:"Understand encryption, hashing and keys.",lessons:[
+["التشفير والتجزئة","Encryption and hashing","التشفير يحمي سرية البيانات باستخدام مفاتيح، أما التجزئة فتنتج قيمة تستخدم للتحقق من البيانات ولا يمكن عكسها مباشرةً إلى الملف الأصلي.","Encryption protects confidentiality using keys. Hashing produces a value used to verify data and is not directly reversible.","لا تستخدم تجزئة سريعة وحدها لتخزين كلمات المرور؛ تستخدم الأنظمة المناسبة خوارزميات مخصصة مثل Argon2id أو bcrypt.","Do not store passwords with a fast hash alone; use password-hashing algorithms such as Argon2id or bcrypt."]
+]}
 ];
 
-/* ---------- مساعدات ---------- */
-function pick(obj) {
-  if (!obj) return '';
-  const lang = getLang();
-  return obj[lang] || obj.ar || '';
-}
-
-function totalLessons(path) {
-  let n = 0;
-  path.modules.forEach(function(m) { n += m.lessons.length; });
-  return n;
-}
-
-function allLessonsFlat(path) {
-  let arr = [];
-  path.modules.forEach(function(m) { m.lessons.forEach(function(l) { arr.push(l); }); });
-  return arr;
-}
-
-function levelBadgeClass(level) {
-  if (level === 'beginner') return 'badge-beginner';
-  if (level === 'intermediate') return 'badge-intermediate';
-  return 'badge-advanced';
-}
-
-function levelLabel(level) {
-  if (level === 'beginner') return t('paths.beginner');
-  if (level === 'intermediate') return t('paths.intermediate');
-  return t('paths.advanced');
-}
-
-/* ---------- الصفحة الرئيسية ---------- */
-function renderHome() {
-  return (
-    '<section class="hero">' +
-      '<div class="hero-content">' +
-        '<p class="hero-subtitle" data-i18n="hero.subtitle">' + t('hero.subtitle') + '</p>' +
-        '<h1 class="hero-title" data-i18n="hero.title">' + t('hero.title') + '</h1>' +
-        '<p class="hero-desc" data-i18n="hero.desc">' + t('hero.desc') + '</p>' +
-        '<div class="hero-actions">' +
-          '<a class="btn btn-primary" data-nav="paths" data-i18n="hero.start">' + t('hero.start') + '</a>' +
-          '<a class="btn btn-secondary" data-nav="assessment" data-i18n="hero.assess">' + t('hero.assess') + '</a>' +
-          '<a class="btn btn-outline" data-nav="labs" data-i18n="hero.labs">' + t('hero.labs') + '</a>' +
-          '<a class="btn btn-outline" data-nav="library" data-i18n="hero.library">' + t('hero.library') + '</a>' +
-          '<a class="btn btn-outline" data-nav="cases" data-i18n="hero.cases">' + t('hero.cases') + '</a>' +
-          '<a href="https://discord.gg/3Svejf4Kh" target="_blank" rel="noopener noreferrer" class="btn btn-discord" data-i18n="hero.discord">' + t('hero.discord') + '</a>' +
-        '</div>' +
-      '</div>' +
-      '<div class="hero-image">' +
-        '<img src="assets/dead-penguin-cyber-new-background.png" alt="Midnight Penguin" class="penguin-img">' +
-      '</div>' +
-    '</section>'
-  );
-}
-
-/* ---------- صفحة المسارات ---------- */
-function renderPathsPage() {
-  return (
-    '<div class="page-container">' +
-      '<div class="page-header">' +
-        '<h1 class="page-title" data-i18n="paths.title">' + t('paths.title') + '</h1>' +
-        '<p class="page-desc" data-i18n="paths.desc">' + t('paths.desc') + '</p>' +
-      '</div>' +
-      '<div class="beginner-cta">' +
-        '<p data-i18n="paths.beginnerCta">' + t('paths.beginnerCta') + '</p>' +
-        '<button class="btn btn-primary" id="beginnerBtn" data-i18n="paths.beginnerCtaBtn">' + t('paths.beginnerCtaBtn') + '</button>' +
-      '</div>' +
-      '<div class="filters-bar">' +
-        '<input type="text" id="pathSearch" class="search-input" placeholder="' + t('paths.search') + '" data-i18n="paths.search">' +
-        '<select id="levelFilter" class="filter-select">' +
-          '<option value="all">' + t('paths.filterLevel') + '</option>' +
-          '<option value="beginner">' + t('paths.beginner') + '</option>' +
-          '<option value="intermediate">' + t('paths.intermediate') + '</option>' +
-          '<option value="advanced">' + t('paths.advanced') + '</option>' +
-        '</select>' +
-      '</div>' +
-      '<div class="paths-grid" id="pathsGrid"></div>' +
-    '</div>'
-  );
-}
-
-function renderPathCards() {
-  const grid = document.getElementById('pathsGrid');
-  if (!grid) return;
-
-  const searchEl = document.getElementById('pathSearch');
-  const levelEl = document.getElementById('levelFilter');
-  const q = (searchEl ? searchEl.value : '').toLowerCase().trim();
-  const lvl = levelEl ? levelEl.value : 'all';
-
-  const filtered = PATHS_DATA.filter(function(p) {
-    const matchesLevel = lvl === 'all' || p.level === lvl;
-    const hay = (pick(p.title) + ' ' + pick(p.desc) + ' ' + p.skills.join(' ')).toLowerCase();
-    const matchesSearch = !q || hay.indexOf(q) !== -1;
-    return matchesLevel && matchesSearch;
-  });
-
-  if (filtered.length === 0) {
-    grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><h3>' + t('paths.empty') + '</h3></div>';
-    return;
-  }
-
-  let html = '';
-  filtered.forEach(function(p) {
-    const total = totalLessons(p);
-    html +=
-      '<div class="path-card" data-path="' + p.id + '">' +
-        '<div class="path-card-header">' +
-          '<div class="path-card-title">' + pick(p.title) + '</div>' +
-          '<span class="path-badge ' + levelBadgeClass(p.level) + '">' + levelLabel(p.level) + '</span>' +
-        '</div>' +
-        '<p class="path-card-desc">' + pick(p.desc) + '</p>' +
-        '<div class="path-card-meta">' +
-          '<span>📖 ' + total + ' ' + t('paths.lessons') + '</span>' +
-          '<span>🧪 ' + p.skills.length + ' skills</span>' +
-        '</div>' +
-      '</div>';
-  });
-  grid.innerHTML = html;
-
-  grid.querySelectorAll('.path-card').forEach(function(card) {
-    card.addEventListener('click', function() {
-      const id = card.getAttribute('data-path');
-      navigate('#/path/' + id);
-    });
-  });
-}
-
-/* ---------- صفحة مسار فردي ---------- */
-function renderPathDetail(pathId) {
-  const path = PATHS_DATA.find(function(p) { return p.id === pathId; });
-  if (!path) {
-    return '<div class="page-container"><div class="empty-state"><h3>' + t('path.notFound') + '</h3></div></div>';
-  }
-
-  const lessons = allLessonsFlat(path);
-  const done = countDoneLessons(path.id, lessons);
-  const total = lessons.length;
-  const pct = total ? Math.round((done / total) * 100) : 0;
-
-  let modulesHtml = '';
-  path.modules.forEach(function(m) {
-    let lessonsHtml = '';
-    m.lessons.forEach(function(l) {
-      const isDone = isLessonDone(path.id, l.id);
-      lessonsHtml +=
-        '<div class="lesson-item' + (isDone ? ' completed' : '') + '" data-lesson="' + l.id + '">' +
-          '<div class="lesson-check">✓</div>' +
-          '<div class="lesson-info">' +
-            '<div class="lesson-name">' + pick(l.title) + '</div>' +
-            '<div class="lesson-type">' + (isDone ? t('path.completed') : t('path.notStarted')) + '</div>' +
-          '</div>' +
-          '<div class="lesson-arrow">›</div>' +
-        '</div>';
-    });
-    modulesHtml +=
-      '<div class="module-section">' +
-        '<h2 class="module-title">' + pick(m.title) + '</h2>' +
-        '<div class="lesson-list">' + lessonsHtml + '</div>' +
-      '</div>';
-  });
-
-  let skillsHtml = '';
-  path.skills.forEach(function(s) {
-    skillsHtml += '<span class="skill-tag">' + s + '</span>';
-  });
-
-  return (
-    '<div class="page-container">' +
-      '<button class="back-link" data-nav="paths">' + t('path.back') + '</button>' +
-      '<div class="path-hero">' +
-        '<h1>' + pick(path.title) + '</h1>' +
-        '<p class="path-desc-full">' + pick(path.desc) + '</p>' +
-        '<div class="path-skills">' + skillsHtml + '</div>' +
-        '<div class="progress-section">' +
-          '<div class="progress-label">' +
-            '<span>' + t('path.progress') + '</span>' +
-            '<span>' + done + '/' + total + ' (' + pct + '%)</span>' +
-          '</div>' +
-          '<div class="progress-bar"><div class="progress-fill" style="width:' + pct + '%"></div></div>' +
-        '</div>' +
-      '</div>' +
-      modulesHtml +
-    '</div>'
-  );
-}
-
-/* نهاية الجزء الثاني */
-/* ============================================================
-   الجزء الثالث — الراوتر، ربط الأحداث، الدرس، والتشغيل
-   ============================================================ */
-
-/* ---------- الراوتر ---------- */
-let currentRoute = null;
-
-function navigate(hash) {
-  if (location.hash !== hash) {
-    location.hash = hash;
-  } else {
-    render();
-  }
-}
-
-function parseRoute() {
-  const h = location.hash.replace(/^#/, '') || '/';
-  const parts = h.split('/').filter(Boolean);
-  if (parts.length === 0) return { page: 'home' };
-  if (parts[0] === 'path' && parts[1]) return { page: 'path', id: parts[1] };
-  if (parts[0] === 'lesson' && parts[1] && parts[2]) return { page: 'lesson', pathId: parts[1], lessonId: parts[2] };
-  return { page: parts[0] };
-}
-
-function setActiveNav(page) {
-  document.querySelectorAll('.nav-links a').forEach(function(a) {
-    a.classList.remove('active');
-    if (a.getAttribute('data-nav') === page) a.classList.add('active');
-  });
-}
-
-function render() {
-  const app = document.getElementById('app');
-  if (!app) return;
-  const route = parseRoute();
-  currentRoute = route;
-
-  let html = '';
-  switch (route.page) {
-    case 'home':
-      html = renderHome();
-      setActiveNav('home');
-      break;
-    case 'paths':
-      html = renderPathsPage();
-      setActiveNav('paths');
-      break;
-    case 'path':
-      html = renderPathDetail(route.id);
-      setActiveNav('paths');
-      break;
-    case 'lesson':
-      html = renderLessonPage(route.pathId, route.lessonId);
-      setActiveNav('paths');
-      break;
-    case 'assessment':
-      html = renderAssessmentIntro();
-      setActiveNav('assessment');
-      break;
-    case 'labs':
-      html = renderPlaceholder('labs');
-      setActiveNav('labs');
-      break;
-    case 'library':
-      html = renderPlaceholder('library');
-      setActiveNav('library');
-      break;
-    case 'cases':
-      html = renderPlaceholder('cases');
-      setActiveNav('cases');
-      break;
-    case 'dashboard':
-      html = renderDashboard();
-      setActiveNav('dashboard');
-      break;
-    default:
-      html = renderHome();
-      setActiveNav('home');
-  }
-
-  app.innerHTML = html;
-  attachPageEvents(route);
-  window.scrollTo(0, 0);
-}
-
-/* ---------- ربط الأحداث بعد كل render ---------- */
-function attachPageEvents(route) {
-  // روابط التنقل الداخلية
-  document.querySelectorAll('[data-nav]').forEach(function(el) {
-    el.addEventListener('click', function(e) {
-      e.preventDefault();
-      const target = el.getAttribute('data-nav');
-      if (target === 'home') navigate('#/');
-      else navigate('#/' + target);
-      closeMobileNav();
-    });
-  });
-
-  if (route.page === 'paths') {
-    const s = document.getElementById('pathSearch');
-    const l = document.getElementById('levelFilter');
-    if (s) s.addEventListener('input', renderPathCards);
-    if (l) l.addEventListener('change', renderPathCards);
-    renderPathCards();
-    const bb = document.getElementById('beginnerBtn');
-    if (bb) bb.addEventListener('click', function() {
-      const beginnerPaths = PATHS_DATA.filter(function(p) { return p.level === 'beginner'; });
-      if (beginnerPaths.length) navigate('#/path/' + beginnerPaths[0].id);
-    });
-  }
-
-  if (route.page === 'path') {
-    document.querySelectorAll('.lesson-item').forEach(function(item) {
-      item.addEventListener('click', function() {
-        const lid = item.getAttribute('data-lesson');
-        navigate('#/lesson/' + route.id + '/' + lid);
-      });
-    });
-  }
-
-  if (route.page === 'lesson') {
-    attachLessonEvents(route.pathId, route.lessonId);
-  }
-
-  if (route.page === 'assessment') {
-    const btn = document.getElementById('startAssessmentBtn');
-    if (btn) btn.addEventListener('click', startAssessment);
-  }
-}
-
-/* ---------- درس فردي ---------- */
-function findLesson(pathId, lessonId) {
-  const path = PATHS_DATA.find(function(p) { return p.id === pathId; });
-  if (!path) return null;
-  for (let i = 0; i < path.modules.length; i++) {
-    const m = path.modules[i];
-    const l = m.lessons.find(function(x) { return x.id === lessonId; });
-    if (l) return { path: path, module: m, lesson: l };
-  }
-  return null;
-}
-
-function getLessonContent(pathId, lessonId) {
-  const found = findLesson(pathId, lessonId);
-  if (!found) return null;
-  const lang = getLang();
-  const key = pathId + ':' + lessonId;
-  if (LESSON_CONTENT[key] && LESSON_CONTENT[key][lang]) return LESSON_CONTENT[key][lang];
-  return {
-    intro: lang === 'ar'
-      ? 'هذا الدرس جزء من مسار «' + pick(found.path.title) + '». المحتوى التفصيلي لهذا الدرس قيد الإعداد وسيُضاف في تحديث قادم.'
-      : 'This lesson is part of "' + pick(found.path.title) + '". Detailed content for this lesson is being prepared and will be added in a future update.',
-    body: ''
-  };
-}
-
-function renderLessonPage(pathId, lessonId) {
-  const found = findLesson(pathId, lessonId);
-  if (!found) {
-    return '<div class="page-container"><div class="empty-state"><h3>' + t('path.notFound') + '</h3></div></div>';
-  }
-  const content = getLessonContent(pathId, lessonId);
-  const isDone = isLessonDone(pathId, lessonId);
-
-  // الدرس السابق والتالي
-  const flat = allLessonsFlat(found.path);
-  const idx = flat.findIndex(function(l) { return l.id === lessonId; });
-  const prev = idx > 0 ? flat[idx - 1] : null;
-  const next = idx < flat.length - 1 ? flat[idx + 1] : null;
-
-  let navHtml = '<div class="lesson-nav">';
-  if (prev) navHtml += '<button class="btn btn-outline" data-lesson-nav="' + prev.id + '">← ' + pick(prev.title) + '</button>';
-  if (next) navHtml += '<button class="btn btn-outline" data-lesson-nav="' + next.id + '">' + pick(next.title) + ' →</button>';
-  navHtml += '</div>';
-
-  return (
-    '<div class="page-container">' +
-      '<button class="back-link" data-nav="path-' + pathId + '">← ' + pick(found.path.title) + '</button>' +
-      '<div class="lesson-page">' +
-        '<p class="lesson-breadcrumb">' + pick(found.module.title) + '</p>' +
-        '<h1 class="lesson-title">' + pick(found.lesson.title) + '</h1>' +
-        '<div class="lesson-body">' + content.intro + content.body + '</div>' +
-        '<div class="lesson-actions">' +
-          (isDone
-            ? '<span class="lesson-done-badge">✓ ' + t('path.completed') + '</span>'
-            : '<button class="btn btn-primary" id="markDoneBtn">✓ ' + (getLang() === 'ar' ? 'علّم كمكتمل' : 'Mark as Complete') + '</button>'
-          ) +
-        '</div>' +
-        navHtml +
-      '</div>' +
-    '</div>'
-  );
-}
-
-function attachLessonEvents(pathId, lessonId) {
-  const markBtn = document.getElementById('markDoneBtn');
-  if (markBtn) {
-    markBtn.addEventListener('click', function() {
-      markLessonDone(pathId, lessonId);
-      render();
-    });
-  }
-  document.querySelectorAll('[data-lesson-nav]').forEach(function(b) {
-    b.addEventListener('click', function() {
-      navigate('#/lesson/' + pathId + '/' + b.getAttribute('data-lesson-nav'));
-    });
-  });
-  // ربط زر العودة إلى المسار
-  document.querySelectorAll('[data-nav]').forEach(function(el) {
-    const target = el.getAttribute('data-nav');
-    if (target && target.indexOf('path-') === 0) {
-      el.addEventListener('click', function(e) {
-        e.preventDefault();
-        navigate('#/path/' + target.replace('path-', ''));
-      });
-    }
-  });
-}
-
-/* ---------- محتوى الدروس ---------- */
-const LESSON_CONTENT = {
-  'networking:net-1': {
-    ar: {
-      intro: '<p>الشبكة هي مجموعة من الأجهزة المتصلة ببعضها لتبادل البيانات. في هذا الدرس نفهم الفرق بين LAN وWAN، والفرق بين الإنترنت والويب، وكيف يعمل العميل والخادم.</p>',
-      body: '<h2>ما هي الشبكة؟</h2><p>تخيّل إنك داخل سيرفر ديسكورد مع خوياك، وكل واحد منكم يستخدم جهازًا واتصالًا مختلفًا. عشان توصلكم الرسائل والصوت، لازم البيانات تنتقل عبر الشبكات والخوادم. هنا تبدأ تفهم ليه الشبكات أساس مهم في الأمن السيبراني.</p><h2>LAN وWAN وWLAN</h2><ul><li><strong>LAN:</strong> شبكة محلية صغيرة مثل شبكة المنزل أو المكتب.</li><li><strong>WAN:</strong> شبكة واسعة تربط مدنًا ودولًا مثل الإنترنت.</li><li><strong>WLAN:</strong> شبكة محلية لاسلكية تعتمد على Wi-Fi.</li></ul><h2>الإنترنت vs الويب</h2><p>الإنترنت هو البنية التحتية للأجهزة المتصلة عالميًا، أما الويب فهو خدمة من خدمات الإنترنت تُعرض عبر المتصفح. هناك خدمات أخرى مثل البريد الإلكتروني وDNS وVoIP.</p><h2>العميل والخادم</h2><p>العميل يطلب، والخادم يستجيب. عندما تفتح موقعًا، متصفحك (عميل) يرسل طلبًا لخادم الموقع، والخادم يعيد الصفحة.</p>'
-    },
-    en: {
-      intro: '<p>A network is a group of connected devices exchanging data. In this lesson we cover LAN, WAN, the difference between the Internet and the Web, and the client/server model.</p>',
-      body: '<h2>What is a Network?</h2><p>Imagine you are on a Discord server with friends, each on a different device and connection. To receive messages and voice, data must travel across networks and servers. This is why networking is foundational to cybersecurity.</p><h2>LAN, WAN, WLAN</h2><ul><li><strong>LAN:</strong> small local network such as home or office.</li><li><strong>WAN:</strong> wide area network connecting cities and countries like the Internet.</li><li><strong>WLAN:</strong> wireless local area network using Wi-Fi.</li></ul><h2>Internet vs Web</h2><p>The Internet is the global connected infrastructure. The Web is one service on top of it, delivered via a browser. Other services include email, DNS, and VoIP.</p><h2>Client and Server</h2><p>The client requests, the server responds. When you open a website, your browser (client) sends a request to the server, which returns the page.</p>'
-    }
-  },
-  'networking:net-2': {
-    ar: {
-      intro: '<p>عنوان IP هو معرف منطقي يحدد موقع الجهاز داخل الشبكة. نشرح IPv4 وIPv6، العناوين العامة والخاصة، البوابة الافتراضية، والفرق بين IP وMAC.</p>',
-      body: '<h2>ما عنوان IP ولماذا نحتاجه؟</h2><p>تخيّل الإنترنت مثل مدينة كبيرة فيها عدد هائل من الأجهزة والخدمات. عشان البيانات توصل إلى وجهتها، تحتاج معلومات تساعد الشبكة على تحديد المسار الصحيح. عنوان IP يشبه عنوان الوصول داخل الشبكة، لكنه مو هويتك الشخصية.</p><h2>IPv4 وIPv6</h2><p>IPv4 مكوّن من 32 بت (مثل 192.168.1.10)، وIPv6 مكوّن من 128 بت لتفادي نضوب العناوين.</p><h2>عام وخاص</h2><ul><li><strong>عام:</strong> يُوجَّه على الإنترنت.</li><li><strong>خاص:</strong> يُستخدم داخل الشبكات المحلية فقط، مثل 192.168.1.10 و192.168.1.1 (الراوتر عادة).</li></ul><h2>البوابة الافتراضية</h2><p>هي عنوان الجهاز (غالبًا الراوتر) الذي يُخرج بياناتك من شبكتك المحلية إلى شبكات أخرى.</p><h2>IP مقابل MAC</h2><p>IP منطقي وقد يتغير، وMAC ثابت على كرت الشبكة. الاتصال داخل الشبكة يستخدم MAC، وبين الشبكات يستخدم IP.</p>'
-    },
-    en: {
-      intro: '<p>An IP address is a logical identifier of a device inside a network. We cover IPv4/IPv6, public vs private, default gateway, and IP vs MAC.</p>',
-      body: '<h2>Why an IP Address?</h2><p>Think of the Internet as a huge city. To deliver data to the right place, the network needs addressing information. An IP is like a delivery address, not a personal identity.</p><h2>IPv4 and IPv6</h2><p>IPv4 is 32-bit (e.g. 192.168.1.10), IPv6 is 128-bit to avoid address exhaustion.</p><h2>Public vs Private</h2><ul><li><strong>Public:</strong> routable on the Internet.</li><li><strong>Private:</strong> used only inside local networks, e.g. 192.168.1.10 and 192.168.1.1 (usually the router).</li></ul><h2>Default Gateway</h2><p>The device (usually the router) that forwards traffic out of your local network to other networks.</p><h2>IP vs MAC</h2><p>IP is logical and can change; MAC is fixed on the network card. LAN uses MAC, routed networks use IP.</p>'
-    }
-  },
-  'networking:net-3': {
-    ar: {
-      intro: '<p>قناع الشبكة (Subnet Mask) يحدد أي جزء من عنوان IP هو الشبكة وأي جزء هو الجهاز.</p>',
-      body: '<h2>المعنى</h2><p>255.255.255.0 تعني أن أول ثلاثة أجزاء تحدد الشبكة، والجزء الأخير يحدد الجهاز.</p><h2>مثال</h2><p>192.168.1.10/24 يعني أن الشبكة هي 192.168.1.0/24، والأجهزة من .1 إلى .254.</p><h2>تمرين</h2><p>هل 192.168.1.20 و192.168.1.99 في نفس الشبكة؟ نعم، لأن أول 24 بت متطابقة.</p>'
-    },
-    en: {
-      intro: '<p>The subnet mask defines which part of an IP is the network and which is the host.</p>',
-      body: '<h2>Meaning</h2><p>255.255.255.0 means the first three octets identify the network, and the last identifies the host.</p><h2>Example</h2><p>192.168.1.10/24: network is 192.168.1.0/24, hosts .1 to .254.</p><h2>Exercise</h2><p>Are 192.168.1.20 and 192.168.1.99 in the same network? Yes, since the first 24 bits match.</p>'
-    }
-  },
-  'networking:net-4': {
-    ar: {
-      intro: '<p>MAC عنوان فيزيائي، وARP البروتوكول الذي يربط IP بـ MAC داخل الشبكة المحلية.</p>',
-      body: '<h2>ARP</h2><p>عندما يريد جهاز إرسال بيانات لجهاز آخر داخل نفس الشبكة، يسأل عبر ARP: من يملك عنوان IP X؟ فيرد صاحب العنوان بعنوان MAC الخاص به.</p><h2>أمان</h2><p>هجمات ARP Spoofing تُستخدم للتنصت أو التلاعب بحركة المرور، ويمكن كشفها عبر مراقبة الشبكة.</p>'
-    },
-    en: {
-      intro: '<p>MAC is a physical address; ARP is the protocol that maps IP to MAC inside a LAN.</p>',
-      body: '<h2>ARP</h2><p>When a host needs to send to another in the same LAN, it asks via ARP: who has IP X? The owner replies with its MAC.</p><h2>Security</h2><p>ARP Spoofing is used for sniffing or MITM, and can be detected via network monitoring.</p>'
-    }
-  },
-  'networking:net-5': {
-    ar: {
-      intro: '<p>DNS يحوّل الأسماء إلى عناوين IP، وDHCP يوزّع إعدادات الشبكة تلقائيًا.</p>',
-      body: '<h2>DNS</h2><p>بدل ما تحفظ عنوان IP لكل موقع، تكتب اسم الموقع، ويجي دور DNS يساعد في العثور على العنوان المناسب.</p><h2>DHCP</h2><p>يساعد جهازك على الحصول على IP وقناع وبوابة وخادم DNS تلقائيًا بدل الضبط اليدوي.</p>'
-    },
-    en: {
-      intro: '<p>DNS resolves names to IPs; DHCP automates network configuration.</p>',
-      body: '<h2>DNS</h2><p>Instead of memorizing IPs, you type a site name and DNS finds its IP.</p><h2>DHCP</h2><p>Assigns IP, mask, gateway, and DNS automatically instead of manual configuration.</p>'
-    }
-  },
-  'networking:net-6': {
-    ar: {
-      intro: '<p>المنافذ تسمح لعدة خدمات بالعمل على نفس العنوان. TCP موثوق، UDP أسرع وأخف.</p>',
-      body: '<h2>منافذ شائعة</h2><ul><li>80/443: HTTP/HTTPS</li><li>53: DNS</li><li>22: SSH</li><li>25/587: SMTP</li><li>143/993: IMAP</li><li>20/21: FTP</li></ul><h2>مفتوح/مغلق/مُرشَّح</h2><p>مفتوح: خدمة تستمع. مغلق: لا خدمة. مُرشَّح: جدار ناري يحجب بلا رد واضح.</p>'
-    },
-    en: {
-      intro: '<p>Ports let services share an IP. TCP is reliable, UDP is lighter and faster.</p>',
-      body: '<h2>Common Ports</h2><ul><li>80/443: HTTP/HTTPS</li><li>53: DNS</li><li>22: SSH</li><li>25/587: SMTP</li><li>143/993: IMAP</li><li>20/21: FTP</li></ul><h2>Open/Closed/Filtered</h2><p>Open: service listening. Closed: no service. Filtered: firewall silently drops.</p>'
-    }
-  },
-  'networking:net-7': {
-    ar: {
-      intro: '<p>نموذج OSI سبع طبقات، وTCP/IP أربع طبقات. فهم الطبقات يساعدك في تشخيص المشاكل وتحليل الهجمات.</p>',
-      body: '<h2>OSI</h2><ol><li>Physical</li><li>Data Link</li><li>Network</li><li>Transport</li><li>Session</li><li>Presentation</li><li>Application</li></ol><h2>TCP/IP</h2><ol><li>Network Access</li><li>Internet</li><li>Transport</li><li>Application</li></ol>'
-    },
-    en: {
-      intro: '<p>OSI has 7 layers, TCP/IP has 4. Understanding layers helps troubleshoot issues and analyze attacks.</p>',
-      body: '<h2>OSI</h2><ol><li>Physical</li><li>Data Link</li><li>Network</li><li>Transport</li><li>Session</li><li>Presentation</li><li>Application</li></ol><h2>TCP/IP</h2><ol><li>Network Access</li><li>Internet</li><li>Transport</li><li>Application</li></ol>'
-    }
-  },
-  'networking:net-8': {
-    ar: {
-      intro: '<p>Router وSwitch وModem وAccess Point وFirewall وNIC. كل جهاز يخدم طبقة محددة.</p>',
-      body: '<h2>الوظائف</h2><ul><li>Router: التوجيه بين الشبكات.</li><li>Switch: التبديل داخل الشبكة المحلية.</li><li>Modem: تحويل إشارة المزود.</li><li>Access Point: بث Wi-Fi.</li><li>Firewall: تصفية الحزم.</li><li>NIC: واجهة الشبكة في الجهاز.</li></ul><h2>NAT وVLAN</h2><p>NAT يترجم العناوين الخاصة إلى عامة، وVLAN يعزل الشبكة منطقيًا.</p>'
-    },
-    en: {
-      intro: '<p>Router, Switch, Modem, Access Point, Firewall, NIC — each serves a specific layer.</p>',
-      body: '<h2>Roles</h2><ul><li>Router: routing between networks.</li><li>Switch: switching inside a LAN.</li><li>Modem: converts ISP signals.</li><li>Access Point: Wi-Fi broadcast.</li><li>Firewall: packet filtering.</li><li>NIC: host network interface.</li></ul><h2>NAT and VLAN</h2><p>NAT translates private to public, VLAN isolates networks logically.</p>'
-    }
-  },
-  'networking:net-9': {
-    ar: {
-      intro: '<p>أساسيات Wi-Fi، التشفير WPA2/WPA3، كلمات مرور قوية، وتحديث الراوتر.</p>',
-      body: '<p>تجنّب الشبكات المفتوحة لعمليات حساسة، استخدم WPA3 إن أمكن، وعطّل WPS، وحدّث الراوتر دوريًا.</p>'
-    },
-    en: {
-      intro: '<p>Wi-Fi basics, WPA2/WPA3 encryption, strong passwords, and router updates.</p>',
-      body: '<p>Avoid open networks for sensitive work, prefer WPA3, disable WPS, and update the router regularly.</p>'
-    }
-  },
-  'networking:net-10': {
-    ar: {
-      intro: '<p>أدوات أساسية: ping، traceroute/tracert، ipconfig، ip addr، nslookup، dig، netstat، ss.</p>',
-      body: '<h2>أمثلة</h2><ul><li>ping example.com — اختبار الوصول.</li><li>tracert example.com — مسار الحزم.</li><li>ipconfig /all — إعدادات الشبكة (ويندوز).</li><li>ip addr — واجهات الشبكة (لينكس).</li><li>nslookup example.com — استعلام DNS.</li><li>ss -tulnp — المنافذ المفتوحة (لينكس).</li></ul>'
-    },
-    en: {
-      intro: '<p>Essential tools: ping, traceroute/tracert, ipconfig, ip addr, nslookup, dig, netstat, ss.</p>',
-      body: '<h2>Examples</h2><ul><li>ping example.com — reachability.</li><li>tracert example.com — path.</li><li>ipconfig /all — network config (Windows).</li><li>ip addr — interfaces (Linux).</li><li>nslookup example.com — DNS query.</li><li>ss -tulnp — open ports (Linux).</li></ul>'
-    }
-  },
-  'networking:net-11': {
-    ar: {
-      intro: '<p>تحليل الحزم وملفات PCAP باستخدام Wireshark لكشف الأنماط غير الطبيعية.</p>',
-      body: '<p>افتح PCAP، رتّب حسب البروتوكول أو IP، وابحث عن إعادة إرسال TCP أو اتصالات غريبة أو DNS مريب.</p>'
-    },
-    en: {
-      intro: '<p>Analyze packets and PCAPs with Wireshark to detect abnormal patterns.</p>',
-      body: '<p>Open the PCAP, sort by protocol or IP, and look for TCP retransmissions, unusual connections, or suspicious DNS.</p>'
-    }
-  },
-  'networking:net-12': {
-    ar: {
-      intro: '<p>جدار ناري، IDS/IPS، VPN، تقسيم الشبكة، أقل صلاحية، ومراقبة السجلات.</p>',
-      body: '<p>طبّق الدفاع بعمق: عزل الشبكات، تعطيل الخدمات غير اللازمة، ومراقبة السجلات بشكل مستمر.</p>'
-    },
-    en: {
-      intro: '<p>Firewall, IDS/IPS, VPN, segmentation, least privilege, and log monitoring.</p>',
-      body: '<p>Apply defense in depth: segment networks, disable unused services, and continuously monitor logs.</p>'
-    }
-  }
-};
-
-/* ---------- لوحة التقدم ---------- */
-function renderDashboard() {
-  const p = getProgress();
-  const xp = p.xp || 0;
-  const level = Math.floor(xp / 100) + 1;
-  const started = p.pathsStarted.length;
-
-  return (
-    '<div class="page-container">' +
-      '<div class="page-header">' +
-        '<h1 class="page-title">' + (getLang() === 'ar' ? 'حسابي وتقدّمي' : 'My Account & Progress') + '</h1>' +
-        '<p class="page-desc">' + (getLang() === 'ar' ? 'تقدمك محفوظ على هذا الجهاز فقط عبر localStorage.' : 'Your progress is stored locally on this device only via localStorage.') + '</p>' +
-      '</div>' +
-      '<div class="dashboard-grid">' +
-        '<div class="stat-card"><span class="stat-num">' + xp + '</span><span class="stat-label">XP</span></div>' +
-        '<div class="stat-card"><span class="stat-num">' + level + '</span><span class="stat-label">' + (getLang() === 'ar' ? 'المستوى' : 'Level') + '</span></div>' +
-        '<div class="stat-card"><span class="stat-num">' + started + '</span><span class="stat-label">' + (getLang() === 'ar' ? 'مسارات مبدوءة' : 'Started Paths') + '</span></div>' +
-      '</div>' +
-    '</div>'
-  );
-}
-
-/* ---------- نائب مؤقت للأقسام القادمة ---------- */
-function renderPlaceholder(section) {
-  const labels = {
-    labs: { ar: 'المختبرات', en: 'Labs' },
-    library: { ar: 'المكتبة', en: 'Library' },
-    cases: { ar: 'القضايا الرقمية', en: 'Digital Cases' }
-  };
-  const lbl = labels[section] ? pick(labels[section]) : section;
-  return '<div class="page-container"><div class="page-header"><h1 class="page-title">' + lbl + '</h1></div>' +
-    '<div class="empty-state"><h3>' + (getLang() === 'ar' ? 'قريبًا' : 'Coming Soon') + '</h3>' +
-    '<p>' + (getLang() === 'ar' ? 'هذا القسم قيد الإعداد.' : 'This section is under construction.') + '</p></div></div>';
-}
-
-/* ---------- اختبار المستوى (نائب مؤقت) ---------- */
-function renderAssessmentIntro() {
-  return (
-    '<div class="page-container">' +
-      '<div class="page-header">' +
-        '<h1 class="page-title" data-i18n="assessment.title">' + t('assessment.title') + '</h1>' +
-        '<p class="page-desc" data-i18n="assessment.desc">' + t('assessment.desc') + '</p>' +
-      '</div>' +
-      '<div class="empty-state">' +
-        '<h3>' + (getLang() === 'ar' ? 'الاختبار قيد الإعداد' : 'Quiz is under construction') + '</h3>' +
-        '<p>' + (getLang() === 'ar' ? 'بإمكانك الآن الدخول لأي مسار مباشرة من صفحة المسارات.' : 'You can already access any path directly from the Paths page.') + '</p>' +
-        '<button class="btn btn-primary" data-nav="paths" style="margin-top:16px">' + t('hero.start') + '</button>' +
-      '</div>' +
-    '</div>'
-  );
-}
-
-function startAssessment() { /* تُطبّق في جزء لاحق */ }
-
-/* ---------- التنقل من الجوال ---------- */
-function closeMobileNav() {
-  const nl = document.getElementById('navLinks');
-  if (nl) nl.classList.remove('open');
-}
-
-/* ---------- التهيئة ---------- */
-function init() {
-  applyLang();
-
-  const toggle = document.getElementById('langToggle');
-  if (toggle) {
-    toggle.addEventListener('click', function() {
-      setLang(getLang() === 'ar' ? 'en' : 'ar');
-    });
-  }
-
-  const ham = document.getElementById('navHamburger');
-  const nl = document.getElementById('navLinks');
-  if (ham && nl) {
-    ham.addEventListener('click', function() {
-      nl.classList.toggle('open');
-    });
-  }
-
-  document.querySelectorAll('.nav-links a').forEach(function(a) {
-    a.addEventListener('click', function(e) {
-      e.preventDefault();
-      const target = a.getAttribute('data-nav');
-      if (target === 'home') navigate('#/');
-      else navigate('#/' + target);
-      closeMobileNav();
-    });
-  });
-
-  const logo = document.querySelector('.nav-logo');
-  if (logo) {
-    logo.addEventListener('click', function(e) {
-      e.preventDefault();
-      navigate('#/');
-    });
-  }
-
-  window.addEventListener('hashchange', render);
-  document.addEventListener('langChanged', function() { render(); });
-
-  render();
-}
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init);
-} else {
-  init();
-}
-/* نهاية الجزء الثالث */
-/* ============================================================
-   الجزء الرابع — اختبار تحديد المستوى الكامل + نظام النتائج
-   ============================================================ */
-
-/* ---------- بنك الأسئلة ---------- */
-const ASSESSMENT_QUESTIONS = [
-  {
-    id: 'q1',
-    category: 'networking',
-    level: 1,
-    q: { ar: 'ما وظيفة عنوان IP؟', en: 'What is the purpose of an IP address?' },
-    options: [
-      { ar: 'تحديد موقع الجهاز داخل الشبكة', en: 'Identify the device location inside a network' },
-      { ar: 'تشفير البيانات المنقولة', en: 'Encrypt transmitted data' },
-      { ar: 'تسريع الاتصال بالإنترنت', en: 'Speed up the Internet connection' },
-      { ar: 'حفظ كلمات المرور', en: 'Store passwords' }
-    ],
-    correct: 0,
-    explain: { ar: 'IP عنوان منطقي يحدد موقع الجهاز داخل الشبكة.', en: 'An IP is a logical address identifying the device location in a network.' }
-  },
-  {
-    id: 'q2',
-    category: 'networking',
-    level: 1,
-    q: { ar: 'أي عنوان يُعد عنوانًا خاصًا (Private)؟', en: 'Which address is a private address?' },
-    options: [
-      { ar: '8.8.8.8', en: '8.8.8.8' },
-      { ar: '192.168.1.10', en: '192.168.1.10' },
-      { ar: '1.1.1.1', en: '1.1.1.1' },
-      { ar: '142.250.200.1', en: '142.250.200.1' }
-    ],
-    correct: 1,
-    explain: { ar: 'نطاق 192.168.x.x مخصص للشبكات الخاصة.', en: '192.168.x.x is reserved for private networks.' }
-  },
-  {
-    id: 'q3',
-    category: 'networking',
-    level: 2,
-    q: { ar: 'ما الفرق الأساسي بين IP وMAC؟', en: 'What is the core difference between IP and MAC?' },
-    options: [
-      { ar: 'IP منطقي وقد يتغير، MAC ثابت على الكرت', en: 'IP is logical and can change; MAC is fixed on the card' },
-      { ar: 'IP أسرع من MAC', en: 'IP is faster than MAC' },
-      { ar: 'MAC يُستخدم على الإنترنت فقط', en: 'MAC is used only on the Internet' },
-      { ar: 'لا فرق بينهما', en: 'No difference' }
-    ],
-    correct: 0,
-    explain: { ar: 'IP يُخصص منطقيًا، MAC عنوان فيزيائي ثابت.', en: 'IP is logical; MAC is a physical hardware address.' }
-  },
-  {
-    id: 'q4',
-    category: 'networking',
-    level: 2,
-    q: { ar: 'ما البروتوكول الذي يحوّل أسماء النطاقات إلى عناوين IP؟', en: 'Which protocol resolves domain names to IP addresses?' },
-    options: [
-      { ar: 'DHCP', en: 'DHCP' },
-      { ar: 'DNS', en: 'DNS' },
-      { ar: 'HTTP', en: 'HTTP' },
-      { ar: 'FTP', en: 'FTP' }
-    ],
-    correct: 1,
-    explain: { ar: 'DNS هو نظام أسماء النطاقات.', en: 'DNS is the Domain Name System.' }
-  },
-  {
-    id: 'q5',
-    category: 'networking',
-    level: 2,
-    q: { ar: 'على أي منفذ يعمل HTTPS افتراضيًا؟', en: 'On which port does HTTPS run by default?' },
-    options: [
-      { ar: '80', en: '80' },
-      { ar: '21', en: '21' },
-      { ar: '443', en: '443' },
-      { ar: '22', en: '22' }
-    ],
-    correct: 2,
-    explain: { ar: 'HTTPS يستخدم 443 افتراضيًا.', en: 'HTTPS uses 443 by default.' }
-  },
-  {
-    id: 'q6',
-    category: 'linux',
-    level: 1,
-    q: { ar: 'أي أمر يعرض محتويات المجلد في لينكس؟', en: 'Which command lists directory contents on Linux?' },
-    options: [
-      { ar: 'cd', en: 'cd' },
-      { ar: 'ls', en: 'ls' },
-      { ar: 'rm', en: 'rm' },
-      { ar: 'mkdir', en: 'mkdir' }
-    ],
-    correct: 1,
-    explain: { ar: 'ls تعرض المحتويات.', en: 'ls lists contents.' }
-  },
-  {
-    id: 'q7',
-    category: 'linux',
-    level: 2,
-    q: { ar: 'ما الأمر الذي يغير صلاحيات ملف؟', en: 'Which command changes file permissions?' },
-    options: [
-      { ar: 'chown', en: 'chown' },
-      { ar: 'chmod', en: 'chmod' },
-      { ar: 'chgrp', en: 'chgrp' },
-      { ar: 'passwd', en: 'passwd' }
-    ],
-    correct: 1,
-    explain: { ar: 'chmod يغير صلاحيات القراءة/الكتابة/التنفيذ.', en: 'chmod changes read/write/execute permissions.' }
-  },
-  {
-    id: 'q8',
-    category: 'python',
-    level: 1,
-    q: { ar: 'كيف تعرّف قائمة في بايثون؟', en: 'How do you define a list in Python?' },
-    options: [
-      { ar: 'x = (1,2,3)', en: 'x = (1,2,3)' },
-      { ar: 'x = [1,2,3]', en: 'x = [1,2,3]' },
-      { ar: 'x = {1,2,3}', en: 'x = {1,2,3}' },
-      { ar: 'x = <1,2,3>', en: 'x = <1,2,3>' }
-    ],
-    correct: 1,
-    explain: { ar: 'الأقواس المربعة [] تعني قائمة.', en: 'Square brackets [] define a list.' }
-  },
-  {
-    id: 'q9',
-    category: 'python',
-    level: 2,
-    q: { ar: 'ما المكتبة القياسية المستخدمة لقراءة JSON؟', en: 'Which standard library reads JSON?' },
-    options: [
-      { ar: 'os', en: 'os' },
-      { ar: 'json', en: 'json' },
-      { ar: 'sys', en: 'sys' },
-      { ar: 're', en: 're' }
-    ],
-    correct: 1,
-    explain: { ar: 'مكتبة json هي القياسية لهذا الغرض.', en: 'The json module is standard for this.' }
-  },
-  {
-    id: 'q10',
-    category: 'web',
-    level: 2,
-    q: { ar: 'أي ثغرة تسمح بحقن أوامر SQL داخل الحقول؟', en: 'Which vulnerability allows injecting SQL in input fields?' },
-    options: [
-      { ar: 'XSS', en: 'XSS' },
-      { ar: 'SQL Injection', en: 'SQL Injection' },
-      { ar: 'CSRF', en: 'CSRF' },
-      { ar: 'LFI', en: 'LFI' }
-    ],
-    correct: 1,
-    explain: { ar: 'SQLi تسمح بتنفيذ استعلامات خبيثة.', en: 'SQLi allows executing malicious queries.' }
-  },
-  {
-    id: 'q11',
-    category: 'defense',
-    level: 2,
-    q: { ar: 'ما وظيفة IDS؟', en: 'What does IDS do?' },
-    options: [
-      { ar: 'يمنع الهجمات تلقائيًا', en: 'Blocks attacks automatically' },
-      { ar: 'يكشف النشاط المشبوه وينبّه', en: 'Detects suspicious activity and alerts' },
-      { ar: 'يشفّر الاتصالات', en: 'Encrypts traffic' },
-      { ar: 'يوازن الحمل', en: 'Balances load' }
-    ],
-    correct: 1,
-    explain: { ar: 'IDS يكشف وينبه، أما IPS فيمنع.', en: 'IDS detects and alerts; IPS blocks.' }
-  },
-  {
-    id: 'q12',
-    category: 'forensics',
-    level: 2,
-    q: { ar: 'ما فائدة حساب Hash لملف؟', en: 'Why compute a file hash?' },
-    options: [
-      { ar: 'لضغط الملف', en: 'To compress the file' },
-      { ar: 'للتحقق من سلامة الملف وعدم تغييره', en: 'To verify integrity and detect changes' },
-      { ar: 'لتشفيره', en: 'To encrypt it' },
-      { ar: 'لحذفه', en: 'To delete it' }
-    ],
-    correct: 1,
-    explain: { ar: 'البصمة تكشف أي تغيير في الملف.', en: 'A hash detects any change in the file.' }
-  }
+const labs=[
+{id:"dns-lab",cat:"network",icon:"🌐",ar:"تحقيق DNS",en:"DNS investigation",desc:"حدّد نوع السجل الذي يربط اسم النطاق بعنوان IPv4.",descEn:"Identify the record type that maps a domain to an IPv4 address.",hint:"A record يشير إلى عنوان IPv4.",answer:"a",options:[["a","A record"],["b","MX record"],["c","TXT record"]],explain:"سجل A يربط اسم النطاق بعنوان IPv4."},
+{id:"linux-lab",cat:"linux",icon:"🐧",ar:"أمر المجلد الحالي",en:"Current directory",desc:"اختر الأمر الذي يعرض مسار المجلد الحالي في لينكس.",descEn:"Choose the Linux command that displays the current directory.",hint:"اسم الأمر من ثلاثة أحرف ويبدأ بحرف p.",answer:"pwd",options:[["ls","ls"],["pwd","pwd"],["cd","cd"]],explain:"pwd اختصار Print Working Directory."},
+{id:"web-lab",cat:"web",icon:"🛡️",ar:"حماية الاستعلامات",en:"Query safety",desc:"ما الأسلوب الأنسب لتقليل خطر حقن SQL في الاستعلامات؟",descEn:"Which approach best reduces SQL injection risk?",hint:"افصل البيانات عن نص الاستعلام.",answer:"param",options:[["concat","دمج المدخلات مباشرة في SQL"],["param","الاستعلامات المعلّمة Parameterized Queries"],["hide","إخفاء زر الإرسال"]],explain:"الاستعلامات المعلّمة تفصل القيم عن بنية SQL."},
+{id:"forensics-lab",cat:"forensics",icon:"🔎",ar:"تحقق من الملف",en:"File integrity",desc:"ما الذي يساعد على مقارنة سلامة ملفين؟",descEn:"What helps compare the integrity of two files?",hint:"إنها بصمة محسوبة من محتوى الملف.",answer:"hash",options:[["name","اسم الملف فقط"],["size","الحجم فقط"],["hash","قيمة التجزئة Hash"]],explain:"مقارنة تجزئات قوية تساعد في معرفة ما إذا كان محتوى الملفين متطابقًا."}
 ];
 
-let assessmentState = null;
-
-/* ---------- شاشة البداية ---------- */
-function renderAssessmentIntro() {
-  const lang = getLang();
-  return (
-    '<div class="page-container">' +
-      '<div class="page-header">' +
-        '<h1 class="page-title" data-i18n="assessment.title">' + t('assessment.title') + '</h1>' +
-        '<p class="page-desc" data-i18n="assessment.desc">' + t('assessment.desc') + '</p>' +
-      '</div>' +
-      '<div class="assessment-card">' +
-        '<div class="assessment-meta">' +
-          '<span>📝 ' + ASSESSMENT_QUESTIONS.length + ' ' + (lang === 'ar' ? 'سؤال' : 'questions') + '</span>' +
-          '<span>⏱ ' + (lang === 'ar' ? 'بدون وقت محدد' : 'No time limit') + '</span>' +
-          '<span>🎯 ' + (lang === 'ar' ? 'اختياري' : 'Optional') + '</span>' +
-        '</div>' +
-        '<button class="btn btn-primary" id="startAssessmentBtn" data-i18n="assessment.start">' + t('assessment.start') + '</button>' +
-      '</div>' +
-    '</div>'
-  );
-}
-
-function startAssessment() {
-  assessmentState = {
-    index: 0,
-    answers: new Array(ASSESSMENT_QUESTIONS.length).fill(null)
-  };
-  renderAssessmentQuestion();
-}
-
-/* ---------- عرض سؤال ---------- */
-function renderAssessmentQuestion() {
-  const app = document.getElementById('app');
-  if (!app || !assessmentState) return;
-  const lang = getLang();
-  const idx = assessmentState.index;
-  const q = ASSESSMENT_QUESTIONS[idx];
-  const selected = assessmentState.answers[idx];
-
-  let optionsHtml = '';
-  q.options.forEach(function(opt, i) {
-    const isSel = selected === i;
-    optionsHtml +=
-      '<label class="option-item' + (isSel ? ' selected' : '') + '" data-opt="' + i + '">' +
-        '<input type="radio" name="qopt" value="' + i + '"' + (isSel ? ' checked' : '') + '>' +
-        '<span class="option-text">' + pick(opt) + '</span>' +
-      '</label>';
-  });
-
-  // خيار "ما أعرف"
-  const dontKnow = assessmentState.answers[idx] === -1;
-  optionsHtml +=
-    '<label class="option-item option-dontknow' + (dontKnow ? ' selected' : '') + '" data-opt="-1">' +
-      '<input type="radio" name="qopt" value="-1"' + (dontKnow ? ' checked' : '') + '>' +
-      '<span class="option-text">' + t('assessment.dontKnow') + '</span>' +
-    '</label>';
-
-  const isLast = idx === ASSESSMENT_QUESTIONS.length - 1;
-
-  app.innerHTML =
-    '<div class="page-container">' +
-      '<div class="assessment-progress">' +
-        '<div class="assessment-progress-bar">' +
-          '<div class="assessment-progress-fill" style="width:' + ((idx + 1) / ASSESSMENT_QUESTIONS.length * 100) + '%"></div>' +
-        '</div>' +
-        '<p class="assessment-progress-label">' + t('assessment.question') + ' ' + (idx + 1) + ' ' + t('assessment.of') + ' ' + ASSESSMENT_QUESTIONS.length + '</p>' +
-      '</div>' +
-      '<div class="assessment-card">' +
-        '<h2 class="assessment-question">' + pick(q.q) + '</h2>' +
-        '<div class="options-list" id="optionsList">' + optionsHtml + '</div>' +
-        '<p class="assessment-error" id="assessmentError" style="display:none">' + t('assessment.mustAnswer') + '</p>' +
-        '<div class="assessment-actions">' +
-          '<button class="btn btn-outline" id="prevQBtn"' + (idx === 0 ? ' disabled' : '') + '>' + t('assessment.prev') + '</button>' +
-          '<button class="btn btn-primary" id="nextQBtn">' +
-            (isLast ? t('assessment.finish') : t('assessment.next')) +
-          '</button>' +
-        '</div>' +
-      '</div>' +
-    '</div>';
-
-  // ربط أحداث الخيارات
-  document.querySelectorAll('.option-item').forEach(function(label) {
-    label.addEventListener('click', function() {
-      const val = parseInt(label.getAttribute('data-opt'), 10);
-      assessmentState.answers[idx] = val;
-      document.querySelectorAll('.option-item').forEach(function(l) { l.classList.remove('selected'); });
-      label.classList.add('selected');
-      const err = document.getElementById('assessmentError');
-      if (err) err.style.display = 'none';
-    });
-  });
-
-  const prevBtn = document.getElementById('prevQBtn');
-  if (prevBtn) prevBtn.addEventListener('click', function() {
-    if (assessmentState.index > 0) {
-      assessmentState.index--;
-      renderAssessmentQuestion();
-    }
-  });
-
-  const nextBtn = document.getElementById('nextQBtn');
-  if (nextBtn) nextBtn.addEventListener('click', function() {
-    if (assessmentState.answers[idx] === null) {
-      const err = document.getElementById('assessmentError');
-      if (err) err.style.display = 'block';
-      return;
-    }
-    if (isLast) {
-      renderAssessmentResults();
-    } else {
-      assessmentState.index++;
-      renderAssessmentQuestion();
-    }
-  });
-}
-
-/* ---------- النتائج ---------- */
-function renderAssessmentResults() {
-  const app = document.getElementById('app');
-  if (!app || !assessmentState) return;
-  const lang = getLang();
-
-  // حساب النتائج حسب المجال
-  const catStats = {};
-  ASSESSMENT_QUESTIONS.forEach(function(q, i) {
-    if (!catStats[q.category]) catStats[q.category] = { total: 0, correct: 0, level: q.level };
-    catStats[q.category].total++;
-    if (assessmentState.answers[i] === q.correct) catStats[q.category].correct++;
-  });
-
-  // حساب المستوى العام
-  let totalCorrect = 0;
-  let totalAnswered = 0;
-  ASSESSMENT_QUESTIONS.forEach(function(q, i) {
-    if (assessmentState.answers[i] !== null && assessmentState.answers[i] !== -1) {
-      totalAnswered++;
-      if (assessmentState.answers[i] === q.correct) totalCorrect++;
-    }
-  });
-
-  const accuracy = totalAnswered > 0 ? totalCorrect / totalAnswered : 0;
-  let levelKey = 'assessment.levelBeginner';
-  if (accuracy >= 0.75) levelKey = 'assessment.levelAdvanced';
-  else if (accuracy >= 0.45) levelKey = 'assessment.levelIntermediate';
-
-  // المجالات القوية والضعيفة
-  const strong = [];
-  const weak = [];
-  const catNames = {
-    networking: { ar: 'الشبكات', en: 'Networking' },
-    linux: { ar: 'لينكس', en: 'Linux' },
-    python: { ar: 'بايثون', en: 'Python' },
-    web: { ar: 'أمن المواقع', en: 'Web Security' },
-    defense: { ar: 'الدفاع السيبراني', en: 'Cyber Defense' },
-    forensics: { ar: 'التحقيق الجنائي', en: 'Forensics' }
-  };
-  Object.keys(catStats).forEach(function(cat) {
-    const s = catStats[cat];
-    const ratio = s.total > 0 ? s.correct / s.total : 0;
-    const name = catNames[cat] ? pick(catNames[cat]) : cat;
-    if (ratio >= 0.6) strong.push(name);
-    else if (ratio < 0.4) weak.push(name);
-  });
-
-  // التوصيات المرتبطة بالمجالات الضعيفة
-  const recommendations = [];
-  const pathMap = {
-    networking: 'networking',
-    linux: 'linux',
-    python: 'python',
-    web: 'websec'
-  };
-
-  Object.keys(catStats).forEach(function(cat) {
-    const s = catStats[cat];
-    const ratio = s.total > 0 ? s.correct / s.total : 0;
-    if (ratio < 0.6 && pathMap[cat]) {
-      const path = PATHS_DATA.find(function(p) { return p.id === pathMap[cat]; });
-      if (path) {
-        recommendations.push({
-          path: path,
-          reason: lang === 'ar'
-            ? 'نتيجتك في ' + pick(catNames[cat] || {ar:cat,en:cat}) + ' كانت ' + s.correct + '/' + s.total + '، وهذا المسار يبني الأساس المناسب.'
-            : 'Your score in ' + pick(catNames[cat] || {ar:cat,en:cat}) + ' was ' + s.correct + '/' + s.total + '. This path builds a solid foundation.'
-        });
-      }
-    }
-  });
-
-  if (recommendations.length === 0) {
-    recommendations.push({
-      path: PATHS_DATA[0],
-      reason: lang === 'ar' ? 'أداء جيد في الاختبار، ابدأ بمسار الشبكات لتثبيت الأساسيات.' : 'Good performance. Start with Networking to solidify fundamentals.'
-    });
-  }
-
-  // بناء HTML
-  let strongHtml = strong.length ? strong.map(function(s) { return '<span class="tag tag-good">' + s + '</span>'; }).join('') : '<span class="tag">—</span>';
-  let weakHtml = weak.length ? weak.map(function(s) { return '<span class="tag tag-bad">' + s + '</span>'; }).join('') : '<span class="tag">—</span>';
-
-  let recsHtml = '';
-  recommendations.forEach(function(r) {
-    recsHtml +=
-      '<div class="rec-card">' +
-        '<h3>' + pick(r.path.title) + '</h3>' +
-        '<p>' + r.reason + '</p>' +
-        '<button class="btn btn-primary" data-rec-path="' + r.path.id + '">' + t('assessment.startPath') + '</button>' +
-      '</div>';
-  });
-
-  app.innerHTML =
-    '<div class="page-container">' +
-      '<div class="page-header">' +
-        '<h1 class="page-title">' + t('assessment.resultsTitle') + '</h1>' +
-      '</div>' +
-      '<div class="results-box">' +
-        '<div class="result-stat">' +
-          '<span class="result-label">' + t('assessment.level') + '</span>' +
-          '<span class="result-value">' + t(levelKey) + '</span>' +
-        '</div>' +
-        '<div class="result-stat">' +
-          '<span class="result-label">' + (lang === 'ar' ? 'النتيجة' : 'Score') + '</span>' +
-          '<span class="result-value">' + totalCorrect + '/' + ASSESSMENT_QUESTIONS.length + '</span>' +
-        '</div>' +
-      '</div>' +
-      '<div class="results-section">' +
-        '<h2>' + t('assessment.strong') + '</h2>' +
-        '<div class="tags-row">' + strongHtml + '</div>' +
-      '</div>' +
-      '<div class="results-section">' +
-        '<h2>' + t('assessment.weak') + '</h2>' +
-        '<div class="tags-row">' + weakHtml + '</div>' +
-      '</div>' +
-      '<div class="results-section">' +
-        '<h2>' + t('assessment.recommended') + '</h2>' +
-        '<div class="recs-grid">' + recsHtml + '</div>' +
-      '</div>' +
-      '<div class="results-actions">' +
-        '<button class="btn btn-outline" id="retakeAssessmentBtn">' + t('assessment.retake') + '</button>' +
-      '</div>' +
-    '</div>';
-
-  // ربط أزرار التوصيات وإعادة الاختبار
-  document.querySelectorAll('[data-rec-path]').forEach(function(b) {
-    b.addEventListener('click', function() {
-      navigate('#/path/' + b.getAttribute('data-rec-path'));
-    });
-  });
-  const retake = document.getElementById('retakeAssessmentBtn');
-  if (retake) retake.addEventListener('click', function() {
-    assessmentState = null;
-    renderAssessmentIntro();
-  });
-
-  window.scrollTo(0, 0);
-}
-
-/* نهاية الجزء الرابع */
-/* ============================================================
-   الجزء الخامس — أنماط إضافية ديناميكية (تُحقن في الرأس)
-   ============================================================ */
-
-const EXTRA_STYLES = `
-/* ---------- صفحة الدرس ---------- */
-.lesson-page {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 40px;
-  margin-top: 16px;
-}
-.lesson-breadcrumb {
-  color: var(--purple-light);
-  font-size: 0.85rem;
-  margin-bottom: 8px;
-  font-weight: 600;
-}
-.lesson-title {
-  font-size: clamp(1.4rem, 3vw, 1.9rem);
-  color: #fff;
-  margin-bottom: 24px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--border);
-}
-.lesson-body {
-  color: var(--text);
-  font-size: 1rem;
-  line-height: 2;
-}
-.lesson-body p {
-  margin-bottom: 16px;
-  color: var(--text-muted);
-}
-.lesson-body h2 {
-  color: var(--purple-light);
-  font-size: 1.2rem;
-  margin: 28px 0 12px;
-}
-.lesson-body ul, .lesson-body ol {
-  margin: 12px 0 16px;
-  padding-inline-start: 24px;
-  color: var(--text-muted);
-}
-.lesson-body li {
-  margin-bottom: 8px;
-  line-height: 1.8;
-}
-.lesson-body strong {
-  color: var(--purple-light);
-}
-.lesson-body code {
-  background: var(--bg-elevated);
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-family: monospace;
-  font-size: 0.9em;
-  color: var(--purple-light);
-}
-.lesson-actions {
-  margin-top: 32px;
-  padding-top: 24px;
-  border-top: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-.lesson-done-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(34, 197, 94, 0.15);
-  color: var(--success);
-  padding: 10px 18px;
-  border-radius: 8px;
-  font-weight: 700;
-}
-.lesson-nav {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  margin-top: 24px;
-  flex-wrap: wrap;
-}
-.lesson-nav .btn {
-  flex: 1;
-  min-width: 140px;
-}
-
-/* ---------- اختبار المستوى ---------- */
-.assessment-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 32px;
-  margin-top: 24px;
-}
-.assessment-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-bottom: 24px;
-  color: var(--text-muted);
-  font-size: 0.9rem;
-}
-.assessment-meta span {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-.assessment-progress {
-  margin-bottom: 24px;
-}
-.assessment-progress-bar {
-  height: 6px;
-  background: var(--bg-elevated);
-  border-radius: 3px;
-  overflow: hidden;
-  margin-bottom: 8px;
-}
-.assessment-progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--purple), var(--purple-light));
-  transition: width 0.3s ease;
-}
-.assessment-progress-label {
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  text-align: center;
-}
-.assessment-question {
-  font-size: 1.2rem;
-  color: #fff;
-  margin-bottom: 24px;
-  line-height: 1.6;
-}
-.options-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 16px;
-}
-.option-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px 20px;
-  background: var(--bg-elevated);
-  border: 2px solid transparent;
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: var(--transition);
-}
-.option-item:hover {
-  border-color: var(--purple);
-  background: var(--bg-card);
-}
-.option-item.selected {
-  border-color: var(--purple);
-  background: var(--purple-glow);
-}
-.option-item input {
-  display: none;
-}
-.option-text {
-  color: var(--text);
-  font-size: 0.95rem;
-  line-height: 1.5;
-}
-.option-dontknow {
-  border-style: dashed;
-  border-color: var(--border);
-}
-.option-dontknow .option-text {
-  color: var(--text-muted);
-  font-style: italic;
-}
-.assessment-error {
-  color: var(--danger);
-  font-size: 0.9rem;
-  margin-bottom: 12px;
-}
-.assessment-actions {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  margin-top: 24px;
-  flex-wrap: wrap;
-}
-.assessment-actions .btn {
-  flex: 1;
-  min-width: 140px;
-}
-
-/* ---------- النتائج ---------- */
-.results-box {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 32px;
-}
-.result-stat {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 24px;
-  text-align: center;
-}
-.result-label {
-  display: block;
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  margin-bottom: 8px;
-}
-.result-value {
-  display: block;
-  color: var(--purple-light);
-  font-size: 1.8rem;
-  font-weight: 900;
-}
-.results-section {
-  margin-bottom: 32px;
-}
-.results-section h2 {
-  font-size: 1.2rem;
-  color: var(--purple-light);
-  margin-bottom: 16px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border);
-}
-.tags-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.tag {
-  background: var(--bg-elevated);
-  color: var(--text-muted);
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  border: 1px solid var(--border);
-}
-.tag-good {
-  background: rgba(34, 197, 94, 0.15);
-  color: var(--success);
-  border-color: rgba(34, 197, 94, 0.3);
-}
-.tag-bad {
-  background: rgba(239, 68, 68, 0.15);
-  color: var(--danger);
-  border-color: rgba(239, 68, 68, 0.3);
-}
-.recs-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 16px;
-}
-.rec-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 24px;
-}
-.rec-card h3 {
-  color: #fff;
-  font-size: 1.1rem;
-  margin-bottom: 8px;
-}
-.rec-card p {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  margin-bottom: 16px;
-  line-height: 1.7;
-}
-.results-actions {
-  text-align: center;
-  margin-top: 32px;
-}
-
-/* ---------- لوحة التقدم ---------- */
-.dashboard-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
-  margin-bottom: 32px;
-}
-.stat-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 32px;
-  text-align: center;
-}
-.stat-num {
-  display: block;
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: var(--purple-light);
-  margin-bottom: 8px;
-  font-family: var(--font-en);
-}
-.stat-label {
-  display: block;
-  color: var(--text-muted);
-  font-size: 0.9rem;
-}
-
-@media (max-width: 600px) {
-  .lesson-page { padding: 24px; }
-  .assessment-card { padding: 20px; }
-  .results-box { grid-template-columns: 1fr; }
-  .assessment-actions { flex-direction: column; }
-  .assessment-actions .btn { width: 100%; }
-  .lesson-nav { flex-direction: column; }
-  .lesson-nav .btn { width: 100%; }
-}
-`;
-
-/* حقن الأنماط في الرأس */
-(function injectStyles() {
-  const style = document.createElement('style');
-  style.textContent = EXTRA_STYLES;
-  document.head.appendChild(style);
-})();
-
-/* نهاية الجزء الخامس */
-/* ============================================================
-   الجزء السادس — تفعيل الأقسام النهائية + إغلاق الملف
-   ============================================================ */
-
-/* ---------- المختبرات ---------- */
-const LABS_DATA = [
-  { id: 'lab-net-1', title: { ar: 'قراءة إعدادات الشبكة', en: 'Read Network Config' }, path: 'networking', level: 'beginner', desc: { ar: 'حلّل مخرجات ipconfig وحدّد عنوان الشبكة والبوابة.', en: 'Analyze ipconfig output and identify network address and gateway.' } },
-  { id: 'lab-net-2', title: { ar: 'تحليل PCAP بسيط', en: 'Simple PCAP Analysis' }, path: 'networking', level: 'intermediate', desc: { ar: 'اكتشف اتصالات مشبوهة داخل ملف PCAP تدريبي.', en: 'Spot suspicious connections in a sample PCAP.' } },
-  { id: 'lab-linux-1', title: { ar: 'التنقل في الطرفية', en: 'Navigate the Terminal' }, path: 'linux', level: 'beginner', desc: { ar: 'طبّق أوامر ls، cd، pwd داخل محاكي طرفية.', en: 'Practice ls, cd, pwd in a terminal simulator.' } },
-  { id: 'lab-py-1', title: { ar: 'تحليل سجل ويب', en: 'Web Log Analysis' }, path: 'python', level: 'intermediate', desc: { ar: 'استخرج أكثر عناوين IP تكرارًا من ملف سجل باستخدام بايثون.', en: 'Extract top repeated IPs from a log file using Python.' } },
-  { id: 'lab-web-1', title: { ar: 'اكتشاف SQLi', en: 'Detect SQLi' }, path: 'websec', level: 'intermediate', desc: { ar: 'حلّل حقل إدخال مصاب وحدّد الحمولة.', en: 'Analyze a vulnerable input and identify the payload.' } },
-  { id: 'lab-ctf-1', title: { ar: 'تحدي CTF للمبتدئين', en: 'Beginner CTF' }, path: 'networking', level: 'beginner', desc: { ar: 'أوجد العلم المخفي في سيناريو بسيط.', en: 'Find the hidden flag in a simple scenario.' } }
+const terms=[
+["IP Address","آي بي أدرس","عنوان منطقي يساعد على تحديد الجهاز أو الواجهة وتوجيه البيانات."],
+["MAC Address","ماك أدرس","عنوان واجهة شبكة يستخدم في الاتصال على الشبكة المحلية."],
+["DNS","دي إن إس","نظام يحل أسماء النطاقات إلى معلومات مثل عناوين IP."],
+["DHCP","دي إتش سي بي","بروتوكول يوزع إعدادات الشبكة تلقائيًا."],
+["Port","بورت","رقم يحدد خدمة أو نقطة اتصال داخل الجهاز."],
+["Router","راوتر","جهاز يوجه البيانات بين الشبكات."],
+["Firewall","فايروول","نظام يطبق قواعد السماح بحركة الشبكة أو منعها."],
+["Hash","هاش","قيمة محسوبة من البيانات تستخدم للتحقق من سلامتها."],
+["HTTP","إتش تي تي بي","بروتوكول لتبادل طلبات واستجابات الويب."],
+["VPN","في بي إن","تقنية تنشئ اتصالًا عبر نفق شبكي؛ لا تضمن الخصوصية وحدها."]
+];
+const books=[
+{icon:"📘",ar:"أساسيات الأمن السيبراني",en:"Cybersecurity fundamentals",desc:"المفاهيم الأمنية، المخاطر، الحماية والحسابات.",descEn:"Security concepts, risks, protection and accounts.",body:"ابدأ بفهم الأصول التي تريد حمايتها، والتهديدات التي قد تؤثر عليها، ثم اختر ضوابط مناسبة. حدّث أنظمتك، واستخدم كلمات مرور فريدة ومصادقة متعددة العوامل، واحتفظ بنسخ احتياطية."},
+{icon:"📗",ar:"كيف تقرأ السجلات؟",en:"How to read logs",desc:"التوقيت والأحداث والمؤشرات والتحقيق الأولي.",descEn:"Timestamps, events, indicators and initial investigation.",body:"ابدأ بتحديد الوقت والمنطقة الزمنية ومصدر السجل. ابحث عن أحداث متتابعة بدل الاعتماد على سطر منفرد. وثّق ما لاحظته، وافصل بين الحقيقة والفرضية، ولا تعدّل الدليل الأصلي."},
+{icon:"📙",ar:"بايثون للتحليل",en:"Python for analysis",desc:"استخدم البرمجة في معالجة ملفات تعليمية.",descEn:"Use code to process educational sample files.",body:"يمكنك استخدام Python لقراءة ملفات CSV وJSON، وحساب عدد الأحداث، وتجميع النتائج حسب النوع أو الوقت. اختبر برنامجك على بيانات تجريبية واحذر من تنفيذ الملفات المجهولة."}
+];
+const cases=[
+{id:"login-case",ar:"تسجيلات دخول غير معتادة",en:"Unusual login activity",intro:"حساب تجريبي ظهرت له ثلاثة أحداث. حدد أي حدث يحتاج إلى مراجعة أولًا.",introEn:"A demo account has three events. Identify which event should be reviewed first.",evidence:"09:02  LOGIN_SUCCESS  device=known\n09:05  LOGIN_FAILED   source=203.0.113.24\n09:06  LOGIN_SUCCESS  source=203.0.113.24  device=unknown",q:"أي حدث هو أقوى مؤشر يستحق التحقيق؟",qEn:"Which event is the strongest lead for investigation?",options:[["a","تسجيل الدخول المعتاد الساعة 09:02"],["b","نجاح تسجيل الدخول من جهاز غير معروف بعد فشل"],["c","وجود سجل زمني"],["d","لا يوجد شيء يستحق المراجعة"]],optionsEn:[["a","The normal 09:02 login"],["b","Successful login from an unknown device after a failure"],["c","The existence of a timestamp"],["d","Nothing needs review"]],answer:"b",explain:"النجاح من مصدر وجهاز غير معروف بعد فشل يستحق التحقق، لكنه لا يثبت الاختراق وحده."}
 ];
 
-function renderLabsPage() {
-  const lang = getLang();
-  let cardsHtml = '';
-  LABS_DATA.forEach(function(lab) {
-    cardsHtml +=
-      '<div class="path-card" data-lab="' + lab.id + '">' +
-        '<div class="path-card-header">' +
-          '<div class="path-card-title">' + pick(lab.title) + '</div>' +
-          '<span class="path-badge ' + levelBadgeClass(lab.level) + '">' + levelLabel(lab.level) + '</span>' +
-        '</div>' +
-        '<p class="path-card-desc">' + pick(lab.desc) + '</p>' +
-        '<div class="path-card-meta"><span>🧪 ' + (lang === 'ar' ? 'مختبر عملي' : 'Hands-on lab') + '</span></div>' +
-      '</div>';
-  });
-
-  return (
-    '<div class="page-container">' +
-      '<div class="page-header">' +
-        '<h1 class="page-title">' + t('nav.labs') + '</h1>' +
-        '<p class="page-desc">' + (lang === 'ar' ? 'مختبرات عملية مصنّفة حسب المجال والصعوبة.' : 'Hands-on labs categorized by field and difficulty.') + '</p>' +
-      '</div>' +
-      '<div class="filters-bar">' +
-        '<input type="text" id="labSearch" class="search-input" placeholder="' + (lang === 'ar' ? 'ابحث عن مختبر...' : 'Search labs...') + '">' +
-        '<select id="labLevelFilter" class="filter-select">' +
-          '<option value="all">' + t('paths.filterLevel') + '</option>' +
-          '<option value="beginner">' + t('paths.beginner') + '</option>' +
-          '<option value="intermediate">' + t('paths.intermediate') + '</option>' +
-          '<option value="advanced">' + t('paths.advanced') + '</option>' +
-        '</select>' +
-      '</div>' +
-      '<div class="paths-grid" id="labsGrid">' + cardsHtml + '</div>' +
-    '</div>'
-  );
+const navItems=[
+["home","⌂","الرئيسية","Home"],["paths","▤","الأكاديمية","Academy"],["labs","⚗","المختبرات","Labs"],["assessment","◎","اختبار المستوى","Skill check"],["cases","⌕","القضايا","Cases"],["book","▣","المكتبة","Library"],["glossary","⌗","القاموس","Glossary"],["profile","◉","تقدمي","Progress"]
+];
+function renderNav(){
+ const itemHTML=navItems.map(([id,icon,ar,english])=>`<button class="nav-btn ${id==="home"?"active":""}" data-nav="${id}" onclick="go('${id}')"><span class="ico">${icon}</span><span>${txt(ar,english)}</span></button>`).join("");
+ $("sideNav").innerHTML=`<div class="side-label">${txt("القائمة","MENU")}</div>${itemHTML}`;
+ $("mobileNav").innerHTML=navItems.filter(x=>["home","paths","labs","cases","profile"].includes(x[0])).map(([id,icon,ar,english])=>`<button data-nav="${id}" onclick="go('${id}')"><b>${icon}</b><span>${txt(ar,english)}</span></button>`).join("");
 }
-
-function attachLabsEvents() {
-  const s = document.getElementById('labSearch');
-  const l = document.getElementById('labLevelFilter');
-  const grid = document.getElementById('labsGrid');
-  if (!grid) return;
-  const lang = getLang();
-
-  function filterLabs() {
-    const q = (s.value || '').toLowerCase().trim();
-    const lvl = l.value || 'all';
-    const filtered = LABS_DATA.filter(function(lab) {
-      const hay = (pick(lab.title) + ' ' + pick(lab.desc)).toLowerCase();
-      return (lvl === 'all' || lab.level === lvl) && (!q || hay.indexOf(q) !== -1);
-    });
-    if (filtered.length === 0) {
-      grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><h3>' + (lang === 'ar' ? 'لا نتائج' : 'No results') + '</h3></div>';
-      return;
-    }
-    let html = '';
-    filtered.forEach(function(lab) {
-      html +=
-        '<div class="path-card" data-lab="' + lab.id + '">' +
-          '<div class="path-card-header">' +
-            '<div class="path-card-title">' + pick(lab.title) + '</div>' +
-            '<span class="path-badge ' + levelBadgeClass(lab.level) + '">' + levelLabel(lab.level) + '</span>' +
-          '</div>' +
-          '<p class="path-card-desc">' + pick(lab.desc) + '</p>' +
-          '<div class="path-card-meta"><span>🧪 ' + (lang === 'ar' ? 'مختبر عملي' : 'Hands-on lab') + '</span></div>' +
-        '</div>';
-    });
-    grid.innerHTML = html;
-  }
-
-  s.addEventListener('input', filterLabs);
-  l.addEventListener('change', filterLabs);
+function go(id){
+ document.querySelectorAll(".view").forEach(v=>v.classList.toggle("active",v.id===id));
+ document.querySelectorAll("[data-nav]").forEach(b=>b.classList.toggle("active",b.dataset.nav===id));
+ history.replaceState(null,"","#"+id);
+ window.scrollTo({top:0,behavior:"smooth"});
+ if(id==="profile")renderProfile();
 }
-
-/* ---------- المكتبة ---------- */
-function renderLibraryPage() {
-  const lang = getLang();
-  return (
-    '<div class="page-container">' +
-      '<div class="page-header">' +
-        '<h1 class="page-title">' + t('nav.library') + '</h1>' +
-        '<p class="page-desc">' + (lang === 'ar' ? 'كتب تعليمية بفصول وأمثلة وتمارين.' : 'Educational books with chapters, examples, and exercises.') + '</p>' +
-      '</div>' +
-      '<div class="paths-grid">' +
-        '<div class="path-card">' +
-          '<div class="path-card-header"><div class="path-card-title">' + (lang === 'ar' ? 'كيف تكتشف الاختراق قبل فوات الأوان؟' : 'How to Detect a Breach Before It Is Too Late?') + '</div></div>' +
-          '<p class="path-card-desc">' + (lang === 'ar' ? 'كتاب عملي يشرح حماية الحسابات، اكتشاف الملفات المشبوهة، قراءة السجلات، ومؤشرات الاختراق.' : 'A practical book covering account protection, suspicious files, log reading, and breach indicators.') + '</p>' +
-          '<div class="path-card-meta"><span>📚 ' + (lang === 'ar' ? '9 فصول' : '9 chapters') + '</span></div>' +
-        '</div>' +
-      '</div>' +
-    '</div>'
-  );
+function toggleLang(){
+ state.lang=en()?"ar":"en";
+ document.documentElement.lang=state.lang;
+ document.documentElement.dir=en()?"ltr":"rtl";
+ document.body.classList.toggle("en",en());
+ $("langBtn").textContent=en()?"🇺🇸 English":"🇸🇦 العربية";
+ document.querySelectorAll("[data-ar][data-en]").forEach(el=>el.textContent=txt(el.dataset.ar,el.dataset.en));
+ document.querySelectorAll("[data-ar-placeholder][data-en-placeholder]").forEach(el=>el.placeholder=txt(el.dataset.arPlaceholder,el.dataset.enPlaceholder));
+ document.querySelectorAll("option[data-ar][data-en]").forEach(el=>el.textContent=txt(el.dataset.ar,el.dataset.en));
+ renderNav();renderPaths();renderLabs();renderCases();renderBooks();renderGlossary();renderAssessment();updateStats();save();
+ if($("lesson").classList.contains("active"))openPath(currentPath,currentLesson);
+ if($("labwork").classList.contains("active"))openLab(labActive);
+ if($("casework").classList.contains("active"))openCase(caseActive);
 }
-
-/* ---------- القضايا الرقمية ---------- */
-function renderCasesPage() {
-  const lang = getLang();
-  return (
-    '<div class="page-container">' +
-      '<div class="page-header">' +
-        '<h1 class="page-title">' + t('nav.cases') + '</h1>' +
-        '<p class="page-desc">' + (lang === 'ar' ? 'تحقيقات رقمية تفاعلية تحتاج تحليلًا واستنتاجًا.' : 'Interactive digital investigations requiring analysis and reasoning.') + '</p>' +
-      '</div>' +
-      '<div class="paths-grid">' +
-        '<div class="path-card">' +
-          '<div class="path-card-header"><div class="path-card-title">' + (lang === 'ar' ? 'قضية الدخول الغريب' : 'The Strange Login Case') + '</div><span class="path-badge badge-beginner">' + levelLabel('beginner') + '</span></div>' +
-          '<p class="path-card-desc">' + (lang === 'ar' ? 'سجلات دخول ورسائل ومؤشرات تحتاج ربطها زمنيًا لمعرفة ما حدث.' : 'Login logs, messages, and indicators need to be correlated in time to understand what happened.') + '</p>' +
-          '<div class="path-card-meta"><span>🔎 ' + (lang === 'ar' ? 'تحقيق كامل' : 'Full investigation') + '</span></div>' +
-        '</div>' +
-      '</div>' +
-    '</div>'
-  );
+function updateStats(){
+ $("statLessons").textContent=state.lessons.length;
+ $("statLabs").textContent=state.labs.length;
+ $("statXP").textContent=state.xp;
 }
-
-/* ---------- تحديث الراوتر ليشمل الأقسام الحقيقية ---------- */
-function render() {
-  const app = document.getElementById('app');
-  if (!app) return;
-  const route = parseRoute();
-  currentRoute = route;
-
-  let html = '';
-  switch (route.page) {
-    case 'home':
-      html = renderHome();
-      setActiveNav('home');
-      break;
-    case 'paths':
-      html = renderPathsPage();
-      setActiveNav('paths');
-      break;
-    case 'path':
-      html = renderPathDetail(route.id);
-      setActiveNav('paths');
-      break;
-    case 'lesson':
-      html = renderLessonPage(route.pathId, route.lessonId);
-      setActiveNav('paths');
-      break;
-    case 'assessment':
-      if (assessmentState) {
-        if (assessmentState.done) {
-          renderAssessmentResults();
-          return;
-        }
-        html = '';
-      } else {
-        html = renderAssessmentIntro();
-      }
-      setActiveNav('assessment');
-      break;
-    case 'labs':
-      html = renderLabsPage();
-      setActiveNav('labs');
-      break;
-    case 'library':
-      html = renderLibraryPage();
-      setActiveNav('library');
-      break;
-    case 'cases':
-      html = renderCasesPage();
-      setActiveNav('cases');
-      break;
-    case 'dashboard':
-      html = renderDashboard();
-      setActiveNav('dashboard');
-      break;
-    default:
-      html = renderHome();
-      setActiveNav('home');
-  }
-
-  if (html !== '') {
-    app.innerHTML = html;
-  }
-  attachPageEvents(route);
-  window.scrollTo(0, 0);
+function card({icon,title,desc,tag,action,label}){
+ return `<article class="card"><div class="card-icon">${icon}</div><h3>${title}</h3><p>${desc}</p><div class="card-foot"><span class="tag">${tag}</span><button class="text-btn" onclick="${action}">${label}</button></div></article>`;
 }
-
-/* ---------- إعادة تعريف ربط الأحداث ليشمل المختبرات ---------- */
-function attachPageEvents(route) {
-  document.querySelectorAll('[data-nav]').forEach(function(el) {
-    el.addEventListener('click', function(e) {
-      e.preventDefault();
-      const target = el.getAttribute('data-nav');
-      if (target === 'home') navigate('#/');
-      else navigate('#/' + target);
-      closeMobileNav();
-    });
-  });
-
-  if (route.page === 'paths') {
-    const s = document.getElementById('pathSearch');
-    const l = document.getElementById('levelFilter');
-    if (s) s.addEventListener('input', renderPathCards);
-    if (l) l.addEventListener('change', renderPathCards);
-    renderPathCards();
-    const bb = document.getElementById('beginnerBtn');
-    if (bb) bb.addEventListener('click', function() {
-      const beginnerPaths = PATHS_DATA.filter(function(p) { return p.level === 'beginner'; });
-      if (beginnerPaths.length) navigate('#/path/' + beginnerPaths[0].id);
-    });
-  }
-
-  if (route.page === 'path') {
-    document.querySelectorAll('.lesson-item').forEach(function(item) {
-      item.addEventListener('click', function() {
-        const lid = item.getAttribute('data-lesson');
-        navigate('#/lesson/' + route.id + '/' + lid);
-      });
-    });
-    document.querySelectorAll('[data-nav]').forEach(function(el) {
-      if (el.classList.contains('back-link')) {
-        el.addEventListener('click', function(e) {
-          e.preventDefault();
-          navigate('#/paths');
-        });
-      }
-    });
-  }
-
-  if (route.page === 'lesson') {
-    attachLessonEvents(route.pathId, route.lessonId);
-  }
-
-  if (route.page === 'assessment') {
-    const btn = document.getElementById('startAssessmentBtn');
-    if (btn) btn.addEventListener('click', function() {
-      assessmentState = { index: 0, answers: new Array(ASSESSMENT_QUESTIONS.length).fill(null), done: false };
-      renderAssessmentQuestion();
-    });
-  }
-
-  if (route.page === 'labs') {
-    attachLabsEvents();
-  }
+function renderPaths(){
+ const q=($("pathSearch")?.value||"").toLowerCase().trim(),level=$("pathLevel")?.value||"all";
+ const found=paths.map((p,i)=>({...p,i})).filter(p=>(level==="all"||p.level===level)&&`${p.ar} ${p.en} ${p.desc} ${p.descEn}`.toLowerCase().includes(q));
+ $("pathGrid").innerHTML=found.length?found.map(p=>card({icon:p.icon,title:txt(p.ar,p.en),desc:txt(p.desc,p.descEn),tag:txt(p.level==="beginner"?"مبتدئ":"متوسط",p.level==="beginner"?"BEGINNER":"INTERMEDIATE"),action:`openPath(${p.i},0)`,label:txt("ابدأ التعلّم ←","Start learning →")})).join(""):`<div class="empty">${txt("ما لقينا مسار بهذا الاسم.","No matching paths found.")}</div>`;
 }
-
-/* ---------- تعديل renderAssessmentQuestion ليضبط done ---------- */
-const _origRenderAssessmentQuestion = renderAssessmentQuestion;
-renderAssessmentQuestion = function() {
-  if (assessmentState) assessmentState.done = false;
-  _origRenderAssessmentQuestion();
-};
-
-const _origRenderAssessmentResults = renderAssessmentResults;
-renderAssessmentResults = function() {
-  if (assessmentState) assessmentState.done = true;
-  _origRenderAssessmentResults();
-};
-
-/* ---------- إعادة تشغيل التهيئة بأمان ---------- */
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init);
-} else {
-  init();
+function openPath(i,li){
+ currentPath=i;currentLesson=li;
+ const p=paths[i],l=p.lessons[li];
+ $("lessonList").innerHTML=p.lessons.map((lesson,j)=>`<button class="lesson-item ${j===li?"active":""}" onclick="openPath(${i},${j})">${state.lessons.includes(p.id+":"+j)?"✓ ":""}${txt(lesson[0],lesson[1])}</button>`).join("");
+ const done=state.lessons.includes(p.id+":"+li);
+ $("lessonContent").innerHTML=`<div class="eyebrow">${txt("المسار التعليمي","LEARNING PATH")} / ${li+1} OF ${p.lessons.length}</div><h2>${txt(l[0],l[1])}</h2><div class="progress"><span style="width:${Math.round((li+1)/p.lessons.length*100)}%"></span></div><h3>${txt("الشرح","Explanation")}</h3><p>${txt(l[2],l[3])}</p><h3>${txt("مثال مبسّط","A simple example")}</h3><div class="callout">${txt(l[4],l[5])}</div><div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:25px"><button class="btn primary" onclick="completeLesson()" ${done?"disabled":""}>${done?txt("✓ مكتمل","✓ Completed"):txt("علّم الدرس كمكتمل +10 XP","Mark complete +10 XP")}</button>${li>0?`<button class="btn" onclick="openPath(${i},${li-1})">${txt("السابق","Previous")}</button>`:""}${li<p.lessons.length-1?`<button class="btn" onclick="openPath(${i},${li+1})">${txt("الدرس التالي ←","Next lesson →")}</button>`:`<button class="btn" onclick="go('labs')">${txt("انتقل للمختبرات","Explore labs")}</button>`}</div><p class="muted" style="font-size:12px;margin-top:25px">${txt("تذكير: تعلّم على أنظمة تملكها أو لديك تصريح لاختبارها.","Reminder: practice only on systems you own or are authorized to test.")}</p>`;
+ go("lesson");
 }
-
-/* نهاية الجزء السادس */
-/* ============================================================
-   الجزء السابع (الأخير) — تنظيف + إغلاق الملف
-   ============================================================ */
-
-(function finalInit() {
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    if (document.getElementById('app')) {
-      if (!window.__midnightInited) {
-        window.__midnightInited = true;
-        init();
-      }
-    }
-  }
-})();
+function completeLesson(){
+ const key=paths[currentPath].id+":"+currentLesson;
+ if(!state.lessons.includes(key)){state.lessons.push(key);state.xp+=10;save();openPath(currentPath,currentLesson)}
+}
+function renderLabs(){
+ const q=($("labSearch")?.value||"").toLowerCase().trim(),cat=$("labCategory")?.value||"all";
+ const found=labs.map((l,i)=>({...l,i})).filter(l=>(cat==="all"||l.cat===cat)&&`${l.ar} ${l.en} ${l.desc} ${l.descEn}`.toLowerCase().includes(q));
+ $("labGrid").innerHTML=found.length?found.map(l=>card({icon:l.icon,title:txt(l.ar,l.en),desc:txt(l.desc,l.descEn),tag:txt("محاكاة آمنة","SAFE SIMULATION"),action:`openLab(${l.i})`,label:state.labs.includes(l.id)?txt("✓ مكتمل","✓ Completed"):txt("ابدأ التحدي ←","Start challenge →")})).join(""):`<div class="empty">${txt("لا توجد نتائج.","No results.")}</div>`;
+}
+function openLab(i){
+ labActive=i;const l=labs[i];
+ $("labTitle").textContent=txt(l.ar,l.en);$("labDescription").textContent=txt(l.desc,l.descEn);$("labHint").textContent=txt("تلميح: "+l.hint,"Hint: "+l.hint);
+ $("labFeedback").hidden=true;
+ $("labTask").innerHTML=`<h3>${txt("المهمة","Task")}</h3><p>${txt(l.desc,l.descEn)}</p>${l.options.map(([v,label])=>`<label class="quiz-option"><input type="radio" name="labAnswer" value="${v}"><span>${label}</span></label>`).join("")}<button class="btn primary" style="margin-top:15px" onclick="checkLab()">${txt("تحقق من الإجابة","Check answer")}</button>`;
+ go("labwork");
+}
+function checkLab(){
+ const l=labs[labActive],chosen=document.querySelector('input[name="labAnswer"]:checked'),feedback=$("labFeedback");
+ feedback.hidden=false;
+ if(!chosen){feedback.textContent=txt("اختر إجابة أولًا.","Choose an answer first.");return}
+ if(chosen.value===l.answer){
+   feedback.textContent=txt("إجابة صحيحة! "+l.explain,"Correct! "+l.explain);
+   if(!state.labs.includes(l.id)){state.labs.push(l.id);state.xp+=25;save()}
+ }else feedback.textContent=txt("مو صحيح. راجع التلميح وحاول مرة ثانية.","Not quite. Review the hint and try again.");
+ renderLabs();
+}
+const assessQuestions=[
+{ar:"ما وظيفة DNS الأساسية؟",en:"What is the primary role of DNS?",options:["تشفير الملفات","حل أسماء النطاقات","توزيع طاقة الشبكة"],optionsEn:["Encrypt files","Resolve domain names","Distribute network power"],a:1,path:"network"},
+{ar:"أي أمر يعرض المجلد الحالي في لينكس؟",en:"Which Linux command shows the current directory?",options:["pwd","mkdir","clear"],optionsEn:["pwd","mkdir","clear"],a:0,path:"linux"},
+{ar:"ما الغرض من المتغير في Python؟",en:"What is a variable used for in Python?",options:["تخزين قيمة","إيقاف الإنترنت","تغيير عنوان IP تلقائيًا"],optionsEn:["Store a value","Disable the internet","Automatically change an IP"],a:0,path:"python"},
+{ar:"أي أسلوب يساعد على تقليل خطر حقن SQL؟",en:"Which technique helps reduce SQL injection risk?",options:["إخفاء عنوان الموقع","استعلامات معلّمة","زيادة حجم الخط"],optionsEn:["Hide the URL","Parameterized queries","Increase font size"],a:1,path:"web"},
+{ar:"ما فائدة سجلات النظام؟",en:"What are system logs useful for?",options:["توثيق الأحداث","زيادة سرعة الشاشة","استبدال النسخ الاحتياطية"],optionsEn:["Recording events","Increasing display speed","Replacing backups"],a:0,path:"defense"}
+];
+function renderAssessment(){
+ quizIndex=0;quizAnswers={};
+ showQuestion();
+}
+function showQuestion(){
+ const q=assessQuestions[quizIndex],box=$("assessmentBox");
+ if(!q){showAssessmentResult();return}
+ box.innerHTML=`<div class="eyebrow">${txt("السؤال","QUESTION")} ${quizIndex+1} / ${assessQuestions.length}</div><div class="progress"><span style="width:${(quizIndex+1)/assessQuestions.length*100}%"></span></div><h2>${txt(q.ar,q.en)}</h2>${q.options.map((o,i)=>`<label class="quiz-option"><input type="radio" name="assessment" value="${i}" ${quizAnswers[quizIndex]===i?"checked":""}><span>${txt(o,q.optionsEn[i])}</span></label>`).join("")}<div style="display:flex;justify-content:space-between;gap:10px;margin-top:20px"><button class="btn" onclick="assessmentMove(-1)" ${quizIndex===0?"disabled":""}>${txt("السابق","Previous")}</button><button class="btn primary" onclick="assessmentMove(1)">${quizIndex===assessQuestions.length-1?txt("عرض النتيجة","See results"):txt("التالي","Next")}</button></div>`;
+}
+function assessmentMove(step){
+ const selected=document.querySelector('input[name="assessment"]:checked');
+ if(selected)quizAnswers[quizIndex]=Number(selected.value);
+ else if(step===1){alert(txt("اختر إجابة أو اختر «ما أعرف» من خلال تخطي السؤال.","Choose an answer before continuing."));return}
+ quizIndex+=step;
+ if(quizIndex>=assessQuestions.length){showAssessmentResult();return}
+ showQuestion();
+}
+function showAssessmentResult(){
+ const score=assessQuestions.filter((q,i)=>quizAnswers[i]===q.a).length;
+ const level=score<2?txt("مبتدئ — ابدأ بالأساسيات","Beginner — start with fundamentals"):score<4?txt("أساسيات جيدة — واصل التدريب","Developing — keep practicing"):txt("بداية قوية — جرّب مسارات متقدمة","Strong start — explore further paths");
+ $("assessmentBox").innerHTML=`<div class="eyebrow">${txt("النتيجة","RESULT")}</div><h2>${score} / ${assessQuestions.length}</h2><p>${level}</p><p class="muted">${txt("هذا تقدير أولي وليس حكمًا نهائيًا على مهاراتك. جميع المسارات متاحة لك.","This is a rough guide, not a definitive skill rating. All paths remain available.")}</p><div class="grid">${paths.slice(0,5).map((p,i)=>card({icon:p.icon,title:txt(p.ar,p.en),desc:txt(p.desc,p.descEn),tag:txt("مسار مقترح","SUGGESTED"),action:`openPath(${i},0)`,label:txt("ابدأ المسار ←","Start path →")})).join("")}</div><button class="btn" style="margin-top:20px" onclick="renderAssessment()">${txt("إعادة الاختبار","Retake quiz")}</button>`;
+}
+function renderCases(){
+ $("caseGrid").innerHTML=cases.map((c,i)=>card({icon:"🔎",title:txt(c.ar,c.en),desc:txt(c.intro,c.introEn),tag:txt(state.caseSolved.includes(c.id)?"مكتملة":"تحقيق رقمي",state.caseSolved.includes(c.id)?"SOLVED":"FORENSICS"),action:`openCase(${i})`,label:state.caseSolved.includes(c.id)?txt("✓ مكتملة","✓ Solved"):txt("ابدأ التحقيق ←","Investigate →")})).join("");
+}
+function openCase(i){
+ caseActive=i;const c=cases[i];
+ $("caseTitle").textContent=txt(c.ar,c.en);$("caseIntro").textContent=txt(c.intro,c.introEn);$("caseEvidence").textContent=c.evidence;$("caseFeedback").hidden=true;
+ const opts=en()?c.optionsEn:c.options;
+ $("caseQuestion").innerHTML=`<h3>${txt(c.q,c.qEn)}</h3>${opts.map(([v,label])=>`<label class="quiz-option"><input type="radio" name="caseAnswer" value="${v}"><span>${label}</span></label>`).join("")}<button class="btn primary" style="margin-top:15px" onclick="checkCase()">${txt("إرسال الاستنتاج","Submit conclusion")}</button>`;
+ go("casework");
+}
+function checkCase(){
+ const c=cases[caseActive],selected=document.querySelector('input[name="caseAnswer"]:checked'),feedback=$("caseFeedback");
+ feedback.hidden=false;
+ if(!selected){feedback.textContent=txt("اختر استنتاجًا أولًا.","Choose a conclusion first.");return}
+ if(selected.value===c.answer){
+ feedback.textContent=txt("استنتاج صحيح. "+c.explain,"Correct conclusion. "+c.explain);
+ if(!state.caseSolved.includes(c.id)){state.caseSolved.push(c.id);state.xp+=30;save()}
+ }else feedback.textContent=txt("راجع تسلسل الأحداث وحاول مرة ثانية.","Review the event sequence and try again.");
+ renderCases();
+}
+function renderBooks(){
+ $("bookGrid").innerHTML=books.map((b,i)=>card({icon:b.icon,title:txt(b.ar,b.en),desc:txt(b.desc,b.descEn),tag:txt("قراءة","READING"),action:`readBook(${i})`,label:txt("اقرأ الآن ←","Read now →")})).join("");
+}
+function readBook(i){
+ const b=books[i],reader=$("bookReader");reader.hidden=false;
+ reader.innerHTML=`<h2>${txt(b.ar,b.en)}</h2><p>${txt(b.body,b.body)}</p><div class="callout">${txt("طبّق هذه المفاهيم على بيانات تجريبية أو أنظمة تملكها.","Practice these concepts using sample data or systems you own.")}</div>`;
+ reader.scrollIntoView({behavior:"smooth",block:"start"});
+}
+function renderGlossary(){
+ const q=($("glossSearch")?.value||"").toLowerCase().trim();
+ const found=terms.filter(t=>t.join(" ").toLowerCase().includes(q));
+ $("glossGrid").innerHTML=found.length?found.map(t=>`<article class="card"><span class="tag">${t[0]}</span><h3>${t[1]}</h3><p>${t[2]}</p></article>`).join(""):`<div class="empty">${txt("ما لقينا المصطلح.","No matching term found.")}</div>`;
+}
+function renderProfile(){
+ $("profileLessons").textContent=state.lessons.length;$("profileLabs").textContent=state.labs.length;$("profileXP").textContent=state.xp;
+ $("achievements").innerHTML=[
+ [state.lessons.length>=1,"🎓",txt("أول درس","First lesson")],
+ [state.labs.length>=1,"🧪",txt("أول مختبر","First lab")],
+ [state.xp>=100,"⚡",txt("100 نقطة","100 XP")],
+ [state.caseSolved.length>=1,"🔎",txt("محقق رقمي","Digital investigator")]
+ ].map(([ok,icon,name])=>`<article class="card"><div class="card-icon">${icon}</div><h3>${name}</h3><span class="tag">${ok?txt("تم الفتح","UNLOCKED"):txt("قيد التقدم","LOCKED")}</span></article>`).join("");
+ $("pathProgress").innerHTML=paths.map(p=>{const done=state.lessons.filter(k=>k.startsWith(p.id+":")).length;return `<div style="margin:18px 0"><div style="display:flex;justify-content:space-between;gap:10px"><strong>${txt(p.ar,p.en)}</strong><span class="muted">${done}/${p.lessons.length}</span></div><div class="progress"><span style="width:${done/p.lessons.length*100}%"></span></div></div>`}).join("");
+}
+function resetProgress(){
+ if(!confirm(txt("متأكد أنك تبي تمسح كل تقدمك المحفوظ على هذا الجهاز؟","Reset all progress saved on this device?")))return;
+ state.lessons=[];state.labs=[];state.xp=0;state.caseSolved=[];save();renderProfile();renderPaths();renderLabs();renderCases();
+}
+renderNav();
+renderPaths();
+renderLabs();
+renderAssessment();
+renderCases();
+renderBooks();
+renderGlossary();
+updateStats();
+if(location.hash&&$(location.hash.slice(1)))go(location.hash.slice(1));
 </script>
 </body>
 </html>
