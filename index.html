@@ -3,466 +3,1008 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#09070f">
-<meta name="description" content="Midnight — تعلم الأمن السيبراني والشبكات والبرمجة من الصفر عبر دروس ومختبرات تعليمية.">
-<title>Midnight — Cyber Academy</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#09090f">
+<title>Midnight | Cyber Security</title>
 <style>
-:root{color-scheme:dark;--bg:#09070f;--panel:#100d19;--panel2:#151020;--line:#292137;--purple:#a875ff;--bright:#c7a5ff;--text:#f6f1ff;--muted:#a49ab5;--green:#80e5b1;--radius:17px}
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap');
+
+:root{
+  --bg:#08080d;
+  --panel:#101019;
+  --panel2:#151521;
+  --line:#29283b;
+  --purple:#9b5cff;
+  --purple2:#7138d4;
+  --text:#f3f0ff;
+  --muted:#9995ae;
+  --green:#57e6a2;
+  --red:#ff647c;
+  --yellow:#ffd479;
+}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);font-family:"Tajawal",sans-serif;min-height:100vh}
-body.en{font-family:"Inter",sans-serif}
-button,input,select{font:inherit}
-button,a{-webkit-tap-highlight-color:transparent}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:'Tajawal',sans-serif;min-height:100vh;
+}
+button,input,textarea,select{font:inherit}
 button{cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--purple)}
 a{color:inherit;text-decoration:none}
-button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--bright);outline-offset:3px}
-::selection{background:#7545bd;color:white}
-.topbar{height:68px;position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:#09070fee;border-bottom:1px solid var(--line);backdrop-filter:blur(16px)}
-.brand{display:flex;align-items:center;gap:10px;font-family:Inter,sans-serif;font-weight:800;letter-spacing:1.5px}
-.brand-mark{width:35px;height:35px;display:grid;place-items:center;border:1px solid #644294;border-radius:11px;background:linear-gradient(145deg,#372052,#130d20);color:var(--bright)}
-.top-actions{display:flex;gap:8px;align-items:center}
-.small-btn,.nav-btn,.btn{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:10px;padding:10px 13px;transition:.2s}
-.small-btn:hover,.nav-btn:hover,.btn:hover{border-color:#8055bc;transform:translateY(-1px)}
-.btn.primary{background:linear-gradient(120deg,#8e54d8,#6337a7);border-color:#a47add;font-weight:800}
-.btn.ghost{background:#171021}
-.layout{display:grid;grid-template-columns:220px minmax(0,1fr);max-width:1500px;margin:auto}
-.sidebar{padding:26px 16px;border-inline-end:1px solid var(--line);min-height:calc(100vh - 68px)}
-.side-label{font-size:11px;color:#827590;letter-spacing:1.5px;margin:18px 12px 9px}
-.nav-btn{width:100%;text-align:start;display:flex;gap:11px;align-items:center;margin:5px 0;border-color:transparent;background:transparent;color:var(--muted)}
-.nav-btn .ico{width:22px;text-align:center}
-.nav-btn.active{color:white;background:#211631;border-color:#493064}
-.nav-btn.active .ico{color:var(--bright)}
-.side-bottom{margin-top:30px;padding:14px;border:1px solid var(--line);border-radius:13px;background:#100b18}
-.side-bottom p{font-size:12px;color:var(--muted);line-height:1.8}
-main{min-width:0;padding:30px clamp(16px,4vw,48px) 55px}
-.view{display:none;animation:appear .25s ease}
-.view.active{display:block}
-@keyframes appear{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-.hero{position:relative;overflow:hidden;min-height:355px;padding:clamp(25px,5vw,55px);border:1px solid #38234e;border-radius:23px;background:radial-gradient(ellipse at 80% 15%,#40225d66,transparent 48%),linear-gradient(120deg,#171020,#0e0a15 70%);display:grid;grid-template-columns:1.1fr .9fr;gap:25px;align-items:center}
-.eyebrow{font:700 11px Inter,sans-serif;color:var(--bright);letter-spacing:2px;text-transform:uppercase}
-.hero h1{font-size:clamp(39px,6vw,72px);line-height:1.08;margin:17px 0}
-.gradient{background:linear-gradient(100deg,#fff,#bd91ff);color:transparent;background-clip:text}
-.hero p{max-width:510px;color:var(--muted);line-height:1.95}
-.hero-buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
-.hero-art{min-width:0;display:flex;justify-content:center;align-items:center}
-.hero-art img{width:100%;max-width:400px;max-height:270px;object-fit:contain;filter:drop-shadow(0 0 35px #8b4b8a24)}
-.art-placeholder{width:220px;height:220px;display:grid;place-items:center;border-radius:50%;border:1px solid #51356f;background:radial-gradient(circle,#38204f,#100b18 70%);font-size:85px;box-shadow:0 0 80px #8c49ca1b}
-.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0 34px}
-.stat,.card,.lesson-panel,.content-panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius)}
-.stat{padding:17px}
-.stat span{font-size:12px;color:var(--muted)}
-.stat strong{display:block;font:800 27px Inter,sans-serif;margin-top:8px}
-.section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin:28px 0 17px}
-.section-head h2,.page-title{margin:7px 0;font-size:clamp(24px,4vw,34px)}
-.section-head p{color:var(--muted);font-size:13px}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
-.card{padding:20px;min-width:0;transition:border-color .2s,transform .2s}
-.card:hover{border-color:#64458a;transform:translateY(-2px)}
-.card-icon{width:42px;height:42px;display:grid;place-items:center;background:#261738;border:1px solid #49305f;border-radius:12px;font-size:20px}
-.card h3{font-size:18px;margin:16px 0 8px}
-.card p{color:var(--muted);font-size:13px;line-height:1.9;min-height:48px}
-.card-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:16px}
-.tag{display:inline-block;border:1px solid #41304e;background:#1c1425;color:#c6b1de;border-radius:7px;padding:5px 8px;font-size:11px}
-.text-btn{border:0;background:none;color:var(--bright);padding:8px 0;font-weight:700}
-.text-btn:hover{color:white}
-.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0}
-.search{flex:1;min-width:160px;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:12px 14px;color:white}
-select{background:var(--panel);border:1px solid var(--line);color:white;border-radius:11px;padding:10px;max-width:100%}
-.muted{color:var(--muted);line-height:1.9}
-.empty{padding:28px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:14px}
-.progress{height:6px;background:#292033;border-radius:20px;overflow:hidden;margin:13px 0}
-.progress span{display:block;height:100%;background:linear-gradient(90deg,#8350c4,#c29aff);transition:width .3s}
-.lesson-layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:15px;margin-top:22px}
-.lesson-list{padding:10px;background:var(--panel);border:1px solid var(--line);border-radius:15px;align-self:start}
-.lesson-item{width:100%;padding:12px 10px;text-align:start;background:none;color:var(--muted);border:0;border-radius:9px}
-.lesson-item.active,.lesson-item:hover{background:#241832;color:white}
-.lesson-panel{padding:clamp(18px,3vw,30px)}
-.lesson-panel h2{margin-top:0}
-.lesson-panel h3{margin-top:25px}
-.lesson-panel p,.lesson-panel li{color:#c6bdcf;line-height:2}
-.example{direction:ltr;text-align:left;background:#08070d;border:1px solid var(--line);border-radius:11px;padding:15px;color:#c9a7ff;font:13px/1.9 monospace;overflow:auto}
-.callout{border-inline-start:3px solid var(--purple);background:#1b1326;padding:12px 15px;color:#d6c8e6;border-radius:7px;line-height:1.9}
-.quiz-option{display:flex;gap:10px;align-items:center;padding:14px;margin:9px 0;border:1px solid var(--line);border-radius:11px;cursor:pointer}
-.quiz-option:has(input:checked){border-color:var(--purple);background:#21152f}
-.quiz-option input{accent-color:#ad7aff}
-.result{padding:16px;margin-top:15px;border-radius:12px;background:#161126;border:1px solid #49325f;line-height:1.9}
-.terminal{background:#07070b;border:1px solid #3c2c4d;border-radius:14px;overflow:hidden}
-.terminal-head{padding:12px 15px;background:#17101f;color:var(--muted);font:12px Inter,sans-serif}
-.terminal-output{height:190px;overflow:auto;padding:15px;color:#bca4d8;font:13px/1.9 monospace;white-space:pre-wrap;direction:ltr;text-align:left}
-.terminal-form{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
-.terminal-form input{flex:1;min-width:0;background:#100d16;color:white;border:1px solid var(--line);border-radius:8px;padding:10px;direction:ltr}
-footer{border-top:1px solid var(--line);padding:24px 5%;color:#81758e;font-size:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
-dialog{width:min(680px,calc(100% - 24px));max-height:85vh;overflow:auto;background:#100d18;color:var(--text);border:1px solid #49325f;border-radius:18px;padding:25px}
-dialog::backdrop{background:#030207cc;backdrop-filter:blur(5px)}
-.dialog-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.close-btn{background:#25182f;color:white;border:1px solid var(--line);border-radius:9px;padding:8px 12px}
-.mobile-nav{display:none}
-@media(max-width:950px){.layout{grid-template-columns:1fr}.sidebar{display:none}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{grid-template-columns:1fr .65fr}.lesson-layout{grid-template-columns:1fr}.lesson-list{display:flex;overflow:auto;gap:5px}.lesson-item{min-width:130px}}
-@media(max-width:600px){.topbar{height:60px;padding:0 13px}.brand{font-size:13px}.brand-mark{width:31px;height:31px}.top-actions .small-btn{padding:8px;font-size:12px}.layout{padding-bottom:65px}main{padding:17px 13px 30px}.hero{grid-template-columns:1fr;padding:24px;gap:10px;min-height:0}.hero-art{grid-row:1}.hero-art img{max-height:150px;max-width:220px}.art-placeholder{width:125px;height:125px;font-size:55px}.hero h1{font-size:43px;margin:10px 0}.hero p{font-size:13px}.stats{gap:7px}.stat{padding:12px}.stat strong{font-size:22px}.stat span{font-size:10px}.grid{grid-template-columns:1fr}.card{padding:17px}.card p{min-height:0}.section-head{align-items:start;flex-direction:column;gap:5px}.mobile-nav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;z-index:30;bottom:0;left:0;right:0;background:#0d0913f5;border-top:1px solid var(--line);padding:7px 3px calc(7px + env(safe-area-inset-bottom));backdrop-filter:blur(14px)}.mobile-nav button{border:0;background:none;color:var(--muted);font-size:10px;padding:7px 1px;display:grid;gap:4px;justify-items:center}.mobile-nav button.active{color:var(--bright)}.mobile-nav b{font-size:17px}.toolbar>*{width:100%}.lesson-panel{padding:17px}.topbar .brand span:last-child{display:none}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+::selection{background:#8750e566}
+.app{display:flex;min-height:100vh}
+.sidebar{
+  width:250px;position:fixed;right:0;top:0;bottom:0;
+  background:#0d0d15;border-left:1px solid var(--line);
+  padding:24px 16px;display:flex;flex-direction:column;z-index:20;
+  overflow-y:auto;
+}
+.brand{display:flex;align-items:center;gap:12px;padding:3px 8px 24px}
+.brand-logo{
+  width:43px;height:43px;border-radius:14px;
+  display:grid;place-items:center;background:linear-gradient(135deg,#a45cff,#5120a6);
+  font-weight:900;font-size:21px;box-shadow:0 0 28px #8b42ff33
+}
+.brand h1{font-size:20px;margin:0;font-weight:900;letter-spacing:1px}
+.brand p{font-size:11px;color:var(--muted);margin:3px 0 0;letter-spacing:1.5px}
+.nav-label{font-size:11px;color:#77738f;padding:15px 12px 8px}
+.nav-btn{
+  display:flex;align-items:center;gap:12px;width:100%;border:1px solid transparent;
+  border-radius:10px;padding:12px;background:transparent;color:#aaa6c0;
+  text-align:right;margin:3px 0;transition:.18s;font-size:14px
+}
+.nav-btn:hover{background:#171522;color:white}
+.nav-btn.active{background:#8b4cff1a;border-color:#8b4cff40;color:#c6a3ff}
+.nav-icon{width:22px;text-align:center;font-size:17px}
+.side-bottom{margin-top:auto;border-top:1px solid var(--line);padding-top:17px}
+.local-note{font-size:11px;line-height:1.8;color:#77738f;padding:10px}
+.main{margin-right:250px;width:calc(100% - 250px);min-width:0}
+.topbar{
+  height:72px;border-bottom:1px solid var(--line);display:flex;align-items:center;
+  justify-content:space-between;padding:0 30px;background:#0b0b12dd;
+  position:sticky;top:0;z-index:10;backdrop-filter:blur(16px)
+}
+.top-left,.top-right{display:flex;align-items:center;gap:12px}
+.page-name{font-weight:800;font-size:17px}
+.status{font-size:12px;color:var(--green);display:flex;align-items:center;gap:7px}
+.dot{width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 9px #57e6a2}
+.xp-pill,.small-btn{
+  border:1px solid var(--line);background:var(--panel);border-radius:10px;
+  padding:8px 12px;color:var(--text);font-size:12px
+}
+.small-btn:hover{border-color:var(--purple)}
+.mobile-menu{display:none}
+.content{max-width:1500px;margin:auto;padding:30px}
+.page{display:none;animation:appear .2s ease}
+.page.active{display:block}
+@keyframes appear{from{opacity:.3;transform:translateY(4px)}to{opacity:1;transform:none}}
+.hero{
+  border:1px solid #3a2858;border-radius:20px;padding:36px;
+  background:radial-gradient(ellipse at 5% 5%,#622e9b30,transparent 45%),
+  linear-gradient(120deg,#171222,#101019 65%);position:relative;overflow:hidden
+}
+.hero:after{content:"";position:absolute;width:240px;height:240px;border:1px solid #9b5cff22;
+border-radius:50%;left:-70px;top:-110px;box-shadow:0 0 0 35px #9b5cff09,0 0 0 70px #9b5cff06}
+.eyebrow{color:#c39bff;font-size:12px;font-weight:800;letter-spacing:2px}
+.hero h2{font-size:clamp(30px,4vw,47px);line-height:1.2;margin:16px 0}
+.hero h2 span{color:#b68aff}
+.hero p{color:#b2aec4;max-width:650px;line-height:2;font-size:15px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:23px}
+.btn{border:1px solid transparent;border-radius:10px;padding:11px 18px;font-weight:800;font-size:13px;transition:.18s}
+.btn-primary{background:linear-gradient(135deg,#a15bff,#7437d5);color:white;box-shadow:0 5px 20px #8b42ff20}
+.btn-primary:hover{filter:brightness(1.12);transform:translateY(-1px)}
+.btn-secondary{background:#ffffff07;border-color:#393449;color:#e7e0f7}
+.btn-secondary:hover{border-color:var(--purple)}
+.btn-danger{background:#ff647c15;color:#ff9aa9;border-color:#ff647c40}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:30px 0 15px}
+.section-head h3{font-size:18px;margin:0}
+.section-head p{font-size:12px;color:var(--muted);margin:5px 0 0}
+.muted{color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-top:20px}
+.stat,.card,.panel{
+  background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px
+}
+.stat-top{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:12px}
+.stat-icon{font-size:20px}
+.stat-num{font-size:27px;font-weight:900;margin:10px 0 4px}
+.stat-sub{font-size:11px;color:var(--muted)}
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.card{transition:.2s;min-width:0}
+.card:hover{border-color:#62428a;transform:translateY(-2px)}
+.card-icon{width:43px;height:43px;border-radius:12px;background:#9b5cff18;border:1px solid #9b5cff25;display:grid;place-items:center;font-size:21px;margin-bottom:14px}
+.card h4{font-size:16px;margin:0 0 8px}
+.card p{color:var(--muted);font-size:13px;line-height:1.9;margin:0}
+.card-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:17px;font-size:11px;color:var(--muted)}
+.tag{display:inline-block;border:1px solid #3b304f;background:#20162e;color:#c6a3ff;border-radius:7px;padding:4px 8px;font-size:10px}
+.tag.green{background:#133025;color:#7cf1b6;border-color:#275840}
+.tag.yellow{background:#332817;color:#ffd479;border-color:#5a4425}
+.progress{height:7px;background:#292637;border-radius:10px;overflow:hidden;margin:10px 0}
+.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#6c36d3,#bc83ff);border-radius:10px;transition:width .3s}
+.list-row{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid #272536}
+.list-row:last-child{border:0}
+.list-row .grow{flex:1;min-width:0}
+.list-row strong{font-size:13px}
+.list-row small{display:block;color:var(--muted);font-size:11px;margin-top:4px}
+.empty{color:var(--muted);text-align:center;padding:35px 10px;font-size:13px}
+.filterbar{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:17px}
+.field{
+  background:#0b0b12;color:var(--text);border:1px solid var(--line);
+  border-radius:9px;padding:11px 12px;min-width:0
+}
+.field:focus{border-color:var(--purple);outline:none}
+.filterbar .field{flex:1;min-width:150px}
+.terminal-layout{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:15px;align-items:start}
+.terminal{
+  background:#07090c;border:1px solid #343344;border-radius:14px;overflow:hidden;
+  box-shadow:0 15px 45px #0004;min-width:0
+}
+.term-head{display:flex;align-items:center;justify-content:space-between;padding:12px 15px;background:#11111a;border-bottom:1px solid #2c2a3b}
+.term-dots{display:flex;gap:6px}
+.term-dots i{width:8px;height:8px;border-radius:50%;background:#ff647c}
+.term-dots i:nth-child(2){background:#ffd479}
+.term-dots i:nth-child(3){background:#57e6a2}
+.term-title{font-family:'Fira Code',monospace;font-size:11px;color:#aaa6c0;direction:ltr}
+.term-body{padding:16px;height:390px;overflow:auto;direction:ltr;text-align:left;font-family:'Fira Code',monospace;font-size:12px;line-height:1.8;white-space:pre-wrap;overflow-wrap:anywhere}
+.term-line{margin-bottom:11px;color:#b8b6c9}
+.term-line .prompt{color:#a975ff}
+.term-line .command{color:#f0eaff}
+.term-line .output{display:block;color:#a7d9b8;margin-top:3px}
+.term-line .error{color:#ff899c}
+.term-line .info{color:#8ecbff}
+.term-line .success{color:#6de5a8}
+.term-input-row{display:flex;align-items:center;gap:8px;border-top:1px solid #2c2a3b;padding:12px}
+.term-prompt{font-family:'Fira Code',monospace;color:#a975ff;font-size:12px;direction:ltr}
+.term-input{flex:1;min-width:0;border:0;background:transparent;color:white;outline:none;font:12px 'Fira Code',monospace;direction:ltr}
+.term-input::placeholder{color:#666276}
+.tool-side h3{font-size:14px;margin:0 0 8px}
+.tool-side p{font-size:11px;line-height:1.8;color:var(--muted)}
+.tool-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.tool-chip{font:10px 'Fira Code',monospace;border:1px solid #343044;background:#171520;color:#c3b0e9;padding:7px;border-radius:7px;cursor:pointer}
+.tool-chip:hover{border-color:var(--purple);color:white}
+.terminal-help{font-size:11px;color:var(--muted);line-height:1.8;margin-top:14px}
+.case-banner{padding:25px;border:1px solid #604027;background:linear-gradient(120deg,#241a12,#111019);border-radius:15px;margin-bottom:17px}
+.case-banner h3{font-size:24px;margin:10px 0}
+.case-banner p{color:#b8afaa;font-size:13px;line-height:1.9;max-width:750px}
+.evidence{border:1px solid #343044;background:#0d0d14;padding:14px;border-radius:10px;margin:9px 0}
+.evidence h4{margin:0 0 7px;font-size:13px}
+.evidence p{font-size:12px;color:var(--muted);line-height:1.8;margin:0}
+.evidence code{font-family:'Fira Code',monospace;color:#b9a1ff}
+.answer-options{display:grid;gap:9px;margin-top:12px}
+.answer-option{background:#11111a;border:1px solid var(--line);border-radius:10px;padding:12px;text-align:right;color:#ded9ee;font-size:13px}
+.answer-option:hover{border-color:var(--purple)}
+.answer-option.correct{border-color:var(--green);background:#57e6a20c}
+.answer-option.wrong{border-color:var(--red);background:#ff647c0b}
+.quiz-question{padding:18px;border:1px solid var(--line);background:var(--panel);border-radius:13px;margin-bottom:13px}
+.quiz-question h4{margin:0 0 12px;font-size:15px}
+.glossary-term{font-family:'Fira Code',monospace;color:#c6a3ff;font-size:13px}
+.lesson-body{font-size:14px;line-height:2;color:#c5c1d3}
+.lesson-body h4{color:#fff;margin-top:22px}
+.lesson-body code{font-family:'Fira Code',monospace;background:#21192f;color:#d2b7ff;padding:3px 6px;border-radius:5px;direction:ltr;display:inline-block}
+.toast{
+  position:fixed;bottom:22px;left:22px;max-width:min(400px,calc(100% - 44px));
+  background:#1b1927;border:1px solid #51406d;border-radius:11px;padding:13px 16px;
+  box-shadow:0 10px 35px #0007;z-index:99;font-size:13px;opacity:0;transform:translateY(10px);
+  pointer-events:none;transition:.2s
+}
+.toast.show{opacity:1;transform:none}
+.footer{border-top:1px solid var(--line);margin-top:35px;padding:22px 0;color:#77738f;font-size:11px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.mobile-nav-overlay{display:none}
+[dir="ltr"] .sidebar{right:auto;left:0;border-left:0;border-right:1px solid var(--line)}
+[dir="ltr"] .main{margin-right:0;margin-left:250px}
+[dir="ltr"] .nav-btn{text-align:left}
+[dir="ltr"] .answer-option{text-align:left}
+@media(max-width:1050px){
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .terminal-layout{grid-template-columns:1fr}
+  .tool-side .tool-list{max-height:none}
+}
+@media(max-width:760px){
+  .sidebar{transform:translateX(105%);transition:transform .22s;width:270px;box-shadow:none}
+  .sidebar.open{transform:translateX(0);box-shadow:0 0 0 100vmax #0009}
+  [dir="ltr"] .sidebar{transform:translateX(-105%)}
+  [dir="ltr"] .sidebar.open{transform:translateX(0)}
+  .main,[dir="ltr"] .main{margin:0;width:100%}
+  .topbar{height:62px;padding:0 14px}
+  .mobile-menu{display:inline-block}
+  .content{padding:17px 13px}
+  .hero{padding:23px 19px}
+  .hero h2{font-size:31px}
+  .grid-2,.grid-3{grid-template-columns:1fr}
+  .stats{gap:9px}
+  .stat{padding:13px}
+  .stat-num{font-size:23px}
+  .page-name{font-size:14px}
+  .status{display:none}
+  .term-body{height:340px;padding:12px;font-size:11px}
+  .footer{font-size:10px}
+}
 </style>
 </head>
 <body>
-<header class="topbar">
-  <a class="brand" href="#home" aria-label="Midnight Home" onclick="go('home');return false">
-    <span class="brand-mark">M</span><span>MIDNIGHT</span>
-  </a>
-  <div class="top-actions">
-    <button class="small-btn" id="langBtn" onclick="toggleLang()">🇸🇦 العربية</button>
-    <a class="small-btn" href="https://discord.gg/3Svejf4Kh" target="_blank" rel="noopener noreferrer">Discord ↗</a>
-  </div>
-</header>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-logo">M</div>
+      <div><h1>MIDNIGHT</h1><p>CYBER SECURITY</p></div>
+    </div>
+    <div class="nav-label" data-ar="الرئيسية" data-en="MAIN">الرئيسية</div>
+    <button class="nav-btn active" data-page="home"><span class="nav-icon">⌂</span><span data-ar="الرئيسية" data-en="Dashboard">الرئيسية</span></button>
+    <button class="nav-btn" data-page="academy"><span class="nav-icon">🎓</span><span data-ar="الأكاديمية" data-en="Academy">الأكاديمية</span></button>
+    <button class="nav-btn" data-page="labs"><span class="nav-icon">⌘</span><span data-ar="المختبرات" data-en="Labs">المختبرات</span></button>
+    <button class="nav-btn" data-page="cases"><span class="nav-icon">🔎</span><span data-ar="القضايا" data-en="Cases">القضايا</span></button>
+    <button class="nav-btn" data-page="terminal"><span class="nav-icon">$_</span><span data-ar="الترمنال الوهمي" data-en="Simulated Terminal">الترمنال الوهمي</span></button>
+    <div class="nav-label" data-ar="التعلّم" data-en="LEARNING">التعلّم</div>
+    <button class="nav-btn" data-page="quiz"><span class="nav-icon">✦</span><span data-ar="الاختبار" data-en="Quiz">الاختبار</span></button>
+    <button class="nav-btn" data-page="glossary"><span class="nav-icon">📚</span><span data-ar="القاموس" data-en="Glossary">القاموس</span></button>
+    <button class="nav-btn" data-page="progress"><span class="nav-icon">◴</span><span data-ar="إنجازاتي" data-en="My Progress">إنجازاتي</span></button>
+    <div class="side-bottom">
+      <button class="nav-btn" data-page="about"><span class="nav-icon">ⓘ</span><span data-ar="عن Midnight" data-en="About Midnight">عن Midnight</span></button>
+      <div class="local-note" data-ar="نسخة تعليمية تجريبية. الأوامر والنتائج محاكاة داخل المتصفح." data-en="Educational demo. Commands and results are simulated in your browser.">نسخة تعليمية تجريبية. الأوامر والنتائج محاكاة داخل المتصفح.</div>
+    </div>
+  </aside>
 
-<div class="layout">
-<aside class="sidebar">
-  <div class="side-label" data-ar="مساحة التعلّم" data-en="LEARNING SPACE">مساحة التعلّم</div>
-  <nav id="sideNav"></nav>
-  <div class="side-bottom">
-    <strong data-ar="رحلتك تبدأ من هنا" data-en="Your journey starts here">رحلتك تبدأ من هنا</strong>
-    <p data-ar="تعلم خطوة بخطوة، وجرّب داخل مختبرات تعليمية آمنة." data-en="Learn step by step in safe educational labs.">تعلم خطوة بخطوة، وجرّب داخل مختبرات تعليمية آمنة.</p>
-    <a class="btn primary" style="display:block;text-align:center" href="https://discord.gg/3Svejf4Kh" target="_blank" rel="noopener noreferrer">Discord ↗</a>
-  </div>
-</aside>
-
-<main>
-<section class="view active" id="home">
-  <div class="hero">
-    <div>
-      <div class="eyebrow">CYBERSECURITY / LEARNING / PRACTICE</div>
-      <h1>MIDNIGHT<br><span class="gradient" data-ar="رحلتك تبدأ من هنا" data-en="Your journey starts here">رحلتك تبدأ من هنا</span></h1>
-      <p data-ar="افهم التقنية بدل ما تحفظها. ابدأ من الشبكات والبرمجة، ثم انتقل إلى الأمن السيبراني عبر دروس عملية ومختبرات محاكاة." data-en="Understand technology instead of memorizing it. Start with networking and coding, then explore cybersecurity through practical lessons and simulated labs.">افهم التقنية بدل ما تحفظها. ابدأ من الشبكات والبرمجة، ثم انتقل إلى الأمن السيبراني عبر دروس عملية ومختبرات محاكاة.</p>
-      <div class="hero-buttons">
-        <button class="btn primary" onclick="go('paths')" data-ar="🎓 ابدأ رحلتك" data-en="🎓 Start learning">🎓 ابدأ رحلتك</button>
-        <button class="btn ghost" onclick="go('assessment')" data-ar="🚀 اختبر مستواك" data-en="🚀 Check your level">🚀 اختبر مستواك</button>
+  <main class="main">
+    <header class="topbar">
+      <div class="top-left">
+        <button class="small-btn mobile-menu" id="menuBtn" aria-label="فتح القائمة">☰</button>
+        <div class="page-name" id="pageName">الرئيسية</div>
       </div>
+      <div class="top-right">
+        <div class="status"><span class="dot"></span><span data-ar="المنصة تعمل" data-en="Platform online">المنصة تعمل</span></div>
+        <div class="xp-pill">✦ <span id="topXP">0</span> XP</div>
+        <button class="small-btn" id="langBtn">EN</button>
+      </div>
+    </header>
+
+    <div class="content">
+      <section class="page active" id="page-home">
+        <div class="hero">
+          <div class="eyebrow">MIDNIGHT // YOUR JOURNEY STARTS HERE</div>
+          <h2 data-ar="ابدأ رحلتك في عالم<br><span>الأمن السيبراني</span>" data-en="Start your journey in<br><span>Cyber Security</span>">ابدأ رحلتك في عالم<br><span>الأمن السيبراني</span></h2>
+          <p data-ar="تعلّم الشبكات، اكتشف ثغرات الويب داخل مختبرات وهمية، حل القضايا الرقمية، وجرّب أوامر أدوات الأمن السيبراني في بيئة تدريبية آمنة." data-en="Learn networking, explore web security in fictional labs, investigate digital cases, and practice cybersecurity commands in a safe training environment.">تعلّم الشبكات، اكتشف ثغرات الويب داخل مختبرات وهمية، حل القضايا الرقمية، وجرّب أوامر أدوات الأمن السيبراني في بيئة تدريبية آمنة.</p>
+          <div class="actions">
+            <button class="btn btn-primary" data-go="academy" data-ar="ابدأ التعلّم 🎓" data-en="Start Learning 🎓">ابدأ التعلّم 🎓</button>
+            <button class="btn btn-secondary" data-go="cases" data-ar="افتح قضية 🔎" data-en="Open a Case 🔎">افتح قضية 🔎</button>
+            <button class="btn btn-secondary" data-go="terminal" data-ar="افتح الترمنال $_" data-en="Open Terminal $_">افتح الترمنال $_</button>
+          </div>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="stat-top"><span data-ar="نقاط الخبرة" data-en="Experience">نقاط الخبرة</span><span class="stat-icon">✦</span></div><div class="stat-num" id="homeXP">0</div><div class="stat-sub" data-ar="XP مكتسبة" data-en="XP earned">XP مكتسبة</div></div>
+          <div class="stat"><div class="stat-top"><span data-ar="الدروس المكتملة" data-en="Lessons completed">الدروس المكتملة</span><span class="stat-icon">🎓</span></div><div class="stat-num" id="homeLessons">0</div><div class="stat-sub" data-ar="من أصل 12 درسًا" data-en="Out of 12 lessons">من أصل 12 درسًا</div></div>
+          <div class="stat"><div class="stat-top"><span data-ar="المختبرات المحلولة" data-en="Labs solved">المختبرات المحلولة</span><span class="stat-icon">⌘</span></div><div class="stat-num" id="homeLabs">0</div><div class="stat-sub" data-ar="تدريبات افتراضية" data-en="Virtual exercises">تدريبات افتراضية</div></div>
+          <div class="stat"><div class="stat-top"><span data-ar="القضايا المكتملة" data-en="Cases solved">القضايا المكتملة</span><span class="stat-icon">🔎</span></div><div class="stat-num" id="homeCases">0</div><div class="stat-sub" data-ar="تحقيقات رقمية" data-en="Digital investigations">تحقيقات رقمية</div></div>
+        </div>
+        <div class="section-head"><div><h3 data-ar="كمّل من وين وقفت" data-en="Continue where you left off">كمّل من وين وقفت</h3><p data-ar="مسارك التعليمي يبدأ من الأساسيات" data-en="Your learning path starts with the basics">مسارك التعليمي يبدأ من الأساسيات</p></div><button class="btn btn-secondary" data-go="academy" data-ar="كل الدروس ←" data-en="All lessons ←">كل الدروس ←</button></div>
+        <div class="grid-3" id="homeLessonsList"></div>
+        <div class="section-head"><div><h3 data-ar="وش ودّك تستكشف اليوم؟" data-en="What will you explore today?">وش ودّك تستكشف اليوم؟</h3><p data-ar="اختر تدريبك الجاي" data-en="Choose your next activity">اختر تدريبك الجاي</p></div></div>
+        <div class="grid-3">
+          <div class="card"><div class="card-icon">🌐</div><h4 data-ar="أساسيات الشبكات" data-en="Networking Basics">أساسيات الشبكات</h4><p data-ar="افهم IP وDNS والمنافذ وكيف تتواصل الأجهزة." data-en="Understand IP, DNS, ports, and how devices communicate.">افهم IP وDNS والمنافذ وكيف تتواصل الأجهزة.</p><div class="card-foot"><span>4 دروس</span><button class="btn btn-secondary" data-go="academy">استكشف</button></div></div>
+          <div class="card"><div class="card-icon">🧪</div><h4 data-ar="مختبرات الويب" data-en="Web Labs">مختبرات الويب</h4><p data-ar="حل تدريبات افتراضية على الطلبات والسجلات والثغرات." data-en="Practice requests, logs, and vulnerabilities in fictional labs.">حل تدريبات افتراضية على الطلبات والسجلات والثغرات.</p><div class="card-foot"><span>تدريب عملي</span><button class="btn btn-secondary" data-go="labs">ابدأ</button></div></div>
+          <div class="card"><div class="card-icon">🕵️</div><h4 data-ar="قضية Bank BOW" data-en="Bank BOW Case">قضية Bank BOW</h4><p data-ar="حلّل الأدلة واكتشف ماذا حدث داخل بنك افتراضي." data-en="Analyze evidence and investigate a fictional bank incident.">حلّل الأدلة واكتشف ماذا حدث داخل بنك افتراضي.</p><div class="card-foot"><span class="tag yellow">CASE 001</span><button class="btn btn-secondary" data-go="cases">ابدأ التحقيق</button></div></div>
+        </div>
+      </section>
+
+      <section class="page" id="page-academy">
+        <div class="section-head"><div><h3 data-ar="الأكاديمية 🎓" data-en="Academy 🎓">الأكاديمية 🎓</h3><p data-ar="تعلّم خطوة بخطوة من الصفر" data-en="Learn step by step from scratch">تعلّم خطوة بخطوة من الصفر</p></div><span class="tag">BEGINNER FRIENDLY</span></div>
+        <div class="filterbar"><input class="field" id="lessonSearch" placeholder="ابحث عن درس..." data-placeholder-ar="ابحث عن درس..." data-placeholder-en="Search lessons..."><select class="field" id="lessonFilter"><option value="all">كل المسارات</option><option value="network">الشبكات</option><option value="web">أمن الويب</option><option value="linux">Linux</option><option value="security">مبادئ الأمن</option></select></div>
+        <div class="grid-3" id="lessonGrid"></div>
+      </section>
+
+      <section class="page" id="page-lesson">
+        <button class="btn btn-secondary" data-go="academy">← العودة للأكاديمية</button>
+        <div id="lessonDetail" style="margin-top:18px"></div>
+      </section>
+
+      <section class="page" id="page-labs">
+        <div class="section-head"><div><h3 data-ar="المختبرات العملية ⌘" data-en="Practice Labs ⌘">المختبرات العملية ⌘</h3><p data-ar="بيئة افتراضية بالكامل، بدون اتصال بأهداف حقيقية" data-en="Fully fictional environment, no real targets">بيئة افتراضية بالكامل، بدون اتصال بأهداف حقيقية</p></div></div>
+        <div class="grid-3" id="labGrid"></div>
+      </section>
+
+      <section class="page" id="page-lab">
+        <button class="btn btn-secondary" data-go="labs">← العودة للمختبرات</button>
+        <div id="labDetail" style="margin-top:18px"></div>
+      </section>
+
+      <section class="page" id="page-cases">
+        <div class="section-head"><div><h3 data-ar="القضايا الرقمية 🔎" data-en="Digital Cases 🔎">القضايا الرقمية 🔎</h3><p data-ar="حلّل الأدلة، اختبر فرضياتك، واكتشف الحقيقة" data-en="Analyze evidence, test hypotheses, and find the truth">حلّل الأدلة، اختبر فرضياتك، واكتشف الحقيقة</p></div></div>
+        <div class="grid-2" id="caseGrid"></div>
+      </section>
+
+      <section class="page" id="page-case">
+        <button class="btn btn-secondary" data-go="cases">← العودة للقضايا</button>
+        <div id="caseDetail" style="margin-top:18px"></div>
+      </section>
+
+      <section class="page" id="page-terminal">
+        <div class="section-head"><div><h3 data-ar="الترمنال الوهمي $_" data-en="Simulated Terminal $_">الترمنال الوهمي $_</h3><p data-ar="الأوامر تعطي نتائج تعليمية ثابتة داخل المتصفح فقط" data-en="Commands return educational simulated output only">الأوامر تعطي نتائج تعليمية ثابتة داخل المتصفح فقط</p></div><button class="btn btn-secondary" id="clearTerminal">مسح الشاشة</button></div>
+        <div class="terminal-layout">
+          <div class="terminal">
+            <div class="term-head"><div class="term-dots"><i></i><i></i><i></i></div><div class="term-title">student@midnight:~</div><span class="tag green">SIMULATION</span></div>
+            <div class="term-body" id="termOutput" aria-live="polite"></div>
+            <form class="term-input-row" id="termForm"><span class="term-prompt">student@midnight:~$</span><input id="termInput" class="term-input" autocomplete="off" spellcheck="false" placeholder="type help and press Enter"><button class="btn btn-primary" type="submit">RUN</button></form>
+          </div>
+          <aside class="panel tool-side">
+            <h3 data-ar="الأوامر المتاحة" data-en="Available commands">الأوامر المتاحة</h3>
+            <p data-ar="اضغط على أي أمر لإضافته للترمنال. النتائج محاكاة وليست فحصًا حقيقيًا." data-en="Click a command to insert it. Results are simulated, not real scans.">اضغط على أي أمر لإضافته للترمنال. النتائج محاكاة وليست فحصًا حقيقيًا.</p>
+            <div class="tool-list" id="toolList"></div>
+            <div class="terminal-help">جرّب:<br><code>help</code><br><code>nmap -sV 10.10.10.5</code><br><code>cat /cases/bank/access.log</code><br><code>grep 203.0.113.77 /cases/bank/access.log</code><br><code>status</code></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="page" id="page-quiz">
+        <div class="section-head"><div><h3 data-ar="اختبر معلوماتك ✦" data-en="Test Your Knowledge ✦">اختبر معلوماتك ✦</h3><p data-ar="اختر الإجابة الصحيحة لكل سؤال" data-en="Choose the correct answer for each question">اختر الإجابة الصحيحة لكل سؤال</p></div><span class="tag">10 QUESTIONS</span></div>
+        <div id="quizArea"></div>
+        <button class="btn btn-primary" id="submitQuiz">تصحيح الاختبار</button>
+        <button class="btn btn-secondary" id="resetQuiz">إعادة الاختبار</button>
+        <div id="quizResult" style="margin-top:15px"></div>
+      </section>
+
+      <section class="page" id="page-glossary">
+        <div class="section-head"><div><h3 data-ar="قاموس الأمن السيبراني 📚" data-en="Cybersecurity Glossary 📚">قاموس الأمن السيبراني 📚</h3><p data-ar="مصطلحات إنجليزية مع شرحها بالعربي" data-en="English terms explained in simple language">مصطلحات إنجليزية مع شرحها بالعربي</p></div></div>
+        <input class="field" style="width:100%;margin-bottom:16px" id="glossarySearch" placeholder="ابحث عن مصطلح مثل DNS..." data-placeholder-ar="ابحث عن مصطلح مثل DNS..." data-placeholder-en="Search terms like DNS...">
+        <div class="grid-3" id="glossaryGrid"></div>
+      </section>
+
+      <section class="page" id="page-progress">
+        <div class="section-head"><div><h3 data-ar="إنجازاتك وتقدمك" data-en="Your Progress">إنجازاتك وتقدمك</h3><p data-ar="تقدمك محفوظ على هذا المتصفح فقط" data-en="Your progress is saved in this browser only">تقدمك محفوظ على هذا المتصفح فقط</p></div><button class="btn btn-danger" id="resetProgress">تصفير التقدم</button></div>
+        <div class="stats">
+          <div class="stat"><div class="stat-top">XP</div><div class="stat-num" id="progressXP">0</div><div class="stat-sub">Experience points</div></div>
+          <div class="stat"><div class="stat-top">Lessons</div><div class="stat-num" id="progressLessons">0/12</div><div class="stat-sub">الدروس المكتملة</div></div>
+          <div class="stat"><div class="stat-top">Labs</div><div class="stat-num" id="progressLabs">0/6</div><div class="stat-sub">المختبرات المحلولة</div></div>
+          <div class="stat"><div class="stat-top">Cases</div><div class="stat-num" id="progressCases">0/3</div><div class="stat-sub">القضايا المكتملة</div></div>
+        </div>
+        <div class="section-head"><div><h3 data-ar="الشارات" data-en="Achievements">الشارات</h3><p data-ar="تفتح تلقائيًا مع تقدمك" data-en="Unlocked as you progress">تفتح تلقائيًا مع تقدمك</p></div></div>
+        <div class="grid-3" id="achievementGrid"></div>
+      </section>
+
+      <section class="page" id="page-about">
+        <div class="hero"><div class="eyebrow">ABOUT MIDNIGHT</div><h2>Midnight — <span>Your Journey Starts Here.</span></h2><p data-ar="Midnight منصة تعليمية تجريبية لمساعدة المبتدئين على فهم أساسيات الأمن السيبراني، الشبكات، Linux، وأمن الويب من خلال دروس ومختبرات وقضايا افتراضية." data-en="Midnight is an educational demo that helps beginners learn cybersecurity, networking, Linux, and web security through lessons, labs, and fictional cases.">Midnight منصة تعليمية تجريبية لمساعدة المبتدئين على فهم أساسيات الأمن السيبراني، الشبكات، Linux، وأمن الويب من خلال دروس ومختبرات وقضايا افتراضية.</p></div>
+        <div class="section-head"><h3 data-ar="مهم تعرف" data-en="Important to know">مهم تعرف</h3></div>
+        <div class="grid-2">
+          <div class="card"><div class="card-icon">🛡️</div><h4 data-ar="تدريب آمن" data-en="Safe training">تدريب آمن</h4><p data-ar="الترمنال لا يشغّل برامج حقيقية ولا يتصل بأجهزة خارجية. كل الأهداف والعناوين والنتائج داخلية وخيالية." data-en="The terminal does not execute real programs or connect to external devices. Targets, addresses, and outputs are fictional.">الترمنال لا يشغّل برامج حقيقية ولا يتصل بأجهزة خارجية. كل الأهداف والعناوين والنتائج داخلية وخيالية.</p></div>
+          <div class="card"><div class="card-icon">💾</div><h4 data-ar="بدون حساب" data-en="No account">بدون حساب</h4><p data-ar="ما فيه تسجيل دخول. يتم حفظ XP وإنجازاتك محليًا في المتصفح باستخدام التخزين المحلي." data-en="No login. XP and achievements are stored locally in your browser.">ما فيه تسجيل دخول. يتم حفظ XP وإنجازاتك محليًا في المتصفح باستخدام التخزين المحلي.</p></div>
+          <div class="card"><div class="card-icon">⚖️</div><h4 data-ar="تعلّم بمسؤولية" data-en="Learn responsibly">تعلّم بمسؤولية</h4><p data-ar="استخدم مهارات الأمن السيبراني لحماية الأنظمة، واختبر فقط الأنظمة التي تملكها أو لديك إذن واضح لاختبارها." data-en="Use cybersecurity skills to protect systems and test only systems you own or are explicitly authorized to assess.">استخدم مهارات الأمن السيبراني لحماية الأنظمة، واختبر فقط الأنظمة التي تملكها أو لديك إذن واضح لاختبارها.</p></div>
+          <div class="card"><div class="card-icon">🚀</div><h4 data-ar="طوّر مهاراتك" data-en="Build your skills">طوّر مهاراتك</h4><p data-ar="ابدأ بالمفاهيم الأساسية، ثم انتقل إلى المختبرات والقضايا، ودوّن الأدلة قبل ما تستنتج أي شيء." data-en="Start with fundamentals, then work through labs and cases. Record evidence before drawing conclusions.">ابدأ بالمفاهيم الأساسية، ثم انتقل إلى المختبرات والقضايا، ودوّن الأدلة قبل ما تستنتج أي شيء.</p></div>
+        </div>
+      </section>
+
+      <footer class="footer"><span>© Midnight • جميع الحقوق محفوظة</span><span>MIDNIGHT — YOUR JOURNEY STARTS HERE</span></footer>
     </div>
-    <div class="hero-art">
-      <img src="dead-penguin-cyber-new-background.png" alt="Midnight cyber mascot" onerror="this.style.display='none';this.nextElementSibling.hidden=false">
-      <div class="art-placeholder" hidden>◈</div>
-    </div>
-  </div>
-
-  <div class="stats">
-    <div class="stat"><span data-ar="دروس مكتملة" data-en="Lessons completed">دروس مكتملة</span><strong id="statLessons">0</strong></div>
-    <div class="stat"><span data-ar="مختبرات محلولة" data-en="Labs completed">مختبرات محلولة</span><strong id="statLabs">0</strong></div>
-    <div class="stat"><span data-ar="نقاط التقدم" data-en="XP earned">نقاط التقدم</span><strong id="statXP">0</strong></div>
-  </div>
-
-  <div class="section-head"><div><div class="eyebrow">YOUR NEXT STEP</div><h2 data-ar="ابدأ من المكان المناسب" data-en="Choose your next step">ابدأ من المكان المناسب</h2></div></div>
-  <div class="grid">
-    <article class="card"><div class="card-icon">🎓</div><h3 data-ar="المسارات التعليمية" data-en="Learning paths">المسارات التعليمية</h3><p data-ar="خطط مرتبة من الأساسيات إلى التخصصات." data-en="Structured paths from fundamentals to specializations.">خطط مرتبة من الأساسيات إلى التخصصات.</p><div class="card-foot"><span class="tag">ACADEMY</span><button class="text-btn" onclick="go('paths')" data-ar="استكشف ←" data-en="Explore →">استكشف ←</button></div></article>
-    <article class="card"><div class="card-icon">🧪</div><h3 data-ar="المختبرات" data-en="Labs">المختبرات</h3><p data-ar="طبّق ما تعلمته داخل تحديات آمنة." data-en="Practice what you learn in safe challenges.">طبّق ما تعلمته داخل تحديات آمنة.</p><div class="card-foot"><span class="tag">PRACTICE</span><button class="text-btn" onclick="go('labs')" data-ar="ابدأ ←" data-en="Start →">ابدأ ←</button></div></article>
-    <article class="card"><div class="card-icon">🔎</div><h3 data-ar="القضايا الرقمية" data-en="Digital cases">القضايا الرقمية</h3><p data-ar="حلل أدلة افتراضية واربط الأحداث ببعضها." data-en="Analyze fictional evidence and connect events.">حلل أدلة افتراضية واربط الأحداث ببعضها.</p><div class="card-foot"><span class="tag">INVESTIGATION</span><button class="text-btn" onclick="go('cases')" data-ar="اكتشف ←" data-en="Investigate →">اكتشف ←</button></div></article>
-  </div>
-</section>
-
-<section class="view" id="paths">
-  <div class="eyebrow">MIDNIGHT ACADEMY</div><h1 class="page-title" data-ar="المسارات التعليمية" data-en="Learning paths">المسارات التعليمية</h1>
-  <p class="muted" data-ar="اختر مجالًا وابدأ من مستواك. جميع المسارات متاحة للجميع." data-en="Choose a field and learn at your own level. Every path is open to everyone.">اختر مجالًا وابدأ من مستواك. جميع المسارات متاحة للجميع.</p>
-  <div class="toolbar"><input class="search" id="pathSearch" placeholder="ابحث عن مسار..." data-ar-placeholder="ابحث عن مسار..." data-en-placeholder="Search paths..." oninput="renderPaths()"><select id="pathLevel" onchange="renderPaths()"><option value="all" data-ar="كل المستويات" data-en="All levels">كل المستويات</option><option value="beginner" data-ar="مبتدئ" data-en="Beginner">مبتدئ</option><option value="intermediate" data-ar="متوسط" data-en="Intermediate">متوسط</option></select></div>
-  <div class="grid" id="pathGrid"></div>
-</section>
-
-<section class="view" id="lesson">
-  <button class="btn ghost" onclick="go('paths')" data-ar="← رجوع للمسارات" data-en="← Back to paths">← رجوع للمسارات</button>
-  <div class="lesson-layout"><div class="lesson-list" id="lessonList"></div><article class="lesson-panel" id="lessonContent"></article></div>
-</section>
-
-<section class="view" id="labs">
-  <div class="eyebrow">SAFE PRACTICE</div><h1 class="page-title" data-ar="المختبرات" data-en="Labs">المختبرات</h1>
-  <p class="muted" data-ar="تحديات تعليمية تعمل داخل المتصفح. لا يتم فحص أجهزة أو مواقع حقيقية." data-en="Browser-based educational challenges. No real systems or websites are scanned.">تحديات تعليمية تعمل داخل المتصفح. لا يتم فحص أجهزة أو مواقع حقيقية.</p>
-  <div class="toolbar"><input class="search" id="labSearch" placeholder="ابحث في المختبرات..." data-ar-placeholder="ابحث في المختبرات..." data-en-placeholder="Search labs..." oninput="renderLabs()"><select id="labCategory" onchange="renderLabs()"><option value="all" data-ar="كل المجالات" data-en="All topics">كل المجالات</option><option value="network" data-ar="شبكات" data-en="Networking">شبكات</option><option value="linux" data-ar="لينكس" data-en="Linux">لينكس</option><option value="web" data-ar="أمن الويب" data-en="Web security">أمن الويب</option><option value="forensics" data-ar="تحقيق رقمي" data-en="Forensics">تحقيق رقمي</option></select></div>
-  <div class="grid" id="labGrid"></div>
-</section>
-
-<section class="view" id="labwork">
-  <button class="btn ghost" onclick="go('labs')" data-ar="← كل المختبرات" data-en="← All labs">← كل المختبرات</button>
-  <div class="content-panel" style="padding:22px;margin-top:15px"><div class="eyebrow">SIMULATED ENVIRONMENT</div><h1 class="page-title" id="labTitle"></h1><p class="muted" id="labDescription"></p><div class="callout" id="labHint"></div><div id="labTask" style="margin-top:20px"></div><div id="labFeedback" class="result" hidden></div></div>
-</section>
-
-<section class="view" id="assessment">
-  <div class="eyebrow">SKILL CHECK</div><h1 class="page-title" data-ar="اختبر مستواك" data-en="Check your level">اختبر مستواك</h1>
-  <p class="muted" data-ar="اختبار قصير يساعدك على اختيار بداية مناسبة. لا يمنعك من دخول أي مسار." data-en="A short quiz to help you choose a starting point. It never locks any path.">اختبار قصير يساعدك على اختيار بداية مناسبة. لا يمنعك من دخول أي مسار.</p>
-  <div class="content-panel" style="padding:22px;max-width:750px" id="assessmentBox"></div>
-</section>
-
-<section class="view" id="cases">
-  <div class="eyebrow">DIGITAL FORENSICS</div><h1 class="page-title" data-ar="القضايا الرقمية" data-en="Digital cases">القضايا الرقمية</h1>
-  <p class="muted" data-ar="قضايا خيالية بأدلة قابلة للمراجعة. اقرأ السجلات، كوّن فرضية، ثم أجب." data-en="Fictional cases with reviewable evidence. Inspect logs, form a theory, then answer.">قضايا خيالية بأدلة قابلة للمراجعة. اقرأ السجلات، كوّن فرضية، ثم أجب.</p>
-  <div class="grid" id="caseGrid"></div>
-</section>
-
-<section class="view" id="casework">
-  <button class="btn ghost" onclick="go('cases')" data-ar="← كل القضايا" data-en="← All cases">← كل القضايا</button>
-  <div class="content-panel" style="padding:22px;margin-top:15px"><h1 class="page-title" id="caseTitle"></h1><p class="muted" id="caseIntro"></p><h3 data-ar="الأدلة" data-en="Evidence">الأدلة</h3><div class="example" id="caseEvidence"></div><div id="caseQuestion" style="margin-top:20px"></div><div id="caseFeedback" class="result" hidden></div></div>
-</section>
-
-<section class="view" id="book">
-  <div class="eyebrow">MIDNIGHT LIBRARY</div><h1 class="page-title" data-ar="المكتبة" data-en="Library">المكتبة</h1>
-  <p class="muted" data-ar="مواد مختارة لتبدأ صح، مع أمثلة ومفاهيم أساسية." data-en="Selected resources to build solid foundations with practical examples.">مواد مختارة لتبدأ صح، مع أمثلة ومفاهيم أساسية.</p>
-  <div class="grid" id="bookGrid"></div>
-  <article class="lesson-panel" id="bookReader" hidden style="margin-top:18px"></article>
-</section>
-
-<section class="view" id="glossary">
-  <div class="eyebrow">REFERENCE</div><h1 class="page-title" data-ar="قاموس المصطلحات" data-en="Glossary">قاموس المصطلحات</h1>
-  <input class="search" id="glossSearch" style="width:100%;margin:15px 0" placeholder="ابحث عن مصطلح..." data-ar-placeholder="ابحث عن مصطلح..." data-en-placeholder="Search terms..." oninput="renderGlossary()">
-  <div class="grid" id="glossGrid"></div>
-</section>
-
-<section class="view" id="profile">
-  <div class="eyebrow">YOUR PROGRESS</div><h1 class="page-title" data-ar="حسابي وتقدمي" data-en="My progress">حسابي وتقدمي</h1>
-  <div class="stats"><div class="stat"><span data-ar="الدروس" data-en="Lessons">الدروس</span><strong id="profileLessons">0</strong></div><div class="stat"><span data-ar="المختبرات" data-en="Labs">المختبرات</span><strong id="profileLabs">0</strong></div><div class="stat"><span data-ar="النقاط" data-en="XP">النقاط</span><strong id="profileXP">0</strong></div></div>
-  <div class="content-panel" style="padding:22px"><h2 data-ar="إنجازاتك" data-en="Achievements">إنجازاتك</h2><div id="achievements" class="grid"></div><h2 style="margin-top:30px" data-ar="التقدم في المسارات" data-en="Path progress">التقدم في المسارات</h2><div id="pathProgress"></div><button class="btn" style="margin-top:20px" onclick="resetProgress()" data-ar="إعادة ضبط التقدم" data-en="Reset progress">إعادة ضبط التقدم</button></div>
-</section>
-</main>
+  </main>
 </div>
-
-<nav class="mobile-nav" id="mobileNav"></nav>
-<footer><span>© Midnight • <span data-ar="جميع الحقوق محفوظة" data-en="All rights reserved">جميع الحقوق محفوظة</span></span><span>MIDNIGHT — YOUR JOURNEY STARTS HERE</span></footer>
-<dialog id="infoDialog"><div class="dialog-head"><h2 id="dialogTitle"></h2><button class="close-btn" onclick="infoDialog.close()">✕</button></div><div id="dialogBody"></div></dialog>
+<div class="toast" id="toast" role="status"></div>
 
 <script>
 "use strict";
-const $=id=>document.getElementById(id);
-const storeKey="midnight-academy-v1";
-const initial={lang:"ar",lessons:[],labs:[],xp:0,answers:[],caseSolved:[]};
-let state=loadState(),currentPath=0,currentLesson=0,labActive=0,caseActive=0,quizIndex=0,quizAnswers={};
+
+/* =========================
+   MIDNIGHT: APP DATA
+   ========================= */
+
+const lessons = [
+{id:"net1",path:"network",icon:"🌐",title:"ما هي الشبكات؟",en:"What Is a Network?",time:"15 دقيقة",xp:20,description:"تعرّف على مفهوم الشبكة وكيف تتواصل الأجهزة.",body:`<p>الشبكة هي مجموعة أجهزة تتواصل مع بعضها لتبادل البيانات والخدمات.</p><h4>مثال بسيط</h4><p>تخيّل المدرسة: كل جهاز يمثل طالبًا، والشبكة هي الطريق الذي يسمح لهم بتبادل المعلومات. يحتاج كل جهاز إلى عنوان وطريقة مناسبة لإرسال البيانات.</p><h4>مصطلحات مهمّة</h4><ul><li><b>Client:</b> الجهاز الذي يطلب خدمة.</li><li><b>Server:</b> الجهاز الذي يقدّم خدمة.</li><li><b>Router:</b> يوجّه البيانات بين الشبكات.</li></ul><h4>تذكّر</h4><p>الاتصال بين جهازين لا يعني بالضرورة أن كل المنافذ أو الخدمات متاحة؛ الوصول يعتمد على إعدادات الشبكة والحماية.</p>`},
+{id:"net2",path:"network",icon:"🏷️",title:"عنوان IP",en:"IP Address",time:"18 دقيقة",xp:25,description:"افهم العنوان الذي يساعد على تحديد الأجهزة داخل الشبكات.",body:`<p>عنوان IP هو عنوان منطقي يُستخدم لتوجيه البيانات إلى الجهاز أو الواجهة المناسبة في الشبكة.</p><h4>IPv4</h4><p>يُكتب عادةً بأربعة أرقام تفصل بينها نقاط، مثل <code>192.0.2.10</code>. هذا المثال من نطاق مخصص للتوثيق.</p><h4>Public وPrivate</h4><p>العناوين الخاصة تُستخدم داخل الشبكات المحلية، أما العامة فيمكن توجيهها عبر الإنترنت وفق إعدادات الشبكة. وقد يشارك أكثر من جهاز في عنوان عام باستخدام NAT.</p><h4>مهم</h4><p>عنوان IP وحده لا يكشف هوية الشخص، وقد يتغير حسب الشبكة والاتصال.</p>`},
+{id:"net3",path:"network",icon:"📖",title:"DNS وكيف يعمل",en:"DNS Basics",time:"20 دقيقة",xp:25,description:"كيف يتحوّل اسم الموقع إلى عنوان IP.",body:`<p>DNS اختصار لـ Domain Name System، وهو نظام يساعد على تحويل أسماء النطاقات إلى سجلات مثل عناوين IP.</p><h4>مثال</h4><p>بدل ما تحفظ عنوان رقمي لكل موقع، تستخدم اسم النطاق. جهازك يسأل محلّل DNS عن السجل المطلوب، ثم يستخدم النتيجة للاتصال بالخدمة.</p><h4>أوامر تعليمية</h4><p><code>nslookup example.com</code> أو <code>dig example.com</code> للاستعلام عن DNS في بيئة تدعم هذه الأدوات.</p><p>في ترمنال Midnight، النتائج محاكاة وليست استعلامات إنترنت حقيقية.</p>`},
+{id:"net4",path:"network",icon:"🚪",title:"المنافذ والخدمات",en:"Ports & Services",time:"20 دقيقة",xp:25,description:"تعرف على العلاقة بين رقم المنفذ والخدمة.",body:`<p>رقم المنفذ يميّز نقطة اتصال منطقية تستخدمها التطبيقات على الجهاز.</p><h4>أمثلة شائعة</h4><ul><li><code>22</code> — SSH للوصول الإداري الآمن.</li><li><code>53</code> — DNS.</li><li><code>80</code> — HTTP.</li><li><code>443</code> — HTTPS.</li></ul><p>هذه أمثلة شائعة وليست قاعدة تضمن أن الخدمة تعمل على المنفذ الافتراضي دائمًا.</p><h4>متى نهتم بالمنافذ؟</h4><p>أثناء إدارة الأنظمة، نتحقق من الخدمات الضرورية، ونغلق ما لا نحتاجه، ونحدّث البرامج ونضبط الجدار الناري.</p>`},
+{id:"web1",path:"web",icon:"🌍",title:"كيف يعمل الويب؟",en:"How the Web Works",time:"20 دقيقة",xp:25,description:"افهم المتصفح والخادم والطلب والاستجابة.",body:`<p>عند فتح موقع، يرسل المتصفح طلب HTTP أو HTTPS إلى الخادم، ثم يستقبل استجابة تحتوي على حالة وبيانات.</p><h4>Request وResponse</h4><p>الطلب قد يتضمن طريقة مثل <code>GET</code> أو <code>POST</code>، ومسارًا ورؤوسًا وبيانات. الاستجابة تتضمن رمز حالة ورؤوسًا ومحتوى.</p><h4>رموز الحالة</h4><ul><li><code>200</code> — نجح الطلب.</li><li><code>301</code> — إعادة توجيه دائمة.</li><li><code>403</code> — الوصول مرفوض.</li><li><code>404</code> — المورد غير موجود.</li><li><code>500</code> — خطأ في الخادم.</li></ul>`},
+{id:"web2",path:"web",icon:"🔐",title:"HTTP وHTTPS",en:"HTTP vs HTTPS",time:"18 دقيقة",xp:25,description:"تعرف على حماية الاتصال باستخدام TLS.",body:`<p>HTTP يحدد طريقة تبادل الرسائل بين العميل والخادم. HTTPS هو HTTP عبر اتصال محمي باستخدام TLS.</p><h4>ماذا يقدّم TLS؟</h4><ul><li>تشفير البيانات أثناء النقل.</li><li>التحقق من هوية الخادم عبر الشهادة.</li><li>المساعدة على اكتشاف العبث بالبيانات أثناء النقل.</li></ul><p>وجود HTTPS لا يثبت أن الموقع موثوق بالكامل؛ فقد يستخدمه موقع ضار أيضًا.</p>`},
+{id:"web3",path:"web",icon:"🧩",title:"مقدمة في ثغرات الويب",en:"Web Vulnerabilities",time:"25 دقيقة",xp:30,description:"تعرّف على أنواع الأخطاء الأمنية الشائعة.",body:`<p>الثغرات الأمنية قد تنتج عن أخطاء في التصميم أو التحقق من المدخلات أو إدارة الصلاحيات.</p><h4>أمثلة</h4><ul><li>Broken Access Control: ضعف تطبيق صلاحيات الوصول.</li><li>Injection: تفسير مدخلات غير موثوقة كجزء من أمر أو استعلام.</li><li>XSS: تنفيذ محتوى غير موثوق في سياق المتصفح.</li><li>Security Misconfiguration: إعدادات أمنية غير مناسبة.</li></ul><p>الهدف من التعلّم هو اكتشاف الأخطاء وإصلاحها في أنظمة تملكها أو لديك إذن لاختبارها.</p>`},
+{id:"web4",path:"web",icon:"🧾",title:"قراءة سجلات الويب",en:"Reading Web Logs",time:"20 دقيقة",xp:25,description:"استخدم السجلات لفهم الأحداث والطلبات.",body:`<p>سجلات الويب قد تتضمن الوقت والمسار ورمز الحالة وعنوان المصدر وUser-Agent، بحسب إعدادات الخادم.</p><h4>كيف تحلل السجل؟</h4><ol><li>حدد الفترة الزمنية ذات الصلة.</li><li>ابحث عن الطلبات المتكررة أو رموز الحالة غير المعتادة.</li><li>قارن المسارات وعناوين المصدر.</li><li>اجمع أكثر من دليل قبل استنتاج وجود حادثة.</li></ol><p>السجل الواحد قد لا يكفي لإثبات اختراق؛ اربطه بمصادر أخرى وتحقق من صحة التوقيت.</p>`},
+{id:"linux1",path:"linux",icon:"🐧",title:"مقدمة Linux",en:"Linux Basics",time:"20 دقيقة",xp:25,description:"تعرف على النظام والصدفة والأوامر الأساسية.",body:`<p>Linux نظام تشغيل شائع في الخوادم والأجهزة والبيئات التعليمية. تسمح الصدفة (Shell) بالتفاعل مع النظام عبر الأوامر.</p><h4>أوامر أساسية</h4><ul><li><code>pwd</code> — عرض المسار الحالي.</li><li><code>ls</code> — عرض الملفات.</li><li><code>cd</code> — الانتقال بين المجلدات.</li><li><code>cat</code> — عرض محتوى ملف نصي.</li><li><code>man</code> — دليل أمر في الأنظمة التي تدعمه.</li></ul><p>الأوامر في موقع Midnight محاكاة مبسطة وليست صدفة Linux حقيقية.</p>`},
+{id:"linux2",path:"linux",icon:"📂",title:"الملفات والصلاحيات",en:"Files & Permissions",time:"22 دقيقة",xp:25,description:"افهم المجلدات والملكية وصلاحيات الملفات.",body:`<p>تستخدم أنظمة Linux صلاحيات للتحكم في من يستطيع قراءة الملف أو تعديله أو تشغيله.</p><h4>الصلاحيات التقليدية</h4><p><code>r</code> تعني القراءة، و<code>w</code> تعني الكتابة، و<code>x</code> تعني التنفيذ أو عبور المجلد حسب السياق.</p><h4>مبدأ أقل صلاحية</h4><p>امنح المستخدم أو الخدمة أقل صلاحيات تحتاجها لإنجاز المهمة. تجنب منح صلاحيات إدارية بلا حاجة.</p>`},
+{id:"sec1",path:"security",icon:"🛡️",title:"مبادئ الأمن السيبراني",en:"Security Fundamentals",time:"20 دقيقة",xp:25,description:"تعرف على السرية والسلامة والتوافر.",body:`<p>من أشهر نماذج الأمن السيبراني مثلث CIA:</p><ul><li><b>Confidentiality — السرية:</b> لا يطّلع على البيانات إلا المصرّح لهم.</li><li><b>Integrity — السلامة:</b> لا تُعدّل البيانات دون تصريح.</li><li><b>Availability — التوافر:</b> تبقى الخدمات متاحة للمستخدمين المصرّح لهم.</li></ul><p>تدعم هذه المبادئ قرارات مثل النسخ الاحتياطي، وإدارة الصلاحيات، والتحديثات، ومراقبة الأنظمة.</p>`},
+{id:"sec2",path:"security",icon:"🕵️",title:"مقدمة في التحقيق الرقمي",en:"Digital Forensics",time:"25 دقيقة",xp:30,description:"تعلم توثيق الأدلة وبناء خط زمني للأحداث.",body:`<p>التحقيق الرقمي يهدف إلى فهم ما حدث باستخدام أدلة رقمية بطريقة منظمة.</p><h4>خطوات أولية</h4><ol><li>حدد نطاق التحقيق والصلاحية.</li><li>وثّق مصدر كل دليل ووقت الحصول عليه.</li><li>حافظ على الأصل واستخدم نسخًا للعمل عند الإمكان.</li><li>رتب الأحداث زمنيًا.</li><li>فرّق بين الحقائق والفرضيات.</li></ol><p>لا تعتمد على دليل واحد إذا كانت هناك مصادر أخرى يمكن أن تؤكد النتيجة.</p>`}
+];
+
+const labs = [
+{id:"lab1",icon:"🌐",title:"استكشاف شبكة افتراضية",level:"مبتدئ",xp:30,description:"استخدم nmap الوهمي لفهم المنافذ والخدمات في شبكة تدريبية.",task:"اكتشف الخدمات الموجودة على الجهاز التدريبي 10.10.10.5.",hint:"جرّب الأمر nmap -sV 10.10.10.5",answer:"nmap",explain:"الأمر يعرض خدمات افتراضية مثل HTTP وSSH داخل بيئة المحاكاة."},
+{id:"lab2",icon:"🧾",title:"حلّل سجل الدخول",level:"مبتدئ",xp:35,description:"ابحث في ملف سجل افتراضي عن طلبات مشبوهة.",task:"اعرض سجل البنك الافتراضي.",hint:"استخدم cat مع المسار /cases/bank/access.log",answer:"cat",explain:"قراءة السجل تساعدك على تحديد الوقت والمسار ورموز الحالة."},
+{id:"lab3",icon:"🔎",title:"ابحث عن عنوان داخل السجل",level:"متوسط",xp:40,description:"استخدم grep للعثور على سطر محدد في ملف.",task:"ابحث عن 203.0.113.77 داخل سجل البنك.",hint:"grep 203.0.113.77 /cases/bank/access.log",answer:"grep",explain:"grep يبحث عن نص يطابق الكلمة أو النمط داخل محتوى الملف."},
+{id:"lab4",icon:"🧭",title:"استطلاع تطبيق ويب",level:"متوسط",xp:40,description:"افهم كيف تساعد رؤوس HTTP في تحليل التطبيق.",task:"اعرض رؤوس HTTP الافتراضية للموقع التدريبي.",hint:"جرّب curl -I http://bank.test",answer:"curl",explain:"الخيار -I يعرض رؤوس الاستجابة في الأداة الحقيقية، لكن هنا النتيجة محاكاة."},
+{id:"lab5",icon:"🗂️",title:"اكتشاف الملفات الافتراضية",level:"متوسط",xp:45,description:"تدرّب على قراءة نتائج اكتشاف المسارات في مختبر خيالي.",task:"شاهد المسارات التدريبية المتاحة.",hint:"جرّب gobuster dir -u http://bank.test",answer:"gobuster",explain:"النتائج الوهمية تبيّن كيف يمكن أن يظهر مسار عام أو لوحة إدارة في تقرير."},
+{id:"lab6",icon:"🛡️",title:"ميّز بين الدليل والافتراض",level:"مبتدئ",xp:30,description:"تعلّم ألا تعتبر كل طلب غريب دليل اختراق مؤكدًا.",task:"استخدم help لعرض المساعدة ثم افتح قضية Bank BOW.",hint:"الأدلة تُراجع من صفحة القضايا.",answer:"help",explain:"التحقيق الجيد يربط السجلات بالتوقيت والسياق بدل الاعتماد على التخمين."}
+];
+
+const cases = [
+{id:"bank",code:"CASE 001",icon:"🏦",title:"Bank BOW",en:"Bank BOW",level:"متوسط",xp:100,description:"رصد فريق البنك الافتراضي ارتفاعًا في طلبات تسجيل الدخول وظهور طلبات غير معتادة على صفحة التقارير. مهمتك ترتيب الأدلة ومعرفة ما حدث.",story:"ليلة الثلاثاء، لاحظ مسؤول النظام ارتفاعًا مفاجئًا في الطلبات المرفوضة. لا يوجد دليل مؤكد على تسريب بيانات حتى الآن. أمامك سجلات افتراضية ومعلومات عن الخدمة. لا تستنتج وجود اختراق قبل جمع الأدلة.",evidence:[{title:"الدليل 01 — سجلات الوصول",text:'في الملف <code>/cases/bank/access.log</code> تظهر طلبات متعددة للمسار <code>/login</code> من العنوان التوثيقي <code>203.0.113.77</code>، تلتها طلبات إلى <code>/admin/reports</code>.'},{title:"الدليل 02 — حالة الخادم",text:'الأداة الافتراضية تعرض منفذ HTTP على <code>80/tcp</code> وخدمة SSH على <code>22/tcp</code>. وجود خدمة لا يثبت بحد ذاته وجود ثغرة.'},{title:"الدليل 03 — التوقيت",text:'الطلبات المشبوهة تجمعت بين 02:14 و02:19 حسب السجل التدريبي. المنطقة الزمنية غير مذكورة؛ يجب عدم افتراضها.'}],question:"ما الاستنتاج الأكثر دقة بناءً على الأدلة المتاحة؟",options:["تم تأكيد سرقة بيانات العملاء.","هناك نشاط غير معتاد يستحق التحقيق، لكن لا يوجد دليل كافٍ لتأكيد تسريب البيانات.","كل الطلبات طبيعية بالتأكيد.","عنوان IP وحده يكشف هوية المهاجم."],correct:1,explain:"السجلات تدعم وجود نشاط غير معتاد، لكنها لا تثبت وحدها سرقة البيانات أو هوية الشخص. يلزم جمع أدلة إضافية مثل سجلات المصادقة والتطبيق وتغييرات البيانات."},
+{id:"webcase",code:"CASE 002",icon:"🌐",title:"The Missing Page",en:"The Missing Page",level:"مبتدئ",xp:70,description:"مستخدم يبلّغ عن خطأ 404 في صفحة من موقع تدريبي. افحص الملاحظات وحدد أفضل تفسير أولي.",story:"تلقى فريق الدعم بلاغًا بأن صفحة التقارير لا تفتح. تظهر بعض الطلبات برمز 404 وأخرى برمز 200. عليك اختيار استنتاج أولي دون القفز إلى اتهام أمني.",evidence:[{title:"الدليل 01 — نتائج HTTP",text:'المسار <code>/reports-old</code> يعيد <code>404</code>، والمسار <code>/reports</code> يعيد <code>200</code> في المحاكاة.'},{title:"الدليل 02 — إعداد الموقع",text:'تشير الملاحظات إلى أن المسار القديم أزيل أثناء تحديث الموقع. لا توجد أدلة أخرى على تغيير غير مصرح به.'}],question:"ما الخطوة الأنسب؟",options:["اعتبار الخطأ اختراقًا مؤكدًا.","مراجعة المسار الصحيح وتغييرات النشر قبل تحديد السبب.","حذف سجلات الموقع.","اتهام المستخدم الذي أرسل البلاغ."],correct:1,explain:"رمز 404 يعني أن المورد لم يُعثر عليه في ذلك المسار، ولا يعني وحده وجود هجوم. ابدأ بمراجعة إعدادات المسارات وتاريخ النشر."},
+{id:"logcase",code:"CASE 003",icon:"🧾",title:"The Night Log",en:"The Night Log",level:"متوسط",xp:85,description:"سجل افتراضي يحتوي على أحداث متعددة. حدّد كيف ترتّب التحقيق قبل إصدار النتيجة.",story:"ظهر تنبيه أمني خلال الليل. لديك سجل تطبيق وسجل مصادقة، لكن ساعة أحد الخادمين قد تكون مختلفة عن الآخر. مهمتك تحديد أول خطوة تحليلية سليمة.",evidence:[{title:"الدليل 01 — اختلاف الوقت",text:"ملاحظات التشغيل تشير إلى أن ساعة خادم التطبيق متقدمة بدقيقتين عن خادم المصادقة."},{title:"الدليل 02 — السجلات",text:"هناك محاولات دخول فاشلة ثم جلسة ناجحة، لكن لا تتوفر حتى الآن معلومات تؤكد أن الجلسة غير مصرح بها."}],question:"ما الخطوة الأفضل قبل ربط الأحداث ببعضها؟",options:["ترتيب كل السجلات كما هي دون تعديل.","مراعاة فرق التوقيت وتوثيق طريقة توحيد الأوقات قبل بناء الخط الزمني.","حذف الأحداث التي لا تناسب الفرضية.","اعتبار أول محاولة فاشلة دليل اختراق مؤكد."],correct:1,explain:"اختلاف الساعات قد يؤدي إلى ترتيب خاطئ للأحداث. وثّق فرق التوقيت، ثم أنشئ خطًا زمنيًا مع الاحتفاظ بالسجلات الأصلية."}
+];
+
+const glossary = [
+["IP Address","عنوان IP","عنوان منطقي يُستخدم لتوجيه البيانات إلى واجهة أو جهاز على الشبكة."],
+["DNS","نظام أسماء النطاقات","يساعد على تحويل أسماء النطاقات إلى سجلات مثل عناوين IP."],
+["Port","منفذ","رقم يحدد نقطة اتصال منطقية تستخدمها التطبيقات."],
+["TCP","بروتوكول التحكم بالنقل","بروتوكول يوفر نقلًا موثوقًا ومرتبًا للبيانات بين الطرفين."],
+["UDP","بروتوكول بيانات المستخدم","بروتوكول نقل لا يضمن التسليم أو الترتيب مثل TCP."],
+["HTTP","بروتوكول نقل النص التشعبي","بروتوكول لتبادل طلبات واستجابات الويب."],
+["HTTPS","HTTP Secure","HTTP عبر اتصال TLS لحماية البيانات أثناء النقل."],
+["TLS","أمن طبقة النقل","بروتوكول يساعد على تشفير الاتصال والتحقق من هوية الطرف."],
+["Firewall","جدار ناري","يتحكم في حركة الشبكة وفق قواعد محددة."],
+["NAT","ترجمة عناوين الشبكة","تقنية تُستخدم لترجمة عناوين IP بين نطاقات الشبكة."],
+["MAC Address","عنوان طبقة الربط","عنوان يُستخدم على طبقة الربط الشبكي، عادةً ضمن الشبكة المحلية."],
+["ARP","بروتوكول تحليل العناوين","يساعد في معرفة عنوان طبقة الربط المقابل لعنوان IPv4 محلي."],
+["Subnet Mask","قناع الشبكة الفرعية","يساعد في تحديد جزء الشبكة وجزء المضيف في IPv4."],
+["Router","موجّه","يمرر الحزم بين شبكات مختلفة وفق جداول التوجيه."],
+["Switch","مبدّل","يربط أجهزة ضمن شبكة محلية ويمرر الإطارات وفق عناوين MAC."],
+["Nmap","أداة استكشاف الشبكات","أداة لفحص الشبكات والخدمات في الأنظمة المصرح باختبارها."],
+["Linux","لينكس","عائلة أنظمة تشغيل تستخدم في الحواسيب والخوادم والبيئات التعليمية."],
+["Shell","الصدفة","واجهة لتفسير الأوامر والتفاعل مع النظام."],
+["CLI","واجهة سطر الأوامر","واجهة تتفاعل فيها مع البرنامج بكتابة أوامر نصية."],
+["HTTP Status","رمز حالة HTTP","رقم يوضح نتيجة معالجة طلب HTTP."],
+["SQL Injection","حقن SQL","ثغرة قد تحدث عندما تُبنى استعلامات قاعدة البيانات بطريقة غير آمنة."],
+["XSS","البرمجة النصية عبر المواقع","ثغرة تسمح بتشغيل محتوى غير موثوق في سياق متصفح المستخدم."],
+["Authentication","المصادقة","عملية التحقق من هوية المستخدم أو النظام."],
+["Authorization","التفويض","تحديد ما يُسمح للهوية بالوصول إليه أو تنفيذه."],
+["Hash","تجزئة","قيمة تنتجها دالة تجزئة لتمثيل البيانات، وتستخدم في سياقات متعددة."],
+["Encryption","التشفير","تحويل البيانات إلى صيغة لا تُقرأ عادةً دون مفتاح مناسب."],
+["Log","سجل","تسجيل للأحداث التي تحدث داخل نظام أو تطبيق."],
+["Vulnerability","ثغرة أمنية","ضعف قد يؤثر في سرية النظام أو سلامته أو توافره."],
+["Exploit","استغلال","طريقة تستخدم للاستفادة من ضعف أمني؛ يجب دراسته في بيئة مأذونة."],
+["Patch","تصحيح برمجي","تحديث يصلح مشكلة أو يحسّن النظام."],
+["SOC","مركز العمليات الأمنية","فريق أو مركز يراقب التنبيهات والحوادث الأمنية ويستجيب لها."],
+["CTF","التقاط العلم","تدريب أو منافسة أمنية تعتمد على حل تحديات محددة."],
+["Incident Response","الاستجابة للحوادث","منهجية التعامل مع الحوادث الأمنية واحتوائها والتعافي منها."],
+["Least Privilege","أقل صلاحية","منح الحساب أو الخدمة أقل قدر من الصلاحيات اللازمة."],
+["False Positive","إيجابي كاذب","تنبيه يبدو صحيحًا لكنه لا يمثل الحالة التي يبحث عنها النظام."]
+];
+
+const questions = [
+{q:"ما وظيفة DNS الأساسية؟",a:["تشفير كل الملفات","ربط اسم النطاق بسجلات مثل عنوان IP","إيقاف الفيروسات","تغيير عنوان MAC"],c:1},
+{q:"أي منفذ يرتبط غالبًا بـ HTTPS؟",a:["21","22","443","3306"],c:2},
+{q:"ماذا يعني HTTP 404 عادةً؟",a:["نجاح تسجيل الدخول","المورد غير موجود في المسار","الاتصال مشفر","الخادم توقف نهائيًا"],c:1},
+{q:"ما المقصود بمبدأ أقل صلاحية؟",a:["منح الجميع صلاحيات مدير","منح الحد الأدنى اللازم من الصلاحيات","منع كل المستخدمين","إيقاف التحديثات"],c:1},
+{q:"أي أمر يعرض المسار الحالي في Linux عادةً؟",a:["pwd","whoami","clear","grep"],c:0},
+{q:"ما وظيفة grep غالبًا؟",a:["البحث عن نص مطابق في المدخلات أو الملفات","تغيير عنوان IP","تشفير القرص","إنشاء شبكة جديدة"],c:0},
+{q:"وجود منفذ مفتوح يعني بالضرورة وجود ثغرة؟",a:["نعم دائمًا","لا، يلزم فهم الخدمة وإعداداتها والسياق","نعم إذا كان الرقم صغيرًا","لا يمكن أن تعمل الخدمات على منافذ"],c:1},
+{q:"ما الفائدة الأساسية من مراجعة السجلات؟",a:["تأكيد أي فرضية دون تحقق","فهم الأحداث وبناء خط زمني من الأدلة","إخفاء نشاط النظام","زيادة سرعة الإنترنت"],c:1},
+{q:"ما الذي يقدمه HTTPS مقارنةً بـ HTTP العادي؟",a:["ضمان أن الموقع غير ضار","حماية الاتصال باستخدام TLS","منع كل أنواع الاحتيال","إخفاء اسم الموقع عن الجميع"],c:1},
+{q:"أين يجب تجربة فحوص الأمن السيبراني؟",a:["أي موقع عشوائي","أنظمة تملكها أو لديك تصريح واضح لاختبارها","أجهزة الآخرين دون علمهم","شبكات عامة بلا إذن"],c:1}
+];
+
+/* =========================
+   LOCAL PROGRESS
+   ========================= */
+const STORAGE_KEY = "midnight_cyber_learning_v1";
+const defaultState = () => ({xp:0,lessons:[],labs:[],cases:[],quizDone:false});
+let state = loadState();
+let currentLang = "ar";
+let currentLesson = null;
+let currentLab = null;
+let currentCase = null;
+let quizSubmitted = false;
+let quizAnswers = {};
 
 function loadState(){
- try{return {...initial,...JSON.parse(localStorage.getItem(storeKey)||"{}")}}catch{return {...initial}}
+  try{
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if(!saved || typeof saved !== "object") return defaultState();
+    return {
+      xp:Number(saved.xp)||0,
+      lessons:Array.isArray(saved.lessons)?saved.lessons:[],
+      labs:Array.isArray(saved.labs)?saved.labs:[],
+      cases:Array.isArray(saved.cases)?saved.cases:[],
+      quizDone:!!saved.quizDone
+    };
+  }catch(e){return defaultState();}
 }
-function save(){
- try{localStorage.setItem(storeKey,JSON.stringify(state))}catch{}
- updateStats();
+function saveState(){
+  try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}
+  catch(e){toast("تعذر حفظ التقدم في المتصفح.");}
+  updateStats();
 }
-const en=()=>state.lang==="en";
-const txt=(ar,english)=>en()?english:ar;
-const paths=[
-{id:"network",icon:"🌐",level:"beginner",ar:"أساسيات الشبكات",en:"Network foundations",desc:"افهم IP وDNS والمنافذ وكيف تتواصل الأجهزة.",descEn:"Understand IP, DNS, ports and how devices communicate.",lessons:[
-["كيف تعمل الشبكات؟","How networks work","الشبكة تربط الأجهزة لتبادل البيانات. الشبكة المحلية LAN تربط أجهزة في مكان محدود، أما WAN فتربط شبكات عبر مسافات أكبر. الإنترنت شبكة ضخمة من الشبكات.","A network connects devices so they can exchange data. A LAN covers a limited area; a WAN connects networks over larger distances.","تخيل أنك ترسل رسالة لصديقك: يحتاج جهازك إلى معرفة وجهة البيانات، ثم تمر عبر الشبكات المناسبة حتى تصل.","Imagine sending a message to a friend: your device needs a destination, and the data travels through networks to reach it."],
-["IP و MAC","IP and MAC addresses","عنوان IP يساعد على توجيه البيانات عبر الشبكات. أما MAC فعنوان مرتبط بواجهة الشبكة ويُستخدم في الاتصال المحلي. لكل منهما وظيفة مختلفة.","An IP address helps route data between networks. A MAC address identifies a network interface for local communication. They serve different purposes.","مثال عنوان خاص شائع: 192.168.1.10. غالبًا يكون عنوان الراوتر في الشبكة نفسها 192.168.1.1.","Example private address: 192.168.1.10. A router on that network commonly uses 192.168.1.1."],
-["DNS و DHCP","DNS and DHCP","DNS يحوّل اسم النطاق إلى معلومات مثل عنوان IP. DHCP يوزّع إعدادات الشبكة تلقائيًا على الأجهزة.","DNS resolves domain names to information such as IP addresses. DHCP automatically assigns network settings to devices.","DNS مثل دليل جهات الاتصال، وDHCP مثل موظف يسلّمك إعدادات الاتصال عند دخولك الشبكة.","DNS is like a contacts directory; DHCP is like receiving network settings when joining a network."],
-["المنافذ والبروتوكولات","Ports and protocols","المنفذ يحدد الخدمة المقصودة داخل الجهاز. TCP يوفّر نقلًا موثوقًا، بينما UDP يفضّل السرعة والبساطة في حالات كثيرة.","A port identifies a service on a device. TCP provides reliable delivery, while UDP often prioritizes simplicity and speed.","HTTP يستخدم غالبًا المنفذ 80 وHTTPS المنفذ 443 وDNS غالبًا المنفذ 53. هذه قيم شائعة وليست وصفًا لكل إعداد.","HTTP commonly uses port 80, HTTPS 443, and DNS 53. These are common defaults, not every possible configuration."],
-["الراوتر و NAT","Routers and NAT","الراوتر يوجّه البيانات بين الشبكات. NAT يسمح عادةً لأجهزة بعناوين خاصة بمشاركة عنوان عام عند الاتصال بالإنترنت.","A router forwards data between networks. NAT commonly lets private-address devices share a public address when accessing the internet.","فكّر في الراوتر كموظف توجيه يرسل كل حزمة إلى المسار المناسب.","Think of a router as a dispatcher forwarding each packet along the appropriate route."]
-]},
-{id:"linux",icon:"🐧",level:"beginner",ar:"لينكس والطرفية",en:"Linux and terminal",desc:"تعلم الملفات والأوامر والصلاحيات من البداية.",descEn:"Learn files, commands and permissions from scratch.",lessons:[
-["ما هو لينكس؟","What is Linux?","لينكس نظام تشغيل شائع في الخوادم والأدوات الأمنية. التوزيعات مثل Ubuntu وKali تختلف في الحزم والإعدادات.","Linux is widely used on servers and in security tools. Distributions such as Ubuntu and Kali differ in packages and configuration.","تعلم المفاهيم الأساسية أولًا؛ اسم التوزيعة أقل أهمية من فهم النظام.","Learn the fundamentals first; the distribution matters less than understanding the system."],
-["الملفات والأوامر","Files and commands","تساعدك pwd على معرفة المجلد الحالي، وls على عرض محتوياته، وcd على الانتقال بين المجلدات.","pwd shows your current directory, ls lists its contents, and cd changes directories.","نفّذ هذه الأوامر في بيئة لينكس تملكها أو مختبر تعليمي.","Run these commands in your own Linux environment or an educational lab."],
-["الصلاحيات","Permissions","تحدد الصلاحيات من يستطيع قراءة الملف أو تعديله أو تشغيله. لا تستخدم صلاحيات واسعة بلا حاجة.","Permissions control who can read, modify or execute files. Avoid overly broad permissions.","راجع مالك الملف وصلاحياته قبل تغييرها، خصوصًا في الأنظمة المهمة.","Check ownership and permissions before changing them, especially on important systems."]
-]},
-{id:"python",icon:"🐍",level:"beginner",ar:"بايثون من الصفر",en:"Python from scratch",desc:"متغيرات وشروط ودوال ومشاريع تحليل بسيطة.",descEn:"Variables, conditions, functions and simple analysis projects.",lessons:[
-["المتغيرات والأنواع","Variables and types","المتغير يخزن قيمة يمكن استخدامها لاحقًا. من الأنواع الشائعة النصوص والأعداد والقيم المنطقية.","A variable stores a value for later use. Common types include strings, numbers and booleans.","مثال: name = 'Midnight' ثم اطبع قيمة المتغير.","Example: name = 'Midnight', then print the variable."],
-["الشروط والحلقات","Conditions and loops","تستخدم if لاتخاذ قرار، وتستخدم for لتكرار عملية على عناصر أو مجموعة قيم.","Use if for decisions and for loops to repeat work over items or values.","جرّب كتابة برنامج يطبع الأعداد من 1 إلى 5.","Try writing a program that prints numbers from 1 to 5."],
-["الدوال والملفات","Functions and files","الدالة تجمع خطوات قابلة لإعادة الاستخدام. وتتيح الملفات حفظ البيانات وقراءتها عند الحاجة.","Functions group reusable steps. Files let programs save and read data.","مشروع تدريبي: اقرأ ملف سجلات تجريبيًا وعدّ عدد الأسطر.","Practice project: read a sample log file and count its lines."]
-]},
-{id:"web",icon:"🛡️",level:"intermediate",ar:"أمن تطبيقات الويب",en:"Web application security",desc:"HTTP والجلسات وأهم مخاطر تطبيقات الويب.",descEn:"HTTP, sessions and common web application risks.",lessons:[
-["كيف يعمل الويب؟","How the web works","يرسل المتصفح طلب HTTP إلى الخادم، ثم يستقبل استجابة قد تحتوي HTML أو بيانات أخرى.","A browser sends an HTTP request to a server and receives a response that may contain HTML or other data.","تعرّف على الطلبات والاستجابات ورموز الحالة مثل 200 و404 و500.","Learn requests, responses and status codes such as 200, 404 and 500."],
-["المصادقة والصلاحيات","Authentication and authorization","المصادقة تتحقق من هوية المستخدم، بينما الصلاحيات تحدد ما يمكنه الوصول إليه.","Authentication verifies identity; authorization determines what a user may access.","تسجيل الدخول الناجح لا يعني أن المستخدم مسموح له بفتح كل البيانات.","A successful login does not mean a user may access every record."],
-["مخاطر الويب","Web risks","تشمل المخاطر XSS وحقن SQL وضعف التحكم بالوصول. تعلّم اكتشافها والوقاية منها داخل مختبرات مصرح بها.","Risks include XSS, SQL injection and broken access control. Learn to identify and prevent them in authorized labs.","التحقق من المدخلات والاستعلامات المعلّمة واختبارات الصلاحيات تساعد على تقليل المخاطر.","Input validation, parameterized queries and access-control tests help reduce risk."]
-]},
-{id:"defense",icon:"🔍",level:"intermediate",ar:"الدفاع والتحقيق الرقمي",en:"Defense and forensics",desc:"السجلات والأدلة الرقمية ومراقبة الأحداث.",descEn:"Logs, digital evidence and event monitoring.",lessons:[
-["قراءة السجلات","Reading logs","السجلات تسجل أحداث النظام والتطبيق. افحص التوقيت والمصدر ونوع الحدث قبل الاستنتاج.","Logs record system and application events. Review timestamps, sources and event types before drawing conclusions.","لا يكفي حدث واحد لإثبات اختراق؛ ابحث عن أدلة متوافقة وسياق زمني.","A single event rarely proves a compromise; look for corroborating evidence and timeline context."],
-["سلامة الأدلة","Evidence integrity","حافظ على النسخ الأصلية وسجل وقت جمع الدليل ومصدره، واستخدم التجزئة للتحقق من عدم تغيّره.","Preserve originals, record collection time and source, and use hashes to check whether evidence changed.","التجزئة بصمة للملف؛ اختلافها قد يدل على اختلاف المحتوى.","A hash is a file fingerprint; a changed hash may indicate changed content."]
-]},
-{id:"crypto",icon:"🔐",level:"intermediate",ar:"التشفير والمفاهيم الأمنية",en:"Cryptography and security",desc:"الفرق بين التشفير والتجزئة والمفاتيح.",descEn:"Understand encryption, hashing and keys.",lessons:[
-["التشفير والتجزئة","Encryption and hashing","التشفير يحمي سرية البيانات باستخدام مفاتيح، أما التجزئة فتنتج قيمة تستخدم للتحقق من البيانات ولا يمكن عكسها مباشرةً إلى الملف الأصلي.","Encryption protects confidentiality using keys. Hashing produces a value used to verify data and is not directly reversible.","لا تستخدم تجزئة سريعة وحدها لتخزين كلمات المرور؛ تستخدم الأنظمة المناسبة خوارزميات مخصصة مثل Argon2id أو bcrypt.","Do not store passwords with a fast hash alone; use password-hashing algorithms such as Argon2id or bcrypt."]
-]}
-];
-
-const labs=[
-{id:"dns-lab",cat:"network",icon:"🌐",ar:"تحقيق DNS",en:"DNS investigation",desc:"حدّد نوع السجل الذي يربط اسم النطاق بعنوان IPv4.",descEn:"Identify the record type that maps a domain to an IPv4 address.",hint:"A record يشير إلى عنوان IPv4.",answer:"a",options:[["a","A record"],["b","MX record"],["c","TXT record"]],explain:"سجل A يربط اسم النطاق بعنوان IPv4."},
-{id:"linux-lab",cat:"linux",icon:"🐧",ar:"أمر المجلد الحالي",en:"Current directory",desc:"اختر الأمر الذي يعرض مسار المجلد الحالي في لينكس.",descEn:"Choose the Linux command that displays the current directory.",hint:"اسم الأمر من ثلاثة أحرف ويبدأ بحرف p.",answer:"pwd",options:[["ls","ls"],["pwd","pwd"],["cd","cd"]],explain:"pwd اختصار Print Working Directory."},
-{id:"web-lab",cat:"web",icon:"🛡️",ar:"حماية الاستعلامات",en:"Query safety",desc:"ما الأسلوب الأنسب لتقليل خطر حقن SQL في الاستعلامات؟",descEn:"Which approach best reduces SQL injection risk?",hint:"افصل البيانات عن نص الاستعلام.",answer:"param",options:[["concat","دمج المدخلات مباشرة في SQL"],["param","الاستعلامات المعلّمة Parameterized Queries"],["hide","إخفاء زر الإرسال"]],explain:"الاستعلامات المعلّمة تفصل القيم عن بنية SQL."},
-{id:"forensics-lab",cat:"forensics",icon:"🔎",ar:"تحقق من الملف",en:"File integrity",desc:"ما الذي يساعد على مقارنة سلامة ملفين؟",descEn:"What helps compare the integrity of two files?",hint:"إنها بصمة محسوبة من محتوى الملف.",answer:"hash",options:[["name","اسم الملف فقط"],["size","الحجم فقط"],["hash","قيمة التجزئة Hash"]],explain:"مقارنة تجزئات قوية تساعد في معرفة ما إذا كان محتوى الملفين متطابقًا."}
-];
-
-const terms=[
-["IP Address","آي بي أدرس","عنوان منطقي يساعد على تحديد الجهاز أو الواجهة وتوجيه البيانات."],
-["MAC Address","ماك أدرس","عنوان واجهة شبكة يستخدم في الاتصال على الشبكة المحلية."],
-["DNS","دي إن إس","نظام يحل أسماء النطاقات إلى معلومات مثل عناوين IP."],
-["DHCP","دي إتش سي بي","بروتوكول يوزع إعدادات الشبكة تلقائيًا."],
-["Port","بورت","رقم يحدد خدمة أو نقطة اتصال داخل الجهاز."],
-["Router","راوتر","جهاز يوجه البيانات بين الشبكات."],
-["Firewall","فايروول","نظام يطبق قواعد السماح بحركة الشبكة أو منعها."],
-["Hash","هاش","قيمة محسوبة من البيانات تستخدم للتحقق من سلامتها."],
-["HTTP","إتش تي تي بي","بروتوكول لتبادل طلبات واستجابات الويب."],
-["VPN","في بي إن","تقنية تنشئ اتصالًا عبر نفق شبكي؛ لا تضمن الخصوصية وحدها."]
-];
-const books=[
-{icon:"📘",ar:"أساسيات الأمن السيبراني",en:"Cybersecurity fundamentals",desc:"المفاهيم الأمنية، المخاطر، الحماية والحسابات.",descEn:"Security concepts, risks, protection and accounts.",body:"ابدأ بفهم الأصول التي تريد حمايتها، والتهديدات التي قد تؤثر عليها، ثم اختر ضوابط مناسبة. حدّث أنظمتك، واستخدم كلمات مرور فريدة ومصادقة متعددة العوامل، واحتفظ بنسخ احتياطية."},
-{icon:"📗",ar:"كيف تقرأ السجلات؟",en:"How to read logs",desc:"التوقيت والأحداث والمؤشرات والتحقيق الأولي.",descEn:"Timestamps, events, indicators and initial investigation.",body:"ابدأ بتحديد الوقت والمنطقة الزمنية ومصدر السجل. ابحث عن أحداث متتابعة بدل الاعتماد على سطر منفرد. وثّق ما لاحظته، وافصل بين الحقيقة والفرضية، ولا تعدّل الدليل الأصلي."},
-{icon:"📙",ar:"بايثون للتحليل",en:"Python for analysis",desc:"استخدم البرمجة في معالجة ملفات تعليمية.",descEn:"Use code to process educational sample files.",body:"يمكنك استخدام Python لقراءة ملفات CSV وJSON، وحساب عدد الأحداث، وتجميع النتائج حسب النوع أو الوقت. اختبر برنامجك على بيانات تجريبية واحذر من تنفيذ الملفات المجهولة."}
-];
-const cases=[
-{id:"login-case",ar:"تسجيلات دخول غير معتادة",en:"Unusual login activity",intro:"حساب تجريبي ظهرت له ثلاثة أحداث. حدد أي حدث يحتاج إلى مراجعة أولًا.",introEn:"A demo account has three events. Identify which event should be reviewed first.",evidence:"09:02  LOGIN_SUCCESS  device=known\n09:05  LOGIN_FAILED   source=203.0.113.24\n09:06  LOGIN_SUCCESS  source=203.0.113.24  device=unknown",q:"أي حدث هو أقوى مؤشر يستحق التحقيق؟",qEn:"Which event is the strongest lead for investigation?",options:[["a","تسجيل الدخول المعتاد الساعة 09:02"],["b","نجاح تسجيل الدخول من جهاز غير معروف بعد فشل"],["c","وجود سجل زمني"],["d","لا يوجد شيء يستحق المراجعة"]],optionsEn:[["a","The normal 09:02 login"],["b","Successful login from an unknown device after a failure"],["c","The existence of a timestamp"],["d","Nothing needs review"]],answer:"b",explain:"النجاح من مصدر وجهاز غير معروف بعد فشل يستحق التحقق، لكنه لا يثبت الاختراق وحده."}
-];
-
-const navItems=[
-["home","⌂","الرئيسية","Home"],["paths","▤","الأكاديمية","Academy"],["labs","⚗","المختبرات","Labs"],["assessment","◎","اختبار المستوى","Skill check"],["cases","⌕","القضايا","Cases"],["book","▣","المكتبة","Library"],["glossary","⌗","القاموس","Glossary"],["profile","◉","تقدمي","Progress"]
-];
-function renderNav(){
- const itemHTML=navItems.map(([id,icon,ar,english])=>`<button class="nav-btn ${id==="home"?"active":""}" data-nav="${id}" onclick="go('${id}')"><span class="ico">${icon}</span><span>${txt(ar,english)}</span></button>`).join("");
- $("sideNav").innerHTML=`<div class="side-label">${txt("القائمة","MENU")}</div>${itemHTML}`;
- $("mobileNav").innerHTML=navItems.filter(x=>["home","paths","labs","cases","profile"].includes(x[0])).map(([id,icon,ar,english])=>`<button data-nav="${id}" onclick="go('${id}')"><b>${icon}</b><span>${txt(ar,english)}</span></button>`).join("");
+function addXP(amount){
+  state.xp += amount;
+  saveState();
+  toast("✦ حصلت على "+amount+" XP");
 }
-function go(id){
- document.querySelectorAll(".view").forEach(v=>v.classList.toggle("active",v.id===id));
- document.querySelectorAll("[data-nav]").forEach(b=>b.classList.toggle("active",b.dataset.nav===id));
- history.replaceState(null,"","#"+id);
- window.scrollTo({top:0,behavior:"smooth"});
- if(id==="profile")renderProfile();
+function completeItem(type,id,xp){
+  if(!state[type].includes(id)){
+    state[type].push(id);
+    state.xp += xp;
+    saveState();
+    return true;
+  }
+  saveState();
+  return false;
 }
-function toggleLang(){
- state.lang=en()?"ar":"en";
- document.documentElement.lang=state.lang;
- document.documentElement.dir=en()?"ltr":"rtl";
- document.body.classList.toggle("en",en());
- $("langBtn").textContent=en()?"🇺🇸 English":"🇸🇦 العربية";
- document.querySelectorAll("[data-ar][data-en]").forEach(el=>el.textContent=txt(el.dataset.ar,el.dataset.en));
- document.querySelectorAll("[data-ar-placeholder][data-en-placeholder]").forEach(el=>el.placeholder=txt(el.dataset.arPlaceholder,el.dataset.enPlaceholder));
- document.querySelectorAll("option[data-ar][data-en]").forEach(el=>el.textContent=txt(el.dataset.ar,el.dataset.en));
- renderNav();renderPaths();renderLabs();renderCases();renderBooks();renderGlossary();renderAssessment();updateStats();save();
- if($("lesson").classList.contains("active"))openPath(currentPath,currentLesson);
- if($("labwork").classList.contains("active"))openLab(labActive);
- if($("casework").classList.contains("active"))openCase(caseActive);
+function toast(message){
+  const el=document.getElementById("toast");
+  el.textContent=message;el.classList.add("show");
+  clearTimeout(toast.timer);
+  toast.timer=setTimeout(()=>el.classList.remove("show"),2600);
 }
 function updateStats(){
- $("statLessons").textContent=state.lessons.length;
- $("statLabs").textContent=state.labs.length;
- $("statXP").textContent=state.xp;
+  ["topXP","homeXP","progressXP"].forEach(id=>document.getElementById(id).textContent=state.xp);
+  document.getElementById("homeLessons").textContent=state.lessons.length;
+  document.getElementById("homeLabs").textContent=state.labs.length;
+  document.getElementById("homeCases").textContent=state.cases.length;
+  document.getElementById("progressLessons").textContent=state.lessons.length+"/"+lessons.length;
+  document.getElementById("progressLabs").textContent=state.labs.length+"/"+labs.length;
+  document.getElementById("progressCases").textContent=state.cases.length+"/"+cases.length;
+  renderAchievements();
 }
-function card({icon,title,desc,tag,action,label}){
- return `<article class="card"><div class="card-icon">${icon}</div><h3>${title}</h3><p>${desc}</p><div class="card-foot"><span class="tag">${tag}</span><button class="text-btn" onclick="${action}">${label}</button></div></article>`;
+function esc(s){
+  return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 }
-function renderPaths(){
- const q=($("pathSearch")?.value||"").toLowerCase().trim(),level=$("pathLevel")?.value||"all";
- const found=paths.map((p,i)=>({...p,i})).filter(p=>(level==="all"||p.level===level)&&`${p.ar} ${p.en} ${p.desc} ${p.descEn}`.toLowerCase().includes(q));
- $("pathGrid").innerHTML=found.length?found.map(p=>card({icon:p.icon,title:txt(p.ar,p.en),desc:txt(p.desc,p.descEn),tag:txt(p.level==="beginner"?"مبتدئ":"متوسط",p.level==="beginner"?"BEGINNER":"INTERMEDIATE"),action:`openPath(${p.i},0)`,label:txt("ابدأ التعلّم ←","Start learning →")})).join(""):`<div class="empty">${txt("ما لقينا مسار بهذا الاسم.","No matching paths found.")}</div>`;
+
+/* =========================
+   NAVIGATION
+   ========================= */
+const pageTitles={
+home:["الرئيسية","Dashboard"],academy:["الأكاديمية","Academy"],lesson:["الدرس","Lesson"],
+labs:["المختبرات","Labs"],lab:["المختبر","Lab"],cases:["القضايا","Cases"],case:["القضية","Case"],
+terminal:["الترمنال الوهمي","Simulated Terminal"],quiz:["الاختبار","Quiz"],
+glossary:["القاموس","Glossary"],progress:["إنجازاتي","My Progress"],about:["عن Midnight","About Midnight"]
+};
+function go(page){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  const target=document.getElementById("page-"+page);
+  if(!target)return;
+  target.classList.add("active");
+  document.querySelectorAll(".nav-btn[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===page || (["lesson"].includes(page)&&b.dataset.page==="academy") || (page==="lab"&&b.dataset.page==="labs") || (page==="case"&&b.dataset.page==="cases")));
+  document.getElementById("pageName").textContent=pageTitles[page][currentLang==="ar"?0:1];
+  document.getElementById("sidebar").classList.remove("open");
+  if(page==="terminal")setTimeout(()=>document.getElementById("termInput").focus(),80);
+  window.scrollTo({top:0,behavior:"smooth"});
 }
-function openPath(i,li){
- currentPath=i;currentLesson=li;
- const p=paths[i],l=p.lessons[li];
- $("lessonList").innerHTML=p.lessons.map((lesson,j)=>`<button class="lesson-item ${j===li?"active":""}" onclick="openPath(${i},${j})">${state.lessons.includes(p.id+":"+j)?"✓ ":""}${txt(lesson[0],lesson[1])}</button>`).join("");
- const done=state.lessons.includes(p.id+":"+li);
- $("lessonContent").innerHTML=`<div class="eyebrow">${txt("المسار التعليمي","LEARNING PATH")} / ${li+1} OF ${p.lessons.length}</div><h2>${txt(l[0],l[1])}</h2><div class="progress"><span style="width:${Math.round((li+1)/p.lessons.length*100)}%"></span></div><h3>${txt("الشرح","Explanation")}</h3><p>${txt(l[2],l[3])}</p><h3>${txt("مثال مبسّط","A simple example")}</h3><div class="callout">${txt(l[4],l[5])}</div><div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:25px"><button class="btn primary" onclick="completeLesson()" ${done?"disabled":""}>${done?txt("✓ مكتمل","✓ Completed"):txt("علّم الدرس كمكتمل +10 XP","Mark complete +10 XP")}</button>${li>0?`<button class="btn" onclick="openPath(${i},${li-1})">${txt("السابق","Previous")}</button>`:""}${li<p.lessons.length-1?`<button class="btn" onclick="openPath(${i},${li+1})">${txt("الدرس التالي ←","Next lesson →")}</button>`:`<button class="btn" onclick="go('labs')">${txt("انتقل للمختبرات","Explore labs")}</button>`}</div><p class="muted" style="font-size:12px;margin-top:25px">${txt("تذكير: تعلّم على أنظمة تملكها أو لديك تصريح لاختبارها.","Reminder: practice only on systems you own or are authorized to test.")}</p>`;
- go("lesson");
+document.querySelectorAll("[data-page]").forEach(b=>b.addEventListener("click",()=>go(b.dataset.page)));
+document.addEventListener("click",e=>{
+  const btn=e.target.closest("[data-go]");
+  if(btn)go(btn.dataset.go);
+});
+document.getElementById("menuBtn").addEventListener("click",()=>document.getElementById("sidebar").classList.toggle("open"));
+document.addEventListener("keydown",e=>{if(e.key==="Escape")document.getElementById("sidebar").classList.remove("open");});
+
+/* =========================
+   LANGUAGE TOGGLE
+   ========================= */
+function setLanguage(lang){
+  currentLang=lang;
+  document.documentElement.lang=lang;
+  document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+  document.getElementById("langBtn").textContent=lang==="ar"?"EN":"عربي";
+  document.querySelectorAll("[data-ar][data-en]").forEach(el=>{
+    el.innerHTML=el.dataset[lang];
+  });
+  document.querySelectorAll("[data-placeholder-ar][data-placeholder-en]").forEach(el=>{
+    el.placeholder=el.dataset["placeholder"+(lang==="ar"?"Ar":"En")];
+  });
+  document.getElementById("pageName").textContent=pageTitles[document.querySelector(".page.active")?.id.replace("page-","")||"home"][lang==="ar"?0:1];
+  renderLessons();renderLabs();renderCases();renderGlossary();renderHomeLessons();
+  if(currentLesson)openLesson(currentLesson,false);
+  if(currentLab)openLab(currentLab,false);
+  if(currentCase)openCase(currentCase,false);
+  renderQuiz();
 }
-function completeLesson(){
- const key=paths[currentPath].id+":"+currentLesson;
- if(!state.lessons.includes(key)){state.lessons.push(key);state.xp+=10;save();openPath(currentPath,currentLesson)}
+document.getElementById("langBtn").addEventListener("click",()=>setLanguage(currentLang==="ar"?"en":"ar"));
+
+/* =========================
+   LESSONS
+   ========================= */
+function lessonCard(l){
+  const done=state.lessons.includes(l.id);
+  const title=currentLang==="ar"?l.title:l.en;
+  return `<article class="card"><div class="card-icon">${l.icon}</div><div class="card-foot" style="margin:0 0 10px"><span class="tag">${pathName(l.path)}</span>${done?'<span class="tag green">✓ مكتمل</span>':""}</div><h4>${esc(title)}</h4><p>${esc(l.description)}</p><div class="card-foot"><span>◷ ${l.time} · ${l.xp} XP</span><button class="btn btn-secondary" data-lesson="${l.id}">${done?"مراجعة":"ابدأ الدرس"}</button></div></article>`;
 }
+function pathName(path){
+  const names={network:["الشبكات","Networking"],web:["أمن الويب","Web Security"],linux:["Linux","Linux"],security:["مبادئ الأمن","Security"]};
+  return names[path][currentLang==="ar"?0:1];
+}
+function renderLessons(){
+  const query=(document.getElementById("lessonSearch")?.value||"").toLowerCase();
+  const filter=document.getElementById("lessonFilter")?.value||"all";
+  const filtered=lessons.filter(l=>(filter==="all"||l.path===filter)&&[l.title,l.en,l.description].join(" ").toLowerCase().includes(query));
+  document.getElementById("lessonGrid").innerHTML=filtered.map(lessonCard).join("")||'<div class="empty">ما لقينا دروس تطابق بحثك.</div>';
+}
+function renderHomeLessons(){
+  const next=lessons.filter(l=>!state.lessons.includes(l.id)).slice(0,3);
+  document.getElementById("homeLessonsList").innerHTML=next.map(lessonCard).join("")||'<div class="card"><h4>أكملت كل الدروس 🎉</h4><p>تقدر تعيد مراجعتها أو تنتقل للمختبرات.</p><button class="btn btn-secondary" data-go="labs">افتح المختبرات</button></div>';
+}
+function openLesson(id,changePage=true){
+  const l=lessons.find(x=>x.id===id);if(!l)return;
+  currentLesson=id;
+  const done=state.lessons.includes(id);
+  document.getElementById("lessonDetail").innerHTML=`<div class="hero"><div class="eyebrow">${pathName(l.path)} // ${l.xp} XP</div><h2>${l.icon} ${esc(currentLang==="ar"?l.title:l.en)}</h2><p>${esc(l.description)}</p><div class="actions"><span class="tag">◷ ${l.time}</span>${done?'<span class="tag green">✓ مكتمل</span>':""}</div></div><div class="panel lesson-body" style="margin-top:16px">${l.body}<div class="actions"><button class="btn btn-primary" id="completeLesson" ${done?"disabled":""}>${done?"تم إكمال الدرس ✓":"إكمال الدرس والحصول على XP"}</button><button class="btn btn-secondary" id="nextLesson">الدرس التالي ←</button></div></div>`;
+  document.getElementById("completeLesson").addEventListener("click",()=>{
+    if(completeItem("lessons",id,l.xp)){toast("ممتاز! أكملت الدرس.");openLesson(id,false);renderLessons();renderHomeLessons();}
+    else toast("هذا الدرس مكتمل مسبقًا.");
+  });
+  document.getElementById("nextLesson").addEventListener("click",()=>{
+    const idx=lessons.findIndex(x=>x.id===id);
+    if(idx<lessons.length-1)openLesson(lessons[idx+1].id,true);else toast("وصلت إلى آخر درس!");
+  });
+  if(changePage)go("lesson");
+}
+document.getElementById("lessonSearch").addEventListener("input",renderLessons);
+document.getElementById("lessonFilter").addEventListener("change",renderLessons);
+document.getElementById("lessonGrid").addEventListener("click",e=>{const b=e.target.closest("[data-lesson]");if(b)openLesson(b.dataset.lesson);});
+document.getElementById("homeLessonsList").addEventListener("click",e=>{const b=e.target.closest("[data-lesson]");if(b)openLesson(b.dataset.lesson);});
+
+/* =========================
+   LABS
+   ========================= */
 function renderLabs(){
- const q=($("labSearch")?.value||"").toLowerCase().trim(),cat=$("labCategory")?.value||"all";
- const found=labs.map((l,i)=>({...l,i})).filter(l=>(cat==="all"||l.cat===cat)&&`${l.ar} ${l.en} ${l.desc} ${l.descEn}`.toLowerCase().includes(q));
- $("labGrid").innerHTML=found.length?found.map(l=>card({icon:l.icon,title:txt(l.ar,l.en),desc:txt(l.desc,l.descEn),tag:txt("محاكاة آمنة","SAFE SIMULATION"),action:`openLab(${l.i})`,label:state.labs.includes(l.id)?txt("✓ مكتمل","✓ Completed"):txt("ابدأ التحدي ←","Start challenge →")})).join(""):`<div class="empty">${txt("لا توجد نتائج.","No results.")}</div>`;
+  document.getElementById("labGrid").innerHTML=labs.map(l=>{
+    const done=state.labs.includes(l.id);
+    return `<article class="card"><div class="card-icon">${l.icon}</div><div class="card-foot" style="margin:0 0 10px"><span class="tag">${l.level}</span>${done?'<span class="tag green">✓ محلول</span>':""}</div><h4>${esc(l.title)}</h4><p>${esc(l.description)}</p><div class="card-foot"><span>${l.xp} XP</span><button class="btn btn-secondary" data-lab="${l.id}">${done?"مراجعة":"افتح المختبر"}</button></div></article>`;
+  }).join("");
 }
-function openLab(i){
- labActive=i;const l=labs[i];
- $("labTitle").textContent=txt(l.ar,l.en);$("labDescription").textContent=txt(l.desc,l.descEn);$("labHint").textContent=txt("تلميح: "+l.hint,"Hint: "+l.hint);
- $("labFeedback").hidden=true;
- $("labTask").innerHTML=`<h3>${txt("المهمة","Task")}</h3><p>${txt(l.desc,l.descEn)}</p>${l.options.map(([v,label])=>`<label class="quiz-option"><input type="radio" name="labAnswer" value="${v}"><span>${label}</span></label>`).join("")}<button class="btn primary" style="margin-top:15px" onclick="checkLab()">${txt("تحقق من الإجابة","Check answer")}</button>`;
- go("labwork");
+function openLab(id,changePage=true){
+  const l=labs.find(x=>x.id===id);if(!l)return;
+  currentLab=id;
+  const done=state.labs.includes(id);
+  document.getElementById("labDetail").innerHTML=`<div class="hero"><div class="eyebrow">VIRTUAL LAB // ${l.xp} XP</div><h2>${l.icon} ${esc(l.title)}</h2><p>${esc(l.description)}</p></div><div class="grid-2" style="margin-top:16px"><div class="panel"><h3>🎯 المهمة</h3><p class="lesson-body">${esc(l.task)}</p><div class="evidence"><h4>💡 تلميح</h4><p>${esc(l.hint)}</p></div><div class="actions"><button class="btn btn-primary" id="openLabTerminal">افتح الترمنال $_</button><button class="btn btn-secondary" id="showLabHint">عرض التلميح</button></div><p id="labHintText" class="muted" style="display:none;font-size:12px;line-height:1.9;margin-top:12px">${esc(l.hint)}</p></div><div class="panel"><h3>📋 شروط الإكمال</h3><p class="lesson-body">اكتب أمرًا من عائلة الأداة المناسبة داخل الترمنال الافتراضي. لن يتم تشغيل أي فحص حقيقي.</p><div class="progress"><span style="width:${done?100:0}%"></span></div><p class="muted" style="font-size:12px">${done?"تم إكمال هذا المختبر":"لم يكتمل بعد"}</p><button class="btn btn-primary" id="completeLab" ${done?"disabled":""}>${done?"المختبر مكتمل ✓":"تسجيل إكمال المختبر"}</button><p id="labFeedback" class="muted" style="font-size:12px;line-height:1.8;margin-top:12px"></p></div></div>`;
+  document.getElementById("openLabTerminal").addEventListener("click",()=>{go("terminal");document.getElementById("termInput").value=l.hint;document.getElementById("termInput").focus();});
+  document.getElementById("showLabHint").addEventListener("click",()=>{const h=document.getElementById("labHintText");h.style.display=h.style.display==="none"?"block":"none";});
+  document.getElementById("completeLab").addEventListener("click",()=>{
+    if(completeItem("labs",id,l.xp)){document.getElementById("labFeedback").textContent="أحسنت! تم تسجيل إنجازك.";openLab(id,false);renderLabs();}
+    else toast("هذا المختبر مكتمل مسبقًا.");
+  });
+  if(changePage)go("lab");
 }
-function checkLab(){
- const l=labs[labActive],chosen=document.querySelector('input[name="labAnswer"]:checked'),feedback=$("labFeedback");
- feedback.hidden=false;
- if(!chosen){feedback.textContent=txt("اختر إجابة أولًا.","Choose an answer first.");return}
- if(chosen.value===l.answer){
-   feedback.textContent=txt("إجابة صحيحة! "+l.explain,"Correct! "+l.explain);
-   if(!state.labs.includes(l.id)){state.labs.push(l.id);state.xp+=25;save()}
- }else feedback.textContent=txt("مو صحيح. راجع التلميح وحاول مرة ثانية.","Not quite. Review the hint and try again.");
- renderLabs();
-}
-const assessQuestions=[
-{ar:"ما وظيفة DNS الأساسية؟",en:"What is the primary role of DNS?",options:["تشفير الملفات","حل أسماء النطاقات","توزيع طاقة الشبكة"],optionsEn:["Encrypt files","Resolve domain names","Distribute network power"],a:1,path:"network"},
-{ar:"أي أمر يعرض المجلد الحالي في لينكس؟",en:"Which Linux command shows the current directory?",options:["pwd","mkdir","clear"],optionsEn:["pwd","mkdir","clear"],a:0,path:"linux"},
-{ar:"ما الغرض من المتغير في Python؟",en:"What is a variable used for in Python?",options:["تخزين قيمة","إيقاف الإنترنت","تغيير عنوان IP تلقائيًا"],optionsEn:["Store a value","Disable the internet","Automatically change an IP"],a:0,path:"python"},
-{ar:"أي أسلوب يساعد على تقليل خطر حقن SQL؟",en:"Which technique helps reduce SQL injection risk?",options:["إخفاء عنوان الموقع","استعلامات معلّمة","زيادة حجم الخط"],optionsEn:["Hide the URL","Parameterized queries","Increase font size"],a:1,path:"web"},
-{ar:"ما فائدة سجلات النظام؟",en:"What are system logs useful for?",options:["توثيق الأحداث","زيادة سرعة الشاشة","استبدال النسخ الاحتياطية"],optionsEn:["Recording events","Increasing display speed","Replacing backups"],a:0,path:"defense"}
-];
-function renderAssessment(){
- quizIndex=0;quizAnswers={};
- showQuestion();
-}
-function showQuestion(){
- const q=assessQuestions[quizIndex],box=$("assessmentBox");
- if(!q){showAssessmentResult();return}
- box.innerHTML=`<div class="eyebrow">${txt("السؤال","QUESTION")} ${quizIndex+1} / ${assessQuestions.length}</div><div class="progress"><span style="width:${(quizIndex+1)/assessQuestions.length*100}%"></span></div><h2>${txt(q.ar,q.en)}</h2>${q.options.map((o,i)=>`<label class="quiz-option"><input type="radio" name="assessment" value="${i}" ${quizAnswers[quizIndex]===i?"checked":""}><span>${txt(o,q.optionsEn[i])}</span></label>`).join("")}<div style="display:flex;justify-content:space-between;gap:10px;margin-top:20px"><button class="btn" onclick="assessmentMove(-1)" ${quizIndex===0?"disabled":""}>${txt("السابق","Previous")}</button><button class="btn primary" onclick="assessmentMove(1)">${quizIndex===assessQuestions.length-1?txt("عرض النتيجة","See results"):txt("التالي","Next")}</button></div>`;
-}
-function assessmentMove(step){
- const selected=document.querySelector('input[name="assessment"]:checked');
- if(selected)quizAnswers[quizIndex]=Number(selected.value);
- else if(step===1){alert(txt("اختر إجابة أو اختر «ما أعرف» من خلال تخطي السؤال.","Choose an answer before continuing."));return}
- quizIndex+=step;
- if(quizIndex>=assessQuestions.length){showAssessmentResult();return}
- showQuestion();
-}
-function showAssessmentResult(){
- const score=assessQuestions.filter((q,i)=>quizAnswers[i]===q.a).length;
- const level=score<2?txt("مبتدئ — ابدأ بالأساسيات","Beginner — start with fundamentals"):score<4?txt("أساسيات جيدة — واصل التدريب","Developing — keep practicing"):txt("بداية قوية — جرّب مسارات متقدمة","Strong start — explore further paths");
- $("assessmentBox").innerHTML=`<div class="eyebrow">${txt("النتيجة","RESULT")}</div><h2>${score} / ${assessQuestions.length}</h2><p>${level}</p><p class="muted">${txt("هذا تقدير أولي وليس حكمًا نهائيًا على مهاراتك. جميع المسارات متاحة لك.","This is a rough guide, not a definitive skill rating. All paths remain available.")}</p><div class="grid">${paths.slice(0,5).map((p,i)=>card({icon:p.icon,title:txt(p.ar,p.en),desc:txt(p.desc,p.descEn),tag:txt("مسار مقترح","SUGGESTED"),action:`openPath(${i},0)`,label:txt("ابدأ المسار ←","Start path →")})).join("")}</div><button class="btn" style="margin-top:20px" onclick="renderAssessment()">${txt("إعادة الاختبار","Retake quiz")}</button>`;
-}
+document.getElementById("labGrid").addEventListener("click",e=>{const b=e.target.closest("[data-lab]");if(b)openLab(b.dataset.lab);});
+
+/* =========================
+   CASES
+   ========================= */
 function renderCases(){
- $("caseGrid").innerHTML=cases.map((c,i)=>card({icon:"🔎",title:txt(c.ar,c.en),desc:txt(c.intro,c.introEn),tag:txt(state.caseSolved.includes(c.id)?"مكتملة":"تحقيق رقمي",state.caseSolved.includes(c.id)?"SOLVED":"FORENSICS"),action:`openCase(${i})`,label:state.caseSolved.includes(c.id)?txt("✓ مكتملة","✓ Solved"):txt("ابدأ التحقيق ←","Investigate →")})).join("");
+  document.getElementById("caseGrid").innerHTML=cases.map(c=>{
+    const done=state.cases.includes(c.id);
+    return `<article class="card"><div class="card-foot" style="margin:0 0 12px"><span class="tag yellow">${c.code}</span>${done?'<span class="tag green">✓ محلولة</span>':""}</div><div class="card-icon">${c.icon}</div><h4>${esc(currentLang==="ar"?c.title:c.en)}</h4><p>${esc(c.description)}</p><div class="card-foot"><span>${c.level} · ${c.xp} XP</span><button class="btn btn-secondary" data-case="${c.id}">${done?"راجع التحقيق":"ابدأ التحقيق"}</button></div></article>`;
+  }).join("");
 }
-function openCase(i){
- caseActive=i;const c=cases[i];
- $("caseTitle").textContent=txt(c.ar,c.en);$("caseIntro").textContent=txt(c.intro,c.introEn);$("caseEvidence").textContent=c.evidence;$("caseFeedback").hidden=true;
- const opts=en()?c.optionsEn:c.options;
- $("caseQuestion").innerHTML=`<h3>${txt(c.q,c.qEn)}</h3>${opts.map(([v,label])=>`<label class="quiz-option"><input type="radio" name="caseAnswer" value="${v}"><span>${label}</span></label>`).join("")}<button class="btn primary" style="margin-top:15px" onclick="checkCase()">${txt("إرسال الاستنتاج","Submit conclusion")}</button>`;
- go("casework");
+function openCase(id,changePage=true){
+  const c=cases.find(x=>x.id===id);if(!c)return;
+  currentCase=id;
+  const done=state.cases.includes(id);
+  const evidence=c.evidence.map((e,i)=>`<div class="evidence"><h4>${esc(e.title)}</h4><p>${e.text}</p></div>`).join("");
+  const options=c.options.map((o,i)=>`<button class="answer-option" data-case-answer="${i}">${String.fromCharCode(65+i)}. ${esc(o)}</button>`).join("");
+  document.getElementById("caseDetail").innerHTML=`<div class="case-banner"><span class="tag yellow">${c.code}</span><h3>${c.icon} ${esc(currentLang==="ar"?c.title:c.en)}</h3><p>${esc(c.story)}</p><div class="card-foot"><span>المكافأة: ${c.xp} XP</span>${done?'<span class="tag green">✓ مكتملة</span>':""}</div></div><div class="grid-2"><div class="panel"><h3>🗃️ الأدلة المتاحة</h3>${evidence}<div class="actions"><button class="btn btn-secondary" id="caseTerminal">افتح الترمنال لتحليل الأدلة</button></div></div><div class="panel"><h3>🧠 سؤال التحقيق</h3><p class="lesson-body">${esc(c.question)}</p><div class="answer-options" id="caseAnswers">${options}</div><p id="caseResult" class="lesson-body" style="margin-top:14px"></p><button class="btn btn-primary" id="claimCase" style="display:none;margin-top:10px" ${done?"disabled":""}>${done?"القضية مكتملة ✓":"تسجيل حل القضية"}</button></div></div>`;
+  document.getElementById("caseTerminal").addEventListener("click",()=>{go("terminal");document.getElementById("termInput").value="cat /cases/bank/access.log";document.getElementById("termInput").focus();});
+  document.getElementById("caseAnswers").addEventListener("click",e=>{
+    const b=e.target.closest("[data-case-answer]");if(!b)return;
+    document.querySelectorAll("#caseAnswers .answer-option").forEach(x=>{x.disabled=true;x.classList.remove("correct","wrong");});
+    const answer=Number(b.dataset.caseAnswer);
+    b.classList.add(answer===c.correct?"correct":"wrong");
+    if(answer!==c.correct)document.querySelector(`#caseAnswers [data-case-answer="${c.correct}"]`).classList.add("correct");
+    document.getElementById("caseResult").innerHTML=(answer===c.correct?"<b style='color:var(--green)'>إجابة صحيحة ✓</b>":"<b style='color:var(--red)'>مو بالضبط — راجع الدليل</b>")+"<br>"+esc(c.explain);
+    document.getElementById("claimCase").style.display="inline-block";
+  });
+  document.getElementById("claimCase").addEventListener("click",()=>{
+    if(completeItem("cases",id,c.xp)){toast("تم تسجيل حل القضية!");openCase(id,false);renderCases();}
+    else toast("القضية مكتملة مسبقًا.");
+  });
+  if(changePage)go("case");
 }
-function checkCase(){
- const c=cases[caseActive],selected=document.querySelector('input[name="caseAnswer"]:checked'),feedback=$("caseFeedback");
- feedback.hidden=false;
- if(!selected){feedback.textContent=txt("اختر استنتاجًا أولًا.","Choose a conclusion first.");return}
- if(selected.value===c.answer){
- feedback.textContent=txt("استنتاج صحيح. "+c.explain,"Correct conclusion. "+c.explain);
- if(!state.caseSolved.includes(c.id)){state.caseSolved.push(c.id);state.xp+=30;save()}
- }else feedback.textContent=txt("راجع تسلسل الأحداث وحاول مرة ثانية.","Review the event sequence and try again.");
- renderCases();
+document.getElementById("caseGrid").addEventListener("click",e=>{const b=e.target.closest("[data-case]");if(b)openCase(b.dataset.case);});
+
+/* =========================
+   SIMULATED TERMINAL
+   ========================= */
+const toolCommands=[
+"help","clear","pwd","ls","cd","cat","head","tail","grep","find","whoami",
+"date","history","echo","mkdir","touch","file","stat","wc","sort","uniq",
+"cut","awk","sed","ip","ifconfig","ping","traceroute","netstat","ss","arp",
+"nslookup","dig","host","nmap","curl","wget","whatweb","gobuster","dirb",
+"nikto","sqlmap","hydra","john","hashid","strings","file","xxd","sha256sum",
+"base64","python","man","uname","df","free","ps","top","chmod","sudo","ssh"
+];
+const toolDescriptions={
+help:"عرض قائمة الأوامر المتاحة",clear:"مسح شاشة الترمنال",pwd:"عرض المسار الحالي",ls:"عرض الملفات والمجلدات الافتراضية",
+cd:"تغيير المجلد الافتراضي",cat:"عرض محتوى ملف تدريبي",head:"عرض بداية ملف",tail:"عرض نهاية ملف",
+grep:"البحث عن نص داخل ملف",find:"البحث عن ملفات افتراضية",whoami:"عرض المستخدم الافتراضي",date:"عرض تاريخ تجريبي",
+history:"عرض سجل الأوامر في الجلسة",echo:"طباعة نص",mkdir:"محاكاة إنشاء مجلد",touch:"محاكاة إنشاء ملف",
+file:"عرض نوع ملف افتراضي",stat:"عرض معلومات ملف",wc:"عدّ الأسطر والكلمات",sort:"ترتيب أسطر نصية",
+uniq:"إزالة الأسطر المتكررة من عينة افتراضية",cut:"استخراج حقول من نص تجريبي",awk:"معالجة نصية تعليمية",sed:"تحويل نصي تعليمي",
+ip:"عرض إعدادات شبكة افتراضية",ifconfig:"عرض واجهات شبكة افتراضية",ping:"محاكاة اختبار اتصال",traceroute:"محاكاة مسار شبكة",
+netstat:"عرض اتصالات افتراضية",ss:"عرض مقابس افتراضية",arp:"عرض جدول ARP افتراضي",nslookup:"محاكاة استعلام DNS",
+dig:"محاكاة استعلام DNS",host:"محاكاة استعلام اسم مضيف",nmap:"محاكاة استكشاف خدمات شبكة تدريبية",
+curl:"عرض استجابة HTTP افتراضية",wget:"محاكاة تنزيل من مصدر تدريبي",whatweb:"محاكاة التعرف على تقنيات موقع",
+gobuster:"عرض نتائج مسارات تدريبية",dirb:"عرض نتائج مسارات تدريبية",nikto:"عرض ملاحظات أمنية افتراضية",
+sqlmap:"محاكاة تقرير تعليمي لسلامة استعلامات SQL",hydra:"شرح تعليمي فقط؛ لا توجد محاولات كلمات مرور حقيقية",
+john:"محاكاة معلومات عن اختبار قوة كلمات المرور",hashid:"عرض تخمين تعليمي لنوع تجزئة",strings:"استخراج سلاسل من عينة افتراضية",
+xxd:"عرض تمثيل سداسي لعينة افتراضية",sha256sum:"عرض تجزئة ثابتة لعينة تدريبية",base64:"ترميز وفك ترميز نص",
+python:"بيئة Python غير مشغلة؛ عرض مساعدة تعليمية",man:"عرض وصف أمر",uname:"عرض معلومات نظام افتراضي",
+df:"عرض مساحة تخزين افتراضية",free:"عرض ذاكرة افتراضية",ps:"عرض عمليات افتراضية",top:"عرض مراقبة افتراضية",
+chmod:"شرح صلاحيات الملفات دون تغيير حقيقي",sudo:"لا توجد صلاحيات نظام حقيقية",ssh:"شرح اتصال SSH دون فتح اتصال فعلي"
+};
+let terminalHistory=[];
+let historyIndex=0;
+let virtualCwd="/home/student";
+
+function renderToolList(){
+  const common=["help","pwd","ls","cat","grep","find","ip","ping","nslookup","nmap","curl","gobuster","nikto","sqlmap","strings","sha256sum","history","man"];
+  document.getElementById("toolList").innerHTML=common.map(cmd=>`<button class="tool-chip" data-cmd="${cmd}">${cmd}</button>`).join("");
 }
-function renderBooks(){
- $("bookGrid").innerHTML=books.map((b,i)=>card({icon:b.icon,title:txt(b.ar,b.en),desc:txt(b.desc,b.descEn),tag:txt("قراءة","READING"),action:`readBook(${i})`,label:txt("اقرأ الآن ←","Read now →")})).join("");
+function addTerminalLine(command,output,type="normal"){
+  const out=document.getElementById("termOutput");
+  const line=document.createElement("div");line.className="term-line";
+  const prompt=document.createElement("span");prompt.className="prompt";prompt.textContent="student@midnight:~$ ";
+  const cmd=document.createElement("span");cmd.className="command";cmd.textContent=command;
+  line.append(prompt,cmd);
+  if(output!==null&&output!==""){
+    const res=document.createElement("span");res.className="output "+(type==="error"?"error":type==="info"?"info":type==="success"?"success":"");res.textContent=output;line.appendChild(res);
+  }
+  out.appendChild(line);out.scrollTop=out.scrollHeight;
 }
-function readBook(i){
- const b=books[i],reader=$("bookReader");reader.hidden=false;
- reader.innerHTML=`<h2>${txt(b.ar,b.en)}</h2><p>${txt(b.body,b.body)}</p><div class="callout">${txt("طبّق هذه المفاهيم على بيانات تجريبية أو أنظمة تملكها.","Practice these concepts using sample data or systems you own.")}</div>`;
- reader.scrollIntoView({behavior:"smooth",block:"start"});
+function termWelcome(){
+  document.getElementById("termOutput").innerHTML="";
+  addTerminalLine("","MIDNIGHT TRAINING TERMINAL v1.0","info");
+  addTerminalLine("","محاكاة تعليمية — لا يتم تنفيذ أوامر نظام أو اتصالات حقيقية.","info");
+  addTerminalLine("","اكتب help لعرض الأوامر، وclear لمسح الشاشة.","success");
 }
+function virtualFiles(path){
+  const files={
+"/home/student":["academy/","cases/","notes.txt","readme.md"],
+"/home/student/academy":["networking.txt","web-security.txt","linux-basics.txt"],
+"/home/student/cases":["bank/","web/","night/"],
+"/cases":["bank/","web/","night/"],
+"/cases/bank":["access.log","auth.log","server-info.txt"],
+"/cases/web":["http.log","deployment-notes.txt"],
+"/cases/night":["application.log","auth.log"],
+"/var/log":["syslog","auth.log","access.log"],
+"/":["home/","cases/","var/","tmp/"]
+};
+return files[path]||null;
+}
+const virtualFileContent={
+"/home/student/readme.md":"Midnight Virtual Lab\nThis terminal is a simulation.\nNo real commands or network activity are performed.",
+"/home/student/notes.txt":"Study notes:\n1. Verify evidence.\n2. Check timestamps.\n3. Use authorized labs only.",
+"/home/student/academy/networking.txt":"IP: logical network address\nDNS: domain name records\nPort: logical endpoint\nNAT: address translation",
+"/home/student/academy/web-security.txt":"HTTP status 200: success\nHTTP status 403: forbidden\nHTTP status 404: not found\nReview access control and input validation.",
+"/home/student/academy/linux-basics.txt":"pwd - print working directory\nls - list files\ncat - print file content\ngrep - search text",
+"/cases/bank/access.log":"203.0.113.77 - - [23/Oct/2026:02:14:02] \"GET /login HTTP/1.1\" 401\n203.0.113.77 - - [23/Oct/2026:02:14:08] \"POST /login HTTP/1.1\" 401\n203.0.113.77 - - [23/Oct/2026:02:15:19] \"GET /admin/reports HTTP/1.1\" 403\n198.51.100.24 - - [23/Oct/2026:02:16:01] \"GET /home HTTP/1.1\" 200\n203.0.113.77 - - [23/Oct/2026:02:18:40] \"GET /login HTTP/1.1\" 429\n192.0.2.45 - - [23/Oct/2026:02:19:03] \"GET /reports HTTP/1.1\" 200",
+"/cases/bank/auth.log":"02:14:02 login failed user=unknown source=203.0.113.77\n02:14:08 login failed user=unknown source=203.0.113.77\n02:15:19 authorization denied path=/admin/reports\n02:18:40 rate limit triggered source=203.0.113.77",
+"/cases/bank/server-info.txt":"HOST: bank.test (fictional)\nHTTP: port 80/tcp (simulated)\nSSH: port 22/tcp (simulated)\nEnvironment: TRAINING ONLY\nNo real host exists at this address.",
+"/cases/web/http.log":"GET /reports-old 404\nGET /reports 200\nGET /assets/app.css 200\nGET /favicon.ico 404",
+"/cases/web/deployment-notes.txt":"Deployment note: /reports-old was removed during a routine fictional update.\nThe current path is /reports.",
+"/cases/night/application.log":"02:10:03 service started\n02:12:40 authentication request received\n02:14:02 failed login observed\n02:17:10 session created (needs review)",
+"/cases/night/auth.log":"02:12:40 login failed\n02:14:02 login failed\n02:17:10 login success\nNOTE: host clock is 2 minutes behind application clock."
+};
+const fakeServices=`PORT     STATE SERVICE  VERSION
+22/tcp   open  ssh      OpenSSH 9.3 (simulated)
+80/tcp   open  http     nginx 1.24 (simulated)
+443/tcp  open  https    nginx 1.24 (simulated)
+
+Simulation complete: 1 virtual host.
+No network packets were sent.`;
+const fakeHTTP=`HTTP/1.1 200 OK
+Server: Midnight-Demo/1.0
+Content-Type: text/html; charset=utf-8
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Simulation: true
+
+[Body omitted in demo]`;
+function parseArgs(line){
+  const re=/"([^"]*)"|'([^']*)'|(\S+)/g;const arr=[];let m;
+  while((m=re.exec(line))!==null)arr.push(m[1]??m[2]??m[3]);
+  return arr;
+}
+function normalizePath(p){
+  if(!p)return virtualCwd;
+  let result=p.startsWith("/")?p:virtualCwd+"/"+p;
+  const parts=[];
+  for(const part of result.split("/")){if(!part||part===".")continue;if(part==="..")parts.pop();else parts.push(part);}
+  return "/"+parts.join("/");
+}
+function fileText(path){
+  if(virtualFileContent[path])return virtualFileContent[path];
+  return null;
+}
+function terminalExecute(raw){
+  const line=raw.trim();if(!line)return;
+  terminalHistory.push(line);historyIndex=terminalHistory.length;
+  const args=parseArgs(line),cmd=args[0];
+  if(cmd==="clear"){termWelcome();return;}
+  const out=document.getElementById("termOutput");
+  if(cmd==="cd"){
+    const target=args[1]||"/home/student";const next=normalizePath(target);
+    if(virtualFiles(next)){addTerminalLine(line,"");virtualCwd=next;}
+    else addTerminalLine(line,"bash: cd: "+target+": No such directory in virtual filesystem","error");
+    return;
+  }
+  const result=runCommand(cmd,args,line);
+  addTerminalLine(line,result.text,result.type||"normal");
+}
+function runCommand(cmd,args,line){
+  const target=args[args.length-1];
+  switch(cmd){
+    case "help":
+      return {type:"info",text:"MIDNIGHT VIRTUAL COMMANDS\n\nNavigation: pwd, ls, cd, cat, head, tail, find\nText: grep, wc, sort, uniq, cut, awk, sed, strings, xxd, base64\nSystem: whoami, date, history, uname, df, free, ps, top, stat, file\nNetwork simulation: ip, ifconfig, ping, traceroute, netstat, ss, arp\nDNS simulation: nslookup, dig, host\nSecurity simulation: nmap, curl, wget, whatweb, gobuster, dirb, nikto, sqlmap\nLearning: hydra, john, hashid, sha256sum, python, man, sudo, ssh, chmod\nUtility: echo, mkdir, touch, clear\n\nAll outputs are fictional. No real network or system commands execute.\nTry: nmap -sV 10.10.10.5"};
+    case "pwd":return {text:virtualCwd};
+    case "ls":{
+      let path=args[1]&&args[1].startsWith("-")?args[2]:args[1];
+      const p=normalizePath(path||virtualCwd),files=virtualFiles(p);
+      return files?{text:files.join("    ")}:{text:"ls: cannot access '"+(path||virtualCwd)+"': No such file or directory",type:"error"};
+    }
+    case "whoami":return {text:"student\nRole: learner\nPrivileges: standard (simulated)"};
+    case "date":return {text:"Fri Oct 23 2026 12:00:00 GMT+0300 (SIMULATED)"};
+    case "history":return {text:terminalHistory.map((x,i)=>(i+1)+"  "+x).join("\n")||"No commands in history."};
+    case "uname":return {text:"Midnight-Linux 1.0.0-demo x86_64 SIMULATED"};
+    case "cat":{
+      const p=normalizePath(args[1]||"");
+      const content=fileText(p);
+      if(content!==null)return {text:content,type:"success"};
+      return {text:"cat: "+(args[1]||""): No such file in virtual filesystem",type:"error"};
+    }
+    case "head":case "tail":{
+      const p=normalizePath(target||"");
+      const content=fileText(p);
+      if(content===null)return {text:cmd+": "+(target||"")+" is not a virtual file",type:"error"};
+      const lines=content.split("\n"),n=Number(args.find(x=>/^-n\d+$/.test(x))?.slice(2)||args[args.indexOf("-n")+1]||5);
+      return {text:(cmd==="head"?lines.slice(0,n):lines.slice(-n)).join("\n")};
+    }
+    case "grep":{
+      const needle=args[args.length-2],path=normalizePath(target||"");
+      const content=fileText(path);
+      if(!content)return {text:"grep: virtual file not found. Example: grep 203.0.113.77 /cases/bank/access.log",type:"error"};
+      const hits=content.split("\n").filter(x=>x.toLowerCase().includes(String(needle).toLowerCase()));
+      return hits.length?{text:hits.join("\n"),type:"success"}:{text:"No matching lines."};
+    }
+    case "find":{
+      const root=args[1]&&args[1].startsWith("/")?normalizePath(args[1]):"/home/student";
+      return {text:"Virtual search results:\n"+["/home/student/readme.md","/home/student/notes.txt","/cases/bank/access.log","/cases/bank/auth.log","/cases/bank/server-info.txt"].filter(p=>p.startsWith(root)).join("\n")};
+    }
+    case "echo":return {text:args.slice(1).join(" ")};
+    case "man":return {text:(toolDescriptions[args[1]]?args[1]+": "+toolDescriptions[args[1]]:"Manual page not found for "+(args[1]||"(empty)")+"\nUse 'help' to list commands.")};
+    case "ip":case "ifconfig":return {type:"info",text:"Virtual interface: eth0\nIPv4: 192.0.2.10/24 (documentation range)\nGateway: 192.0.2.1\nState: UP (simulated)\nNo real interface was queried."};
+    case "ping":return {text:"PING "+(args[1]||"demo.test")+" (192.0.2.20): simulated\n64 bytes from 192.0.2.20: icmp_seq=1 ttl=64 time=1.2 ms\n64 bytes from 192.0.2.20: icmp_seq=2 ttl=64 time=1.0 ms\n--- simulation: 2 packets, 0% loss ---"};
+    case "traceroute":return {text:"traceroute to "+(args[1]||"demo.test")+" (simulated), 3 hops max\n1  192.0.2.1  1.0 ms\n2  198.51.100.1  3.2 ms\n3  192.0.2.20  5.1 ms\nNo real route was queried."};
+    case "netstat":case "ss":return {text:"Proto  Local Address       State\nTCP    127.0.0.1:3000      LISTEN (demo)\nTCP    192.0.2.10:443      ESTABLISHED (demo)\nAll entries are fictional."};
+    case "arp":return {text:"Address        HWtype  HWaddress (virtual)\n192.0.2.1      ether   02:00:00:00:00:01\n192.0.2.20     ether   02:00:00:00:00:20\nSimulated ARP table."};
+    case "nslookup":case "dig":case "host":{
+      const domain=args[args.length-1]||"example.test";
+      return {text:";; SIMULATED DNS QUERY\nName: "+domain+"\nA record: 192.0.2.20\nTTL: 300\nStatus: NOERROR (demo)\nNo DNS server was contacted."};
+    }
+    case "nmap":{
+      const host=args.find(x=>!x.startsWith("-")&&x!=="nmap")||"10.10.10.5";
+      return {type:"success",text:"Starting Nmap 7.95 (SIMULATED)\nTarget: "+host+"\n"+fakeServices+"\nThis is a fixed training result, not a real scan."};
+    }
+    case "curl":{
+      const url=args.find(x=>/^https?:\/\//.test(x))||"http://bank.test";
+      if(args.includes("-I")||args.includes("-i"))return {type:"success",text:"Simulated request to "+url+"\n"+fakeHTTP};
+      return {text:"Simulated response from "+url+"\n<html><title>Midnight Demo</title><body>Fictional training site</body></html>\nNo HTTP request was sent."};
+    }
+    case "wget":return {text:"wget: download simulated only.\nExample file: demo-page.html\nNo remote connection or download occurred."};
+    case "whatweb":return {text:"WhatWeb (simulated report)\nTarget: "+(args[args.length-1]||"http://bank.test")+"\n- HTTP server: Midnight-Demo (fictional)\n- HTML: demo page\nNo real website was inspected."};
+    case "gobuster":case "dirb":{
+      return {type:"success",text:cmd+" simulated directory report\nTarget: http://bank.test (fictional)\n200  /home\n200  /login\n403  /admin/reports\n404  /old-panel\nThis is a predefined example; no paths were requested from a real server."};
+    }
+    case "nikto":return {text:"Nikto (training report)\nTarget: bank.test (fictional)\n- Informational: review server version disclosure\n- Recommendation: keep server packages updated\n- No real vulnerability scan was performed."};
+    case "sqlmap":return {text:"SQL review simulation\nTarget: bank.test (fictional)\nStatus: No database connection attempted.\nLearning note: use parameterized queries and least-privilege database accounts. No payloads were sent."};
+    case "hydra":return {type:"info",text:"Training notice: password-guessing attempts are not executed here.\nLearn about rate limiting, MFA, lockout policies, and monitoring failed logins in the defensive lessons."};
+    case "john":return {text:"Password-audit simulation\nNo password hashes were loaded or cracked.\nDefensive guidance: use unique long passwords, salted password hashing, and MFA."};
+    case "hashid":return {text:"Hash identification demo\nInput: "+(args[args.length-1]||"(no sample)")+"\nNo real identification performed. Hash formats may be ambiguous; do not infer security from appearance alone."};
+    case "strings":return {text:"Virtual sample strings:\nMIDNIGHT_DEMO\nTRAINING_ONLY\nconfig_version=1\nNo real file was read."};
+    case "xxd":return {text:"00000000: 4d49 444e  4947 4854  MIDNIGHT\n00000008: 2d44 454d  4f00       -DEMO.\nIllustrative hex output only."};
+    case "sha256sum":return {text:"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  (empty-demo)\nFixed illustrative output; no file was hashed."};
+    case "base64":{
+      const raw=args.slice(1).join(" ");
+      if(!raw)return {text:"Usage: base64 TEXT\nThis demo supports a simple text example."};
+      try{return {text:"Base64 demo output: "+btoa(unescape(encodeURIComponent(raw)))}catch(e){return {text:"Unable to encode this sample.",type:"error"};}
+    }
+    case "python":return {text:"Python is not executed in this webpage.\nUse a real Python environment for authorized exercises; here, outputs are simulated."};
+    case "df":return {text:"Filesystem      Size  Used  Avail  Use%\nvirtual-root     20G   7G    13G    35%\nSIMULATED"};
+    case "free":return {text:"               total    used    free\nMem (demo)      8192M    2048M   6144M\nSIMULATED"};
+    case "ps":case "top":return {text:"PID  USER      COMMAND\n1    root      [virtual-init]\n22   student   [terminal-demo]\n38   student   [learning-ui]\nSimulated process list."};
+    case "file":return {text:(args[1]||"demo.bin")+": data (simulated file type)"};
+    case "stat":return {text:"File: "+(args[1]||"demo.txt")+"\nSize: 128 bytes\nAccess: -rw-r--r--\nModified: simulated\nNo actual file metadata was read."};
+    case "wc":return {text:"6  28  210  "+(args[args.length-1]||"(sample)")+"\nIllustrative counts for training."};
+    case "sort":case "uniq":case "cut":case "awk":case "sed":return {text:cmd+" is listed for learning. This terminal uses fixed examples and does not implement full shell pipelines or file transformations.\nTry: cat /cases/bank/access.log"};
+    case "mkdir":case "touch":return {text:cmd+": simulated only; the virtual filesystem is read-only in this demo."};
+    case "chmod":return {text:"chmod: no real permission changes are made.\nLearning note: review file ownership and least-privilege access."};
+    case "sudo":return {text:"sudo: no system privileges are available in the browser simulation.",type:"error"};
+    case "ssh":return {text:"ssh: no network connection is opened.\nUse SSH only for systems you administer or are authorized to access."};
+    case "wget":return {text:"Download simulation only. No network request was sent."};
+    case "clear":return {text:""};
+    default:return {type:"error",text:"bash: "+cmd+": command not found\nاكتب help لعرض الأوامر المتاحة."};
+  }
+}
+document.getElementById("termForm").addEventListener("submit",e=>{
+  e.preventDefault();const input=document.getElementById("termInput");
+  const line=input.value;input.value="";terminalExecute(line);
+});
+document.getElementById("termInput").addEventListener("keydown",e=>{
+  if(e.key==="ArrowUp"){e.preventDefault();historyIndex=Math.max(0,historyIndex-1);e.target.value=terminalHistory[historyIndex]||"";}
+  if(e.key==="ArrowDown"){e.preventDefault();historyIndex=Math.min(terminalHistory.length,historyIndex+1);e.target.value=terminalHistory[historyIndex]||"";}
+});
+document.getElementById("toolList").addEventListener("click",e=>{
+  const b=e.target.closest("[data-cmd]");if(!b)return;
+  document.getElementById("termInput").value=b.dataset.cmd+" ";
+  document.getElementById("termInput").focus();
+});
+document.getElementById("clearTerminal").addEventListener("click",termWelcome);
+
+/* =========================
+   QUIZ
+   ========================= */
+function renderQuiz(){
+  quizSubmitted=false;quizAnswers={};
+  document.getElementById("quizResult").innerHTML="";
+  document.getElementById("submitQuiz").disabled=false;
+  document.getElementById("quizArea").innerHTML=questions.map((q,i)=>`<div class="quiz-question"><h4>${i+1}. ${esc(q.q)}</h4><div class="answer-options">${q.a.map((a,j)=>`<button class="answer-option" data-q="${i}" data-a="${j}">${String.fromCharCode(65+j)}. ${esc(a)}</button>`).join("")}</div><p id="qfeedback-${i}" class="muted" style="font-size:12px;margin:8px 0 0"></p></div>`).join("");
+}
+document.getElementById("quizArea").addEventListener("click",e=>{
+  const b=e.target.closest("[data-q]");if(!b||quizSubmitted)return;
+  const q=Number(b.dataset.q),a=Number(b.dataset.a);quizAnswers[q]=a;
+  document.querySelectorAll(`[data-q="${q}"]`).forEach(x=>x.classList.toggle("correct",Number(x.dataset.a)===a));
+  document.querySelectorAll(`[data-q="${q}"]`).forEach(x=>x.classList.remove("wrong"));
+});
+document.getElementById("submitQuiz").addEventListener("click",()=>{
+  if(quizSubmitted){toast("أعد الاختبار إذا تبي تحاول مرة ثانية.");return;}
+  let score=0;
+  questions.forEach((q,i)=>{
+    const chosen=quizAnswers[i];
+    const feedback=document.getElementById("qfeedback-"+i);
+    document.querySelectorAll(`[data-q="${i}"]`).forEach(b=>{
+      b.disabled=true;b.classList.remove("correct","wrong");
+      if(Number(b.dataset.a)===q.c)b.classList.add("correct");
+      else if(Number(b.dataset.a)===chosen)b.classList.add("wrong");
+    });
+    if(chosen===q.c){score++;feedback.textContent="إجابة صحيحة ✓";feedback.style.color="var(--green)";}
+    else{feedback.textContent="الإجابة الصحيحة: "+q.a[q.c];feedback.style.color="var(--red)";}
+  });
+  quizSubmitted=true;
+  const earned=Math.round(score/questions.length*50);
+  if(!state.quizDone){state.quizDone=true;state.xp+=earned;saveState();}
+  document.getElementById("quizResult").innerHTML=`<div class="panel"><h3>نتيجتك: ${score}/${questions.length}</h3><p class="lesson-body">${score>=8?"ممتاز! عندك فهم جيد للأساسيات.":"مراجعة الدروس بتساعدك ترفع نتيجتك."}</p><p>XP المكتسبة من أول محاولة: ${state.quizDone?earned:0}</p></div>`;
+  document.getElementById("submitQuiz").disabled=true;
+});
+document.getElementById("resetQuiz").addEventListener("click",renderQuiz);
+
+/* =========================
+   GLOSSARY
+   ========================= */
 function renderGlossary(){
- const q=($("glossSearch")?.value||"").toLowerCase().trim();
- const found=terms.filter(t=>t.join(" ").toLowerCase().includes(q));
- $("glossGrid").innerHTML=found.length?found.map(t=>`<article class="card"><span class="tag">${t[0]}</span><h3>${t[1]}</h3><p>${t[2]}</p></article>`).join(""):`<div class="empty">${txt("ما لقينا المصطلح.","No matching term found.")}</div>`;
+  const q=(document.getElementById("glossarySearch")?.value||"").toLowerCase();
+  const list=glossary.filter(x=>x.join(" ").toLowerCase().includes(q));
+  document.getElementById("glossaryGrid").innerHTML=list.map(x=>`<article class="card"><div class="glossary-term">${esc(x[0])}</div><h4 style="margin-top:10px">${esc(x[1])}</h4><p>${esc(x[2])}</p></article>`).join("")||'<div class="empty">ما لقينا مصطلح مطابق.</div>';
 }
-function renderProfile(){
- $("profileLessons").textContent=state.lessons.length;$("profileLabs").textContent=state.labs.length;$("profileXP").textContent=state.xp;
- $("achievements").innerHTML=[
- [state.lessons.length>=1,"🎓",txt("أول درس","First lesson")],
- [state.labs.length>=1,"🧪",txt("أول مختبر","First lab")],
- [state.xp>=100,"⚡",txt("100 نقطة","100 XP")],
- [state.caseSolved.length>=1,"🔎",txt("محقق رقمي","Digital investigator")]
- ].map(([ok,icon,name])=>`<article class="card"><div class="card-icon">${icon}</div><h3>${name}</h3><span class="tag">${ok?txt("تم الفتح","UNLOCKED"):txt("قيد التقدم","LOCKED")}</span></article>`).join("");
- $("pathProgress").innerHTML=paths.map(p=>{const done=state.lessons.filter(k=>k.startsWith(p.id+":")).length;return `<div style="margin:18px 0"><div style="display:flex;justify-content:space-between;gap:10px"><strong>${txt(p.ar,p.en)}</strong><span class="muted">${done}/${p.lessons.length}</span></div><div class="progress"><span style="width:${done/p.lessons.length*100}%"></span></div></div>`}).join("");
+document.getElementById("glossarySearch").addEventListener("input",renderGlossary);
+
+/* =========================
+   ACHIEVEMENTS & RESET
+   ========================= */
+function renderAchievements(){
+  const achievements=[
+    {icon:"🚀",name:"البداية",desc:"اجمع أول 20 XP",ok:state.xp>=20},
+    {icon:"🎓",name:"متعلم",desc:"أكمل أول درس",ok:state.lessons.length>=1},
+    {icon:"🧪",name:"تجربة عملية",desc:"أكمل أول مختبر",ok:state.labs.length>=1},
+    {icon:"🔎",name:"المحقق",desc:"حل أول قضية",ok:state.cases.length>=1},
+    {icon:"📚",name:"باحث",desc:"أكمل 5 دروس",ok:state.lessons.length>=5},
+    {icon:"🏆",name:"خبير المختبرات",desc:"أكمل كل المختبرات",ok:state.labs.length>=labs.length},
+    {icon:"🧠",name:"اختبار المعرفة",desc:"أكمل الاختبار",ok:state.quizDone},
+    {icon:"⚡",name:"المثابر",desc:"اجمع 250 XP",ok:state.xp>=250},
+    {icon:"🛡️",name:"رحلة الأمن",desc:"أكمل كل الدروس",ok:state.lessons.length>=lessons.length}
+  ];
+  const el=document.getElementById("achievementGrid");
+  if(!el)return;
+  el.innerHTML=achievements.map(a=>`<article class="card" style="opacity:${a.ok?1:.58}"><div class="card-icon">${a.icon}</div><h4>${esc(a.name)} ${a.ok?"✓":""}</h4><p>${esc(a.desc)}</p><div class="card-foot"><span class="tag ${a.ok?"green":""}">${a.ok?"مفتوحة":"مقفلة"}</span></div></article>`).join("");
 }
-function resetProgress(){
- if(!confirm(txt("متأكد أنك تبي تمسح كل تقدمك المحفوظ على هذا الجهاز؟","Reset all progress saved on this device?")))return;
- state.lessons=[];state.labs=[];state.xp=0;state.caseSolved=[];save();renderProfile();renderPaths();renderLabs();renderCases();
-}
-renderNav();
-renderPaths();
+document.getElementById("resetProgress").addEventListener("click",()=>{
+  if(!confirm("متأكد تبي تصفّر كل تقدمك ونقاطك؟ ما تقدر تسترجعها بعد ذلك."))return;
+  state=defaultState();saveState();renderLessons();renderHomeLessons();renderLabs();renderCases();renderAchievements();toast("تم تصفير التقدم.");
+});
+
+/* =========================
+   INITIALIZE
+   ========================= */
+renderLessons();
+renderHomeLessons();
 renderLabs();
-renderAssessment();
 renderCases();
-renderBooks();
+renderToolList();
 renderGlossary();
+renderQuiz();
+renderAchievements();
 updateStats();
-if(location.hash&&$(location.hash.slice(1)))go(location.hash.slice(1));
+termWelcome();
 </script>
 </body>
 </html>
