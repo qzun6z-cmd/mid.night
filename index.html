@@ -2,771 +2,568 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#090611">
-<meta name="description" content="Midnight Academy — تعلم الأمن السيبراني والشبكات ولينكس والبرمجة والتحقيق الرقمي بطريقة تفاعلية.">
-<title>Midnight Academy | رحلتك تبدأ هنا</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080910">
+<meta name="description" content="Midnight Academy — رحلتك لتعلم الأمن السيبراني تبدأ هنا">
+<title>Midnight Academy | Your Journey Starts Here</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <style>
-:root{--bg:#090611;--panel:#100c1b;--panel2:#171024;--purple:#a855f7;--purple2:#7c3aed;--text:#f6f0ff;--muted:#a69bb8;--border:#30213f;--green:#36d399;--red:#fb7185;--yellow:#fbbf24;--blue:#60a5fa;--radius:17px}
+:root{--bg:#080910;--panel:#10121d;--panel2:#151827;--line:#292b40;--text:#f5f4ff;--muted:#a4a7bf;--purple:#a58aff;--purple2:#7654e8;--cyan:#75e4ff;--green:#67e8b1;--gold:#ffd783;--red:#ff718b;--radius:22px}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:85px}
-body{margin:0;background:radial-gradient(ellipse at top right,#211034 0%,var(--bg) 42%);color:var(--text);font-family:'Tajawal',sans-serif;min-height:100vh}
-button,input,textarea,select{font:inherit}
-button{cursor:pointer}
-a{color:inherit;text-decoration:none}
-button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--purple);outline-offset:3px}
-::selection{background:#7c3aed;color:white}
-.app{display:flex;min-height:100vh}
-.sidebar{width:255px;position:fixed;right:0;top:0;bottom:0;background:#0b0713;border-left:1px solid var(--border);padding:22px 15px;overflow-y:auto;z-index:50;transition:.25s}
-.brand{display:flex;align-items:center;gap:12px;padding:4px 8px 22px;border-bottom:1px solid var(--border)}
-.brand-logo{width:47px;height:47px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,#9333ea,#4c1d95);font-size:24px;box-shadow:0 0 25px #9333ea33}
-.brand h1{font-size:19px;margin:0;font-weight:900;letter-spacing:1px}
-.brand small{color:var(--muted);font-size:11px;display:block;margin-top:3px;direction:ltr;text-align:right}
-.nav-label{font-size:11px;color:#786a8b;font-weight:800;margin:23px 10px 8px}
-.nav-btn{display:flex;align-items:center;gap:12px;width:100%;padding:12px 13px;background:transparent;border:1px solid transparent;border-radius:12px;color:#bcb1cb;text-align:right;margin:3px 0;transition:.2s;font-size:14px;font-weight:700}
-.nav-btn i{width:20px;text-align:center;font-size:15px}
-.nav-btn:hover{background:#191025;color:white}
-.nav-btn.active{background:linear-gradient(100deg,#792de633,#a855f718);border-color:#7138a4;color:#dcbaff}
-.nav-bottom{border-top:1px solid var(--border);margin-top:25px;padding-top:15px}
-.sidebar-footer{color:#756b84;font-size:11px;text-align:center;margin-top:22px;line-height:1.8}
-.main{margin-right:255px;width:calc(100% - 255px);min-width:0}
-.topbar{height:70px;position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:0 30px;background:#090611e8;backdrop-filter:blur(15px);border-bottom:1px solid #261b34}
-.breadcrumb{color:var(--muted);font-size:13px}
-.top-actions{display:flex;align-items:center;gap:10px}
-.icon-btn{width:39px;height:39px;border:1px solid var(--border);border-radius:12px;background:var(--panel);color:#d8c9e9}
-.profile-chip{display:flex;align-items:center;gap:9px;background:var(--panel);border:1px solid var(--border);padding:6px 12px;border-radius:12px;font-size:12px;font-weight:800}
-.avatar{width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,#9333ea,#4c1d95);display:grid;place-items:center}
-.content{max-width:1500px;padding:28px 30px 60px;margin:auto}
-.page{display:none;animation:appear .25s ease}
-.page.active{display:block}
-@keyframes appear{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-.hero{position:relative;overflow:hidden;padding:38px;border-radius:23px;border:1px solid #5b2b83;background:linear-gradient(120deg,#211034 0%,#120b20 58%,#0d0915 100%);margin-bottom:24px}
-.hero:after{content:"";position:absolute;width:270px;height:270px;border:1px solid #a855f722;border-radius:50%;left:-80px;top:-90px;box-shadow:0 0 0 35px #a855f708,0 0 0 70px #a855f705}
-.hero-inner{position:relative;z-index:1;max-width:720px}
-.eyebrow{color:#d8b4fe;font-size:12px;font-weight:900;letter-spacing:1.4px;margin-bottom:15px;direction:ltr;text-align:right}
-.hero h2{font-size:clamp(27px,4vw,43px);line-height:1.35;margin:0 0 14px;font-weight:900}
-.gradient-text{background:linear-gradient(90deg,#e9d5ff,#a855f7);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p{color:#c5b6d8;line-height:1.9;max-width:590px;margin:0 0 22px}
-.btn{border:1px solid transparent;border-radius:11px;padding:11px 16px;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:13px;font-weight:800;transition:.2s}
-.btn-primary{background:linear-gradient(135deg,#9333ea,#6d28d9);color:white;box-shadow:0 5px 18px #7c3aed25}
-.btn-primary:hover{transform:translateY(-2px);filter:brightness(1.12)}
-.btn-secondary{background:#171022;border-color:var(--border);color:#e4d7f5}
-.btn-secondary:hover{border-color:var(--purple)}
-.btn-danger{background:#451522;border-color:#7f263c;color:#fecdd3}
-.btn-small{padding:7px 10px;font-size:12px}
-.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:30px 0 15px}
-.section-head h2,.section-head h3{font-size:19px;margin:0;font-weight:900}
-.section-head p{color:var(--muted);font-size:12px;margin:5px 0 0}
-.section-tag{color:#c4b5fd;font-size:11px;border:1px solid #4c2871;background:#251337;padding:6px 10px;border-radius:8px;white-space:nowrap}
-.stats-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:24px}
-.stat-card,.card{background:linear-gradient(145deg,#151020,#100c19);border:1px solid var(--border);border-radius:var(--radius)}
-.stat-card{padding:17px;min-width:0}
-.stat-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px;color:var(--muted);font-size:12px}
-.stat-icon{width:35px;height:35px;display:grid;place-items:center;background:#8b5cf622;border:1px solid #8b5cf633;border-radius:11px;color:#d8b4fe;font-size:15px}
-.stat-number{font-size:27px;font-weight:900;line-height:1.2}
-.stat-sub{font-size:11px;color:var(--muted);margin-top:7px}
-.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
-.card{padding:19px;min-width:0}
-.card h3{margin:0 0 9px;font-size:16px}
-.card p{font-size:13px;line-height:1.9;color:var(--muted);margin:0 0 13px}
-.card-icon{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:#7c3aed20;color:#d8b4fe;border:1px solid #7c3aed38;font-size:19px;margin-bottom:14px}
-.progress-track{height:7px;background:#2a2037;border-radius:99px;overflow:hidden}
-.progress-fill{height:100%;background:linear-gradient(90deg,#7c3aed,#c084fc);border-radius:99px;transition:width .3s}
-.progress-label{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:8px}
-.path-card{padding:19px;position:relative;overflow:hidden;transition:.2s;cursor:pointer}
-.path-card:hover,.lesson-card:hover,.case-card:hover{transform:translateY(-3px);border-color:#69428c}
-.path-card h3{font-size:17px;margin:12px 0 7px}
-.path-card p{font-size:12px;color:var(--muted);line-height:1.8;margin:0 0 15px}
-.path-footer{display:flex;justify-content:space-between;align-items:center;gap:8px;color:#bba8d2;font-size:11px}
-.badges{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
-.badge{display:inline-flex;align-items:center;gap:5px;font-size:10px;padding:5px 8px;border-radius:7px;background:#231632;color:#d8b4fe;border:1px solid #4b2c65}
-.badge.green{color:#6ee7b7;background:#0c2b23;border-color:#17533e}
-.badge.yellow{color:#fcd34d;background:#30240d;border-color:#634516}
-.badge.red{color:#fda4af;background:#32131b;border-color:#6d2635}
-.badge.blue{color:#93c5fd;background:#10243c;border-color:#24476c}
-.page-title{font-size:28px;font-weight:900;margin:0 0 8px}
-.page-desc{font-size:13px;color:var(--muted);line-height:1.9;margin:0 0 24px;max-width:800px}
-.filter-row{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:17px}
-.filter-btn{padding:8px 12px;background:#120d1b;border:1px solid var(--border);border-radius:9px;color:#bfb1d1;font-size:12px;font-weight:800}
-.filter-btn.active{background:#57228b;color:white;border-color:#a855f7}
-.search-input,.field-input,textarea,select{width:100%;padding:12px 13px;background:#0b0811;border:1px solid #39284a;border-radius:10px;color:#f3e8ff;outline:none}
-.search-input{max-width:330px}
-.search-input:focus,.field-input:focus,textarea:focus,select:focus{border-color:#a855f7}
-.lesson-card,.case-card{display:flex;flex-direction:column;transition:.2s}
-.lesson-card .card-bottom,.case-card .card-bottom{margin-top:auto;padding-top:15px}
-.lesson-card h3,.case-card h3{font-size:16px}
-.lesson-card p,.case-card p{font-size:12px}
-.empty-state{padding:35px;text-align:center;color:var(--muted);border:1px dashed #493257;border-radius:15px;grid-column:1/-1}
-.empty-state i{font-size:26px;color:#a855f7;margin-bottom:10px}
-.lesson-layout{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:17px;align-items:start}
-.lesson-main{padding:26px}
-.lesson-main h2{font-size:27px;margin:0 0 10px}
-.lesson-main h3{margin:24px 0 10px;font-size:18px;color:#e9d5ff}
-.lesson-main p,.lesson-main li{color:#c6b9d7;font-size:14px;line-height:2}
-.lesson-main ul{padding-right:22px}
-.lesson-aside{padding:18px;position:sticky;top:90px}
-.lesson-aside button{width:100%;margin-top:9px}
-.callout{border-right:3px solid var(--purple);background:#211331;padding:14px 15px;border-radius:8px;color:#ddc9f1;font-size:13px;line-height:1.9;margin:17px 0}
-.callout.warning{border-color:var(--yellow);background:#2b210e;color:#fde68a}
-.callout.success{border-color:var(--green);background:#0e2820;color:#a7f3d0}
-.code-block{direction:ltr;text-align:left;background:#07060b;border:1px solid #30243b;padding:15px;border-radius:10px;overflow:auto;color:#c4b5fd;font:12px/1.9 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre-wrap;word-break:break-word}
-.terminal{background:#07070a;border:1px solid #332640;border-radius:13px;overflow:hidden}
-.terminal-head{padding:12px 15px;background:#15101d;border-bottom:1px solid #30243b;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#c4b5fd}
-.terminal-dots{display:flex;gap:5px}
-.terminal-dots span{width:8px;height:8px;border-radius:50%;background:#f87171}
-.terminal-dots span:nth-child(2){background:#fbbf24}
-.terminal-dots span:nth-child(3){background:#4ade80}
-.terminal-output{height:260px;overflow:auto;padding:15px;direction:ltr;text-align:left;font:12px/1.9 ui-monospace,Consolas,monospace;color:#b6f7ce;white-space:pre-wrap;word-break:break-word}
-.terminal-input-row{display:flex;gap:8px;padding:10px;border-top:1px solid #30243b}
-.terminal-input{flex:1;min-width:0;background:#0c0910;color:#d9fbe5;border:1px solid #30243b;border-radius:8px;padding:10px;direction:ltr;text-align:left}
-.terminal-input-row .btn{white-space:nowrap}
-.topic-list{display:grid;gap:8px}
-.topic-btn{display:flex;align-items:center;gap:10px;text-align:right;width:100%;padding:12px;background:#100b18;border:1px solid var(--border);border-radius:10px;color:#cfc1df;font-size:12px}
-.topic-btn.active{background:#26143a;border-color:#8245b8;color:#ead8ff}
-.topic-btn span{flex:1}
-.case-room{display:grid;grid-template-columns:240px minmax(0,1fr);gap:16px;align-items:start}
-.case-sidebar{padding:16px;position:sticky;top:88px}
-.case-sidebar button{width:100%;margin:4px 0}
-.case-content{min-width:0}
-.case-banner{padding:23px;border:1px solid #53326f;background:linear-gradient(120deg,#241335,#110b1b);border-radius:17px;margin-bottom:15px}
-.case-banner h2{font-size:23px;margin:0 0 8px}
-.case-banner p{font-size:13px;color:#c6b5d8;line-height:1.9;margin:0}
-.case-tabs{display:flex;gap:8px;overflow:auto;padding:3px 0 13px}
-.case-tab{flex-shrink:0;border:1px solid var(--border);background:#110c19;color:#bdaecc;padding:9px 12px;border-radius:9px;font-size:12px;font-weight:800}
-.case-tab.active{background:#552387;border-color:#a855f7;color:white}
-.evidence-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.evidence-card{padding:15px;background:#100c18;border:1px solid var(--border);border-radius:12px;min-width:0}
-.evidence-card h4{font-size:14px;margin:0 0 8px;display:flex;gap:8px;align-items:center}
-.evidence-card p{color:var(--muted);font-size:12px;line-height:1.8}
-.evidence-card .code-block{max-height:240px;overflow:auto;font-size:11px}
-.log-table-wrap{overflow:auto;border:1px solid var(--border);border-radius:12px}
-.log-table{border-collapse:collapse;width:100%;min-width:570px;font-size:12px}
-.log-table th,.log-table td{padding:11px;text-align:right;border-bottom:1px solid #2c2038;white-space:nowrap}
-.log-table th{background:#1b1127;color:#d8b4fe}
-.log-table tr:last-child td{border-bottom:0}
-.log-table tr:hover td{background:#1a1124}
-.log-filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
-.log-filters input,.log-filters select{flex:1;min-width:120px;width:auto}
-.evidence-found{border-color:#167452;background:#0c211a}
-.question-card{padding:20px;margin-top:15px}
-.question-card h3{font-size:18px;margin:0 0 8px}
-.question-card p{font-size:13px;color:var(--muted);line-height:1.8}
-.question{padding:16px 0;border-bottom:1px solid var(--border)}
-.question:last-child{border-bottom:0}
-.question label{display:block;font-size:14px;font-weight:800;margin-bottom:10px}
-.question small{display:block;color:var(--muted);font-size:11px;margin-top:7px}
-.question input,.question select,.question textarea{margin-top:4px}
-.hint-box{display:none;margin-top:12px;padding:13px;background:#29200e;border:1px solid #654916;border-radius:10px;color:#fcd34d;font-size:12px;line-height:1.9}
-.hint-box.show{display:block}
-.result-box{display:none;margin-top:15px;padding:18px;border-radius:12px;font-size:13px;line-height:1.9}
-.result-box.show{display:block}
-.result-box.good{background:#0d2b20;border:1px solid #18734c;color:#a7f3d0}
-.result-box.bad{background:#32131b;border:1px solid #8b263e;color:#fecdd3}
-.book-layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:16px;align-items:start}
-.book-list{padding:12px;position:sticky;top:90px}
-.book-select{width:100%;padding:12px;text-align:right;background:transparent;border:1px solid transparent;border-radius:10px;color:#c7b9d8;font-size:12px;line-height:1.7;margin:2px 0}
-.book-select.active{background:#251337;border-color:#613584;color:#e9d5ff}
-.book-page{padding:27px;min-height:400px}
-.book-page h2{font-size:26px;margin:0 0 12px}
-.book-page h3{font-size:17px;margin-top:23px;color:#e9d5ff}
-.book-page p,.book-page li{font-size:14px;color:#c8bbd8;line-height:2}
-.book-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:24px;padding-top:16px;border-top:1px solid var(--border)}
-.quiz-option{display:block;width:100%;text-align:right;margin:8px 0;padding:12px;border:1px solid var(--border);border-radius:10px;background:#100b18;color:#d8cbe8;font-size:13px}
-.quiz-option:hover{border-color:#9b5de5}
-.quiz-option.correct{border-color:var(--green);background:#0d2b20}
-.quiz-option.wrong{border-color:var(--red);background:#32131b}
-.quiz-feedback{margin-top:12px;font-size:13px;line-height:1.8}
-.achievement-card{min-height:160px}
-.achievement-card.locked{opacity:.5;filter:grayscale(.65)}
-.achievement-icon{font-size:26px;margin-bottom:14px}
-.profile-banner{display:flex;align-items:center;gap:17px;padding:23px;margin-bottom:17px}
-.profile-avatar{width:72px;height:72px;display:grid;place-items:center;font-size:30px;background:linear-gradient(135deg,#9333ea,#4c1d95);border-radius:20px}
-.profile-banner h2{margin:0 0 6px}
-.profile-banner p{margin:0;color:var(--muted);font-size:12px}
-.form-group{margin:14px 0}
-.form-group label{display:block;font-size:12px;color:#d4c4e4;font-weight:800;margin-bottom:8px}
-.toast-container{position:fixed;bottom:20px;left:20px;z-index:100;display:grid;gap:8px;max-width:calc(100vw - 40px)}
-.toast{padding:13px 17px;background:#211331;border:1px solid #70419b;border-radius:12px;color:#f1e5ff;font-size:13px;box-shadow:0 10px 30px #0008;animation:appear .2s}
-.mobile-menu{display:none}
-.footer{text-align:center;color:#786c88;font-size:11px;padding:35px 10px 10px;line-height:2}
-hr{border:0;border-top:1px solid var(--border);margin:20px 0}
-.muted{color:var(--muted)}
-.ltr{direction:ltr;text-align:left}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:radial-gradient(ellipse at 80% 0%,#41236b35,transparent 35%),radial-gradient(ellipse at 0% 50%,#17355224,transparent 40%),var(--bg);color:var(--text);font-family:Tajawal,sans-serif;line-height:1.8;overflow-x:hidden}
+button,a{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}
+button:focus-visible,a:focus-visible{outline:2px solid var(--cyan);outline-offset:4px}
+.wrap{width:min(1180px,calc(100% - 36px));margin:auto}
 .hidden{display:none!important}
-@media(max-width:1100px){.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}.lesson-layout{grid-template-columns:minmax(0,1fr) 230px}.case-room{grid-template-columns:205px minmax(0,1fr)}}
-@media(max-width:760px){.sidebar{transform:translateX(100%);width:270px;box-shadow:none}.sidebar.open{transform:translateX(0);box-shadow:-20px 0 50px #0009}.main{margin-right:0;width:100%}.topbar{padding:0 15px;height:62px}.mobile-menu{display:grid}.content{padding:18px 14px 45px}.hero{padding:25px 20px}.hero h2{font-size:29px}.stats-grid{gap:9px}.stat-card{padding:13px}.stat-number{font-size:23px}.grid-2,.grid-3{grid-template-columns:1fr}.lesson-layout{grid-template-columns:1fr}.lesson-aside{position:static;order:-1}.case-room{grid-template-columns:1fr}.case-sidebar{position:static}.case-sidebar .topic-list{grid-template-columns:repeat(2,minmax(0,1fr))}.book-layout{grid-template-columns:1fr}.book-list{position:static;display:flex;overflow-x:auto;gap:6px}.book-select{width:auto;min-width:125px;text-align:center}.evidence-grid{grid-template-columns:1fr}.page-title{font-size:24px}.profile-chip .profile-name{display:none}.lesson-main{padding:19px}.book-page{padding:20px}.top-actions{gap:6px}.profile-chip{padding:5px 7px}.case-banner h2{font-size:20px}}
-@media(max-width:390px){.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.stat-number{font-size:20px}.hero h2{font-size:25px}.case-sidebar .topic-list{grid-template-columns:1fr}.section-head h2,.section-head h3{font-size:17px}}
+.topbar{position:sticky;top:0;z-index:50;background:#080910e8;backdrop-filter:blur(18px);border-bottom:1px solid #ffffff10}
+.nav{height:75px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:900;font-size:20px;line-height:1.15}
+.brandmark{width:43px;height:43px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,#b49cff,#6945cf);box-shadow:0 8px 28px #7955e544;font-size:21px}
+.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:2px;margin-top:4px}
+.navlinks{display:flex;gap:4px;align-items:center}
+.navlinks button{background:transparent;border:0;color:var(--muted);padding:10px 12px;border-radius:12px;transition:.2s}
+.navlinks button:hover,.navlinks button.active{background:#a18aff18;color:white}
+.nav-actions{display:flex;gap:8px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:14px;padding:12px 19px;font-weight:800;transition:transform .2s,box-shadow .2s,border-color .2s}
+.btn:hover{transform:translateY(-2px)}
+.primary{background:linear-gradient(135deg,#b19aff,#7654e8);color:white;box-shadow:0 10px 28px #845fe833}
+.secondary{background:#ffffff08;border:1px solid var(--line);color:var(--text)}
+.discord{background:#5865f2;color:white}
+.iconbtn,.menu-btn{width:42px;height:42px;border:1px solid var(--line);border-radius:13px;color:white;background:#ffffff06}
+.menu-btn{display:none}
+.hero{padding:75px 0 50px}
+.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:40px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:7px 13px;border:1px solid #9d7bff38;background:#9d7bff12;color:#c7b7ff;border-radius:999px;font-size:13px;font-weight:800}
+.eyebrow i{color:var(--green)}
+h1{font-size:clamp(40px,5.5vw,68px);line-height:1.18;letter-spacing:-1px;margin:22px 0 18px;font-weight:900}
+h1 span{background:linear-gradient(100deg,#fff,#b7a4ff 60%,#75e4ff);background-clip:text;color:transparent}
+.hero p{color:var(--muted);font-size:18px;max-width:650px;margin:0 0 25px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero-proof{display:flex;gap:17px;flex-wrap:wrap;margin-top:25px;color:#b9bdd0;font-size:13px}
+.hero-proof i{color:var(--green);margin-left:5px}
+.hero-art{position:relative;min-height:390px;display:grid;place-items:center}
+.orb{position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,#835de537,transparent 68%)}
+.hero-card{position:relative;width:min(100%,420px);border:1px solid #a58aff40;border-radius:28px;padding:25px;background:linear-gradient(145deg,#19172aee,#0e1019ee);box-shadow:0 30px 90px #0008,0 0 60px #8b65ff13;animation:float 6s ease-in-out infinite}
+.window-dots{display:flex;gap:6px;direction:ltr}
+.window-dots i{width:8px;height:8px;border-radius:50%;background:#fb7185}
+.window-dots i:nth-child(2){background:#facc15}.window-dots i:nth-child(3){background:#4ade80}
+.hero-card-title{display:flex;align-items:center;justify-content:space-between;margin:20px 0}
+.status{font-size:11px;color:var(--green);border:1px solid #67e8b144;border-radius:99px;padding:4px 9px}
+.progressline{height:7px;background:#25283b;border-radius:9px;overflow:hidden;margin:9px 0 19px}
+.progressline span{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--purple),var(--cyan));transition:width .4s}
+.mini-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mini-stat{padding:15px;border:1px solid var(--line);border-radius:15px;background:#ffffff04}
+.mini-stat strong{font-size:23px;display:block}.mini-stat small{color:var(--muted)}
+.float-chip{position:absolute;padding:11px 14px;background:#171827;border:1px solid var(--line);border-radius:14px;box-shadow:0 15px 50px #0005;font-size:13px;animation:float 5s ease-in-out infinite}
+.chip-a{top:36px;left:-5px}.chip-b{bottom:35px;right:-8px;animation-delay:-2s}
+.section{padding:55px 0}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:25px}
+.section-head h2{font-size:clamp(27px,3.5vw,39px);margin:8px 0 3px;line-height:1.3}
+.section-head p{color:var(--muted);margin:0;max-width:650px}
+.kicker{color:var(--purple);font-size:12px;font-weight:900;letter-spacing:1px}
+.grid{display:grid;gap:16px}
+.stats{grid-template-columns:repeat(4,1fr)}
+.stat-card,.card,.track-card,.book-card,.feature-card{border:1px solid var(--line);background:linear-gradient(145deg,#141624d9,#0f111b);border-radius:var(--radius);transition:border-color .25s,transform .25s}
+.stat-card{padding:20px;display:flex;align-items:center;gap:14px}
+.stat-card:hover,.card:hover,.track-card:hover,.book-card:hover{border-color:#9272ee77;transform:translateY(-4px)}
+.stat-icon,.track-icon{width:48px;height:48px;flex-shrink:0;border-radius:15px;display:grid;place-items:center;background:#a58aff18;color:#c4b4ff;font-size:19px}
+.stat-card strong{font-size:25px;display:block;line-height:1.3}.stat-card small{color:var(--muted)}
+.tracks{grid-template-columns:repeat(3,1fr)}
+.track-card{padding:24px;position:relative;overflow:hidden}
+.track-top{display:flex;justify-content:space-between;align-items:center}
+.level{font-size:11px;color:var(--muted);border:1px solid var(--line);padding:4px 9px;border-radius:99px}
+.track-card h3{font-size:22px;margin:18px 0 8px}
+.track-card p{color:var(--muted);font-size:14px;min-height:70px;margin:0 0 16px}
+.track-meta{display:flex;gap:13px;flex-wrap:wrap;color:#b5b9cf;font-size:12px;margin-bottom:18px}
+.track-meta i{color:var(--purple)}
+.card-link{display:flex;justify-content:space-between;align-items:center;color:#d7ccff;font-weight:800;border-top:1px solid var(--line);padding-top:14px;width:100%;background:none;border-left:0;border-right:0;border-bottom:0;text-align:right}
+.path-banner{display:grid;grid-template-columns:1fr auto;gap:25px;align-items:center;padding:30px;border-radius:25px;border:1px solid #8c6ce744;background:linear-gradient(110deg,#1a1530,#101725 70%)}
+.path-banner h3{font-size:27px;margin:0 0 5px}.path-banner p{margin:0;color:var(--muted)}
+.books-grid{grid-template-columns:repeat(3,1fr)}
+.book-card{padding:0;overflow:hidden;display:flex;flex-direction:column}
+.book-cover{min-height:195px;padding:22px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(135deg,#2c1b54,#141c3c)}
+.book-cover:after{content:'';position:absolute;width:180px;height:180px;border:1px solid #ffffff18;border-radius:50%;left:-40px;bottom:-80px;box-shadow:0 0 0 20px #ffffff04,0 0 0 40px #ffffff03}
+.book-cover.cyan{background:linear-gradient(135deg,#103b50,#141a39)}
+.book-cover.green{background:linear-gradient(135deg,#123c36,#171a34)}
+.book-cover.gold{background:linear-gradient(135deg,#47321c,#211833)}
+.book-cover.pink{background:linear-gradient(135deg,#4b2045,#1c1a39)}
+.book-ico{font-size:31px;color:#e0d6ff}
+.book-cover h3{font-size:26px;line-height:1.3;margin:15px 0 0;max-width:260px;position:relative;z-index:1}
+.book-cover small{color:#d5caff;position:relative;z-index:1}
+.book-info{padding:20px;display:flex;flex-direction:column;flex:1}
+.book-info p{color:var(--muted);font-size:14px;margin:0 0 17px;flex:1}
+.book-info button{width:100%}
+.book-meta{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin-bottom:15px}
+.feature-grid{grid-template-columns:repeat(3,1fr)}
+.feature-card{padding:22px;display:flex;gap:14px}
+.feature-card>i{color:var(--cyan);font-size:20px;margin-top:5px}
+.feature-card h3{margin:0 0 5px;font-size:18px}.feature-card p{margin:0;color:var(--muted);font-size:14px}
+.discord-banner{padding:35px;display:flex;align-items:center;justify-content:space-between;gap:25px;border-radius:28px;background:radial-gradient(circle at 90% 0%,#6c5ce744,transparent 35%),linear-gradient(120deg,#17152a,#101625);border:1px solid #7860cf55}
+.discord-banner h2{margin:0 0 6px;font-size:30px}.discord-banner p{color:var(--muted);margin:0;max-width:650px}
+.footer{border-top:1px solid #ffffff0d;padding:27px 0;color:var(--muted);font-size:13px}
+.footer-row{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.page{min-height:65vh;padding:35px 0 70px;animation:pageIn .28s ease both}
+.back-btn{background:#ffffff08;border:1px solid var(--line);color:#ddd5ff;border-radius:12px;padding:9px 14px;margin-bottom:22px}
+.reader-shell{display:grid;grid-template-columns:270px minmax(0,1fr);gap:22px;align-items:start}
+.reader-side,.reader-content,.case-panel{border:1px solid var(--line);background:#10121df2;border-radius:22px}
+.reader-side{padding:18px;position:sticky;top:94px;max-height:calc(100vh - 115px);overflow:auto}
+.reader-side h3{margin:5px 0 12px;font-size:16px}
+.chapter-btn{display:flex;width:100%;gap:10px;align-items:start;text-align:right;border:0;background:transparent;color:var(--muted);padding:11px;border-radius:11px;font-size:13px;margin:3px 0}
+.chapter-btn:hover,.chapter-btn.active{background:#9b7bff17;color:white}
+.chapter-btn .num{font-size:11px;color:var(--purple);min-width:22px}
+.reader-content{padding:clamp(22px,4vw,48px);min-width:0}
+.reader-label{color:var(--purple);font-size:13px;font-weight:900}
+.reader-content h1{font-size:clamp(30px,4vw,47px);margin:10px 0 12px;letter-spacing:0}
+.reader-lead{font-size:18px;color:#c3c6d8;border-bottom:1px solid var(--line);padding-bottom:23px;margin-bottom:25px}
+.reader-body{font-size:17px;color:#d8daea;line-height:2}
+.reader-body h2{font-size:25px;color:white;margin:30px 0 9px}
+.reader-body h3{font-size:20px;color:#c9baff;margin:23px 0 7px}
+.reader-body p{margin:0 0 16px}.reader-body ul,.reader-body ol{padding-right:24px}
+.reader-body li{margin:7px 0}
+.note{padding:17px 19px;border-radius:14px;border:1px solid #75e4ff30;background:#75e4ff09;margin:22px 0}
+.note strong{color:var(--cyan)}
+.reader-bottom{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:20px;margin-top:30px}
+.reader-bottom button:disabled{opacity:.35;cursor:not-allowed}
+.chapter-progress{height:5px;background:#27293a;border-radius:9px;margin:13px 0 20px;overflow:hidden}
+.chapter-progress span{height:100%;display:block;background:linear-gradient(90deg,var(--purple),var(--cyan));transition:width .3s}
+.quiz-box{padding:20px;border:1px solid var(--line);border-radius:17px;background:#ffffff04;margin:22px 0}
+.quiz-options{display:grid;gap:9px;margin-top:14px}
+.quiz-option{text-align:right;padding:12px 14px;border:1px solid var(--line);background:#ffffff04;color:var(--text);border-radius:12px;transition:.2s}
+.quiz-option:hover{border-color:var(--purple)}
+.quiz-option.correct{border-color:var(--green);background:#67e8b111}
+.quiz-option.wrong{border-color:var(--red);background:#fb718511}
+.feedback{font-size:14px;color:var(--muted);margin-top:10px}
+.case-grid{grid-template-columns:repeat(3,1fr)}
+.case-card{padding:23px}
+.case-card h3{font-size:21px;margin:14px 0 6px}
+.case-card p{color:var(--muted);font-size:14px}
+.case-tag{font-size:11px;color:var(--gold);border:1px solid #ffd78333;padding:4px 9px;border-radius:99px}
+.case-room{display:grid;grid-template-columns:250px 1fr;gap:20px}
+.case-panel{padding:20px}
+.evidence-item{width:100%;text-align:right;padding:13px;border:1px solid transparent;background:transparent;color:var(--muted);border-radius:11px;margin:3px 0}
+.evidence-item.active,.evidence-item:hover{background:#9b7bff17;color:white;border-color:#9b7bff22}
+.evidence-view{padding:25px}
+.logline{padding:10px 13px;border-radius:9px;background:#080a11;border:1px solid #25283b;margin:8px 0;font-family:ui-monospace,monospace;font-size:12px;direction:ltr;text-align:left;overflow-wrap:anywhere;color:#d8d9eb}
+.empty{text-align:center;padding:40px;color:var(--muted)}
+.toast{position:fixed;bottom:22px;left:22px;z-index:100;background:#171827;border:1px solid var(--line);padding:13px 18px;border-radius:13px;box-shadow:0 15px 50px #0005;animation:pageIn .2s ease}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}
+.reveal.visible{opacity:1;transform:none}
+@keyframes pageIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-9px) rotate(0)}}
+@media(max-width:950px){
+.navlinks{display:none;position:absolute;top:75px;right:0;left:0;background:#0d0e17;border-bottom:1px solid var(--line);padding:12px 18px 18px;flex-direction:column;align-items:stretch}
+.navlinks.open{display:flex}.navlinks button{text-align:right}.menu-btn{display:block}
+.hero-grid{grid-template-columns:1fr}.hero-art{min-height:330px}.hero-copy{text-align:center}
+.hero-copy p{margin-inline:auto}.hero-actions,.hero-proof{justify-content:center}
+.stats{grid-template-columns:repeat(2,1fr)}.tracks,.books-grid,.feature-grid,.case-grid{grid-template-columns:repeat(2,1fr)}
+.reader-shell{grid-template-columns:1fr}.reader-side{position:static;max-height:none}.reader-side nav{display:grid;grid-template-columns:repeat(2,1fr)}
+.case-room{grid-template-columns:1fr}.evidence-list{display:grid;grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+.wrap{width:calc(100% - 24px)}.nav{height:67px}.brand{font-size:17px}.brandmark{width:38px;height:38px}
+.navlinks{top:67px}.nav-actions .discord-nav{display:none}
+.hero{padding:45px 0 25px}.hero-art{min-height:300px}.hero-card{padding:19px}
+.chip-a{left:0;top:18px}.chip-b{right:0;bottom:12px}h1{font-size:42px}.hero p{font-size:16px}
+.section{padding:38px 0}.section-head{align-items:start;flex-direction:column}
+.stats,.tracks,.books-grid,.feature-grid,.case-grid{grid-template-columns:1fr}
+.stat-card{padding:15px}.path-banner{grid-template-columns:1fr;padding:24px}
+.discord-banner{padding:25px;align-items:start;flex-direction:column}.discord-banner h2{font-size:25px}
+.reader-side nav{grid-template-columns:1fr}.reader-content{padding:22px 17px}
+.reader-lead{font-size:16px}.reader-body{font-size:16px}.reader-bottom{flex-direction:column}
+.reader-bottom button{width:100%}.evidence-list{grid-template-columns:1fr}.footer-row{flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
-<div class="app">
-<aside class="sidebar" id="sidebar">
-  <div class="brand">
-    <div class="brand-logo"><i class="fa-solid fa-user-secret"></i></div>
-    <div><h1>MIDNIGHT</h1><small>CYBER SECURITY ACADEMY</small></div>
-  </div>
-  <div class="nav-label">القائمة الرئيسية</div>
-  <button class="nav-btn active" data-page="home"><i class="fa-solid fa-house"></i> الرئيسية</button>
-  <button class="nav-btn" data-page="academy"><i class="fa-solid fa-graduation-cap"></i> الأكاديمية</button>
-  <button class="nav-btn" data-page="network"><i class="fa-solid fa-network-wired"></i> الشبكات</button>
-  <button class="nav-btn" data-page="linux"><i class="fa-brands fa-linux"></i> Linux Terminal</button>
-  <button class="nav-btn" data-page="cases"><i class="fa-solid fa-magnifying-glass-chart"></i> التحقيق الرقمي</button>
-  <div class="nav-label">المكتبة والتطوير</div>
-  <button class="nav-btn" data-page="books"><i class="fa-solid fa-book-open"></i> المكتبة الرقمية</button>
-  <button class="nav-btn" data-page="quiz"><i class="fa-solid fa-brain"></i> الاختبارات</button>
-  <button class="nav-btn" data-page="safety"><i class="fa-solid fa-shield-halved"></i> احمِ نفسك</button>
-  <button class="nav-btn" data-page="achievements"><i class="fa-solid fa-trophy"></i> الإنجازات</button>
-  <button class="nav-btn" data-page="profile"><i class="fa-solid fa-user-astronaut"></i> حسابي وتقدمي</button>
-  <div class="nav-bottom">
-    <a class="nav-btn" href="https://discord.gg/B5eGCxCzn" target="_blank" rel="noopener"><i class="fa-brands fa-discord"></i> مجتمع Midnight <i class="fa-solid fa-arrow-up-left-from-square" style="font-size:10px;margin-right:auto"></i></a>
-    <button class="nav-btn" id="resetProgress"><i class="fa-solid fa-rotate-left"></i> إعادة ضبط التقدم</button>
-  </div>
-  <div class="sidebar-footer">MIDNIGHT — YOUR JOURNEY STARTS HERE<br>© Midnight • جميع الحقوق محفوظة</div>
-</aside>
-
-<main class="main">
 <header class="topbar">
-  <div class="top-actions">
-    <button class="icon-btn mobile-menu" id="menuBtn" aria-label="فتح القائمة"><i class="fa-solid fa-bars"></i></button>
-    <span class="breadcrumb" id="breadcrumb">الرئيسية / لوحة التعلم</span>
-  </div>
-  <div class="top-actions">
-    <div class="profile-chip"><div class="avatar"><i class="fa-solid fa-user-secret"></i></div><span class="profile-name" id="topName">متدرب Midnight</span></div>
-  </div>
+<div class="wrap nav">
+<a class="brand" href="#home" onclick="showHome()">
+<span class="brandmark"><i class="fa-solid fa-shield-halved"></i></span>
+<span>MIDNIGHT<small>CYBER ACADEMY</small></span>
+</a>
+<nav class="navlinks" id="navlinks">
+<button class="active" data-scroll="home">الرئيسية</button>
+<button data-scroll="paths">مسارات التعلم</button>
+<button data-scroll="books">المكتبة</button>
+<button data-scroll="cases">التحديات</button>
+<button data-scroll="community">المجتمع</button>
+</nav>
+<div class="nav-actions">
+<a class="btn discord discord-nav" href="https://discord.gg/B5eGCxCzn" target="_blank" rel="noopener"><i class="fa-brands fa-discord"></i> Discord</a>
+<button class="iconbtn" id="progressBtn" title="تقدمي" aria-label="عرض التقدم"><i class="fa-solid fa-chart-simple"></i></button>
+<button class="menu-btn" id="menuBtn" aria-label="القائمة"><i class="fa-solid fa-bars"></i></button>
+</div>
+</div>
 </header>
 
-<div class="content">
-<section class="page active" id="page-home">
-  <div class="hero">
-    <div class="hero-inner">
-      <div class="eyebrow">MIDNIGHT CYBER SECURITY ACADEMY</div>
-      <h2>مو بس تتعلم الأمن السيبراني...<br><span class="gradient-text">تدرّب بعقلية المحقق 🚀</span></h2>
-      <p>تعلم الشبكات وLinux وPython، حلل سجلات حقيقية الشكل داخل بيئة تدريبية، واكتشف الأدلة بنفسك. كل مرحلة تقربك من فهم عالم الأمن السيبراني.</p>
-      <button class="btn btn-primary" onclick="navigate('academy')">ابدأ رحلتك الآن <i class="fa-solid fa-arrow-left"></i></button>
-      <button class="btn btn-secondary" onclick="navigate('cases')" style="margin-right:7px">ادخل غرفة التحقيق <i class="fa-solid fa-magnifying-glass"></i></button>
-    </div>
-  </div>
-
-  <div class="stats-grid">
-    <div class="stat-card"><div class="stat-top"><span>إجمالي الخبرة</span><div class="stat-icon"><i class="fa-solid fa-bolt"></i></div></div><div class="stat-number" id="homeXP">0 XP</div><div class="stat-sub">اجمع الخبرة مع كل إنجاز</div></div>
-    <div class="stat-card"><div class="stat-top"><span>الدروس المكتملة</span><div class="stat-icon"><i class="fa-solid fa-book-open"></i></div></div><div class="stat-number" id="homeLessons">0</div><div class="stat-sub">خطوة إضافية في رحلتك</div></div>
-    <div class="stat-card"><div class="stat-top"><span>القضايا المحلولة</span><div class="stat-icon"><i class="fa-solid fa-folder-open"></i></div></div><div class="stat-number" id="homeCases">0</div><div class="stat-sub">حلل الأدلة واكتشف الحقيقة</div></div>
-    <div class="stat-card"><div class="stat-top"><span>الإنجازات</span><div class="stat-icon"><i class="fa-solid fa-trophy"></i></div></div><div class="stat-number" id="homeAchievements">0</div><div class="stat-sub">افتح إنجازات جديدة</div></div>
-  </div>
-
-  <div class="section-head"><div><h2>🎯 كمل من وين وقفت</h2><p>اختر مسارك وخذ خطوتك الجاية</p></div></div>
-  <div class="grid-3">
-    <div class="card path-card" onclick="navigate('academy')"><div class="card-icon"><i class="fa-solid fa-graduation-cap"></i></div><h3>الأكاديمية</h3><p>أساسيات الأمن السيبراني والشبكات والويب وتحليل الحوادث.</p><div class="path-footer"><span>دروس تفاعلية</span><i class="fa-solid fa-arrow-left"></i></div></div>
-    <div class="card path-card" onclick="navigate('cases')"><div class="card-icon"><i class="fa-solid fa-user-secret"></i></div><h3>غرفة التحقيق</h3><p>افتح الأدلة والسجلات، اربط الأحداث، وحدد المسؤول عن الحادثة.</p><div class="path-footer"><span>قضايا عملية</span><i class="fa-solid fa-arrow-left"></i></div></div>
-    <div class="card path-card" onclick="navigate('books')"><div class="card-icon"><i class="fa-solid fa-book"></i></div><h3>المكتبة الرقمية</h3><p>كتب تعليمية عن Python والأمن السيبراني والحماية الشخصية.</p><div class="path-footer"><span>تعلم على راحتك</span><i class="fa-solid fa-arrow-left"></i></div></div>
-  </div>
-
-  <div class="section-head"><div><h2>📚 مساراتك التعليمية</h2><p>تعلم الأساسيات بالترتيب ثم انتقل للتطبيق</p></div><button class="btn btn-secondary btn-small" onclick="navigate('academy')">كل الدروس <i class="fa-solid fa-arrow-left"></i></button></div>
-  <div class="grid-3" id="homePaths"></div>
-
-  <div class="section-head"><div><h2>🔍 قضية مقترحة لك</h2><p>اختبر قدرتك على ملاحظة التفاصيل</p></div></div>
-  <div id="featuredCase"></div>
-  <div class="footer">MIDNIGHT — YOUR JOURNEY STARTS HERE<br>هذه المنصة بيئة تعليمية محاكاة، وليست نظامًا لفحص الأجهزة أو الروابط فعليًا.</div>
-</section>
-
-<section class="page" id="page-academy">
-  <h1 class="page-title">🎓 أكاديمية Midnight</h1>
-  <p class="page-desc">دروس مرتبة من الصفر. اقرأ الشرح، افهم المصطلحات، وبعدها اختبر نفسك. كل شيء هنا للتعلم والدفاع والتحليل داخل بيئة قانونية.</p>
-  <div class="filter-row" id="lessonFilters">
-    <button class="filter-btn active" data-filter="all">كل الدروس</button>
-    <button class="filter-btn" data-filter="أساسيات">الأساسيات</button>
-    <button class="filter-btn" data-filter="شبكات">الشبكات</button>
-    <button class="filter-btn" data-filter="Linux">Linux</button>
-    <button class="filter-btn" data-filter="ويب">أمن الويب</button>
-    <button class="filter-btn" data-filter="تحقيق">التحقيق الرقمي</button>
-    <button class="filter-btn" data-filter="Python">Python</button>
-  </div>
-  <div style="margin-bottom:17px"><input class="search-input" id="lessonSearch" placeholder="🔍 ابحث عن درس..."></div>
-  <div class="grid-3" id="lessonGrid"></div>
-</section>
-
-<section class="page" id="page-lesson">
-  <button class="btn btn-secondary btn-small" onclick="navigate('academy')" style="margin-bottom:16px"><i class="fa-solid fa-arrow-right"></i> العودة للدروس</button>
-  <div class="lesson-layout">
-    <article class="card lesson-main" id="lessonContent"></article>
-    <aside class="card lesson-aside" id="lessonAside"></aside>
-  </div>
-</section>
-
-<section class="page" id="page-network">
-  <h1 class="page-title">🌐 مختبر الشبكات</h1>
-  <p class="page-desc">افهم كيف تتواصل الأجهزة عبر الإنترنت، وشوف أمثلة مبسطة على المفاهيم اللي يستخدمها مختصو الشبكات والأمن السيبراني.</p>
-  <div class="grid-2">
-    <div class="card"><div class="section-head" style="margin-top:0"><h3>🧭 اختر موضوعًا</h3><span class="badge">NETWORKING</span></div><div class="topic-list" id="networkTopics"></div></div>
-    <div class="card" id="networkDetail"><div class="card-icon"><i class="fa-solid fa-network-wired"></i></div><h3>ابدأ من الأساسيات</h3><p>اختر مفهومًا من القائمة عشان يظهر لك شرحه ومثال عليه.</p></div>
-  </div>
-  <div class="section-head"><div><h2>🧪 تجربة DNS توضيحية</h2><p>شوف كيف يتحول اسم النطاق إلى عنوان IP في مثال محاكاة</p></div></div>
-  <div class="card">
-    <div class="form-group"><label for="dnsInput">اسم النطاق</label><input class="field-input ltr" id="dnsInput" placeholder="example.com" value="example.com"></div>
-    <button class="btn btn-primary" id="dnsBtn"><i class="fa-solid fa-magnifying-glass"></i> محاكاة الاستعلام</button>
-    <div id="dnsOutput" class="callout hidden"></div>
-    <p style="font-size:11px;margin-top:12px">⚠️ هذه نتيجة تدريبية افتراضية وليست استعلام DNS حقيقيًا.</p>
-  </div>
-</section>
-
-<section class="page" id="page-linux">
-  <h1 class="page-title">🐧 مختبر Linux</h1>
-  <p class="page-desc">تدرب على أوامر لينكس الأساسية داخل طرفية وهمية. هذه المحاكاة لا تنفذ أوامر على جهازك ولا تتصل بأي خادم.</p>
-  <div class="grid-2">
-    <div class="card">
-      <h3>📖 الأوامر المتاحة</h3>
-      <div class="topic-list" id="linuxCommands"></div>
-    </div>
-    <div class="terminal">
-      <div class="terminal-head"><span><i class="fa-solid fa-terminal"></i> midnight@lab:~</span><div class="terminal-dots"><span></span><span></span><span></span></div></div>
-      <div class="terminal-output" id="terminalOutput">Midnight Linux Lab v1.0
-بيئة محاكاة تعليمية آمنة.
-اكتب help لعرض الأوامر المتاحة.
-
-midnight@lab:~$ </div>
-      <form class="terminal-input-row" id="terminalForm"><input class="terminal-input" id="terminalInput" autocomplete="off" placeholder="اكتب أمرًا..." aria-label="أمر لينكس"><button class="btn btn-primary btn-small">تنفيذ</button></form>
-    </div>
-  </div>
-  <div class="callout warning">⚠️ هذه الطرفية محاكاة فقط. أوامر مثل sudo وrm وnmap غير منفذة هنا، ولا يتم تشغيل أوامر نظام حقيقية.</div>
-</section>
-
-<section class="page" id="page-cases">
-  <div id="caseListView">
-    <h1 class="page-title">🕵️ التحقيق الرقمي</h1>
-    <p class="page-desc">كل قضية فيها قصة وأدلة وسجلات زمنية. افتح الملفات، ابحث عن التفاصيل، اربط الأحداث، ثم أجب عن الأسئلة عشان تكشف اللي صار.</p>
-    <div class="stats-grid">
-      <div class="stat-card"><div class="stat-top"><span>القضايا المتاحة</span><div class="stat-icon"><i class="fa-solid fa-folder-open"></i></div></div><div class="stat-number" id="availableCases">0</div><div class="stat-sub">قضايا تدريبية</div></div>
-      <div class="stat-card"><div class="stat-top"><span>تم حلها</span><div class="stat-icon"><i class="fa-solid fa-check"></i></div></div><div class="stat-number" id="solvedCases">0</div><div class="stat-sub">استمر في التحقيق</div></div>
-      <div class="stat-card"><div class="stat-top"><span>مستوى التحقيق</span><div class="stat-icon"><i class="fa-solid fa-magnifying-glass"></i></div></div><div class="stat-number" id="caseLevel">1</div><div class="stat-sub">يرتفع مع الخبرة</div></div>
-      <div class="stat-card"><div class="stat-top"><span>الأدلة المفتوحة</span><div class="stat-icon"><i class="fa-solid fa-file-circle-check"></i></div></div><div class="stat-number" id="openedEvidence">0</div><div class="stat-sub">في القضية الحالية</div></div>
-    </div>
-    <div class="grid-3" id="caseGrid"></div>
-  </div>
-  <div id="caseRoomView" class="hidden">
-    <button class="btn btn-secondary btn-small" id="backToCases" style="margin-bottom:16px"><i class="fa-solid fa-arrow-right"></i> قائمة القضايا</button>
-    <div class="case-room">
-      <aside class="card case-sidebar">
-        <h3 style="margin:0 0 6px">📁 ملف القضية</h3>
-        <p class="muted" style="font-size:11px;line-height:1.8">كل ملف قد يحتوي على معلومة مهمة. اقرأ الأدلة قبل إرسال تقريرك.</p>
-        <div class="topic-list" id="caseEvidenceNav"></div>
-        <hr>
-        <button class="btn btn-secondary btn-small" id="caseHintBtn"><i class="fa-regular fa-lightbulb"></i> تلميح التحقيق</button>
-        <button class="btn btn-secondary btn-small" id="caseReportBtn"><i class="fa-solid fa-file-lines"></i> تقرير التحقيق</button>
-      </aside>
-      <div class="case-content">
-        <div class="case-banner" id="caseBanner"></div>
-        <div class="case-tabs" id="caseTabs">
-          <button class="case-tab active" data-case-tab="brief">📋 ملخص القضية</button>
-          <button class="case-tab" data-case-tab="evidence">📂 الأدلة</button>
-          <button class="case-tab" data-case-tab="logs">🧾 السجلات</button>
-          <button class="case-tab" data-case-tab="timeline">🕒 التسلسل الزمني</button>
-          <button class="case-tab" data-case-tab="questions">✍️ الأسئلة والتقرير</button>
-        </div>
-        <div id="caseWorkspace"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="page" id="page-books">
-  <h1 class="page-title">📚 المكتبة الرقمية</h1>
-  <p class="page-desc">كتب تعليمية قصيرة ومنظمة، من الأساسيات إلى الممارسات الأكثر تقدمًا. اختر كتابًا ثم تنقل بين فصوله.</p>
-  <div class="grid-3" id="bookCards"></div>
-  <div class="section-head"><div><h2>📖 قارئ الكتب</h2><p>محتوى تعليمي داخل الموقع</p></div></div>
-  <div class="book-layout">
-    <aside class="card book-list" id="bookChapterList"></aside>
-    <article class="card book-page" id="bookReader"><h2>اختر كتابًا</h2><p>ابدأ من مكتبة Midnight الرقمية.</p></article>
-  </div>
-</section>
-
-<section class="page" id="page-quiz">
-  <h1 class="page-title">🧠 مركز الاختبارات</h1>
-  <p class="page-desc">اختبر فهمك للمفاهيم الأساسية. اختر الإجابة المناسبة، واقرأ التوضيح بعد كل سؤال.</p>
-  <div class="stats-grid">
-    <div class="stat-card"><div class="stat-top"><span>الأسئلة</span><div class="stat-icon"><i class="fa-solid fa-list-check"></i></div></div><div class="stat-number" id="quizTotal">0</div><div class="stat-sub">في هذا الاختبار</div></div>
-    <div class="stat-card"><div class="stat-top"><span>إجابات صحيحة</span><div class="stat-icon"><i class="fa-solid fa-check"></i></div></div><div class="stat-number" id="quizCorrect">0</div><div class="stat-sub">في المحاولة الحالية</div></div>
-    <div class="stat-card"><div class="stat-top"><span>نتيجتك</span><div class="stat-icon"><i class="fa-solid fa-chart-simple"></i></div></div><div class="stat-number" id="quizPercent">0%</div><div class="stat-sub">تتحدث بعد كل إجابة</div></div>
-    <div class="stat-card"><div class="stat-top"><span>أفضل نتيجة</span><div class="stat-icon"><i class="fa-solid fa-star"></i></div></div><div class="stat-number" id="quizBest">0%</div><div class="stat-sub">محفوظة على هذا المتصفح</div></div>
-  </div>
-  <div class="card" id="quizCard"></div>
-</section>
-
-<section class="page" id="page-safety">
-  <h1 class="page-title">🛡️ احمِ نفسك على الإنترنت</h1>
-  <p class="page-desc">تعرف على أساليب الاحتيال، وكيف تتعامل مع الروابط والملفات والحسابات المشبوهة بطريقة آمنة.</p>
-  <div class="grid-3">
-    <div class="card"><div class="card-icon"><i class="fa-solid fa-link"></i></div><h3>🔗 فحص الروابط</h3><p>تأكد من اسم النطاق حرفًا بحرف. انتبه للأسماء المقلدة، والتهجئة الغريبة، والروابط المختصرة مجهولة المصدر.</p><button class="btn btn-secondary btn-small" onclick="showSafety('links')">اقرأ الدليل</button></div>
-    <div class="card"><div class="card-icon"><i class="fa-solid fa-envelope-open-text"></i></div><h3>🎣 التصيد والهندسة الاجتماعية</h3><p>المحتال قد ينتحل صفة الدعم الفني أو يضغط عليك برسالة مستعجلة عشان تحصل منه على كلمة مرور أو رمز تحقق.</p><button class="btn btn-secondary btn-small" onclick="showSafety('phishing')">اقرأ الدليل</button></div>
-    <div class="card"><div class="card-icon"><i class="fa-solid fa-file-shield"></i></div><h3>📎 المرفقات المشبوهة</h3><p>لا تفتح ملفًا غير متوقع. افحصه بأدوات موثوقة بموافقة ولي أمرك أو مسؤول الجهاز، ولا ترفع ملفات خاصة لخدمات عامة.</p><button class="btn btn-secondary btn-small" onclick="showSafety('files')">اقرأ الدليل</button></div>
-    <div class="card"><div class="card-icon"><i class="fa-solid fa-key"></i></div><h3>🔐 كلمات المرور</h3><p>استخدم كلمة مرور فريدة لكل حساب، ومدير كلمات مرور موثوقًا، والمصادقة متعددة العوامل عندما تتوفر.</p><button class="btn btn-secondary btn-small" onclick="showSafety('passwords')">اقرأ الدليل</button></div>
-    <div class="card"><div class="card-icon"><i class="fa-solid fa-mobile-screen"></i></div><h3>📱 حماية الجوال</h3><p>حدّث نظامك، وراجع صلاحيات التطبيقات، ولا تثبت ملفات تعريف أو تطبيقات من مصادر مجهولة.</p><button class="btn btn-secondary btn-small" onclick="showSafety('phone')">اقرأ الدليل</button></div>
-    <div class="card"><div class="card-icon"><i class="fa-solid fa-user-lock"></i></div><h3>👀 حماية الخصوصية</h3><p>لا تشارك رموز التحقق أو موقعك المباشر أو معلوماتك الشخصية مع أشخاص لا تثق بهم.</p><button class="btn btn-secondary btn-small" onclick="showSafety('privacy')">اقرأ الدليل</button></div>
-  </div>
-  <div class="section-head"><div><h2>🔎 مدقق رابط توضيحي</h2><p>يشرح لك علامات الخطر الظاهرة في النص فقط، ولا يفتح الرابط أو يتصل به</p></div></div>
-  <div class="card">
-    <div class="form-group"><label for="urlInput">الصق نص الرابط هنا</label><input id="urlInput" class="field-input ltr" placeholder="https://example.com"></div>
-    <button class="btn btn-primary" id="urlCheckBtn"><i class="fa-solid fa-shield-halved"></i> تحليل العلامات الظاهرة</button>
-    <div id="urlResult" class="hidden" style="margin-top:15px"></div>
-    <div class="callout warning">⚠️ هذا الفحص مبدئي ولا يثبت أن الرابط آمن. لا تدخل كلمات المرور أو البيانات الشخصية في مواقع غير موثوقة.</div>
-  </div>
-  <div id="safetyDetail" class="card hidden" style="margin-top:16px"></div>
-</section>
-
-<section class="page" id="page-achievements">
-  <h1 class="page-title">🏆 الإنجازات</h1>
-  <p class="page-desc">كل إنجاز يوضح خطوة حققتها. واصل التعلم وحل القضايا لفتح المزيد.</p>
-  <div class="stats-grid">
-    <div class="stat-card"><div class="stat-top"><span>الإنجازات المفتوحة</span><div class="stat-icon"><i class="fa-solid fa-trophy"></i></div></div><div class="stat-number" id="achievementCount">0</div><div class="stat-sub">من مجموع الإنجازات</div></div>
-    <div class="stat-card"><div class="stat-top"><span>مستواك</span><div class="stat-icon"><i class="fa-solid fa-chart-line"></i></div></div><div class="stat-number" id="levelNumber">1</div><div class="stat-sub" id="levelName">متدرب مبتدئ</div></div>
-    <div class="stat-card"><div class="stat-top"><span>الخبرة المتبقية</span><div class="stat-icon"><i class="fa-solid fa-bolt"></i></div></div><div class="stat-number" id="nextLevelXP">100</div><div class="stat-sub">للمستوى التالي</div></div>
-    <div class="stat-card"><div class="stat-top"><span>نسبة التقدم</span><div class="stat-icon"><i class="fa-solid fa-chart-pie"></i></div></div><div class="stat-number" id="overallPercent">0%</div><div class="stat-sub">من محتوى الأكاديمية</div></div>
-  </div>
-  <div class="grid-3" id="achievementGrid"></div>
-</section>
-
-<section class="page" id="page-profile">
-  <h1 class="page-title">👤 حسابي وتقدمي</h1>
-  <p class="page-desc">خصص اسمك وتابع إنجازاتك. التقدم محفوظ محليًا في متصفحك على هذا الجهاز.</p>
-  <div class="card profile-banner"><div class="profile-avatar"><i class="fa-solid fa-user-secret"></i></div><div><h2 id="profileDisplayName">متدرب Midnight</h2><p id="profileLevelText">المستوى 1 • متدرب مبتدئ</p></div></div>
-  <div class="grid-2">
-    <div class="card">
-      <h3>⚙️ إعدادات المتدرب</h3>
-      <div class="form-group"><label for="profileName">الاسم المعروض</label><input class="field-input" id="profileName" maxlength="24" placeholder="اكتب اسمك"></div>
-      <button class="btn btn-primary" id="saveProfile"><i class="fa-solid fa-floppy-disk"></i> حفظ التعديلات</button>
-    </div>
-    <div class="card">
-      <h3>📊 ملخص رحلتك</h3>
-      <div class="progress-label"><span>الدروس</span><span id="profileLessonsLabel">0 / 0</span></div><div class="progress-track"><div class="progress-fill" id="profileLessonsProgress" style="width:0%"></div></div>
-      <hr>
-      <div class="progress-label"><span>القضايا</span><span id="profileCasesLabel">0 / 0</span></div><div class="progress-track"><div class="progress-fill" id="profileCasesProgress" style="width:0%"></div></div>
-      <hr>
-      <div class="progress-label"><span>الكتب المقروءة</span><span id="profileBooksLabel">0</span></div>
-    </div>
-  </div>
-  <div class="section-head"><div><h2>💾 حفظ بياناتك</h2><p>تقدر تصدر نسخة من تقدمك أو تستعيد نسخة محفوظة سابقًا</p></div></div>
-  <div class="card">
-    <p>التقدم غير مربوط بحساب سحابي؛ حذف بيانات المتصفح قد يحذف تقدمك. احتفظ بنسخة احتياطية إذا تبي ترجع لها لاحقًا.</p>
-    <div class="filter-row"><button class="btn btn-secondary" id="exportProgress"><i class="fa-solid fa-download"></i> تصدير التقدم</button><button class="btn btn-secondary" id="importProgressBtn"><i class="fa-solid fa-upload"></i> استيراد نسخة</button><input type="file" id="importProgressFile" accept=".json,application/json" class="hidden"></div>
-  </div>
-</section>
-
-<div class="footer">MIDNIGHT — YOUR JOURNEY STARTS HERE<br>تعلم بأمان • تدرب بمسؤولية • احترم خصوصية الآخرين</div>
+<main id="mainHome">
+<section class="hero" id="home">
+<div class="wrap hero-grid">
+<div class="hero-copy">
+<div class="eyebrow"><i class="fa-solid fa-circle"></i> من أول خطوة إلى مستوى متقدم</div>
+<h1>رحلتك في الأمن السيبراني<br><span>تبدأ من هنا.</span></h1>
+<p>تعلّم كيف تفكّر كمحلل أمن سيبراني، افهم الأنظمة والتهديدات من منظور دفاعي، اقرأ الأدلة، حلّ التحديات، وطوّر مهاراتك خطوة بخطوة داخل تجربة تعليمية عربية.</p>
+<div class="hero-actions">
+<button class="btn primary" data-scroll="paths">ابدأ التعلم <i class="fa-solid fa-arrow-left"></i></button>
+<a class="btn secondary" href="https://discord.gg/B5eGCxCzn" target="_blank" rel="noopener"><i class="fa-brands fa-discord"></i> سيرفر الديسكورد</a>
 </div>
+<div class="hero-actions" style="margin-top:12px">
+<button class="btn secondary" data-scroll="advanced"><i class="fa-solid fa-rocket"></i> طوّر مستواك</button>
+</div>
+<div class="hero-proof">
+<span><i class="fa-solid fa-check-circle"></i> تعلّم تدريجي</span>
+<span><i class="fa-solid fa-book-open"></i> كتب متكاملة</span>
+<span><i class="fa-solid fa-magnifying-glass"></i> تحديات عملية</span>
+</div>
+</div>
+<div class="hero-art">
+<div class="orb"></div>
+<div class="float-chip chip-a"><i class="fa-solid fa-shield-halved" style="color:var(--green)"></i> تعلّم آمن وعملي</div>
+<div class="hero-card">
+<div class="window-dots"><i></i><i></i><i></i></div>
+<div class="hero-card-title">
+<div><small style="color:var(--muted)">لوحة المتعلم</small><h3 style="margin:2px 0">مسارك الحالي</h3></div>
+<span class="status">● مستمر</span>
+</div>
+<div style="display:flex;justify-content:space-between;font-size:13px"><span>مكتبة Midnight</span><span id="heroPercent">0%</span></div>
+<div class="progressline"><span id="heroProgress"></span></div>
+<div class="mini-stat-grid">
+<div class="mini-stat"><small><i class="fa-solid fa-book" style="color:var(--purple)"></i> فصول مكتملة</small><strong id="completedCount">0</strong></div>
+<div class="mini-stat"><small><i class="fa-solid fa-bolt" style="color:var(--gold)"></i> نقاط الخبرة</small><strong id="xpCount">0 XP</strong></div>
+<div class="mini-stat"><small><i class="fa-solid fa-magnifying-glass" style="color:var(--cyan)"></i> تحديات محلولة</small><strong id="caseCount">0</strong></div>
+<div class="mini-stat"><small><i class="fa-solid fa-award" style="color:var(--green)"></i> إنجازات</small><strong id="badgeCount">0</strong></div>
+</div>
+</div>
+<div class="float-chip chip-b"><i class="fa-solid fa-graduation-cap" style="color:var(--gold)"></i> تعلّم على طريقتك</div>
+</div>
+</div>
+</section>
+
+<section class="section" style="padding-top:15px">
+<div class="wrap grid stats">
+<div class="stat-card"><div class="stat-icon"><i class="fa-solid fa-book-open"></i></div><div><strong>6+</strong><small>كتب تعليمية</small></div></div>
+<div class="stat-card"><div class="stat-icon"><i class="fa-solid fa-layer-group"></i></div><div><strong>6</strong><small>مسارات أساسية</small></div></div>
+<div class="stat-card"><div class="stat-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div><div><strong>3+</strong><small>تحديات تحقيق</small></div></div>
+<div class="stat-card"><div class="stat-icon"><i class="fa-solid fa-infinity"></i></div><div><strong>∞</strong><small>فرص للتطور</small></div></div>
+</div>
+</section>
+
+<section class="section" id="paths">
+<div class="wrap">
+<div class="section-head"><div><div class="kicker">YOUR LEARNING PATH</div><h2>ابدأ رحلتك 🎓</h2><p>رتبنا لك التخصصات بحيث تبدأ بالأساسيات، ثم تنتقل للمهارات التطبيقية والتحليلية.</p></div></div>
+<div class="grid tracks" id="trackGrid"></div>
+<div class="path-banner" style="margin-top:22px">
+<div><h3>ما تدري من وين تبدأ؟</h3><p>ابدأ بكتاب الأمن السيبراني، وبعدها انتقل للحماية الشخصية والهندسة الاجتماعية.</p></div>
+<button class="btn primary" onclick="openBook('cyber')">ابدأ من الصفر <i class="fa-solid fa-arrow-left"></i></button>
+</div>
+</div>
+</section>
+
+<section class="section" id="books">
+<div class="wrap">
+<div class="section-head"><div><div class="kicker">MIDNIGHT LIBRARY</div><h2>مكتبة Midnight 📚</h2><p>كتب عربية بتنسيق قراءة مريح، فصول واضحة، أسئلة قصيرة، وحفظ تلقائي لتقدمك.</p></div></div>
+<div class="grid books-grid" id="bookGrid"></div>
+</div>
+</section>
+
+<section class="section" id="cases">
+<div class="wrap">
+<div class="section-head"><div><div class="kicker">PRACTICE & INVESTIGATION</div><h2>التحديات العملية 🔍</h2><p>حلل سجلات وأدلة خيالية، اربط الأحداث ببعضها، واختر الاستنتاج الذي تدعمه المعلومات.</p></div></div>
+<div class="grid case-grid" id="caseGrid"></div>
+</div>
+</section>
+
+<section class="section" id="advanced">
+<div class="wrap">
+<div class="section-head"><div><div class="kicker">LEVEL UP</div><h2>طوّر مستواك 🚀</h2><p>للي تجاوز الأساسيات ويبي يرفع مستواه في التحليل والتطبيق وبناء المشاريع.</p></div></div>
+<div class="grid feature-grid">
+<article class="feature-card"><i class="fa-solid fa-code"></i><div><h3>برمجة أدوات دفاعية</h3><p>تعلّم تحليل ملفات السجلات، تنظيم البيانات، وكتابة سكربتات تساعدك في الأعمال الدفاعية.</p></div></article>
+<article class="feature-card"><i class="fa-solid fa-file-shield"></i><div><h3>تحليل الحوادث</h3><p>تدرّب على بناء خط زمني للأحداث، تقييم الأدلة، وتوثيق النتائج دون القفز إلى الاستنتاجات.</p></div></article>
+<article class="feature-card"><i class="fa-solid fa-globe"></i><div><h3>أمن تطبيقات الويب</h3><p>افهم الجلسات والصلاحيات والتحقق من المدخلات، وتدرّب في مختبرات تملكها أو لديك إذن لاختبارها.</p></div></article>
+<article class="feature-card"><i class="fa-solid fa-magnifying-glass-chart"></i><div><h3>قراءة السجلات</h3><p>اربط التوقيتات وعناوين المصادر والنتائج لتعرف ما الذي يستحق التحقق الإضافي.</p></div></article>
+<article class="feature-card"><i class="fa-solid fa-brain"></i><div><h3>التفكير التحليلي</h3><p>تعلّم الفرق بين المؤشر والقرينة والدليل، واكتب تفسيرًا منطقيًا لنتائجك.</p></div></article>
+<article class="feature-card"><i class="fa-solid fa-users"></i><div><h3>تعلّم مع المجتمع</h3><p>ناقش المفاهيم، شارك مشاريعك التعليمية، واستفد من تبادل الخبرات مع مجتمع Midnight.</p></div></article>
+</div>
+</div>
+</section>
+
+<section class="section" id="community">
+<div class="wrap">
+<div class="discord-banner">
+<div><div class="kicker">MIDNIGHT COMMUNITY</div><h2>تعلّم مع مجتمع Midnight 👀</h2><p>اسأل، شارك مشاريعك، تعلّم من الآخرين، وطوّر مهاراتك مع مجتمع مهتم بالبرمجة والأمن السيبراني.</p></div>
+<a class="btn discord" href="https://discord.gg/B5eGCxCzn" target="_blank" rel="noopener"><i class="fa-brands fa-discord"></i> ادخل سيرفر الديسكورد</a>
+</div>
+</div>
+</section>
 </main>
+
+<section class="page hidden" id="readerPage">
+<div class="wrap">
+<button class="back-btn" id="backFromReader"><i class="fa-solid fa-arrow-right"></i> رجوع للمكتبة</button>
+<div class="reader-shell">
+<aside class="reader-side">
+<div class="kicker">MIDNIGHT LIBRARY</div>
+<h3 id="sideBookTitle">عنوان الكتاب</h3>
+<div style="font-size:12px;color:var(--muted)">تقدم القراءة</div>
+<div class="chapter-progress"><span id="chapterProgress"></span></div>
+<nav id="chapterNav"></nav>
+</aside>
+<article class="reader-content">
+<div class="reader-label" id="readerBookLabel">MIDNIGHT KNOWLEDGE SERIES</div>
+<h1 id="readerTitle"></h1>
+<p class="reader-lead" id="readerLead"></p>
+<div class="reader-body" id="readerBody"></div>
+<div id="readerQuiz"></div>
+<div class="reader-bottom">
+<button class="btn secondary" id="prevChapter"><i class="fa-solid fa-arrow-right"></i> الفصل السابق</button>
+<button class="btn primary" id="nextChapter">الفصل التالي <i class="fa-solid fa-arrow-left"></i></button>
 </div>
-<div class="toast-container" id="toastContainer" aria-live="polite"></div>
+</article>
+</div>
+</div>
+</section>
+
+<section class="page hidden" id="casePage">
+<div class="wrap">
+<button class="back-btn" id="backFromCase"><i class="fa-solid fa-arrow-right"></i> رجوع للتحديات</button>
+<div class="section-head"><div><div class="kicker">MIDNIGHT CASE FILE</div><h2 id="caseTitle">عنوان التحدي</h2><p id="caseLead"></p></div></div>
+<div class="case-room">
+<aside class="case-panel"><div class="kicker">EVIDENCE FILES</div><h3>الأدلة المتاحة</h3><div class="evidence-list" id="evidenceList"></div></aside>
+<div class="case-panel evidence-view">
+<div class="kicker" id="evidenceType"></div><h3 id="evidenceTitle"></h3><div id="evidenceContent"></div>
+<div id="caseQuestion" style="border-top:1px solid var(--line);padding-top:20px;margin-top:25px"></div>
+</div>
+</div>
+</div>
+</section>
+
+<footer class="footer"><div class="wrap footer-row"><span>© Midnight • جميع الحقوق محفوظة</span><span>MIDNIGHT — YOUR JOURNEY STARTS HERE</span><a href="https://discord.gg/B5eGCxCzn" target="_blank" rel="noopener">مجتمع Midnight <i class="fa-brands fa-discord"></i></a></div></footer>
+<div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
 
 <script>
-"use strict";
-
-const STORAGE_KEY="midnight_academy_v3";
-const defaultState=()=>({name:"متدرب Midnight",xp:0,completedLessons:[],completedCases:[],achievements:[],openedEvidence:{},caseAttempts:{},readChapters:[],bestQuiz:0,activity:[],quizAnswers:[]});
-let state=loadState();
-function loadState(){try{const s=JSON.parse(localStorage.getItem(STORAGE_KEY));return s&&typeof s==="object"?{...defaultState(),...s}:defaultState()}catch(e){return defaultState()}}
-function saveState(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}catch(e){}}
-function escapeHTML(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function toast(msg){const el=document.createElement("div");el.className="toast";el.textContent=msg;document.getElementById("toastContainer").appendChild(el);setTimeout(()=>el.remove(),3200)}
-function addXP(n,reason){state.xp+=n;state.activity.unshift({date:new Date().toISOString(),reason,xp:n});state.activity=state.activity.slice(0,50);saveState();refreshUI()}
-function level(){return Math.floor(state.xp/100)+1}
-function currentLevelName(){const l=level();return l>=10?"محلل متقدم":l>=7?"محقق رقمي":l>=4?"متدرب متمرس":"متدرب مبتدئ"}
-function pct(a,b){return b?Math.min(100,Math.round(a/b*100)):0}
-function setText(id,value){const el=document.getElementById(id);if(el)el.textContent=value}
-function setHTML(id,value){const el=document.getElementById(id);if(el)el.innerHTML=value}
-function navigate(page){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));const el=document.getElementById("page-"+page);if(el)el.classList.add("active");document.querySelectorAll(".nav-btn[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===page));const btn=document.querySelector('.nav-btn[data-page="'+page+'"]');setText("breadcrumb","الرئيسية / "+(btn?btn.textContent.trim():page));document.getElementById("sidebar").classList.remove("open");window.scrollTo({top:0,behavior:"smooth"});if(page==="achievements")renderAchievements();if(page==="profile")renderProfile();if(page==="cases")renderCases();if(page==="books")renderBooks();if(page==="quiz")renderQuiz()}
-document.querySelectorAll(".nav-btn[data-page]").forEach(b=>b.addEventListener("click",()=>navigate(b.dataset.page)));
-document.getElementById("menuBtn").addEventListener("click",()=>document.getElementById("sidebar").classList.toggle("open"));
-document.addEventListener("click",e=>{const s=document.getElementById("sidebar");if(s.classList.contains("open")&&!s.contains(e.target)&&!e.target.closest("#menuBtn"))s.classList.remove("open")});
-
-const lessons=[
-{id:"cyber-intro",title:"مدخل إلى الأمن السيبراني",category:"أساسيات",level:"مبتدئ",xp:15,icon:"fa-shield-halved",desc:"تعرف على الأمن السيبراني وأهدافه والمسارات المختلفة.",sections:[
-["وش هو الأمن السيبراني؟","الأمن السيبراني هو مجموعة ممارسات وتقنيات تحمي الأجهزة والشبكات والأنظمة والبيانات من الوصول غير المصرح به أو العبث أو التعطيل.","تخيل أن عندك بيتًا: الباب والقفل وكاميرا المراقبة تمثل طبقات حماية مختلفة. ما فيه حماية واحدة تكفي لكل شيء."],
-["مثلث CIA","السرية Confidentiality: ما يشوف البيانات إلا المصرح لهم. السلامة Integrity: ما تتغير البيانات دون تصريح. التوافر Availability: تبقى الخدمة متاحة عند الحاجة.","مثال: ملف درجات الطلاب يحتاج سرية حتى لا يراه الجميع، وسلامة حتى لا تتغير الدرجات، وتوافر حتى يستطيع المعلم الوصول إليه."],
-["المسارات المهنية","من المسارات: أمن الشبكات، أمن التطبيقات، الاستجابة للحوادث، التحقيق الرقمي، تحليل البرمجيات الخبيثة، وإدارة المخاطر.","ابدأ بالأساسيات والشبكات ولينكس، ثم تعلم البرمجة ومبادئ الويب. تدرب في مختبرات مصرح بها فقط."]] },
-{id:"ip-basics",title:"عناوين IP ببساطة",category:"شبكات",level:"مبتدئ",xp:15,icon:"fa-location-dot",desc:"افهم كيف تتعرف الشبكات على الأجهزة.",sections:[
-["ما هو عنوان IP؟","عنوان IP هو عنوان منطقي يستخدم لتوجيه البيانات إلى جهاز أو واجهة شبكة. يشبه عنوان المبنى الذي يساعد البريد على الوصول.","مثال IPv4: 192.168.1.10. هذا مثال شائع لعنوان خاص داخل شبكة محلية."],
-["خاص أم عام؟","العناوين الخاصة تُستخدم داخل الشبكات المحلية ولا تُوجَّه مباشرة عبر الإنترنت العام. أما العنوان العام فيُستخدم للتواصل عبر الإنترنت وفق إعدادات الشبكة.","من نطاقات IPv4 الخاصة: 10.0.0.0/8 و172.16.0.0/12 و192.168.0.0/16."],
-["IP وMAC","عنوان IP يساعد في التوجيه بين الشبكات، بينما عنوان MAC يُستخدم على مستوى الاتصال المحلي. قد يتغير IP بينما يرتبط MAC بواجهة الشبكة.","لا تخلط بينهما: عنوان IP مثل عنوان الوجهة، وMAC مثل معرف واجهة الشبكة داخل الوصلة المحلية."]] },
-{id:"dns",title:"DNS: دليل الإنترنت",category:"شبكات",level:"مبتدئ",xp:15,icon:"fa-globe",desc:"كيف يجد جهازك عنوان الخادم المرتبط باسم موقع؟",sections:[
-["فكرة DNS","نظام أسماء النطاقات DNS يحول أسماء النطاقات إلى سجلات مثل عناوين IP. بدل حفظ أرقام كثيرة، تكتب اسمًا سهل التذكر.","عند كتابة example.com قد يسأل جهازك محلل DNS عن السجل المناسب. النتيجة تعتمد على النطاق وإعداداته."],
-["رحلة الاستعلام","قد يتحقق الجهاز من الذاكرة المؤقتة أولًا، ثم يطلب المعلومة من محلل DNS، الذي قد يتواصل مع خوادم أخرى عند الحاجة.","مدة بقاء النتيجة في الذاكرة تسمى TTL، وتساعد على تقليل الاستعلامات المتكررة."],
-["أمن DNS","من المخاطر التلاعب بالاستجابات أو إعدادات DNS. تساعد التحديثات ومراقبة الإعدادات واستخدام محللات موثوقة في تقليل المخاطر.","وجود HTTPS لا يعني أن اسم النطاق صحيح؛ تحقق من عنوان الموقع نفسه قبل إدخال معلوماتك."]] },
-{id:"ports",title:"المنافذ والبروتوكولات",category:"شبكات",level:"مبتدئ",xp:15,icon:"fa-door-open",desc:"افهم المنافذ الشائعة ولماذا لا يعني وجود منفذ مفتوح وجود اختراق.",sections:[
-["ما هو المنفذ؟","رقم المنفذ يساعد نظام التشغيل على توصيل البيانات إلى الخدمة المناسبة. عنوان IP يحدد الواجهة، والمنفذ يحدد الخدمة على الجهاز.","تخيل مبنى له عنوان واحد، لكن داخله أقسام متعددة. المنفذ يشبه رقم القسم."],
-["أمثلة معروفة","HTTP غالبًا 80، وHTTPS غالبًا 443، وSSH غالبًا 22، وDNS يستخدم 53. قد تستخدم الخدمات إعدادات مختلفة.","الأرقام الشائعة ليست ضمانًا؛ قد تعمل الخدمة على منفذ آخر وفق الإعدادات."],
-["تقليل المخاطر","عطّل الخدمات غير اللازمة، وحدّث البرامج، وقيّد الوصول إلى لوحات الإدارة، وراقب السجلات.","وجود منفذ مفتوح لا يثبت وجود ثغرة. يلزم فهم الخدمة وإعداداتها ونطاق الاختبار المصرح."]] },
-{id:"router-nat",title:"الراوتر وNAT",category:"شبكات",level:"مبتدئ",xp:15,icon:"fa-wifi",desc:"كيف تتصل أجهزة البيت بالإنترنت من خلال الراوتر؟",sections:[
-["وظيفة الراوتر","الراوتر يمرر حزم البيانات بين شبكات مختلفة ويختار مسارًا مناسبًا وفق جدول التوجيه.","في المنزل، غالبًا يربط الشبكة المحلية بشبكة مزود الخدمة."],
-["ما هو NAT؟","ترجمة عناوين الشبكة NAT تسمح غالبًا لأجهزة داخلية متعددة بمشاركة عنوان IPv4 عام، مع ترجمة معلومات العناوين والمنافذ.","NAT ليس بديلًا كاملًا لجدار الحماية، ولا يعني وحده أن كل جهاز محمي."],
-["حماية الراوتر","غيّر كلمة مرور الإدارة الافتراضية، وحدّث البرنامج الثابت، واستخدم تشفير Wi-Fi حديثًا، وعطّل الإدارة عن بُعد إن لم تحتجها.","لا تشارك كلمة مرور الشبكة مع أشخاص غير موثوقين، وراجع الأجهزة المتصلة من لوحة الراوتر."]] },
-{id:"linux-intro",title:"مقدمة إلى Linux",category:"Linux",level:"مبتدئ",xp:15,icon:"fa-terminal",desc:"تعرف على نظام لينكس والطرفية والأوامر الأساسية.",sections:[
-["ما هو Linux؟","لينكس نواة تُستخدم في توزيعات كثيرة، منها Ubuntu وDebian وKali Linux. تُستخدم هذه الأنظمة في الخوادم والتطوير والتعلم.","Kali يتضمن أدوات اختبار أمنية، لكنه ليس زرًا يحولك إلى خبير. المهم فهم الشبكات والأنظمة والأخلاقيات."],
-["الطرفية Terminal","الطرفية تسمح بكتابة أوامر نصية لإدارة النظام وتشغيل البرامج. الأوامر تختلف في وظيفتها وتأثيرها.","ابدأ بأوامر القراءة والتنقل مثل pwd وls وcd وcat في بيئة تدريب آمنة."],
-["الأذونات","تحدد الأذونات من يستطيع قراءة الملف أو تعديله أو تشغيله. في لينكس تظهر عادةً ضمن صلاحيات المالك والمجموعة والآخرين.","لا تستخدم صلاحيات مرتفعة دون فهم؛ فقد يسبب الأمر الخاطئ تغييرات غير مرغوبة."]] },
-{id:"linux-files",title:"الملفات والأذونات في Linux",category:"Linux",level:"مبتدئ",xp:20,icon:"fa-folder-tree",desc:"افهم المسارات والملفات والصلاحيات.",sections:[
-["المسارات","المسار المطلق يبدأ من الجذر /، أما المسار النسبي فيُحسب من موقعك الحالي. الأمر pwd يعرض المجلد الحالي.","في الطرفية التدريبية جرّب pwd ثم ls لمعرفة مكانك ومحتويات المجلد."],
-["قراءة الملفات","يُستخدم cat عادةً لعرض محتوى ملف نصي، وتوجد أدوات أخرى لقراءة الملفات الطويلة أو البحث داخلها.","في المختبر، استخدم cat notes.txt لعرض ملف تدريبي."],
-["الأذونات","r تعني القراءة، وw تعني الكتابة، وx تعني التنفيذ. تُحدد الصلاحيات بحسب المستخدم والمجموعة والآخرين.","راجع الأذونات قبل تعديل ملف، وتجنب منح الجميع صلاحيات أكثر مما يحتاجون."]] },
-{id:"http",title:"كيف يعمل HTTP وHTTPS؟",category:"ويب",level:"مبتدئ",xp:20,icon:"fa-globe",desc:"افهم الطلبات والاستجابات والفرق بين HTTP وHTTPS.",sections:[
-["الطلب والاستجابة","المتصفح يرسل طلب HTTP إلى الخادم، والخادم يعيد استجابة تحتوي على حالة ومعلومات ومحتوى حسب الطلب.","تتضمن الطلبات طريقة مثل GET أو POST ومسارًا ورؤوسًا، وقد تتضمن بيانات."],
-["رموز الحالة","200 غالبًا تعني نجاح الطلب، و301 أو 302 إعادة توجيه، و403 رفض الوصول، و404 عدم العثور على المورد، و500 خطأ داخلي بالخادم.","الرمز وحده لا يكشف السبب الكامل؛ اقرأ سياق السجلات والرسائل المتاحة."],
-["HTTPS","يستخدم HTTPS بروتوكول TLS لحماية الاتصال بين العميل والخادم من الاطلاع أو التعديل أثناء النقل عند ضبطه بشكل صحيح.","HTTPS لا يضمن أن الموقع صادق أو آمن؛ يمكن لموقع احتيالي استخدام شهادة صحيحة أيضًا."]] },
-{id:"web-security",title:"أساسيات أمن تطبيقات الويب",category:"ويب",level:"متوسط",xp:25,icon:"fa-code",desc:"تعرف على مبادئ التحقق من المدخلات والتحكم في الوصول.",sections:[
-["التحقق من المدخلات","يجب على التطبيق التحقق من المدخلات وفق قواعد واضحة، وعدم افتراض أن البيانات القادمة من المستخدم موثوقة.","التحقق في المتصفح يحسن تجربة المستخدم، لكن الخادم يحتاج أيضًا إلى التحقق بنفسه."],
-["التحكم في الوصول","يجب أن يتحقق الخادم من صلاحية المستخدم للوصول إلى كل مورد أو تنفيذ كل عملية.","إخفاء زر في الصفحة لا يكفي لمنع الوصول؛ القرار الأمني يجب أن يحدث على الخادم."],
-["حماية الجلسات","استخدم إعدادات آمنة لملفات الارتباط، وانقل الجلسات عبر HTTPS، وقلل مدة الجلسات الحساسة وفق الحاجة.","تدرب على أمثلة مصممة في مختبرات قانونية، ولا تختبر مواقع الآخرين دون تصريح."]] },
-{id:"logs",title:"قراءة سجلات الأنظمة",category:"تحقيق",level:"متوسط",xp:25,icon:"fa-file-lines",desc:"اكتشف كيف تساعد السجلات في فهم الأحداث ومراجعة الحوادث.",sections:[
-["ما هي السجلات؟","السجلات Records هي أحداث مسجلة من التطبيقات والأنظمة، مثل تسجيل الدخول والأخطاء وتغييرات الإعدادات.","قد يتضمن السجل وقت الحدث، واسم المستخدم، والنتيجة، وعنوان IP أو اسم الجهاز."],
-["ابحث عن الأنماط","ابحث عن محاولات فاشلة متكررة، أو دخول في أوقات غير معتادة، أو تغييرات تليها أخطاء. لا تعتبر أي مؤشر دليلًا قاطعًا بمفرده.","اربط عدة مصادر: سجلات الدخول، وسجل التطبيق، وتغييرات الحساب، والتوقيت."],
-["حافظ على الأدلة","احتفظ بنسخة مناسبة من السجلات، وسجل وقت جمعها ومصدرها، وتجنب تعديل الأصل دون حاجة.","التوقيتات قد تكون بتوقيت UTC أو المنطقة المحلية؛ تحقق من ذلك قبل بناء التسلسل الزمني."]] },
-{id:"forensics",title:"مقدمة إلى التحقيق الرقمي",category:"تحقيق",level:"متوسط",xp:25,icon:"fa-magnifying-glass-chart",desc:"تعلم طريقة التفكير عند تحليل حادثة رقمية.",sections:[
-["ابدأ بالأسئلة","ما الذي حدث؟ متى؟ ما الحسابات أو الأنظمة المتأثرة؟ ما الأدلة المتاحة؟ وما الذي ما زال مجرد احتمال؟","افصل بين الحقيقة المرصودة والاستنتاج. سجل المصدر والتوقيت لكل معلومة."],
-["اربط الأدلة","حدث دخول ناجح بعد محاولات فاشلة قد يستحق التحقيق، لكنه لا يثبت وحده هوية الشخص الذي نفذها.","قارن سجل المصادقة مع سجلات الجهاز والتطبيق وتغييرات الحساب."],
-["اكتب تقريرًا","اكتب ملخصًا، وخطًا زمنيًا، والأدلة التي تدعم استنتاجك، والاحتمالات البديلة، والإجراءات المقترحة.","لا تتهم شخصًا اعتمادًا على عنوان IP فقط؛ فقد تستخدم الأجهزة عناوين مشتركة أو تتغير عناوينها."]] },
-{id:"python-intro",title:"Python من الصفر",category:"Python",level:"مبتدئ",xp:20,icon:"fa-brands fa-python",desc:"تعلم المتغيرات والطباعة والشروط والتكرار.",sections:[
-["أول برنامج","Python لغة برمجة سهلة القراءة نسبيًا، وتستخدم في الأتمتة وتحليل البيانات والتعلم.","مثال: print(\"Hello Midnight\") يطبع رسالة على الشاشة."],
-["المتغيرات","المتغير اسم يشير إلى قيمة، مثل name = \"Midnight\" أو score = 10.","تساعد المتغيرات على حفظ المعلومات واستخدامها في العمليات."],
-["الشروط والتكرار","تسمح if باختيار مسار وفق شرط، بينما تكرر for أو while مجموعة من التعليمات وفق قواعدها.","ابدأ بأمثلة صغيرة، ثم اكتب برنامجًا يحلل سجلات تدريبية محلية."]] },
-{id:"python-logs",title:"تحليل سجلات باستخدام Python",category:"Python",level:"متوسط",xp:25,icon:"fa-file-code",desc:"تعرف على فكرة قراءة السجلات واستخراج الأنماط.",sections:[
-["الفكرة","يمكن للبرنامج قراءة سجل نصي من مصدر مصرح به، وتقسيم كل سطر إلى حقول مفهومة، ثم عد الأحداث أو تجميعها.","تحقق من صيغة الملف وتأكد من أن البيانات لا تحتوي على معلومات خاصة غير ضرورية."],
-["التحليل","قد يحسب البرنامج عدد حالات الفشل أو يرتب الأحداث زمنيًا أو يحدد السطور التي تحتوي على كلمة محددة.","نتائج التحليل مؤشرات تساعد المحقق، وليست دليلًا تلقائيًا على ارتكاب مخالفة."],
-["الخصوصية","لا تجمع بيانات أشخاص دون تصريح، ولا ترفع سجلات حساسة إلى خدمات عامة بلا موافقة وسياسة واضحة.","استخدم ملفات تجريبية مجهولة الهوية أثناء التعلم."]] }
-];
-
-const networkTopics=[
-{id:"ip",icon:"fa-location-dot",title:"IP Address",en:"عنوان IP",desc:"عنوان منطقي يساعد في توجيه البيانات إلى واجهة شبكة.",example:"192.168.1.10",details:[["الفكرة","عنوان IP هو عنوان منطقي يُستخدم لتحديد واجهة شبكة والمساعدة في توجيه البيانات."],["مثال","192.168.1.10 مثال على عنوان IPv4 خاص شائع داخل شبكة محلية."],["تذكر","العنوان الخاص لا يُوجَّه مباشرة عبر الإنترنت العام، وقد يشارك عدة أجهزة عنوانًا عامًا عبر NAT."]]},
-{id:"mac",icon:"fa-fingerprint",title:"MAC Address",en:"عنوان MAC",desc:"معرف لواجهة الشبكة يُستخدم على مستوى الاتصال المحلي.",example:"00:1A:2B:3C:4D:5E",details:[["الفكرة","يستخدم MAC في توصيل إطارات البيانات داخل الوصلة المحلية، مثل شبكة Ethernet أو Wi-Fi."],["مثال","قد يظهر العنوان بصيغة ست مجموعات سداسية عشرية."],["تذكر","يمكن تغيير أو انتحال MAC في بعض البيئات؛ فلا تعتبره إثباتًا قطعيًا لهوية شخص."]]},
-{id:"dns",icon:"fa-globe",title:"DNS",en:"نظام أسماء النطاقات",desc:"يربط أسماء النطاقات بسجلات الشبكة المناسبة.",example:"example.com → عنوان تجريبي",details:[["الفكرة","DNS نظام موزع يتيح الاستعلام عن سجلات أسماء النطاقات."],["مثال","يمكن أن يعيد الاستعلام سجل A لعنوان IPv4 أو AAAA لعنوان IPv6."],["تذكر","نتيجة DNS قد تتغير وفق TTL والمحلل المستخدم."]]},
-{id:"ports",icon:"fa-door-open",title:"Ports",en:"المنافذ",desc:"أرقام تساعد النظام على توجيه البيانات للخدمة المناسبة.",example:"HTTPS: 443",details:[["الفكرة","رقم المنفذ يحدد الخدمة أو التطبيق الذي يتلقى الاتصال على النظام."],["أمثلة","80 لـ HTTP عادة، و443 لـ HTTPS، و22 لـ SSH."],["تذكر","قد تعمل الخدمة على منفذ غير شائع، والمنفذ المفتوح ليس ثغرة بحد ذاته."]]},
-{id:"router",icon:"fa-wifi",title:"Router",en:"الراوتر",desc:"يربط الشبكات ويمرر البيانات بين وجهاتها.",example:"شبكة المنزل ↔ الإنترنت",details:[["الفكرة","الراوتر يمرر الحزم بين الشبكات ويختار المسار وفق جدول التوجيه."],["مثال","راوتر المنزل يربط غالبًا الشبكة المحلية بمزود الإنترنت."],["تذكر","حدّث الجهاز، وغير بيانات الإدارة الافتراضية، وراجع إعدادات الوصول."]]},
-{id:"subnet",icon:"fa-diagram-project",title:"Subnet Mask",en:"قناع الشبكة",desc:"يساعد على تحديد جزء الشبكة وجزء المضيف من عنوان IP.",example:"255.255.255.0 = /24",details:[["الفكرة","قناع الشبكة يحدد أي البتات تشير إلى الشبكة وأيها إلى واجهة المضيف."],["مثال","في شبكة IPv4 من نوع /24، تكون أول 24 بت للشبكة."],["تذكر","العنوان والقناع معًا يساعدان على تحديد ما إذا كانت الوجهة ضمن الشبكة المحلية."]]},
-{id:"arp",icon:"fa-arrows-spin",title:"ARP",en:"بروتوكول حل العناوين",desc:"يستخدم في IPv4 المحلي لمعرفة عنوان MAC المرتبط بعنوان IP.",example:"IP محلي → MAC",details:[["الفكرة","يساعد ARP الأجهزة على معرفة عنوان MAC المناسب لعنوان IPv4 محلي."],["مثال","إذا احتاج الجهاز إرسال إطار إلى جهاز محلي، فقد يستعلم عن MAC المرتبط بعنوان IP."],["تذكر","ARP يعمل ضمن نطاق الشبكة المحلية، ولا يستبدل DNS."]]},
-{id:"nat",icon:"fa-shuffle",title:"NAT",en:"ترجمة عناوين الشبكة",desc:"تسمح في كثير من الشبكات بمشاركة عنوان IPv4 عام.",example:"عدة أجهزة → عنوان عام",details:[["الفكرة","تترجم NAT عناوين أو منافذ بين نطاقات شبكة مختلفة وفق الإعدادات."],["مثال","يمكن لأجهزة البيت مشاركة عنوان IPv4 عام عبر ترجمة العناوين والمنافذ."],["تذكر","NAT ليس بديلًا كاملًا لجدار الحماية أو تحديث الأجهزة."]]}
-];
-
-const linuxTopics=[
-["help","عرض قائمة الأوامر"],
-["pwd","عرض المسار الحالي"],
-["ls","عرض الملفات والمجلدات"],
-["cd home","الانتقال إلى مجلد home التجريبي"],
-["whoami","معرفة اسم المستخدم التجريبي"],
-["cat notes.txt","قراءة ملف نصي تجريبي"],
-["cat logs/auth.log","عرض سجل مصادقة تدريبي"],
-["clear","مسح مخرجات الطرفية"]
-];
-let terminalHistory=[];
-function initLinux(){setHTML("linuxCommands",linuxTopics.map(([cmd,desc])=>`<button class="topic-btn" data-command="${escapeHTML(cmd)}"><i class="fa-solid fa-terminal"></i><span><b class="ltr" style="display:block">${escapeHTML(cmd)}</b><small class="muted">${escapeHTML(desc)}</small></span><i class="fa-solid fa-chevron-left"></i></button>`).join(""));document.querySelectorAll("[data-command]").forEach(b=>b.addEventListener("click",()=>runTerminal(b.dataset.command)))}
-const fakeFiles={"/home/trainee/notes.txt":"Midnight Training Notes\n- Practice only in authorized labs.\n- Review logs chronologically.\n- Protect private information.","/home/trainee/logs/auth.log":"2026-10-20T09:00:12Z sshd: Accepted password for trainee from 192.0.2.25\n2026-10-20T09:03:08Z sshd: Failed password for admin from 198.51.100.40\n2026-10-20T09:03:21Z sshd: Failed password for admin from 198.51.100.40\n2026-10-20T09:05:44Z sshd: Connection closed for trainee"};
-let terminalCwd="/home/trainee";
-function runTerminal(raw){const cmd=String(raw||"").trim();if(!cmd)return;const out=document.getElementById("terminalOutput");if(cmd==="clear"){out.textContent="midnight@lab:~$ ";terminalHistory=[];document.getElementById("terminalInput").value="";return}let response="";const args=cmd.split(/\s+/);switch(args[0]){
-case"help":response="الأوامر المتاحة:\n"+linuxTopics.map(x=>"  "+x[0]+" — "+x[1]).join("\n")+"\n\nهذه بيئة محاكاة؛ لا تُنفذ أوامر نظام حقيقية.";break;
-case"pwd":response=terminalCwd;break;
-case"whoami":response="trainee";break;
-case"ls":response=terminalCwd==="/home/trainee"?"notes.txt  logs/  projects/":terminalCwd==="/home/trainee/logs"?"auth.log  app.log":"(مجلد تدريبي فارغ)";break;
-case"cd":if(!args[1]||args[1]==="~"||args[1]==="home")terminalCwd="/home/trainee";else if(args[1]==="logs"||args[1]==="logs/")terminalCwd="/home/trainee/logs";else if(args[1]==="..")terminalCwd="/home/trainee";else response="المجلد غير موجود في البيئة التدريبية.";break;
-case"cat":{const file=args[1]||"";const full=file.startsWith("/")?file:terminalCwd+"/"+file;if(fakeFiles[full])response=fakeFiles[full];else response="الملف غير موجود في بيئة المحاكاة. جرّب cat notes.txt أو cat logs/auth.log.";break}
-default:response="الأمر غير متاح في المختبر التدريبي.\nاكتب help لعرض الأوامر المسموح بها.";
-}terminalHistory.push("midnight@lab:"+terminalCwd+"$ "+cmd+"\n"+response);if(terminalHistory.length>40)terminalHistory.shift();out.textContent=terminalHistory.join("\n\n")+"\n\nmidnight@lab:"+terminalCwd+"$ ";out.scrollTop=out.scrollHeight;document.getElementById("terminalInput").value=""}
-document.getElementById("terminalForm").addEventListener("submit",e=>{e.preventDefault();runTerminal(document.getElementById("terminalInput").value)});
-
-const casesData=[
-{id:"bank-bow",title:"اختراق حساب في بنك تجريبي",subtitle:"CASE-001 • تحليل دخول غير معتاد",level:"مبتدئ",xp:60,icon:"fa-building-columns",status:"مفتوحة",story:"أبلغ فريق الدعم في بنك تدريبي عن نشاط غير معتاد في حساب الموظف ali. ظهرت محاولات دخول فاشلة ثم حدث دخول ناجح. مهمتك تحليل السجلات وتحديد الحساب المرتبط بالنشاط المشبوه، ومعرفة ما الذي يمكن إثباته من الأدلة.",objective:"حدد الحساب الذي يظهر في السجلات المرتبطة بالنشاط، وعنوان المصدر الذي تكرر ظهوره، والتسلسل الزمني للأحداث.",hint:"ابدأ بسجل المصادقة، وابحث عن محاولات فاشلة متكررة. قارن عنوان المصدر بالحساب المستهدف، ثم راجع التوقيت.",questions:[
-{id:"suspect",label:"1. أي حساب ارتبط بمحاولات الدخول المشبوهة؟",type:"text",answer:["ali"],hint:"راجع عمود المستخدم في سجل المصادقة.",explain:"السجلات التدريبية تظهر محاولات مرتبطة بالحساب ali."},
-{id:"source",label:"2. ما عنوان IP الذي تكرر مع المحاولات الفاشلة؟",type:"text",answer:["198.51.100.23"],hint:"ابحث عن العنوان المتكرر بجانب Failed.",explain:"العنوان 198.51.100.23 يظهر في المحاولات الفاشلة المتكررة."},
-{id:"conclusion",label:"3. أي استنتاج هو الأكثر دقة؟",type:"select",options:[["a","تم إثبات هوية شخص محدد"],["b","توجد محاولات مشبوهة تستحق التحقيق الإضافي"],["c","كل عناوين IP مزيفة"],["d","لا توجد أي مؤشرات"],],answer:["b"],hint:"فرّق بين المؤشر التقني وإثبات هوية شخص.",explain:"السجلات تدعم وجود نشاط يستحق التحقيق، لكنها لا تثبت هوية شخص بعينه."}
-],evidence:[
-{id:"brief",title:"موجز البلاغ",icon:"fa-file-lines",type:"text",body:"بلاغ رقم IR-1042\nوقت الاستلام: 2026-10-20 09:18 UTC\nالنظام: Training Bank Portal\nالحساب المتأثر: ali\nالوصف: تنبيهات دخول غير معتادة تلتها جلسة ناجحة.\n\nالمطلوب: مراجعة الأدلة المتاحة وتحديد ما يمكن استنتاجه دون تجاوز ما تثبته السجلات."},
-{id:"auth",title:"سجل المصادقة",icon:"fa-key",type:"log",body:"timestamp,user,event,source_ip,session\n2026-10-20T08:58:12Z,ali,LOGIN_SUCCESS,192.0.2.10,S-101\n2026-10-20T09:02:03Z,sara,LOGIN_SUCCESS,192.0.2.15,S-102\n2026-10-20T09:07:14Z,ali,LOGIN_FAILED,198.51.100.23,-\n2026-10-20T09:07:19Z,ali,LOGIN_FAILED,198.51.100.23,-\n2026-10-20T09:07:27Z,ali,LOGIN_FAILED,198.51.100.23,-\n2026-10-20T09:08:01Z,ali,LOGIN_FAILED,198.51.100.23,-\n2026-10-20T09:11:44Z,ali,LOGIN_SUCCESS,192.0.2.10,S-103\n2026-10-20T09:14:09Z,ali,LOGOUT,192.0.2.10,S-103"},
-{id:"app",title:"سجل التطبيق",icon:"fa-code",type:"log",body:"timestamp,session,event,details\n2026-10-20T08:58:14Z,S-101,DASHBOARD_VIEW,normal\n2026-10-20T09:07:14Z,-,AUTH_FAILURE,invalid_credentials\n2026-10-20T09:07:19Z,-,AUTH_FAILURE,invalid_credentials\n2026-10-20T09:07:27Z,-,AUTH_FAILURE,invalid_credentials\n2026-10-20T09:08:01Z,-,AUTH_FAILURE,invalid_credentials\n2026-10-20T09:11:46Z,S-103,DASHBOARD_VIEW,normal\n2026-10-20T09:12:10Z,S-103,PROFILE_VIEW,normal"},
-{id:"network",title:"ملخص الشبكة",icon:"fa-network-wired",type:"text",body:"مصادر IP في ملف التدريب:\n192.0.2.10 — مصدر جلسة ali المعتادة في السجل.\n192.0.2.15 — جلسة sara في سجل المصادقة.\n198.51.100.23 — مصدر المحاولات الفاشلة المتكررة.\n\nملاحظة: العناوين المذكورة من نطاقات مخصصة للتوثيق والأمثلة، ولا تمثل أجهزة حقيقية مستهدفة."},
-{id:"analyst",title:"ملاحظات المحلل",icon:"fa-clipboard-check",type:"text",body:"الملاحظات الأولية:\n1. توجد أربع محاولات فاشلة متتابعة للحساب ali.\n2. المحاولات قادمة من عنوان واحد في السجل.\n3. توجد جلسة ناجحة لاحقة من عنوان مختلف عن عنوان المحاولات الفاشلة.\n4. يجب عدم الجزم بأن المحاولات الفاشلة أدت إلى الجلسة الناجحة دون دليل يربطهما.\n\nالسؤال الأساسي: ما الذي تثبته الأدلة فعليًا؟"}
-],timeline:[
-["08:58:12","نجاح دخول ali","192.0.2.10","green"],
-["09:02:03","نجاح دخول sara","192.0.2.15","blue"],
-["09:07:14","أول محاولة فاشلة للحساب ali","198.51.100.23","red"],
-["09:07:19","محاولة فاشلة ثانية","198.51.100.23","red"],
-["09:07:27","محاولة فاشلة ثالثة","198.51.100.23","red"],
-["09:08:01","محاولة فاشلة رابعة","198.51.100.23","red"],
-["09:11:44","نجاح دخول ali","192.0.2.10","yellow"],
-["09:14:09","تسجيل خروج ali","192.0.2.10","blue"]
-]},
-{id:"server-logs",title:"سر أخطاء الخادم",subtitle:"CASE-002 • تحليل أخطاء تطبيق",level:"مبتدئ",xp:50,icon:"fa-server",status:"مفتوحة",story:"اشتكى فريق الموقع التدريبي من زيادة أخطاء الخادم خلال فترة قصيرة. وصلتك سجلات الطلبات وسجل التطبيق. المطلوب معرفة رمز الخطأ الداخلي الذي ظهر في السجلات، وتحديد الفرق بينه وبين أخطاء العميل.",objective:"قارن بين سجلات الطلبات والتطبيق وحدد رمز الخطأ الداخلي المتكرر في القضية.",hint:"ابحث عن السطور التي تصف فشلًا داخل الخادم، لا مجرد مورد غير موجود.",questions:[
-{id:"code",label:"1. ما رمز الخطأ الداخلي الظاهر في السجل؟",type:"text",answer:["500"],hint:"ابحث عن INTERNAL_SERVER_ERROR.",explain:"الرمز 500 يدل عادة على خطأ داخلي في الخادم."},
-{id:"route",label:"2. ما المسار الذي ظهر معه الخطأ الداخلي؟",type:"text",answer:["/api/report","api/report"],hint:"راجع عمود path في السجلات.",explain:"المسار /api/report يظهر مع الخطأ الداخلي في السجل."},
-{id:"meaning",label:"3. ماذا يعني 404 غالبًا؟",type:"select",options:[["a","خطأ داخلي بالخادم"],["b","المورد المطلوب غير موجود"],["c","نجاح تسجيل الدخول"],["d","تشفير الاتصال"],],answer:["b"],hint:"ميّز بين أخطاء العميل وأخطاء الخادم.",explain:"404 يعني غالبًا أن المورد المطلوب غير موجود."}
-],evidence:[
-{id:"brief",title:"بلاغ فريق الموقع",icon:"fa-file-lines",type:"text",body:"رقم القضية: WEB-208\nالبيئة: تطبيق تجريبي\nالفترة: 2026-10-21 14:00–14:20 UTC\nالملاحظة: ارتفاع أخطاء في صفحة التقارير.\n\nلا توجد بيانات مستخدمين حقيقية في هذه القضية."},
-{id:"access",title:"سجل الطلبات",icon:"fa-list",type:"log",body:"timestamp,method,path,status,request_id\n2026-10-21T14:02:01Z,GET,/home,200,R-001\n2026-10-21T14:03:11Z,GET,/assets/app.css,200,R-002\n2026-10-21T14:04:15Z,GET,/old-report,404,R-003\n2026-10-21T14:07:22Z,GET,/api/report,500,R-004\n2026-10-21T14:07:26Z,GET,/api/report,500,R-005\n2026-10-21T14:08:02Z,GET,/api/report,500,R-006\n2026-10-21T14:09:43Z,GET,/help,200,R-007"},
-{id:"app",title:"سجل التطبيق",icon:"fa-code",type:"log",body:"timestamp,level,request_id,message\n2026-10-21T14:04:15Z,WARN,R-003,route_not_found\n2026-10-21T14:07:22Z,ERROR,R-004,INTERNAL_SERVER_ERROR\n2026-10-21T14:07:26Z,ERROR,R-005,INTERNAL_SERVER_ERROR\n2026-10-21T14:08:02Z,ERROR,R-006,INTERNAL_SERVER_ERROR\n2026-10-21T14:09:43Z,INFO,R-007,request_completed"},
-{id:"guide",title:"دليل رموز الحالة",icon:"fa-book",type:"text",body:"200 — نجح الطلب غالبًا.\n301 / 302 — إعادة توجيه.\n400 — طلب غير صالح غالبًا.\n401 — يتطلب مصادقة.\n403 — رفض الوصول.\n404 — المورد غير موجود غالبًا.\n500 — خطأ داخلي في الخادم.\n\nالرمز وحده لا يكفي لتحديد السبب الجذري؛ تحتاج إلى سياق إضافي من السجلات."}
-],timeline:[
-["14:02:01","طلب الصفحة الرئيسية نجح — 200","/home","green"],
-["14:04:15","مورد غير موجود — 404","/old-report","yellow"],
-["14:07:22","خطأ داخلي — 500","/api/report","red"],
-["14:07:26","تكرر الخطأ الداخلي — 500","/api/report","red"],
-["14:08:02","تكرر الخطأ الداخلي — 500","/api/report","red"],
-["14:09:43","طلب المساعدة نجح — 200","/help","green"]
-]},
-{id:"suspicious-login",title:"الدخول غير المعتاد",subtitle:"CASE-003 • مراجعة سجل المصادقة",level:"متوسط",xp:65,icon:"fa-user-lock",status:"مفتوحة",story:"لاحظ فريق الأنظمة عددًا من محاولات المصادقة الفاشلة لحساب تدريبي، وبعدها سجل النظام قفل الحساب. راجع سجل الأحداث وتأكد من الحالة النهائية المسجلة للحساب.",objective:"حدد الحالة التي سجلها النظام بعد تكرار محاولات المصادقة الفاشلة.",hint:"اتبع الأحداث حسب الوقت. ابحث عن سجل يشير إلى تغيير حالة الحساب.",questions:[
-{id:"status",label:"1. ما الحالة المسجلة للحساب بعد المحاولات؟",type:"text",answer:["locked","مقفل","مقفل مؤقتا","مقفل مؤقتًا"],hint:"راجع سجل account_status.",explain:"يسجل ملف التدقيق حالة LOCKED للحساب."},
-{id:"event",label:"2. ما الحدث الذي سبق تغيير الحالة مباشرة؟",type:"text",answer:["failed_login","login_failed","فشل تسجيل الدخول","محاولة دخول فاشلة"],hint:"ابحث عن الحدث الذي وقع قبل قفل الحساب.",explain:"حدثت محاولات دخول فاشلة قبل تسجيل حالة القفل."},
-{id:"safe",label:"3. ما الإجراء الدفاعي المناسب؟",type:"select",options:[["a","تعطيل جميع سجلات الأمان"],["b","مراجعة الأحداث والتحقق من صاحب الحساب عبر إجراء موثوق"],["c","نشر بيانات الحساب"],["d","تجاهل كل التنبيهات"],],answer:["b"],hint:"اختر إجراء يحافظ على الأدلة وخصوصية صاحب الحساب.",explain:"راجع السجلات واتبع إجراء استعادة حساب آمنًا دون مشاركة معلومات حساسة."}
-],evidence:[
-{id:"brief",title:"موجز التنبيه",icon:"fa-file-lines",type:"text",body:"تنبيه: AUTH-332\nالحساب: trainee02\nالبيئة: تدريب مصادقة\nالملاحظة: محاولات فاشلة متتابعة ثم تغير في حالة الحساب.\n\nلا توجد حسابات حقيقية مرتبطة بهذه البيانات."},
-{id:"auth",title:"سجل المصادقة",icon:"fa-key",type:"log",body:"timestamp,account,event,source\n2026-10-22T11:20:01Z,trainee02,LOGIN_FAILED,192.0.2.60\n2026-10-22T11:20:06Z,trainee02,LOGIN_FAILED,192.0.2.60\n2026-10-22T11:20:13Z,trainee02,LOGIN_FAILED,192.0.2.60\n2026-10-22T11:20:21Z,trainee02,LOGIN_FAILED,192.0.2.60\n2026-10-22T11:20:22Z,trainee02,ACCOUNT_LOCKED,system\n2026-10-22T11:24:00Z,trainee02,RECOVERY_STARTED,system"},
-{id:"audit",title:"سجل تدقيق الحساب",icon:"fa-clipboard-check",type:"log",body:"timestamp,event,actor,details\n2026-10-22T11:20:01Z,AUTH_FAILURE,system,invalid_credentials\n2026-10-22T11:20:06Z,AUTH_FAILURE,system,invalid_credentials\n2026-10-22T11:20:13Z,AUTH_FAILURE,system,invalid_credentials\n2026-10-22T11:20:21Z,AUTH_FAILURE,system,invalid_credentials\n2026-10-22T11:20:22Z,ACCOUNT_STATE_CHANGED,system,LOCKED\n2026-10-22T11:24:00Z,RECOVERY_REQUESTED,system,verification_required"},
-{id:"policy",title:"سياسة المصادقة",icon:"fa-shield-halved",type:"text",body:"السياسة التدريبية:\n- بعد عدة محاولات فاشلة، قد يفرض النظام قفلًا مؤقتًا للحساب.\n- يجب التحقق من هوية صاحب الحساب عبر إجراء استعادة معتمد.\n- لا تطلب من المستخدم إرسال كلمة المرور أو رمز التحقق.\n- احتفظ بسجلات الأحداث وفق سياسة الخصوصية المعتمدة."}
-],timeline:[
-["11:20:01","محاولة دخول فاشلة","192.0.2.60","red"],
-["11:20:06","محاولة دخول فاشلة","192.0.2.60","red"],
-["11:20:13","محاولة دخول فاشلة","192.0.2.60","red"],
-["11:20:21","محاولة دخول فاشلة","192.0.2.60","red"],
-["11:20:22","تغير حالة الحساب إلى LOCKED","system","yellow"],
-["11:24:00","بدء إجراء الاستعادة","system","green"]
-]}
-];
-
-let activeCaseId=null,activeEvidenceId=null,activeCaseTab="brief",currentFilter="all",activeLessonId=null;
-function getCase(id){return casesData.find(c=>c.id===id)}
-function renderCases(){setText("availableCases",casesData.length);setText("solvedCases",state.completedCases.length);setText("caseLevel",level());setHTML("caseGrid",casesData.map(c=>`<article class="card case-card"><div class="card-icon"><i class="fa-solid ${c.icon}"></i></div><div class="badges"><span class="badge">${escapeHTML(c.subtitle.split("•")[0].trim())}</span><span class="badge ${c.level==="متوسط"?"yellow":""}">${escapeHTML(c.level)}</span>${state.completedCases.includes(c.id)?'<span class="badge green"><i class="fa-solid fa-check"></i> محلولة</span>':'<span class="badge">متاحة</span>'}</div><h3>${escapeHTML(c.title)}</h3><p>${escapeHTML(c.story.slice(0,155))}...</p><div class="card-bottom"><div class="path-footer"><span><i class="fa-solid fa-bolt"></i> ${c.xp} XP</span><span>${c.evidence.length} أدلة</span></div><button class="btn ${state.completedCases.includes(c.id)?"btn-secondary":"btn-primary"}" style="width:100%;margin-top:13px" onclick="openCase('${c.id}')">${state.completedCases.includes(c.id)?"مراجعة القضية":"ابدأ التحقيق"} <i class="fa-solid fa-arrow-left"></i></button></div></article>`).join(""));if(!activeCaseId)setText("openedEvidence","0")}
-function openCase(id){activeCaseId=id;activeCaseTab="brief";activeEvidenceId=null;document.getElementById("caseListView").classList.add("hidden");document.getElementById("caseRoomView").classList.remove("hidden");renderCaseRoom();window.scrollTo({top:0,behavior:"smooth"})}
-function closeCase(){activeCaseId=null;document.getElementById("caseRoomView").classList.add("hidden");document.getElementById("caseListView").classList.remove("hidden");renderCases()}
-document.getElementById("backToCases").addEventListener("click",closeCase);
-document.getElementById("caseTabs").addEventListener("click",e=>{const b=e.target.closest("[data-case-tab]");if(!b)return;activeCaseTab=b.dataset.caseTab;renderCaseRoom()});
-document.getElementById("caseHintBtn").addEventListener("click",()=>{const c=getCase(activeCaseId);if(!c)return;const el=document.getElementById("caseHintDisplay");if(el){el.classList.toggle("show");return}const hint=document.createElement("div");hint.id="caseHintDisplay";hint.className="callout warning";hint.textContent="💡 تلميح: "+c.hint;document.getElementById("caseWorkspace").prepend(hint)});
-document.getElementById("caseReportBtn").addEventListener("click",()=>{activeCaseTab="questions";renderCaseRoom()});
-function renderCaseRoom(){const c=getCase(activeCaseId);if(!c)return;setHTML("caseBanner",`<div class="badges"><span class="badge">${escapeHTML(c.subtitle)}</span><span class="badge ${c.level==="متوسط"?"yellow":""}">${escapeHTML(c.level)}</span>${state.completedCases.includes(c.id)?'<span class="badge green">تم الحل ✓</span>':''}</div><h2>${escapeHTML(c.title)}</h2><p>${escapeHTML(c.story)}</p><div class="badges" style="margin:13px 0 0"><span class="badge"><i class="fa-solid fa-folder-open"></i> ${c.evidence.length} أدلة</span><span class="badge"><i class="fa-solid fa-bolt"></i> ${c.xp} XP</span></div>`);setHTML("caseEvidenceNav",c.evidence.map(ev=>`<button class="topic-btn ${activeEvidenceId===ev.id?"active":""}" data-evidence="${ev.id}"><i class="fa-solid ${ev.icon}"></i><span>${escapeHTML(ev.title)}</span><i class="fa-solid fa-chevron-left"></i></button>`).join(""));document.querySelectorAll("[data-evidence]").forEach(b=>b.addEventListener("click",()=>{activeEvidenceId=b.dataset.evidence;activeCaseTab="evidence";const opened=state.openedEvidence[c.id]||(state.openedEvidence[c.id]=[]);if(!opened.includes(activeEvidenceId)){opened.push(activeEvidenceId);saveState()}renderCaseRoom()}));document.querySelectorAll("[data-case-tab]").forEach(b=>b.classList.toggle("active",b.dataset.caseTab===activeCaseTab));const ws=document.getElementById("caseWorkspace");if(activeCaseTab==="brief")renderCaseBrief(c,ws);else if(activeCaseTab==="evidence")renderCaseEvidence(c,ws);else if(activeCaseTab==="logs")renderCaseLogs(c,ws);else if(activeCaseTab==="timeline")renderCaseTimeline(c,ws);else renderCaseQuestions(c,ws);setText("openedEvidence",(state.openedEvidence[c.id]||[]).length)}
-function renderCaseBrief(c,ws){ws.innerHTML=`<div class="card"><div class="section-head" style="margin-top:0"><h3>📋 ملخص المحقق</h3><span class="badge">CASE FILE</span></div><p style="color:var(--muted);font-size:13px;line-height:2">${escapeHTML(c.objective)}</p><div class="callout">🎯 <b>مهمتك:</b> اقرأ الأدلة، قارن التوقيتات، وابنِ استنتاجًا مدعومًا بالسجلات.</div><div class="grid-2"><div class="evidence-card"><h4><i class="fa-solid fa-folder-open"></i> الأدلة</h4><p>ابدأ بملف الموجز ثم راجع السجلات. استخدم التبويب الجانبي للانتقال بين الملفات.</p><button class="btn btn-secondary btn-small" onclick="activeCaseTab='evidence';renderCaseRoom()">فتح الأدلة</button></div><div class="evidence-card"><h4><i class="fa-solid fa-clock"></i> الخط الزمني</h4><p>رتب الأحداث زمنيًا، وحدد ما حدث قبل المؤشر وبعده.</p><button class="btn btn-secondary btn-small" onclick="activeCaseTab='timeline';renderCaseRoom()">عرض الأحداث</button></div><div class="evidence-card"><h4><i class="fa-solid fa-list-check"></i> الأسئلة</h4><p>أجب عن الأسئلة باستخدام الأدلة، لا التخمين.</p><button class="btn btn-primary btn-small" onclick="activeCaseTab='questions';renderCaseRoom()">ابدأ الإجابة</button></div><div class="evidence-card"><h4><i class="fa-solid fa-scale-balanced"></i> قواعد التحقيق</h4><p>ميّز بين الدليل والاستنتاج، ولا تعتبر عنوان IP وحده هوية شخص.</p><span class="badge green">تحليل مسؤول</span></div></div></div>`}
-function renderCaseEvidence(c,ws){if(activeEvidenceId){const ev=c.evidence.find(x=>x.id===activeEvidenceId);if(ev){const opened=state.openedEvidence[c.id]||[];ws.innerHTML=`<div class="card"><div class="section-head" style="margin-top:0"><h3><i class="fa-solid ${ev.icon}"></i> ${escapeHTML(ev.title)}</h3><span class="badge green">تم فتح الدليل</span></div><p style="color:var(--muted);font-size:12px">معرّف الدليل: ${escapeHTML(c.id.toUpperCase()+"-"+ev.id.toUpperCase())}</p>${ev.type==="log"?`<div class="log-filters"><input id="evidenceSearch" class="search-input" placeholder="🔍 ابحث داخل الدليل..." style="max-width:none"><button class="btn btn-secondary btn-small" id="copyEvidence">نسخ النص</button></div><pre class="code-block" id="evidenceBody">${escapeHTML(ev.body)}</pre>`:`<pre class="code-block" id="evidenceBody">${escapeHTML(ev.body)}</pre>`}<div class="callout">🧠 اسأل نفسك: ما الذي تثبته هذه المعلومة؟ وهل توجد أدلة أخرى تدعمها؟</div><button class="btn btn-secondary btn-small" onclick="activeEvidenceId=null;renderCaseRoom()">عرض جميع الأدلة</button></div>`;const search=document.getElementById("evidenceSearch");if(search)search.addEventListener("input",()=>{const pre=document.getElementById("evidenceBody");pre.textContent=ev.body.split("\n").filter(line=>line.toLowerCase().includes(search.value.toLowerCase())).join("\n")||"لا توجد نتائج مطابقة."});const cp=document.getElementById("copyEvidence");if(cp)cp.addEventListener("click",()=>{if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(ev.body).then(()=>toast("تم نسخ نص الدليل")).catch(()=>toast("تعذر النسخ؛ حدد النص يدويًا"));else toast("حدد النص وانسخه يدويًا")});return}}ws.innerHTML=`<div class="evidence-grid">${c.evidence.map(ev=>`<button class="evidence-card" style="text-align:right;color:inherit;cursor:pointer" onclick="activeEvidenceId='${ev.id}';renderCaseRoom()"><h4><i class="fa-solid ${ev.icon}" style="color:#c4b5fd"></i>${escapeHTML(ev.title)}</h4><p>${escapeHTML(ev.body.slice(0,105).replace(/\n/g," "))}...</p><span class="badge">فتح الدليل <i class="fa-solid fa-arrow-left"></i></span></button>`).join("")}</div>`}
-function renderCaseLogs(c,ws){const logs=c.evidence.filter(ev=>ev.type==="log");ws.innerHTML=`<div class="card"><div class="section-head" style="margin-top:0"><h3>🧾 مستكشف السجلات</h3><span class="badge">LOG VIEWER</span></div><p>ابحث عن حدث أو عنوان أو حساب داخل السجلات المتاحة في هذه القضية.</p><div class="log-filters"><input id="logSearch" class="search-input" placeholder="🔍 ابحث في السجلات..." style="max-width:none"><select id="logSource"><option value="all">كل المصادر</option>${logs.map(ev=>`<option value="${ev.id}">${escapeHTML(ev.title)}</option>`).join("")}</select></div><div id="logResults"></div></div>`;const update=()=>{const q=document.getElementById("logSearch").value.toLowerCase();const source=document.getElementById("logSource").value;const chosen=logs.filter(ev=>source==="all"||ev.id===source);setHTML("logResults",chosen.map(ev=>{const rows=ev.body.split("\n");return`<div style="margin-top:16px"><h4 style="font-size:13px"><i class="fa-solid fa-file-lines"></i> ${escapeHTML(ev.title)}</h4><div class="log-table-wrap"><table class="log-table"><tbody>${rows.filter((line,i)=>i===0||line.toLowerCase().includes(q)).map((line,i)=>`<tr>${line.split(",").map(cell=>`<td>${escapeHTML(cell)}</td>`).join("")}</tr>`).join("")||'<tr><td>لا توجد نتائج</td></tr>'}</tbody></table></div></div>`}).join(""))};document.getElementById("logSearch").addEventListener("input",update);document.getElementById("logSource").addEventListener("change",update);update()}
-function renderCaseTimeline(c,ws){ws.innerHTML=`<div class="card"><div class="section-head" style="margin-top:0"><h3>🕒 التسلسل الزمني</h3><span class="badge">UTC</span></div><p>قارن ترتيب الأحداث. اللون يساعد على القراءة فقط ولا يمثل حكمًا نهائيًا.</p><div style="display:grid;gap:10px;margin-top:20px">${c.timeline.map((t,i)=>`<div style="display:grid;grid-template-columns:75px 15px minmax(0,1fr);gap:10px;align-items:start"><div class="ltr" style="font-size:12px;color:#c4b5fd;padding-top:3px">${t[0]}</div><div style="height:100%;display:flex;flex-direction:column;align-items:center"><span style="width:11px;height:11px;border-radius:50%;background:${t[3]==="red"?"#fb7185":t[3]==="green"?"#36d399":t[3]==="yellow"?"#fbbf24":"#60a5fa"}"></span>${i<c.timeline.length-1?'<span style="width:1px;flex:1;min-height:30px;background:#493257"></span>':''}</div><div class="evidence-card" style="padding:12px"><b style="font-size:13px">${escapeHTML(t[1])}</b><div class="muted ltr" style="font-size:11px;margin-top:5px">${escapeHTML(t[2])}</div></div></div>`).join("")}</div></div>`}
-function renderCaseQuestions(c,ws){const solved=state.completedCases.includes(c.id);ws.innerHTML=`<div class="card question-card"><div class="section-head" style="margin-top:0"><h3>✍️ أسئلة التحقيق</h3><span class="badge">${c.questions.length} أسئلة</span></div><p>جاوب اعتمادًا على الأدلة. تقدر تستخدم التلميحات إذا احتجت، لكن حاول تستنتج بنفسك أولًا.</p><form id="caseQuestionsForm">${c.questions.map((q,i)=>`<div class="question"><label for="answer-${q.id}">${escapeHTML(q.label)}</label>${q.type==="select"?`<select class="field-input" id="answer-${q.id}" name="${q.id}"><option value="">اختر إجابتك</option>${q.options.map(o=>`<option value="${escapeHTML(o[0])}">${escapeHTML(o[1])}</option>`).join("")}</select>`:`<input class="field-input" id="answer-${q.id}" name="${q.id}" autocomplete="off" placeholder="اكتب إجابتك هنا...">`}<button type="button" class="btn btn-secondary btn-small" style="margin-top:8px" data-qhint="${q.id}"><i class="fa-regular fa-lightbulb"></i> تلميح</button><div class="hint-box" id="hint-${q.id}">${escapeHTML(q.hint)}</div><div class="quiz-feedback hidden" id="feedback-${q.id}"></div></div>`).join("")}<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:18px"><button class="btn btn-primary" type="submit"><i class="fa-solid fa-paper-plane"></i> إرسال التقرير</button><button class="btn btn-secondary" type="button" id="showAnswers">مراجعة الإجابات</button></div></form><div class="result-box" id="caseResult"></div>${solved?'<div class="callout success">🏆 تم حل هذه القضية سابقًا. يمكنك إعادة مراجعة إجاباتك وأدلتك.</div>':''}</div>`;document.querySelectorAll("[data-qhint]").forEach(b=>b.addEventListener("click",()=>document.getElementById("hint-"+b.dataset.qhint).classList.toggle("show")));document.getElementById("caseQuestionsForm").addEventListener("submit",e=>{e.preventDefault();gradeCase(c,false)});document.getElementById("showAnswers").addEventListener("click",()=>gradeCase(c,true))}
-function gradeCase(c,reveal){let correct=0;let unanswered=0;c.questions.forEach(q=>{const input=document.getElementById("answer-"+q.id);const raw=(input.value||"").trim();if(!raw)unanswered++;const norm=raw.toLowerCase().trim().replace(/\s+/g," ");const accepted=q.answer.map(a=>a.toLowerCase().trim());const ok=accepted.includes(norm);if(ok)correct++;const fb=document.getElementById("feedback-"+q.id);fb.classList.remove("hidden");fb.innerHTML=`<span style="color:${ok?"#6ee7b7":"#fda4af"};font-weight:800">${ok?"✓ إجابة صحيحة":reveal?"الإجابة المرجعية: "+escapeHTML(q.answer[0]):"✗ تحتاج مراجعة"}</span><div style="margin-top:5px;color:#c7b9d8">${escapeHTML(q.explain)}</div>`;if(reveal&&!ok)input.style.borderColor="#fb7185";else input.style.borderColor=ok?"#36d399":"#493257"});const result=document.getElementById("caseResult");result.className="result-box show "+(correct===c.questions.length?"good":"bad");if(correct===c.questions.length){result.innerHTML=`<h3>🏆 أحسنت! التقرير مكتمل</h3><p>أجبت بشكل صحيح عن جميع الأسئلة. تذكر أن استنتاجك يجب أن يظل ضمن حدود الأدلة.</p>`;if(!state.completedCases.includes(c.id)){state.completedCases.push(c.id);addXP(c.xp,"حل قضية: "+c.title);checkAchievements();toast("تم حل القضية! حصلت على "+c.xp+" XP")}else saveState();renderCases()}else{result.innerHTML=`<h3>🔍 نتيجتك: ${correct} من ${c.questions.length}</h3><p>راجع الأدلة والتلميحات وحاول مرة ثانية. ${unanswered?"باقي "+unanswered+" أسئلة بدون إجابة.":""}</p>`;state.caseAttempts[c.id]=(state.caseAttempts[c.id]||0)+1;saveState()}result.scrollIntoView({behavior:"smooth",block:"nearest"})}
-
-document.getElementById("caseHintBtn").addEventListener("click",()=>{});
-function renderFeaturedCase(){const c=casesData.find(x=>!state.completedCases.includes(x.id))||casesData[0];setHTML("featuredCase",`<div class="card" style="display:flex;gap:17px;align-items:center;flex-wrap:wrap"><div class="card-icon" style="width:58px;height:58px;flex-shrink:0;margin:0"><i class="fa-solid ${c.icon}"></i></div><div style="flex:1;min-width:180px"><div class="badges"><span class="badge">${escapeHTML(c.subtitle)}</span><span class="badge">${escapeHTML(c.level)}</span></div><h3 style="margin:0 0 6px">${escapeHTML(c.title)}</h3><p style="font-size:12px;color:var(--muted);margin:0">${escapeHTML(c.objective)}</p></div><button class="btn btn-primary" onclick="navigate('cases');openCase('${c.id}')">ابدأ التحقيق <i class="fa-solid fa-arrow-left"></i></button></div>`)}
-
-let currentBookId="python-book",currentChapter=0;
 const books=[
-{id:"python-book",title:"Python من الصفر",icon:"fa-brands fa-python",category:"برمجة",desc:"ابدأ البرمجة من الأساسيات وصولًا إلى قراءة ملفات نصية وتحليل بيانات تدريبية.",chapters:[
-{title:"1. وش هي Python؟",content:`<h3>تعريف بسيط</h3><p>Python لغة برمجة تستخدم في تطوير التطبيقات، وتحليل البيانات، والأتمتة، والتعليم. تمتاز بصياغة واضحة نسبيًا للمبتدئين.</p><div class="code-block">print("Hello Midnight")</div><p>الأمر print يعرض قيمة أو نصًا على الشاشة. النصوص توضع عادةً بين علامتي اقتباس.</p><h3>كيف تتعلم؟</h3><ul><li>اكتب أمثلة بنفسك بدل الاكتفاء بالقراءة.</li><li>افهم رسالة الخطأ بدل نسخ الحل مباشرة.</li><li>ابدأ بمشاريع صغيرة ومفهومة.</li></ul>`},
-{title:"2. المتغيرات وأنواع البيانات",content:`<h3>تخزين القيم</h3><div class="code-block">name = "Midnight"\nscore = 10\nactive = True\nprint(name)\nprint(score)</div><p>المتغير اسم يشير إلى قيمة. المثال يحتوي على نص، وعدد صحيح، وقيمة منطقية.</p><h3>أنواع شائعة</h3><ul><li>str: نص مثل "hello".</li><li>int: عدد صحيح مثل 12.</li><li>float: عدد عشري مثل 3.5.</li><li>bool: قيمة True أو False.</li></ul>`},
-{title:"3. الشروط",content:`<h3>اتخاذ قرار</h3><div class="code-block">score = 75\nif score >= 50:\n    print("ناجح")\nelse:\n    print("حاول مرة ثانية")</div><p>تسمح if بتنفيذ تعليمات وفق شرط. انتبه للمسافات البادئة في Python؛ فهي جزء من تركيب الكود.</p><h3>المقارنة</h3><p>يمكن استخدام == للمساواة، و!= لعدم المساواة، و&gt; و&lt; للمقارنة بين القيم.</p>`},
-{title:"4. الحلقات",content:`<h3>التكرار</h3><div class="code-block">for number in range(3):\n    print(number)</div><p>الحلقة for تنفذ الكتلة لكل قيمة من القيم. المثال يطبع الأرقام 0 و1 و2.</p><div class="callout">لا تستخدم حلقات غير منتهية بلا سبب. افهم شرط التوقف عند العمل مع while.</div>`},
-{title:"5. الدوال",content:`<h3>تقسيم البرنامج</h3><div class="code-block">def greet(name):\n    return "Hello " + name\n\nmessage = greet("Midnight")\nprint(message)</div><p>الدالة تجمع تعليمات في جزء يمكن استدعاؤه عند الحاجة. الوسيط name يستقبل قيمة، وreturn يعيد النتيجة.</p>`},
-{title:"6. القوائم والقواميس",content:`<h3>تجميع البيانات</h3><div class="code-block">events = ["LOGIN", "LOGOUT", "LOGIN"]\nprint(events[0])\n\nuser = {"name": "trainee", "active": True}\nprint(user["name"])</div><p>القائمة تحفظ عناصر مرتبة، بينما القاموس يربط مفاتيح بقيم. انتبه إلى أن الفهرسة في Python تبدأ عادةً من الصفر.</p>`},
-{title:"7. قراءة الملفات النصية",content:`<h3>القراءة الآمنة</h3><div class="code-block">from pathlib import Path\n\npath = Path("sample.log")\nif path.exists():\n    text = path.read_text(encoding="utf-8")\n    print(text)</div><p>هذا مثال تعليمي لقراءة ملف محلي معلوم. عند التعامل مع ملفات حقيقية، تأكد من المصدر والصلاحيات ولا تجمع بيانات خاصة دون إذن.</p>`},
-{title:"8. تحليل سجلات تدريبية",content:`<h3>البحث عن نمط</h3><div class="code-block">sample = [\n    "LOGIN_SUCCESS user=ali",\n    "LOGIN_FAILED user=ali",\n    "LOGIN_FAILED user=ali",\n]\n\nfor line in sample:\n    if "LOGIN_FAILED" in line:\n        print("راجع الحدث:", line)</div><p>المثال يبحث عن كلمة في بيانات تدريبية ثابتة. يمكن تطويره لإحصاء الأحداث أو ترتيبها زمنيًا.</p><div class="callout warning">لا تستنتج أن الحساب مخترق من سطر واحد. اجمع السياق وراجع مصادر متعددة.</div>`},
-{title:"9. أخطاء شائعة",content:`<h3>افهم رسائل الخطأ</h3><ul><li>SyntaxError: خطأ في تركيب الكود.</li><li>NameError: اسم غير معروف في هذا السياق.</li><li>TypeError: استخدام نوع بيانات بطريقة غير مناسبة.</li><li>IndentationError: مشكلة في المسافات البادئة.</li></ul><p>اقرأ آخر سطر من رسالة الخطأ أولًا، ثم راجع رقم السطر والسياق المحيط به.</p>`},
-{title:"10. مشروعك الأول",content:`<h3>محلل سجل بسيط</h3><p>أنشئ قائمة من أحداث تجريبية، ثم اكتب برنامجًا يحسب عدد محاولات الدخول الفاشلة.</p><div class="code-block">events = [\n    "LOGIN_SUCCESS",\n    "LOGIN_FAILED",\n    "LOGIN_FAILED",\n    "LOGOUT",\n]\nfailed = 0\nfor event in events:\n    if event == "LOGIN_FAILED":\n        failed += 1\nprint("Failed events:", failed)</div><p>بعد ذلك أضف عدادًا للنجاح، ثم جرّب تغيير البيانات ولاحظ كيف تتغير النتيجة.</p>`}
+{
+id:'cyber',title:'مدخل إلى الأمن السيبراني',category:'FOUNDATIONS',color:'',icon:'fa-shield-halved',time:'25 دقيقة',desc:'ابدأ من الصفر: ما هو الأمن السيبراني، ما التخصصات الموجودة، وكيف تبدأ طريقك بطريقة صحيحة.',
+chapters:[
+{title:'ما هو الأمن السيبراني؟',lead:'الأمن السيبراني ليس مجرد أدوات أو أوامر؛ هو طريقة تفكير تهدف إلى حماية الأنظمة والمعلومات.',body:`<h2>فكرة الأمن السيبراني</h2><p>الأمن السيبراني هو مجموعة من الممارسات والتقنيات التي تساعد على حماية الأجهزة والشبكات والتطبيقات والبيانات من الوصول غير المصرح به أو التغيير أو التعطيل.</p><p>تخيّل أن عندك منزلًا. تحتاج إلى باب قوي، ومفاتيح محفوظة، وكاميرات عند الحاجة، وخطة تتبعها إذا حدث شيء غير طبيعي. حماية الأنظمة تعمل بمبدأ مشابه، لكن الأدوات والتفاصيل تختلف.</p><h2>الثلاثية الأمنية</h2><ul><li><b>السرية (Confidentiality):</b> لا يطّلع على المعلومات إلا من يملك صلاحية.</li><li><b>السلامة (Integrity):</b> تبقى البيانات صحيحة ولا تتغير دون إذن.</li><li><b>التوافر (Availability):</b> تبقى الخدمة متاحة للمستخدمين المصرح لهم عند الحاجة.</li></ul><div class="note"><strong>تذكّر:</strong> قد تكون الخدمة آمنة من ناحية السرية، لكنها تفشل إذا تعطلت تمامًا. الأمن يوازن بين أكثر من جانب.</div><h2>كيف يفكر المحلل؟</h2><p>المحلل لا يبدأ باتهام شخص أو تشغيل أداة عشوائيًا. يبدأ بفهم السياق، وتحديد ما الذي يحاول حمايته، ثم يبحث عن مؤشرات قابلة للتحقق ويكتب استنتاجاته مع توضيح درجة الثقة.</p>`,quiz:{q:'ما المقصود بسرية المعلومات؟',opts:['إتاحتها للجميع','حصر الاطلاع على المصرح لهم','حذفها باستمرار'],correct:1,explain:'السرية تعني منع الاطلاع غير المصرح به على المعلومات.'}},
+{title:'التخصصات والمسارات',lead:'المجال واسع، ولا تحتاج إلى تعلّم كل شيء دفعة واحدة.',body:`<h2>أهم المسارات</h2><h3>الدفاع والتحليل (Blue Team)</h3><p>مراقبة الأنظمة، مراجعة التنبيهات والسجلات، والتحقق من الحوادث والاستجابة لها.</p><h3>اختبار الاختراق المصرّح (Penetration Testing)</h3><p>تقييم أمان الأنظمة ضمن نطاق واضح وموافقة صريحة، ثم توثيق النتائج واقتراح الإصلاحات.</p><h3>أمن تطبيقات الويب</h3><p>فهم المصادقة والجلسات والصلاحيات والتحقق من المدخلات، واكتشاف الأخطاء داخل بيئة مخبرية أو مشروع مصرح به.</p><h3>التحليل الجنائي الرقمي</h3><p>جمع الأدلة الرقمية والمحافظة على سلامتها وتحليلها لبناء صورة زمنية دقيقة لما حدث.</p><h2>ما البداية المناسبة؟</h2><ol><li>تعلم أساسيات الأنظمة والملفات.</li><li>افهم مفاهيم الشبكات وDNS وIP والمنافذ.</li><li>ابدأ Python بمشاريع بسيطة.</li><li>تدرّب على أسئلة قصيرة وسجلات خيالية.</li><li>اختر تخصصًا بعد تجربة عدة مسارات.</li></ol>`,quiz:{q:'ما الخطوة الصحيحة قبل اختبار نظام؟',opts:['الحصول على إذن وتحديد النطاق','تجربة أي أداة عليه','جمع كلمات مرور المستخدمين'],correct:0,explain:'يجب تحديد نطاق الاختبار والحصول على إذن واضح قبل البدء.'}},
+{title:'الأخلاقيات والنطاق',lead:'المهارة التقنية مهمة، لكن معرفة حدود الإذن جزء أساسي من الاحتراف.',body:`<h2>الإذن ليس تفصيلًا</h2><p>امتلاك مهارة تقنية لا يمنحك تلقائيًا صلاحية اختبار أي موقع أو حساب أو جهاز. استخدم مختبرات تدريبية مصممة للتعلم أو أنظمة تملكها أو لديك إذن صريح لاختبارها.</p><h2>حدد النطاق</h2><p>النطاق يوضح الأنظمة المسموح اختبارها، والوقت، والطرق المقبولة، وما يجب تجنبه. إذا لم تكن متأكدًا من صلاحية عمل ما، فتوقف واسأل الجهة المسؤولة.</p><h2>وثّق بدلًا من التخمين</h2><ul><li>اكتب ما لاحظته بالفعل.</li><li>فرّق بين الحقيقة والاحتمال.</li><li>لا تجمع بيانات شخصية لا تحتاجها.</li><li>أبلغ عن النتائج بطريقة واضحة ومسؤولة.</li></ul>`,quiz:{q:'وجدت نظامًا عامًا لم يطلب كلمة مرور؛ ماذا يعني ذلك؟',opts:['يسمح لي باختباره','لا يعني وجود إذن للاختبار','يعني أنه لا يحتوي على بيانات'],correct:1,explain:'إمكانية الوصول لا تعني وجود تصريح لإجراء اختبارات أمنية.'}}
 ]},
-{id:"cyber-book",title:"أساسيات الأمن السيبراني",icon:"fa-shield-halved",category:"أمن سيبراني",desc:"مفاهيم الحماية وإدارة المخاطر والاستجابة للحوادث.",chapters:[
-{title:"1. عقلية الأمن السيبراني",content:`<h3>الحماية تبدأ بالفهم</h3><p>الأمن السيبراني ليس مجرد أدوات؛ هو فهم للأنظمة والبيانات والتهديدات وكيفية تقليل المخاطر.</p><ul><li>اعرف ما الذي تحميه.</li><li>حدد من يحتاج إلى الوصول.</li><li>حدّث الأنظمة وراقب الأحداث.</li><li>جهز خطة للاستجابة عند حدوث مشكلة.</li></ul>`},
-{title:"2. السرية والسلامة والتوافر",content:`<h3>مثلث CIA</h3><p><b>السرية:</b> حماية المعلومات من الاطلاع غير المصرح به.</p><p><b>السلامة:</b> حماية المعلومات من التغيير غير المصرح به.</p><p><b>التوافر:</b> إبقاء الأنظمة والبيانات متاحة للمستخدمين المصرح لهم.</p><p>عند تصميم الحماية، اسأل كيف يؤثر أي إجراء على هذه الجوانب الثلاثة.</p>`},
-{title:"3. التهديدات والمخاطر",content:`<h3>الفرق بين التهديد والثغرة والمخاطر</h3><p>التهديد حدث أو جهة قد تسبب ضررًا، والثغرة ضعف يمكن استغلاله، والمخاطر تقدير لاحتمال الضرر وأثره.</p><p>مثال: جهاز غير محدث قد يحتوي على ضعف، وقد يزيد ذلك من المخاطر إذا كان متصلًا بشبكة حساسة.</p>`},
-{title:"4. التحديثات والنسخ الاحتياطي",content:`<h3>أساسيات مهمة</h3><ul><li>ثبت التحديثات الأمنية من المصدر الرسمي.</li><li>احتفظ بنسخ احتياطية مناسبة واختبر استعادتها.</li><li>قلل الصلاحيات إلى الحد اللازم.</li><li>استخدم المصادقة متعددة العوامل للحسابات المهمة.</li></ul><p>وجود نسخة احتياطية لا يكفي إن لم تكن قابلة للاستعادة.</p>`},
-{title:"5. الاستجابة للحوادث",content:`<h3>عند ملاحظة حادثة</h3><p>تتضمن الاستجابة عادةً التحضير، والكشف والتحليل، والاحتواء، والمعالجة، والاستعادة، واستخلاص الدروس.</p><p>وثق الأوقات والأحداث، واحتفظ بالأدلة وفق السياسة المعتمدة، ولا تتخذ إجراءات متهورة قد تمحو معلومات مهمة.</p>`},
-{title:"6. أخلاقيات التعلم",content:`<h3>التصريح أولًا</h3><p>اختبر فقط الأنظمة التي تملكها أو لديك تصريح واضح لاختبارها. التزم بنطاق التصريح وقواعد المختبر، ولا تصل إلى بيانات أشخاص آخرين.</p><p>المعرفة الأمنية تستخدم لحماية الأنظمة، وتوثيق المخاطر، ومساعدة المسؤولين على إصلاحها.</p>`}
+{
+id:'protect',title:'احمِ نفسك: دليل الأمان الرقمي',category:'PERSONAL SECURITY',color:'green',icon:'fa-user-shield',time:'35 دقيقة',desc:'دليل متكامل لحماية حساباتك وجهازك وخصوصيتك والتعامل مع الاحتيال والملفات المشبوهة.',
+chapters:[
+{title:'حساباتك وكلمات المرور',lead:'حماية الحساب تبدأ بكلمة مرور فريدة ووسائل استرداد مؤمنة.',body:`<h2>استخدم كلمة مرور مختلفة</h2><p>إذا استخدمت كلمة المرور نفسها في عدة مواقع، فقد يؤدي تسربها من خدمة واحدة إلى تعريض حسابات أخرى للخطر. اجعل لكل حساب مهم كلمة مرور مستقلة وطويلة.</p><h2>مدير كلمات المرور</h2><p>مدير كلمات المرور يساعدك على إنشاء كلمات مرور قوية وتخزينها. اختر خدمة موثوقة، واجعل كلمة المرور الرئيسية قوية، وفعّل وسائل الاسترداد المناسبة.</p><h2>المصادقة متعددة العوامل (MFA)</h2><p>تضيف خطوة تحقق أخرى عند تسجيل الدخول. استخدم تطبيق مصادقة أو مفتاح أمان عندما يكون متاحًا، ولا تشارك رموز التحقق مع أي شخص.</p><div class="note"><strong>قاعدة مهمة:</strong> الدعم الحقيقي لا يحتاج منك أن ترسل له رمز التحقق أو كلمة المرور في محادثة.</div><h2>إذا شككت أن حسابك تعرض للخطر</h2><ol><li>استخدم الجهاز والقناة الرسمية لتغيير كلمة المرور.</li><li>راجع الجلسات والأجهزة المتصلة وسجّل الخروج من الجلسات غير المعروفة.</li><li>تحقق من البريد ورقم الهاتف ووسائل الاسترداد.</li><li>فعّل المصادقة متعددة العوامل وأبلغ الدعم الرسمي.</li></ol>`,quiz:{q:'ما الممارسة الأفضل لكلمات المرور؟',opts:['كلمة واحدة لكل المواقع','كلمات فريدة لكل حساب مهم','إرسالها لصديق لحفظها'],correct:1,explain:'كلمة المرور الفريدة تحد من انتقال أثر التسريب بين الحسابات.'}},
+{title:'التصيد والهندسة الاجتماعية',lead:'المحتال قد يستغل الاستعجال أو الخوف أو الثقة بدلًا من استغلال ثغرة تقنية.',body:`<h2>ما التصيد؟</h2><p>التصيد محاولة لخداع شخص حتى يشارك معلومات حساسة أو يفتح محتوى ضارًا أو ينفذ إجراءً لم يكن ليقوم به لو فهم الموقف جيدًا.</p><h2>علامات تستحق التوقف</h2><ul><li>رسالة تهدد بإغلاق الحساب خلال دقائق.</li><li>طلب كلمة مرور أو رمز تحقق.</li><li>انتحال صفة الدعم الفني أو جهة معروفة.</li><li>عرض غير متوقع يبدو أفضل من أن يكون حقيقيًا.</li><li>طلب إبقاء المحادثة سرية أو تجاوز الإجراءات المعتادة.</li></ul><h2>كيف تتحقق؟</h2><p>لا تستخدم بيانات التواصل التي أرسلتها الرسالة المشبوهة. افتح التطبيق الرسمي بنفسك أو استخدم وسيلة اتصال تعرفها مسبقًا. اسأل عبر قناة مستقلة إذا كان الطلب حقيقيًا.</p><h2>إذا ضغطت على رابط مشبوه</h2><p>لا تفترض أن الضرر وقع حتمًا. أغلق الصفحة، ولا تدخل بيانات إضافية، وافحص أي تنبيهات أمنية. إذا أدخلت كلمة مرور، غيّرها من الموقع الرسمي، وراجع الجلسات ووسائل الاسترداد.</p>`,quiz:{q:'وصلتك رسالة تطلب رمز التحقق بسرعة؛ ماذا تفعل؟',opts:['أرسل الرمز لتجنب المشكلة','تحقق عبر قناة رسمية مستقلة','أرسل الرمز إلى صديق'],correct:1,explain:'لا تشارك رموز التحقق. تحقّق من الطلب عبر قناة رسمية مستقلة.'}},
+{title:'أمان الهاتف والجهاز',lead:'تحديثات النظام وإدارة التطبيقات والصلاحيات تقلل المخاطر اليومية.',body:`<h2>التحديثات مهمة</h2><p>تتضمن التحديثات إصلاحات أمنية. فعّل التحديث التلقائي متى كان مناسبًا، ولا تؤجل التحديثات المهمة لفترة طويلة.</p><h2>نزّل التطبيقات بحذر</h2><ul><li>استخدم المتاجر الرسمية والمصادر الموثوقة.</li><li>راجع اسم المطور والتقييمات والصلاحيات.</li><li>تجنب الملفات التي تصل عبر رسائل مجهولة.</li><li>احذف التطبيقات التي لم تعد تحتاجها.</li></ul><h2>قفل الجهاز والخصوصية</h2><p>استخدم رمز قفل يصعب تخمينه، وفعّل العثور على الجهاز إن توفر، وراجع ما يظهر على شاشة القفل. لا تمنح التطبيقات صلاحية الوصول للصور أو الموقع أو الميكروفون دون حاجة واضحة.</p><h2>الشبكات العامة</h2><p>تجنب إجراء العمليات الحساسة على شبكات غير موثوقة إذا أمكن. تحقق من اسم الشبكة، ولا تتجاوز تحذيرات الشهادات الأمنية، واستخدم الاتصال الآمن بالتطبيقات الرسمية.</p>`,quiz:{q:'ما التصرف الأفضل عند طلب تطبيق صلاحية غير منطقية؟',opts:['الموافقة دائمًا','راجع الحاجة والمصدر قبل الموافقة','تعطيل قفل الجهاز'],correct:1,explain:'منح أقل قدر لازم من الصلاحيات يقلل الوصول غير الضروري لبياناتك.'}},
+{title:'الملفات والنسخ الاحتياطي',lead:'لا يكفي أن تملك ملفاتك؛ يجب أن تستطيع استعادتها عند الحاجة.',body:`<h2>قبل فتح ملف غير متوقع</h2><p>تحقق من المرسل والسياق وامتداد الملف. لا تعتمد على الاسم أو الأيقونة وحدهما. إذا كان الملف غير متوقع، فاسأل المرسل عبر قناة مستقلة قبل فتحه.</p><h2>النسخ الاحتياطي</h2><p>احتفظ بنسخة من الملفات المهمة في مكان منفصل عن الجهاز الأساسي. راجع إعدادات النسخ الاحتياطي، واختبر استعادة بعض الملفات دوريًا لتتأكد أن النسخة قابلة للاستخدام.</p><h2>إذا شككت بوجود ملف ضار</h2><ol><li>لا تشغّله ولا تعِد إرساله للآخرين.</li><li>استخدم أدوات الحماية الموثوقة المتوفرة على جهازك.</li><li>اطلب مساعدة شخص مسؤول أو مختص إذا كان جهازًا تابعًا لمدرسة أو جهة عمل.</li><li>لا تحذف الأدلة المتعلقة بحادث أمني إذا كانت الجهة المسؤولة تحتاج إلى مراجعتها.</li></ol>`,quiz:{q:'لماذا نختبر استعادة النسخة الاحتياطية؟',opts:['للتأكد أنها قابلة للاسترجاع','لزيادة عدد الملفات فقط','لإلغاء تحديثات النظام'],correct:0,explain:'وجود نسخة لا يفيد إذا تعذرت استعادة البيانات منها.'}},
+{title:'الخصوصية والبصمة الرقمية',lead:'كل مشاركة قد تترك أثرًا؛ اختر ما تنشره ومن يستطيع رؤيته.',body:`<h2>ما البصمة الرقمية؟</h2><p>هي الآثار التي تتركها أنشطتك على الإنترنت، مثل المنشورات والتعليقات والصور ومعلومات الحسابات وبعض البيانات التي تجمعها الخدمات.</p><h2>راجع إعدادات الخصوصية</h2><ul><li>قلل ظهور معلوماتك الشخصية للعامة.</li><li>لا تنشر عنوانك أو موقعك اللحظي أو تفاصيل روتينك.</li><li>راجع التطبيقات المرتبطة بحساباتك.</li><li>فكر قبل مشاركة صور تظهر وثائق أو شاشات أو معلومات خاصة.</li></ul><h2>المعلومات الشخصية</h2><p>لا ترسل صور الهوية أو البيانات المالية أو كلمات المرور في محادثات غير موثوقة. إذا احتجت مشاركة وثيقة مع جهة رسمية، فاستخدم القناة المحددة وتحقق من ضرورتها.</p><h2>تذكّر</h2><p>حذف منشور لا يضمن اختفاء كل نسخه. تعامل مع المشاركة العامة على أنها قد تُحفظ أو يعاد تداولها.</p>`,quiz:{q:'ما أفضل طريقة لتقليل كشف معلوماتك؟',opts:['نشر كل التفاصيل للعامة','مراجعة الخصوصية وتقليل البيانات المنشورة','استخدام كلمة مرور قصيرة'],correct:1,explain:'تقليل المعلومات المتاحة للجمهور يحد من فرص إساءة استخدامها.'}},
+{title:'خطة أمان شخصية',lead:'اجعل الحماية عادة بسيطة تراجعها من وقت لآخر.',body:`<h2>مراجعة شهرية</h2><ul><li>تحديث الجهاز والتطبيقات.</li><li>مراجعة الجلسات النشطة في الحسابات المهمة.</li><li>التأكد من عمل المصادقة متعددة العوامل.</li><li>مراجعة النسخ الاحتياطية وإمكانية استعادة الملفات.</li><li>إزالة التطبيقات والصلاحيات غير الضرورية.</li></ul><h2>إذا تعرض حسابك للاختراق</h2><ol><li>استخدم قناة رسمية لاستعادة الوصول.</li><li>غيّر كلمة المرور من جهاز موثوق.</li><li>ألغِ الجلسات غير المعروفة وراجع إعدادات الاسترداد.</li><li>أبلغ جهات الاتصال إذا استُخدم الحساب لإرسال رسائل احتيالية.</li><li>احتفظ بمعلومات الحادث الضرورية واطلب المساعدة المناسبة.</li></ol><div class="note"><strong>الفكرة الأساسية:</strong> لا تحتاج أن تكون خبيرًا لتبدأ بحماية نفسك. العادات الصغيرة المتكررة تصنع فرقًا كبيرًا.</div>`,quiz:{q:'ما أفضل خطة أمان؟',opts:['إجراء واحد ثم تجاهل الحساب','مراجعة دورية للتحديثات والحسابات والنسخ الاحتياطي','مشاركة رموز التحقق مع الأسرة'],correct:1,explain:'المراجعة الدورية تجعل الحماية مستمرة بدل الاعتماد على إجراء واحد.'}}
 ]},
-{id:"self-protection",title:"كيف تحمي نفسك رقميًا",icon:"fa-user-shield",category:"حماية شخصية",desc:"دليل عملي للحسابات والروابط والملفات والخصوصية.",chapters:[
-{title:"1. تأمين الحسابات",content:`<h3>ابدأ بالأهم</h3><ul><li>استخدم كلمات مرور فريدة للحسابات المهمة.</li><li>فعّل المصادقة متعددة العوامل.</li><li>لا تشارك رموز التحقق مع أي شخص.</li><li>راجع جلسات الدخول النشطة وسجل الخروج من الأجهزة غير المعروفة.</li></ul>`},
-{title:"2. اكتشاف التصيد",content:`<h3>لا تستعجل</h3><p>رسائل التصيد قد تستخدم اسم جهة معروفة، أو تخويفًا، أو جائزة وهمية، أو طلبًا عاجلًا لتسجيل الدخول.</p><p>تحقق من الطلب عبر قناة رسمية تعرفها مسبقًا، وليس عبر الرابط الموجود في الرسالة المشبوهة.</p>`},
-{title:"3. فحص الروابط",content:`<h3>راجع اسم النطاق</h3><p>اقرأ اسم النطاق بدقة، وانتبه للأحرف المتشابهة والنطاقات الفرعية والأسماء المقلدة. الرابط الذي يبدأ بـ HTTPS ليس مضمونًا أن يكون موثوقًا.</p><p>لا تفتح رابطًا غير متوقع لمجرد أن شخصًا أرسله لك. عند الشك، اطلب المساعدة من شخص بالغ تثق به أو مسؤول الجهاز.</p>`},
-{title:"4. الملفات والمرفقات",content:`<h3>قبل فتح الملف</h3><ul><li>تأكد أنك كنت تتوقع الملف ومن تعرف مصدره.</li><li>اعرض امتداد الملف الحقيقي ولا تعتمد على اسمه فقط.</li><li>حدّث النظام وبرنامج الحماية.</li><li>لا تعطل الحماية لتشغيل ملف مشبوه.</li><li>لا ترفع ملفات خاصة إلى خدمات فحص عامة دون إذن.</li></ul>`},
-{title:"5. الخصوصية",content:`<h3>خفف ما تشاركه</h3><p>راجع إعدادات الخصوصية وصلاحيات التطبيقات. لا تنشر عنوانك أو موقعك المباشر أو وثائقك أو رموز التحقق.</p><p>انتبه لما يظهر في لقطات الشاشة، مثل البريد الإلكتروني أو أرقام الطلبات أو أسماء الشبكات.</p>`},
-{title:"6. ماذا تفعل عند الشك؟",content:`<h3>خطوات هادئة</h3><p>لا تتفاعل مع الرسالة المشبوهة ولا تعيد إرسالها. افتح التطبيق الرسمي بنفسك إذا احتجت مراجعة الحساب، وغيّر كلمة المرور من جهاز موثوق إذا ظهرت علامات اختراق، ثم سجّل الخروج من الجلسات غير المعروفة وأبلغ الجهة المناسبة.</p><p>إذا كنت صغير السن وتعرضت لتهديد أو ابتزاز، أخبر ولي أمرك أو شخصًا بالغًا موثوقًا واحتفظ بالأدلة دون إعادة نشرها.</p>`}
+{
+id:'social',title:'الهندسة الاجتماعية',category:'SOCIAL ENGINEERING',color:'pink',icon:'fa-people-arrows-left-right',time:'30 دقيقة',desc:'افهم أساليب التلاعب النفسي، وتعرّف على إشارات الاحتيال، وتعلّم التحقق والاستجابة.',
+chapters:[
+{title:'فهم الهندسة الاجتماعية',lead:'الهندسة الاجتماعية تستهدف قرارات الناس وثقتهم، وليس الأجهزة فقط.',body:`<h2>التعريف</h2><p>الهندسة الاجتماعية هي استخدام الخداع أو الضغط أو انتحال الصفة للتأثير على شخص ودفعه إلى كشف معلومات أو تنفيذ إجراء. قد تحدث عبر البريد أو الهاتف أو الرسائل أو حتى وجهًا لوجه.</p><h2>لماذا تنجح أحيانًا؟</h2><p>يعتمد البشر على الثقة والعادات والسرعة لاتخاذ قرارات كثيرة. قد يستغل المحتال هذه العوامل، خصوصًا عندما يخلق شعورًا بالخوف أو الاستعجال أو السلطة.</p><h2>أنواع شائعة</h2><ul><li><b>التصيد:</b> رسائل تنتحل جهة موثوقة.</li><li><b>التصيد الموجّه:</b> رسالة مخصصة لشخص أو فريق.</li><li><b>انتحال الدعم:</b> شخص يدّعي أنه موظف دعم أو مسؤول.</li><li><b>الطُعم:</b> عرض أو ملف يغري الشخص بالتفاعل.</li><li><b>الضغط والاستعجال:</b> محاولة منعك من التفكير أو التحقق.</li></ul><div class="note"><strong>مبدأ دفاعي:</strong> تعلّم العلامات حتى تتعرف عليها وتحمي نفسك، وليس لتجربة الخداع على الآخرين.</div>`,quiz:{q:'ما الهدف الأساسي للهندسة الاجتماعية؟',opts:['التأثير على الإنسان وخداعه','رفع سرعة الإنترنت','تحديث نظام التشغيل'],correct:0,explain:'تعتمد على التأثير في قرارات الأشخاص للحصول على معلومات أو إجراءات.'}},
+{title:'علامات التلاعب',lead:'لا تعتمد على علامة واحدة؛ اجمع السياق وتحقق من هوية المرسل والطلب.',body:`<h2>إشارات تحذيرية</h2><ul><li>استعجال غير معتاد أو تهديد بعقوبة فورية.</li><li>طلب كلمة مرور أو رمز تحقق أو بيانات مالية.</li><li>طلب تجاوز إجراءات رسمية أو إبقاء الأمر سرًا.</li><li>تغيير مفاجئ في طريقة التواصل أو تفاصيل الدفع.</li><li>عرض غير منطقي أو وعد بمكافأة غير متوقعة.</li></ul><h2>كيف تتعامل مع طلب غير معتاد؟</h2><ol><li>توقف ولا تنفذ الطلب مباشرة.</li><li>تحقق من هوية الشخص عبر قناة مستقلة.</li><li>اسأل عن سبب الطلب واتبع الإجراءات الرسمية.</li><li>لا تشارك معلومات حساسة لإثبات هويتك.</li><li>أبلغ عن الرسالة إذا بقيت مشبوهة.</li></ol><h2>الفرق بين الشك والدليل</h2><p>وجود أخطاء لغوية أو صياغة غريبة قد يكون مؤشرًا، لكنه ليس دليلًا قاطعًا. بعض الرسائل الاحتيالية مكتوبة باحتراف، وبعض الرسائل الشرعية قد تحتوي على أخطاء. التحقق المستقل أقوى من الاعتماد على الشكل.</p>`,quiz:{q:'هل الأخطاء الإملائية تثبت أن الرسالة احتيالية؟',opts:['نعم دائمًا','لا، هي مؤشر محتمل وليست إثباتًا','لا توجد رسائل احتيالية احترافية'],correct:1,explain:'يجب التحقق من هوية المرسل والطلب عبر قناة مستقلة بدل الاعتماد على علامة واحدة.'}},
+{title:'الاستجابة والإبلاغ',lead:'الاستجابة الهادئة والسريعة تقلل أثر الحادث وتساعد على حماية الآخرين.',body:`<h2>قبل وقوع المشكلة</h2><p>اتفق مع الأسرة أو الفريق على طريقة للتحقق من الطلبات الحساسة. استخدم أرقامًا وقنوات معروفة مسبقًا، ولا تجعل الرسائل المفاجئة مصدر الثقة الوحيد.</p><h2>إذا شاركت معلومات بالخطأ</h2><ol><li>أوقف أي تفاعل إضافي مع المرسل المشبوه.</li><li>إذا شاركت كلمة مرور، غيّرها من القناة الرسمية.</li><li>راجع الجلسات ووسائل الاسترداد والمصادقة متعددة العوامل.</li><li>إذا شاركت معلومات مالية، تواصل مع الجهة المالية عبر رقمها الرسمي.</li><li>أبلغ المنصة أو الجهة المسؤولة، واحتفظ بتفاصيل الرسالة الضرورية.</li></ol><h2>التوعية بدون لوم</h2><p>قد يقع أي شخص في الخداع. الهدف هو احتواء المشكلة والتعلم منها، لا إحراج الشخص الذي أبلغ عنها. الإبلاغ المبكر يساعد على الحد من الأثر.</p>`,quiz:{q:'ماذا تفعل إذا شاركت كلمة مرور مع رسالة مشبوهة؟',opts:['تنتظر حتى تظهر مشكلة','تغيّرها من القناة الرسمية وتراجع الجلسات','ترسل كلمة المرور الجديدة للمرسل'],correct:1,explain:'غيّر كلمة المرور فورًا من مصدر رسمي وراجع الجلسات ووسائل الاسترداد.'}}
 ]},
-{id:"network-book",title:"الشبكات للمبتدئين",icon:"fa-network-wired",category:"شبكات",desc:"IP وDNS والمنافذ والراوتر والبروتوكولات بأسلوب مبسط.",chapters:[
-{title:"1. كيف تنتقل البيانات؟",content:`<h3>حزم البيانات</h3><p>تُقسم البيانات إلى وحدات تُنقل عبر الشبكة. تحتوي الحزم على معلومات تساعد على توجيهها وتسليمها وفق البروتوكول المستخدم.</p><p>تختلف التفاصيل بين طبقات الشبكة، لكن الفكرة العامة أن كل طبقة تؤدي دورًا محددًا.</p>`},
-{title:"2. IP وMAC",content:`<h3>لكل منهما دور</h3><p>IP يساعد في التوجيه بين الشبكات، بينما يستخدم MAC في نقل الإطارات داخل الشبكة المحلية.</p><p>لا يمكن الاعتماد على عنوان واحد لإثبات هوية مستخدم؛ قد تتشارك الأجهزة عناوين أو تتغير إعداداتها.</p>`},
-{title:"3. DNS وDHCP",content:`<h3>خدمتان مختلفتان</h3><p>DNS يتيح الاستعلام عن سجلات أسماء النطاقات. DHCP يساعد على توزيع إعدادات الشبكة مثل عنوان IP وقناع الشبكة والبوابة وDNS.</p><p>لا تخلط بين تحويل اسم النطاق إلى عنوان وبين إعطاء الجهاز إعدادات الشبكة.</p>`},
-{title:"4. TCP وUDP",content:`<h3>طريقتان لنقل البيانات</h3><p>TCP يوفر اتصالًا مع آليات لترتيب البيانات وإعادة إرسال ما يلزم. UDP أبسط ولا يقدم ضمانات التسليم والترتيب نفسها.</p><p>اختيار البروتوكول يعتمد على احتياجات التطبيق والتصميم.</p>`},
-{title:"5. مراقبة الشبكة",content:`<h3>راقب بصورة مسؤولة</h3><p>تعتمد مراقبة الشبكات على السجلات والإحصاءات ومعلومات الاتصال. اجمع الحد الأدنى اللازم من البيانات، واحترم سياسة المؤسسة وخصوصية المستخدمين.</p><p>ابدأ بمختبرك الشخصي وبيانات تدريبية مجهولة الهوية.</p>`}
+{
+id:'network',title:'أساسيات الشبكات',category:'NETWORKING',color:'cyan',icon:'fa-network-wired',time:'25 دقيقة',desc:'افهم IP وDNS والمنافذ وHTTP وNAT وعلاقتها بالاتصال والأمن السيبراني.',
+chapters:[
+{title:'IP وMAC وDNS',lead:'هذه المفاهيم تساعدك على فهم كيف تصل البيانات إلى وجهتها.',body:`<h2>عنوان IP</h2><p>عنوان IP يساعد على تحديد واجهة شبكة للوصول إلى الوجهة المناسبة. قد يكون العنوان داخليًا ضمن الشبكة المحلية أو عامًا يستخدم في الاتصال عبر الإنترنت.</p><h2>عنوان MAC</h2><p>عنوان MAC يعرّف واجهة الشبكة ضمن مستوى الاتصال المحلي. ليس بديلًا عن IP؛ لكل واحد دور مختلف في نقل البيانات.</p><h2>DNS</h2><p>يحوّل نظام أسماء النطاقات أسماء مثل example.com إلى سجلات تساعد الأجهزة على معرفة الوجهة المناسبة. يشبه دليل العناوين الذي يساعدك على الوصول للمكان الصحيح.</p><h2>مثال بسيط</h2><p>عندما تكتب اسم موقع، يحتاج جهازك عادة إلى معرفة عنوان الوجهة عبر DNS، ثم يبدأ الاتصال باستخدام بروتوكولات الشبكة المناسبة.</p>`,quiz:{q:'ما الوظيفة الأساسية لـ DNS؟',opts:['تحويل أسماء النطاقات إلى سجلات عناوين','تشفير كل الملفات على الجهاز','إنشاء كلمات مرور'],correct:0,explain:'يساعد DNS على العثور على معلومات العناوين المرتبطة بأسماء النطاقات.'}},
+{title:'المنافذ والبروتوكولات',lead:'المنفذ يحدد الخدمة أو نقطة الاتصال ضمن جهاز، والبروتوكول يحدد قواعد التواصل.',body:`<h2>ما المنفذ؟</h2><p>يمكن أن يعمل الجهاز على خدمات متعددة في الوقت نفسه. تساعد أرقام المنافذ على توجيه الاتصال إلى الخدمة المناسبة داخل الجهاز.</p><h2>أمثلة معروفة</h2><ul><li><b>HTTP:</b> بروتوكول لنقل محتوى الويب.</li><li><b>HTTPS:</b> اتصال ويب محمي بالتشفير عبر TLS.</li><li><b>SSH:</b> بروتوكول لإدارة الأنظمة عن بعد بطريقة آمنة عند إعداده بشكل صحيح.</li><li><b>DNS:</b> نظام استعلامات أسماء النطاقات.</li></ul><h2>هل وجود منفذ مفتوح يعني وجود ثغرة؟</h2><p>لا. قد يكون المنفذ مفتوحًا لأن خدمة شرعية تحتاجه. التقييم يعتمد على الخدمة وإعداداتها وتحديثاتها وصلاحيات الوصول ومدى الحاجة إلى إتاحتها.</p><div class="note"><strong>في التحليل:</strong> لا تصف منفذًا بأنه خطر لمجرد ظهوره؛ اجمع السياق ثم قيّم المخاطر.</div>`,quiz:{q:'هل كل منفذ مفتوح يمثل ثغرة؟',opts:['نعم دائمًا','لا، يعتمد على الخدمة وإعداداتها والسياق','فقط إذا كان رقمه كبيرًا'],correct:1,explain:'وجود خدمة متاحة ليس دليلًا وحده على وجود ثغرة.'}},
+{title:'HTTP وNAT والسجلات',lead:'قراءة البيانات الشبكية تساعد على فهم السلوك الطبيعي واكتشاف ما يحتاج إلى مراجعة.',body:`<h2>طلب واستجابة HTTP</h2><p>عند استخدام تطبيق ويب، يرسل العميل طلبًا إلى الخادم ويرد الخادم باستجابة. تتضمن الاستجابة رمز حالة يصف النتيجة بصورة عامة.</p><ul><li><b>200:</b> نجح الطلب عادة.</li><li><b>301/302:</b> إعادة توجيه.</li><li><b>403:</b> رفض الوصول.</li><li><b>404:</b> المورد غير موجود.</li><li><b>500:</b> خطأ داخلي في الخادم.</li></ul><h2>ما NAT؟</h2><p>ترجمة عناوين الشبكة تساعد في ربط العناوين الداخلية بالاتصالات الخارجية وفق إعدادات الشبكة. كثير من شبكات المنازل تستخدمها عند الاتصال بالإنترنت.</p><h2>السجلات</h2><p>قد تحتوي سجلات الشبكة والخوادم على توقيت الطلب والنتيجة والخدمة ومعلومات مصدر الاتصال. يراجع المحلل عدة مصادر بدل الاعتماد على سجل منفرد.</p>`,quiz:{q:'ماذا يعني رمز HTTP 404 عادة؟',opts:['المورد غير موجود','نجاح تسجيل الدخول حتمًا','إيقاف الجهاز'],correct:0,explain:'يشير 404 عادة إلى أن المورد المطلوب غير موجود على المسار المحدد.'}}
 ]},
-{id:"forensics-book",title:"التحقيق الرقمي للمبتدئين",icon:"fa-magnifying-glass-chart",category:"تحقيق رقمي",desc:"الأدلة الرقمية، السجلات، الخط الزمني، وكتابة التقرير.",chapters:[
-{title:"1. ما هو التحقيق الرقمي؟",content:`<h3>البحث عن تفسير مدعوم</h3><p>التحقيق الرقمي عملية جمع الأدلة الرقمية وفحصها وتحليلها لتوضيح ما حدث، مع مراعاة سلامة الأدلة والخصوصية والسياسات القانونية.</p><p>ليس الهدف تأكيد أول فكرة تخطر لك، بل اختبار الفرضيات ومراجعة ما تدعمه الأدلة.</p>`},
-{title:"2. التعامل مع الأدلة",content:`<h3>وثق كل خطوة</h3><ul><li>سجل مصدر الدليل وتوقيت الحصول عليه.</li><li>استخدم نسخة عمل مناسبة ولا تغير الأصل دون ضرورة.</li><li>احفظ الملفات وفق صلاحيات واضحة.</li><li>وثق الأدوات والإجراءات والنتائج.</li></ul>`},
-{title:"3. تحليل السجلات",content:`<h3>ابحث عن العلاقة بين الأحداث</h3><p>راجع أسماء الحسابات، والوقت، ونوع الحدث، ومصدر الاتصال، ومعرفات الجلسات إن توفرت.</p><p>حدث واحد نادرًا ما يكفي وحده. قارن السجلات المختلفة، وانتبه إلى اختلاف المناطق الزمنية ودقة الساعات.</p>`},
-{title:"4. بناء الخط الزمني",content:`<h3>رتب الأحداث</h3><p>اجمع الأحداث من المصادر المتاحة ورتبها زمنيًا. احتفظ بالمصدر الأصلي لكل حدث، ووضح إن كان الوقت UTC أو محليًا.</p><p>الخط الزمني يساعد على رؤية التسلسل، لكنه لا يثبت وحده العلاقة السببية بين حدثين.</p>`},
-{title:"5. كتابة التقرير",content:`<h3>تقرير واضح</h3><p>يشمل التقرير عادةً الملخص، والنطاق، والمنهجية، والأدلة، والتسلسل الزمني، والنتائج، والقيود، والتوصيات.</p><p>استخدم لغة دقيقة مثل «تشير السجلات إلى» عندما لا تكون النتيجة قطعية، ووضح ما لا تستطيع الأدلة إثباته.</p>`}
+{
+id:'linux',title:'أساسيات Linux الأمنية',category:'LINUX',color:'green',icon:'fa-terminal',time:'25 دقيقة',desc:'تعرف على نظام الملفات والمستخدمين والصلاحيات والسجلات دون محاكاة طرفية غير ضرورية.',
+chapters:[
+{title:'نظام الملفات',lead:'فهم بنية الملفات والمجلدات يساعدك على قراءة الأنظمة بصورة أفضل.',body:`<h2>الجذر والمجلدات</h2><p>تستخدم أنظمة Linux بنية مجلدات تبدأ من الجذر /. وتوجد ملفات النظام والإعدادات والبرامج وبيانات المستخدمين ضمن مسارات مختلفة.</p><ul><li><b>/home:</b> مجلدات المستخدمين عادة.</li><li><b>/etc:</b> كثير من ملفات الإعدادات.</li><li><b>/var/log:</b> كثير من ملفات السجلات.</li><li><b>/tmp:</b> ملفات مؤقتة بحسب إعداد النظام.</li></ul><h2>لماذا يهم ذلك أمنيًا؟</h2><p>تساعدك معرفة مكان الإعدادات والسجلات على مراجعة النظام. لكن لا تعدّل ملفات النظام أو تحذفها دون فهم أثر التغيير وصلاحياتك.</p>`,quiz:{q:'أين توجد كثير من سجلات النظام في توزيعات Linux؟',opts:['/var/log','/home/logs-only','/nothing'],correct:0,explain:'يحتوي /var/log على كثير من سجلات النظام والخدمات، حسب التوزيعة والإعدادات.'}},
+{title:'المستخدمون والصلاحيات',lead:'تحديد من يستطيع القراءة أو التعديل من أساسيات تقليل المخاطر.',body:`<h2>مبدأ أقل صلاحية</h2><p>يجب أن يحصل كل مستخدم أو برنامج على الحد الأدنى من الصلاحيات اللازمة لعمله. يقلل ذلك أثر الأخطاء أو إساءة الاستخدام.</p><h2>فهم الصلاحيات</h2><p>تحدد صلاحيات الملفات من يستطيع قراءتها أو تعديلها أو تنفيذها. وتُدار ملكية الملفات ومجموعات المستخدمين ضمن نظام الصلاحيات.</p><h2>حساب المدير</h2><p>الصلاحيات الإدارية قادرة على إجراء تغييرات واسعة. استخدمها عند الحاجة فقط، وافهم الأمر قبل تشغيله، خصوصًا إذا كان سيحذف ملفات أو يغيّر إعدادات النظام.</p><div class="note"><strong>قاعدة:</strong> لا تشغّل أوامر مجهولة بصلاحيات مرتفعة لمجرد أن شخصًا على الإنترنت طلب منك ذلك.</div>`,quiz:{q:'ما المقصود بمبدأ أقل صلاحية؟',opts:['منح الجميع صلاحية المدير','منح أقل صلاحيات تكفي للمهمة','منع كل المستخدمين من العمل'],correct:1,explain:'تقليل الصلاحيات يقلل مساحة الضرر المحتمل عند الخطأ أو إساءة الاستخدام.'}},
+{title:'السجلات والتحديثات',lead:'تحديث النظام ومراجعة السجلات يساعدان على اكتشاف المشاكل مبكرًا.',body:`<h2>مراجعة السجلات</h2><p>قد تساعد السجلات على فهم محاولات الدخول وأخطاء الخدمات والتغييرات. راجع التوقيت والسياق ومصادر متعددة قبل استنتاج السبب.</p><h2>التحديثات</h2><p>تصلح تحديثات النظام والبرامج مشكلات أمنية وأخطاء. استخدم مدير الحزم الرسمي لتوزيعتك واتبع سياسة التحديث المناسبة للنظام.</p><h2>عند اكتشاف حدث غريب</h2><ol><li>دوّن الوقت والرسالة الظاهرة.</li><li>تحقق من التغييرات التي حدثت قبلها.</li><li>قارنها بالأحداث المعتادة.</li><li>احتفظ بالأدلة ذات الصلة.</li><li>اطلب المساعدة إذا لم تكن متأكدًا من الخطوة التالية.</li></ol>`,quiz:{q:'ما التصرف الأفضل عند ظهور حدث غريب في السجل؟',opts:['حذف كل السجلات فورًا','مراجعة السياق والأحداث المرتبطة','اتهام أول مستخدم في القائمة'],correct:1,explain:'التحليل يحتاج سياقًا وأدلة متعددة، مع الحفاظ على السجلات.'}}
+]},
+{
+id:'python',title:'Python للمبتدئين',category:'PYTHON',color:'gold',icon:'fa-code',time:'30 دقيقة',desc:'ابدأ بالمتغيرات والشروط والحلقات ثم تعلم كيف تنظم بيانات تعليمية بسيطة.',
+chapters:[
+{title:'المتغيرات والأنواع',lead:'المتغير اسم يشير إلى قيمة تستخدمها داخل البرنامج.',body:`<h2>المتغيرات</h2><p>في Python يمكنك تخزين قيمة في متغير ثم استخدامها لاحقًا. مثال:</p><div class="logline">username = "student"<br>attempts = 3<br>active = True</div><p>القيمة الأولى نص، والثانية عدد صحيح، والثالثة قيمة منطقية.</p><h2>طباعة النتائج</h2><div class="logline">print(username)<br>print(attempts)</div><p>تساعدك الطباعة على رؤية قيمة المتغير أثناء تعلمك وتصحيح أخطاء البرنامج.</p><h2>أسماء واضحة</h2><p>اختر أسماء تعبّر عن الغرض، مثل failed_attempts بدلًا من x عندما تكون البيانات مرتبطة بمحاولات دخول فاشلة.</p>`,quiz:{q:'أي نوع يناسب العدد 3؟',opts:['str','int','bool'],correct:1,explain:'int يستخدم للأعداد الصحيحة.'}},
+{title:'الشروط والحلقات',lead:'تساعدك الشروط على اتخاذ قرار، والحلقات على تكرار مهمة.',body:`<h2>الشروط</h2><div class="logline">attempts = 4<br>if attempts &gt;= 3:<br>&nbsp;&nbsp;print("Review needed")<br>else:<br>&nbsp;&nbsp;print("Normal")</div><p>يفحص البرنامج الشرط ثم ينفذ الفرع المناسب. المسافات البادئة جزء أساسي من صياغة Python.</p><h2>الحلقات</h2><div class="logline">for number in range(3):<br>&nbsp;&nbsp;print(number)</div><p>تكرر الحلقة العملية لكل قيمة تنتجها range. المثال يطبع الأعداد 0 و1 و2.</p><h2>فكر في الحالة</h2><p>قبل كتابة الشرط، اسأل نفسك ما النتيجة التي تريد اكتشافها، وما الحالات الطبيعية والاستثنائية.</p>`,quiz:{q:'كم مرة تتكرر حلقة range(3)؟',opts:['مرتين','ثلاث مرات','أربع مرات'],correct:1,explain:'تنتج range(3) القيم 0 و1 و2، أي ثلاث مرات.'}},
+{title:'تحليل بيانات بسيطة',lead:'يمكن استخدام Python لترتيب بيانات خيالية واستخراج ملخصات مفيدة.',body:`<h2>مثال تعليمي</h2><div class="logline">events = ["success", "failed", "failed", "success"]<br>failed = events.count("failed")<br>print(failed)</div><p>يحسب المثال عدد العناصر التي قيمتها failed في قائمة صغيرة.</p><h2>من البيانات إلى الاستنتاج</h2><p>عدد محاولات الفشل قد يكون مؤشرًا مفيدًا، لكنه لا يثبت وحده وقوع اختراق أو هوية الشخص. قارن التوقيتات ومصادر السجل والسياق قبل الحكم.</p><h2>خطوات مشروع صغير</h2><ol><li>أنشئ بيانات تدريبية غير حقيقية.</li><li>حدد السؤال الذي تريد الإجابة عنه.</li><li>اكتب كودًا واضحًا لحساب النتيجة.</li><li>اختبره على حالات مختلفة.</li><li>اشرح ما الذي تثبته النتيجة وما الذي لا تثبته.</li></ol>`,quiz:{q:'هل عدد المحاولات الفاشلة يثبت وحده وقوع اختراق؟',opts:['نعم دائمًا','لا، يحتاج إلى سياق وأدلة أخرى','لا يمكن تحليله إطلاقًا'],correct:1,explain:'المؤشر يساعد في توجيه الفحص لكنه لا يكفي وحده لإثبات الحادث.'}}
 ]}
 ];
-function renderBooks(){setHTML("bookCards",books.map(b=>`<article class="card path-card"><div class="card-icon"><i class="${b.icon.includes("fa-brands")?b.icon:"fa-solid "+b.icon}"></i></div><div class="badges"><span class="badge">${escapeHTML(b.category)}</span><span class="badge">${b.chapters.length} فصول</span></div><h3>${escapeHTML(b.title)}</h3><p>${escapeHTML(b.desc)}</p><div class="path-footer"><span>${(state.readChapters||[]).filter(x=>x.startsWith(b.id+":")).length} / ${b.chapters.length} فصول مقروءة</span><button class="btn btn-secondary btn-small" onclick="openBook('${b.id}')">اقرأ الكتاب</button></div></article>`).join(""));if(!books.some(b=>b.id===currentBookId))currentBookId=books[0].id;renderBookReader()}
-function openBook(id){currentBookId=id;currentChapter=0;renderBookReader();document.getElementById("bookReader").scrollIntoView({behavior:"smooth",block:"start"})}
-function renderBookReader(){const b=books.find(x=>x.id===currentBookId);if(!b)return;currentChapter=Math.max(0,Math.min(currentChapter,b.chapters.length-1));setHTML("bookChapterList",`<div style="padding:9px 10px;font-size:13px;font-weight:900;color:#e9d5ff">${escapeHTML(b.title)}</div>`+b.chapters.map((ch,i)=>`<button class="book-select ${i===currentChapter?"active":""}" data-chapter="${i}">${escapeHTML(ch.title)} ${(state.readChapters||[]).includes(b.id+":"+i)?'<i class="fa-solid fa-check" style="color:#36d399"></i>':''}</button>`).join(""));document.querySelectorAll("[data-chapter]").forEach(btn=>btn.addEventListener("click",()=>{currentChapter=Number(btn.dataset.chapter);renderBookReader()}));const ch=b.chapters[currentChapter];setHTML("bookReader",`<div class="badges"><span class="badge">${escapeHTML(b.category)}</span><span class="badge">الفصل ${currentChapter+1} / ${b.chapters.length}</span></div><h2>${escapeHTML(ch.title)}</h2><div>${ch.content}</div><div class="book-controls"><button class="btn btn-secondary btn-small" id="bookPrev" ${currentChapter===0?"disabled":""}><i class="fa-solid fa-arrow-right"></i> السابق</button><span class="muted" style="font-size:11px">${currentChapter+1} من ${b.chapters.length}</span><button class="btn btn-primary btn-small" id="bookNext">${currentChapter===b.chapters.length-1?"إنهاء الكتاب":"التالي"} <i class="fa-solid fa-arrow-left"></i></button></div>`);document.getElementById("bookPrev").addEventListener("click",()=>{if(currentChapter>0){currentChapter--;renderBookReader()}});document.getElementById("bookNext").addEventListener("click",()=>{const key=b.id+":"+currentChapter;if(!state.readChapters.includes(key)){state.readChapters.push(key);addXP(5,"قراءة فصل: "+ch.title);checkAchievements()}if(currentChapter<b.chapters.length-1){currentChapter++;renderBookReader()}else{toast("أحسنت! أنهيت فصول هذا الكتاب");renderBooks()}})}
-function renderLessons(){const q=(document.getElementById("lessonSearch").value||"").toLowerCase();const list=lessons.filter(l=>(currentFilter==="all"||l.category===currentFilter)&&(!q||(l.title+" "+l.desc+" "+l.category).toLowerCase().includes(q)));setHTML("lessonGrid",list.length?list.map(l=>`<article class="card lesson-card"><div class="card-icon"><i class="${l.icon.includes("fa-brands")?l.icon:"fa-solid "+l.icon}"></i></div><div class="badges"><span class="badge">${escapeHTML(l.category)}</span><span class="badge ${l.level==="متوسط"?"yellow":""}">${escapeHTML(l.level)}</span>${state.completedLessons.includes(l.id)?'<span class="badge green"><i class="fa-solid fa-check"></i> مكتمل</span>':''}</div><h3>${escapeHTML(l.title)}</h3><p>${escapeHTML(l.desc)}</p><div class="card-bottom"><div class="path-footer"><span><i class="fa-solid fa-bolt"></i> ${l.xp} XP</span><span>${l.sections.length} محاور</span></div><button class="btn ${state.completedLessons.includes(l.id)?"btn-secondary":"btn-primary"}" style="width:100%;margin-top:12px" onclick="openLesson('${l.id}')">${state.completedLessons.includes(l.id)?"راجع الدرس":"ابدأ الدرس"} <i class="fa-solid fa-arrow-left"></i></button></div></article>`).join(""):'<div class="empty-state"><i class="fa-solid fa-magnifying-glass"></i><h3>ما لقينا دروس مطابقة</h3><p>جرّب كلمة ثانية أو اختر تصنيفًا مختلفًا.</p></div>')}
-document.getElementById("lessonFilters").addEventListener("click",e=>{const b=e.target.closest("[data-filter]");if(!b)return;currentFilter=b.dataset.filter;document.querySelectorAll("[data-filter]").forEach(x=>x.classList.toggle("active",x===b));renderLessons()});
-document.getElementById("lessonSearch").addEventListener("input",renderLessons);
-function openLesson(id){const l=lessons.find(x=>x.id===id);if(!l)return;activeLessonId=id;navigate("lesson");setHTML("lessonContent",`<div class="badges"><span class="badge">${escapeHTML(l.category)}</span><span class="badge">${escapeHTML(l.level)}</span><span class="badge"><i class="fa-solid fa-bolt"></i> ${l.xp} XP</span></div><h2>${escapeHTML(l.title)}</h2><p>${escapeHTML(l.desc)}</p><div class="callout">🎯 هدف الدرس: افهم الفكرة، اقرأ المثال، ثم جرب تطبيقها في بيئة تدريب آمنة.</div>${l.sections.map((s,i)=>`<section><h3>${i+1}. ${escapeHTML(s[0])}</h3><p>${escapeHTML(s[1])}</p><div class="callout">${escapeHTML(s[2])}</div></section>`).join("")}<hr><div class="callout warning">⚠️ استخدم معرفتك في الأنظمة التي تملكها أو لديك تصريح واضح لاختبارها فقط.</div>`);const done=state.completedLessons.includes(id);setHTML("lessonAside",`<div class="card-icon"><i class="${l.icon.includes("fa-brands")?l.icon:"fa-solid "+l.icon}"></i></div><h3>${escapeHTML(l.title)}</h3><p>راجع المحاور بالترتيب، وتأكد أنك فهمت الأمثلة.</p><div class="progress-label"><span>المحاور</span><span>${l.sections.length} محاور</span></div><div class="progress-track"><div class="progress-fill" style="width:100%"></div></div><button class="btn ${done?"btn-secondary":"btn-primary"}" id="completeLessonBtn">${done?'<i class="fa-solid fa-check"></i> الدرس مكتمل':'<i class="fa-solid fa-check"></i> إكمال الدرس'}</button><button class="btn btn-secondary" onclick="navigate('quiz')"><i class="fa-solid fa-brain"></i> اختبر معلوماتك</button><button class="btn btn-secondary" onclick="navigate('academy')"><i class="fa-solid fa-book-open"></i> العودة للأكاديمية</button>`);document.getElementById("completeLessonBtn").addEventListener("click",()=>{if(state.completedLessons.includes(id)){toast("هذا الدرس مكتمل بالفعل");return}state.completedLessons.push(id);addXP(l.xp,"إكمال درس: "+l.title);checkAchievements();openLesson(id);toast("أحسنت! حصلت على "+l.xp+" XP")})}
-function renderNetwork(){setHTML("networkTopics",networkTopics.map(t=>`<button class="topic-btn" data-network="${t.id}"><i class="fa-solid ${t.icon}"></i><span><b>${escapeHTML(t.title)}</b><small class="muted" style="display:block">${escapeHTML(t.en)}</small></span><i class="fa-solid fa-chevron-left"></i></button>`).join(""));document.querySelectorAll("[data-network]").forEach(b=>b.addEventListener("click",()=>showNetworkTopic(b.dataset.network)));showNetworkTopic("ip")}
-function showNetworkTopic(id){const t=networkTopics.find(x=>x.id===id);if(!t)return;document.querySelectorAll("[data-network]").forEach(b=>b.classList.toggle("active",b.dataset.network===id));setHTML("networkDetail",`<div class="card-icon"><i class="fa-solid ${t.icon}"></i></div><div class="badges"><span class="badge">${escapeHTML(t.title)}</span><span class="badge">NETWORKING</span></div><h3>${escapeHTML(t.en)}</h3><p>${escapeHTML(t.desc)}</p><div class="code-block">${escapeHTML(t.example)}</div>${t.details.map((d,i)=>`<h3 style="margin-top:19px;font-size:14px">${i+1}. ${escapeHTML(d[0])}</h3><p>${escapeHTML(d[1])}</p>`).join("")}<div class="callout">📌 اربط المفهوم بأمثلة عملية من شبكتك أو مختبرك المصرح به.</div>`)}
-document.getElementById("dnsBtn").addEventListener("click",()=>{const val=document.getElementById("dnsInput").value.trim();const out=document.getElementById("dnsOutput");out.classList.remove("hidden");if(!val){out.textContent="اكتب اسم نطاق أولًا.";return}if(!/^[a-z0-9.-]+$/i.test(val)||!val.includes(".")||val.startsWith(".")||val.endsWith(".")){out.textContent="المدخل لا يبدو كاسم نطاق معتاد. راجع الكتابة، وتذكر أن هذا فحص شكلي فقط.";return}out.innerHTML=`<b>🧪 نتيجة المحاكاة</b><br>تم إدخال اسم النطاق: <code>${escapeHTML(val)}</code><br>في الاستعلام الحقيقي قد يُطلب سجل A أو AAAA أو سجل آخر حسب نوع الطلب. لم يتم إجراء اتصال بالشبكة، ولم يتم جلب عنوان حقيقي.`});
 
-function showSafety(key){const data={
-links:["🔗 فحص الروابط","اقرأ اسم النطاق بدقة، وتحقق من الأحرف المتشابهة، والنطاقات الفرعية، والروابط المختصرة. لا تعتمد على شكل الصفحة وحده. إذا كان الرابط يطلب تسجيل دخول أو معلومات حساسة، افتح الموقع الرسمي بنفسك بدل اتباع الرابط."],
-phishing:["🎣 التصيد والهندسة الاجتماعية","انتبه للرسائل التي تضغط عليك لاتخاذ قرار فوري، أو تطلب كلمة مرور أو رمز تحقق، أو تعدك بجائزة غير متوقعة. تحقق من المرسل عبر قناة مستقلة. لا تشارك رموز المصادقة حتى لو ادعى المرسل أنه من الدعم الفني."],
-files:["📎 التعامل مع الملفات","لا تفتح مرفقًا غير متوقع. تحقق من المصدر والامتداد، وحافظ على تحديث النظام، ولا تعطل الحماية لتشغيل ملف. فحص الملف عبر خدمة عامة قد يشارك الملف مع أطراف أخرى، لذلك لا ترفع ملفات شخصية أو سرية دون إذن."],
-passwords:["🔐 كلمات المرور","استخدم كلمة مرور طويلة وفريدة لكل حساب، ويفضل مدير كلمات مرور موثوقًا. فعّل المصادقة متعددة العوامل، واحتفظ برموز الاسترداد في مكان آمن، ولا تستخدم كلمة مرور حساب واحد في كل المواقع."],
-phone:["📱 حماية الجوال","حدّث النظام والتطبيقات، وثبت التطبيقات من المتجر الرسمي، وراجع الصلاحيات، واقفل الجهاز برمز قوي. لا تثبت ملفات تعريف أو شهادات أو تطبيقات مجهولة المصدر لمجرد أن رابطًا طلب منك ذلك."],
-privacy:["👀 الخصوصية","قلل البيانات التي تنشرها، وراجع إعدادات ظهور حساباتك، ولا تشارك موقعك المباشر أو رموز التحقق أو وثائقك. عند نشر لقطة شاشة، تأكد أنها لا تعرض بريدك أو بيانات حسابك أو تفاصيل خاصة."]};
-const d=data[key];if(!d)return;const el=document.getElementById("safetyDetail");el.classList.remove("hidden");el.innerHTML=`<div class="section-head" style="margin-top:0"><h3>${escapeHTML(d[0])}</h3><button class="btn btn-secondary btn-small" onclick="document.getElementById('safetyDetail').classList.add('hidden')">إغلاق</button></div><p style="font-size:14px;color:#c9bdd8;line-height:2">${escapeHTML(d[1])}</p>`;el.scrollIntoView({behavior:"smooth",block:"nearest"})}
-document.getElementById("urlCheckBtn").addEventListener("click",()=>{const raw=document.getElementById("urlInput").value.trim();const el=document.getElementById("urlResult");el.classList.remove("hidden");if(!raw){el.innerHTML='<div class="callout warning">اكتب نص الرابط أولًا.</div>';return}let u;try{u=new URL(raw.includes("://")?raw:"https://"+raw)}catch(e){el.innerHTML='<div class="callout warning">⚠️ صيغة الرابط غير واضحة. لا تفتحه إذا كنت لا تثق بمصدره.</div>';return}const findings=[];if(u.protocol!=="https:")findings.push("الرابط لا يستخدم HTTPS في النص الحالي.");if(u.username||u.password)findings.push("يحتوي الرابط على بيانات اعتماد قبل اسم المضيف؛ راجع العنوان بحذر.");if(u.hostname.startsWith("xn--")||u.hostname.split(".").some(x=>x.startsWith("xn--")))findings.push("اسم المضيف يحتوي على ترميز IDN؛ تحقق من الأحرف المعروضة.");if(/^\d{1,3}(?:\.\d{1,3}){3}$/.test(u.hostname))findings.push("العنوان يستخدم IPv4 بدل اسم نطاق.");if(u.hostname.length>60)findings.push("اسم المضيف طويل بشكل ملحوظ؛ راجع اسم النطاق بعناية.");if(/%[0-9a-f]{2}/i.test(u.hostname))findings.push("اسم المضيف يحتوي على ترميز مئوي؛ راجع العنوان بعناية.");if(u.hostname.split(".").length>=5)findings.push("اسم المضيف يحتوي على مستويات كثيرة؛ تحقق من النطاق الأساسي.");if(!findings.length)findings.push("لم تظهر علامات شكلية محددة ضمن الفحوص البسيطة. هذا لا يعني أن الرابط آمن.");el.innerHTML=`<div class="callout ${findings.length>1||u.protocol!=="https:"?"warning":"success"}"><b>نتيجة الفحص النصي</b><br>المضيف: <code>${escapeHTML(u.hostname)}</code><ul>${findings.map(f=>`<li>${escapeHTML(f)}</li>`).join("")}</ul><small>لم يتم فتح الرابط أو الاتصال به. هذا التحليل لا يفحص سمعة النطاق أو محتوى الصفحة ولا يضمن سلامة الرابط.</small></div>`});
+const tracks=[
+{title:'الأساسيات السيبرانية',desc:'افهم مفاهيم الأمن والمخاطر والتخصصات وكيف تبدأ بطريقة صحيحة.',icon:'fa-shield-halved',level:'المستوى 01',lessons:'3 فصول',book:'cyber'},
+{title:'الحماية الشخصية',desc:'ارفع أمان حساباتك وخصوصيتك وتعلم التعامل مع الرسائل والملفات المريبة.',icon:'fa-user-shield',level:'المستوى 01',lessons:'6 فصول',book:'protect'},
+{title:'الهندسة الاجتماعية',desc:'تعرف على أنماط التلاعب وكيف تتحقق من الهوية وتستجيب للمحاولات المشبوهة.',icon:'fa-people-arrows-left-right',level:'المستوى 02',lessons:'3 فصول',book:'social'},
+{title:'الشبكات',desc:'افهم IP وDNS والمنافذ وHTTP والسجلات التي تظهر أثناء التحقيقات.',icon:'fa-network-wired',level:'المستوى 01',lessons:'3 فصول',book:'network'},
+{title:'Linux',desc:'تعرف على نظام الملفات والمستخدمين والصلاحيات والسجلات من منظور أمني.',icon:'fa-linux',level:'المستوى 01',lessons:'3 فصول',book:'linux'},
+{title:'Python',desc:'ابدأ البرمجة ثم طبق التفكير المنطقي على البيانات التعليمية.',icon:'fa-code',level:'المستوى 01',lessons:'3 فصول',book:'python'}
+];
 
-const quizQuestions=[
-{q:"ما الهدف الأساسي من DNS؟",opts:["تشفير جميع الملفات","ربط أسماء النطاقات بسجلاتها","منع كل الهجمات","تغيير كلمة المرور"],a:1,ex:"DNS نظام للاستعلام عن سجلات أسماء النطاقات، ومنها عناوين IP."},
-{q:"أي عنوان من التالي يقع ضمن نطاق IPv4 الخاص؟",opts:["192.168.1.10","8.8.8.8","1.1.1.1","203.0.113.7"],a:0,ex:"192.168.0.0/16 أحد نطاقات IPv4 الخاصة."},
-{q:"ما المنفذ الشائع لـ HTTPS؟",opts:["21","22","80","443"],a:3,ex:"يستخدم HTTPS المنفذ 443 عادةً، لكن الإعدادات قد تختلف."},
-{q:"ماذا يعني رمز HTTP 404 غالبًا؟",opts:["نجاح الطلب","المورد غير موجود","خطأ داخلي بالخادم","إعادة تشغيل الجهاز"],a:1,ex:"404 يعني غالبًا أن المورد المطلوب غير موجود."},
-{q:"أي أمر يعرض المجلد الحالي في Linux؟",opts:["pwd","whoami","clear","help"],a:0,ex:"pwd يطبع مسار العمل الحالي."},
-{q:"ما معنى السرية في مثلث CIA؟",opts:["أن الخدمة تعمل بسرعة","أن البيانات لا يراها إلا المصرح لهم","أن كل الملفات عامة","أن النظام لا يحتاج تحديثات"],a:1,ex:"السرية تقيد الاطلاع على البيانات بالأشخاص المصرح لهم."},
-{q:"ما أفضل تفسير لمحاولات دخول فاشلة متكررة؟",opts:["إثبات قطعي لهوية المهاجم","مؤشر يستحق المراجعة وربط الأدلة","دليل على سلامة الحساب","دليل على أن DNS معطل"],a:1,ex:"المحاولات مؤشر مهم، لكنها لا تثبت وحدها هوية شخص أو نجاح اختراق."},
-{q:"هل HTTPS يثبت أن الموقع موثوق؟",opts:["نعم دائمًا","لا، فهو يحمي الاتصال ولا يثبت صدق الموقع","نعم إذا كان الموقع مشهورًا","فقط على الجوال"],a:1,ex:"قد يستخدم موقع احتيالي HTTPS أيضًا؛ تحقق من النطاق ومصدر الرابط."},
-{q:"ما أفضل ممارسة لكلمات المرور؟",opts:["كلمة واحدة لكل الحسابات","مشاركتها مع الدعم","كلمات فريدة مع مصادقة متعددة العوامل","كتابة كلمة المرور في منشور"],a:2,ex:"استخدام كلمات فريدة والمصادقة متعددة العوامل يقلل مخاطر اختراق عدة حسابات."},
-{q:"ما الذي ينبغي توثيقه في التحقيق الرقمي؟",opts:["الاستنتاج فقط","مصدر الدليل وتوقيته والإجراءات والنتائج","اسم المحقق فقط","لا شيء إذا كان التحقيق قصيرًا"],a:1,ex:"التوثيق يساعد على مراجعة التحليل وفهم حدود الاستنتاجات."},
-{q:"ما وظيفة NAT في كثير من شبكات IPv4؟",opts:["تحويل كل المواقع إلى HTTPS","ترجمة العناوين أو المنافذ بين نطاقات الشبكة","إلغاء الحاجة إلى الراوتر","تشفير كلمة المرور"],a:1,ex:"تُستخدم NAT لترجمة عناوين الشبكة أو المنافذ وفق إعدادات الجهاز."},
-{q:"ماذا تفعل عند وصول مرفق غير متوقع؟",opts:["تفتحه فورًا","تعطل برنامج الحماية","تتحقق من المصدر ولا تفتحه إذا لم تثق به","ترسله للجميع"],a:2,ex:"تحقق من المصدر قبل فتح المرفقات، ولا تعطل الحماية لتشغيل ملف مشبوه."}
+const cases=[
+{id:'case1',title:'تسجيل دخول غير معتاد',level:'سهل',time:'10–15 دقيقة',desc:'راجع سجل الدخول وخطًا زمنيًا قصيرًا وحدد الحساب الذي يحتاج إلى مراجعة.',lead:'وصل تنبيه لفريق الأمن عن نشاط دخول غير معتاد. اقرأ الملفات الثلاثة، ثم اختر الاستنتاج الأكثر دعمًا بالأدلة.',evidence:[
+{title:'ملخص التنبيه',type:'INCIDENT NOTE',body:`<p>عند الساعة 09:20 رصد النظام زيادة في محاولات الدخول الفاشلة على حساب <b>sami</b>. المطلوب مراجعة الأحداث المحيطة قبل تقرير الخطوة التالية.</p>`},
+{title:'سجل المصادقة',type:'AUTH LOG',body:`<div class="logline">09:14:02 | account=nora | result=success | source=192.0.2.14</div><div class="logline">09:17:31 | account=sami | result=failed | source=198.51.100.23</div><div class="logline">09:18:05 | account=sami | result=failed | source=198.51.100.23</div><div class="logline">09:19:44 | account=sami | result=failed | source=198.51.100.23</div><div class="logline">09:21:10 | account=sami | result=success | source=198.51.100.23</div><p>بيانات خيالية للتدريب، والعناوين محجوزة للأمثلة والتوثيق.</p>`},
+{title:'سياق المستخدم',type:'USER CONTEXT',body:`<p>المستخدم sami ذكر أنه كان خارج مكتبه في وقت التنبيه، لكنه لم يؤكد بعد هل استخدم شبكة خاصة أو جهازًا آخر. لا توجد معلومات كافية لتحديد الشخص الذي نفذ الدخول.</p><p>تحقق عبر قناة موثوقة، وراجع الجهاز والجلسة وسجلات إضافية قبل إغلاق الحادث.</p>`}],
+question:'أي حساب يحتاج إلى مراجعة إضافية وفق الأدلة؟',options:['nora','sami','كل الحسابات مؤكّد اختراقها'],correct:1,explain:'تكررت محاولات الفشل ثم ظهر نجاح للحساب sami من المصدر نفسه. هذا يستدعي التحقق لكنه لا يثبت وحده هوية الفاعل.'},
+{id:'case2',title:'مشكلة في خدمة ويب',level:'متوسط',time:'15 دقيقة',desc:'قارن بين توقيتات أخطاء الخادم وتغيير الإعدادات لاكتشاف السبب الأقرب.',lead:'أبلغ المستخدمون عن تعطل متقطع. راجع خط الزمن وسجل التغييرات، ولا تخلط بين الارتباط الزمني والإثبات القطعي.',evidence:[
+{title:'بلاغ المستخدمين',type:'TICKET',body:`<p>بدأت البلاغات عند 14:07. تظهر للمستخدمين صفحة خطأ عند إرسال نموذج تسجيل الدخول، بينما تعمل الصفحة الرئيسية بشكل طبيعي.</p>`},
+{title:'سجل الخادم',type:'SERVER LOG',body:`<div class="logline">14:02:11 | GET / | status=200</div><div class="logline">14:05:42 | GET /login | status=200</div><div class="logline">14:07:03 | POST /login | status=500</div><div class="logline">14:07:11 | POST /login | status=500</div><div class="logline">14:08:20 | GET /help | status=200</div>`},
+{title:'سجل التغييرات',type:'CHANGE LOG',body:`<div class="logline">14:06:30 | deployment | config update | owner=web-team</div><p>حدث تحديث إعدادات قبل بداية الأخطاء بدقيقة تقريبًا. راجع تفاصيل التغيير ورسائل التطبيق قبل تأكيد السبب.</p>`}],
+question:'ما المسار الأول الأكثر منطقية للتحقيق؟',options:['مراجعة تحديث الإعدادات ورسائل التطبيق','حذف جميع السجلات','اتهام المستخدمين مباشرة'],correct:0,explain:'التغيير سبق الأخطاء زمنيًا، لذا راجع تفاصيله ورسائل التطبيق أولًا مع الحفاظ على الأدلة.'},
+{id:'case3',title:'رسالة احتيالية محتملة',level:'سهل',time:'10 دقائق',desc:'حلل رسالة مزعومة من الدعم وحدد العلامات التي تحتاج إلى تحقق.',lead:'أرسل أحد الموظفين رسالة إلى فريق الأمن. صنّف المخاطر وقرر ما الذي يجب فعله قبل اتخاذ أي إجراء.',evidence:[
+{title:'نص الرسالة',type:'MESSAGE',body:`<div class="note"><strong>نص تدريبي خيالي:</strong><p>«تنبيه عاجل! سيتم إيقاف حسابك خلال 10 دقائق. أرسل رمز التحقق إلى فريق الدعم حتى نثبت هويتك.»</p></div><p>الرسالة تضغط على المستلم وتطلب رمزًا حساسًا. لا تستخدم أي رابط أو رقم داخل الرسالة للتحقق منها.</p>`},
+{title:'قائمة المؤشرات',type:'OBSERVATIONS',body:`<ul><li>ضغط زمني شديد وغير مبرر.</li><li>طلب رمز تحقق سري.</li><li>لا توجد تذكرة دعم معروفة مرتبطة بالطلب.</li><li>المرسل غير متحقق من هويته.</li></ul>`},
+{title:'إجراء الاستجابة',type:'RESPONSE PLAN',body:`<ol><li>لا ترسل الرمز ولا تضغط أي رابط.</li><li>افتح بوابة الدعم الرسمية بنفسك أو استخدم قناة معروفة مسبقًا.</li><li>أبلغ عن الرسالة عبر آلية الإبلاغ الرسمية.</li><li>إذا شاركت الرمز بالفعل، فأمّن الحساب واطلب المساعدة الرسمية.</li></ol>`}],
+question:'ما الخطوة الأولى الأكثر أمانًا؟',options:['إرسال الرمز لإيقاف الإغلاق','التحقق عبر قناة رسمية مستقلة','إعادة توجيه الرسالة للجميع'],correct:1,explain:'طلب رمز التحقق مع الضغط الزمني علامة خطرة. لا تشارك الرمز وتحقق من القناة الرسمية.'}
 ];
-let quizOrder=[],quizIndex=0,quizCorrect=0,quizAnswered=false,quizFinished=false;
-function startQuiz(){quizOrder=quizQuestions.map((_,i)=>i);for(let i=quizOrder.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[quizOrder[i],quizOrder[j]]=[quizOrder[j],quizOrder[i]]}quizIndex=0;quizCorrect=0;quizAnswered=false;quizFinished=false;state.quizAnswers=[];renderQuiz()}
-function renderQuiz(){setText("quizTotal",quizQuestions.length);setText("quizCorrect",quizCorrect);setText("quizPercent",quizIndex?Math.round(quizCorrect/quizIndex*100)+"%":"0%");setText("quizBest",(state.bestQuiz||0)+"%");const card=document.getElementById("quizCard");if(!quizOrder.length)quizOrder=quizQuestions.map((_,i)=>i);if(quizFinished){const score=Math.round(quizCorrect/quizQuestions.length*100);card.innerHTML=`<div class="card-icon"><i class="fa-solid fa-trophy"></i></div><h2>انتهى الاختبار!</h2><p>نتيجتك: <b>${quizCorrect} / ${quizQuestions.length}</b> — ${score}%</p><div class="progress-track"><div class="progress-fill" style="width:${score}%"></div></div><div class="callout ${score>=70?"success":"warning"}">${score>=70?"ممتاز! راجع المواضيع اللي أخطأت فيها واستمر بالتطبيق.":"بداية جيدة! راجع الدروس الأساسية ثم جرب مرة ثانية."}</div><button class="btn btn-primary" id="restartQuiz">ابدأ اختبارًا جديدًا <i class="fa-solid fa-rotate"></i></button>`;document.getElementById("restartQuiz").addEventListener("click",startQuiz);return}const idx=quizOrder[quizIndex],q=quizQuestions[idx];card.innerHTML=`<div class="section-head" style="margin-top:0"><h3>السؤال ${quizIndex+1} من ${quizQuestions.length}</h3><span class="badge">CYBER QUIZ</span></div><div class="progress-track" style="margin-bottom:22px"><div class="progress-fill" style="width:${quizIndex/quizQuestions.length*100}%"></div></div><h2 style="font-size:21px;line-height:1.7">${escapeHTML(q.q)}</h2><div id="quizOptions">${q.opts.map((o,i)=>`<button class="quiz-option" data-option="${i}">${String.fromCharCode(65+i)}. ${escapeHTML(o)}</button>`).join("")}</div><div id="quizFeedback" class="quiz-feedback"></div><div style="display:flex;justify-content:space-between;gap:10px;margin-top:20px"><span class="muted" style="font-size:12px">الإجابات تحفظ لهذه المحاولة</span><button class="btn btn-primary" id="quizNext" disabled>${quizIndex===quizQuestions.length-1?"عرض النتيجة":"السؤال التالي"} <i class="fa-solid fa-arrow-left"></i></button></div>`;quizAnswered=false;document.querySelectorAll("[data-option]").forEach(b=>b.addEventListener("click",()=>{if(quizAnswered)return;quizAnswered=true;const choice=Number(b.dataset.option);const ok=choice===q.a;if(ok)quizCorrect++;state.quizAnswers.push({q:idx,choice,correct:ok});document.querySelectorAll("[data-option]").forEach(opt=>{opt.disabled=true;if(Number(opt.dataset.option)===q.a)opt.classList.add("correct");else if(Number(opt.dataset.option)===choice)opt.classList.add("wrong")});setText("quizCorrect",quizCorrect);setText("quizPercent",Math.round(quizCorrect/(quizIndex+1)*100)+"%");setHTML("quizFeedback",`<div class="callout ${ok?"success":"warning"}"><b>${ok?"✓ إجابة صحيحة":"✗ إجابة غير صحيحة"}</b><br>${escapeHTML(q.ex)}</div>`);document.getElementById("quizNext").disabled=false}));document.getElementById("quizNext").addEventListener("click",()=>{if(!quizAnswered)return;if(quizIndex<quizQuestions.length-1){quizIndex++;renderQuiz()}else{quizFinished=true;const score=Math.round(quizCorrect/quizQuestions.length*100);state.bestQuiz=Math.max(state.bestQuiz||0,score);if(score===100)addXP(15,"إنهاء اختبار كامل");saveState();renderQuiz();refreshUI()}})}
-function checkAchievements(){const definitions=[
-{id:"first-lesson",title:"أول خطوة",desc:"أكمل أول درس تعليمي.",icon:"fa-graduation-cap",test:()=>state.completedLessons.length>=1},
-{id:"five-lessons",title:"متعلم نشيط",desc:"أكمل خمسة دروس.",icon:"fa-book-open",test:()=>state.completedLessons.length>=5},
-{id:"all-lessons",title:"متمكن من الأساسيات",desc:"أكمل عشرة دروس.",icon:"fa-award",test:()=>state.completedLessons.length>=10},
-{id:"first-case",title:"المحقق الجديد",desc:"حل أول قضية رقمية.",icon:"fa-magnifying-glass-chart",test:()=>state.completedCases.length>=1},
-{id:"three-cases",title:"عين المحقق",desc:"حل القضايا الثلاث.",icon:"fa-user-secret",test:()=>state.completedCases.length>=3},
-{id:"first-book",title:"قارئ Midnight",desc:"اقرأ أول فصل من كتاب.",icon:"fa-book",test:()=>state.readChapters.length>=1},
-{id:"ten-chapters",title:"باحث المعرفة",desc:"اقرأ عشرة فصول.",icon:"fa-book-open-reader",test:()=>state.readChapters.length>=10},
-{id:"hundred-xp",title:"مئة نقطة",desc:"اجمع 100 نقطة خبرة.",icon:"fa-bolt",test:()=>state.xp>=100},
-{id:"five-hundred-xp",title:"خبير مثابر",desc:"اجمع 500 نقطة خبرة.",icon:"fa-star",test:()=>state.xp>=500}
-];let unlocked=[];for(const a of definitions){if(a.test()&&!state.achievements.includes(a.id)){state.achievements.push(a.id);unlocked.push(a.title)}}saveState();unlocked.forEach(t=>toast("🏆 إنجاز جديد: "+t))}
-const achievementDefinitions=[
-{id:"first-lesson",title:"أول خطوة",desc:"أكمل أول درس تعليمي.",icon:"fa-graduation-cap",test:()=>state.completedLessons.length>=1},
-{id:"five-lessons",title:"متعلم نشيط",desc:"أكمل خمسة دروس.",icon:"fa-book-open",test:()=>state.completedLessons.length>=5},
-{id:"all-lessons",title:"متمكن من الأساسيات",desc:"أكمل عشرة دروس.",icon:"fa-award",test:()=>state.completedLessons.length>=10},
-{id:"first-case",title:"المحقق الجديد",desc:"حل أول قضية رقمية.",icon:"fa-magnifying-glass-chart",test:()=>state.completedCases.length>=1},
-{id:"three-cases",title:"عين المحقق",desc:"حل القضايا الثلاث.",icon:"fa-user-secret",test:()=>state.completedCases.length>=3},
-{id:"first-book",title:"قارئ Midnight",desc:"اقرأ أول فصل من كتاب.",icon:"fa-book",test:()=>state.readChapters.length>=1},
-{id:"ten-chapters",title:"باحث المعرفة",desc:"اقرأ عشرة فصول.",icon:"fa-book-open-reader",test:()=>state.readChapters.length>=10},
-{id:"hundred-xp",title:"مئة نقطة",desc:"اجمع 100 نقطة خبرة.",icon:"fa-bolt",test:()=>state.xp>=100},
-{id:"five-hundred-xp",title:"خبير مثابر",desc:"اجمع 500 نقطة خبرة.",icon:"fa-star",test:()=>state.xp>=500}
-];
-function renderAchievements(){checkAchievementStateOnly();setText("achievementCount",state.achievements.length);setText("levelNumber",level());setText("levelName",currentLevelName());setText("nextLevelXP",100-(state.xp%100));setText("overallPercent",pct(state.completedLessons.length+state.completedCases.length,lessons.length+casesData.length)+"%");setHTML("achievementGrid",achievementDefinitions.map(a=>{const ok=state.achievements.includes(a.id);return`<article class="card achievement-card ${ok?"":"locked"}"><div class="achievement-icon" style="color:${ok?"#d8b4fe":"#786b87"}"><i class="fa-solid ${a.icon}"></i></div><div class="badges"><span class="badge ${ok?"green":""}">${ok?"مفتوح":"مقفل"}</span></div><h3>${escapeHTML(a.title)}</h3><p>${escapeHTML(a.desc)}</p></article>`}).join(""))}
-function checkAchievementStateOnly(){for(const a of achievementDefinitions)if(a.test()&&!state.achievements.includes(a.id))state.achievements.push(a.id);saveState()}
-function renderProfile(){setText("profileDisplayName",state.name||"متدرب Midnight");setText("topName",state.name||"متدرب Midnight");setText("profileLevelText","المستوى "+level()+" • "+currentLevelName());document.getElementById("profileName").value=state.name||"";setText("profileLessonsLabel",state.completedLessons.length+" / "+lessons.length);document.getElementById("profileLessonsProgress").style.width=pct(state.completedLessons.length,lessons.length)+"%";setText("profileCasesLabel",state.completedCases.length+" / "+casesData.length);document.getElementById("profileCasesProgress").style.width=pct(state.completedCases.length,casesData.length)+"%";setText("profileBooksLabel",state.readChapters.length)}
-document.getElementById("saveProfile").addEventListener("click",()=>{const name=document.getElementById("profileName").value.trim().slice(0,24);state.name=name||"متدرب Midnight";saveState();refreshUI();toast("تم حفظ اسمك")});
-document.getElementById("exportProgress").addEventListener("click",()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="midnight-progress.json";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);toast("تم تصدير نسخة التقدم")});
-document.getElementById("importProgressBtn").addEventListener("click",()=>document.getElementById("importProgressFile").click());
-document.getElementById("importProgressFile").addEventListener("change",async e=>{const file=e.target.files[0];if(!file)return;try{const imported=JSON.parse(await file.text());if(!imported||typeof imported!=="object"||!Array.isArray(imported.completedLessons)||!Array.isArray(imported.completedCases)||typeof imported.xp!=="number")throw new Error("invalid");const next={...defaultState(),...imported};next.completedLessons=next.completedLessons.filter(id=>lessons.some(l=>l.id===id));next.completedCases=next.completedCases.filter(id=>casesData.some(c=>c.id===id));next.xp=Math.max(0,Math.min(1000000,Math.floor(next.xp)));state=next;saveState();refreshUI();toast("تم استيراد التقدم بنجاح")}catch(err){toast("الملف غير صالح أو ليس نسخة Midnight")}e.target.value=""});
-document.getElementById("resetProgress").addEventListener("click",()=>{if(!confirm("متأكد أنك تبي تحذف تقدمك المحلي؟ يفضل تصدير نسخة احتياطية أولًا."))return;state=defaultState();saveState();activeCaseId=null;activeLessonId=null;renderCaseListReset();refreshUI();navigate("home");toast("تمت إعادة ضبط التقدم")});
-function renderCaseListReset(){document.getElementById("caseRoomView").classList.add("hidden");document.getElementById("caseListView").classList.remove("hidden")}
-function refreshUI(){setText("homeXP",state.xp+" XP");setText("homeLessons",state.completedLessons.length);setText("homeCases",state.completedCases.length);setText("homeAchievements",state.achievements.length);setText("topName",state.name||"متدرب Midnight");renderLessons();renderHomePaths();renderFeaturedCase();renderCases();renderBooks();renderAchievements();renderProfile();setText("quizBest",(state.bestQuiz||0)+"%");}
-function renderHomePaths(){const paths=[{title:"أساسيات الأمن",icon:"fa-shield-halved",filter:"أساسيات",desc:"ابدأ بفهم الحماية والمفاهيم الأساسية."},{title:"الشبكات",icon:"fa-network-wired",filter:"شبكات",desc:"تعرف على IP وDNS والمنافذ والراوتر."},{title:"Linux",icon:"fa-terminal",filter:"Linux",desc:"تدرب على الطرفية والملفات والصلاحيات."}];setHTML("homePaths",paths.map(p=>{const total=lessons.filter(l=>l.category===p.filter).length;const done=lessons.filter(l=>l.category===p.filter&&state.completedLessons.includes(l.id)).length;return`<article class="card path-card" onclick="currentFilter='${p.filter}';navigate('academy');document.querySelectorAll('[data-filter]').forEach(b=>b.classList.toggle('active',b.dataset.filter==='${p.filter}'));renderLessons()"><div class="card-icon"><i class="fa-solid ${p.icon}"></i></div><h3>${p.title}</h3><p>${p.desc}</p><div class="progress-label"><span>تقدمك</span><span>${done}/${total}</span></div><div class="progress-track"><div class="progress-fill" style="width:${pct(done,total)}%"></div></div></article>`}).join(""))}
-function init(){initLinux();renderNetwork();renderLessons();renderCases();renderBooks();renderAchievements();renderQuiz();refreshUI();checkAchievementStateOnly();renderCaseListReset()}
-init();
+
+const KEY='midnight_academy_v6';
+let state=loadState(),activeBook=null,chapterIndex=0,activeCase=null,evidenceIndex=0;
+
+function loadState(){try{return JSON.parse(localStorage.getItem(KEY))||{done:[],xp:0,solved:[]}}catch(e){return{done:[],xp:0,solved:[]}}}
+function save(){localStorage.setItem(KEY,JSON.stringify(state));refreshStats()}
+function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.remove('hidden');clearTimeout(window._toastTimer);window._toastTimer=setTimeout(()=>el.classList.add('hidden'),2600)}
+function refreshStats(){
+const total=books.reduce((a,b)=>a+b.chapters.length,0),done=state.done.length;
+document.getElementById('completedCount').textContent=done;
+document.getElementById('xpCount').textContent=state.xp+' XP';
+document.getElementById('caseCount').textContent=state.solved.length;
+document.getElementById('badgeCount').textContent=(done>=1?1:0)+(done>=5?1:0)+(state.solved.length?1:0);
+const pct=Math.round(done/total*100);
+document.getElementById('heroPercent').textContent=pct+'%';
+document.getElementById('heroProgress').style.width=pct+'%';
+}
+function renderTracks(){
+document.getElementById('trackGrid').innerHTML=tracks.map(t=>`<article class="track-card reveal"><div class="track-top"><div class="track-icon"><i class="fa-solid ${t.icon}"></i></div><span class="level">${t.level}</span></div><h3>${t.title}</h3><p>${t.desc}</p><div class="track-meta"><span><i class="fa-solid fa-book-open"></i> ${t.lessons}</span><span><i class="fa-solid fa-signal"></i> تعلّم ذاتي</span></div><button class="card-link" onclick="openBook('${t.book||'network'}')">ابدأ المسار <i class="fa-solid fa-arrow-left"></i></button></article>`).join('');
+}
+function renderBooks(){
+document.getElementById('bookGrid').innerHTML=books.map(b=>`<article class="book-card reveal"><div class="book-cover ${b.color}"><div class="book-ico"><i class="fa-solid ${b.icon}"></i></div><small>MIDNIGHT KNOWLEDGE SERIES · ${b.category}</small><h3>${b.title}</h3></div><div class="book-info"><div class="book-meta"><span><i class="fa-regular fa-clock"></i> ${b.time}</span><span>${b.chapters.length} فصول</span></div><p>${b.desc}</p><button class="btn primary" onclick="openBook('${b.id}')">ابدأ القراءة <i class="fa-solid fa-arrow-left"></i></button></div></article>`).join('');
+}
+function renderCases(){
+document.getElementById('caseGrid').innerHTML=cases.map(c=>`<article class="track-card case-card reveal"><div class="track-top"><div class="track-icon"><i class="fa-solid fa-folder-open"></i></div><span class="case-tag">${state.solved.includes(c.id)?'✓ تم الحل':c.level}</span></div><h3>${c.title}</h3><p>${c.desc}</p><div class="track-meta"><span><i class="fa-regular fa-clock"></i> ${c.time}</span><span><i class="fa-solid fa-file-lines"></i> ${c.evidence.length} أدلة</span></div><button class="btn secondary" style="width:100%" onclick="openCase('${c.id}')">${state.solved.includes(c.id)?'مراجعة التحدي':'ابدأ التحدي'} <i class="fa-solid fa-arrow-left"></i></button></article>`).join('');
+}
+function hideAll(){
+document.getElementById('mainHome').classList.add('hidden');
+document.getElementById('readerPage').classList.add('hidden');
+document.getElementById('casePage').classList.add('hidden');
+window.scrollTo({top:0,behavior:'smooth'});
+}
+function showHome(){
+document.getElementById('mainHome').classList.remove('hidden');
+document.getElementById('readerPage').classList.add('hidden');
+document.getElementById('casePage').classList.add('hidden');
+activeBook=null;activeCase=null;
+history.replaceState(null,'','#home');
+setTimeout(observeReveals,80);
+}
+function openBook(id){
+activeBook=books.find(b=>b.id===id);if(!activeBook)return;
+chapterIndex=0;hideAll();
+document.getElementById('readerPage').classList.remove('hidden');
+history.replaceState(null,'','#book-'+id);renderReader();
+}
+function renderReader(){
+const b=activeBook,c=b.chapters[chapterIndex];
+document.getElementById('sideBookTitle').textContent=b.title;
+document.getElementById('readerBookLabel').textContent='MIDNIGHT LIBRARY · '+b.category;
+document.getElementById('readerTitle').textContent=c.title;
+document.getElementById('readerLead').textContent=c.lead;
+document.getElementById('readerBody').innerHTML=c.body;
+document.getElementById('chapterNav').innerHTML=b.chapters.map((x,i)=>`<button class="chapter-btn ${i===chapterIndex?'active':''}" onclick="goChapter(${i})"><span class="num">${String(i+1).padStart(2,'0')}</span><span style="color:inherit;font-size:13px">${x.title}</span>${state.done.includes(b.id+':'+i)?'<i class="fa-solid fa-check" style="color:var(--green);margin-right:auto"></i>':''}</button>`).join('');
+document.getElementById('chapterProgress').style.width=((chapterIndex+1)/b.chapters.length*100)+'%';
+document.getElementById('prevChapter').disabled=chapterIndex===0;
+document.getElementById('nextChapter').innerHTML=chapterIndex===b.chapters.length-1?'إنهاء الكتاب <i class="fa-solid fa-check"></i>':'الفصل التالي <i class="fa-solid fa-arrow-left"></i>';
+renderChapterQuiz(c);
+}
+function goChapter(i){
+chapterIndex=Math.max(0,Math.min(activeBook.chapters.length-1,i));
+renderReader();
+document.querySelector('.reader-content').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function renderChapterQuiz(c){
+const q=c.quiz;
+document.getElementById('readerQuiz').innerHTML=`<div class="quiz-box"><div class="kicker">QUICK CHECK</div><h3 style="margin:5px 0 12px">اختبر فهمك</h3><strong>${q.q}</strong><div class="quiz-options">${q.opts.map((o,i)=>`<button class="quiz-option" onclick="answerBookQuiz(this,${i},${q.correct},'${encodeURIComponent(q.explain)}')">${o}</button>`).join('')}</div><div class="feedback" aria-live="polite"></div></div>`;
+}
+function answerBookQuiz(btn,i,correct,explain){
+const box=btn.closest('.quiz-box');if(box.dataset.answered)return;box.dataset.answered='1';
+[...box.querySelectorAll('.quiz-option')].forEach((b,j)=>{b.disabled=true;if(j===correct)b.classList.add('correct')});
+const feedback=box.querySelector('.feedback');
+if(i===correct){
+feedback.textContent='إجابة صحيحة! '+decodeURIComponent(explain);
+const key=activeBook.id+':'+chapterIndex;
+if(!state.done.includes(key)){state.done.push(key);state.xp+=20;save();toast('+20 XP · تم تسجيل الفصل كمكتمل');}
+}else{btn.classList.add('wrong');feedback.textContent='راجع الفكرة وحاول تتذكر السبب. '+decodeURIComponent(explain)}
+renderReaderNavOnly();
+}
+function renderReaderNavOnly(){
+document.getElementById('chapterNav').innerHTML=activeBook.chapters.map((x,i)=>`<button class="chapter-btn ${i===chapterIndex?'active':''}" onclick="goChapter(${i})"><span class="num">${String(i+1).padStart(2,'0')}</span><span style="color:inherit;font-size:13px">${x.title}</span>${state.done.includes(activeBook.id+':'+i)?'<i class="fa-solid fa-check" style="color:var(--green);margin-right:auto"></i>':''}</button>`).join('');
+}
+document.getElementById('prevChapter').addEventListener('click',()=>goChapter(chapterIndex-1));
+document.getElementById('nextChapter').addEventListener('click',()=>{
+if(!activeBook)return;
+if(chapterIndex<activeBook.chapters.length-1){goChapter(chapterIndex+1)}
+else{
+const key=activeBook.id+':'+chapterIndex;
+if(!state.done.includes(key)){state.done.push(key);state.xp+=20;save()}
+toast('أحسنت! وصلت لنهاية الكتاب 📚');
+showHome();document.getElementById('books').scrollIntoView({behavior:'smooth'});
+}
+});
+document.getElementById('backFromReader').addEventListener('click',()=>{showHome();document.getElementById('books').scrollIntoView({behavior:'smooth'})});
+
+function openCase(id){
+activeCase=cases.find(c=>c.id===id);if(!activeCase)return;
+evidenceIndex=0;hideAll();
+document.getElementById('casePage').classList.remove('hidden');
+history.replaceState(null,'','#case-'+id);
+document.getElementById('caseTitle').textContent=activeCase.title;
+document.getElementById('caseLead').textContent=activeCase.lead;
+document.getElementById('evidenceList').innerHTML=activeCase.evidence.map((e,i)=>`<button class="evidence-item ${i===0?'active':''}" onclick="showEvidence(${i})"><i class="fa-solid fa-file-lines" style="margin-left:8px;color:var(--purple)"></i>${String(i+1).padStart(2,'0')} · ${e.title}</button>`).join('');
+showEvidence(0);renderCaseQuestion();
+}
+function showEvidence(i){
+evidenceIndex=i;const e=activeCase.evidence[i];
+document.getElementById('evidenceType').textContent=e.type;
+document.getElementById('evidenceTitle').textContent=e.title;
+document.getElementById('evidenceContent').innerHTML=e.body;
+document.querySelectorAll('.evidence-item').forEach((b,j)=>b.classList.toggle('active',j===i));
+}
+function renderCaseQuestion(){
+const c=activeCase;
+document.getElementById('caseQuestion').innerHTML=`<div class="kicker">YOUR FINDING</div><h3 style="margin:5px 0 12px">${c.question}</h3><div class="quiz-options">${c.options.map((o,i)=>`<button class="quiz-option" onclick="answerCase(this,${i})">${o}</button>`).join('')}</div><div class="feedback" id="caseFeedback" aria-live="polite">راجع الأدلة قبل اختيار إجابتك.</div>`;
+}
+function answerCase(btn,i){
+const c=activeCase,box=document.getElementById('caseQuestion');if(box.dataset.answered)return;box.dataset.answered='1';
+[...box.querySelectorAll('.quiz-option')].forEach((b,j)=>{b.disabled=true;if(j===c.correct)b.classList.add('correct')});
+const f=document.getElementById('caseFeedback');
+if(i===c.correct){
+f.textContent='استنتاج ممتاز. '+c.explain;
+if(!state.solved.includes(c.id)){state.solved.push(c.id);state.xp+=50;save();toast('+50 XP · تم حل التحدي 🔍')}
+}else{btn.classList.add('wrong');f.textContent='راجع الأدلة مرة ثانية. '+c.explain}
+renderCases();
+}
+document.getElementById('backFromCase').addEventListener('click',()=>{showHome();document.getElementById('cases').scrollIntoView({behavior:'smooth'})});
+document.getElementById('progressBtn').addEventListener('click',()=>{
+const total=books.reduce((a,b)=>a+b.chapters.length,0);
+toast(`تقدمك: ${state.done.length}/${total} فصل · ${state.xp} XP · ${state.solved.length} تحدي محلول`);
+});
+document.querySelectorAll('[data-scroll]').forEach(b=>b.addEventListener('click',()=>{
+const target=b.dataset.scroll;
+document.getElementById('navlinks').classList.remove('open');
+if(!document.getElementById('mainHome').classList.contains('hidden'))document.getElementById(target)?.scrollIntoView({behavior:'smooth'});
+else{showHome();setTimeout(()=>document.getElementById(target)?.scrollIntoView({behavior:'smooth'}),100)}
+}));
+document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('navlinks').classList.toggle('open'));
+function observeReveals(){
+const els=document.querySelectorAll('.reveal');
+if(!('IntersectionObserver'in window)){els.forEach(e=>e.classList.add('visible'));return}
+const io=new IntersectionObserver(entries=>entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add('visible');io.unobserve(en.target)}}),{threshold:.08});
+els.forEach(e=>io.observe(e));
+}
+renderTracks();renderBooks();renderCases();refreshStats();observeReveals();
 </script>
 </body>
 </html>
