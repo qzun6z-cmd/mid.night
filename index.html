@@ -1,1199 +1,857 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#08070d">
-<meta name="description" content="Midnight Cyber Security — أكاديمية الأمن السيبراني، أساسيات الشبكات، مختبرات تفاعلية، قضايا رقمية وقاموس تقني.">
-<title>Midnight | Cyber Security</title>
+<meta name="theme-color" content="#0b0912">
+<title>Midnight Academy | تعلم الأمن السيبراني</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <style>
-:root{
---bg:#08070d;--panel:#100e19;--panel2:#151220;--panel3:#1c172a;
---purple:#9b5cff;--purple2:#6f38dc;--pink:#d28cff;
---text:#f5f1ff;--muted:#a49ab9;--border:#2a223a;
---green:#55e6a5;--red:#ff687d;--yellow:#ffd477;
---radius:18px;--shadow:0 12px 40px #0004;
+:root {
+  --bg:#0b0912;
+  --panel:#12101c;
+  --panel2:#191526;
+  --border:#292239;
+  --purple:#a66bff;
+  --purple2:#7842d9;
+  --text:#f5f1ff;
+  --muted:#a39ab6;
+  --green:#58d6a2;
+  --red:#ff747f;
+  --radius:18px;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{margin:0;background:radial-gradient(ellipse at 80% 0%,#241238 0,transparent 36%),var(--bg);color:var(--text);font-family:'Tajawal',sans-serif;min-height:100vh}
-button,input,textarea,select{font:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:95px}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Tajawal',sans-serif;font-size:15px;line-height:1.8}
+button,input{font:inherit}
+button,a{-webkit-tap-highlight-color:transparent}
 button{cursor:pointer}
 a{color:inherit;text-decoration:none}
-button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--pink);outline-offset:3px}
-::selection{background:#8c52d9;color:#fff}
-.app{display:flex;min-height:100vh}
-.sidebar{width:255px;position:fixed;right:0;top:0;bottom:0;background:#0c0a12eF;border-left:1px solid var(--border);padding:22px 15px;display:flex;flex-direction:column;z-index:50;overflow-y:auto;backdrop-filter:blur(18px)}
-.brand{display:flex;align-items:center;gap:12px;padding:5px 8px 23px;border-bottom:1px solid var(--border)}
-.brand-icon{width:43px;height:43px;display:grid;place-items:center;border-radius:14px;background:linear-gradient(145deg,#a76aff,#5d2bc5);box-shadow:0 6px 24px #8744e94a;font-size:21px}
-.brand-name{font-size:22px;font-weight:900;letter-spacing:1px}
-.brand-sub{font-size:11px;color:var(--muted);letter-spacing:1.4px;margin-top:2px}
-.side-label{font-size:11px;color:#756b89;font-weight:800;padding:22px 11px 8px;letter-spacing:1px}
-.nav-list{display:grid;gap:5px}
-.nav-btn{border:1px solid transparent;background:transparent;color:var(--muted);width:100%;display:flex;align-items:center;gap:12px;padding:12px 13px;border-radius:12px;text-align:right;transition:.2s;font-weight:700;font-size:14px}
-.nav-btn i{width:20px;text-align:center;font-size:15px}
-.nav-btn:hover{background:#ffffff08;color:#fff}
-.nav-btn.active{background:linear-gradient(90deg,#8c4fe51d,#9b5cff13);border-color:#7845bd4d;color:#d9baff}
-.nav-btn.active i{color:var(--pink)}
-.side-bottom{margin-top:auto;padding-top:22px}
-.discord-mini{display:flex;gap:10px;align-items:center;padding:13px;border:1px solid #5865f255;background:#5865f211;border-radius:14px;margin-bottom:14px}
-.discord-mini i{font-size:24px;color:#9daaff}
-.discord-mini strong{display:block;font-size:13px}
-.discord-mini small{color:var(--muted);font-size:11px}
-.side-footer{font-size:11px;color:#6f667d;text-align:center;line-height:1.9}
-.main{margin-right:255px;width:calc(100% - 255px);min-width:0}
-.topbar{height:76px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 30px;background:#08070dc9;backdrop-filter:blur(16px);position:sticky;top:0;z-index:35}
-.breadcrumb{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px}
-.breadcrumb i{color:var(--purple)}
-.top-actions{display:flex;align-items:center;gap:10px}
-.icon-btn{width:39px;height:39px;border-radius:12px;background:var(--panel);border:1px solid var(--border);color:var(--muted);display:grid;place-items:center}
-.icon-btn:hover{color:#fff;border-color:var(--purple)}
-.xp-pill{display:flex;align-items:center;gap:7px;border:1px solid #8d5ce544;background:#8d5ce512;border-radius:12px;padding:9px 12px;font-size:12px;font-weight:800;color:#d7b7ff}
-.mobile-menu{display:none}
-.content{max-width:1500px;margin:auto;padding:30px}
-.page{display:none;animation:fadeIn .25s ease}
-.page.active{display:block}
-@keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
-.page-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:15px;margin-bottom:24px}
-.eyebrow{color:var(--pink);font-size:12px;font-weight:900;letter-spacing:1.6px;margin-bottom:9px}
-h1,h2,h3,p{margin-top:0}
-h1{font-size:clamp(25px,3vw,37px);margin-bottom:9px;font-weight:900;line-height:1.35}
-h2{font-size:22px;font-weight:900}
-h3{font-size:16px;font-weight:800}
-.subtext{color:var(--muted);line-height:1.9;font-size:14px;margin:0}
-.btn{border:1px solid transparent;border-radius:12px;padding:11px 16px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.2s;font-size:13px}
-.btn-primary{background:linear-gradient(135deg,#a66aff,#7137d1);color:white;box-shadow:0 5px 18px #7137d133}
-.btn-primary:hover{filter:brightness(1.12);transform:translateY(-1px)}
-.btn-secondary{background:var(--panel2);border-color:var(--border);color:var(--text)}
-.btn-secondary:hover{border-color:var(--purple)}
-.btn-danger{background:#ff687d12;color:#ff9bab;border-color:#ff687d33}
-.btn-sm{padding:8px 12px;font-size:12px}
-.hero{border:1px solid #7244a94d;border-radius:24px;overflow:hidden;position:relative;padding:38px;background:linear-gradient(115deg,#211234 0%,#171021 45%,#100d19 100%);display:grid;grid-template-columns:1.4fr .6fr;align-items:center;gap:22px;min-height:290px;margin-bottom:24px}
-.hero:before{content:"";position:absolute;width:310px;height:310px;left:10%;top:-150px;border-radius:50%;border:1px solid #b781ff19;box-shadow:0 0 0 35px #b781ff08,0 0 0 70px #b781ff05}
-.hero-content{position:relative;z-index:1}
-.hero h1{font-size:clamp(30px,3.7vw,48px);max-width:650px}
-.hero h1 span{color:#c49aff}
-.hero p{color:#b9accd;line-height:2;max-width:620px;font-size:15px}
-.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
-.hero-art{position:relative;display:grid;place-items:center;min-height:190px}
-.orbit{width:190px;height:190px;border:1px solid #a36bf84c;border-radius:50%;display:grid;place-items:center;position:relative;box-shadow:0 0 70px #8539d91c,inset 0 0 50px #8539d91c}
-.orbit:before,.orbit:after{content:"";position:absolute;border:1px dashed #b985ff48;border-radius:50%;inset:20px}
-.orbit:after{inset:-17px;border-style:solid;border-color:#b985ff1b}
-.orbit-core{width:100px;height:100px;border-radius:28px;background:linear-gradient(145deg,#b17bff,#5d2cbb);display:grid;place-items:center;font-size:43px;box-shadow:0 0 50px #9c5aff69}
-.float-icon{position:absolute;width:39px;height:39px;display:grid;place-items:center;background:#171024;border:1px solid #8c5cba;border-radius:12px;color:#d3b1ff}
-.float-one{top:5px;right:18px}.float-two{bottom:18px;left:5px}.float-three{bottom:0;right:55px}
-.stats-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:27px}
-.stat-card,.card{background:linear-gradient(145deg,#14111e,#100e17);border:1px solid var(--border);border-radius:var(--radius);padding:20px;min-width:0}
-.stat-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
-.stat-icon{width:40px;height:40px;border-radius:12px;background:#9b5cff16;color:#c39aff;display:grid;place-items:center}
-.stat-label{color:var(--muted);font-size:12px}
-.stat-number{font-size:29px;font-weight:900;margin-bottom:4px}
-.stat-foot{font-size:11px;color:#8b819c}
-.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:27px 0 15px}
-.section-head h2{font-size:19px;margin:0}
-.text-link{font-size:12px;color:#c7a2ff;font-weight:800;background:none;border:0}
-.grid-2{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
-.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
-.course-list{display:grid;gap:13px}
-.course-row{display:flex;gap:13px;align-items:center;padding:13px;border:1px solid var(--border);border-radius:14px;background:#ffffff03}
-.course-icon{width:44px;height:44px;flex-shrink:0;display:grid;place-items:center;border-radius:13px;background:#9b5cff15;color:#c5a0ff;font-size:18px}
-.course-info{flex:1;min-width:0}
-.course-info strong{display:block;font-size:13px;margin-bottom:5px}
-.course-info small{color:var(--muted);font-size:11px}
-.progress-track{height:6px;border-radius:20px;background:#292237;overflow:hidden;margin-top:10px}
-.progress-fill{height:100%;background:linear-gradient(90deg,#7e40dc,#c18aff);border-radius:20px;transition:width .3s}
-.activity-list{display:grid;gap:17px}
-.activity{display:flex;align-items:flex-start;gap:12px}
-.activity-dot{width:9px;height:9px;background:var(--purple);border-radius:50%;margin-top:5px;box-shadow:0 0 12px #9b5cff70;flex-shrink:0}
-.activity strong{font-size:13px;display:block;margin-bottom:4px}
-.activity small{font-size:11px;color:var(--muted);line-height:1.8}
-.badge{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:900;padding:5px 9px;border-radius:8px;border:1px solid #9b5cff30;color:#d3b3ff;background:#9b5cff10;white-space:nowrap}
-.badge.green{color:var(--green);border-color:#55e6a533;background:#55e6a50d}
-.badge.yellow{color:var(--yellow);border-color:#ffd47733;background:#ffd4770d}
-.badge.red{color:#ff9bab;border-color:#ff687d33;background:#ff687d0d}
-.feature-card{padding:22px;display:flex;flex-direction:column;gap:14px;transition:.2s}
-.feature-card:hover{transform:translateY(-3px);border-color:#7549a4}
-.feature-icon{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;font-size:21px;background:#9b5cff18;color:#c39aff}
-.feature-card h3{margin:0}
-.feature-card p{font-size:12px;line-height:1.9;color:var(--muted);margin:0;flex:1}
-.feature-card .btn{align-self:flex-start}
-.discord-banner{border:1px solid #5865f255;border-radius:18px;padding:22px;background:linear-gradient(110deg,#5865f216,#14111e);display:flex;justify-content:space-between;align-items:center;gap:18px;margin-top:24px}
-.discord-title{display:flex;gap:14px;align-items:center}
-.discord-big{font-size:31px;color:#a9b3ff}
-.discord-title h3{margin:0 0 5px}
-.discord-title p{color:var(--muted);font-size:12px;margin:0;line-height:1.8}
-.filter-row{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:19px}
-.filter-btn{border:1px solid var(--border);background:var(--panel);color:var(--muted);padding:9px 13px;border-radius:10px;font-size:12px;font-weight:800}
-.filter-btn.active,.filter-btn:hover{background:#9b5cff19;color:#d7baff;border-color:#8b55c9}
-.search-box{display:flex;align-items:center;gap:10px;border:1px solid var(--border);background:var(--panel);border-radius:12px;padding:0 13px;min-width:190px}
-.search-box i{color:var(--muted)}
-.search-box input{background:none;border:0;outline:0;color:white;width:100%;padding:12px 0;min-width:0}
-.search-box input::placeholder{color:#716780}
-.lesson-grid,.lab-grid,.case-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
-.lesson-card,.lab-card,.case-card{display:flex;flex-direction:column;gap:13px;min-height:230px}
-.card-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.card-visual{height:85px;border-radius:13px;background:radial-gradient(circle at 75% 20%,#8b4ddd38,transparent 50%),#1b1428;display:flex;align-items:center;justify-content:center;font-size:30px;color:#bd94ff}
-.card h3{margin:0}
-.card p{font-size:12px;color:var(--muted);line-height:1.9;margin:0;flex:1}
-.card-bottom{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto}
-.meta{display:flex;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:11px}
-.lesson-layout{display:grid;grid-template-columns:245px minmax(0,1fr);gap:17px;align-items:start}
-.lesson-sidebar{position:sticky;top:95px}
-.lesson-nav-item{width:100%;text-align:right;border:0;border-radius:10px;padding:12px;background:transparent;color:var(--muted);font-size:12px;display:flex;gap:9px;align-items:center;margin-bottom:4px}
-.lesson-nav-item.active,.lesson-nav-item:hover{background:#9b5cff16;color:#d8b9ff}
-.lesson-body{line-height:2.05;color:#d3cadd;font-size:14px}
-.lesson-body h2{color:white;margin-top:26px}
-.lesson-body h3{color:#d6b6ff;margin-top:22px}
-.lesson-body code,.inline-code{direction:ltr;unicode-bidi:plaintext;display:inline-block;font-family:ui-monospace,monospace;background:#241a33;border:1px solid #3b2a51;border-radius:6px;padding:1px 7px;color:#d8b7ff;font-size:12px}
-.callout{padding:15px 16px;border-radius:12px;border:1px solid #8d5ce544;background:#9b5cff0c;margin:18px 0;line-height:1.9;font-size:13px}
-.callout.warning{border-color:#ffd47744;background:#ffd47709}
-.callout.success{border-color:#55e6a544;background:#55e6a509}
-.data-table-wrap{overflow:auto;border:1px solid var(--border);border-radius:12px;margin:15px 0}
-table{width:100%;border-collapse:collapse;min-width:470px;font-size:12px}
-th,td{padding:13px 14px;text-align:right;border-bottom:1px solid var(--border)}
-th{background:#1b1527;color:#d9c2ff;font-weight:900}
-td{color:#c8bfd5}
-tr:last-child td{border-bottom:0}
-.terminal{background:#09080e;border:1px solid #332746;border-radius:16px;overflow:hidden;direction:ltr;text-align:left}
-.terminal-head{height:42px;background:#171220;border-bottom:1px solid #332746;display:flex;align-items:center;padding:0 13px;gap:7px}
-.terminal-dot{width:9px;height:9px;border-radius:50%;background:#ff687d}
-.terminal-dot:nth-child(2){background:#ffd477}.terminal-dot:nth-child(3){background:#55e6a5}
-.terminal-title{margin-left:auto;color:#8f84a1;font-size:11px}
-.terminal-output{padding:16px;height:290px;overflow-y:auto;color:#c5b9d6;font:12px/1.9 ui-monospace,SFMono-Regular,monospace;white-space:pre-wrap;overflow-wrap:anywhere}
-.terminal-output .ok{color:#55e6a5}.terminal-output .warn{color:#ffd477}.terminal-output .purple{color:#c39aff}
-.terminal-form{display:flex;gap:8px;padding:10px;border-top:1px solid #292033}
-.terminal-form span{color:#a982e9;font:12px ui-monospace,monospace;align-self:center}
-.terminal-form input{flex:1;min-width:0;background:transparent;border:0;color:#fff;outline:none;font:12px ui-monospace,monospace}
-.terminal-form button{background:#8d52dc;border:0;border-radius:8px;color:#fff;padding:7px 12px;font-size:11px}
-.command-chips{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}
-.command-chip{font:11px ui-monospace,monospace;border:1px solid var(--border);background:var(--panel);color:#c6a3ff;border-radius:8px;padding:7px 9px}
-.command-chip:hover{border-color:var(--purple)}
-.dictionary-layout{display:grid;grid-template-columns:1fr 1.5fr;gap:17px}
-.dictionary-list{display:grid;gap:6px;max-height:620px;overflow:auto}
-.dictionary-item{background:transparent;border:1px solid transparent;color:var(--muted);text-align:right;padding:12px;border-radius:10px}
-.dictionary-item:hover,.dictionary-item.active{background:#9b5cff12;border-color:#69439b;color:#fff}
-.dictionary-item strong{display:block;font-size:13px}
-.dictionary-item small{font-size:11px;color:var(--muted)}
-.dictionary-detail h2{font-size:28px}
-.dictionary-detail .term-en{direction:ltr;text-align:right;color:#bc91ff;font:13px ui-monospace,monospace}
-.dictionary-detail p{line-height:2;color:#d1c7de;font-size:14px}
-.dictionary-detail .example{background:#0b0911;border:1px solid var(--border);padding:14px;border-radius:12px;color:#c3b4d8;font-size:12px;line-height:1.9}
-.quiz-progress{height:5px;background:#2a2238;border-radius:10px;margin:15px 0 23px;overflow:hidden}
-.quiz-progress div{height:100%;background:linear-gradient(90deg,#7840dc,#c38bff)}
-.quiz-question{font-size:21px;font-weight:900;line-height:1.7;margin:20px 0}
-.answer-list{display:grid;gap:10px}
-.answer-btn{background:#171320;border:1px solid var(--border);border-radius:12px;padding:15px;text-align:right;color:#e9e1f4;display:flex;gap:12px;align-items:center}
-.answer-btn:hover{border-color:#8c55c6}
-.answer-btn.correct{border-color:#55e6a5;background:#55e6a50c}
-.answer-btn.wrong{border-color:#ff687d;background:#ff687d0c}
-.answer-letter{width:29px;height:29px;border-radius:9px;background:#272034;display:grid;place-items:center;flex-shrink:0;font-size:12px}
-.feedback{margin-top:15px;padding:13px;border-radius:10px;font-size:13px;line-height:1.9;display:none}
-.feedback.show{display:block}
-.leaderboard-table{width:100%;min-width:520px}
-.rank-number{width:30px;height:30px;border-radius:10px;background:#252033;display:grid;place-items:center;font-weight:900}
-.rank-number.gold{background:#ffd47720;color:#ffd477}
-.rank-number.silver{background:#d9e0eb18;color:#d9e0eb}
-.rank-number.bronze{background:#c9895a20;color:#e6ac82}
-.member-cell{display:flex;align-items:center;gap:10px}
-.avatar{width:36px;height:36px;border-radius:12px;background:linear-gradient(145deg,#6331a8,#b27aff);display:grid;place-items:center;color:white;font-weight:900}
-.member-cell strong{display:block}
-.member-cell small{font-size:10px;color:var(--muted)}
-.profile-header{display:flex;align-items:center;gap:18px;padding:24px}
-.profile-avatar{width:80px;height:80px;border-radius:24px;background:linear-gradient(145deg,#ad75ff,#5b2cba);display:grid;place-items:center;font-size:30px}
-.profile-form{display:grid;gap:13px;max-width:480px}
-.field-label{font-size:12px;color:#bdb1ce;font-weight:800}
-.field-input{width:100%;background:#0b0911;border:1px solid var(--border);color:#fff;border-radius:10px;padding:12px;outline:none;margin-top:7px}
-.field-input:focus{border-color:var(--purple)}
-.achievement-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
-.achievement{padding:18px;text-align:center}
-.achievement .ach-icon{width:55px;height:55px;border-radius:18px;margin:0 auto 12px;background:#9b5cff16;color:#d0a9ff;display:grid;place-items:center;font-size:23px}
-.achievement.locked{opacity:.45;filter:grayscale(.8)}
-.achievement h3{font-size:13px;margin-bottom:6px}
-.achievement p{font-size:11px;color:var(--muted);line-height:1.8;margin:0}
-.case-detail{display:grid;grid-template-columns:1fr .85fr;gap:17px}
-.evidence-list{display:grid;gap:10px}
-.evidence{padding:14px;border:1px solid var(--border);border-radius:12px;background:#ffffff03;display:flex;align-items:flex-start;gap:11px}
-.evidence i{color:#c39aff;margin-top:4px}
-.evidence strong{font-size:13px;display:block;margin-bottom:5px}
-.evidence p{color:var(--muted);font-size:12px;line-height:1.8;margin:0}
-.objective{display:flex;align-items:flex-start;gap:10px;color:#d5cadd;font-size:13px;line-height:1.8;padding:10px 0;border-bottom:1px solid var(--border)}
-.objective:last-child{border-bottom:0}
-.objective input{accent-color:#a66aff;margin-top:5px}
-.objective.done{color:#827891;text-decoration:line-through}
-.toast-wrap{position:fixed;left:20px;bottom:20px;z-index:100;display:grid;gap:9px}
-.toast{background:#191324;border:1px solid #49335f;box-shadow:var(--shadow);border-radius:12px;padding:13px 16px;max-width:min(360px,calc(100vw - 40px));font-size:13px;display:flex;gap:10px;align-items:center;animation:fadeIn .2s}
-.toast i{color:#c5a0ff}
-.modal-backdrop{position:fixed;inset:0;background:#000a;z-index:90;display:none;align-items:center;justify-content:center;padding:18px}
-.modal-backdrop.open{display:flex}
-.modal{background:#110e19;border:1px solid #3a2a4d;border-radius:20px;width:min(620px,100%);max-height:85vh;overflow:auto;padding:25px;box-shadow:0 30px 100px #0009}
-.modal-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:18px}
-.modal-head h2{margin:0}
-.empty-state{text-align:center;padding:35px 15px;color:var(--muted)}
-.empty-state i{font-size:30px;color:#9861d4;margin-bottom:13px}
-.footer{padding-top:30px;margin-top:34px;border-top:1px solid var(--border);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:#756b83;font-size:11px;line-height:1.9}
-.footer strong{color:#b5a2ca}
-.mobile-bottom{display:none}
-.hidden{display:none!important}
-@media(max-width:1200px){
-.sidebar{width:225px}.main{margin-right:225px;width:calc(100% - 225px)}
-.content{padding:23px}.hero{padding:28px}.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-.lesson-grid,.lab-grid,.case-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-.achievement-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--purple);outline-offset:3px}
+::selection{background:#7944bd;color:white}
+.app{min-height:100vh}
+.sidebar{position:fixed;z-index:50;right:0;top:0;bottom:0;width:255px;padding:24px 16px;background:#0e0c16;border-left:1px solid var(--border);display:flex;flex-direction:column;transition:transform .25s}
+.brand{display:flex;align-items:center;gap:12px;padding:4px 10px 24px;border-bottom:1px solid var(--border)}
+.brand-logo{width:43px;height:43px;border-radius:14px;background:linear-gradient(135deg,#a66bff,#5028a2);display:grid;place-items:center;font-size:21px;box-shadow:0 0 25px #8b4be333}
+.brand h1{font-size:19px;line-height:1.2;margin:0;font-weight:900;letter-spacing:.6px}
+.brand small{display:block;color:var(--muted);font-size:11px;margin-top:4px}
+.nav-title{color:#766d88;font-size:11px;font-weight:800;padding:20px 12px 8px}
+.nav{display:grid;gap:5px}
+.nav button{border:1px solid transparent;background:transparent;color:#b5acc8;text-align:right;border-radius:12px;padding:11px 13px;display:flex;align-items:center;gap:12px;font-size:14px;transition:.2s}
+.nav button i{width:20px;text-align:center;font-size:15px}
+.nav button:hover{background:#1a1526;color:white}
+.nav button.active{background:#251b37;border-color:#3a2856;color:#d9baff}
+.sidebar-bottom{margin-top:auto;padding:15px 10px 0;border-top:1px solid var(--border);color:var(--muted);font-size:12px}
+.sidebar-bottom strong{color:#c5a5ff}
+.main{margin-right:255px;min-width:0}
+.topbar{height:72px;position:sticky;top:0;z-index:30;background:#0b0912eF;backdrop-filter:blur(18px);border-bottom:1px solid #282134;display:flex;align-items:center;justify-content:space-between;padding:0 30px;gap:15px}
+.top-left,.top-right{display:flex;align-items:center;gap:12px}
+.page-context{color:var(--muted);font-size:13px}
+.xp-pill{display:flex;align-items:center;gap:8px;padding:7px 12px;background:#211832;border:1px solid #3a2856;border-radius:30px;color:#d9baff;font-weight:800;font-size:13px}
+.avatar{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:#302044;border:1px solid #6f4695;color:#e4caff;font-weight:900}
+.menu-toggle{display:none;width:40px;height:40px;border:1px solid var(--border);background:var(--panel);color:white;border-radius:12px}
+.content{max-width:1250px;margin:auto;padding:30px}
+.section{display:none;animation:appear .25s ease}
+.section.active{display:block}
+@keyframes appear{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.hero{position:relative;overflow:hidden;padding:clamp(25px,5vw,55px);border:1px solid #392650;border-radius:26px;background:radial-gradient(ellipse at 85% 10%,#7134a83d,transparent 45%),linear-gradient(135deg,#171022,#100d19 70%);min-height:320px;display:flex;align-items:center}
+.hero:after{content:"";position:absolute;left:-65px;bottom:-110px;width:300px;height:300px;border:1px solid #a66bff1e;border-radius:50%;box-shadow:0 0 0 35px #a66bff08,0 0 0 70px #a66bff05;pointer-events:none}
+.hero-content{position:relative;z-index:1;max-width:650px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 11px;border:1px solid #51336e;background:#251733;border-radius:30px;color:#d9baff;font-size:12px;font-weight:800}
+.hero h2{font-size:clamp(30px,4.5vw,48px);line-height:1.3;margin:20px 0 12px;font-weight:900;letter-spacing:-.6px}
+.gradient{background:linear-gradient(90deg,#d9baff,#9b68ff);color:transparent;background-clip:text;-webkit-background-clip:text}
+.hero p{max-width:580px;color:#b7adc9;font-size:16px;margin:0 0 24px}
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;justify-content:center;align-items:center;gap:9px;padding:11px 17px;border-radius:12px;border:1px solid transparent;font-weight:800;font-size:14px;transition:transform .2s,background .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:linear-gradient(135deg,#ad79ff,#7944d1);color:white;box-shadow:0 6px 22px #8b4be32b}
+.btn-secondary{background:#1b1626;border-color:#393047;color:#eee6ff}
+.btn-quiet{background:transparent;border-color:var(--border);color:#c5bad7}
+.btn-small{padding:8px 12px;font-size:12px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:20px 0 32px}
+.stat{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:17px;min-width:0}
+.stat-top{display:flex;align-items:center;justify-content:space-between;gap:6px;color:var(--muted);font-size:12px}
+.stat-icon{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;color:#d5b5ff;background:#281b3b}
+.stat strong{display:block;font-size:25px;margin-top:9px;line-height:1.4}
+.stat small{font-size:11px;color:var(--muted)}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:15px;margin:32px 0 17px}
+.section-head h2,.section-head h3{margin:0;font-size:23px;font-weight:900}
+.section-head p{color:var(--muted);margin:4px 0 0;font-size:13px}
+.text-link{color:#c8a4ff;font-weight:800;font-size:13px;background:none;border:0;padding:4px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.card{min-width:0;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:20px;transition:border-color .2s,transform .2s}
+.card:hover{border-color:#594072}
+.card h3{font-size:17px;margin:12px 0 7px}
+.card p{font-size:13px;color:var(--muted);margin:0 0 15px}
+.card-icon{width:43px;height:43px;border-radius:13px;display:grid;place-items:center;background:#271b39;color:#d2b0ff;font-size:19px}
+.card-meta{display:flex;justify-content:space-between;align-items:center;gap:8px;color:var(--muted);font-size:12px;margin:15px 0}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:4px 9px;border-radius:30px;background:#201a2c;color:#c8b4e5;border:1px solid #352746;font-size:11px;font-weight:800}
+.pill.green{background:#10271f;color:#7de3b7;border-color:#204b3a}
+.pill.locked{color:#9a90a7}
+.progress-track{height:6px;border-radius:10px;background:#282134;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,#7842d9,#bd8aff);border-radius:10px;transition:width .3s}
+.learning-row{display:flex;align-items:center;gap:13px;padding:14px 0;border-bottom:1px solid #292239}
+.learning-row:last-child{border-bottom:0}
+.learning-row .card-icon{flex-shrink:0;width:39px;height:39px}
+.learning-info{min-width:0;flex:1}
+.learning-info strong{display:block;font-size:14px}
+.learning-info small{color:var(--muted);font-size:12px}
+.learning-row .btn{flex-shrink:0}
+.notice{padding:14px 16px;background:#1b1527;border:1px solid #3b2a53;border-radius:13px;color:#cfc1e7;font-size:13px;margin:15px 0}
+.notice i{color:#c29aff;margin-left:7px}
+.page-title{margin:5px 0 7px;font-size:30px;font-weight:900}
+.page-desc{margin:0 0 25px;color:var(--muted);max-width:700px}
+.filter-row{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+.filter-btn{padding:8px 13px;border:1px solid var(--border);border-radius:30px;background:var(--panel);color:#b9aecb;font-size:12px;font-weight:800}
+.filter-btn.active{background:#302044;border-color:#694594;color:#e0c8ff}
+.lesson-card{display:flex;flex-direction:column}
+.lesson-card .card-bottom{margin-top:auto}
+.lesson-card.completed{border-color:#28513e}
+.lesson-card .card-meta{margin-top:auto;padding-top:15px}
+.empty{padding:35px;text-align:center;color:var(--muted);border:1px dashed #393047;border-radius:16px}
+.empty i{font-size:28px;color:#9571c4;margin-bottom:8px}
+.book-wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:25px;align-items:center}
+.book{position:relative;min-height:360px;padding:34px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;border:1px solid #997044;border-radius:8px 20px 20px 8px;color:#382615;background:repeating-linear-gradient(0deg,#e7d4aa,#e7d4aa 2px,#e1c99a 3px,#e1c99a 4px);box-shadow:-10px 12px 0 #53361e,0 25px 45px #0005;transform:perspective(900px) rotateY(-3deg)}
+.book:before{content:"";position:absolute;top:0;bottom:0;right:18px;width:2px;background:#a48758;box-shadow:5px 0 12px #61451f2c}
+.book:after{content:"";position:absolute;top:0;bottom:0;left:0;width:14px;background:linear-gradient(90deg,#7c5733,#b28b53,#d8bb80)}
+.book-cover{text-align:center;border:2px solid #997342;padding:22px 13px;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.book-cover i{font-size:40px;margin-bottom:15px}
+.book-cover h3{font-size:29px;line-height:1.4;margin:0;font-weight:900}
+.book-cover p{margin:10px 0 0;font-size:12px}
+.book small{font-weight:800}
+.book-side h3{font-size:23px;margin:0 0 12px}
+.book-side p{color:var(--muted)}
+.book-page{min-height:260px;padding:28px;border:1px solid #8e744d;border-radius:5px 16px 16px 5px;background:#eee0bd;color:#3c2b19;box-shadow:0 14px 30px #0003}
+.book-page h3{margin:0 0 12px;font-size:22px;color:#4c2d17}
+.book-page p{color:#624b31;white-space:pre-line}
+.book-controls{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px}
+.case-layout{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:18px}
+.case-list{display:grid;gap:10px;align-content:start}
+.case-choice{text-align:right;padding:15px;border:1px solid var(--border);border-radius:14px;background:var(--panel);color:var(--text)}
+.case-choice.active{border-color:#8a5ac4;background:#21172f}
+.case-choice strong{display:block;font-size:14px}
+.case-choice small{color:var(--muted)}
+.case-detail{min-width:0}
+.terminal{background:#090a0f;border:1px solid #342944;border-radius:15px;overflow:hidden}
+.terminal-head{padding:11px 14px;background:#17131f;border-bottom:1px solid #30263b;display:flex;align-items:center;justify-content:space-between;font-size:12px;color:#b5a6c9}
+.terminal-dots{display:flex;gap:5px}
+.terminal-dots span{width:8px;height:8px;border-radius:50%;background:#6c547d}
+.terminal-output{padding:15px;min-height:190px;max-height:270px;overflow:auto;color:#bdeccf;font:12px/1.9 ui-monospace,monospace;white-space:pre-wrap;overflow-wrap:anywhere}
+.terminal-output .muted{color:#92889e}
+.terminal-output .error{color:#ff8b98}
+.terminal-output .success{color:#77e8b0}
+.terminal-form{display:flex;align-items:center;gap:8px;padding:11px;border-top:1px solid #30263b}
+.terminal-form span{color:#c69cff;font:13px monospace}
+.terminal-form input{min-width:0;flex:1;background:transparent;border:0;outline:none;color:#e5d6ff;font:13px ui-monospace,monospace}
+.terminal-form button{background:#37234d;border:1px solid #5b3a7b;color:#e9d7ff;padding:6px 11px;border-radius:8px;font-size:12px}
+.case-goals{margin:0;padding-right:20px;color:#c2b6d3;font-size:13px}
+.case-goals li{margin:6px 0}
+.form-card{max-width:620px}
+.field{display:grid;gap:7px;margin:15px 0}
+.field label{font-weight:800;font-size:13px}
+.field input{width:100%;padding:12px 13px;background:#0d0b14;border:1px solid var(--border);border-radius:11px;color:white}
+.profile-top{display:flex;align-items:center;gap:15px;padding:22px}
+.profile-avatar{width:64px;height:64px;display:grid;place-items:center;border-radius:20px;background:linear-gradient(135deg,#a66bff,#512b8b);font-size:26px;font-weight:900}
+.profile-top h3{margin:0;font-size:21px}
+.profile-top p{margin:3px 0;color:var(--muted);font-size:13px}
+.profile-stat{padding:15px;border:1px solid var(--border);border-radius:13px;background:#100d18}
+.profile-stat strong{display:block;font-size:21px}
+.profile-stat small{color:var(--muted)}
+.toast{position:fixed;bottom:24px;left:24px;z-index:100;max-width:calc(100vw - 35px);padding:13px 17px;border:1px solid #594071;border-radius:13px;background:#21172f;color:#f3eaff;box-shadow:0 10px 35px #0007;opacity:0;transform:translateY(12px);pointer-events:none;transition:.25s}
+.toast.show{opacity:1;transform:none}
+.footer{padding:30px 0 10px;text-align:center;color:#716880;font-size:11px}
+.mobile-overlay{display:none}
+@media(max-width:1050px){
+ .sidebar{width:225px}.main{margin-right:225px}.content{padding:23px}
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
-@media(max-width:850px){
-.sidebar{transform:translateX(105%);transition:transform .25s;width:270px;box-shadow:var(--shadow)}
-.sidebar.open{transform:translateX(0)}
-.main{margin-right:0;width:100%}.mobile-menu{display:grid}
-.topbar{padding:0 17px;height:65px}.content{padding:18px}
-.hero{grid-template-columns:1fr;padding:27px;min-height:0}.hero-art{display:none}
-.grid-2,.case-detail{grid-template-columns:1fr}
-.lesson-layout{grid-template-columns:1fr}.lesson-sidebar{position:static}
-.lesson-sidebar .card{padding:12px}
-.lesson-nav-wrap{display:flex;gap:5px;overflow:auto}
-.lesson-nav-item{width:auto;white-space:nowrap;flex-shrink:0}
-.dictionary-layout{grid-template-columns:1fr}
-.dictionary-list{grid-template-columns:repeat(2,minmax(0,1fr));max-height:240px}
+@media(max-width:720px){
+ .sidebar{width:min(290px,85vw);transform:translateX(105%);box-shadow:-20px 0 50px #0007}
+ .sidebar.open{transform:translateX(0)}
+ .main{margin-right:0}
+ .menu-toggle{display:grid;place-items:center}
+ .mobile-overlay.show{display:block;position:fixed;inset:0;z-index:40;background:#0009}
+ .topbar{height:62px;padding:0 15px}
+ .page-context{display:none}
+ .content{padding:17px 14px 35px}
+ .hero{padding:26px 20px;min-height:300px;border-radius:20px}
+ .hero h2{font-size:31px}
+ .hero p{font-size:14px}
+ .stats{gap:9px;margin:14px 0 25px}
+ .stat{padding:13px}
+ .stat strong{font-size:22px}
+ .stat-top{font-size:11px}
+ .grid,.grid.two{grid-template-columns:1fr}
+ .section-head h2,.section-head h3{font-size:20px}
+ .page-title{font-size:27px}
+ .book-wrap,.case-layout{grid-template-columns:1fr}
+ .book{min-height:310px}
+ .book-side{order:-1}
+ .learning-row{gap:9px}
+ .learning-row .btn{padding:8px;font-size:12px}
+ .toast{bottom:15px;left:12px}
 }
-@media(max-width:560px){
-.content{padding:14px;padding-bottom:85px}.topbar{padding:0 12px}
-.breadcrumb{font-size:12px}.breadcrumb span{display:none}
-.xp-pill{padding:8px;font-size:11px}.xp-pill .xp-text{display:none}
-.page-heading{align-items:flex-start;flex-direction:column}
-.stats-grid{gap:9px}.stat-card{padding:14px}.stat-number{font-size:24px}
-.stat-icon{width:34px;height:34px}
-.grid-3,.lesson-grid,.lab-grid,.case-grid{grid-template-columns:1fr}
-.hero{padding:23px 18px}.hero h1{font-size:30px}.hero p{font-size:13px}
-.hero-actions .btn{flex:1}.discord-banner{align-items:flex-start;flex-direction:column}
-.discord-banner .btn{width:100%}
-.achievement-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-.achievement{padding:14px 8px}
-.course-row{padding:10px}.course-icon{width:39px;height:39px}
-.terminal-output{height:255px;padding:12px;font-size:11px}
-.terminal-form{gap:5px}.terminal-form button{padding:7px}
-.profile-header{padding:17px;gap:12px}.profile-avatar{width:58px;height:58px}
-.footer{padding-bottom:15px}
-.mobile-bottom{position:fixed;bottom:0;right:0;left:0;z-index:40;display:flex;justify-content:space-around;background:#0c0a12f5;border-top:1px solid var(--border);padding:8px 5px calc(8px + env(safe-area-inset-bottom));backdrop-filter:blur(16px)}
-.mobile-bottom button{border:0;background:none;color:#81768f;display:grid;justify-items:center;gap:4px;font-size:9px;padding:4px 8px}
-.mobile-bottom button i{font-size:17px}
-.mobile-bottom button.active{color:#c49aff}
-}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 <div class="app">
+<div class="mobile-overlay" id="overlay" onclick="closeMenu()"></div>
+
 <aside class="sidebar" id="sidebar">
-  <a class="brand" href="#" onclick="navigate('home');return false" aria-label="Midnight الرئيسية">
-    <span class="brand-icon"><i class="fa-solid fa-shield-halved"></i></span>
-    <span><span class="brand-name">MIDNIGHT</span><span class="brand-sub">CYBER SECURITY</span></span>
-  </a>
-  <div class="side-label">القائمة الرئيسية</div>
-  <nav class="nav-list" id="mainNav">
-    <button class="nav-btn active" data-page="home"><i class="fa-solid fa-house"></i> الرئيسية</button>
-    <button class="nav-btn" data-page="academy"><i class="fa-solid fa-graduation-cap"></i> الأكاديمية</button>
-    <button class="nav-btn" data-page="network"><i class="fa-solid fa-network-wired"></i> أساسيات الشبكات</button>
-    <button class="nav-btn" data-page="labs"><i class="fa-solid fa-terminal"></i> المختبرات التفاعلية</button>
-    <button class="nav-btn" data-page="cases"><i class="fa-solid fa-folder-open"></i> القضايا الرقمية</button>
-    <button class="nav-btn" data-page="quiz"><i class="fa-solid fa-brain"></i> الاختبارات</button>
-    <button class="nav-btn" data-page="dictionary"><i class="fa-solid fa-book-open"></i> القاموس التقني</button>
+  <div class="brand">
+    <div class="brand-logo"><i class="fa-solid fa-moon"></i></div>
+    <div><h1>MIDNIGHT</h1><small>YOUR JOURNEY STARTS HERE</small></div>
+  </div>
+  <div class="nav-title">القائمة الرئيسية</div>
+  <nav class="nav" id="mainNav">
+    <button class="active" data-page="home"><i class="fa-solid fa-house"></i> الرئيسية</button>
+    <button data-page="academy"><i class="fa-solid fa-graduation-cap"></i> الأكاديمية</button>
+    <button data-page="network"><i class="fa-solid fa-network-wired"></i> أساسيات الشبكات</button>
+    <button data-page="linux"><i class="fa-brands fa-linux"></i> تعلم لينكس</button>
+    <button data-page="cases"><i class="fa-solid fa-fingerprint"></i> التحقيق الرقمي</button>
+    <button data-page="book"><i class="fa-solid fa-book-open"></i> كتاب بايثون</button>
+    <button data-page="achievements"><i class="fa-solid fa-trophy"></i> إنجازاتي</button>
+    <button data-page="profile"><i class="fa-solid fa-user"></i> حسابي</button>
   </nav>
-  <div class="side-label">إنجازاتك</div>
-  <nav class="nav-list">
-    <button class="nav-btn" data-page="leaderboard"><i class="fa-solid fa-trophy"></i> لوحة المتصدرين</button>
-    <button class="nav-btn" data-page="achievements"><i class="fa-solid fa-medal"></i> الإنجازات</button>
-    <button class="nav-btn" data-page="profile"><i class="fa-solid fa-user-astronaut"></i> ملفي التعليمي</button>
-  </nav>
-  <div class="side-label">المجتمع</div>
-  <nav class="nav-list">
-    <button class="nav-btn" data-page="support"><i class="fa-brands fa-discord"></i> سيرفر Discord</button>
-    <button class="nav-btn" data-page="about"><i class="fa-solid fa-circle-info"></i> عن Midnight</button>
-  </nav>
-  <div class="side-bottom">
-    <a class="discord-mini" href="https://discord.gg/B5eGCxCzn" target="_blank" rel="noopener noreferrer">
-      <i class="fa-brands fa-discord"></i>
-      <span><strong>انضم لمجتمعنا</strong><small>تعلّم وشارك وتطوّر معنا</small></span>
+  <div class="sidebar-bottom">
+    <strong><i class="fa-solid fa-shield-halved"></i> تعلم بمسؤولية</strong>
+    <p>تعلّم، جرّب، وتطوّر خطوة بخطوة.</p>
+    <a href="https://discord.gg/B5eGCxCzn" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-small" style="width:100%">
+      <i class="fa-brands fa-discord"></i> مجتمع Midnight
     </a>
-    <div class="side-footer">MIDNIGHT — YOUR JOURNEY STARTS HERE<br>© Midnight • جميع الحقوق محفوظة</div>
   </div>
 </aside>
 
 <main class="main">
 <header class="topbar">
-  <div class="breadcrumb">
-    <button class="icon-btn mobile-menu" id="mobileMenu" aria-label="فتح القائمة"><i class="fa-solid fa-bars"></i></button>
-    <i class="fa-solid fa-shield-halved"></i><span>MIDNIGHT</span><i class="fa-solid fa-chevron-left" style="font-size:9px"></i><strong id="pageCrumb">الرئيسية</strong>
+  <div class="top-left">
+    <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
+    <span class="page-context" id="pageContext">مساحة تعلمك في الأمن السيبراني</span>
   </div>
-  <div class="top-actions">
-    <div class="xp-pill"><i class="fa-solid fa-bolt"></i><span id="topXP">0 XP</span><span class="xp-text">مكتسبة</span></div>
-    <button class="icon-btn" id="quickSearch" aria-label="البحث"><i class="fa-solid fa-magnifying-glass"></i></button>
+  <div class="top-right">
+    <div class="xp-pill"><i class="fa-solid fa-bolt"></i><span id="topXP">0 XP</span></div>
+    <button class="avatar" id="topAvatar" aria-label="الملف الشخصي" onclick="showPage('profile')">م</button>
   </div>
 </header>
 
 <div class="content">
-<section class="page active" id="page-home">
+<section class="section active" id="page-home">
   <div class="hero">
     <div class="hero-content">
-      <div class="eyebrow">WELCOME TO MIDNIGHT ACADEMY</div>
-      <h1>رحلتك في الأمن السيبراني <span>تبدأ من هنا</span></h1>
-      <p>تعلّم الشبكات والأنظمة وأمن الويب، جرّب مختبرات تعليمية آمنة، حلّ قضايا رقمية واختبر مهاراتك خطوة بخطوة — من الصفر إلى مستوى أقوى.</p>
-      <div class="hero-actions">
-        <button class="btn btn-primary" onclick="navigate('academy')"><i class="fa-solid fa-rocket"></i> ابدأ التعلّم</button>
-        <button class="btn btn-secondary" onclick="navigate('cases')"><i class="fa-solid fa-folder-open"></i> استكشف القضايا</button>
+      <span class="eyebrow"><i class="fa-solid fa-shield-halved"></i> أكاديمية الأمن السيبراني</span>
+      <h2>رحلتك في عالم الأمن السيبراني <span class="gradient">تبدأ من هنا.</span></h2>
+      <p>تعلم الشبكات ولينكس وأساسيات الأمن السيبراني، ثم اختبر مهاراتك في قضايا رقمية تعليمية. تعلّم بالترتيب وعلى راحتك.</p>
+      <div class="actions">
+        <button class="btn btn-primary" onclick="continueLearning()"><i class="fa-solid fa-play"></i> ابدأ التعلم</button>
+        <a class="btn btn-secondary" href="https://discord.gg/B5eGCxCzn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-discord"></i> انضم لديسكورد</a>
       </div>
     </div>
-    <div class="hero-art" aria-hidden="true">
-      <div class="orbit"><div class="orbit-core"><i class="fa-solid fa-shield-halved"></i></div><span class="float-icon float-one"><i class="fa-solid fa-code"></i></span><span class="float-icon float-two"><i class="fa-solid fa-network-wired"></i></span><span class="float-icon float-three"><i class="fa-solid fa-lock"></i></span></div>
-    </div>
   </div>
 
-  <div class="stats-grid">
-    <div class="stat-card"><div class="stat-top"><span class="stat-label">خبرتك التعليمية</span><span class="stat-icon"><i class="fa-solid fa-bolt"></i></span></div><div class="stat-number" id="homeXP">0 <small style="font-size:12px;color:var(--muted)">XP</small></div><div class="stat-foot">اجمع الخبرة مع كل إنجاز</div></div>
-    <div class="stat-card"><div class="stat-top"><span class="stat-label">الدروس المكتملة</span><span class="stat-icon"><i class="fa-solid fa-book-open"></i></span></div><div class="stat-number" id="homeLessons">0</div><div class="stat-foot">من أصل 12 درسًا أساسيًا</div></div>
-    <div class="stat-card"><div class="stat-top"><span class="stat-label">المختبرات المحلولة</span><span class="stat-icon"><i class="fa-solid fa-terminal"></i></span></div><div class="stat-number" id="homeLabs">0</div><div class="stat-foot">تدرّب داخل بيئة محاكاة</div></div>
-    <div class="stat-card"><div class="stat-top"><span class="stat-label">القضايا المكتملة</span><span class="stat-icon"><i class="fa-solid fa-fingerprint"></i></span></div><div class="stat-number" id="homeCases">0</div><div class="stat-foot">حلّل الأدلة واكتشف الحقيقة</div></div>
+  <div class="stats">
+    <div class="stat"><div class="stat-top"><span>نقاط الخبرة</span><span class="stat-icon"><i class="fa-solid fa-bolt"></i></span></div><strong id="homeXP">0</strong><small>XP مكتسبة</small></div>
+    <div class="stat"><div class="stat-top"><span>الدروس المكتملة</span><span class="stat-icon"><i class="fa-solid fa-book"></i></span></div><strong id="homeLessons">0</strong><small>من <span id="totalLessons">0</span> درس</small></div>
+    <div class="stat"><div class="stat-top"><span>القضايا المحلولة</span><span class="stat-icon"><i class="fa-solid fa-magnifying-glass"></i></span></div><strong id="homeCases">0</strong><small>قضايا تدريبية</small></div>
+    <div class="stat"><div class="stat-top"><span>المستوى</span><span class="stat-icon"><i class="fa-solid fa-chart-line"></i></span></div><strong id="homeLevel">1</strong><small>تقدّمك مستمر</small></div>
   </div>
 
-  <div class="grid-2">
-    <div>
-      <div class="section-head"><h2><i class="fa-solid fa-route" style="color:var(--purple);margin-left:8px"></i>مسارك التعليمي</h2><button class="text-link" onclick="navigate('academy')">عرض كل الدروس ←</button></div>
-      <div class="card course-list" id="homeCourses"></div>
-    </div>
-    <div>
-      <div class="section-head"><h2><i class="fa-solid fa-chart-line" style="color:var(--purple);margin-left:8px"></i>آخر إنجازاتك</h2></div>
-      <div class="card activity-list" id="homeActivity"><div class="empty-state"><i class="fa-solid fa-flag-checkered"></i><p>ابدأ أول درس عشان تظهر إنجازاتك هنا</p></div></div>
-    </div>
+  <div class="section-head">
+    <div><h2>مسار التعلم</h2><p>ابدأ بالأساسيات، ثم انتقل إلى المواضيع المتقدمة.</p></div>
+    <button class="text-link" onclick="showPage('academy')">كل الدروس <i class="fa-solid fa-arrow-left"></i></button>
+  </div>
+  <div class="grid">
+    <article class="card"><div class="card-icon"><i class="fa-solid fa-network-wired"></i></div><h3>1. أساسيات الشبكات</h3><p>افهم كيف تتواصل الأجهزة عبر الإنترنت والشبكات المحلية.</p><div class="card-meta"><span>للمبتدئين</span><span>4 دروس</span></div><button class="btn btn-secondary btn-small" onclick="showPage('network')">ابدأ المسار <i class="fa-solid fa-arrow-left"></i></button></article>
+    <article class="card"><div class="card-icon"><i class="fa-brands fa-linux"></i></div><h3>2. عالم لينكس</h3><p>تعرّف على الطرفية والملفات والصلاحيات والأوامر المهمة.</p><div class="card-meta"><span>مبتدئ إلى متوسط</span><span>4 دروس</span></div><button class="btn btn-secondary btn-small" onclick="showPage('linux')">ابدأ المسار <i class="fa-solid fa-arrow-left"></i></button></article>
+    <article class="card"><div class="card-icon"><i class="fa-solid fa-fingerprint"></i></div><h3>3. التحقيق الرقمي</h3><p>حلّل الأدلة والسجلات في قضايا افتراضية آمنة.</p><div class="card-meta"><span>تطبيق عملي</span><span>قضايا</span></div><button class="btn btn-secondary btn-small" onclick="showPage('cases')">اكتشف القضايا <i class="fa-solid fa-arrow-left"></i></button></article>
   </div>
 
-  <div class="section-head"><h2><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--purple);margin-left:8px"></i>وش تقدر تسوي في Midnight؟</h2></div>
-  <div class="grid-3">
-    <div class="card feature-card"><div class="feature-icon"><i class="fa-solid fa-network-wired"></i></div><h3>افهم الشبكات من الصفر</h3><p>من IP وDNS إلى المنافذ والبروتوكولات وTCP وUDP وDHCP وNAT، بأمثلة سهلة وواضحة.</p><button class="btn btn-secondary btn-sm" onclick="navigate('network')">ابدأ الأساسيات <i class="fa-solid fa-arrow-left"></i></button></div>
-    <div class="card feature-card"><div class="feature-icon"><i class="fa-solid fa-terminal"></i></div><h3>جرّب الطرفية</h3><p>اكتب أوامر تدريبية وتعرّف على Linux وأدوات الشبكات داخل محاكاة لا تتصل بأي جهاز حقيقي.</p><button class="btn btn-secondary btn-sm" onclick="navigate('labs')">افتح المختبر <i class="fa-solid fa-arrow-left"></i></button></div>
-    <div class="card feature-card"><div class="feature-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div><h3>حلّ القضايا الرقمية</h3><p>افحص سجلات وهمية واجمع الأدلة واربط الأحداث لتفهم كيف يفكر محلل الأمن السيبراني.</p><button class="btn btn-secondary btn-sm" onclick="navigate('cases')">اكتشف القضايا <i class="fa-solid fa-arrow-left"></i></button></div>
-  </div>
+  <div class="section-head"><div><h2>أكمل من حيث توقفت</h2><p>دروسك التالية تظهر هنا حسب تقدمك.</p></div></div>
+  <div class="card" id="continueList"></div>
 
-  <div class="discord-banner">
-    <div class="discord-title"><i class="fa-brands fa-discord discord-big"></i><div><h3>مجتمع Midnight على Discord</h3><p>مكان للتعلّم والسوالف ومشاركة المعرفة وطرح الأسئلة ومتابعة المحتوى الجديد.</p></div></div>
-    <a class="btn btn-primary" href="https://discord.gg/B5eGCxCzn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-discord"></i> ادخل السيرفر</a>
+  <div class="section-head"><div><h2>مكتبة Midnight</h2><p>مصادر مبسطة تساعدك على بناء أساس قوي.</p></div></div>
+  <div class="grid two">
+    <article class="card"><div class="card-icon"><i class="fa-solid fa-book-open"></i></div><h3>كتاب بايثون للمبتدئين</h3><p>تعرّف على المتغيرات والشروط والحلقات من خلال صفحات سهلة.</p><button class="btn btn-secondary btn-small" onclick="showPage('book')">افتح الكتاب</button></article>
+    <article class="card"><div class="card-icon"><i class="fa-brands fa-discord"></i></div><h3>مجتمع Midnight</h3><p>شارك رحلتك التعليمية وتواصل مع مجتمع مهتم بالأمن السيبراني.</p><a class="btn btn-secondary btn-small" href="https://discord.gg/B5eGCxCzn" target="_blank" rel="noopener noreferrer">دخول ديسكورد</a></article>
   </div>
 </section>
 
-<section class="page" id="page-academy">
-  <div class="page-heading"><div><div class="eyebrow">LEARNING PATH</div><h1>الأكاديمية</h1><p class="subtext">تعلم بالترتيب أو اختر الموضوع اللي تحتاجه. تقدّمك محفوظ على هذا الجهاز.</p></div><span class="badge"><i class="fa-solid fa-graduation-cap"></i> مسار المبتدئين</span></div>
+<section class="section" id="page-academy">
+  <h2 class="page-title">الأكاديمية</h2>
+  <p class="page-desc">كل درس يبني على اللي قبله. أكمل الدروس بالترتيب عشان تتأسس بشكل صحيح.</p>
+  <div class="notice"><i class="fa-solid fa-circle-info"></i> كل درس مكتمل يمنحك نقاط خبرة. تقدمك محفوظ على هذا الجهاز تلقائيًا.</div>
   <div class="filter-row" id="academyFilters">
     <button class="filter-btn active" data-filter="all">كل الدروس</button>
-    <button class="filter-btn" data-filter="network">الشبكات</button>
-    <button class="filter-btn" data-filter="linux">Linux</button>
-    <button class="filter-btn" data-filter="security">الأمن السيبراني</button>
-    <button class="filter-btn" data-filter="web">أمن الويب</button>
-    <div class="search-box" style="margin-right:auto"><i class="fa-solid fa-magnifying-glass"></i><input id="academySearch" placeholder="ابحث عن درس..."></div>
+    <button class="filter-btn" data-filter="مبتدئ">مبتدئ</button>
+    <button class="filter-btn" data-filter="متوسط">متوسط</button>
+    <button class="filter-btn" data-filter="متقدم">متقدم</button>
   </div>
-  <div class="lesson-grid" id="lessonGrid"></div>
+  <div class="grid" id="lessonGrid"></div>
 </section>
 
-<section class="page" id="page-network">
-  <div class="page-heading"><div><div class="eyebrow">NETWORKING FUNDAMENTALS</div><h1>أساسيات الشبكات</h1><p class="subtext">افهم كيف تتواصل الأجهزة مع بعضها، من أول عنوان IP إلى وصول طلبك للموقع.</p></div><span class="badge green"><i class="fa-solid fa-signal"></i> الأساس اللي تبني عليه</span></div>
-  <div class="callout"><strong><i class="fa-solid fa-lightbulb" style="color:var(--yellow);margin-left:6px"></i>قبل تبدأ:</strong> تخيّل الإنترنت مدينة ضخمة. الـ IP عنوان مبنى، والـ DNS دليل الأسماء، والـ Ports أبواب الخدمات، والـ Router يوجّه الطريق. بنفصّلها وحدة وحدة.</div>
-  <div class="lesson-layout">
-    <aside class="lesson-sidebar"><div class="card"><h3 style="margin-bottom:12px">مواضيع الشبكات</h3><div class="lesson-nav-wrap" id="networkNav"></div></div></aside>
-    <article class="card lesson-body" id="networkLesson"></article>
+<section class="section" id="page-lesson">
+  <button class="btn btn-quiet btn-small" onclick="showPage('academy')"><i class="fa-solid fa-arrow-right"></i> العودة إلى الأكاديمية</button>
+  <div id="lessonContent"></div>
+</section>
+
+<section class="section" id="page-network">
+  <h2 class="page-title">أساسيات الشبكات</h2>
+  <p class="page-desc">قبل ما تدخل الأمن السيبراني، لازم تفهم كيف تنتقل البيانات بين الأجهزة.</p>
+  <div class="notice"><i class="fa-solid fa-lightbulb"></i> تخيّل الشبكة مثل مدينة: لكل جهاز عنوان، والبيانات مثل الطرود التي تحتاج طريقًا صحيحًا للوصول.</div>
+  <div class="grid" id="networkGrid"></div>
+</section>
+
+<section class="section" id="page-linux">
+  <h2 class="page-title">تعلم لينكس</h2>
+  <p class="page-desc">تعلم أوامر الطرفية تدريجيًا. الأمثلة هنا تعليمية، وتعمل داخل بيئة المحاكاة الموجودة في الصفحة فقط.</p>
+  <div class="grid" id="linuxGrid"></div>
+  <div class="section-head"><div><h3>جرّب الأوامر</h3><p>طرفية تدريبية بسيطة وليست اتصالًا بجهاز حقيقي.</p></div></div>
+  <div class="terminal">
+    <div class="terminal-head"><span><i class="fa-solid fa-terminal"></i> Midnight Shell</span><div class="terminal-dots"><span></span><span></span><span></span></div></div>
+    <div class="terminal-output" id="linuxOutput">مرحبًا بك في الطرفية التعليمية.
+اكتب help لعرض الأوامر المتاحة.
+هذه محاكاة، ولا تنفّذ أوامر على نظامك الحقيقي.</div>
+    <form class="terminal-form" id="linuxForm"><span>$</span><input id="linuxInput" placeholder="اكتب help" autocomplete="off" spellcheck="false" aria-label="أمر لينكس"><button>تنفيذ</button></form>
   </div>
 </section>
 
-<section class="page" id="page-labs">
-  <div class="page-heading"><div><div class="eyebrow">SAFE PRACTICE ENVIRONMENT</div><h1>المختبرات التفاعلية</h1><p class="subtext">جرّب الأوامر وتعلّم طريقة قراءتها. النتائج داخل الموقع تجريبية ولا تتصل بأجهزة أو مواقع حقيقية.</p></div><span class="badge yellow"><i class="fa-solid fa-flask"></i> محاكاة تعليمية</span></div>
-  <div class="grid-2" style="margin-bottom:22px">
-    <div class="card">
-      <div class="section-head" style="margin-top:0"><h2>Terminal</h2><span class="badge green"><i class="fa-solid fa-circle"></i> Offline Sandbox</span></div>
-      <p class="subtext" style="margin-bottom:14px">اكتب <span class="inline-code">help</span> لمعرفة الأوامر المتاحة. الأوامر هنا تحاكي نتائج تعليمية فقط.</p>
-      <div class="terminal">
-        <div class="terminal-head"><span class="terminal-dot"></span><span class="terminal-dot"></span><span class="terminal-dot"></span><span class="terminal-title">midnight@training:~</span></div>
-        <div class="terminal-output" id="terminalOutput" aria-live="polite"><span class="purple">MIDNIGHT TRAINING TERMINAL v1.0</span>
-بيئة افتراضية للتعلّم — لا يوجد اتصال خارجي.
-اكتب <span class="ok">help</span> لعرض الأوامر المتاحة.
+<section class="section" id="page-cases">
+  <h2 class="page-title">التحقيق الرقمي</h2>
+  <p class="page-desc">أنت المحقق. افحص الأدلة الافتراضية، واستخدم الأوامر التعليمية، ثم أرسل استنتاجك.</p>
+  <div class="notice"><i class="fa-solid fa-shield-halved"></i> جميع العناوين والسجلات داخل القضايا خيالية ومخصصة للتدريب. لا يوجد اتصال بأنظمة خارجية.</div>
+  <div class="case-layout">
+    <div><div class="section-head" style="margin-top:0"><div><h3>ملفات القضايا</h3><p>اختر القضية التي تريد التحقيق فيها.</p></div></div><div class="case-list" id="caseList"></div></div>
+    <div class="case-detail" id="caseDetail"></div>
+  </div>
+</section>
 
-<span class="ok">student@midnight</span>:~$ _</div>
-        <form class="terminal-form" id="terminalForm"><span>student@midnight:~$</span><input id="terminalInput" autocomplete="off" spellcheck="false" aria-label="أمر الطرفية" placeholder="اكتب help هنا..."><button type="submit">تنفيذ</button></form>
+<section class="section" id="page-book">
+  <h2 class="page-title">كتاب بايثون</h2>
+  <p class="page-desc">دفتر تعليمي بطابع كلاسيكي، يشرح أساسيات بايثون صفحة بعد صفحة.</p>
+  <div class="book-wrap">
+    <div class="book" id="bookCover">
+      <div class="book-cover">
+        <i class="fa-brands fa-python"></i>
+        <small>MIDNIGHT EDUCATION SERIES</small>
+        <h3>Python<br>للمبتدئين</h3>
+        <p>من أول سطر إلى أول برنامج</p>
       </div>
-      <div class="command-chips"><button class="command-chip" data-command="help">help</button><button class="command-chip" data-command="ls">ls</button><button class="command-chip" data-command="whoami">whoami</button><button class="command-chip" data-command="ip">ip</button><button class="command-chip" data-command="ping example.test">ping example.test</button><button class="command-chip" data-command="nslookup example.test">nslookup</button><button class="command-chip" data-command="nmap training-box">nmap (محاكاة)</button><button class="command-chip" data-command="clear">clear</button></div>
+      <small>الجزء الأول • أساسيات البرمجة</small>
     </div>
-    <div class="card">
-      <div class="section-head" style="margin-top:0"><h2>هدفك في المختبر</h2><span class="badge">المهمة 01</span></div>
-      <div class="card-visual" style="height:105px;margin-bottom:15px"><i class="fa-solid fa-network-wired"></i></div>
-      <h3>التعرّف على الشبكة الوهمية</h3>
-      <p class="subtext">تدرّب على قراءة معلومات شبكة تدريبية، وفهم الفرق بين عنوان IP واسم النطاق، وتعرّف على مخرجات الأدوات.</p>
-      <div class="callout warning"><i class="fa-solid fa-triangle-exclamation" style="color:var(--yellow);margin-left:6px"></i>لا تستخدم الأوامر أو الأدوات لفحص أجهزة أو شبكات لا تملك إذنًا صريحًا لاختبارها.</div>
-      <div id="labTaskList"></div>
-      <button class="btn btn-primary" id="completeLabBtn" style="margin-top:15px"><i class="fa-solid fa-check"></i> إكمال المختبر</button>
+    <div class="book-side">
+      <span class="pill"><i class="fa-solid fa-book-open"></i> دليل تعليمي</span>
+      <h3>تعلم البرمجة خطوة بخطوة</h3>
+      <p>ابدأ بفهم معنى البرمجة، ثم تعرّف على المتغيرات والطباعة والشروط والحلقات. لا تحتاج خبرة سابقة.</p>
+      <button class="btn btn-primary" onclick="openBook()"><i class="fa-solid fa-book-open"></i> افتح الكتاب</button>
     </div>
   </div>
-  <div class="section-head"><h2>مختبرات إضافية</h2></div>
-  <div class="lab-grid" id="labGrid"></div>
+  <div id="bookReader" style="display:none;margin-top:25px">
+    <div class="book-page"><span class="pill" id="bookPageNumber">الصفحة 1</span><h3 id="bookPageTitle" style="margin-top:14px"></h3><p id="bookPageText"></p><pre id="bookCode" style="display:none;direction:ltr;text-align:left;white-space:pre-wrap;padding:14px;background:#dfcfaa;border:1px solid #b49b6d;border-radius:8px;color:#3b2919;font:13px/1.8 monospace"></pre></div>
+    <div class="book-controls"><button class="btn btn-secondary btn-small" id="bookPrev"><i class="fa-solid fa-arrow-right"></i> السابقة</button><button class="btn btn-quiet btn-small" onclick="closeBook()">إغلاق الكتاب</button><button class="btn btn-primary btn-small" id="bookNext">التالية <i class="fa-solid fa-arrow-left"></i></button></div>
+  </div>
 </section>
 
-<section class="page" id="page-cases">
-  <div class="page-heading"><div><div class="eyebrow">DIGITAL INVESTIGATIONS</div><h1>القضايا الرقمية</h1><p class="subtext">قصص خيالية مستوحاة من طبيعة التحقيقات الرقمية. حلّل السجلات والأدلة وحدّد وش صار.</p></div><span class="badge red"><i class="fa-solid fa-fingerprint"></i> CASE FILES</span></div>
-  <div class="filter-row" id="caseFilters"><button class="filter-btn active" data-filter="all">كل القضايا</button><button class="filter-btn" data-filter="easy">مبتدئ</button><button class="filter-btn" data-filter="medium">متوسط</button><button class="filter-btn" data-filter="hard">متقدم</button><button class="filter-btn" data-filter="done">المكتملة</button></div>
-  <div class="case-grid" id="caseGrid"></div>
+<section class="section" id="page-achievements">
+  <h2 class="page-title">إنجازاتي</h2>
+  <p class="page-desc">كل درس تكمله وكل قضية تحلها تقربك من إنجاز جديد.</p>
+  <div class="stats">
+    <div class="stat"><div class="stat-top">الإنجازات المفتوحة</div><strong id="achUnlocked">0</strong></div>
+    <div class="stat"><div class="stat-top">إجمالي الإنجازات</div><strong id="achTotal">0</strong></div>
+    <div class="stat"><div class="stat-top">نسبة الإنجاز</div><strong id="achPercent">0%</strong></div>
+    <div class="stat"><div class="stat-top">المستوى الحالي</div><strong id="achLevel">1</strong></div>
+  </div>
+  <div class="grid" id="achievementGrid"></div>
 </section>
 
-<section class="page" id="page-quiz">
-  <div class="page-heading"><div><div class="eyebrow">KNOWLEDGE CHECK</div><h1>اختبر معلوماتك</h1><p class="subtext">اختبار سريع يقيس فهمك للمفاهيم الأساسية، وكل إجابة صحيحة تزيد خبرتك.</p></div><span class="badge"><i class="fa-solid fa-brain"></i> تحدّي المعرفة</span></div>
-  <div class="grid-2">
-    <div class="card" id="quizCard">
-      <div class="card-top"><span class="badge" id="quizCount">السؤال 1</span><span class="subtext" id="quizScore">النقاط: 0</span></div>
-      <div class="quiz-progress"><div id="quizProgressFill" style="width:0%"></div></div>
-      <div id="quizArea"></div>
+<section class="section" id="page-profile">
+  <h2 class="page-title">حسابي</h2>
+  <p class="page-desc">إدارة اسمك ومتابعة تقدمك في الأكاديمية.</p>
+  <div class="card form-card">
+    <div class="profile-top" style="padding:5px 0 20px">
+      <div class="profile-avatar" id="profileAvatar">م</div>
+      <div><h3 id="profileDisplayName">متعلم Midnight</h3><p id="profileLevel">المستوى 1 • بداية الرحلة</p></div>
     </div>
-    <div class="card">
-      <div class="section-head" style="margin-top:0"><h2>نصائح للاختبار</h2></div>
-      <div class="activity-list">
-        <div class="activity"><span class="activity-dot"></span><div><strong>اقرأ السؤال بهدوء</strong><small>ركّز على المصطلح المطلوب قبل اختيار الإجابة.</small></div></div>
-        <div class="activity"><span class="activity-dot"></span><div><strong>اربط المفاهيم ببعض</strong><small>DNS يختلف عن IP، وTCP يختلف عن UDP. فهم العلاقة أهم من الحفظ.</small></div></div>
-        <div class="activity"><span class="activity-dot"></span><div><strong>راجع الدرس إذا احتجت</strong><small>تقدر ترجع للأكاديمية والشبكات في أي وقت.</small></div></div>
-      </div>
-      <button class="btn btn-secondary" style="margin-top:22px" onclick="navigate('network')"><i class="fa-solid fa-network-wired"></i> مراجعة الشبكات</button>
+    <form id="profileForm">
+      <div class="field"><label for="profileName">الاسم الظاهر</label><input id="profileName" maxlength="24" placeholder="اكتب اسمك داخل الأكاديمية" autocomplete="nickname"></div>
+      <button class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> حفظ الاسم</button>
+    </form>
+    <div class="section-head"><div><h3>تقدمك</h3></div></div>
+    <div class="grid two">
+      <div class="profile-stat"><strong id="profileLessons">0</strong><small>درس مكتمل</small></div>
+      <div class="profile-stat"><strong id="profileCases">0</strong><small>قضية محلولة</small></div>
     </div>
+    <div class="notice"><i class="fa-solid fa-lock"></i> بيانات التقدم محفوظة في المتصفح على هذا الجهاز فقط، ولا يوجد حساب سحابي.</div>
+    <button class="btn btn-quiet btn-small" id="resetProgress"><i class="fa-solid fa-rotate-left"></i> إعادة ضبط التقدم</button>
   </div>
 </section>
 
-<section class="page" id="page-dictionary">
-  <div class="page-heading"><div><div class="eyebrow">CYBERSECURITY GLOSSARY</div><h1>القاموس التقني</h1><p class="subtext">مصطلحات إنجليزية مع نطقها بالعربي وشرحها وأمثلة مبسّطة.</p></div><span class="badge"><i class="fa-solid fa-book-open"></i> مرجعك التقني</span></div>
-  <div class="dictionary-layout">
-    <div class="card">
-      <div class="search-box" style="margin-bottom:13px"><i class="fa-solid fa-magnifying-glass"></i><input id="dictSearch" placeholder="ابحث عن IP أو DNS أو أي مصطلح..."></div>
-      <div class="dictionary-list" id="dictionaryList"></div>
-    </div>
-    <article class="card dictionary-detail" id="dictionaryDetail"><div class="empty-state"><i class="fa-solid fa-book-open"></i><p>اختر مصطلحًا من القائمة عشان يظهر شرحه هنا.</p></div></article>
-  </div>
-</section>
-
-<section class="page" id="page-leaderboard">
-  <div class="page-heading"><div><div class="eyebrow">COMMUNITY RANKINGS</div><h1>لوحة المتصدرين</h1><p class="subtext">ترتيب تجريبي للتوضيح. تقدمك الشخصي محفوظ عندك، والنتائج ليست متصلة بسيرفر Discord.</p></div><span class="badge yellow"><i class="fa-solid fa-trophy"></i> TOP LEARNERS</span></div>
-  <div class="stats-grid">
-    <div class="stat-card"><div class="stat-top"><span class="stat-label">ترتيبك المحلي</span><span class="stat-icon"><i class="fa-solid fa-ranking-star"></i></span></div><div class="stat-number" id="myRank">—</div><div class="stat-foot">حسب بيانات هذا الجهاز</div></div>
-    <div class="stat-card"><div class="stat-top"><span class="stat-label">خبرتك</span><span class="stat-icon"><i class="fa-solid fa-bolt"></i></span></div><div class="stat-number" id="leaderXP">0</div><div class="stat-foot">XP مكتسبة</div></div>
-    <div class="stat-card"><div class="stat-top"><span class="stat-label">دروسك المكتملة</span><span class="stat-icon"><i class="fa-solid fa-book"></i></span></div><div class="stat-number" id="leaderLessons">0</div><div class="stat-foot">الدروس اللي أنهيتها</div></div>
-    <div class="stat-card"><div class="stat-top"><span class="stat-label">قضاياك المحلولة</span><span class="stat-icon"><i class="fa-solid fa-folder-open"></i></span></div><div class="stat-number" id="leaderCases">0</div><div class="stat-foot">قضايا تدريبية مكتملة</div></div>
-  </div>
-  <div class="card">
-    <div class="section-head" style="margin-top:0"><h2>أفضل المتعلمين</h2><span class="badge">بيانات تجريبية</span></div>
-    <div class="data-table-wrap"><table class="leaderboard-table"><thead><tr><th>#</th><th>المتعلم</th><th>الخبرة</th><th>الدروس</th><th>القضايا</th></tr></thead><tbody id="leaderboardBody"></tbody></table></div>
-    <p class="subtext" style="font-size:11px">ملاحظة: لا توجد منافسة عالمية فعلية في هذه النسخة. ربط لوحة حقيقية يتطلب قاعدة بيانات وخادمًا.</p>
-  </div>
-</section>
-
-<section class="page" id="page-achievements">
-  <div class="page-heading"><div><div class="eyebrow">YOUR MILESTONES</div><h1>الإنجازات</h1><p class="subtext">كل درس تكمّله ومختبر تنهيه يقرّبك من إنجاز جديد.</p></div><span class="badge"><i class="fa-solid fa-medal"></i> BADGES</span></div>
-  <div class="stats-grid"><div class="stat-card"><div class="stat-label">الإنجازات المفتوحة</div><div class="stat-number" id="achUnlocked">0</div></div><div class="stat-card"><div class="stat-label">مجموع الإنجازات</div><div class="stat-number" id="achTotal">8</div></div><div class="stat-card"><div class="stat-label">نسبة الإكمال</div><div class="stat-number" id="achPercent">0%</div></div><div class="stat-card"><div class="stat-label">مستواك</div><div class="stat-number" id="achLevel">1</div></div></div>
-  <div class="achievement-grid" id="achievementGrid"></div>
-</section>
-
-<section class="page" id="page-profile">
-  <div class="page-heading"><div><div class="eyebrow">YOUR LEARNING PROFILE</div><h1>ملفي التعليمي</h1><p class="subtext">ما فيه تسجيل دخول. اختر اسمًا يظهر لك محليًا على هذا الجهاز فقط.</p></div><span class="badge green"><i class="fa-solid fa-user-check"></i> بدون حساب</span></div>
-  <div class="card profile-header" style="margin-bottom:18px"><div class="profile-avatar"><i class="fa-solid fa-user-astronaut"></i></div><div><h2 id="profileNameDisplay" style="margin-bottom:5px">متعلم Midnight</h2><p class="subtext" id="profileLevelText">المستوى 1 • مبتدئ في الرحلة</p></div></div>
-  <div class="grid-2">
-    <div class="card"><h2>إعدادات الملف</h2><p class="subtext" style="margin-bottom:18px">تُحفظ الإعدادات في متصفحك فقط. حذف بيانات المتصفح قد يمسح تقدمك.</p><form class="profile-form" id="profileForm"><label class="field-label">اسمك أو لقبك<input class="field-input" id="profileName" maxlength="24" placeholder="مثال: CyberLearner"></label><button class="btn btn-primary" type="submit"><i class="fa-solid fa-floppy-disk"></i> حفظ الاسم</button></form></div>
-    <div class="card"><h2>تقدمك</h2><div class="activity-list" style="margin-top:18px"><div><div class="stat-top"><span class="stat-label">التقدم في الأكاديمية</span><strong id="profileCoursePercent">0%</strong></div><div class="progress-track"><div class="progress-fill" id="profileCourseBar" style="width:0%"></div></div></div><div><div class="stat-top"><span class="stat-label">المختبرات المنجزة</span><strong id="profileLabPercent">0%</strong></div><div class="progress-track"><div class="progress-fill" id="profileLabBar" style="width:0%"></div></div></div><div><div class="stat-top"><span class="stat-label">القضايا المنجزة</span><strong id="profileCasePercent">0%</strong></div><div class="progress-track"><div class="progress-fill" id="profileCaseBar" style="width:0%"></div></div></div></div></div>
-  </div>
-  <div class="card" style="margin-top:18px"><h2>إدارة بياناتك</h2><p class="subtext" style="margin-bottom:16px">تقدر تبدأ من جديد إذا حبيت. هذا الإجراء يمسح تقدمك المحلي واسمك المحفوظ.</p><button class="btn btn-danger" id="resetProgress"><i class="fa-solid fa-rotate-left"></i> إعادة ضبط التقدم</button></div>
-</section>
-
-<section class="page" id="page-support">
-  <div class="page-heading"><div><div class="eyebrow">MIDNIGHT COMMUNITY</div><h1>سيرفر Discord</h1><p class="subtext">مجتمع Midnight مو بس موقع تعليمي — مكان للتعلّم والتعاون والسوالف ومشاركة المحتوى.</p></div><span class="badge"><i class="fa-brands fa-discord"></i> JOIN US</span></div>
-  <div class="hero" style="grid-template-columns:1fr .4fr;min-height:240px">
-    <div class="hero-content"><div class="eyebrow">YOUR JOURNEY STARTS HERE</div><h1>تعلم لحالك، <span>وتطوّر مع المجتمع</span></h1><p>اسأل عن المفاهيم، شارك إنجازاتك، تابع الدروس والمحتوى الجديد، واستفد من تجارب الأعضاء.</p><div class="hero-actions"><a class="btn btn-primary" href="https://discord.gg/B5eGCxCzn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-discord"></i> الانضمام إلى Midnight</a></div></div>
-    <div class="hero-art"><div class="orbit"><div class="orbit-core" style="background:linear-gradient(145deg,#7289ff,#4e55b9)"><i class="fa-brands fa-discord"></i></div></div></div>
-  </div>
-  <div class="grid-3">
-    <div class="card feature-card"><div class="feature-icon"><i class="fa-solid fa-people-group"></i></div><h3>مجتمع وتعاون</h3><p>تبادل الخبرات والأفكار مع أعضاء مهتمين بالتقنية والأمن السيبراني.</p></div>
-    <div class="card feature-card"><div class="feature-icon"><i class="fa-solid fa-graduation-cap"></i></div><h3>محتوى تعليمي</h3><p>تابع المواد التعليمية والمصادر والمشاريع اللي يشاركها المجتمع.</p></div>
-    <div class="card feature-card"><div class="feature-icon"><i class="fa-solid fa-comments"></i></div><h3>اسأل وتناقش</h3><p>إذا وقفت عند مصطلح أو درس، ناقشه مع الآخرين واطلب توضيحًا.</p></div>
-  </div>
-  <div class="callout" style="margin-top:20px"><i class="fa-solid fa-circle-info" style="color:var(--purple);margin-left:7px"></i>رابط السيرفر: <a href="https://discord.gg/B5eGCxCzn" target="_blank" rel="noopener noreferrer" style="color:#c9a6ff;text-decoration:underline">discord.gg/B5eGCxCzn</a></div>
-</section>
-
-<section class="page" id="page-about">
-  <div class="page-heading"><div><div class="eyebrow">ABOUT THE PROJECT</div><h1>عن Midnight</h1><p class="subtext">منصة تعليمية مبسّطة تساعد المبتدئ يفهم مفاهيم الأمن السيبراني بشكل عملي وآمن.</p></div></div>
-  <div class="grid-2">
-    <div class="card"><div class="feature-icon" style="margin-bottom:17px"><i class="fa-solid fa-shield-halved"></i></div><h2>MIDNIGHT — YOUR JOURNEY STARTS HERE</h2><p class="subtext">هدفنا إنك تفهم التقنية من الأساس، وتتعلم كيف تحمي الأنظمة، وتقرأ الأدلة الرقمية، وتستخدم المعرفة بشكل مسؤول.</p><div class="callout">التعلّم الحقيقي يبدأ بالفهم والتجربة والممارسة القانونية، مو بحفظ أسماء الأدوات فقط.</div></div>
-    <div class="card"><h2>وش موجود في المنصة؟</h2><div class="activity-list"><div class="activity"><span class="activity-dot"></span><div><strong>أكاديمية مرتبة</strong><small>دروس شبكات وLinux وأمن الويب ومبادئ الحماية.</small></div></div><div class="activity"><span class="activity-dot"></span><div><strong>مختبرات آمنة</strong><small>محاكاة تعليمية للأوامر وتحليل النتائج.</small></div></div><div class="activity"><span class="activity-dot"></span><div><strong>قضايا خيالية</strong><small>تدريب على التحليل والتحقيق والاستجابة للحوادث.</small></div></div><div class="activity"><span class="activity-dot"></span><div><strong>قاموس واختبارات</strong><small>مصطلحات تقنية ومراجعة معلوماتك.</small></div></div></div></div>
-  </div>
-  <div class="callout warning" style="margin-top:18px"><i class="fa-solid fa-scale-balanced" style="margin-left:6px"></i><strong>الاستخدام المسؤول:</strong> المحتوى للتعليم والدفاع والتدريب في البيئات المصرح بها. المختبرات الموجودة في هذه النسخة محاكاة وليست اتصالًا فعليًا بأجهزة أو خدمات خارجية.</div>
-</section>
-
-<footer class="footer"><span><strong>MIDNIGHT</strong> — YOUR JOURNEY STARTS HERE</span><span>© Midnight • جميع الحقوق محفوظة</span><a href="https://discord.gg/B5eGCxCzn" target="_blank" rel="noopener noreferrer">مجتمع Midnight <i class="fa-brands fa-discord"></i></a></footer>
+<div class="footer">MIDNIGHT — YOUR JOURNEY STARTS HERE</div>
 </div>
 </main>
 </div>
-
-<nav class="mobile-bottom" id="mobileBottom">
-  <button class="active" data-page="home"><i class="fa-solid fa-house"></i>الرئيسية</button>
-  <button data-page="academy"><i class="fa-solid fa-graduation-cap"></i>الأكاديمية</button>
-  <button data-page="network"><i class="fa-solid fa-network-wired"></i>الشبكات</button>
-  <button data-page="labs"><i class="fa-solid fa-terminal"></i>المختبر</button>
-  <button data-page="cases"><i class="fa-solid fa-folder-open"></i>القضايا</button>
-</nav>
-
-<div class="toast-wrap" id="toastWrap" aria-live="polite"></div>
-<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal"><div class="modal-head"><h2 id="modalTitle">التفاصيل</h2><button class="icon-btn" id="modalClose" aria-label="إغلاق"><i class="fa-solid fa-xmark"></i></button></div><div id="modalContent"></div></div></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
 "use strict";
 
-const STORE_KEY="midnight_academy_v2";
-const DEFAULT_STATE={xp:0,completedLessons:[],completedLabs:[],completedCases:[],unlocked:[],quizBest:0,name:"متعلم Midnight",activity:[]};
-let state=loadState();
+const STORAGE_KEY = "midnight_academy_v3";
+
+const defaultState = {
+  name:"",
+  xp:0,
+  completedLessons:[],
+  completedCases:[],
+  achievements:[],
+  activity:[]
+};
+
 function loadState(){
   try{
-    const raw=localStorage.getItem(STORE_KEY);
-    if(!raw)return structuredClone(DEFAULT_STATE);
-    return {...structuredClone(DEFAULT_STATE),...JSON.parse(raw)};
-  }catch(e){return structuredClone(DEFAULT_STATE)}
+    const saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||"null");
+    if(!saved || typeof saved!=="object") return structuredClone(defaultState);
+    return {
+      ...structuredClone(defaultState),
+      ...saved,
+      xp:Math.max(0,Number(saved.xp)||0),
+      completedLessons:Array.isArray(saved.completedLessons)?saved.completedLessons:[],
+      completedCases:Array.isArray(saved.completedCases)?saved.completedCases:[],
+      achievements:Array.isArray(saved.achievements)?saved.achievements:[],
+      activity:Array.isArray(saved.activity)?saved.activity:[]
+    };
+  }catch{return structuredClone(defaultState)}
 }
-function saveState(){try{localStorage.setItem(STORE_KEY,JSON.stringify(state))}catch(e){}}
-function escapeHTML(value){return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function toast(message,icon="fa-circle-check"){
-  const wrap=document.getElementById("toastWrap");
-  const item=document.createElement("div");item.className="toast";
-  item.innerHTML=`<i class="fa-solid ${icon}"></i><span>${escapeHTML(message)}</span>`;
-  wrap.appendChild(item);setTimeout(()=>item.remove(),3600);
-}
-function awardXP(amount,reason){
-  state.xp+=amount;
-  state.activity.unshift({reason,xp:amount,date:new Date().toLocaleDateString("ar-SA")});
-  state.activity=state.activity.slice(0,8);
-  saveState();refreshUI();
-  toast(`+${amount} XP — ${reason}`,"fa-bolt");
-}
-const pageNames={home:"الرئيسية",academy:"الأكاديمية",network:"أساسيات الشبكات",labs:"المختبرات التفاعلية",cases:"القضايا الرقمية",quiz:"الاختبارات",dictionary:"القاموس التقني",leaderboard:"لوحة المتصدرين",achievements:"الإنجازات",profile:"ملفي التعليمي",support:"سيرفر Discord",about:"عن Midnight"};
-function navigate(name){
-  if(!pageNames[name])return;
-  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-  document.getElementById("page-"+name).classList.add("active");
-  document.querySelectorAll(".nav-btn,.mobile-bottom button").forEach(b=>b.classList.toggle("active",b.dataset.page===name));
-  document.getElementById("pageCrumb").textContent=pageNames[name];
-  document.getElementById("sidebar").classList.remove("open");
-  window.scrollTo({top:0,behavior:"smooth"});
-  if(name==="leaderboard"||name==="achievements"||name==="profile")refreshUI();
-}
-document.querySelectorAll("[data-page]").forEach(btn=>btn.addEventListener("click",()=>navigate(btn.dataset.page)));
-document.getElementById("mobileMenu").addEventListener("click",()=>document.getElementById("sidebar").classList.toggle("open"));
-document.addEventListener("click",e=>{
-  const sidebar=document.getElementById("sidebar");
-  if(window.innerWidth<=850&&sidebar.classList.contains("open")&&!sidebar.contains(e.target)&&!e.target.closest("#mobileMenu"))sidebar.classList.remove("open");
-});
-document.getElementById("quickSearch").addEventListener("click",()=>{
-  openModal("بحث سريع",`<p class="subtext" style="margin-bottom:12px">ابحث عن درس أو مصطلح تقني أو قضية.</p><input class="field-input" id="globalSearchInput" placeholder="مثال: DNS أو بنك بو أو Linux"><div id="globalSearchResults" class="activity-list" style="margin-top:12px"></div>`);
-  const input=document.getElementById("globalSearchInput");input.focus();
-  const search=()=>renderGlobalSearch(input.value);
-  input.addEventListener("input",search);renderGlobalSearch("");
-});
-function renderGlobalSearch(q){
-  const out=document.getElementById("globalSearchResults");if(!out)return;
-  const query=q.trim().toLowerCase();
-  const all=[
-    ...lessons.map(x=>({title:x.title,desc:x.description,page:x.category==="network"?"network":"academy",type:"درس"})),
-    ...Object.entries(networkTopics).map(([id,x])=>({title:x.title,desc:x.summary,page:"network",type:"شبكات"})),
-    ...dictionary.map(x=>({title:x.term,desc:x.meaning,page:"dictionary",type:"قاموس"})),
-    ...cases.map(x=>({title:x.title,desc:x.description,page:"cases",type:"قضية"}))
-  ];
-  const matches=all.filter(x=>!query||(x.title+" "+x.desc).toLowerCase().includes(query)).slice(0,9);
-  out.innerHTML=matches.length?matches.map(x=>`<button class="course-row" style="width:100%;text-align:right;color:var(--text)" data-search-page="${x.page}"><span class="course-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></span><span class="course-info"><strong>${escapeHTML(x.title)}</strong><small>${escapeHTML(x.type)} • ${escapeHTML(x.desc)}</small></span></button>`).join(""):`<p class="subtext">ما لقينا نتائج مطابقة.</p>`;
-  out.querySelectorAll("[data-search-page]").forEach(b=>b.addEventListener("click",()=>{const page=b.dataset.searchPage;closeModal();navigate(page)}));
-}
-function openModal(title,content){
-  document.getElementById("modalTitle").textContent=title;document.getElementById("modalContent").innerHTML=content;
-  document.getElementById("modalBackdrop").classList.add("open");
-}
-function closeModal(){document.getElementById("modalBackdrop").classList.remove("open")}
-document.getElementById("modalClose").addEventListener("click",closeModal);
-document.getElementById("modalBackdrop").addEventListener("click",e=>{if(e.target.id==="modalBackdrop")closeModal()});
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+let state=loadState();
+let activeFilter="all";
+let activeLessonId=null;
+let activeCaseId="bank-bow";
+let bookIndex=0;
+let toastTimer=null;
 
 const lessons=[
-{id:"net-intro",title:"كيف تعمل الشبكات؟",category:"network",icon:"fa-diagram-project",level:"مبتدئ",duration:"12 دقيقة",description:"افهم الأجهزة والراوتر والحزم وكيف تنتقل البيانات.",xp:30},
-{id:"ip-address",title:"IP Address — عنوان IP",category:"network",icon:"fa-location-dot",level:"مبتدئ",duration:"15 دقيقة",description:"IPv4 وIPv6 والعناوين العامة والخاصة وSubnet Mask.",xp:35},
-{id:"dns",title:"DNS — دليل أسماء المواقع",category:"network",icon:"fa-book-atlas",level:"مبتدئ",duration:"12 دقيقة",description:"كيف يتحول اسم الموقع إلى عنوان IP؟",xp:30},
-{id:"ports",title:"المنافذ والبروتوكولات",category:"network",icon:"fa-door-open",level:"مبتدئ",duration:"15 دقيقة",description:"Ports وTCP وUDP وأشهر أرقام المنافذ.",xp:35},
-{id:"dhcp-nat",title:"DHCP وGateway وNAT",category:"network",icon:"fa-route",level:"مبتدئ",duration:"14 دقيقة",description:"كيف يحصل جهازك على عنوان وكيف يخرج للإنترنت؟",xp:35},
-{id:"arp-subnet",title:"ARP وSubnetting",category:"network",icon:"fa-share-nodes",level:"متوسط",duration:"18 دقيقة",description:"ربط عناوين IP بعناوين MAC وفهم تقسيم الشبكات.",xp:45},
-{id:"osi",title:"نموذج OSI وحزم البيانات",category:"network",icon:"fa-layer-group",level:"مبتدئ",duration:"16 دقيقة",description:"الطبقات السبع وما يحدث للبيانات أثناء انتقالها.",xp:35},
-{id:"linux-intro",title:"مقدمة في Linux",category:"linux",icon:"fa-terminal",level:"مبتدئ",duration:"15 دقيقة",description:"الطرفية والمسارات والملفات وأوامر البداية.",xp:30},
-{id:"linux-files",title:"الملفات والصلاحيات",category:"linux",icon:"fa-folder-tree",level:"مبتدئ",duration:"14 دقيقة",description:"المجلدات والصلاحيات ومفهوم المستخدمين.",xp:35},
-{id:"cyber-basics",title:"مبادئ الأمن السيبراني",category:"security",icon:"fa-shield-halved",level:"مبتدئ",duration:"13 دقيقة",description:"السرية والسلامة والتوافر ومفهوم المخاطر.",xp:30},
-{id:"logs",title:"قراءة السجلات الرقمية",category:"security",icon:"fa-file-lines",level:"مبتدئ",duration:"17 دقيقة",description:"التوقيت وعناوين المصدر والأحداث المشبوهة.",xp:40},
-{id:"web-basics",title:"أساسيات HTTP وHTTPS",category:"web",icon:"fa-globe",level:"مبتدئ",duration:"16 دقيقة",description:"الطلبات والاستجابات والرؤوس والاتصال المشفر.",xp:40}
+{id:"cyber-intro",title:"مقدمة في الأمن السيبراني",level:"مبتدئ",category:"الأساسيات",xp:20,icon:"fa-shield-halved",body:[
+["وش هو الأمن السيبراني؟","الأمن السيبراني هو حماية الأجهزة والشبكات والبيانات من الوصول غير المصرح به أو العبث أو التعطيل."],
+["أهم ثلاث ركائز","السرية: لا يطّلع على المعلومات إلا المصرح لهم.\nالسلامة: تبقى البيانات صحيحة ولا تتغير دون إذن.\nالتوافر: تكون الأنظمة والمعلومات متاحة عند الحاجة."],
+["كيف تبدأ؟","ابدأ بالشبكات وأنظمة التشغيل، ثم تعلّم أساسيات الويب والسجلات وتحليل الأدلة. تدرب في مختبرات مصرح بها فقط."]
+]},
+{id:"ip-basics",title:"ما هو عنوان IP؟",level:"مبتدئ",category:"الشبكات",xp:20,icon:"fa-location-dot",body:[
+["فكرة عنوان IP","عنوان IP هو عنوان منطقي يساعد على تحديد واجهة جهاز داخل شبكة لتوصيل البيانات إلى الوجهة الصحيحة."],
+["مثال بسيط","تخيّل أنك ترسل طردًا. تحتاج عنوانًا يوضح إلى أين يجب أن يصل. عنوان IP يؤدي دورًا مشابهًا في توجيه البيانات."],
+["IPv4 وIPv6","من أمثلة IPv4 العنوان 192.168.1.10. أما IPv6 فيستخدم عناوين أطول لتوفير مساحة عناوين أكبر."]
+]},
+{id:"dns-basics",title:"ما هو DNS؟",level:"مبتدئ",category:"الشبكات",xp:20,icon:"fa-globe",body:[
+["وظيفة DNS","يترجم DNS أسماء النطاقات مثل example.com إلى معلومات تساعد الأجهزة على الوصول إلى الوجهة المناسبة."],
+["ليش نحتاجه؟","تذكّر اسم موقع أسهل عادة من تذكّر عنوان IP الخاص به. يعمل DNS كدليل يساعد على العثور على الوجهة."],
+["معلومة مهمة","DNS ليس هو الإنترنت نفسه، وقد تتأثر زيارة موقع بمشكلة DNS حتى لو كان اتصالك بالشبكة يعمل."]
+]},
+{id:"ports-basics",title:"المنافذ Ports",level:"مبتدئ",category:"الشبكات",xp:25,icon:"fa-door-open",body:[
+["وش هو المنفذ؟","المنفذ رقم منطقي يساعد نظام التشغيل على توجيه اتصال الشبكة إلى الخدمة المناسبة."],
+["أمثلة معروفة","المنفذ 80 يستخدم عادة مع HTTP، والمنفذ 443 مع HTTPS، والمنفذ 22 مع SSH."],
+["انتبه","وجود منفذ مفتوح لا يعني وحده وجود ثغرة. يجب فهم الخدمة وإعداداتها والسياق قبل الحكم."]
+]},
+{id:"linux-intro",title:"التعرف على لينكس",level:"مبتدئ",category:"لينكس",xp:20,icon:"fa-brands fa-linux",body:[
+["ما هو لينكس؟","لينكس نواة نظام تشغيل تُستخدم في توزيعات كثيرة، منها Ubuntu وDebian وKali Linux."],
+["ليش يتعلمه المختصون؟","لأنه شائع في الخوادم وأدوات الإدارة والتحليل، ويمنحك تحكمًا واسعًا من خلال الطرفية."],
+["بداية سهلة","تعلّم التنقل بين المجلدات، وقراءة الملفات، وفهم الصلاحيات قبل الانتقال إلى الأوامر المتقدمة."]
+]},
+{id:"http-basics",title:"كيف يعمل HTTP وHTTPS؟",level:"متوسط",category:"الويب",xp:30,icon:"fa-globe",body:[
+["طلب واستجابة","يرسل المتصفح طلبًا إلى الخادم، ثم يرد الخادم باستجابة تحتوي على بيانات أو حالة الطلب."],
+["الفرق الأساسي","HTTPS يستخدم التشفير عبر TLS لحماية الاتصال أثناء النقل والتحقق من هوية الخادم وفق الشهادات."],
+["رموز الحالة","200 تعني نجاح الطلب عادة، و404 تعني أن المورد غير موجود، و500 تشير إلى خطأ من جهة الخادم."]
+]},
+{id:"linux-files",title:"الملفات والصلاحيات",level:"متوسط",category:"لينكس",xp:30,icon:"fa-folder-open",body:[
+["فهم الصلاحيات","تحدد صلاحيات الملفات من يستطيع قراءتها أو تعديلها أو تنفيذها. ويُعبّر عنها غالبًا بالحروف r وw وx."],
+["الأمر ls -l","يعرض قائمة الملفات بتفاصيل إضافية، ومنها الصلاحيات والمالك والحجم وتاريخ التعديل."],
+["أفضل ممارسة","لا تمنح صلاحيات واسعة بلا حاجة. افهم أثر التغيير قبل تعديل صلاحيات الملفات أو المجلدات."]
+]},
+{id:"logs-intro",title:"قراءة السجلات Logs",level:"متوسط",category:"التحقيق الرقمي",xp:30,icon:"fa-file-lines",body:[
+["ما هي السجلات؟","السجلات تسجل أحداث النظام أو التطبيق، مثل تسجيل الدخول والأخطاء والاتصالات."],
+["كيف نقرأها؟","ابدأ بالتوقيت، ثم نوع الحدث، ثم المصدر والنتيجة. قارن عدة أحداث بدل الاعتماد على سطر واحد."],
+["مهم للمحقق","قد تكون السجلات ناقصة أو متأخرة أو غير دقيقة. اكتب ما تثبته الأدلة، وافصل بين الحقيقة والاحتمال."]
+]},
+{id:"web-security",title:"مقدمة في أمن الويب",level:"متوسط",category:"الويب",xp:35,icon:"fa-code",body:[
+["كيف تحمي تطبيقًا؟","تحقق من المدخلات، وطبّق الصلاحيات على الخادم، واستخدم جلسات آمنة، وحدّث المكتبات."],
+["المصادقة والصلاحيات","المصادقة تجيب عن سؤال من أنت؟ أما الصلاحيات فتحدد ما الذي يسمح لك بفعله."],
+["التدريب الآمن","استخدم تطبيقات تدريبية مصممة للاختبار أو أنظمة لديك تصريح صريح بفحصها."]
+]},
+{id:"incident-analysis",title:"تحليل حادث أمني",level:"متقدم",category:"التحقيق الرقمي",xp:40,icon:"fa-magnifying-glass-chart",body:[
+["تحديد نطاق الحادث","حدد الأنظمة المتأثرة، والفترة الزمنية، ومصدر التنبيه. لا تفترض سببًا قبل مراجعة الأدلة."],
+["بناء خط زمني","اجمع الأحداث حسب التوقيت وقارن سجلات المصادقة والشبكة والتطبيق لتكوين تسلسل منطقي."],
+["كتابة النتائج","وثّق الأدلة والقيود والاستنتاجات والخطوات المقترحة، مع الحفاظ على خصوصية البيانات."]
+]},
+{id:"threat-model",title:"مبادئ نمذجة التهديدات",level:"متقدم",category:"الأمن",xp:40,icon:"fa-diagram-project",body:[
+["حدد الأصول","ما الذي تحميه؟ قد يكون حسابات المستخدمين أو بياناتهم أو خدمة تعتمد عليها المؤسسة."],
+["حدد التهديدات","فكر في إساءة استخدام الصلاحيات، وتسريب البيانات، وتعطل الخدمة، والأخطاء البشرية."],
+["رتّب المخاطر","قيّم الاحتمال والأثر، ثم اختر إجراءات حماية متناسبة. راجع النموذج عندما يتغير النظام."]
+]}
 ];
-let currentAcademyFilter="all";
-function renderLessons(){
-  const q=(document.getElementById("academySearch")?.value||"").toLowerCase().trim();
-  const items=lessons.filter(l=>(currentAcademyFilter==="all"||l.category===currentAcademyFilter)&&(!q||(l.title+" "+l.description).toLowerCase().includes(q)));
-  document.getElementById("lessonGrid").innerHTML=items.map(l=>{
-    const done=state.completedLessons.includes(l.id);
-    return `<article class="card lesson-card"><div class="card-top"><span class="course-icon"><i class="fa-solid ${l.icon}"></i></span><span class="badge ${done?"green":""}">${done?"مكتمل":escapeHTML(l.level)}</span></div><h3>${escapeHTML(l.title)}</h3><p>${escapeHTML(l.description)}</p><div class="card-bottom"><span class="meta"><span><i class="fa-regular fa-clock"></i> ${l.duration}</span><span><i class="fa-solid fa-bolt"></i> ${l.xp} XP</span></span><button class="btn ${done?"btn-secondary":"btn-primary"} btn-sm" data-lesson="${l.id}">${done?"مراجعة":"ابدأ الدرس"} <i class="fa-solid fa-arrow-left"></i></button></div></article>`;
-  }).join("")||`<div class="empty-state"><i class="fa-solid fa-magnifying-glass"></i><p>ما لقينا دروس مطابقة.</p></div>`;
-  document.querySelectorAll("[data-lesson]").forEach(b=>b.addEventListener("click",()=>openLesson(b.dataset.lesson)));
-}
-document.querySelectorAll("#academyFilters [data-filter]").forEach(b=>b.addEventListener("click",()=>{
-  currentAcademyFilter=b.dataset.filter;document.querySelectorAll("#academyFilters [data-filter]").forEach(x=>x.classList.toggle("active",x===b));renderLessons();
-}));
-document.getElementById("academySearch").addEventListener("input",renderLessons);
 
-const networkTopics={
-  intro:{title:"1. كيف تعمل الشبكات؟",summary:"الأجهزة والحزم والراوتر",html:`
-    <div class="eyebrow">NETWORK BASICS / 01</div><h1>كيف تعمل الشبكات؟</h1>
-    <p>الشبكة هي مجموعة أجهزة تتواصل مع بعضها لتبادل البيانات. ممكن تكون شبكة منزلية صغيرة أو شبكة شركة أو الإنترنت اللي يربط شبكات العالم.</p>
-    <h2>المكونات الأساسية</h2>
-    <h3><span class="inline-code">Client</span> — العميل</h3><p>جهاز يطلب خدمة، مثل جوالك لما تفتح موقعًا.</p>
-    <h3><span class="inline-code">Server</span> — الخادم</h3><p>جهاز أو برنامج يستقبل الطلبات ويرسل الردود، مثل خادم يستضيف صفحة ويب.</p>
-    <h3><span class="inline-code">Router</span> — الراوتر</h3><p>يوجّه البيانات بين الشبكات، مثل الربط بين شبكتك المنزلية والإنترنت.</p>
-    <h3><span class="inline-code">Switch</span> — المبدّل</h3><p>يربط الأجهزة داخل الشبكة المحلية ويوصل الإطارات إلى الجهاز المقصود.</p>
-    <h2>وش هي حزمة البيانات؟</h2><p><span class="inline-code">Packet</span> هي وحدة من البيانات تنتقل عبر الشبكة. تحتوي معلومات تساعد الشبكة في إيصالها، مثل عناوين المصدر والوجهة، بحسب البروتوكول المستخدم.</p>
-    <div class="callout"><strong>مثال:</strong> تفتح موقعًا من جوالك. يرسل المتصفح طلبًا، تمر البيانات عبر شبكات مختلفة، يصل الطلب إلى الخادم، ثم يرجع الرد إلى جهازك.</div>
-    <h2>مصطلحات مهمّة</h2><ul><li><strong>LAN:</strong> شبكة محلية مثل شبكة البيت.</li><li><strong>WAN:</strong> شبكة واسعة تربط مناطق أو شبكات بعيدة.</li><li><strong>NIC:</strong> بطاقة واجهة الشبكة في الجهاز.</li><li><strong>ISP:</strong> مزود خدمة الإنترنت.</li></ul>
-    <div class="callout success">تذكّر: الشبكة هي طريق التواصل، وعناوين IP تساعد في تحديد الوجهة، والراوتر يوجّه البيانات بين الشبكات.</div>`},
-  ip:{title:"2. عنوان IP",summary:"IPv4 وIPv6 والعناوين الخاصة",html:`
-    <div class="eyebrow">NETWORK BASICS / 02</div><h1>IP Address — عنوان IP</h1>
-    <p>عنوان IP هو عنوان منطقي يُستخدم لتحديد واجهة جهاز على شبكة IP حتى يمكن توجيه البيانات إلى وجهتها. يشبه عنوان المبنى، لكنه يتبع قواعد الشبكات.</p>
-    <h2>IPv4</h2><p>يتكون IPv4 من 32 بت ويُكتب غالبًا بأربع مجموعات عشرية مفصولة بنقاط.</p><p><span class="inline-code">192.168.1.25</span></p><p>كل مجموعة تتراوح من 0 إلى 255، لكن مو كل تركيب يُستخدم لأي غرض؛ توجد نطاقات خاصة ومحجوزة.</p>
-    <h2>IPv6</h2><p>الإصدار الأحدث، ويستخدم عنوانًا من 128 بت ويُكتب بالنظام الست عشري مفصولًا بنقطتين.</p><p><span class="inline-code">2001:db8::25</span></p><p>النطاق <span class="inline-code">2001:db8::/32</span> مخصص للأمثلة والتوثيق، وليس عنوانًا عامًا للاستخدام الفعلي.</p>
-    <h2>عام أم خاص؟</h2><div class="data-table-wrap"><table><thead><tr><th>النوع</th><th>أمثلة</th><th>الفكرة</th></tr></thead><tbody><tr><td>Private IPv4</td><td><code>10.0.0.0/8</code></td><td>عناوين للاستخدام داخل الشبكات الخاصة</td></tr><tr><td>Private IPv4</td><td><code>172.16.0.0/12</code></td><td>نطاق خاص آخر</td></tr><tr><td>Private IPv4</td><td><code>192.168.0.0/16</code></td><td>شائع في شبكات المنازل</td></tr><tr><td>Public IP</td><td>يعتمد على مزود الخدمة</td><td>عنوان قابل للتوجيه على الإنترنت وفق السياسات</td></tr><tr><td>Loopback</td><td><code>127.0.0.1</code></td><td>يشير إلى جهازك نفسه في IPv4</td></tr></tbody></table></div>
-    <h2>Subnet Mask وCIDR</h2><p>قناع الشبكة يحدد أي جزء من العنوان يمثل الشبكة وأي جزء يمثل المضيف. صيغة CIDR تكتب عدد بتات الشبكة بعد الشرطة المائلة.</p><p><span class="inline-code">192.168.1.25/24</span> تعني أن أول 24 بت مخصصة لجزء الشبكة. في شبكة IPv4 التقليدية يكون القناع المقابل <span class="inline-code">255.255.255.0</span>.</p>
-    <h2>IP مقابل MAC</h2><p>IP عنوان منطقي للتوجيه بين الشبكات، أما MAC فهو عنوان واجهة طبقة ربط البيانات ويستخدم داخل الشبكة المحلية. لكل منهما وظيفة مختلفة.</p>
-    <div class="callout warning">عنوان IP ممكن يتغير، وقد يمتلك الجهاز أكثر من واجهة أو عنوان. لا تفترض أن عنوان IP يحدد شخصًا بعينه.</div>`},
-  dns:{title:"3. DNS",summary:"تحويل أسماء النطاقات إلى عناوين",html:`
-    <div class="eyebrow">NETWORK BASICS / 03</div><h1>DNS — نظام أسماء النطاقات</h1>
-    <p>DNS اختصار <span class="inline-code">Domain Name System</span>. هو نظام يساعد الأجهزة في العثور على المعلومات المرتبطة بأسماء النطاقات. بدل ما تحفظ عنوان IP، تكتب اسمًا مثل <span class="inline-code">example.com</span>.</p>
-    <h2>كيف تتم عملية الاستعلام؟</h2><ol><li>تطلب فتح اسم نطاق.</li><li>قد يفحص الجهاز ذاكرته المؤقتة أولًا.</li><li>يُرسل استعلام إلى محلّل DNS، مثل الذي يوفّره مزود الخدمة أو تختاره بنفسك.</li><li>إذا لم تكن الإجابة مخزنة، يتابع المحلّل الاستعلام عبر تسلسل DNS المناسب.</li><li>تُعاد الإجابة ويستخدمها الجهاز للاتصال بالخدمة.</li></ol>
-    <h2>أنواع سجلات DNS</h2><div class="data-table-wrap"><table><thead><tr><th>السجل</th><th>الوظيفة</th><th>مثال مبسّط</th></tr></thead><tbody><tr><td>A</td><td>يربط الاسم بعنوان IPv4</td><td>site.example → IPv4</td></tr><tr><td>AAAA</td><td>يربط الاسم بعنوان IPv6</td><td>site.example → IPv6</td></tr><tr><td>CNAME</td><td>اسم مستعار لاسم آخر</td><td>www → اسم النطاق الأساسي</td></tr><tr><td>MX</td><td>تحديد خوادم البريد</td><td>خدمة البريد للنطاق</td></tr><tr><td>TXT</td><td>نصوص تستخدم لأغراض متعددة</td><td>سياسات تحقق البريد</td></tr><tr><td>NS</td><td>خوادم الأسماء المسؤولة</td><td>Nameserver للنطاق</td></tr><tr><td>PTR</td><td>استعلام عكسي من العنوان إلى اسم</td><td>Reverse DNS</td></tr></tbody></table></div>
-    <h2>وش معنى TTL؟</h2><p><span class="inline-code">Time To Live</span> يحدد المدة التي يمكن فيها تخزين سجل DNS مؤقتًا قبل الحاجة لإعادة الاستعلام عنه. القيمة تُقاس غالبًا بالثواني.</p>
-    <h2>DNS وخصوصية الاتصال</h2><p>DNS التقليدي لا يشفر الاستعلام بذاته. توجد تقنيات مثل <span class="inline-code">DoH</span> و<span class="inline-code">DoT</span> لتشفير الاتصال بين العميل ومحلّل DNS، لكنها لا تعني إخفاء كل نشاط الإنترنت.</p>
-    <div class="callout">جرّب في المختبر الوهمي الأمر <span class="inline-code">nslookup example.test</span> وشوف كيف تعرض المحاكاة اسم النطاق وعنوانًا تجريبيًا.</div>`},
-  ports:{title:"4. Ports وTCP وUDP",summary:"المنافذ والبروتوكولات",html:`
-    <div class="eyebrow">NETWORK BASICS / 04</div><h1>المنافذ والبروتوكولات</h1>
-    <p>عنوان IP يحدد واجهة الشبكة، بينما رقم المنفذ يساعد نظام التشغيل في توجيه الاتصال إلى الخدمة أو التطبيق المناسب. رقم المنفذ يتراوح من 0 إلى 65535 في TCP وUDP.</p>
-    <h2>TCP مقابل UDP</h2><div class="data-table-wrap"><table><thead><tr><th>الميزة</th><th>TCP</th><th>UDP</th></tr></thead><tbody><tr><td>إنشاء اتصال</td><td>يستخدم اتصالًا وترتيبًا للبيانات</td><td>لا يحتاج إنشاء اتصال بالطريقة نفسها</td></tr><tr><td>التسليم</td><td>يوفر إعادة الإرسال وترتيب التدفق</td><td>لا يضمن التسليم أو الترتيب بنفسه</td></tr><tr><td>أمثلة استخدام</td><td>HTTPS وSSH</td><td>DNS غالبًا ووسائط لحظية بحسب التطبيق</td></tr></tbody></table></div>
-    <h2>منافذ معروفة</h2><div class="data-table-wrap"><table><thead><tr><th>المنفذ</th><th>البروتوكول</th><th>الاستخدام الشائع</th></tr></thead><tbody><tr><td>22</td><td>SSH/TCP</td><td>إدارة عن بُعد بشكل مشفر</td></tr><tr><td>25</td><td>SMTP/TCP</td><td>نقل البريد بين خوادم البريد</td></tr><tr><td>53</td><td>DNS/UDP وTCP</td><td>استعلامات DNS</td></tr><tr><td>80</td><td>HTTP/TCP</td><td>ويب غير مشفر على مستوى HTTP</td></tr><tr><td>123</td><td>NTP/UDP</td><td>مزامنة الوقت</td></tr><tr><td>443</td><td>HTTPS/TCP غالبًا</td><td>ويب عبر TLS؛ يستخدم HTTP/3 بروتوكول QUIC فوق UDP</td></tr><tr><td>3389</td><td>RDP/TCP غالبًا</td><td>سطح مكتب بعيد في أنظمة Windows</td></tr></tbody></table></div>
-    <h2>هل وجود منفذ مفتوح يعني اختراقًا؟</h2><p>لا. قد يكون المنفذ مفتوحًا لأن خدمة شرعية تستمع إليه. المهم معرفة الخدمة، والتأكد من تحديثها وإعداد صلاحياتها وجدار الحماية بشكل مناسب.</p>
-    <div class="callout warning">لا تفحص منافذ أجهزة الآخرين بدون إذن. في الموقع، نتائج <span class="inline-code">nmap</span> تدريبية ومصطنعة فقط.</div>`},
-  dhcp:{title:"5. DHCP وGateway وNAT",summary:"توزيع العناوين والوصول للإنترنت",html:`
-    <div class="eyebrow">NETWORK BASICS / 05</div><h1>DHCP وGateway وNAT</h1>
-    <h2>DHCP — توزيع إعدادات الشبكة</h2><p>يساعد <span class="inline-code">DHCP</span> الأجهزة في الحصول تلقائيًا على إعدادات مثل عنوان IP وقناع الشبكة والبوابة الافتراضية وخادم DNS. بدل ما تدخل كل شيء يدويًا في كل جهاز.</p>
-    <p>في IPv4، العملية المعتادة تُشرح بأربع مراحل: Discover ثم Offer ثم Request ثم Acknowledge، وتُعرف اختصارًا باسم DORA.</p>
-    <h2>Default Gateway — البوابة الافتراضية</h2><p>إذا أراد جهاز إرسال بيانات إلى وجهة خارج شبكته المحلية، يرسلها عادةً إلى البوابة الافتراضية، التي تكون غالبًا الراوتر في الشبكة المنزلية.</p>
-    <h2>NAT — ترجمة عناوين الشبكة</h2><p>تستخدم كثير من الشبكات المنزلية NAT لترجمة عناوين الأجهزة الخاصة إلى عنوان عام عند التواصل مع الإنترنت، مع تتبع الاتصالات حتى تعود الردود إلى الجهاز الصحيح. لكن NAT ليس بديلًا عن جدار الحماية.</p>
-    <div class="callout">مثال: جوالك قد يحمل عنوانًا خاصًا مثل <span class="inline-code">192.168.1.20</span>، والراوتر يمرر اتصاله إلى الإنترنت باستخدام إعدادات الشبكة المتاحة.</div>
-    <h2>مصطلحات إضافية</h2><ul><li><strong>Lease:</strong> مدة تخصيص عنوان DHCP.</li><li><strong>Static IP:</strong> عنوان مضبوط يدويًا أو محجوز إداريًا.</li><li><strong>Public IP:</strong> عنوان عام قابل للتوجيه على الإنترنت بحسب السياسات.</li><li><strong>Private IP:</strong> عنوان للاستخدام داخل الشبكات الخاصة.</li></ul>`},
-  arp:{title:"6. ARP وSubnetting",summary:"العناوين داخل الشبكة وتقسيمها",html:`
-    <div class="eyebrow">NETWORK BASICS / 06</div><h1>ARP وSubnetting</h1>
-    <h2>ARP — ربط IPv4 بـMAC</h2><p>داخل شبكة IPv4 المحلية، يستخدم الجهاز ARP لمعرفة عنوان MAC المقابل لعنوان IPv4 محلي. يرسل طلبًا في الشبكة المحلية، ويرد الجهاز صاحب العنوان بالمعلومات المطلوبة. في IPv6 توجد آليات مختلفة ضمن Neighbor Discovery.</p>
-    <h2>ما هو عنوان MAC؟</h2><p>عنوان يُستخدم في طبقة ربط البيانات لواجهة الشبكة. غالبًا يُعرض على شكل مجموعات سداسية عشرية، مثل <span class="inline-code">02:00:5e:10:00:01</span> في مثال توضيحي. قد تستخدم الأنظمة عناوين عشوائية للخصوصية على Wi-Fi.</p>
-    <h2>Subnetting — تقسيم الشبكات</h2><p>تقسيم الشبكة إلى شبكات أصغر يساعد على تنظيم الأجهزة وتقليل نطاق البث وتطبيق السياسات. يوضح CIDR عدد بتات الشبكة.</p>
-    <div class="callout"><strong>مثال تدريبي:</strong> <span class="inline-code">192.168.10.0/24</span> شبكة IPv4 تقليدية تحتوي 256 عنوانًا إجمالًا، منها عادة 254 عنوان مضيف قابل للاستخدام في نموذج الشبكة المعتاد.</div>
-    <p>عند تغيير البادئة من <span class="inline-code">/24</span> إلى <span class="inline-code">/26</span>، يزيد عدد بتات الشبكة ويقل عدد بتات المضيف؛ فينتج عن ذلك شبكات فرعية أصغر.</p>
-    <h2>Broadcast وUnicast</h2><ul><li><strong>Unicast:</strong> إرسال من مصدر إلى وجهة واحدة.</li><li><strong>Broadcast:</strong> إرسال إلى جميع الأجهزة ضمن نطاق البث في IPv4.</li><li><strong>Multicast:</strong> إرسال إلى مجموعة مستقبِلين مشتركة في المجموعة.</li></ul>
-    <div class="callout warning">عناوين MAC لا تُوجّه عبر الإنترنت مثل عناوين IP؛ الراوتر يفصل بين نطاقات الشبكات المحلية.</div>`},
-  osi:{title:"7. نموذج OSI وحزم البيانات",summary:"الطبقات السبع وتغليف البيانات",html:`
-    <div class="eyebrow">NETWORK BASICS / 07</div><h1>نموذج OSI وحزم البيانات</h1>
-    <p>نموذج OSI إطار تعليمي يقسّم وظائف الاتصال إلى سبع طبقات. يساعدك على فهم مكان المشكلة، لكنه ليس وصفًا حرفيًا لكل تنفيذ حديث.</p>
-    <div class="data-table-wrap"><table><thead><tr><th>الطبقة</th><th>الاسم</th><th>مثال أو وظيفة</th></tr></thead><tbody><tr><td>7</td><td>Application</td><td>بروتوكولات التطبيقات مثل HTTP وDNS</td></tr><tr><td>6</td><td>Presentation</td><td>تمثيل البيانات والتشفير في النموذج</td></tr><tr><td>5</td><td>Session</td><td>إدارة الجلسات في النموذج</td></tr><tr><td>4</td><td>Transport</td><td>TCP وUDP والمنافذ</td></tr><tr><td>3</td><td>Network</td><td>IP والتوجيه بين الشبكات</td></tr><tr><td>2</td><td>Data Link</td><td>إطارات Ethernet وMAC</td></tr><tr><td>1</td><td>Physical</td><td>الإشارات والكابلات والراديو</td></tr></tbody></table></div>
-    <h2>Encapsulation — تغليف البيانات</h2><p>عند إرسال بيانات، تضيف كل طبقة معلومات التحكم الخاصة بها. مثلًا يضيف TCP معلومات النقل، ويضيف IP معلومات الشبكة، ثم تضيف طبقة الربط إطارًا يناسب الوصلة المحلية.</p>
-    <h2>وش الفرق بين Packet وFrame؟</h2><p>يُستخدم مصطلح Packet عادةً لوحدة بيانات طبقة الشبكة، بينما Frame لوحدة بيانات طبقة ربط البيانات. تختلف المصطلحات قليلًا بحسب السياق والبروتوكول.</p>
-    <div class="callout success">إذا كان الموقع لا يفتح، اسأل: هل المشكلة في DNS؟ أم الاتصال بعنوان IP؟ أم المنفذ؟ أم TLS؟ تقسيم المشكلة إلى طبقات يجعل التشخيص أسهل.</div>`},
-  protocols:{title:"8. HTTP وTLS وVPN",summary:"الاتصال الآمن والخدمات",html:`
-    <div class="eyebrow">NETWORK BASICS / 08</div><h1>HTTP وTLS وVPN</h1>
-    <h2>HTTP وHTTPS</h2><p>HTTP بروتوكول لطلب موارد الويب وإرجاعها. HTTPS هو HTTP فوق اتصال محمي باستخدام TLS، ما يساعد على تشفير البيانات والتحقق من هوية الخادم وفق الشهادات.</p>
-    <h2>TCP وQUIC</h2><p>HTTP/1.1 وHTTP/2 يعملان عادة فوق TCP، بينما HTTP/3 يستخدم QUIC فوق UDP. لذلك ليس صحيحًا أن كل اتصال HTTPS يستخدم TCP في كل الحالات.</p>
-    <h2>Firewall — جدار الحماية</h2><p>يراقب حركة الشبكة ويسمح بها أو يمنعها وفق قواعد. قد تكون القواعد مبنية على عناوين أو منافذ أو حالة الاتصال أو خصائص أعمق بحسب نوع الجدار.</p>
-    <h2>VPN — شبكة افتراضية خاصة</h2><p>قد تنشئ VPN نفقًا مشفرًا بين جهازك وخادم VPN أو شبكة مؤسسية. لا تجعل كل نشاطك مجهولًا تلقائيًا، ولا تلغي الحاجة إلى حماية الحسابات والأجهزة.</p>
-    <h2>Proxy — خادم وسيط</h2><p>يستقبل الطلبات نيابة عن العميل أو يمررها إلى وجهتها. استخداماته تشمل التخزين المؤقت والتحكم في الوصول وتوجيه حركة التطبيقات.</p>
-    <div class="callout warning">وجود HTTPS لا يعني أن الموقع نفسه موثوق أو خالٍ من الاحتيال؛ يعني أن الاتصال يستخدم حماية TLS بالشروط الصحيحة.</div>`},
-  wifi:{title:"9. Wi-Fi وأمن الشبكات",summary:"الواي فاي والتشفير والحماية",html:`
-    <div class="eyebrow">NETWORK BASICS / 09</div><h1>Wi-Fi وأمن الشبكات</h1>
-    <p>Wi-Fi تقنية لربط الأجهزة لاسلكيًا بشبكة محلية. تعتمد جودة الاتصال وأمانه على إعدادات نقطة الوصول والأجهزة والتشفير والتحديثات.</p>
-    <h2>WPA2 وWPA3</h2><p>هما معياران أمنيان لحماية الشبكات اللاسلكية. يُفضّل استخدام أحدث وضع آمن تدعمه الأجهزة، وكلمة مرور قوية، وتحديث برنامج الراوتر.</p>
-    <h2>نصائح لحماية شبكة المنزل</h2><ul><li>غيّر كلمة مرور إدارة الراوتر الافتراضية.</li><li>استخدم WPA2-AES أو WPA3 حسب دعم الأجهزة.</li><li>حدّث البرنامج الثابت للراوتر عند توفر تحديث موثوق.</li><li>عطّل ميزات الإدارة عن بُعد إذا لم تكن تحتاجها.</li><li>أنشئ شبكة ضيوف للأجهزة غير الموثوقة إذا كانت الميزة متاحة.</li><li>لا تشارك كلمة مرور الشبكة مع أشخاص لا تثق بهم.</li></ul>
-    <h2>Ping وTraceroute</h2><p><span class="inline-code">ping</span> يستخدم رسائل ICMP للتحقق من إمكانية الوصول وقياس زمن الاستجابة عند السماح بها. أما <span class="inline-code">traceroute</span> فيساعد على استكشاف مسار الحزم. قد تحجب بعض الشبكات هذه الرسائل، لذلك عدم الرد لا يثبت وحده أن الجهاز متوقف.</p>
-    <div class="callout success">الأمن يبدأ من إعدادات صحيحة وتحديثات مستمرة وكلمات مرور قوية ومراقبة الأجهزة المتصلة.</div>`},
-  troubleshooting:{title:"10. تشخيص مشاكل الشبكة",summary:"خطوات منظمة لمعرفة سبب المشكلة",html:`
-    <div class="eyebrow">NETWORK BASICS / 10</div><h1>تشخيص مشاكل الشبكة</h1>
-    <p>لا تبدأ بتخمينات عشوائية. اتبع خطوات من الأقرب إلى الأبعد، ودوّن النتائج قبل تغيير الإعدادات.</p>
-    <ol><li><strong>تحقق من الاتصال:</strong> هل Wi-Fi متصل؟ هل الكابل مثبت؟</li><li><strong>تحقق من الإعدادات:</strong> هل لدى الجهاز عنوان IP وبوابة افتراضية؟</li><li><strong>اختبر البوابة:</strong> هل يستطيع الجهاز الوصول إلى الراوتر؟</li><li><strong>اختبر DNS:</strong> هل يمكن حل اسم نطاق معروف ومسموح لك اختباره؟</li><li><strong>افحص التطبيق:</strong> هل الخدمة تعمل وهل المنفذ المطلوب متاح؟</li><li><strong>افحص الوقت والشهادات:</strong> قد يؤثر وقت الجهاز الخاطئ على TLS.</li><li><strong>راجع السجلات:</strong> سجّل رسالة الخطأ والتوقيت والخطوات التي سبقتها.</li></ol>
-    <h2>أدوات مفيدة</h2><div class="data-table-wrap"><table><thead><tr><th>الأداة</th><th>الفكرة</th></tr></thead><tbody><tr><td>ipconfig / ip addr</td><td>عرض إعدادات الشبكة بحسب النظام</td></tr><tr><td>ping</td><td>اختبار الوصول وزمن الاستجابة عبر ICMP</td></tr><tr><td>nslookup / dig</td><td>استعلامات DNS</td></tr><tr><td>traceroute / tracert</td><td>استكشاف مسار الشبكة</td></tr><tr><td>curl</td><td>إرسال طلبات إلى خدمات الويب</td></tr></tbody></table></div>
-    <div class="callout warning">استخدم الأدوات على جهازك أو بيئة تدريبية أو هدف لديك تصريح باختباره فقط.</div>`}
-};
-const networkOrder=["intro","ip","dns","ports","dhcp","arp","osi","protocols","wifi","troubleshooting"];
-function renderNetwork(){
-  document.getElementById("networkNav").innerHTML=networkOrder.map(id=>`<button class="lesson-nav-item ${id===currentNetworkTopic?"active":""}" data-network-topic="${id}"><i class="fa-solid fa-angle-left"></i>${escapeHTML(networkTopics[id].title)}</button>`).join("");
-  document.querySelectorAll("[data-network-topic]").forEach(b=>b.addEventListener("click",()=>showNetworkTopic(b.dataset.networkTopic)));
-  showNetworkTopic(currentNetworkTopic);
-}
-let currentNetworkTopic="intro";
-function showNetworkTopic(id){
-  if(!networkTopics[id])return;currentNetworkTopic=id;
-  document.querySelectorAll("[data-network-topic]").forEach(b=>b.classList.toggle("active",b.dataset.networkTopic===id));
-  const topic=networkTopics[id];
-  document.getElementById("networkLesson").innerHTML=topic.html+`<div class="footer"><span>أساسيات الشبكات • ${escapeHTML(topic.title)}</span><button class="btn btn-primary btn-sm" id="networkNext">التالي <i class="fa-solid fa-arrow-left"></i></button></div>`;
-  document.getElementById("networkNext").addEventListener("click",()=>{
-    const index=networkOrder.indexOf(id);const next=networkOrder[(index+1)%networkOrder.length];showNetworkTopic(next);
-    document.getElementById("networkLesson").scrollIntoView({behavior:"smooth",block:"start"});
-  });
-}
-
-function openLesson(id){
-  const l=lessons.find(x=>x.id===id);if(!l)return;
-  const already=state.completedLessons.includes(id);
-  const content=lessonContent[id]||`<p class="subtext">${escapeHTML(l.description)}</p><div class="callout">هذا الدرس يشرح المفاهيم الأساسية مع أمثلة عملية آمنة. راجع المصطلحات في القاموس، ثم اختبر فهمك من صفحة الاختبارات.</div>`;
-  openModal(l.title,`<div class="eyebrow">${escapeHTML(l.category.toUpperCase())} • ${escapeHTML(l.duration)}</div><div class="lesson-body">${content}</div><div class="card-bottom" style="margin-top:20px"><span class="badge">${l.xp} XP</span><button class="btn ${already?"btn-secondary":"btn-primary"}" id="finishLesson">${already?"تم إكمال الدرس":"إكمال الدرس"} <i class="fa-solid fa-check"></i></button></div>`);
-  const finish=document.getElementById("finishLesson");
-  finish.addEventListener("click",()=>{
-    if(!state.completedLessons.includes(id)){state.completedLessons.push(id);awardXP(l.xp,`إكمال درس: ${l.title}`);}
-    else toast("هذا الدرس مكتمل بالفعل");
-    closeModal();renderLessons();refreshUI();
-  });
-}
-const lessonContent={
-"net-intro":`<h2>الشبكة ببساطة</h2><p>الأجهزة تتبادل البيانات وفق قواعد تسمى بروتوكولات. في الشبكة المنزلية، غالبًا يتصل الجوال بالراوتر عبر Wi-Fi، ثم يمر الاتصال إلى مزود الإنترنت.</p><h3>ثلاثة أشياء تفرق بينها</h3><ul><li>IP: عنوان منطقي لتوجيه البيانات.</li><li>MAC: عنوان واجهة الشبكة على مستوى الربط المحلي.</li><li>Port: رقم يحدد الخدمة أو التطبيق على الجهاز.</li></ul><div class="callout">تخيّل IP كعنوان المبنى، والمنفذ كباب خدمة داخل المبنى.</div>`,
-"ip-address":`<h2>IPv4 وIPv6</h2><p>IPv4 طوله 32 بت، مثل <code>192.168.1.20</code>. IPv6 طوله 128 بت، مثل <code>2001:db8::20</code> في مثال توضيحي.</p><h3>العناوين الخاصة</h3><p>من نطاقات IPv4 الخاصة: <code>10.0.0.0/8</code> و<code>172.16.0.0/12</code> و<code>192.168.0.0/16</code>.</p><p>قناع الشبكة مثل <code>/24</code> يحدد عدد بتات الشبكة. العنوان العام والخاص لهما استخدامات مختلفة.</p>`,
-"dns":`<h2>كيف يعمل DNS؟</h2><p>عند إدخال اسم نطاق، يسأل جهازك محلّل DNS عن السجلات المطلوبة. قد تأتي الإجابة من ذاكرة مؤقتة، أو يجري المحلّل استعلامات إضافية حتى يحصل على النتيجة.</p><h3>سجلات مشهورة</h3><ul><li>A: عنوان IPv4.</li><li>AAAA: عنوان IPv6.</li><li>MX: خوادم البريد.</li><li>CNAME: اسم مستعار.</li><li>TXT: بيانات نصية للتحقق وإعدادات أخرى.</li></ul>`,
-"ports":`<h2>المنافذ</h2><p>المنافذ تساعد النظام على توصيل الاتصال إلى الخدمة المناسبة. أشهر أمثلة المنافذ: 22 لـSSH، و53 لـDNS، و80 لـHTTP، و443 لـHTTPS.</p><h3>TCP وUDP</h3><p>TCP يوفر تدفقًا موثوقًا ومرتبًا للبيانات. UDP أبسط ولا يضمن التسليم والترتيب بذاته. يختار التطبيق البروتوكول بحسب احتياجه.</p>`,
-"dhcp-nat":`<h2>إعداد الشبكة تلقائيًا</h2><p>DHCP يوزع إعدادات الشبكة تلقائيًا، والبوابة الافتراضية توجه حركة المرور خارج الشبكة المحلية، أما NAT فيترجم العناوين في كثير من شبكات المنازل.</p><div class="callout">احفظ العلاقة: DHCP يعطي الإعدادات، Gateway يحدد طريق الخروج، وNAT يساعد على مشاركة عنوان عام في كثير من الشبكات المنزلية.</div>`,
-"arp-subnet":`<h2>ARP</h2><p>في IPv4 المحلي، يستخدم ARP لمعرفة MAC المرتبط بعنوان IP محلي. لا يمرر الراوتر إطارات Ethernet نفسها عبر الإنترنت.</p><h3>Subnetting</h3><p>تقسيم الشبكة ينظم نطاقات العناوين. مثلًا /24 يحتوي 256 عنوان IPv4 إجمالًا، مع 254 عنوان مضيف في الاستخدام التقليدي المعتاد.</p>`,
-"osi":`<h2>الطبقات</h2><p>OSI يقسم التواصل إلى سبع طبقات: Physical وData Link وNetwork وTransport وSession وPresentation وApplication. يساعد على تحديد مكان المشكلة وتحليلها.</p><div class="callout">IP في طبقة الشبكة، وTCP/UDP في طبقة النقل، وHTTP في طبقة التطبيق.</div>`,
-"linux-intro":`<h2>وش هو Linux؟</h2><p>Linux نواة تستخدمها توزيعات كثيرة، مثل Ubuntu وKali Linux. الطرفية تسمح لك بتنفيذ أوامر وإدارة الملفات ومراجعة حالة النظام.</p><h3>أوامر البداية</h3><ul><li><code>pwd</code>: عرض المسار الحالي.</li><li><code>ls</code>: عرض الملفات.</li><li><code>cd</code>: تغيير المجلد.</li><li><code>whoami</code>: معرفة اسم المستخدم الحالي.</li><li><code>cat</code>: عرض محتوى ملف نصي.</li></ul>`,
-"linux-files":`<h2>الملفات والصلاحيات</h2><p>تُنظم أنظمة Linux الملفات ضمن شجرة تبدأ من <code>/</code>. الصلاحيات تحدد من يستطيع القراءة أو الكتابة أو التنفيذ.</p><h3>مبادئ مهمة</h3><p>افهم المستخدم والمالك والمجموعة والصلاحيات قبل تنفيذ أمر إداري. لا تستخدم صلاحيات المدير دون حاجة، ولا تنفذ أوامر مجهولة المصدر.</p>`,
-"cyber-basics":`<h2>مثلث CIA</h2><ul><li><strong>Confidentiality:</strong> السرية، بحيث لا يطلع على البيانات إلا المصرح لهم.</li><li><strong>Integrity:</strong> السلامة، أي عدم تغيير البيانات دون تصريح.</li><li><strong>Availability:</strong> التوافر، أي بقاء الخدمة متاحة للمستخدمين المصرح لهم.</li></ul><h3>مصطلحات أخرى</h3><p>الثغرة نقطة ضعف، والتهديد شيء قد يستغلها، والمخاطر تقدير لاحتمال حدوث الضرر وأثره. تخفيف المخاطر يشمل التحديثات والنسخ الاحتياطي والتحكم بالوصول.</p>`,
-"logs":`<h2>قراءة السجلات</h2><p>السجلات تسجل أحداثًا مثل تسجيل الدخول، والأخطاء، وتغييرات الإعدادات. محلل الأمن يقارن التوقيت والمصدر ونوع الحدث لمعرفة ما إذا كانت الأحداث مترابطة.</p><h3>وش تدور عليه؟</h3><ul><li>تكرار محاولات الدخول الفاشلة.</li><li>دخول في وقت غير معتاد.</li><li>تغييرات صلاحيات أو إعدادات.</li><li>أحداث متتابعة من مصدر واحد.</li></ul>`,
-"web-basics":`<h2>HTTP request / response</h2><p>العميل يرسل طلب HTTP يتضمن طريقة ومسارًا ورؤوسًا، وقد يتضمن جسمًا. الخادم يعيد استجابة فيها رمز حالة ورؤوس ومحتوى.</p><h3>رموز حالة شائعة</h3><ul><li>200: نجاح الطلب.</li><li>301/302: إعادة توجيه.</li><li>400: طلب غير صحيح.</li><li>401: يحتاج إلى مصادقة.</li><li>403: الوصول ممنوع.</li><li>404: المورد غير موجود.</li><li>500: خطأ داخلي بالخادم.</li></ul>`
-};
-
-const dictionary=[
-{term:"IP Address",pron:"آي بي أدرس",meaning:"عنوان منطقي لواجهة جهاز على شبكة IP، يُستخدم لتوجيه البيانات إلى الوجهة المناسبة.",example:"مثال IPv4 خاص: 192.168.1.20",category:"شبكات"},
-{term:"IPv4",pron:"آي بي فيرچن فور",meaning:"الإصدار الرابع من بروتوكول الإنترنت. يستخدم عناوين بطول 32 بت تُكتب غالبًا بأربع مجموعات عشرية.",example:"192.168.1.1",category:"شبكات"},
-{term:"IPv6",pron:"آي بي فيرچن سكس",meaning:"الإصدار السادس من بروتوكول الإنترنت، بعناوين طولها 128 بت لتوفير مساحة عناوين أكبر.",example:"2001:db8::1 (مثال توثيقي)",category:"شبكات"},
-{term:"DNS",pron:"دي إن إس",meaning:"نظام أسماء النطاقات. يساعد في العثور على سجلات مرتبطة بأسماء مثل أسماء المواقع.",example:"A يربط اسمًا بعنوان IPv4",category:"شبكات"},
-{term:"DHCP",pron:"دي إتش سي بي",meaning:"بروتوكول يوزع إعدادات الشبكة تلقائيًا، مثل عنوان IP والبوابة الافتراضية وخادم DNS.",example:"قد يحصل جوالك على عنوان عند اتصاله بالراوتر",category:"شبكات"},
-{term:"MAC Address",pron:"ماك أدرس",meaning:"عنوان واجهة في طبقة ربط البيانات يُستخدم داخل الوصلة المحلية. يمكن أن تتغير طريقة عرضه أو استخدامه بحسب النظام.",example:"02:00:5e:10:00:01 (مثال)",category:"شبكات"},
-{term:"Subnet Mask",pron:"سابنت ماسك",meaning:"قناع يحدد أي بتات من عنوان IPv4 تخص الشبكة وأيها تخص جزء المضيف.",example:"255.255.255.0 يقابل عادة /24",category:"شبكات"},
-{term:"CIDR",pron:"سايدر",meaning:"صيغة لتحديد بادئة الشبكة بعد الشرطة المائلة، مثل /24 في عنوان IPv4.",example:"192.168.1.0/24",category:"شبكات"},
-{term:"Default Gateway",pron:"ديفولت ڤيتواي",meaning:"البوابة التي يرسل إليها الجهاز عادةً البيانات الموجهة خارج شبكته المحلية.",example:"غالبًا يكون عنوان الراوتر المحلي",category:"شبكات"},
-{term:"NAT",pron:"إن إيه تي",meaning:"ترجمة عناوين الشبكة، وتستخدم كثيرًا لمشاركة عنوان عام عبر عدة أجهزة بعناوين خاصة.",example:"أجهزة المنزل تخرج للإنترنت عبر الراوتر",category:"شبكات"},
-{term:"Port",pron:"بورت",meaning:"رقم يحدد نقطة خدمة أو تطبيق ضمن اتصالات TCP أو UDP.",example:"443 شائع لخدمات HTTPS",category:"شبكات"},
-{term:"TCP",pron:"تي سي بي",meaning:"بروتوكول نقل يوفر تدفقًا موثوقًا ومرتبًا للبيانات بين الطرفين.",example:"يستخدمه كثير من اتصالات الويب التقليدية",category:"شبكات"},
-{term:"UDP",pron:"يو دي بي",meaning:"بروتوكول نقل بسيط لا يضمن التسليم أو ترتيب الحزم بذاته، وقد يناسب التطبيقات التي تحتاج زمن تأخير منخفضًا.",example:"تستخدمه تطبيقات كثيرة منها DNS",category:"شبكات"},
-{term:"HTTP",pron:"إتش تي تي بي",meaning:"بروتوكول للتواصل بين عملاء الويب والخوادم عبر الطلبات والاستجابات.",example:"GET يطلب موردًا",category:"ويب"},
-{term:"HTTPS",pron:"إتش تي تي بي إس",meaning:"استخدام HTTP عبر اتصال محمي باستخدام TLS للمساعدة على سرية البيانات والتحقق من هوية الخادم.",example:"أيقونة القفل وحدها لا تثبت أن الموقع موثوق",category:"ويب"},
-{term:"TLS",pron:"تي إل إس",meaning:"بروتوكول أمان يوفر التشفير وسلامة البيانات والمصادقة بحسب الإعدادات والشهادات.",example:"يُستخدم مع HTTPS",category:"أمن"},
-{term:"Router",pron:"راوتر",meaning:"جهاز يوجه حزم البيانات بين شبكات مختلفة وفق جداول التوجيه.",example:"يربط شبكة المنزل بمزود الإنترنت",category:"شبكات"},
-{term:"Switch",pron:"سويتش",meaning:"جهاز يربط أجهزة الشبكة المحلية ويوجه إطارات الشبكة بناءً على عناوين MAC.",example:"يربط حواسيب مختبر محلي",category:"شبكات"},
-{term:"ARP",pron:"إيه آر بي",meaning:"بروتوكول يستخدم في IPv4 المحلي لمعرفة عنوان MAC المرتبط بعنوان IPv4 محلي.",example:"يساعد الجهاز في تجهيز إطار Ethernet للوجهة",category:"شبكات"},
-{term:"OSI",pron:"أو إس آي",meaning:"نموذج تعليمي يقسم وظائف التواصل الشبكي إلى سبع طبقات.",example:"IP ضمن طبقة الشبكة",category:"شبكات"},
-{term:"Packet",pron:"باكِت",meaning:"وحدة بيانات تُنقل ضمن بروتوكولات الشبكة؛ تختلف التفاصيل بحسب الطبقة والبروتوكول.",example:"قد تحمل حزمة IP عنوان المصدر والوجهة",category:"شبكات"},
-{term:"Firewall",pron:"فايروول",meaning:"نظام يراقب حركة الشبكة ويسمح بها أو يمنعها وفق قواعد أمنية.",example:"قد يمنع الاتصالات الواردة غير المطلوبة",category:"أمن"},
-{term:"VPN",pron:"في بي إن",meaning:"تقنية تنشئ اتصالًا افتراضيًا عبر شبكة أخرى، وغالبًا تستخدم نفقًا مشفرًا.",example:"ربط آمن بشبكة مؤسسة",category:"أمن"},
-{term:"Proxy",pron:"بروكسي",meaning:"خادم وسيط يستقبل الطلبات أو يمررها نيابة عن العميل أو الخادم.",example:"قد تستخدمه مؤسسة لإدارة وصول الويب",category:"شبكات"},
-{term:"LAN",pron:"لان",meaning:"شبكة محلية تربط الأجهزة في نطاق محدود مثل منزل أو مكتب.",example:"شبكة المنزل",category:"شبكات"},
-{term:"WAN",pron:"وان",meaning:"شبكة واسعة تربط شبكات أو أجهزة عبر مناطق جغرافية كبيرة.",example:"قد تربط فروع شركة بمدن مختلفة",category:"شبكات"},
-{term:"SSID",pron:"إس إس آي دي",meaning:"الاسم الذي يعرّف شبكة Wi-Fi عند عرض الشبكات المتاحة.",example:"اسم شبكة الراوتر",category:"شبكات"},
-{term:"ICMP",pron:"آي سي إم بي",meaning:"بروتوكول رسائل للتحكم والتشخيص في شبكات IP، وتستخدمه أداة ping عادةً.",example:"رسائل Echo Request وEcho Reply",category:"شبكات"},
-{term:"Nmap",pron:"إن ماب",meaning:"أداة لاكتشاف المضيفين والخدمات في شبكات ضمن نطاق مصرح به. يجب استخدامها بموافقة واضحة.",example:"في هذا الموقع، نتائج الأمر محاكاة فقط",category:"أدوات"},
-{term:"Linux",pron:"لينكس",meaning:"نواة نظام تشغيل تستخدمها توزيعات كثيرة، ويشيع استخدامها في الخوادم والتطوير والأمن السيبراني.",example:"Ubuntu وKali Linux توزيعتان تستخدمان نواة Linux",category:"أنظمة"},
-{term:"Terminal",pron:"ترمنال",meaning:"واجهة تسمح بالتفاعل مع النظام عبر كتابة الأوامر.",example:"تشغيل أوامر مثل ls وpwd",category:"أنظمة"},
-{term:"CLI",pron:"سي إل آي",meaning:"واجهة سطر الأوامر، حيث يتعامل المستخدم مع النظام بالنص بدل الواجهة الرسومية.",example:"طرفية Linux",category:"أنظمة"},
-{term:"Log",pron:"لوغ",meaning:"سجل للأحداث التي تحدث داخل نظام أو تطبيق أو خدمة.",example:"سجل محاولات تسجيل الدخول",category:"تحليل"},
-{term:"Phishing",pron:"فيشنغ",meaning:"محاولة خداع المستخدم للحصول على معلومات أو دفعه إلى فعل غير آمن عبر رسالة أو صفحة مزيفة.",example:"رسالة تنتحل جهة موثوقة وتطلب كلمة المرور",category:"أمن"},
-{term:"Malware",pron:"مالوير",meaning:"برمجية خبيثة صُممت لتنفيذ أفعال ضارة مثل سرقة البيانات أو تعطيل الأنظمة.",example:"برمجية تتصرف بشكل غير مصرح به",category:"أمن"},
-{term:"Vulnerability",pron:"ڤولنرابيليتي",meaning:"ضعف في تصميم أو تنفيذ أو إعداد قد يؤثر في أمن النظام.",example:"برنامج قديم يحتوي ثغرة معروفة",category:"أمن"},
-{term:"Patch",pron:"باتش",meaning:"تحديث أو إصلاح يعالج مشكلة في برنامج أو نظام.",example:"تثبيت تحديث أمني من المصدر الرسمي",category:"أمن"},
-{term:"Encryption",pron:"إنكريبشن",meaning:"تحويل البيانات إلى صيغة لا يمكن قراءتها دون المفتاح المناسب وفق خوارزمية التشفير.",example:"تشفير الاتصال بين المتصفح والخادم",category:"أمن"},
-{term:"Hash",pron:"هاش",meaning:"ناتج دالة تجزئة يحول البيانات إلى قيمة ثابتة الطول بحسب الخوارزمية.",example:"SHA-256 يستخدم للتحقق من سلامة ملف",category:"أمن"},
-{term:"MFA",pron:"إم إف إيه",meaning:"مصادقة متعددة العوامل تستخدم أكثر من نوع من عوامل التحقق لإثبات الهوية.",example:"كلمة مرور مع مفتاح أمان",category:"أمن"},
-{term:"SOC",pron:"إس أو سي",meaning:"مركز عمليات الأمن، يراقب التنبيهات والسجلات ويساعد في اكتشاف الحوادث والاستجابة لها.",example:"محللو SOC يحققون في نشاط غير معتاد",category:"وظائف"},
-{term:"CTF",pron:"سي تي إف",meaning:"مسابقات أو مختبرات تعليمية تحاكي تحديات الأمن السيبراني في نطاق محدد ومصرح به.",example:"حل لغز رقمي داخل منصة تدريب",category:"تعلم"},
-{term:"Incident Response",pron:"إنسيدنت ريسبونس",meaning:"عملية منظمة لاكتشاف الحوادث الأمنية واحتوائها وتحليلها والتعافي منها.",example:"عزل جهاز مشتبه به وحفظ السجلات",category:"دفاع"},
-{term:"SIEM",pron:"سيم",meaning:"منصة تجمع سجلات وأحداثًا أمنية وتربط بينها لإنتاج تنبيهات ومساعدة المحللين.",example:"ربط محاولات دخول متكررة من مصادر مختلفة",category:"دفاع"},
-{term:"Zero-day",pron:"زيرو داي",meaning:"ثغرة يجري استغلالها أو اكتشافها قبل توفر إصلاح مناسب أو قبل أن يكون الإصلاح متاحًا للجمهور، بحسب السياق.",example:"يتطلب التعامل معها تقييمًا سريعًا للمخاطر",category:"أمن"}
+const networkTopics=[
+{title:"عنوان IP",icon:"fa-location-dot",desc:"العنوان المنطقي الذي يساعد على توصيل البيانات إلى الجهاز أو الواجهة المناسبة.",example:"مثال IPv4: 192.168.1.10",level:"الأساسيات"},
+{title:"عنوان MAC",icon:"fa-microchip",desc:"معرّف لواجهة الشبكة يستخدم عادة في الاتصال على الشبكة المحلية، وقد يتغير العنوان الظاهر بحسب الإعدادات.",example:"مثال شكلي: 00:1A:2B:3C:4D:5E",level:"الأساسيات"},
+{title:"DNS",icon:"fa-globe",desc:"يساعد في العثور على معلومات النطاقات بدل الاعتماد على حفظ عناوين IP.",example:"example.com",level:"الأساسيات"},
+{title:"المنافذ Ports",icon:"fa-door-open",desc:"أرقام منطقية توجه الاتصالات إلى الخدمات المناسبة داخل الجهاز.",example:"HTTPS يستخدم عادة المنفذ 443.",level:"الأساسيات"},
+{title:"الراوتر Router",icon:"fa-wifi",desc:"يوجه الحزم بين الشبكات المختلفة، وقد يوفر في المنزل اتصال Wi-Fi وميزات أخرى.",example:"يربط شبكتك المنزلية بالإنترنت.",level:"متوسط"},
+{title:"Subnet Mask",icon:"fa-network-wired",desc:"تساعد في تحديد أي جزء من عنوان IPv4 يمثل الشبكة وأي جزء يمثل الجهاز.",example:"مثال شائع: 255.255.255.0",level:"متوسط"},
+{title:"ARP",icon:"fa-arrows-left-right",desc:"يساعد IPv4 في الشبكات المحلية على معرفة عنوان MAC المرتبط بعنوان IP محلي.",example:"يعمل ضمن الشبكة المحلية.",level:"متوسط"},
+{title:"NAT",icon:"fa-share-nodes",desc:"يترجم عناوين الشبكة بين نطاقات مختلفة، ويستخدم كثيرًا لتمكين عدة أجهزة من مشاركة عنوان عام.",example:"شائع في أجهزة الراوتر المنزلية.",level:"متقدم"}
 ];
-let selectedTerm="DNS";
-function renderDictionary(){
-  const q=(document.getElementById("dictSearch")?.value||"").toLowerCase().trim();
-  const items=dictionary.filter(d=>(d.term+" "+d.pron+" "+d.meaning+" "+d.category).toLowerCase().includes(q));
-  if(!items.some(x=>x.term===selectedTerm))selectedTerm=items[0]?.term||"";
-  document.getElementById("dictionaryList").innerHTML=items.map(d=>`<button class="dictionary-item ${d.term===selectedTerm?"active":""}" data-term="${escapeHTML(d.term)}"><strong>${escapeHTML(d.term)}</strong><small>${escapeHTML(d.pron)} • ${escapeHTML(d.category)}</small></button>`).join("")||`<p class="subtext">ما لقينا مصطلحات مطابقة.</p>`;
-  document.querySelectorAll("[data-term]").forEach(b=>b.addEventListener("click",()=>{selectedTerm=b.dataset.term;renderDictionary()}));
-  const d=dictionary.find(x=>x.term===selectedTerm);
-  document.getElementById("dictionaryDetail").innerHTML=d?`<span class="badge">${escapeHTML(d.category)}</span><h2 style="margin-top:16px">${escapeHTML(d.term)}</h2><div class="term-en">${escapeHTML(d.term)}</div><p style="margin-top:18px"><strong>النطق بالعربي:</strong> ${escapeHTML(d.pron)}</p><p>${escapeHTML(d.meaning)}</p><div class="example"><strong style="color:#c9a4ff">مثال:</strong><br>${escapeHTML(d.example)}</div><button class="btn btn-secondary btn-sm" style="margin-top:18px" id="copyTerm"><i class="fa-regular fa-copy"></i> نسخ المصطلح</button>`:`<div class="empty-state"><i class="fa-solid fa-book-open"></i><p>ما فيه نتائج.</p></div>`;
-  document.getElementById("copyTerm")?.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(d.term);toast("تم نسخ المصطلح")}catch(e){toast("ما قدرنا ننسخ تلقائيًا","fa-circle-info")}});
-}
-document.getElementById("dictSearch").addEventListener("input",renderDictionary);
 
-const labs=[
-{id:"linux",title:"أوامر Linux الأساسية",icon:"fa-terminal",level:"مبتدئ",description:"تعرّف على المستخدم والمسارات والملفات في بيئة تدريبية.",xp:25},
-{id:"dns",title:"قراءة نتيجة DNS",icon:"fa-globe",level:"مبتدئ",description:"افهم الفرق بين اسم النطاق وعنوان IP في نتيجة وهمية.",xp:25},
-{id:"logs",title:"تحليل سجل تسجيل الدخول",icon:"fa-file-lines",level:"مبتدئ",description:"لاحظ الأحداث المتكررة وحدد ما يحتاج إلى تحقيق.",xp:35},
-{id:"http",title:"قراءة استجابة HTTP",icon:"fa-code",level:"متوسط",description:"تعرف على رمز الحالة والرؤوس في استجابة مصطنعة.",xp:35},
-{id:"ports",title:"فهم المنافذ",icon:"fa-door-open",level:"مبتدئ",description:"اربط كل رقم منفذ بالخدمة الشائعة المناسبة.",xp:25},
-{id:"forensics",title:"تحقيق رقمي تمهيدي",icon:"fa-magnifying-glass-chart",level:"متوسط",description:"اجمع الأدلة الوهمية ورتب الأحداث زمنيًا.",xp:40}
+const linuxTopics=[
+{title:"pwd",desc:"يعرض مسار المجلد الحالي.",cmd:"pwd",icon:"fa-folder"},
+{title:"ls",desc:"يعرض الملفات والمجلدات الموجودة.",cmd:"ls",icon:"fa-list"},
+{title:"cd",desc:"ينقلك إلى مجلد آخر داخل بيئة التدريب.",cmd:"cd home",icon:"fa-folder-open"},
+{title:"cat",desc:"يعرض محتوى ملف تجريبي.",cmd:"cat notes.txt",icon:"fa-file-lines"},
+{title:"grep",desc:"يساعد على البحث عن نص داخل بيانات أو ملفات.",cmd:"grep error logs.txt",icon:"fa-magnifying-glass"},
+{title:"help",desc:"يعرض قائمة الأوامر المتاحة في المحاكاة.",cmd:"help",icon:"fa-circle-question"}
 ];
-function renderLabs(){
-  document.getElementById("labGrid").innerHTML=labs.map(l=>`<article class="card lab-card"><div class="card-top"><span class="course-icon"><i class="fa-solid ${l.icon}"></i></span><span class="badge ${state.completedLabs.includes(l.id)?"green":""}">${state.completedLabs.includes(l.id)?"مكتمل":l.level}</span></div><h3>${escapeHTML(l.title)}</h3><p>${escapeHTML(l.description)}</p><div class="card-bottom"><span class="meta"><span><i class="fa-solid fa-bolt"></i> ${l.xp} XP</span></span><button class="btn btn-secondary btn-sm" data-lab-info="${l.id}">عرض المهمة</button></div></article>`).join("");
-  document.querySelectorAll("[data-lab-info]").forEach(b=>b.addEventListener("click",()=>showLabInfo(b.dataset.labInfo)));
-}
-function showLabInfo(id){
-  const l=labs.find(x=>x.id===id);if(!l)return;
-  openModal(l.title,`<p class="subtext">${escapeHTML(l.description)}</p><div class="callout"><strong>هدف التعلّم:</strong> قراءة مخرجات تدريبية وفهم معناها، بدون الاتصال بأنظمة خارجية.</div><p class="subtext">الخبرة عند الإكمال: ${l.xp} XP</p><button class="btn btn-primary" id="labJump">الانتقال للمختبر</button>`);
-  document.getElementById("labJump").addEventListener("click",()=>{closeModal();navigate("labs")});
-}
-let labTaskState=[false,false,false];
-document.getElementById("labTaskList").innerHTML=[
-"اعرض معلومات الشبكة باستخدام الأمر ip",
-"جرّب استعلام DNS وهميًا باستخدام nslookup example.test",
-"اعرض المساعدة باستخدام help"
-].map((x,i)=>`<label class="objective"><input type="checkbox" data-task="${i}"><span>${escapeHTML(x)}</span></label>`).join("");
-document.querySelectorAll("[data-task]").forEach(c=>c.addEventListener("change",()=>{
-  labTaskState[Number(c.dataset.task)]=c.checked;
-  c.closest(".objective").classList.toggle("done",c.checked);
-}));
-document.getElementById("completeLabBtn").addEventListener("click",()=>{
-  if(!labTaskState.every(Boolean)){toast("كمّل أهداف المختبر الثلاثة أولًا","fa-circle-info");return}
-  if(!state.completedLabs.includes("network-intro")){state.completedLabs.push("network-intro");awardXP(35,"إكمال مختبر الشبكات");}
-  else toast("سبق وأكملت هذا المختبر");
-  refreshUI();
-});
-
-const simulatedLogs=[
-{time:"09:02:11",ip:"192.0.2.41",event:"LOGIN_SUCCESS",user:"student",note:"دخول ناجح من شبكة التدريب"},
-{time:"09:05:42",ip:"198.51.100.27",event:"LOGIN_FAILED",user:"admin",note:"محاولة دخول فاشلة"},
-{time:"09:05:46",ip:"198.51.100.27",event:"LOGIN_FAILED",user:"admin",note:"محاولة أخرى بعد ثوانٍ"},
-{time:"09:05:49",ip:"198.51.100.27",event:"LOGIN_FAILED",user:"admin",note:"تكرار لمحاولات فاشلة"},
-{time:"09:08:03",ip:"192.0.2.41",event:"PASSWORD_RESET",user:"student",note:"طلب تغيير كلمة المرور"},
-{time:"09:10:18",ip:"203.0.113.19",event:"LOGIN_SUCCESS",user:"admin",note:"دخول يحتاج مراجعة سياقه"},
-{time:"09:12:55",ip:"203.0.113.19",event:"EXPORT_REQUEST",user:"admin",note:"طلب تصدير بيانات تجريبية"}
-];
-const safeDomains=["example.test","training.test","midnight.test"];
-function appendTerminal(text,cls=""){
-  const out=document.getElementById("terminalOutput");
-  const line=document.createElement("div");if(cls)line.className=cls;line.textContent=text;
-  out.appendChild(line);out.scrollTop=out.scrollHeight;
-}
-function terminalCommand(raw){
-  const cmd=raw.trim();if(!cmd)return;
-  appendTerminal("student@midnight:~$ "+cmd,"purple");
-  const parts=cmd.split(/\s+/),name=parts[0].toLowerCase(),arg=parts.slice(1).join(" ");
-  const help=`الأوامر المتاحة في المحاكاة:
-help                  عرض المساعدة
-clear                 مسح الطرفية
-whoami                عرض المستخدم الوهمي
-pwd                   عرض المسار الحالي
-ls                    عرض ملفات التدريب
-cat <file>            قراءة ملف تدريب مسموح
-ip                    عرض إعدادات شبكة وهمية
-ping <name>           محاكاة اختبار اتصال
-nslookup <name>       محاكاة استعلام DNS
-nmap training-box     عرض نتيجة تعليمية ثابتة
-logs                  عرض سجلات التدريب
-grep <word> logs      البحث داخل السجلات الوهمية
-hint                  تلميح للمهمة
-submit                فحص إكمال أهداف المختبر`;
-  if(name==="clear"){document.getElementById("terminalOutput").innerHTML="";return}
-  if(name==="help"){appendTerminal(help,"ok");return}
-  if(name==="whoami"){appendTerminal("student (مستخدم تدريب افتراضي)","ok");return}
-  if(name==="pwd"){appendTerminal("/home/student/training","ok");return}
-  if(name==="ls"){appendTerminal("network.txt  dns-notes.txt  sample.log  README.txt","ok");return}
-  if(name==="cat"){
-    const files={
-      "network.txt":"Training interface: eth0\nIPv4: 192.0.2.10/24\nGateway: 192.0.2.1\nDNS: 192.0.2.53\n(عناوين توثيقية ومحاكاة فقط)",
-      "dns-notes.txt":"DNS resolves domain names to records such as A and AAAA. This file is fictional training content.",
-      "sample.log":simulatedLogs.map(x=>`${x.time} ${x.ip} ${x.event} user=${x.user}`).join("\n"),
-      "README.txt":"Welcome to Midnight Training Sandbox.\nAll data and command outputs are simulated.\nNo real network connection is made."
-    };
-    if(!files[arg])appendTerminal("cat: ملف غير موجود ضمن ملفات التدريب. استخدم ls.","warn");
-    else appendTerminal(files[arg],"ok");return;
-  }
-  if(name==="ip"){
-    appendTerminal("eth0: UP (simulated)\n  inet 192.0.2.10/24\n  gateway 192.0.2.1\n  dns 192.0.2.53\nملاحظة: هذه عناوين تدريبية مخصصة للتوثيق.","ok");return;
-  }
-  if(name==="ping"){
-    if(!arg){appendTerminal("الاستخدام: ping example.test","warn");return}
-    if(!safeDomains.includes(arg.toLowerCase())&&!arg.endsWith(".test")){appendTerminal("المحاكاة تقبل نطاقات تدريبية من نوع .test فقط.","warn");return}
-    appendTerminal(`PING ${arg} (192.0.2.80): simulated output\n64 bytes from 192.0.2.80: time=12.4 ms\n64 bytes from 192.0.2.80: time=11.8 ms\n--- ${arg} statistics ---\n2 packets transmitted, 2 received (simulated)`,`ok`);return;
-  }
-  if(name==="nslookup"||name==="dig"){
-    const domain=arg||"example.test";
-    if(!domain.endsWith(".test")){appendTerminal("لأسباب السلامة، استخدم نطاقات .test الوهمية داخل المحاكاة.","warn");return}
-    appendTerminal(`Server: 192.0.2.53 (simulated)\nName: ${domain}\nAddress: 192.0.2.80\nالنتيجة مصطنعة للتدريب وليست استعلام DNS حقيقيًا.`,"ok");return;
-  }
-  if(name==="nmap"){
-    if(arg!=="training-box"){appendTerminal("المحاكاة تدعم الهدف الثابت training-box فقط. لا يوجد فحص فعلي.","warn");return}
-    appendTerminal("Starting simulated scan for training-box (192.0.2.80)\nPORT     STATE    SERVICE\n22/tcp   open     ssh (sample)\n80/tcp   open     http (sample)\n443/tcp  filtered https (sample)\n\nهذه نتائج ثابتة للتعلم فقط؛ لم يُرسل أي اتصال خارجي.","ok");return;
-  }
-  if(name==="logs"){
-    appendTerminal(simulatedLogs.map(x=>`${x.time} ${x.ip} ${x.event} user=${x.user}`).join("\n"),"ok");return;
-  }
-  if(name==="grep"){
-    const word=parts[1]||"";
-    if(!parts.includes("logs")&&!cmd.includes("logs")){appendTerminal("جرّب: grep FAILED logs","warn");return}
-    const matches=simulatedLogs.filter(x=>(x.event+" "+x.ip+" "+x.user+" "+x.note).toLowerCase().includes(word.toLowerCase()));
-    appendTerminal(matches.length?matches.map(x=>`${x.time} ${x.ip} ${x.event} user=${x.user}`).join("\n"):"لا توجد مطابقات في السجلات الوهمية.","ok");return;
-  }
-  if(name==="hint"){appendTerminal("تلميح: اكتب ip لعرض إعدادات الشبكة، ثم nslookup example.test لفهم DNS، وأخيرًا help لمراجعة الأوامر.","warn");return}
-  if(name==="submit"){
-    if(labTaskState.every(Boolean)){appendTerminal("تم استيفاء أهداف المختبر. اضغط زر إكمال المختبر للحصول على XP.","ok")}
-    else appendTerminal(`باقي ${labTaskState.filter(x=>!x).length} من الأهداف. راجع القائمة بجانب الطرفية.`,"warn");
-    return;
-  }
-  appendTerminal(`الأمر "${cmd}" غير متاح في المحاكاة. اكتب help لعرض الأوامر المسموحة.`,"warn");
-}
-document.getElementById("terminalForm").addEventListener("submit",e=>{
-  e.preventDefault();const input=document.getElementById("terminalInput");terminalCommand(input.value);input.value="";input.focus();
-});
-document.querySelectorAll("[data-command]").forEach(b=>b.addEventListener("click",()=>{terminalCommand(b.dataset.command);document.getElementById("terminalInput").focus()}));
 
 const cases=[
-{id:"bank-bow",title:"قضية بنك BOW",icon:"fa-building-columns",level:"medium",levelLabel:"متوسط",category:"تحقيق سجلات",description:"نشاط دخول غير معتاد وطلب تحويل مشبوه في نظام بنك خيالي.",xp:70},
-{id:"phishing-mail",title:"الرسالة المجهولة",icon:"fa-envelope-open-text",level:"easy",levelLabel:"مبتدئ",category:"تحليل تصيّد",description:"راجع رسالة مشبوهة وحدد العلامات اللي تستدعي الحذر.",xp:45},
-{id:"dns-incident",title:"لغز DNS",icon:"fa-globe",level:"easy",levelLabel:"مبتدئ",category:"تحليل شبكة",description:"تتبّع تغيّرًا غير متوقع في سجل DNS تجريبي.",xp:45},
-{id:"odd-login",title:"دخول بعد منتصف الليل",icon:"fa-user-clock",level:"easy",levelLabel:"مبتدئ",category:"سجلات الدخول",description:"اربط توقيت الدخول بعنوان المصدر وسياق المستخدم.",xp:45},
-{id:"missing-file",title:"الملف المفقود",icon:"fa-file-circle-question",level:"medium",levelLabel:"متوسط",category:"تحقيق رقمي",description:"استخدم خطًا زمنيًا وسجلات وهمية لفهم اختفاء ملف.",xp:60},
-{id:"server-alert",title:"إنذار الخادم",icon:"fa-server",level:"medium",levelLabel:"متوسط",category:"استجابة للحوادث",description:"حلل التنبيهات وحدد ترتيب خطوات الاستجابة.",xp:60},
-{id:"fake-update",title:"التحديث المزيف",icon:"fa-cloud-arrow-down",level:"medium",levelLabel:"متوسط",category:"تحليل سلوك",description:"قيّم إشارات تحديث غير متوقع من مصدر غير موثوق.",xp:60},
-{id:"wifi-mystery",title:"شبكة الواي فاي الغريبة",icon:"fa-wifi",level:"easy",levelLabel:"مبتدئ",category:"أمن الشبكات",description:"تعرف على إعدادات شبكة افتراضية ومؤشرات ضعف الحماية.",xp:45},
-{id:"access-review",title:"مراجعة الصلاحيات",icon:"fa-key",level:"medium",levelLabel:"متوسط",category:"إدارة وصول",description:"اكتشف الصلاحيات التي لا تتناسب مع دور المستخدم.",xp:60},
-{id:"web-error",title:"أخطاء الموقع",icon:"fa-code",level:"easy",levelLabel:"مبتدئ",category:"تحليل HTTP",description:"اقرأ رموز استجابة HTTP وميّز الخطأ من إعادة التوجيه.",xp:45},
-{id:"log-timeline",title:"الخط الزمني",icon:"fa-timeline",level:"medium",levelLabel:"متوسط",category:"تحليل سجلات",description:"رتب الأحداث من مصادر مختلفة لتكوين صورة واحدة.",xp:60},
-{id:"lost-device",title:"جهاز خارج السيطرة",icon:"fa-laptop",level:"medium",levelLabel:"متوسط",category:"استجابة للحوادث",description:"اختر خطوات دفاعية لحماية جهاز افتراضي مشتبه به.",xp:60},
-{id:"certificate",title:"شهادة غير متوقعة",icon:"fa-certificate",level:"medium",levelLabel:"متوسط",category:"أمن الويب",description:"افهم معنى تحذيرات TLS والشهادات في بيئة تدريبية.",xp:60},
-{id:"backup-check",title:"اختبار النسخ الاحتياطي",icon:"fa-database",level:"easy",levelLabel:"مبتدئ",category:"استمرارية الأعمال",description:"راجع حالة نسخ احتياطي وهمية وحدد ما يجب اختباره.",xp:45},
-{id:"suspicious-process",title:"عملية غامضة",icon:"fa-microchip",level:"hard",levelLabel:"متقدم",category:"تحليل نظام",description:"حلل وصف عملية وهمية وقرائنها قبل اتخاذ قرار دفاعي.",xp:85},
-{id:"account-lock",title:"حساب مقفل",icon:"fa-lock",level:"easy",levelLabel:"مبتدئ",category:"إدارة حسابات",description:"افهم أسباب القفل المتكرر وكيفية التحقيق الآمن.",xp:45},
-{id:"cloud-access",title:"سحابة مفتوحة",icon:"fa-cloud",level:"hard",levelLabel:"متقدم",category:"أمن سحابي",description:"راجع إعدادات تخزين سحابي خيالية واكتشف أخطاء الوصول.",xp:85},
-{id:"usb-event",title:"ذاكرة مجهولة",icon:"fa-usb",level:"medium",levelLabel:"متوسط",category:"أمن الأجهزة",description:"تعرّف على الإجراءات المناسبة عند ظهور جهاز غير معروف.",xp:60},
-{id:"mail-header",title:"من أرسل الرسالة؟",icon:"fa-at",level:"medium",levelLabel:"متوسط",category:"تحليل بريد",description:"اقرأ رؤوس بريد اصطناعية وافهم حدود الثقة بها.",xp:60},
-{id:"service-change",title:"تغيير الخدمة",icon:"fa-gears",level:"hard",levelLabel:"متقدم",category:"مراقبة الأنظمة",description:"اربط تغيير إعداد بخط زمني من أحداث نظام خيالي.",xp:85},
-{id:"web-session",title:"جلسة منتهية",icon:"fa-window-restore",level:"medium",levelLabel:"متوسط",category:"جلسات الويب",description:"تعرف على الجلسات وإدارة انتهاء الصلاحية في موقع تجريبي.",xp:60},
-{id:"data-export",title:"تصدير غير متوقع",icon:"fa-file-export",level:"hard",levelLabel:"متقدم",category:"حماية البيانات",description:"راجع طلب تصدير وقرائن الوصول لتقييم الحادث.",xp:85},
-{id:"patch-window",title:"تحديث متأخر",icon:"fa-screwdriver-wrench",level:"easy",levelLabel:"مبتدئ",category:"إدارة الثغرات",description:"رتب الأولويات عند ظهور تحديث أمني مهم.",xp:45},
-{id:"alert-fatigue",title:"سيل التنبيهات",icon:"fa-bell",level:"medium",levelLabel:"متوسط",category:"مركز العمليات",description:"رتب تنبيهات تجريبية حسب الأهمية والسياق.",xp:60},
-{id:"dns-cache",title:"ذاكرة DNS",icon:"fa-memory",level:"medium",levelLabel:"متوسط",category:"تحليل شبكة",description:"افهم كيف يؤثر التخزين المؤقت في نتائج DNS.",xp:60},
-{id:"privilege-review",title:"صلاحية أعلى من اللازم",icon:"fa-user-shield",level:"hard",levelLabel:"متقدم",category:"إدارة صلاحيات",description:"حدد مبدأ أقل صلاحية في مجموعة حسابات خيالية.",xp:85},
-{id:"incident-room",title:"غرفة الاستجابة",icon:"fa-people-arrows-left-right",level:"hard",levelLabel:"متقدم",category:"إدارة حادث",description:"رتب خطة اتصال واحتواء وتوثيق لحادث تدريبي.",xp:85},
-{id:"endpoint-alert",title:"تنبيه نقطة النهاية",icon:"fa-desktop",level:"medium",levelLabel:"متوسط",category:"حماية الأجهزة",description:"اقرأ تنبيه حماية افتراضي وقرر الخطوة الدفاعية التالية.",xp:60},
-{id:"public-service",title:"خدمة مكشوفة",icon:"fa-door-open",level:"hard",levelLabel:"متقدم",category:"أمن الشبكات",description:"راجع وصف إعداد شبكة افتراضية وحدد التحسينات الدفاعية.",xp:85},
-{id:"final-investigation",title:"التحقيق النهائي",icon:"fa-file-circle-check",level:"hard",levelLabel:"متقدم",category:"تحقيق شامل",description:"اجمع المعرفة من السجلات والشبكات والحسابات لحل القضية الأخيرة.",xp:100}
+{
+id:"bank-bow",title:"ملف بنك BOW",difficulty:"مبتدئ",xp:50,
+intro:"وصل تنبيه إلى فريق الأمن بعد ظهور محاولات تسجيل دخول غير معتادة في نظام بنك افتراضي. مهمتك مراجعة السجلات وتحديد الحساب الذي يحتاج إلى مراجعة.",
+commands:{
+help:"الأوامر المتاحة:\nhelp — عرض الأوامر\nstatus — عرض ملخص القضية\nlogs — مراجعة سجل تسجيل الدخول\nip — مراجعة عناوين المصدر التجريبية\nhint — تلميح إضافي\nsubmit — تسليم الاستنتاج",
+status:"الحالة: قيد التحقيق\nالبيئة: بنك BOW الافتراضي\nالهدف: تحديد الحساب المرتبط بالمحاولات غير المعتادة.",
+logs:"[09:10] user=ali result=success source=192.0.2.10\n[09:12] user=sara result=success source=192.0.2.15\n[09:14] user=ali result=failed source=198.51.100.23\n[09:15] user=ali result=failed source=198.51.100.23\n[09:16] user=ali result=failed source=198.51.100.23\n[09:18] user=sara result=success source=192.0.2.15",
+ip:"عناوين الاختبار:\n192.0.2.10 — مصدر داخلي تجريبي\n192.0.2.15 — مصدر داخلي تجريبي\n198.51.100.23 — مصدر خارجي توثيقي مخصص للأمثلة\nهذه العناوين لا تمثل جهة حقيقية.",
+hint:"راجع اسم الحساب الذي تكرر معه الفشل، ثم قارن التوقيت ومصدر المحاولات.",
+submit:""
+},
+answer:"ali",
+success:"تحليل جيد! أظهرت السجلات عدة محاولات فاشلة للحساب ali من المصدر التجريبي نفسه. هذا مؤشر يستحق التحقيق، لكنه وحده لا يثبت اختراق الحساب.",
+goals:["اعرض ملخص القضية باستخدام status.","راجع سجل الدخول باستخدام logs.","اكتب ali في الطرفية ثم استخدم submit."]
+},
+{
+id:"server-logs",title:"سجلات الخادم",difficulty:"متوسط",xp:60,
+intro:"لاحظ الفريق ارتفاعًا في أخطاء صفحة افتراضية. افحص سجل التطبيق، وحدد نوع الخطأ الأكثر وضوحًا قبل كتابة استنتاجك.",
+commands:{
+help:"الأوامر: help, status, logs, hint, submit",
+status:"الحالة: مراجعة أخطاء تطبيق تجريبي.\nالهدف: تحديد رمز الخطأ الظاهر في السجل.",
+logs:"[11:02] GET /home status=200\n[11:03] GET /profile status=200\n[11:04] GET /missing status=404\n[11:05] GET /report status=500\n[11:06] GET /home status=200",
+hint:"ابحث عن رمز الاستجابة الذي يدل عادة على خطأ داخلي في الخادم.",
+submit:""
+},
+answer:"500",
+success:"صحيح! يحتوي السجل على استجابة 500 التي تشير عادة إلى خطأ داخلي في الخادم. تحتاج معرفة السبب إلى فحص أدلة إضافية.",
+goals:["افحص سجل التطبيق.","حدّد رمز الخطأ الداخلي.","اكتب 500 ثم استخدم submit."]
+},
+{
+id:"suspicious-login",title:"تسجيل دخول غير معتاد",difficulty:"متقدم",xp:75,
+intro:"في بيئة تدريب افتراضية، وصل تنبيه بشأن سلسلة محاولات مصادقة. راجع الأحداث وحدد نتيجة المحاولات المتكررة.",
+commands:{
+help:"الأوامر: help, status, logs, hint, submit",
+status:"الحالة: تحليل أحداث المصادقة.\nالهدف: تحديد نتيجة المحاولات المتكررة.",
+logs:"[20:00] account=demo result=failed\n[20:01] account=demo result=failed\n[20:02] account=demo result=failed\n[20:03] account=demo result=locked\n[20:04] account=demo result=success",
+hint:"لاحظ الحدث الذي ظهر بعد سلسلة المحاولات الفاشلة مباشرة.",
+submit:""
+},
+answer:"locked",
+success:"صحيح! يوضح السجل أن الحساب قُفل بعد عدة محاولات فاشلة. ظهور تسجيل دخول ناجح لاحقًا يحتاج إلى مراجعة سياق إضافي.",
+goals:["اقرأ سجل المصادقة.","حدّد نتيجة المحاولات الفاشلة.","اكتب locked ثم استخدم submit."]
+}
 ];
-let currentCaseFilter="all";
-function renderCases(){
-  const list=cases.filter(c=>{
-    if(currentCaseFilter==="done")return state.completedCases.includes(c.id);
-    return currentCaseFilter==="all"||c.level===currentCaseFilter;
-  });
-  document.getElementById("caseGrid").innerHTML=list.map(c=>{
-    const done=state.completedCases.includes(c.id);
-    return `<article class="card case-card"><div class="card-top"><span class="course-icon"><i class="fa-solid ${c.icon}"></i></span><span class="badge ${done?"green":c.level==="hard"?"red":c.level==="medium"?"yellow":""}">${done?"مكتملة":c.levelLabel}</span></div><h3>${escapeHTML(c.title)}</h3><p>${escapeHTML(c.description)}</p><div class="meta"><span><i class="fa-solid fa-tag"></i> ${escapeHTML(c.category)}</span><span><i class="fa-solid fa-bolt"></i> ${c.xp} XP</span></div><button class="btn ${done?"btn-secondary":"btn-primary"} btn-sm" data-case="${c.id}">${done?"عرض القضية":"ابدأ التحقيق"} <i class="fa-solid fa-arrow-left"></i></button></article>`;
+
+const bookPages=[
+{title:"أهلًا بك في بايثون",text:"بايثون لغة برمجة سهلة القراءة وتستخدم في مجالات كثيرة، مثل تطوير التطبيقات وتحليل البيانات والأتمتة.\n\nفي هذا الكتاب ستتعلم الأساسيات بالتدريج. لا تحتاج إلى معرفة مسبقة بالبرمجة.",code:""},
+{title:"أول أمر: print()",text:"تستخدم print() لعرض نص أو قيمة على الشاشة. النصوص توضع بين علامتي اقتباس.",code:'print("Hello, Midnight!")\nprint("أول برنامج لي")'},
+{title:"المتغيرات Variables",text:"المتغير اسم يشير إلى قيمة تستخدمها في البرنامج. يمكن أن تخزن نصًا أو رقمًا أو نوعًا آخر من البيانات.",code:'name = "Midnight"\npoints = 100\nprint(name)\nprint(points)'},
+{title:"أنواع البيانات",text:"من الأنواع الأساسية: النصوص str، والأعداد الصحيحة int، والأعداد العشرية float، والقيم المنطقية bool.",code:'username = "Learner"  # str\nlevel = 2             # int\nscore = 9.5           # float\nis_ready = True       # bool'},
+{title:"الشروط if",text:"تسمح الشروط بتنفيذ جزء من البرنامج عندما يتحقق شرط معين. المسافات البادئة في بايثون مهمة.",code:'points = 100\n\nif points >= 100:\n    print("ممتاز!")\nelse:\n    print("استمر بالتعلم")'},
+{title:"الحلقات Loops",text:"تساعد الحلقات على تكرار الأوامر. استخدم for عندما تريد المرور على عناصر أو تكرار عدد محدد من المرات.",code:'for number in range(1, 4):\n    print(number)'},
+{title:"الدوال Functions",text:"الدالة تجمع مجموعة أوامر تحت اسم يمكن استدعاؤه عند الحاجة. تساعدك على تنظيم الكود وإعادة استخدامه.",code:'def greet(name):\n    print("أهلًا " + name)\n\ngreet("Midnight")'},
+{title:"خطوتك التالية",text:"جرّب كتابة أمثلة بنفسك، وعدّل القيم ولاحظ النتيجة. بعد إتقان الأساسيات يمكنك تعلم القوائم والقواميس وقراءة الملفات ومعالجة الأخطاء.",code:'# تمرين\nname = "اكتب اسمك هنا"\nprint(name)'}
+];
+
+const achievements=[
+{id:"first-lesson",title:"أول خطوة",desc:"أكمل أول درس",icon:"fa-shoe-prints",check:()=>state.completedLessons.length>=1},
+{id:"three-lessons",title:"متعلم مستمر",desc:"أكمل 3 دروس",icon:"fa-book-open",check:()=>state.completedLessons.length>=3},
+{id:"six-lessons",title:"محب المعرفة",desc:"أكمل 6 دروس",icon:"fa-graduation-cap",check:()=>state.completedLessons.length>=6},
+{id:"first-case",title:"محقق رقمي",desc:"حل أول قضية",icon:"fa-fingerprint",check:()=>state.completedCases.length>=1},
+{id:"all-cases",title:"خبير القضايا",desc:"حل جميع القضايا الحالية",icon:"fa-magnifying-glass-chart",check:()=>state.completedCases.length>=cases.length},
+{id:"xp-100",title:"100 XP",desc:"اجمع 100 نقطة خبرة",icon:"fa-bolt",check:()=>state.xp>=100},
+{id:"xp-500",title:"نصف الألف",desc:"اجمع 500 نقطة خبرة",icon:"fa-trophy",check:()=>state.xp>=500}
+];
+
+function escapeHTML(value){
+  return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+function saveState(){
+  try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}
+  catch{showToast("تعذر حفظ التقدم. تحقق من مساحة المتصفح.")}
+}
+function level(){return Math.floor(state.xp/100)+1}
+function showToast(message){
+  const el=document.getElementById("toast");
+  el.textContent=message;el.classList.add("show");
+  clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove("show"),2600);
+}
+function toggleMenu(){
+  document.getElementById("sidebar").classList.toggle("open");
+  document.getElementById("overlay").classList.toggle("show");
+}
+function closeMenu(){
+  document.getElementById("sidebar").classList.remove("open");
+  document.getElementById("overlay").classList.remove("show");
+}
+function showPage(name){
+  const target=document.getElementById("page-"+name);
+  if(!target)return;
+  document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+  target.classList.add("active");
+  document.querySelectorAll("#mainNav button").forEach(b=>b.classList.toggle("active",b.dataset.page===name || (name==="lesson"&&b.dataset.page==="academy")));
+  const labels={home:"الرئيسية",academy:"الأكاديمية",lesson:"الدرس",network:"أساسيات الشبكات",linux:"تعلم لينكس",cases:"التحقيق الرقمي",book:"كتاب بايثون",achievements:"إنجازاتي",profile:"حسابي"};
+  document.getElementById("pageContext").textContent=labels[name]||"Midnight Academy";
+  closeMenu();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+document.querySelectorAll("#mainNav button").forEach(btn=>btn.addEventListener("click",()=>showPage(btn.dataset.page)));
+
+function continueLearning(){
+  const next=lessons.find(l=>!state.completedLessons.includes(l.id));
+  if(next)openLesson(next.id);
+  else showPage("academy");
+}
+function renderLessons(){
+  document.getElementById("totalLessons").textContent=lessons.length;
+  const filtered=lessons.filter(l=>activeFilter==="all"||l.level===activeFilter);
+  document.getElementById("lessonGrid").innerHTML=filtered.map(l=>{
+    const done=state.completedLessons.includes(l.id);
+    const idx=lessons.findIndex(x=>x.id===l.id);
+    const previous=idx>0&&!state.completedLessons.includes(lessons[idx-1].id);
+    return `<article class="card lesson-card ${done?"completed":""}">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+        <span class="card-icon"><i class="${l.icon.startsWith("fa-brands")?"fa-brands":"fa-solid"} ${l.icon.startsWith("fa-")?l.icon:"fa-book"}"></i></span>
+        <span class="pill ${done?"green":""}">${done?"مكتمل":escapeHTML(l.level)}</span>
+      </div>
+      <h3>${escapeHTML(l.title)}</h3><p>${escapeHTML(l.category)} • شرح وأمثلة مبسطة</p>
+      <div class="card-meta"><span><i class="fa-solid fa-bolt"></i> ${l.xp} XP</span><span>${done?"تم الإكمال":previous?"الدرس السابق أولًا":"جاهز للتعلم"}</span></div>
+      <div class="card-bottom"><button class="btn ${done?"btn-secondary":"btn-primary"} btn-small" style="width:100%" onclick="openLesson('${l.id}')">${done?"مراجعة الدرس":"افتح الدرس"} <i class="fa-solid fa-arrow-left"></i></button></div>
+    </article>`;
   }).join("");
-  document.querySelectorAll("[data-case]").forEach(b=>b.addEventListener("click",()=>openCase(b.dataset.case)));
 }
-document.querySelectorAll("#caseFilters [data-filter]").forEach(b=>b.addEventListener("click",()=>{
-  currentCaseFilter=b.dataset.filter;document.querySelectorAll("#caseFilters [data-filter]").forEach(x=>x.classList.toggle("active",x===b));renderCases();
+document.querySelectorAll("#academyFilters button").forEach(b=>b.addEventListener("click",()=>{
+  activeFilter=b.dataset.filter;
+  document.querySelectorAll("#academyFilters button").forEach(x=>x.classList.toggle("active",x===b));
+  renderLessons();
 }));
-function caseData(id){
-  if(id==="bank-bow")return{
-    subtitle:"قضية خيالية بالكامل — بنك BOW",
-    story:"استقبل فريق الأمن في بنك BOW، وهو بنك خيالي، تنبيهًا عن نشاط غير معتاد في لوحة الإدارة. ظهرت محاولات دخول فاشلة متكررة، تلاها تسجيل دخول من مصدر آخر ثم طلب تصدير بيانات وتحويل تجريبي. مهمتك ترتيب الأدلة وتحديد الاستجابة الدفاعية المناسبة. لا توجد أنظمة مصرفية حقيقية ضمن هذه القضية.",
-    evidence:[
-      ["09:05:42 — محاولات متكررة","198.51.100.27","ظهرت عدة محاولات فاشلة للحساب admin خلال ثوانٍ."],
-      ["09:10:18 — دخول ناجح","203.0.113.19","تسجيل دخول ناجح بعد المحاولات الفاشلة، لكن مصدره مختلف ويحتاج إلى التحقق."],
-      ["09:12:55 — طلب تصدير","203.0.113.19","طلب تصدير بيانات بعد تسجيل الدخول بفترة قصيرة."],
-      ["09:14:02 — تنبيه تحويل","نظام المعاملات التجريبي","ظهر طلب تحويل تجريبي غير معتاد، ولم تؤكد السجلات المتاحة أنه اكتمل."]
-    ],
-    objectives:["تحديد نمط المحاولات الفاشلة المتكررة.","ربط تسجيل الدخول غير المعتاد بطلب تصدير البيانات.","اختيار احتواء آمن وحفظ الأدلة قبل تعديل النظام.","توصية بمراجعة صلاحيات الحساب وتفعيل MFA."]
-  };
-  const templates={
-"phishing-mail":["الرسالة المجهولة","وصلت رسالة تدّعي أنها من فريق الدعم وتطلب تحديث بيانات الحساب عبر رابط غير متوقع.","افحص اسم المرسل والرابط ونبرة الاستعجال، ولا تدخل بياناتك في صفحة غير موثوقة."],
-"dns-incident":["لغز DNS","لاحظ فريق تقني أن اسم نطاق تدريبي يعرض نتيجة مختلفة عن السجل المتوقع في بيئة مختبرية.","قارن التوقيت ومصدر البيانات وإعدادات التخزين المؤقت قبل استنتاج وجود تغيير ضار."],
-"odd-login":["دخول بعد منتصف الليل","ظهر تسجيل دخول في وقت غير معتاد لحساب تجريبي.","تحقق من سياق المستخدم وعنوان المصدر وسجلات المصادقة، ثم اتبع سياسة الاستجابة."],
-"missing-file":["الملف المفقود","لم يعد ملف تجريبي ظاهرًا في المجلد المتوقع، وسُجلت تغييرات في النظام.","راجع السجلات والصلاحيات والنسخ الاحتياطية، وتجنب العبث بالأدلة الأصلية."],
-"server-alert":["إنذار الخادم","أصدر خادم افتراضي تنبيهًا عن زيادة غير معتادة في الأخطاء.","حدد نطاق التأثير، واحفظ السجلات، وابدأ بالخطوات الدفاعية المصرح بها."],
-"fake-update":["التحديث المزيف","ظهر إشعار تحديث من مصدر غير معروف على جهاز تدريب.","تحقق من المصدر والتوقيع الرقمي وسياسة التحديث الرسمية."],
-"wifi-mystery":["شبكة الواي فاي الغريبة","لاحظ مستخدم شبكة مشابهة باسم شبكته المعتادة.","تحقق من هوية نقطة الوصول وإعدادات الراوتر ولا تدخل بياناتك في شبكة مجهولة."],
-"access-review":["مراجعة الصلاحيات","يمتلك حساب تجريبي صلاحيات لا يحتاجها لمهمته.","طبّق مبدأ أقل صلاحية وراجع سجل الموافقات قبل التعديل."],
-"web-error":["أخطاء الموقع","أظهر موقع تدريبي رموز حالة مختلفة بعد طلبات متتالية.","اربط كل رمز بسلوك HTTP ولا تعتبر الخطأ وحده دليلًا على اختراق."],
-"log-timeline":["الخط الزمني","توجد سجلات من خدمة الدخول وتطبيق الويب والنظام بأوقات متقاربة.","وحّد التوقيت ورتب الأحداث وابحث عن علاقة منطقية بينها."],
-"lost-device":["جهاز خارج السيطرة","أبلغ مستخدم عن سلوك غير معتاد في جهاز عمل افتراضي.","اتبع خطة الاستجابة، واحفظ الأدلة، ونسّق مع المسؤول المخول."],
-"certificate":["شهادة غير متوقعة","ظهر تحذير شهادة عند فتح خدمة تدريبية.","تحقق من اسم النطاق والوقت وسلسلة الثقة ولا تتجاوز التحذير بلا فهم."],
-"backup-check":["اختبار النسخ الاحتياطي","يعرض تقرير تجريبي نجاح مهمة نسخ احتياطي دون إثبات إمكانية الاستعادة.","اختبر الاستعادة في بيئة مناسبة ووثّق النتيجة."],
-"suspicious-process":["عملية غامضة","رُصدت عملية ذات وصف غير مألوف على نظام تدريبي.","اجمع بيانات العملية ومصدرها وسياقها، ثم اتبع إجراء الاحتواء المعتمد."],
-"account-lock":["حساب مقفل","تكرر قفل حساب تجريبي بعد محاولات مصادقة فاشلة.","تحقق من السجلات وهوية المستخدم، ولا تفترض أن السبب هجوم قبل جمع الأدلة."],
-"cloud-access":["سحابة مفتوحة","كشف تدقيق إعدادات تخزين سحابي خيالي عن وصول أوسع من المطلوب.","قلّص الوصول، واحفظ سجل التغييرات، وراجع أثر الإعداد."],
-"usb-event":["ذاكرة مجهولة","سجل نظام تجريبي اتصال جهاز USB لم يتعرف عليه المستخدم.","لا توصل جهازًا مجهولًا بأجهزة حساسة، واتبع إجراءات فحص الأجهزة."],
-"mail-header":["من أرسل الرسالة؟","تحتوي رسالة تدريبية على رؤوس بريد تحتاج إلى تفسير.","قارن معلومات المرسل والمسارات ونتائج التحقق، مع إدراك أن كل حقل يحتاج إلى سياق."],
-"service-change":["تغيير الخدمة","ظهر تغيير غير متوقع في إعداد خدمة على جهاز افتراضي.","قارن التغيير بسجل الموافقات والتوقيت والحساب المنفذ."],
-"web-session":["جلسة منتهية","تواجه خدمة تدريبية مشكلة في إنهاء الجلسات عند انتهاء صلاحيتها.","راجع سياسة انتهاء الجلسة وإبطالها بعد تسجيل الخروج."],
-"data-export":["تصدير غير متوقع","سُجل طلب تصدير لبيانات تجريبية من حساب إداري.","تحقق من صاحب الطلب وسبب التصدير ونطاق البيانات والصلاحيات."],
-"patch-window":["تحديث متأخر","هناك تحديث أمني متاح لأحد مكونات بيئة تدريبية.","قيّم الأثر والأولوية واختبر التحديث وفق سياسة التغيير."],
-"alert-fatigue":["سيل التنبيهات","وصلت تنبيهات كثيرة وبعضها متكرر أو منخفض الأولوية.","اجمع التنبيهات المترابطة ورتبها حسب الخطورة والسياق."],
-"dns-cache":["ذاكرة DNS","تظهر نتائج DNS مختلفة بين جهازين في مختبر.","قارن TTL والذاكرة المؤقتة والمحلّل المستخدم."],
-"privilege-review":["صلاحية أعلى من اللازم","لدى حساب افتراضي امتيازات إدارية لا يحتاجها.","قلل الصلاحيات وفق موافقة المسؤول واحتفظ بسجل التغيير."],
-"incident-room":["غرفة الاستجابة","يتطلب حادث تدريبي تنسيقًا بين فريق التقنية والأمن والإدارة.","ابدأ بتحديد الأدوار، وتوثيق القرارات، وحفظ الأدلة، وتحديث أصحاب المصلحة."],
-"endpoint-alert":["تنبيه نقطة النهاية","أصدرت أداة حماية افتراضية تنبيهًا عن ملف مشبوه.","راجع سبب التنبيه وسياق الملف، واعزل الجهاز إذا أوصت السياسة بذلك."],
-"public-service":["خدمة مكشوفة","يكشف تدقيق داخلي وجود خدمة غير مطلوبة في شبكة اختبار.","أغلق التعرض غير الضروري وفق خطة التغيير وتحقق من قواعد الوصول."],
-"final-investigation":["التحقيق النهائي","تجتمع عدة إشارات من السجلات والشبكة وإدارة الحسابات في قضية واحدة.","رتب الأدلة زمنيًا، وافصل الحقائق عن الافتراضات، ثم اقترح إجراءات دفاعية."]
-  };
-  const d=templates[id]||["قضية تدريبية", "حلل أدلة بيئة افتراضية لتفهم ما حدث.", "اجمع الأدلة، تحقق من السياق، ثم اختر استجابة دفاعية مناسبة."];
-  return{subtitle:"قضية تدريبية خيالية",story:d[1],evidence:[[ "ملاحظة أولى","سجل تدريبي",d[1] ],["سياق إضافي","بيئة افتراضية",d[2]],["خطوة التحقق","مراجعة دفاعية","وثّق ما وجدته، ولا تستنتج أكثر مما تدعمه الأدلة."]],objectives:["راجع وصف القضية وحدد المعلومة الأساسية.","اربط الأدلة بالتوقيت والسياق.","اختر خطوة دفاعية مناسبة.","وثّق خلاصة التحقيق." ]};
+
+function openLesson(id){
+  const lesson=lessons.find(l=>l.id===id);
+  if(!lesson)return;
+  activeLessonId=id;
+  const done=state.completedLessons.includes(id);
+  const index=lessons.findIndex(l=>l.id===id);
+  const locked=index>0&&!state.completedLessons.includes(lessons[index-1].id);
+  const sections=lesson.body.map((b,i)=>`<article class="card" style="margin-top:13px"><h3>${i+1}. ${escapeHTML(b[0])}</h3><p style="white-space:pre-line;color:#d1c6e0;font-size:14px">${escapeHTML(b[1])}</p></article>`).join("");
+  document.getElementById("lessonContent").innerHTML=`
+    <div style="margin-top:20px"><span class="pill">${escapeHTML(lesson.level)}</span> <span class="pill">${escapeHTML(lesson.category)}</span>
+    <h1 class="page-title" style="margin-top:14px">${escapeHTML(lesson.title)}</h1>
+    <p class="page-desc">اقرأ كل جزء بهدوء، ثم أكمل الدرس عندما تكون جاهزًا.</p>
+    ${sections}
+    <div class="card" style="margin-top:15px"><div class="section-head" style="margin:0 0 12px"><div><h3>أنهيت القراءة؟</h3><p>إكمال الدرس يمنحك ${lesson.xp} XP مرة واحدة.</p></div></div>
+    ${locked?'<div class="notice">هذا الدرس يأتي بعد درس سابق. يمكنك قراءته، لكن أكمل الدروس بالترتيب للاستفادة من المسار.</div>':""}
+    <button class="btn ${done?"btn-secondary":"btn-primary"}" ${done?"disabled":""} onclick="completeLesson('${lesson.id}')">${done?'<i class="fa-solid fa-check"></i> مكتمل بالفعل':'<i class="fa-solid fa-circle-check"></i> إكمال الدرس والحصول على XP'}</button>
+    <button class="btn btn-quiet" style="margin-right:5px" onclick="nextLesson('${lesson.id}')">الدرس التالي <i class="fa-solid fa-arrow-left"></i></button>
+    </div></div>`;
+  showPage("lesson");
 }
-function openCase(id){
-  const c=cases.find(x=>x.id===id);if(!c)return;
-  const d=caseData(id),done=state.completedCases.includes(id);
-  const content=`<div class="eyebrow">${escapeHTML(d.subtitle)}</div><p class="subtext" style="margin-bottom:18px">${escapeHTML(d.story)}</p><div class="case-detail"><div><h3>الأدلة المتاحة</h3><div class="evidence-list">${d.evidence.map(x=>`<div class="evidence"><i class="fa-solid fa-file-lines"></i><div><strong>${escapeHTML(x[0])}</strong><p>${escapeHTML(x[1])} — ${escapeHTML(x[2])}</p></div></div>`).join("")}</div></div><div><h3>أهداف التحقيق</h3><div id="caseObjectives">${d.objectives.map((x,i)=>`<label class="objective"><input type="checkbox" data-case-task="${i}" ${done?"checked":""}><span>${escapeHTML(x)}</span></label>`).join("")}</div><div class="callout warning"><i class="fa-solid fa-triangle-exclamation"></i> هذه قصة خيالية للتدريب الدفاعي، ولا تتضمن اتصالًا بأنظمة حقيقية.</div><button class="btn ${done?"btn-secondary":"btn-primary"}" id="finishCase" style="width:100%">${done?"القضية مكتملة":"إنهاء التحقيق"} <i class="fa-solid fa-check"></i></button></div></div>`;
-  openModal(c.title,content);
-  document.querySelectorAll("[data-case-task]").forEach(ch=>ch.addEventListener("change",()=>ch.closest(".objective").classList.toggle("done",ch.checked)));
-  document.getElementById("finishCase").addEventListener("click",()=>{
-    const checks=[...document.querySelectorAll("[data-case-task]")];
-    if(!checks.every(x=>x.checked)){toast("راجع كل أهداف التحقيق قبل الإكمال","fa-circle-info");return}
-    if(!state.completedCases.includes(id)){state.completedCases.push(id);awardXP(c.xp,`حل قضية: ${c.title}`);}
-    else toast("سبق وأكملت هذه القضية");
-    closeModal();renderCases();refreshUI();
-  });
+function completeLesson(id){
+  const lesson=lessons.find(l=>l.id===id);
+  if(!lesson||state.completedLessons.includes(id))return;
+  state.completedLessons.push(id);
+  state.xp+=lesson.xp;
+  state.activity.unshift({reason:"إكمال: "+lesson.title,xp:lesson.xp,date:new Date().toLocaleDateString("ar-SA")});
+  state.activity=state.activity.slice(0,15);
+  saveState();refreshUI();renderLessons();openLesson(id);
+  showToast("ممتاز! حصلت على "+lesson.xp+" XP");
+}
+function nextLesson(id){
+  const index=lessons.findIndex(l=>l.id===id);
+  const next=lessons[index+1];
+  if(next)openLesson(next.id);
+  else{showPage("academy");showToast("وصلت إلى آخر درس حاليًا!")}
 }
 
-const questions=[
-{q:"وش وظيفة DNS الأساسية؟",answers:["تشفير كل حركة الإنترنت","ربط أسماء النطاقات بسجلات مثل عناوين IP","توزيع الطاقة على الأجهزة","منع كل الهجمات تلقائيًا"],correct:1,why:"DNS يساعد في العثور على السجلات المرتبطة باسم النطاق، ومنها سجلات العناوين."},
-{q:"أي عنوان من التالي يقع ضمن نطاق IPv4 الخاص؟",answers:["8.8.8.8","192.168.1.20","1.1.1.1","203.0.113.5"],correct:1,why:"192.168.0.0/16 أحد نطاقات IPv4 الخاصة. العنوان 203.0.113.5 مخصص للتوثيق."},
-{q:"وش الفرق الأساسي بين TCP وUDP؟",answers:["TCP وUDP متطابقان تمامًا","UDP يضمن ترتيب كل الحزم دائمًا","TCP يوفر نقلًا موثوقًا ومرتبًا للبيانات","TCP يعمل فقط داخل Wi-Fi"],correct:2,why:"TCP يوفر إعادة إرسال وترتيبًا للتدفق، بينما UDP لا يضمن ذلك بذاته."},
-{q:"أي منفذ يرتبط غالبًا بـHTTPS؟",answers:["21","53","443","3389"],correct:2,why:"المنفذ 443 شائع لخدمات HTTPS، مع وجود HTTP/3 فوق QUIC وUDP."},
-{q:"ما المقصود بالبوابة الافتراضية؟",answers:["عنوان MAC للإنترنت كله","الوجهة التي يرسل لها الجهاز الحركة خارج شبكته المحلية","كلمة مرور الراوتر","اسم شبكة Wi-Fi"],correct:1,why:"البوابة الافتراضية توجّه عادةً البيانات التي تحتاج الخروج إلى شبكة أخرى."},
-{q:"أي سجل DNS يُستخدم عادةً لعنوان IPv4؟",answers:["MX","AAAA","A","TXT"],correct:2,why:"سجل A يربط اسم النطاق بعنوان IPv4، بينما AAAA مخصص لعنوان IPv6."},
-{q:"وش فائدة جدار الحماية؟",answers:["يجعل كل موقع آمنًا تلقائيًا","يراقب الحركة ويطبق قواعد السماح والمنع","يحوّل IPv4 إلى IPv6 دائمًا","يستبدل كلمات المرور"],correct:1,why:"جدار الحماية يطبق قواعد على حركة الشبكة، لكنه جزء من منظومة الحماية وليس حلًا لكل شيء."},
-{q:"ما التصرف الأفضل عند اكتشاف دخول مشبوه في بيئة عمل؟",answers:["حذف كل السجلات","نشر بيانات الحساب","توثيق الحدث واتباع خطة الاستجابة المعتمدة","تجاهل التنبيه مباشرة"],correct:2,why:"حفظ الأدلة وتوثيق الحدث واتباع خطة الاستجابة يساعد على تحقيق آمن ومنظم."},
-{q:"ما وظيفة DHCP المعتادة؟",answers:["توزيع إعدادات الشبكة تلقائيًا","تشفير ملفات الجهاز","إدارة شهادات TLS","إنشاء كلمات مرور للمواقع"],correct:0,why:"DHCP يوزع إعدادات مثل عنوان IP والبوابة وDNS على الأجهزة."},
-{q:"أي وصف يطابق عنوان MAC؟",answers:["اسم مستخدم في موقع","عنوان واجهة يستخدم في طبقة ربط البيانات","رقم منفذ ويب","سجل DNS للبريد"],correct:1,why:"عنوان MAC يستخدم في طبقة ربط البيانات، خصوصًا داخل الشبكة المحلية."},
-{q:"ماذا يعني HTTPS؟",answers:["أن الموقع مضمون وغير احتيالي","HTTP عبر اتصال محمي باستخدام TLS","أن الموقع لا يجمع أي بيانات","أن عنوان IP مخفي دائمًا"],correct:1,why:"HTTPS يحمي الاتصال باستخدام TLS، لكنه لا يضمن أن محتوى الموقع نفسه موثوق."},
-{q:"ما أول خطوة جيدة عند تحليل سجلات حادث؟",answers:["تغيير كل الإعدادات فورًا","حذف الأحداث القديمة","حفظ الأدلة وفهم التوقيت والسياق","إعلان سبب الحادث قبل الفحص"],correct:2,why:"حفظ السجلات وترتيبها وفهم سياقها يساعد في الاستنتاج بناءً على الأدلة."}
-];
-let quizIndex=0,quizScore=0,quizAnswered=false;
-function renderQuiz(){
-  const area=document.getElementById("quizArea");
-  if(quizIndex>=questions.length){
-    const percent=Math.round(quizScore/questions.length*100);
-    area.innerHTML=`<div class="empty-state"><i class="fa-solid fa-trophy"></i><h2>خلصت الاختبار!</h2><p>نتيجتك: ${quizScore} من ${questions.length} (${percent}%)</p><p>${percent>=80?"ممتاز! واضح أنك فاهم الأساسيات.":"ممتاز إنك جرّبت. راجع الدروس وجرب مرة ثانية."}</p><button class="btn btn-primary" id="restartQuiz">إعادة الاختبار</button></div>`;
-    document.getElementById("quizCount").textContent="اكتمل الاختبار";
-    document.getElementById("quizProgressFill").style.width="100%";
-    document.getElementById("quizScore").textContent=`النقاط: ${quizScore}`;
-    document.getElementById("restartQuiz").addEventListener("click",()=>{quizIndex=0;quizScore=0;quizAnswered=false;renderQuiz()});
-    if(percent>state.quizBest){state.quizBest=percent;saveState()}
+function renderNetwork(){
+  document.getElementById("networkGrid").innerHTML=networkTopics.map((t,i)=>`
+  <article class="card"><div class="card-icon"><i class="fa-solid ${t.icon}"></i></div><h3>${i+1}. ${escapeHTML(t.title)}</h3><p>${escapeHTML(t.desc)}</p><div class="notice" style="margin-bottom:0"><strong>مثال:</strong> ${escapeHTML(t.example)}</div><div class="card-meta"><span class="pill">${escapeHTML(t.level)}</span></div></article>`).join("");
+}
+function renderLinux(){
+  document.getElementById("linuxGrid").innerHTML=linuxTopics.map(t=>`
+  <article class="card"><div class="card-icon"><i class="fa-solid ${t.icon}"></i></div><h3>${escapeHTML(t.title)}</h3><p>${escapeHTML(t.desc)}</p><button class="btn btn-secondary btn-small" onclick="runLinuxExample('${t.cmd.replace(/'/g,"\\'")}')">جرّب الأمر <i class="fa-solid fa-terminal"></i></button></article>`).join("");
+}
+function appendTerminal(id,text,type=""){
+  const out=document.getElementById(id);
+  const line=document.createElement("div");
+  if(type)line.className=type;
+  line.textContent=text;
+  out.appendChild(line);out.scrollTop=out.scrollHeight;
+}
+function runLinuxExample(cmd){
+  document.getElementById("linuxInput").value=cmd;
+  executeLinux(cmd);
+}
+function executeLinux(raw){
+  const cmd=raw.trim();
+  if(!cmd)return;
+  appendTerminal("linuxOutput","$ "+cmd,"muted");
+  const responses={
+    help:"الأوامر المتاحة: help, pwd, ls, cd home, cat notes.txt, whoami, clear",
+    pwd:"/home/learner",
+    ls:"notes.txt  projects/  practice/  readme.txt",
+    "cd home":"تم الانتقال إلى /home/learner (محاكاة).",
+    "cat notes.txt":"ملاحظات المتعلم:\n- افهم الأساسيات.\n- تدرب في بيئة آمنة.\n- وثّق نتائجك.",
+    whoami:"learner"
+  };
+  if(cmd==="clear"){document.getElementById("linuxOutput").textContent="تم مسح الشاشة. اكتب help لعرض الأوامر.";return}
+  appendTerminal("linuxOutput",responses[cmd]||"الأمر غير موجود في هذه المحاكاة. اكتب help لعرض الأوامر.","success");
+}
+document.getElementById("linuxForm").addEventListener("submit",e=>{
+  e.preventDefault();executeLinux(document.getElementById("linuxInput").value);document.getElementById("linuxInput").value="";
+});
+
+function renderCases(){
+  document.getElementById("caseList").innerHTML=cases.map(c=>{
+    const done=state.completedCases.includes(c.id);
+    return `<button class="case-choice ${activeCaseId===c.id?"active":""}" onclick="selectCase('${c.id}')">
+      <div style="display:flex;justify-content:space-between;gap:8px;align-items:center"><strong>${escapeHTML(c.title)}</strong><span class="pill ${done?"green":""}">${done?"محلولة":escapeHTML(c.difficulty)}</span></div>
+      <small>${c.xp} XP • ${done?"تم التحقيق":"قضية تدريبية"}</small>
+    </button>`;
+  }).join("");
+  renderCaseDetail();
+}
+function selectCase(id){activeCaseId=id;renderCases()}
+function renderCaseDetail(){
+  const c=cases.find(x=>x.id===activeCaseId);
+  if(!c)return;
+  document.getElementById("caseDetail").innerHTML=`
+  <div class="card" style="margin-bottom:14px"><span class="pill"><i class="fa-solid fa-folder-open"></i> ملف تحقيق</span><h3 style="font-size:22px">${escapeHTML(c.title)}</h3><p>${escapeHTML(c.intro)}</p><h3 style="font-size:14px">أهداف التحقيق</h3><ol class="case-goals">${c.goals.map(g=>`<li>${escapeHTML(g)}</li>`).join("")}</ol></div>
+  <div class="terminal">
+    <div class="terminal-head"><span><i class="fa-solid fa-terminal"></i> case-terminal</span><div class="terminal-dots"><span></span><span></span><span></span></div></div>
+    <div class="terminal-output" id="caseOutput">مرحبًا بالمحقق.\nاكتب help لعرض أوامر القضية.</div>
+    <form class="terminal-form" id="caseForm"><span>$</span><input id="caseInput" placeholder="اكتب help" autocomplete="off" spellcheck="false" aria-label="أمر التحقيق"><button>تنفيذ</button></form>
+  </div>
+  <div class="notice"><i class="fa-solid fa-circle-info"></i> الطرفية تقرأ بيانات ثابتة داخل الصفحة فقط. لا تتصل بأي خادم أو عنوان خارجي.</div>`;
+  document.getElementById("caseForm").addEventListener("submit",e=>{
+    e.preventDefault();
+    const input=document.getElementById("caseInput");
+    executeCase(input.value);input.value="";
+  });
+}
+function executeCase(raw){
+  const c=cases.find(x=>x.id===activeCaseId);
+  if(!c)return;
+  const cmd=raw.trim();
+  if(!cmd)return;
+  appendTerminal("caseOutput","$ "+cmd,"muted");
+  const lower=cmd.toLowerCase();
+  if(lower==="submit"){
+    appendTerminal("caseOutput","اكتب استنتاجك بعد submit، مثال: submit ali","muted");
     return;
   }
-  const q=questions[quizIndex];quizAnswered=false;
-  document.getElementById("quizCount").textContent=`السؤال ${quizIndex+1} من ${questions.length}`;
-  document.getElementById("quizProgressFill").style.width=`${quizIndex/questions.length*100}%`;
-  document.getElementById("quizScore").textContent=`النقاط: ${quizScore}`;
-  area.innerHTML=`<div class="quiz-question">${escapeHTML(q.q)}</div><div class="answer-list">${q.answers.map((a,i)=>`<button class="answer-btn" data-answer="${i}"><span class="answer-letter">${["أ","ب","ج","د"][i]}</span><span>${escapeHTML(a)}</span></button>`).join("")}</div><div class="feedback" id="quizFeedback"></div><button class="btn btn-primary hidden" id="nextQuestion" style="margin-top:18px">${quizIndex===questions.length-1?"عرض النتيجة":"السؤال التالي"} <i class="fa-solid fa-arrow-left"></i></button>`;
-  document.querySelectorAll("[data-answer]").forEach(b=>b.addEventListener("click",()=>answerQuestion(Number(b.dataset.answer))));
-  document.getElementById("nextQuestion").addEventListener("click",()=>{quizIndex++;renderQuiz()});
+  if(lower.startsWith("submit ")){
+    const answer=cmd.slice(7).trim().toLowerCase();
+    if(answer===c.answer.toLowerCase()){
+      appendTerminal("caseOutput",c.success,"success");
+      if(!state.completedCases.includes(c.id)){
+        state.completedCases.push(c.id);state.xp+=c.xp;
+        state.activity.unshift({reason:"حل قضية: "+c.title,xp:c.xp,date:new Date().toLocaleDateString("ar-SA")});
+        state.activity=state.activity.slice(0,15);
+        saveState();refreshUI();renderCases();
+        showToast("تم حل القضية! +"+c.xp+" XP");
+      }else appendTerminal("caseOutput","هذه القضية مكتملة سابقًا. يمكنك متابعة التحقيق.","success");
+    }else{
+      appendTerminal("caseOutput","الاستنتاج غير صحيح بعد. راجع الأدلة وجرب مرة أخرى.","error");
+    }
+    return;
+  }
+  const result=c.commands[lower];
+  if(result!==undefined){
+    appendTerminal("caseOutput",result||"استخدم submit متبوعًا باستنتاجك.");
+  }else{
+    appendTerminal("caseOutput","أمر غير معروف. اكتب help لعرض الأوامر.","error");
+  }
 }
-function answerQuestion(index){
-  if(quizAnswered)return;quizAnswered=true;
-  const q=questions[quizIndex],correct=index===q.correct;
-  if(correct)quizScore++;
-  document.querySelectorAll("[data-answer]").forEach((b,i)=>{
-    b.disabled=true;
-    if(i===q.correct)b.classList.add("correct");
-    else if(i===index)b.classList.add("wrong");
-  });
-  const feedback=document.getElementById("quizFeedback");
-  feedback.className=`feedback show ${correct?"callout success":"callout warning"}`;
-  feedback.innerHTML=`<strong>${correct?"إجابة صحيحة!":"مو هي الإجابة الصحيحة"}</strong><br>${escapeHTML(q.why)}`;
-  document.getElementById("nextQuestion").classList.remove("hidden");
-  document.getElementById("quizScore").textContent=`النقاط: ${quizScore}`;
-  if(correct)awardXP(5,"إجابة صحيحة في الاختبار");
-}
-renderQuiz();
 
-const demoMembers=[
-{name:"PurpleByte",xp:860,lessons:18,cases:7,icon:"P"},
-{name:"NetRunner",xp:720,lessons:15,cases:5,icon:"N"},
-{name:"LogHunter",xp:640,lessons:13,cases:4,icon:"L"},
-{name:"PacketFox",xp:510,lessons:10,cases:3,icon:"P"},
-{name:"RootLearner",xp:390,lessons:8,cases:2,icon:"R"},
-{name:"CyberNova",xp:270,lessons:6,cases:1,icon:"C"}
-];
-function getLevel(){return Math.floor(state.xp/100)+1}
-function renderLeaderboard(){
-  const my={name:state.name||"متعلم Midnight",xp:state.xp,lessons:state.completedLessons.length,cases:state.completedCases.length,icon:(state.name||"م").charAt(0).toUpperCase(),isMe:true};
-  const list=[...demoMembers,my].sort((a,b)=>b.xp-a.xp);
-  const idx=list.findIndex(x=>x.isMe);
-  document.getElementById("myRank").textContent="#"+(idx+1);
-  document.getElementById("leaderXP").textContent=state.xp;
-  document.getElementById("leaderLessons").textContent=state.completedLessons.length;
-  document.getElementById("leaderCases").textContent=state.completedCases.length;
-  document.getElementById("leaderboardBody").innerHTML=list.map((m,i)=>`<tr ${m.isMe?'style="background:#9b5cff0a"':""}><td><span class="rank-number ${i===0?"gold":i===1?"silver":i===2?"bronze":""}">${i+1}</span></td><td><div class="member-cell"><span class="avatar">${escapeHTML(m.icon)}</span><span><strong>${escapeHTML(m.name)} ${m.isMe?'<span class="badge">أنت</span>':""}</strong><small>${m.isMe?"تقدم محفوظ محليًا":"عضو تجريبي"}</small></span></div></td><td><strong>${m.xp} XP</strong></td><td>${m.lessons}</td><td>${m.cases}</td></tr>`).join("");
+function openBook(){
+  document.getElementById("bookReader").style.display="block";
+  renderBookPage();
+  document.getElementById("bookReader").scrollIntoView({behavior:"smooth",block:"start"});
 }
-const achievements=[
-{id:"first-step",title:"أول خطوة",desc:"أكمل أول درس",icon:"fa-shoe-prints",check:()=>state.completedLessons.length>=1},
-{id:"network-starter",title:"مستكشف الشبكات",desc:"أكمل 3 دروس",icon:"fa-network-wired",check:()=>state.completedLessons.length>=3},
-{id:"bookworm",title:"محب المعرفة",desc:"أكمل 6 دروس",icon:"fa-book-open",check:()=>state.completedLessons.length>=6},
-{id:"lab-starter",title:"متدرب المختبر",desc:"أكمل أول مختبر",icon:"fa-flask",check:()=>state.completedLabs.length>=1},
-{id:"case-solver",title:"محقق رقمي",desc:"حل أول قضية",icon:"fa-fingerprint",check:()=>state.completedCases.length>=1},
-{id:"bank-case",title:"ملف بنك BOW",desc:"أكمل قضية بنك BOW",icon:"fa-building-columns",check:()=>state.completedCases.includes("bank-bow")},
-{id:"xp-hundred",title:"100 XP",desc:"اجمع 100 نقطة خبرة",icon:"fa-bolt",check:()=>state.xp>=100},
-{id:"quiz-master",title:"اختبار المعرفة",desc:"احصل على 80% أو أكثر",icon:"fa-brain",check:()=>state.quizBest>=80}
-];
+function closeBook(){document.getElementById("bookReader").style.display="none"}
+function renderBookPage(){
+  const p=bookPages[bookIndex];
+  document.getElementById("bookPageNumber").textContent=`الصفحة ${bookIndex+1} من ${bookPages.length}`;
+  document.getElementById("bookPageTitle").textContent=p.title;
+  document.getElementById("bookPageText").textContent=p.text;
+  const code=document.getElementById("bookCode");
+  code.textContent=p.code;
+  code.style.display=p.code?"block":"none";
+  document.getElementById("bookPrev").disabled=bookIndex===0;
+  document.getElementById("bookNext").disabled=bookIndex===bookPages.length-1;
+  document.getElementById("bookPrev").style.opacity=bookIndex===0?".45":"1";
+  document.getElementById("bookNext").style.opacity=bookIndex===bookPages.length-1?".45":"1";
+}
+document.getElementById("bookPrev").addEventListener("click",()=>{if(bookIndex>0){bookIndex--;renderBookPage()}});
+document.getElementById("bookNext").addEventListener("click",()=>{if(bookIndex<bookPages.length-1){bookIndex++;renderBookPage()}});
+
 function renderAchievements(){
   const unlocked=achievements.filter(a=>a.check()).length;
   document.getElementById("achUnlocked").textContent=unlocked;
   document.getElementById("achTotal").textContent=achievements.length;
   document.getElementById("achPercent").textContent=Math.round(unlocked/achievements.length*100)+"%";
-  document.getElementById("achLevel").textContent=getLevel();
-  document.getElementById("achievementGrid").innerHTML=achievements.map(a=>`<article class="card achievement ${a.check()?"":"locked"}"><div class="ach-icon"><i class="fa-solid ${a.icon}"></i></div><h3>${escapeHTML(a.title)}</h3><p>${escapeHTML(a.desc)}</p><div style="margin-top:11px"><span class="badge ${a.check()?"green":""}">${a.check()?"مفتوح":"مقفل"}</span></div></article>`).join("");
+  document.getElementById("achLevel").textContent=level();
+  document.getElementById("achievementGrid").innerHTML=achievements.map(a=>{
+    const done=a.check();
+    return `<article class="card" style="${done?"border-color:#36553f;":"opacity:.75"}"><div class="card-icon"><i class="fa-solid ${a.icon}"></i></div><h3>${escapeHTML(a.title)}</h3><p>${escapeHTML(a.desc)}</p><span class="pill ${done?"green":"locked"}">${done?"مفتوح":"مقفل"}</span></article>`;
+  }).join("");
 }
 function refreshUI(){
+  const displayName=state.name||"متعلم Midnight";
   document.getElementById("topXP").textContent=state.xp+" XP";
-  document.getElementById("homeXP").innerHTML=state.xp+' <small style="font-size:12px;color:var(--muted)">XP</small>';
+  document.getElementById("topAvatar").textContent=displayName.charAt(0).toUpperCase();
+  document.getElementById("homeXP").textContent=state.xp;
   document.getElementById("homeLessons").textContent=state.completedLessons.length;
-  document.getElementById("homeLabs").textContent=state.completedLabs.length;
   document.getElementById("homeCases").textContent=state.completedCases.length;
-  document.getElementById("homeCourses").innerHTML=lessons.slice(0,4).map(l=>{
-    const done=state.completedLessons.includes(l.id);
-    return `<div class="course-row"><span class="course-icon"><i class="fa-solid ${l.icon}"></i></span><div class="course-info"><strong>${escapeHTML(l.title)}</strong><small>${done?"تم الإكمال":escapeHTML(l.duration)} • ${l.xp} XP</small><div class="progress-track"><div class="progress-fill" style="width:${done?100:0}%"></div></div></div><button class="icon-btn" data-home-lesson="${l.id}" aria-label="فتح الدرس"><i class="fa-solid fa-arrow-left"></i></button></div>`;
-  }).join("");
-  document.querySelectorAll("[data-home-lesson]").forEach(b=>b.addEventListener("click",()=>openLesson(b.dataset.homeLesson)));
-  const act=document.getElementById("homeActivity");
-  act.innerHTML=state.activity.length?state.activity.slice(0,5).map(a=>`<div class="activity"><span class="activity-dot"></span><div><strong>${escapeHTML(a.reason)}</strong><small>+${a.xp} XP • ${escapeHTML(a.date)}</small></div></div>`).join(""):`<div class="empty-state"><i class="fa-solid fa-flag-checkered"></i><p>ابدأ أول درس عشان تظهر إنجازاتك هنا</p></div>`;
-  document.getElementById("profileNameDisplay").textContent=state.name||"متعلم Midnight";
+  document.getElementById("homeLevel").textContent=level();
+  document.getElementById("profileDisplayName").textContent=displayName;
+  document.getElementById("profileLevel").textContent=`المستوى ${level()} • ${state.xp<100?"بداية الرحلة":state.xp<500?"متعلم مستمر":"متعلم متقدم"}`;
+  document.getElementById("profileAvatar").textContent=displayName.charAt(0).toUpperCase();
   document.getElementById("profileName").value=state.name||"";
-  document.getElementById("profileLevelText").textContent=`المستوى ${getLevel()} • ${state.xp<100?"بداية الرحلة":state.xp<500?"متعلم مستمر":"متعلم متقدم"}`;
-  const cp=Math.round(state.completedLessons.length/lessons.length*100);
-  const lp=Math.round(state.completedLabs.length/labs.length*100);
-  const cap=Math.round(state.completedCases.length/cases.length*100);
-  document.getElementById("profileCoursePercent").textContent=cp+"%";document.getElementById("profileCourseBar").style.width=cp+"%";
-  document.getElementById("profileLabPercent").textContent=lp+"%";document.getElementById("profileLabBar").style.width=lp+"%";
-  document.getElementById("profileCasePercent").textContent=cap+"%";document.getElementById("profileCaseBar").style.width=cap+"%";
-  renderLeaderboard();renderAchievements();
+  document.getElementById("profileLessons").textContent=state.completedLessons.length;
+  document.getElementById("profileCases").textContent=state.completedCases.length;
+  const list=document.getElementById("continueList");
+  const next=lessons.find(l=>!state.completedLessons.includes(l.id));
+  if(next){
+    list.innerHTML=`<div class="learning-row"><span class="card-icon"><i class="fa-solid ${next.icon}"></i></span><div class="learning-info"><strong>${escapeHTML(next.title)}</strong><small>${escapeHTML(next.level)} • ${next.xp} XP</small><div class="progress-track" style="margin-top:7px"><div class="progress-fill" style="width:0%"></div></div></div><button class="btn btn-primary btn-small" onclick="openLesson('${next.id}')">ابدأ <i class="fa-solid fa-arrow-left"></i></button></div>`;
+  }else{
+    list.innerHTML=`<div class="empty"><i class="fa-solid fa-trophy"></i><h3>رائع! أكملت كل الدروس الحالية</h3><p>يمكنك مراجعتها أو متابعة القضايا التعليمية.</p><button class="btn btn-secondary btn-small" onclick="showPage('cases')">انتقل للقضايا</button></div>`;
+  }
+  renderAchievements();
 }
 document.getElementById("profileForm").addEventListener("submit",e=>{
-  e.preventDefault();const name=document.getElementById("profileName").value.trim();
-  if(!name){toast("اكتب اسمًا أولًا","fa-circle-info");return}
-  state.name=name.slice(0,24);saveState();refreshUI();toast("تم حفظ اسمك على هذا الجهاز");
+  e.preventDefault();
+  const name=document.getElementById("profileName").value.trim();
+  if(!name){showToast("اكتب اسمًا أولًا.");return}
+  state.name=name.slice(0,24);saveState();refreshUI();showToast("تم حفظ اسمك على هذا الجهاز.");
 });
 document.getElementById("resetProgress").addEventListener("click",()=>{
-  openModal("إعادة ضبط التقدم",`<p class="subtext">هل أنت متأكد؟ سيتم حذف نقاط الخبرة والدروس والمختبرات والقضايا المكتملة والاسم المحلي من هذا المتصفح.</p><div class="hero-actions"><button class="btn btn-danger" id="confirmReset">إعادة الضبط</button><button class="btn btn-secondary" id="cancelReset">إلغاء</button></div>`);
-  document.getElementById("cancelReset").addEventListener("click",closeModal);
-  document.getElementById("confirmReset").addEventListener("click",()=>{
-    state=structuredClone(DEFAULT_STATE);saveState();closeModal();renderLessons();renderCases();refreshUI();toast("تمت إعادة ضبط التقدم المحلي","fa-rotate-left");
-  });
+  const confirmed=confirm("هل أنت متأكد من إعادة ضبط التقدم؟ سيتم حذف نقاط الخبرة والدروس والقضايا المكتملة والاسم المحفوظ محليًا.");
+  if(!confirmed)return;
+  state=structuredClone(defaultState);saveState();refreshUI();renderLessons();renderCases();
+  showToast("تمت إعادة ضبط تقدمك على هذا الجهاز.");
 });
 
-renderNetwork();
 renderLessons();
-renderLabs();
+renderNetwork();
+renderLinux();
 renderCases();
-renderDictionary();
 refreshUI();
-
 </script>
 </body>
 </html>
